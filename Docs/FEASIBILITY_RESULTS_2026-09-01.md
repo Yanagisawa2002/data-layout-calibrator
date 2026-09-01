@@ -1,5 +1,7 @@
 # Validation status — 2026-09-01
 
+> Historical gate snapshot. The missing IL2CPP prerequisite was resolved and the roadmap completed on 2026-09-02; see [final validation results](VALIDATION_RESULTS_2026-09-02.md).
+
 ## Decision
 
 **Reusable calibration pipeline: engineering Go. Source Generator and presentation milestone: correctly gated.**

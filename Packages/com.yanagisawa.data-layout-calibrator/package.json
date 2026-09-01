@@ -1,6 +1,6 @@
 {
   "name": "com.yanagisawa.data-layout-calibrator",
-  "version": "0.2.0-preview.1",
+  "version": "0.3.0-preview.1",
   "displayName": "Data Layout Calibrator",
   "description": "Concrete Burst data-layout calibration, parity validation, and device-scoped profile selection.",
   "unity": "6000.0",

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0-preview.1 — 2026-09-02
+
+- Added an AOT-safe Scenario Registry Source Generator driven by explicit assembly attributes.
+- Added compile-time diagnostics for invalid and duplicate factory registrations, plus deterministic factory ordering.
+- Verified the generated registry with four Roslyn tests, 29 Unity EditMode tests, and both included workloads in Windows Mono and IL2CPP Release Players with Burst AOT.
+- Added an immutable IL2CPP evidence snapshot and a standalone fixed-result heatmap/GIF renderer with provenance manifest.
+- Added renderer regression tests proving that changed measurements cannot replace the candidate stored in `FinalDecision`.
+
 ## 0.2.0-preview.1 — 2026-09-01
 
 - Renamed the product, package, assemblies, build output, and result schema to Data Layout Calibrator.

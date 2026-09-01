@@ -1,0 +1,45 @@
+{
+  "Decisions": [
+    {
+      "BaselineCandidateId": "AoS-b256",
+      "BaselineP95Microseconds": 9.70495,
+      "BestMeasuredCandidateId": "AoSoA8-b128",
+      "BestMeasuredP95Microseconds": 6.3902874999999995,
+      "ConfidenceIterations": 500,
+      "ConfidenceLevel": 0.95,
+      "ConfidenceLowerPercent": 33.21343827399457,
+      "ConfidenceUpperPercent": 35.24570447691236,
+      "ImprovementPercent": 34.15434906928939,
+      "ScenarioId": "particle-integrate-v2",
+      "SelectedCandidateId": "AoSoA8-b128",
+      "Status": 2,
+      "StatusName": "OPTIMIZED"
+    },
+    {
+      "BaselineCandidateId": "AoS-b256",
+      "BaselineP95Microseconds": 22.206170833333335,
+      "BestMeasuredCandidateId": "AoS-b256",
+      "BestMeasuredP95Microseconds": 22.206170833333335,
+      "ConfidenceIterations": 0,
+      "ConfidenceLevel": 0.0,
+      "ConfidenceLowerPercent": 0.0,
+      "ConfidenceUpperPercent": 0.0,
+      "ImprovementPercent": 0.0,
+      "ScenarioId": "transform-export-v1",
+      "SelectedCandidateId": "AoS-b256",
+      "Status": 1,
+      "StatusName": "AOS RETAINED"
+    }
+  ],
+  "InputPath": "Docs/evidence/il2cpp-release-calibration-suite.json",
+  "InputSha256": "85FAC20CDF81EBA674A3A736340CFCBEEB88EEF99CD1F5ECC776EE0215E53D78",
+  "Outputs": {
+    "ComparisonGif": "data-layout-calibrator-comparison.gif",
+    "Heatmap": "data-layout-calibrator-heatmap.png"
+  },
+  "Renderer": "Data Layout Calibrator fixed-result renderer",
+  "RendererVersion": "1.0.0",
+  "RunId": "20260901-160247256",
+  "SchemaVersion": 2,
+  "SelectionContract": "All baseline, selected, and best markers are copied from FinalDecision; the renderer contains no candidate selection algorithm."
+}

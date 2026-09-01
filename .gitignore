@@ -21,10 +21,16 @@ BenchmarkProject/Assets/Resources/PerformanceTestRun*.json*
 
 # IDE files
 *.csproj
+!Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/*.csproj
+!Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Tests/*.csproj
 *.sln
 *.suo
 *.user
 *.userprefs
+**/[Bb]in/
+**/[Oo]bj/
+**/__pycache__/
+*.pyc
 .idea/
 .vscode/
 

@@ -17,6 +17,8 @@ The core engine may depend only on:
 
 The core assembly must expose no workload record, storage, or Job type. A reflection test fails if a core type name contains `Particle`; Samples compile into their own asmdefs.
 
+Factory discovery is explicit and compile-time only. A host assembly applies `RegisterCalibrationScenarioFactoryAttribute`; the packaged Source Generator validates the type and emits direct constructor calls in deterministic fully-qualified-name order. Runtime reflection, `Activator`, and open-generic Job discovery are outside the contract.
+
 ## Included scenario contracts
 
 ### particle-integrate-v2
@@ -77,4 +79,4 @@ Ingress and export P95 are intentionally conservative boundary terms. Resident s
 
 `calibration-suite.json` is the immutable input to any heatmap, dashboard, or GIF. Presentation code may choose axes, formatting, and annotations, but it may not call the selector, recompute `FinalDecision`, substitute a different candidate, or combine incompatible runs.
 
-The Source Generator and result visualization remain gated until both included workloads pass Mono Burst AOT and IL2CPP Release Player validation.
+The gate was satisfied on 2026-09-02 for both included workloads in Mono and IL2CPP Release Players with Burst AOT. The fixed-result renderer records the input SHA-256 and copied decision fields in a manifest; a regression test changes candidate measurements and verifies that the displayed selection remains the one stored in `FinalDecision`.

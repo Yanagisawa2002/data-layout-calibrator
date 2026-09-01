@@ -30,3 +30,7 @@ A Source Generator begins only after both included workload contracts pass:
 3. full parity, zero measured managed allocation, and valid fixed results.
 
 Missing platform tooling is a failed prerequisite, not permission to weaken or skip the gate.
+
+## Gate outcome
+
+On 2026-09-02, both included workloads passed Mono and Windows IL2CPP non-Development Release Players with Burst AOT, full parity, zero measured managed allocation, and valid fixed suite results. Only after that pass, the repository added the narrow factory-registry Source Generator and the fixed-result renderer. Their implementation details are recorded in ADR 0003.

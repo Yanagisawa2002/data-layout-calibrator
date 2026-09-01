@@ -7,6 +7,7 @@ using Unity.Burst;
 using Unity.Jobs.LowLevel.Unsafe;
 using UnityEngine;
 using Yanagisawa.DataLayoutCalibrator;
+using Yanagisawa.DataLayoutCalibrator.Generated;
 using Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate;
 using Yanagisawa.DataLayoutCalibrator.Samples.TransformExport;
 using Debug = UnityEngine.Debug;
@@ -69,10 +70,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
 
             Directory.CreateDirectory(_configuration.OutputDirectory);
             ICalibrationScenarioFactory[] factories =
-            {
-                new ParticleIntegrateScenarioFactory(),
-                new TransformExportScenarioFactory(),
-            };
+                GeneratedCalibrationScenarioRegistry.CreateFactories();
             var profiles = new ScenarioCalibrationProfile[factories.Length];
             for (int index = 0; index < factories.Length; index++)
             {

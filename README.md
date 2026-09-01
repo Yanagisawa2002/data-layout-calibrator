@@ -18,6 +18,8 @@ The core UPM assembly contains no Particle types. It exposes four plugin boundar
 - `particle-integrate-v2`: AoS, SoA, and explicit eight-lane AoSoA8; batch 32/64/128/256.
 - `transform-export-v1`: AoS and SoA full matrix export; deliberately retained as a negative control.
 
+An assembly-level registration attribute and packaged Roslyn Source Generator create the runtime factory registry as direct constructor calls. The generator is AOT-safe and intentionally narrow: it removes hand-maintained registration without attempting to synthesize layouts or rewrite workload code.
+
 ## Frozen decision rule
 
 The primary value for each candidate is:
@@ -44,8 +46,11 @@ Packages/com.yanagisawa.data-layout-calibrator/
   Runtime/                         workload-agnostic protocol, engine, statistics
   Samples/ParticleIntegrate/       particle plugin and tests
   Samples/TransformExport/         negative-control plugin and tests
+  SourceGenerators/                packaged Roslyn analyzer DLL
+  SourceGenerators~/               generator source and Roslyn tests
 BenchmarkProject/                  standalone Release Player and evidence writer
-Docs/                              contracts, ADRs, validation status
+Tools/ResultRenderer/               fixed-result PNG/GIF renderer and tests
+Docs/                              contracts, ADRs, fixed evidence, rendered assets
 ```
 
 ## Build and run
@@ -59,12 +64,21 @@ Unity.exe -batchmode -projectPath BenchmarkProject `
 Unity.exe -batchmode -quit -projectPath BenchmarkProject `
   -executeMethod Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.DataLayoutCalibratorBuild.BuildWindowsMonoAotEvidence
 
+Unity.exe -batchmode -quit -projectPath BenchmarkProject `
+  -executeMethod Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.DataLayoutCalibratorBuild.BuildWindowsIl2CppFormal
+
 Builds/windows-x64/mono-aot-evidence/DataLayoutCalibrator.exe `
   -batchmode -nographics -dla-run -dla-quit `
   -dla-count 1048576 -dla-holdout-count 1000003 `
   -dla-samples 40 -dla-boundary-samples 20 `
   -dla-lifetime-ticks 600 -dla-bootstrap-iterations 4000 `
   -dla-output CalibrationResults/run-01
+
+dotnet test Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Tests/Yanagisawa.DataLayoutCalibrator.SourceGenerator.Tests.csproj -c Release
+
+python -m unittest discover Tools/ResultRenderer/tests -v
+python Tools/ResultRenderer/render_results.py `
+  Docs/evidence/il2cpp-release-calibration-suite.json Docs/assets
 ```
 
 The build fails unless the Burst library contains all ParticleIntegrate and TransformExport job entrypoints. A successful run writes:
@@ -74,8 +88,16 @@ The build fails unless the Burst library contains all ParticleIntegrate and Tran
 - `<scenario>/samples.csv`: recorded ingress/resident/export samples;
 - summaries stating the exact measurement and presentation contract.
 
-Future heatmaps and GIFs must read `calibration-suite.json`. They may format or filter it, but may not recompute or replace `FinalDecision`.
+Heatmaps and GIFs read `calibration-suite.json`. They may format or filter it, but may not recompute or replace `FinalDecision`. The renderer writes a provenance manifest containing the input SHA-256 and exact copied decision fields.
 
 ## Current gate
 
-Mono Release + Burst AOT, both workload protocols, parity, boundary accounting, bootstrap selection, and the negative control are verified. Windows IL2CPP support is not installed in the local Unity editors, so the formal IL2CPP build fails before compilation. Per the gate, no Source Generator or result GIF has been implemented yet. See [validation status](Docs/FEASIBILITY_RESULTS_2026-09-01.md) and the [calibration contract](Docs/CALIBRATION_CONTRACT.md).
+The full roadmap gate is complete: 29/29 Unity EditMode tests, 4/4 generator tests, 3/3 renderer tests, Mono Release + Burst AOT, and IL2CPP Release + Burst AOT. Both workload plugins pass parity and zero-allocation gates in both Players.
+
+The checked-in IL2CPP integration result is deliberately a short behavioral gate, not a universal hardware performance claim. On this run, ParticleIntegrate selected `AoSoA8-b128` with a 34.15% holdout amortized-P95 improvement; TransformExport retained `AoS-b256`, demonstrating the negative control. The immutable result SHA-256 is `85FAC20CDF81EBA674A3A736340CFCBEEB88EEF99CD1F5ECC776EE0215E53D78`.
+
+![IL2CPP fixed-result heatmap](Docs/assets/data-layout-calibrator-heatmap.png)
+
+![AoS baseline to frozen decision](Docs/assets/data-layout-calibrator-comparison.gif)
+
+See the [final validation evidence](Docs/VALIDATION_RESULTS_2026-09-02.md), [calibration contract](Docs/CALIBRATION_CONTRACT.md), and [fixed-result renderer contract](Tools/ResultRenderer/README.md).

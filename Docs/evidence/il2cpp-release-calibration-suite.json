@@ -1,0 +1,2649 @@
+{
+    "SchemaVersion": 2,
+    "ProductName": "Data Layout Calibrator",
+    "RunId": "20260901-160247256",
+    "CreatedUtcIso8601": "2026-09-01T16:02:47.2569533Z",
+    "Environment": {
+        "UnityVersion": "6000.5.3f1",
+        "BurstVersion": "1.8.29",
+        "CollectionsVersion": "6.5.0",
+        "MathematicsVersion": "1.4.0",
+        "ScriptingBackend": "IL2CPP",
+        "BuildType": "Release",
+        "OperatingSystem": "Windows 11  (10.0.26200)",
+        "Processor": "AMD Ryzen 9 9950X 16-Core Processor ",
+        "LogicalProcessorCount": 8,
+        "JobWorkerCount": 7,
+        "GraphicsDevice": "Null Device"
+    },
+    "Scenarios": [
+        {
+            "SchemaVersion": 2,
+            "Scenario": {
+                "ScenarioId": "particle-integrate-v2",
+                "DisplayName": "Particle Integrate",
+                "ContractVersion": 2,
+                "ResidentOperation": "Integrate position, velocity and lifetime while preserving cold rotation/category fields."
+            },
+            "ElementCount": 65536,
+            "HoldoutElementCount": 65521,
+            "CalibrationSeed": 12648430,
+            "HoldoutSeed": 195936478,
+            "FixedDeltaTime": 0.01666666753590107,
+            "TicksPerBlock": 32,
+            "WarmupBlocks": 147,
+            "SamplesPerCandidate": 7,
+            "BoundarySamplesPerCandidate": 5,
+            "LifetimeTicks": 600,
+            "CandidateOrderSeed": 2738958700,
+            "BootstrapIterations": 500,
+            "BootstrapConfidenceLevel": 0.95,
+            "MinimumImprovementPercent": 10.0,
+            "PrimaryTimingMetric": "amortized_p95_ms_per_tick = resident_p95 + (ingress_p95 + export_p95) / lifetime_ticks",
+            "TimingIncludes": "candidate dispatch; job Schedule; worker execution; Complete; separately timed full ingress and export",
+            "TimingExcludes": "allocation; dataset generation; parity scan; hashing; JSON/CSV serialization; visualization",
+            "CalibrationDatasetHash": "0xF035E785ED601541",
+            "HoldoutDatasetHash": "0x1C566809081797B4",
+            "BoundaryContract": {
+                "IngressContract": "Canonical NativeArray<ParticleRecord> to candidate-owned persistent layout storage.",
+                "ExportContract": "Candidate-owned layout storage to canonical NativeArray<ParticleRecord>."
+            },
+            "CalibrationDecision": {
+                "Status": 2,
+                "BaselineCandidate": {
+                    "CandidateId": "AoS-b256",
+                    "LayoutId": "AoS",
+                    "DisplayName": "AoS",
+                    "LogicalBatchSize": 256,
+                    "IsBaseline": true,
+                    "SortOrder": 0
+                },
+                "SelectedCandidate": {
+                    "CandidateId": "AoSoA8-b128",
+                    "LayoutId": "AoSoA8",
+                    "DisplayName": "AoSoA8",
+                    "LogicalBatchSize": 128,
+                    "IsBaseline": false,
+                    "SortOrder": 2
+                },
+                "BestMeasuredCandidate": {
+                    "CandidateId": "AoSoA8-b128",
+                    "LayoutId": "AoSoA8",
+                    "DisplayName": "AoSoA8",
+                    "LogicalBatchSize": 128,
+                    "IsBaseline": false,
+                    "SortOrder": 2
+                },
+                "BaselineP95Milliseconds": 0.009788370833333334,
+                "BestMeasuredP95Milliseconds": 0.007268454166666665,
+                "ImprovementPercent": 25.74398446455809,
+                "ImprovementConfidenceInterval": {
+                    "Iterations": 500,
+                    "ConfidenceLevel": 0.95,
+                    "PointEstimatePercent": 25.74398446455809,
+                    "LowerBoundPercent": 21.81246747921992,
+                    "UpperBoundPercent": 34.09010289847916
+                },
+                "MinimumRequiredImprovementPercent": 10.0,
+                "FellBackBecauseStatisticalTie": false,
+                "EligibleCandidateCount": 12,
+                "RejectedParityCandidateCount": 0,
+                "Reason": "A non-AoS candidate cleared both the required amortized P95 improvement and the bootstrap significance gate."
+            },
+            "FinalDecision": {
+                "Status": 2,
+                "BaselineCandidate": {
+                    "CandidateId": "AoS-b256",
+                    "LayoutId": "AoS",
+                    "DisplayName": "AoS",
+                    "LogicalBatchSize": 256,
+                    "IsBaseline": true,
+                    "SortOrder": 0
+                },
+                "SelectedCandidate": {
+                    "CandidateId": "AoSoA8-b128",
+                    "LayoutId": "AoSoA8",
+                    "DisplayName": "AoSoA8",
+                    "LogicalBatchSize": 128,
+                    "IsBaseline": false,
+                    "SortOrder": 2
+                },
+                "BestMeasuredCandidate": {
+                    "CandidateId": "AoSoA8-b128",
+                    "LayoutId": "AoSoA8",
+                    "DisplayName": "AoSoA8",
+                    "LogicalBatchSize": 128,
+                    "IsBaseline": false,
+                    "SortOrder": 2
+                },
+                "BaselineP95Milliseconds": 0.00970495,
+                "BestMeasuredP95Milliseconds": 0.0063902874999999998,
+                "ImprovementPercent": 34.15434906928939,
+                "ImprovementConfidenceInterval": {
+                    "Iterations": 500,
+                    "ConfidenceLevel": 0.95,
+                    "PointEstimatePercent": 34.15434906928939,
+                    "LowerBoundPercent": 33.21343827399457,
+                    "UpperBoundPercent": 35.24570447691236
+                },
+                "MinimumRequiredImprovementPercent": 10.0,
+                "FellBackBecauseStatisticalTie": false,
+                "EligibleCandidateCount": 2,
+                "RejectedParityCandidateCount": 0,
+                "Reason": "The selected candidate repeated the required amortized P95 improvement and bootstrap significance on holdout data."
+            },
+            "CalibrationResults": [
+                {
+                    "ScenarioId": "particle-integrate-v2",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "AoS-b32",
+                        "LayoutId": "AoS",
+                        "DisplayName": "AoS",
+                        "LogicalBatchSize": 32,
+                        "IsBaseline": true,
+                        "SortOrder": 0
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.009915625,
+                        "MedianMilliseconds": 0.0102875,
+                        "P95Milliseconds": 0.017044062499999996,
+                        "P99Milliseconds": 0.018846312499999998,
+                        "MaximumMilliseconds": 0.019296875,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00037187499999999894
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1014,
+                            "MedianMilliseconds": 0.1031,
+                            "P95Milliseconds": 0.11026,
+                            "P99Milliseconds": 0.110772,
+                            "MaximumMilliseconds": 0.1109,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0016999999999999932
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1173,
+                            "MedianMilliseconds": 0.15,
+                            "P95Milliseconds": 0.16392,
+                            "P99Milliseconds": 0.165584,
+                            "MaximumMilliseconds": 0.166,
+                            "MedianAbsoluteDeviationMilliseconds": 0.008199999999999985
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.0004218333333333333,
+                        "AmortizedP95MillisecondsPerTick": 0.00045696666666666664
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.010372591666666667,
+                        "MedianMilliseconds": 0.010744466666666666,
+                        "P95Milliseconds": 0.01750102916666666,
+                        "P99Milliseconds": 0.019303279166666664,
+                        "MaximumMilliseconds": 0.019753841666666669,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00037187499999999894
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.019296875,
+                        0.0102875,
+                        0.010278125,
+                        0.009915625,
+                        0.0117875,
+                        0.009978125,
+                        0.01073125
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.1109,
+                        0.1077,
+                        0.1031,
+                        0.103,
+                        0.1014
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.1173,
+                        0.166,
+                        0.15,
+                        0.1418,
+                        0.1556
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.019753841666666669,
+                        0.010744466666666666,
+                        0.010735091666666667,
+                        0.010372591666666667,
+                        0.012244466666666666,
+                        0.010435091666666665,
+                        0.011188216666666666
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0x2CE81C1000FA7734",
+                        "CandidateStateHash": "0x2CE81C1000FA7734",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 3145728,
+                    "StateHash": "0x2CE81C1000FA7734",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "particle-integrate-v2",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "AoS-b64",
+                        "LayoutId": "AoS",
+                        "DisplayName": "AoS",
+                        "LogicalBatchSize": 64,
+                        "IsBaseline": true,
+                        "SortOrder": 0
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.009575,
+                        "MedianMilliseconds": 0.0098125,
+                        "P95Milliseconds": 0.010541875,
+                        "P99Milliseconds": 0.010580875,
+                        "MaximumMilliseconds": 0.010590625,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00023749999999999986
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1043,
+                            "MedianMilliseconds": 0.1175,
+                            "P95Milliseconds": 0.1242,
+                            "P99Milliseconds": 0.125,
+                            "MaximumMilliseconds": 0.1252,
+                            "MedianAbsoluteDeviationMilliseconds": 0.006699999999999998
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1223,
+                            "MedianMilliseconds": 0.1638,
+                            "P95Milliseconds": 0.22798,
+                            "P99Milliseconds": 0.23959599999999998,
+                            "MaximumMilliseconds": 0.2425,
+                            "MedianAbsoluteDeviationMilliseconds": 0.010300000000000004
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.0004688333333333333,
+                        "AmortizedP95MillisecondsPerTick": 0.0005869666666666666
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.010161966666666666,
+                        "MedianMilliseconds": 0.010399466666666666,
+                        "P95Milliseconds": 0.011128841666666665,
+                        "P99Milliseconds": 0.011167841666666666,
+                        "MaximumMilliseconds": 0.011177591666666666,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00023749999999999986
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.00976875,
+                        0.0098125,
+                        0.010315625,
+                        0.00960625,
+                        0.010590625,
+                        0.010428125,
+                        0.009575
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.1202,
+                        0.1175,
+                        0.1108,
+                        0.1043,
+                        0.1252
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.2425,
+                        0.1699,
+                        0.1638,
+                        0.1535,
+                        0.1223
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.010355716666666666,
+                        0.010399466666666666,
+                        0.010902591666666666,
+                        0.010193216666666666,
+                        0.011177591666666666,
+                        0.011015091666666666,
+                        0.010161966666666666
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0x2CE81C1000FA7734",
+                        "CandidateStateHash": "0x2CE81C1000FA7734",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 3145728,
+                    "StateHash": "0x2CE81C1000FA7734",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "particle-integrate-v2",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "AoS-b128",
+                        "LayoutId": "AoS",
+                        "DisplayName": "AoS",
+                        "LogicalBatchSize": 128,
+                        "IsBaseline": true,
+                        "SortOrder": 0
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.009271875,
+                        "MedianMilliseconds": 0.009546875,
+                        "P95Milliseconds": 0.012478437499999999,
+                        "P99Milliseconds": 0.0127656875,
+                        "MaximumMilliseconds": 0.0128375,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00024062499999999952
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1052,
+                            "MedianMilliseconds": 0.1078,
+                            "P95Milliseconds": 0.11712,
+                            "P99Milliseconds": 0.117744,
+                            "MaximumMilliseconds": 0.1179,
+                            "MedianAbsoluteDeviationMilliseconds": 0.002600000000000005
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1199,
+                            "MedianMilliseconds": 0.1465,
+                            "P95Milliseconds": 0.17676,
+                            "P99Milliseconds": 0.18271199999999999,
+                            "MaximumMilliseconds": 0.1842,
+                            "MedianAbsoluteDeviationMilliseconds": 0.003599999999999992
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.0004238333333333333,
+                        "AmortizedP95MillisecondsPerTick": 0.0004898000000000001
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.009761675000000001,
+                        "MedianMilliseconds": 0.010036675,
+                        "P95Milliseconds": 0.0129682375,
+                        "P99Milliseconds": 0.0132554875,
+                        "MaximumMilliseconds": 0.0133273,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00024062499999999952
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.00944375,
+                        0.009271875,
+                        0.0128375,
+                        0.00930625,
+                        0.009546875,
+                        0.009553125,
+                        0.011640625
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.114,
+                        0.1058,
+                        0.1179,
+                        0.1052,
+                        0.1078
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.1842,
+                        0.1429,
+                        0.147,
+                        0.1465,
+                        0.1199
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.009933550000000001,
+                        0.009761675000000001,
+                        0.0133273,
+                        0.00979605,
+                        0.010036675,
+                        0.010042925000000002,
+                        0.012130425
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0x2CE81C1000FA7734",
+                        "CandidateStateHash": "0x2CE81C1000FA7734",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 3145728,
+                    "StateHash": "0x2CE81C1000FA7734",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "particle-integrate-v2",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "AoS-b256",
+                        "LayoutId": "AoS",
+                        "DisplayName": "AoS",
+                        "LogicalBatchSize": 256,
+                        "IsBaseline": true,
+                        "SortOrder": 0
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.00900625,
+                        "MedianMilliseconds": 0.0091875,
+                        "P95Milliseconds": 0.0093359375,
+                        "P99Milliseconds": 0.0093621875,
+                        "MaximumMilliseconds": 0.00936875,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00007187500000000076
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1038,
+                            "MedianMilliseconds": 0.1043,
+                            "P95Milliseconds": 0.11735999999999999,
+                            "P99Milliseconds": 0.11827199999999999,
+                            "MaximumMilliseconds": 0.1185,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0005000000000000004
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1148,
+                            "MedianMilliseconds": 0.1202,
+                            "P95Milliseconds": 0.1541,
+                            "P99Milliseconds": 0.15666,
+                            "MaximumMilliseconds": 0.1573,
+                            "MedianAbsoluteDeviationMilliseconds": 0.005400000000000002
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.0003741666666666667,
+                        "AmortizedP95MillisecondsPerTick": 0.0004524333333333333
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.009458683333333334,
+                        "MedianMilliseconds": 0.009639933333333333,
+                        "P95Milliseconds": 0.009788370833333334,
+                        "P99Milliseconds": 0.009814620833333335,
+                        "MaximumMilliseconds": 0.009821183333333334,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00007187500000000076
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.0091875,
+                        0.009059375,
+                        0.00900625,
+                        0.009259375,
+                        0.00936875,
+                        0.00913125,
+                        0.00920625
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.1185,
+                        0.1128,
+                        0.1042,
+                        0.1038,
+                        0.1043
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.1148,
+                        0.1202,
+                        0.1188,
+                        0.1573,
+                        0.1413
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.009639933333333333,
+                        0.009511808333333334,
+                        0.009458683333333334,
+                        0.009711808333333334,
+                        0.009821183333333334,
+                        0.009583683333333334,
+                        0.009658683333333333
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0x2CE81C1000FA7734",
+                        "CandidateStateHash": "0x2CE81C1000FA7734",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 3145728,
+                    "StateHash": "0x2CE81C1000FA7734",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "particle-integrate-v2",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "SoA-b32",
+                        "LayoutId": "SoA",
+                        "DisplayName": "SoA",
+                        "LogicalBatchSize": 32,
+                        "IsBaseline": false,
+                        "SortOrder": 1
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.009434375,
+                        "MedianMilliseconds": 0.00960625,
+                        "P95Milliseconds": 0.03207374999999997,
+                        "P99Milliseconds": 0.03969974999999998,
+                        "MaximumMilliseconds": 0.04160625,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0000999999999999994
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0197,
+                            "MedianMilliseconds": 0.039,
+                            "P95Milliseconds": 0.06916,
+                            "P99Milliseconds": 0.073832,
+                            "MaximumMilliseconds": 0.075,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0184
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0872,
+                            "MedianMilliseconds": 0.109,
+                            "P95Milliseconds": 0.13794,
+                            "P99Milliseconds": 0.142708,
+                            "MaximumMilliseconds": 0.1439,
+                            "MedianAbsoluteDeviationMilliseconds": 0.005500000000000005
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.0002466666666666667,
+                        "AmortizedP95MillisecondsPerTick": 0.0003451666666666667
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.009779541666666668,
+                        "MedianMilliseconds": 0.009951416666666668,
+                        "P95Milliseconds": 0.032418916666666647,
+                        "P99Milliseconds": 0.04004491666666665,
+                        "MaximumMilliseconds": 0.041951416666666668,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0000999999999999994
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.00983125,
+                        0.00950625,
+                        0.009603125,
+                        0.009625,
+                        0.04160625,
+                        0.00960625,
+                        0.009434375
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.075,
+                        0.0458,
+                        0.0197,
+                        0.0206,
+                        0.039
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.1439,
+                        0.1141,
+                        0.1035,
+                        0.109,
+                        0.0872
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.010176416666666667,
+                        0.009851416666666668,
+                        0.009948291666666668,
+                        0.009970166666666667,
+                        0.041951416666666668,
+                        0.009951416666666668,
+                        0.009779541666666668
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0x2CE81C1000FA7734",
+                        "CandidateStateHash": "0x2CE81C1000FA7734",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 3145728,
+                    "StateHash": "0x2CE81C1000FA7734",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "particle-integrate-v2",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "SoA-b64",
+                        "LayoutId": "SoA",
+                        "DisplayName": "SoA",
+                        "LogicalBatchSize": 64,
+                        "IsBaseline": false,
+                        "SortOrder": 1
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.009240625,
+                        "MedianMilliseconds": 0.009359375,
+                        "P95Milliseconds": 0.011803437499999998,
+                        "P99Milliseconds": 0.012390687499999999,
+                        "MaximumMilliseconds": 0.0125375,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00009687499999999974
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0103,
+                            "MedianMilliseconds": 0.0305,
+                            "P95Milliseconds": 0.08065999999999998,
+                            "P99Milliseconds": 0.090372,
+                            "MaximumMilliseconds": 0.0928,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0028000000000000006
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0913,
+                            "MedianMilliseconds": 0.102,
+                            "P95Milliseconds": 0.10726,
+                            "P99Milliseconds": 0.10745199999999999,
+                            "MaximumMilliseconds": 0.1075,
+                            "MedianAbsoluteDeviationMilliseconds": 0.005500000000000005
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.00022083333333333335,
+                        "AmortizedP95MillisecondsPerTick": 0.00031319999999999997
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.009553825,
+                        "MedianMilliseconds": 0.009672575,
+                        "P95Milliseconds": 0.012116637499999998,
+                        "P99Milliseconds": 0.012703887499999999,
+                        "MaximumMilliseconds": 0.0128507,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00009687499999999974
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.009359375,
+                        0.010090625,
+                        0.0092625,
+                        0.009240625,
+                        0.0093125,
+                        0.0093625,
+                        0.0125375
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.0928,
+                        0.0321,
+                        0.0305,
+                        0.0103,
+                        0.0277
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.102,
+                        0.1075,
+                        0.1063,
+                        0.0913,
+                        0.096
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.009672575,
+                        0.010403825,
+                        0.0095757,
+                        0.009553825,
+                        0.0096257,
+                        0.009675699999999999,
+                        0.0128507
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0x2CE81C1000FA7734",
+                        "CandidateStateHash": "0x2CE81C1000FA7734",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 3145728,
+                    "StateHash": "0x2CE81C1000FA7734",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "particle-integrate-v2",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "SoA-b128",
+                        "LayoutId": "SoA",
+                        "DisplayName": "SoA",
+                        "LogicalBatchSize": 128,
+                        "IsBaseline": false,
+                        "SortOrder": 1
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.00896875,
+                        "MedianMilliseconds": 0.00918125,
+                        "P95Milliseconds": 0.01921062499999999,
+                        "P99Milliseconds": 0.021537124999999998,
+                        "MaximumMilliseconds": 0.02211875,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00021250000000000088
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0105,
+                            "MedianMilliseconds": 0.0219,
+                            "P95Milliseconds": 0.05462,
+                            "P99Milliseconds": 0.059244000000000008,
+                            "MaximumMilliseconds": 0.0604,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0109
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.069,
+                            "MedianMilliseconds": 0.0789,
+                            "P95Milliseconds": 0.12427999999999999,
+                            "P99Milliseconds": 0.129336,
+                            "MaximumMilliseconds": 0.1306,
+                            "MedianAbsoluteDeviationMilliseconds": 0.009899999999999993
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.000168,
+                        "AmortizedP95MillisecondsPerTick": 0.0002981666666666667
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.009266916666666667,
+                        "MedianMilliseconds": 0.009479416666666668,
+                        "P95Milliseconds": 0.019508791666666658,
+                        "P99Milliseconds": 0.02183529166666666,
+                        "MaximumMilliseconds": 0.022416916666666666,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00021250000000000088
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.02211875,
+                        0.00918125,
+                        0.00896875,
+                        0.01134375,
+                        0.008996875,
+                        0.00918125,
+                        0.012425
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.0604,
+                        0.0315,
+                        0.0219,
+                        0.0105,
+                        0.011
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.1306,
+                        0.099,
+                        0.0789,
+                        0.069,
+                        0.0707
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.022416916666666666,
+                        0.009479416666666668,
+                        0.009266916666666667,
+                        0.011641916666666667,
+                        0.009295041666666667,
+                        0.009479416666666668,
+                        0.012723166666666668
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0x2CE81C1000FA7734",
+                        "CandidateStateHash": "0x2CE81C1000FA7734",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 3145728,
+                    "StateHash": "0x2CE81C1000FA7734",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "particle-integrate-v2",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "SoA-b256",
+                        "LayoutId": "SoA",
+                        "DisplayName": "SoA",
+                        "LogicalBatchSize": 256,
+                        "IsBaseline": false,
+                        "SortOrder": 1
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.00865625,
+                        "MedianMilliseconds": 0.008821875,
+                        "P95Milliseconds": 0.0102184375,
+                        "P99Milliseconds": 0.0105686875,
+                        "MaximumMilliseconds": 0.01065625,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0001499999999999991
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0205,
+                            "MedianMilliseconds": 0.0252,
+                            "P95Milliseconds": 0.07274,
+                            "P99Milliseconds": 0.082148,
+                            "MaximumMilliseconds": 0.0845,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0045000000000000009
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0867,
+                            "MedianMilliseconds": 0.0913,
+                            "P95Milliseconds": 0.1157,
+                            "P99Milliseconds": 0.11738,
+                            "MaximumMilliseconds": 0.1178,
+                            "MedianAbsoluteDeviationMilliseconds": 0.004600000000000007
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.00019416666666666668,
+                        "AmortizedP95MillisecondsPerTick": 0.00031406666666666664
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.008970316666666667,
+                        "MedianMilliseconds": 0.009135941666666667,
+                        "P95Milliseconds": 0.010532504166666667,
+                        "P99Milliseconds": 0.010882754166666667,
+                        "MaximumMilliseconds": 0.010970316666666667,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0001499999999999991
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.008725,
+                        0.00865625,
+                        0.008671875,
+                        0.008921875,
+                        0.008821875,
+                        0.009196875,
+                        0.01065625
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.0845,
+                        0.0257,
+                        0.0252,
+                        0.0207,
+                        0.0205
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.1178,
+                        0.0913,
+                        0.1073,
+                        0.0867,
+                        0.0884
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.009039066666666667,
+                        0.008970316666666667,
+                        0.008985941666666667,
+                        0.009235941666666666,
+                        0.009135941666666667,
+                        0.009510941666666667,
+                        0.010970316666666667
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0x2CE81C1000FA7734",
+                        "CandidateStateHash": "0x2CE81C1000FA7734",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 3145728,
+                    "StateHash": "0x2CE81C1000FA7734",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "particle-integrate-v2",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "AoSoA8-b32",
+                        "LayoutId": "AoSoA8",
+                        "DisplayName": "AoSoA8",
+                        "LogicalBatchSize": 32,
+                        "IsBaseline": false,
+                        "SortOrder": 2
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.006596875,
+                        "MedianMilliseconds": 0.0067,
+                        "P95Milliseconds": 0.012936562499999997,
+                        "P99Milliseconds": 0.014039812499999999,
+                        "MaximumMilliseconds": 0.014315625,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00010312499999999992
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0224,
+                            "MedianMilliseconds": 0.0359,
+                            "P95Milliseconds": 0.061320000000000009,
+                            "P99Milliseconds": 0.06242400000000001,
+                            "MaximumMilliseconds": 0.0627,
+                            "MedianAbsoluteDeviationMilliseconds": 0.013500000000000002
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0794,
+                            "MedianMilliseconds": 0.0872,
+                            "P95Milliseconds": 0.10894,
+                            "P99Milliseconds": 0.111308,
+                            "MaximumMilliseconds": 0.1119,
+                            "MedianAbsoluteDeviationMilliseconds": 0.007800000000000001
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.00020516666666666668,
+                        "AmortizedP95MillisecondsPerTick": 0.00028376666666666666
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.006880641666666667,
+                        "MedianMilliseconds": 0.006983766666666667,
+                        "P95Milliseconds": 0.013220329166666663,
+                        "P99Milliseconds": 0.014323579166666663,
+                        "MaximumMilliseconds": 0.014599391666666666,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00010312499999999992
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.014315625,
+                        0.0067,
+                        0.006596875,
+                        0.0067,
+                        0.008025,
+                        0.006678125,
+                        0.00971875
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.0627,
+                        0.0359,
+                        0.0558,
+                        0.0277,
+                        0.0224
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.1119,
+                        0.0971,
+                        0.0872,
+                        0.0794,
+                        0.0822
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.014599391666666666,
+                        0.006983766666666667,
+                        0.006880641666666667,
+                        0.006983766666666667,
+                        0.008308766666666665,
+                        0.006961891666666667,
+                        0.010002516666666666
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0x2CE81C1000FA7734",
+                        "CandidateStateHash": "0x2CE81C1000FA7734",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 3145728,
+                    "StateHash": "0x2CE81C1000FA7734",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "particle-integrate-v2",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "AoSoA8-b64",
+                        "LayoutId": "AoSoA8",
+                        "DisplayName": "AoSoA8",
+                        "LogicalBatchSize": 64,
+                        "IsBaseline": false,
+                        "SortOrder": 2
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.006059375,
+                        "MedianMilliseconds": 0.006246875,
+                        "P95Milliseconds": 0.013764999999999993,
+                        "P99Milliseconds": 0.015905499999999997,
+                        "MaximumMilliseconds": 0.016440625,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00018750000000000017
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0186,
+                            "MedianMilliseconds": 0.0287,
+                            "P95Milliseconds": 0.059879999999999999,
+                            "P99Milliseconds": 0.062376,
+                            "MaximumMilliseconds": 0.063,
+                            "MedianAbsoluteDeviationMilliseconds": 0.010100000000000002
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0754,
+                            "MedianMilliseconds": 0.1019,
+                            "P95Milliseconds": 0.12125999999999999,
+                            "P99Milliseconds": 0.12449199999999999,
+                            "MaximumMilliseconds": 0.1253,
+                            "MedianAbsoluteDeviationMilliseconds": 0.005600000000000008
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.00021766666666666665,
+                        "AmortizedP95MillisecondsPerTick": 0.00030189999999999997
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.006361275,
+                        "MedianMilliseconds": 0.006548775,
+                        "P95Milliseconds": 0.014066899999999994,
+                        "P99Milliseconds": 0.016207399999999998,
+                        "MaximumMilliseconds": 0.016742525,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00018750000000000017
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.006246875,
+                        0.0068125,
+                        0.006134375,
+                        0.007521875,
+                        0.016440625,
+                        0.006059375,
+                        0.0061625
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.0474,
+                        0.0287,
+                        0.0195,
+                        0.0186,
+                        0.063
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.0754,
+                        0.1253,
+                        0.1019,
+                        0.0963,
+                        0.1051
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.006548775,
+                        0.0071144,
+                        0.006436275,
+                        0.007823775,
+                        0.016742525,
+                        0.006361275,
+                        0.0064643999999999999
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0x2CE81C1000FA7734",
+                        "CandidateStateHash": "0x2CE81C1000FA7734",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 3145728,
+                    "StateHash": "0x2CE81C1000FA7734",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "particle-integrate-v2",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "AoSoA8-b128",
+                        "LayoutId": "AoSoA8",
+                        "DisplayName": "AoSoA8",
+                        "LogicalBatchSize": 128,
+                        "IsBaseline": false,
+                        "SortOrder": 2
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.005828125,
+                        "MedianMilliseconds": 0.006090625,
+                        "P95Milliseconds": 0.007022187499999999,
+                        "P99Milliseconds": 0.0072494375,
+                        "MaximumMilliseconds": 0.00730625,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00018125
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0191,
+                            "MedianMilliseconds": 0.0197,
+                            "P95Milliseconds": 0.02208,
+                            "P99Milliseconds": 0.022496,
+                            "MaximumMilliseconds": 0.0226,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0003999999999999976
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0989,
+                            "MedianMilliseconds": 0.1067,
+                            "P95Milliseconds": 0.12568,
+                            "P99Milliseconds": 0.125936,
+                            "MaximumMilliseconds": 0.126,
+                            "MedianAbsoluteDeviationMilliseconds": 0.007800000000000001
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.0002106666666666667,
+                        "AmortizedP95MillisecondsPerTick": 0.0002462666666666666
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.0060743916666666669,
+                        "MedianMilliseconds": 0.006336891666666666,
+                        "P95Milliseconds": 0.007268454166666665,
+                        "P99Milliseconds": 0.007495704166666666,
+                        "MaximumMilliseconds": 0.007552516666666667,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00018125
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.006228125,
+                        0.005828125,
+                        0.005909375,
+                        0.00730625,
+                        0.005978125,
+                        0.006359375,
+                        0.006090625
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.0193,
+                        0.02,
+                        0.0197,
+                        0.0191,
+                        0.0226
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.126,
+                        0.1244,
+                        0.1021,
+                        0.0989,
+                        0.1067
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.006474391666666667,
+                        0.0060743916666666669,
+                        0.006155641666666666,
+                        0.007552516666666667,
+                        0.0062243916666666668,
+                        0.006605641666666666,
+                        0.006336891666666666
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0x2CE81C1000FA7734",
+                        "CandidateStateHash": "0x2CE81C1000FA7734",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 3145728,
+                    "StateHash": "0x2CE81C1000FA7734",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "particle-integrate-v2",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "AoSoA8-b256",
+                        "LayoutId": "AoSoA8",
+                        "DisplayName": "AoSoA8",
+                        "LogicalBatchSize": 256,
+                        "IsBaseline": false,
+                        "SortOrder": 2
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.00589375,
+                        "MedianMilliseconds": 0.005965625,
+                        "P95Milliseconds": 0.007360937499999999,
+                        "P99Milliseconds": 0.007747187499999999,
+                        "MaximumMilliseconds": 0.00784375,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00007187499999999989
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.019,
+                            "MedianMilliseconds": 0.0286,
+                            "P95Milliseconds": 0.03482,
+                            "P99Milliseconds": 0.035443999999999999,
+                            "MaximumMilliseconds": 0.0356,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0030999999999999988
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0816,
+                            "MedianMilliseconds": 0.0975,
+                            "P95Milliseconds": 0.11032,
+                            "P99Milliseconds": 0.11182399999999999,
+                            "MaximumMilliseconds": 0.1122,
+                            "MedianAbsoluteDeviationMilliseconds": 0.008300000000000002
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.00021016666666666666,
+                        "AmortizedP95MillisecondsPerTick": 0.0002419
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.0061356499999999998,
+                        "MedianMilliseconds": 0.006207524999999999,
+                        "P95Milliseconds": 0.007602837499999999,
+                        "P99Milliseconds": 0.007989087499999999,
+                        "MaximumMilliseconds": 0.00808565,
+                        "MedianAbsoluteDeviationMilliseconds": 0.00007187499999999989
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.00589375,
+                        0.005965625,
+                        0.005915625,
+                        0.00600625,
+                        0.00784375,
+                        0.006234375,
+                        0.00589375
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.0356,
+                        0.0317,
+                        0.0261,
+                        0.0286,
+                        0.019
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.1122,
+                        0.0975,
+                        0.0892,
+                        0.1028,
+                        0.0816
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.0061356499999999998,
+                        0.006207524999999999,
+                        0.006157525,
+                        0.00624815,
+                        0.00808565,
+                        0.006476275,
+                        0.0061356499999999998
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0x2CE81C1000FA7734",
+                        "CandidateStateHash": "0x2CE81C1000FA7734",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 3145728,
+                    "StateHash": "0x2CE81C1000FA7734",
+                    "FailureReason": ""
+                }
+            ],
+            "HoldoutBaselineResult": {
+                "ScenarioId": "particle-integrate-v2",
+                "Phase": 1,
+                "Candidate": {
+                    "CandidateId": "AoS-b256",
+                    "LayoutId": "AoS",
+                    "DisplayName": "AoS",
+                    "LogicalBatchSize": 256,
+                    "IsBaseline": true,
+                    "SortOrder": 0
+                },
+                "ElementCount": 65521,
+                "StepsPerSample": 32,
+                "Latency": {
+                    "SampleCount": 7,
+                    "MinimumMilliseconds": 0.0089625,
+                    "MedianMilliseconds": 0.009228125,
+                    "P95Milliseconds": 0.00935625,
+                    "P99Milliseconds": 0.00939375,
+                    "MaximumMilliseconds": 0.009403125,
+                    "MedianAbsoluteDeviationMilliseconds": 0.0001749999999999998
+                },
+                "BoundaryCost": {
+                    "IngressLatency": {
+                        "SampleCount": 5,
+                        "MinimumMilliseconds": 0.1019,
+                        "MedianMilliseconds": 0.1026,
+                        "P95Milliseconds": 0.10358,
+                        "P99Milliseconds": 0.103676,
+                        "MaximumMilliseconds": 0.1037,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0005000000000000004
+                    },
+                    "ExportLatency": {
+                        "SampleCount": 5,
+                        "MinimumMilliseconds": 0.1028,
+                        "MedianMilliseconds": 0.1032,
+                        "P95Milliseconds": 0.10564,
+                        "P99Milliseconds": 0.105928,
+                        "MaximumMilliseconds": 0.106,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0003999999999999976
+                    },
+                    "LifetimeTicks": 600,
+                    "AmortizedMedianMillisecondsPerTick": 0.000343,
+                    "AmortizedP95MillisecondsPerTick": 0.0003487
+                },
+                "AmortizedLatency": {
+                    "SampleCount": 7,
+                    "MinimumMilliseconds": 0.0093112,
+                    "MedianMilliseconds": 0.009576825,
+                    "P95Milliseconds": 0.00970495,
+                    "P99Milliseconds": 0.00974245,
+                    "MaximumMilliseconds": 0.009751825,
+                    "MedianAbsoluteDeviationMilliseconds": 0.0001749999999999998
+                },
+                "ResidentSamplesMillisecondsPerTick": [
+                    0.009403125,
+                    0.0089625,
+                    0.009040625,
+                    0.009228125,
+                    0.00904375,
+                    0.009246875,
+                    0.009234375
+                ],
+                "IngressSamplesMilliseconds": [
+                    0.1037,
+                    0.1031,
+                    0.1026,
+                    0.1023,
+                    0.1019
+                ],
+                "ExportSamplesMilliseconds": [
+                    0.106,
+                    0.1042,
+                    0.1028,
+                    0.1032,
+                    0.1031
+                ],
+                "AmortizedSamplesMillisecondsPerTick": [
+                    0.009751825,
+                    0.0093112,
+                    0.009389325,
+                    0.009576825,
+                    0.00939245,
+                    0.009595575,
+                    0.009583075
+                ],
+                "Completed": true,
+                "ParityPassed": true,
+                "Parity": {
+                    "Passed": true,
+                    "ComparedElementCount": 65521,
+                    "FirstMismatchIndex": -1,
+                    "ReferenceStateHash": "0xD09646326279BD20",
+                    "CandidateStateHash": "0xD09646326279BD20",
+                    "Reason": "Equivalent canonical exports."
+                },
+                "HotPathManagedAllocationBytes": 0,
+                "BoundaryManagedAllocationBytes": 0,
+                "ResidentBytes": 3145008,
+                "StateHash": "0xD09646326279BD20",
+                "FailureReason": ""
+            },
+            "HoldoutSelectedResult": {
+                "ScenarioId": "particle-integrate-v2",
+                "Phase": 1,
+                "Candidate": {
+                    "CandidateId": "AoSoA8-b128",
+                    "LayoutId": "AoSoA8",
+                    "DisplayName": "AoSoA8",
+                    "LogicalBatchSize": 128,
+                    "IsBaseline": false,
+                    "SortOrder": 2
+                },
+                "ElementCount": 65521,
+                "StepsPerSample": 32,
+                "Latency": {
+                    "SampleCount": 7,
+                    "MinimumMilliseconds": 0.006028125,
+                    "MedianMilliseconds": 0.00615,
+                    "P95Milliseconds": 0.0062346875,
+                    "P99Milliseconds": 0.0062369375,
+                    "MaximumMilliseconds": 0.0062375,
+                    "MedianAbsoluteDeviationMilliseconds": 0.00007812500000000007
+                },
+                "BoundaryCost": {
+                    "IngressLatency": {
+                        "SampleCount": 5,
+                        "MinimumMilliseconds": 0.0203,
+                        "MedianMilliseconds": 0.0298,
+                        "P95Milliseconds": 0.03752,
+                        "P99Milliseconds": 0.038384,
+                        "MaximumMilliseconds": 0.0386,
+                        "MedianAbsoluteDeviationMilliseconds": 0.005299999999999999
+                    },
+                    "ExportLatency": {
+                        "SampleCount": 5,
+                        "MinimumMilliseconds": 0.0138,
+                        "MedianMilliseconds": 0.0216,
+                        "P95Milliseconds": 0.05583999999999999,
+                        "P99Milliseconds": 0.06252799999999999,
+                        "MaximumMilliseconds": 0.0642,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0007999999999999986
+                    },
+                    "LifetimeTicks": 600,
+                    "AmortizedMedianMillisecondsPerTick": 0.00008566666666666667,
+                    "AmortizedP95MillisecondsPerTick": 0.0001556
+                },
+                "AmortizedLatency": {
+                    "SampleCount": 7,
+                    "MinimumMilliseconds": 0.006183724999999999,
+                    "MedianMilliseconds": 0.0063056,
+                    "P95Milliseconds": 0.0063902874999999998,
+                    "P99Milliseconds": 0.0063925375,
+                    "MaximumMilliseconds": 0.0063931,
+                    "MedianAbsoluteDeviationMilliseconds": 0.00007812500000000007
+                },
+                "ResidentSamplesMillisecondsPerTick": [
+                    0.00611875,
+                    0.006028125,
+                    0.0062375,
+                    0.00615,
+                    0.006184375,
+                    0.006228125,
+                    0.00604375
+                ],
+                "IngressSamplesMilliseconds": [
+                    0.0386,
+                    0.0245,
+                    0.0332,
+                    0.0298,
+                    0.0203
+                ],
+                "ExportSamplesMilliseconds": [
+                    0.0642,
+                    0.0224,
+                    0.021,
+                    0.0138,
+                    0.0216
+                ],
+                "AmortizedSamplesMillisecondsPerTick": [
+                    0.00627435,
+                    0.006183724999999999,
+                    0.0063931,
+                    0.0063056,
+                    0.006339974999999999,
+                    0.006383725,
+                    0.006199349999999999
+                ],
+                "Completed": true,
+                "ParityPassed": true,
+                "Parity": {
+                    "Passed": true,
+                    "ComparedElementCount": 65521,
+                    "FirstMismatchIndex": -1,
+                    "ReferenceStateHash": "0xD09646326279BD20",
+                    "CandidateStateHash": "0xD09646326279BD20",
+                    "Reason": "Equivalent canonical exports."
+                },
+                "HotPathManagedAllocationBytes": 0,
+                "BoundaryManagedAllocationBytes": 0,
+                "ResidentBytes": 3145204,
+                "StateHash": "0xD09646326279BD20",
+                "FailureReason": ""
+            }
+        },
+        {
+            "SchemaVersion": 2,
+            "Scenario": {
+                "ScenarioId": "transform-export-v1",
+                "DisplayName": "Transform Export (Negative Control)",
+                "ContractVersion": 1,
+                "ResidentOperation": "Export a full LocalToWorld matrix plus entity identity from immutable transform records."
+            },
+            "ElementCount": 65536,
+            "HoldoutElementCount": 65521,
+            "CalibrationSeed": 1940506065,
+            "HoldoutSeed": 3248439991,
+            "FixedDeltaTime": 0.01666666753590107,
+            "TicksPerBlock": 32,
+            "WarmupBlocks": 98,
+            "SamplesPerCandidate": 7,
+            "BoundarySamplesPerCandidate": 5,
+            "LifetimeTicks": 600,
+            "CandidateOrderSeed": 2738958700,
+            "BootstrapIterations": 500,
+            "BootstrapConfidenceLevel": 0.95,
+            "MinimumImprovementPercent": 10.0,
+            "PrimaryTimingMetric": "amortized_p95_ms_per_tick = resident_p95 + (ingress_p95 + export_p95) / lifetime_ticks",
+            "TimingIncludes": "candidate dispatch; job Schedule; worker execution; Complete; separately timed full ingress and export",
+            "TimingExcludes": "allocation; dataset generation; parity scan; hashing; JSON/CSV serialization; visualization",
+            "CalibrationDatasetHash": "0xF054473216DB7E1E",
+            "HoldoutDatasetHash": "",
+            "BoundaryContract": {
+                "IngressContract": "Canonical NativeArray<TransformRecord> to candidate-owned persistent layout storage.",
+                "ExportContract": "Candidate-owned NativeArray<TransformExportRecord> to the canonical consumer buffer."
+            },
+            "CalibrationDecision": {
+                "Status": 1,
+                "BaselineCandidate": {
+                    "CandidateId": "AoS-b256",
+                    "LayoutId": "AoS",
+                    "DisplayName": "AoS",
+                    "LogicalBatchSize": 256,
+                    "IsBaseline": true,
+                    "SortOrder": 0
+                },
+                "SelectedCandidate": {
+                    "CandidateId": "AoS-b256",
+                    "LayoutId": "AoS",
+                    "DisplayName": "AoS",
+                    "LogicalBatchSize": 256,
+                    "IsBaseline": true,
+                    "SortOrder": 0
+                },
+                "BestMeasuredCandidate": {
+                    "CandidateId": "AoS-b256",
+                    "LayoutId": "AoS",
+                    "DisplayName": "AoS",
+                    "LogicalBatchSize": 256,
+                    "IsBaseline": true,
+                    "SortOrder": 0
+                },
+                "BaselineP95Milliseconds": 0.022206170833333335,
+                "BestMeasuredP95Milliseconds": 0.022206170833333335,
+                "ImprovementPercent": 0.0,
+                "ImprovementConfidenceInterval": {
+                    "Iterations": 0,
+                    "ConfidenceLevel": 0.0,
+                    "PointEstimatePercent": 0.0,
+                    "LowerBoundPercent": 0.0,
+                    "UpperBoundPercent": 0.0
+                },
+                "MinimumRequiredImprovementPercent": 10.0,
+                "FellBackBecauseStatisticalTie": false,
+                "EligibleCandidateCount": 8,
+                "RejectedParityCandidateCount": 0,
+                "Reason": "The best valid result did not clear the required P95 improvement over the best AoS result."
+            },
+            "FinalDecision": {
+                "Status": 1,
+                "BaselineCandidate": {
+                    "CandidateId": "AoS-b256",
+                    "LayoutId": "AoS",
+                    "DisplayName": "AoS",
+                    "LogicalBatchSize": 256,
+                    "IsBaseline": true,
+                    "SortOrder": 0
+                },
+                "SelectedCandidate": {
+                    "CandidateId": "AoS-b256",
+                    "LayoutId": "AoS",
+                    "DisplayName": "AoS",
+                    "LogicalBatchSize": 256,
+                    "IsBaseline": true,
+                    "SortOrder": 0
+                },
+                "BestMeasuredCandidate": {
+                    "CandidateId": "AoS-b256",
+                    "LayoutId": "AoS",
+                    "DisplayName": "AoS",
+                    "LogicalBatchSize": 256,
+                    "IsBaseline": true,
+                    "SortOrder": 0
+                },
+                "BaselineP95Milliseconds": 0.022206170833333335,
+                "BestMeasuredP95Milliseconds": 0.022206170833333335,
+                "ImprovementPercent": 0.0,
+                "ImprovementConfidenceInterval": {
+                    "Iterations": 0,
+                    "ConfidenceLevel": 0.0,
+                    "PointEstimatePercent": 0.0,
+                    "LowerBoundPercent": 0.0,
+                    "UpperBoundPercent": 0.0
+                },
+                "MinimumRequiredImprovementPercent": 10.0,
+                "FellBackBecauseStatisticalTie": false,
+                "EligibleCandidateCount": 8,
+                "RejectedParityCandidateCount": 0,
+                "Reason": "The best valid result did not clear the required P95 improvement over the best AoS result."
+            },
+            "CalibrationResults": [
+                {
+                    "ScenarioId": "transform-export-v1",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "AoS-b32",
+                        "LayoutId": "AoS",
+                        "DisplayName": "AoS",
+                        "LogicalBatchSize": 32,
+                        "IsBaseline": true,
+                        "SortOrder": 0
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.018065625,
+                        "MedianMilliseconds": 0.022175,
+                        "P95Milliseconds": 0.03205562499999999,
+                        "P99Milliseconds": 0.034481124999999997,
+                        "MaximumMilliseconds": 0.0350875,
+                        "MedianAbsoluteDeviationMilliseconds": 0.002668750000000001
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1025,
+                            "MedianMilliseconds": 0.1055,
+                            "P95Milliseconds": 0.10616,
+                            "P99Milliseconds": 0.10619200000000001,
+                            "MaximumMilliseconds": 0.1062,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0007000000000000062
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1537,
+                            "MedianMilliseconds": 0.1583,
+                            "P95Milliseconds": 0.1743,
+                            "P99Milliseconds": 0.17622,
+                            "MaximumMilliseconds": 0.1767,
+                            "MedianAbsoluteDeviationMilliseconds": 0.004599999999999993
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.00043966666666666666,
+                        "AmortizedP95MillisecondsPerTick": 0.0004674333333333334
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.01853305833333333,
+                        "MedianMilliseconds": 0.022642433333333334,
+                        "P95Milliseconds": 0.03252305833333333,
+                        "P99Milliseconds": 0.03494855833333333,
+                        "MaximumMilliseconds": 0.03555493333333334,
+                        "MedianAbsoluteDeviationMilliseconds": 0.002668750000000001
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.021553125,
+                        0.02428125,
+                        0.01950625,
+                        0.02498125,
+                        0.018065625,
+                        0.0350875,
+                        0.022175
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.1062,
+                        0.106,
+                        0.1055,
+                        0.1034,
+                        0.1025
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.1568,
+                        0.1583,
+                        0.1767,
+                        0.1647,
+                        0.1537
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.022020558333333333,
+                        0.024748683333333335,
+                        0.019973683333333333,
+                        0.025448683333333334,
+                        0.01853305833333333,
+                        0.03555493333333334,
+                        0.022642433333333334
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0xA0C8553481D23011",
+                        "CandidateStateHash": "0xA0C8553481D23011",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 7864320,
+                    "StateHash": "0xA0C8553481D23011",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "transform-export-v1",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "AoS-b64",
+                        "LayoutId": "AoS",
+                        "DisplayName": "AoS",
+                        "LogicalBatchSize": 64,
+                        "IsBaseline": true,
+                        "SortOrder": 0
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.0160125,
+                        "MedianMilliseconds": 0.02125625,
+                        "P95Milliseconds": 0.027107812499999996,
+                        "P99Milliseconds": 0.028814062499999995,
+                        "MaximumMilliseconds": 0.029240625,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0006187500000000012
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1021,
+                            "MedianMilliseconds": 0.1043,
+                            "P95Milliseconds": 0.1132,
+                            "P99Milliseconds": 0.11416,
+                            "MaximumMilliseconds": 0.1144,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0022000000000000077
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1537,
+                            "MedianMilliseconds": 0.1582,
+                            "P95Milliseconds": 0.18123999999999999,
+                            "P99Milliseconds": 0.185288,
+                            "MaximumMilliseconds": 0.1863,
+                            "MedianAbsoluteDeviationMilliseconds": 0.002799999999999997
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.0004375,
+                        "AmortizedP95MillisecondsPerTick": 0.0004907333333333333
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.016503233333333333,
+                        "MedianMilliseconds": 0.021746983333333335,
+                        "P95Milliseconds": 0.027598545833333329,
+                        "P99Milliseconds": 0.029304795833333329,
+                        "MaximumMilliseconds": 0.029731358333333334,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0006187500000000012
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.0206375,
+                        0.02086875,
+                        0.029240625,
+                        0.0160125,
+                        0.02165625,
+                        0.02125625,
+                        0.02213125
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.1144,
+                        0.1043,
+                        0.1027,
+                        0.1021,
+                        0.1084
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.1863,
+                        0.161,
+                        0.1582,
+                        0.1557,
+                        0.1537
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.021128233333333334,
+                        0.02135948333333333,
+                        0.029731358333333334,
+                        0.016503233333333333,
+                        0.02214698333333333,
+                        0.021746983333333335,
+                        0.022621983333333336
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0xA0C8553481D23011",
+                        "CandidateStateHash": "0xA0C8553481D23011",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 7864320,
+                    "StateHash": "0xA0C8553481D23011",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "transform-export-v1",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "AoS-b128",
+                        "LayoutId": "AoS",
+                        "DisplayName": "AoS",
+                        "LogicalBatchSize": 128,
+                        "IsBaseline": true,
+                        "SortOrder": 0
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.01585,
+                        "MedianMilliseconds": 0.0207625,
+                        "P95Milliseconds": 0.0217778125,
+                        "P99Milliseconds": 0.0218805625,
+                        "MaximumMilliseconds": 0.02190625,
+                        "MedianAbsoluteDeviationMilliseconds": 0.000715625000000001
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1025,
+                            "MedianMilliseconds": 0.103,
+                            "P95Milliseconds": 0.10706,
+                            "P99Milliseconds": 0.107732,
+                            "MaximumMilliseconds": 0.1079,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0005000000000000004
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1531,
+                            "MedianMilliseconds": 0.169,
+                            "P95Milliseconds": 0.1784,
+                            "P99Milliseconds": 0.17984,
+                            "MaximumMilliseconds": 0.1802,
+                            "MedianAbsoluteDeviationMilliseconds": 0.01090000000000002
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.00045333333333333337,
+                        "AmortizedP95MillisecondsPerTick": 0.00047576666666666667
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.016325766666666666,
+                        "MedianMilliseconds": 0.021238266666666666,
+                        "P95Milliseconds": 0.022253579166666667,
+                        "P99Milliseconds": 0.022356329166666666,
+                        "MaximumMilliseconds": 0.022382016666666665,
+                        "MedianAbsoluteDeviationMilliseconds": 0.000715625000000001
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.0207625,
+                        0.02190625,
+                        0.021478125,
+                        0.016959375,
+                        0.02113125,
+                        0.01585,
+                        0.020659375
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.1079,
+                        0.1025,
+                        0.1037,
+                        0.1026,
+                        0.103
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.1802,
+                        0.1581,
+                        0.1712,
+                        0.169,
+                        0.1531
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.021238266666666666,
+                        0.022382016666666665,
+                        0.021953891666666667,
+                        0.017435141666666665,
+                        0.021607016666666667,
+                        0.016325766666666666,
+                        0.021135141666666667
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0xA0C8553481D23011",
+                        "CandidateStateHash": "0xA0C8553481D23011",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 7864320,
+                    "StateHash": "0xA0C8553481D23011",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "transform-export-v1",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "AoS-b256",
+                        "LayoutId": "AoS",
+                        "DisplayName": "AoS",
+                        "LogicalBatchSize": 256,
+                        "IsBaseline": true,
+                        "SortOrder": 0
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.015790625,
+                        "MedianMilliseconds": 0.02043125,
+                        "P95Milliseconds": 0.0216459375,
+                        "P99Milliseconds": 0.0217216875,
+                        "MaximumMilliseconds": 0.021740625,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0007999999999999986
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1025,
+                            "MedianMilliseconds": 0.1028,
+                            "P95Milliseconds": 0.1165,
+                            "P99Milliseconds": 0.11922,
+                            "MaximumMilliseconds": 0.1199,
+                            "MedianAbsoluteDeviationMilliseconds": 0.00010000000000000286
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1526,
+                            "MedianMilliseconds": 0.1808,
+                            "P95Milliseconds": 0.21964,
+                            "P99Milliseconds": 0.227128,
+                            "MaximumMilliseconds": 0.229,
+                            "MedianAbsoluteDeviationMilliseconds": 0.01849999999999999
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.0004726666666666666,
+                        "AmortizedP95MillisecondsPerTick": 0.0005602333333333333
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.016350858333333334,
+                        "MedianMilliseconds": 0.020991483333333336,
+                        "P95Milliseconds": 0.022206170833333335,
+                        "P99Milliseconds": 0.022281920833333334,
+                        "MaximumMilliseconds": 0.022300858333333334,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0007999999999999986
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.02123125,
+                        0.015790625,
+                        0.021740625,
+                        0.01971875,
+                        0.02041875,
+                        0.021425,
+                        0.02043125
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.1199,
+                        0.1025,
+                        0.1029,
+                        0.1027,
+                        0.1028
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.229,
+                        0.1808,
+                        0.1822,
+                        0.1623,
+                        0.1526
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.021791483333333335,
+                        0.016350858333333334,
+                        0.022300858333333334,
+                        0.020278983333333335,
+                        0.020978983333333334,
+                        0.021985233333333334,
+                        0.020991483333333336
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0xA0C8553481D23011",
+                        "CandidateStateHash": "0xA0C8553481D23011",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 7864320,
+                    "StateHash": "0xA0C8553481D23011",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "transform-export-v1",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "SoA-b32",
+                        "LayoutId": "SoA",
+                        "DisplayName": "SoA",
+                        "LogicalBatchSize": 32,
+                        "IsBaseline": false,
+                        "SortOrder": 1
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.019603125,
+                        "MedianMilliseconds": 0.025125,
+                        "P95Milliseconds": 0.04231374999999999,
+                        "P99Milliseconds": 0.04517274999999999,
+                        "MaximumMilliseconds": 0.0458875,
+                        "MedianAbsoluteDeviationMilliseconds": 0.003278125
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0095,
+                            "MedianMilliseconds": 0.0098,
+                            "P95Milliseconds": 0.029539999999999995,
+                            "P99Milliseconds": 0.032788,
+                            "MaximumMilliseconds": 0.0336,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0002999999999999999
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1528,
+                            "MedianMilliseconds": 0.1575,
+                            "P95Milliseconds": 0.1744,
+                            "P99Milliseconds": 0.17528,
+                            "MaximumMilliseconds": 0.1755,
+                            "MedianAbsoluteDeviationMilliseconds": 0.00470000000000001
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.00027883333333333335,
+                        "AmortizedP95MillisecondsPerTick": 0.00033989999999999997
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.019943025,
+                        "MedianMilliseconds": 0.025464900000000003,
+                        "P95Milliseconds": 0.04265364999999999,
+                        "P99Milliseconds": 0.04551264999999999,
+                        "MaximumMilliseconds": 0.046227399999999998,
+                        "MedianAbsoluteDeviationMilliseconds": 0.003278125
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.019603125,
+                        0.021846875,
+                        0.0458875,
+                        0.025125,
+                        0.02521875,
+                        0.033975,
+                        0.0231
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.0336,
+                        0.0133,
+                        0.0098,
+                        0.0095,
+                        0.0097
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.17,
+                        0.1575,
+                        0.1755,
+                        0.1528,
+                        0.1533
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.019943025,
+                        0.022186775000000004,
+                        0.046227399999999998,
+                        0.025464900000000003,
+                        0.025558650000000003,
+                        0.034314899999999998,
+                        0.0234399
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0xA0C8553481D23011",
+                        "CandidateStateHash": "0xA0C8553481D23011",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 7864320,
+                    "StateHash": "0xA0C8553481D23011",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "transform-export-v1",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "SoA-b64",
+                        "LayoutId": "SoA",
+                        "DisplayName": "SoA",
+                        "LogicalBatchSize": 64,
+                        "IsBaseline": false,
+                        "SortOrder": 1
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.016684375,
+                        "MedianMilliseconds": 0.02113125,
+                        "P95Milliseconds": 0.022461875,
+                        "P99Milliseconds": 0.022599875000000003,
+                        "MaximumMilliseconds": 0.022634375,
+                        "MedianAbsoluteDeviationMilliseconds": 0.001503125000000001
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0187,
+                            "MedianMilliseconds": 0.0188,
+                            "P95Milliseconds": 0.03222,
+                            "P99Milliseconds": 0.034684,
+                            "MaximumMilliseconds": 0.0353,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0000999999999999994
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.153,
+                            "MedianMilliseconds": 0.1652,
+                            "P95Milliseconds": 0.19646,
+                            "P99Milliseconds": 0.201372,
+                            "MaximumMilliseconds": 0.2026,
+                            "MedianAbsoluteDeviationMilliseconds": 0.009000000000000008
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.00030666666666666673,
+                        "AmortizedP95MillisecondsPerTick": 0.00038113333333333335
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.017065508333333334,
+                        "MedianMilliseconds": 0.021512383333333334,
+                        "P95Milliseconds": 0.02284300833333333,
+                        "P99Milliseconds": 0.022981008333333335,
+                        "MaximumMilliseconds": 0.023015508333333335,
+                        "MedianAbsoluteDeviationMilliseconds": 0.001503125000000001
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.018846875,
+                        0.022634375,
+                        0.016684375,
+                        0.02113125,
+                        0.02193125,
+                        0.017046875,
+                        0.022059375
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.0353,
+                        0.0199,
+                        0.0188,
+                        0.0187,
+                        0.0187
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.2026,
+                        0.1652,
+                        0.1719,
+                        0.153,
+                        0.1562
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.01922800833333333,
+                        0.023015508333333335,
+                        0.017065508333333334,
+                        0.021512383333333334,
+                        0.02231238333333333,
+                        0.01742800833333333,
+                        0.02244050833333333
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0xA0C8553481D23011",
+                        "CandidateStateHash": "0xA0C8553481D23011",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 7864320,
+                    "StateHash": "0xA0C8553481D23011",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "transform-export-v1",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "SoA-b128",
+                        "LayoutId": "SoA",
+                        "DisplayName": "SoA",
+                        "LogicalBatchSize": 128,
+                        "IsBaseline": false,
+                        "SortOrder": 1
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.016503125,
+                        "MedianMilliseconds": 0.020971875,
+                        "P95Milliseconds": 0.0222734375,
+                        "P99Milliseconds": 0.0222921875,
+                        "MaximumMilliseconds": 0.022296875,
+                        "MedianAbsoluteDeviationMilliseconds": 0.001246874999999998
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.0095,
+                            "MedianMilliseconds": 0.0182,
+                            "P95Milliseconds": 0.02118,
+                            "P99Milliseconds": 0.021596,
+                            "MaximumMilliseconds": 0.0217,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0034999999999999998
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1601,
+                            "MedianMilliseconds": 0.1658,
+                            "P95Milliseconds": 0.18710000000000003,
+                            "P99Milliseconds": 0.18934,
+                            "MaximumMilliseconds": 0.1899,
+                            "MedianAbsoluteDeviationMilliseconds": 0.005700000000000011
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.0003066666666666667,
+                        "AmortizedP95MillisecondsPerTick": 0.0003471333333333334
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.016850258333333334,
+                        "MedianMilliseconds": 0.021319008333333335,
+                        "P95Milliseconds": 0.022620570833333334,
+                        "P99Milliseconds": 0.022639320833333335,
+                        "MaximumMilliseconds": 0.022644008333333335,
+                        "MedianAbsoluteDeviationMilliseconds": 0.001246874999999998
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.016503125,
+                        0.022296875,
+                        0.021546875,
+                        0.02221875,
+                        0.016578125,
+                        0.02080625,
+                        0.020971875
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.0217,
+                        0.0096,
+                        0.0095,
+                        0.0182,
+                        0.0191
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.1759,
+                        0.1601,
+                        0.1658,
+                        0.1899,
+                        0.1634
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.016850258333333334,
+                        0.022644008333333335,
+                        0.021894008333333334,
+                        0.02256588333333333,
+                        0.016925258333333333,
+                        0.02115338333333333,
+                        0.021319008333333335
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0xA0C8553481D23011",
+                        "CandidateStateHash": "0xA0C8553481D23011",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 7864320,
+                    "StateHash": "0xA0C8553481D23011",
+                    "FailureReason": ""
+                },
+                {
+                    "ScenarioId": "transform-export-v1",
+                    "Phase": 0,
+                    "Candidate": {
+                        "CandidateId": "SoA-b256",
+                        "LayoutId": "SoA",
+                        "DisplayName": "SoA",
+                        "LogicalBatchSize": 256,
+                        "IsBaseline": false,
+                        "SortOrder": 1
+                    },
+                    "ElementCount": 65536,
+                    "StepsPerSample": 32,
+                    "Latency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.019490625,
+                        "MedianMilliseconds": 0.02305625,
+                        "P95Milliseconds": 0.029819062499999994,
+                        "P99Milliseconds": 0.0318163125,
+                        "MaximumMilliseconds": 0.032315625,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0013187500000000005
+                    },
+                    "BoundaryCost": {
+                        "IngressLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.01,
+                            "MedianMilliseconds": 0.0191,
+                            "P95Milliseconds": 0.02366,
+                            "P99Milliseconds": 0.024092,
+                            "MaximumMilliseconds": 0.0242,
+                            "MedianAbsoluteDeviationMilliseconds": 0.0023999999999999995
+                        },
+                        "ExportLatency": {
+                            "SampleCount": 5,
+                            "MinimumMilliseconds": 0.1533,
+                            "MedianMilliseconds": 0.1602,
+                            "P95Milliseconds": 0.16571999999999999,
+                            "P99Milliseconds": 0.16610399999999998,
+                            "MaximumMilliseconds": 0.1662,
+                            "MedianAbsoluteDeviationMilliseconds": 0.003599999999999992
+                        },
+                        "LifetimeTicks": 600,
+                        "AmortizedMedianMillisecondsPerTick": 0.00029883333333333335,
+                        "AmortizedP95MillisecondsPerTick": 0.0003156333333333333
+                    },
+                    "AmortizedLatency": {
+                        "SampleCount": 7,
+                        "MinimumMilliseconds": 0.019806258333333335,
+                        "MedianMilliseconds": 0.023371883333333334,
+                        "P95Milliseconds": 0.03013469583333333,
+                        "P99Milliseconds": 0.03213194583333333,
+                        "MaximumMilliseconds": 0.032631258333333339,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0013187500000000005
+                    },
+                    "ResidentSamplesMillisecondsPerTick": [
+                        0.019490625,
+                        0.02399375,
+                        0.0207375,
+                        0.0232,
+                        0.02305625,
+                        0.032315625,
+                        0.0217375
+                    ],
+                    "IngressSamplesMilliseconds": [
+                        0.0242,
+                        0.0215,
+                        0.0191,
+                        0.0185,
+                        0.01
+                    ],
+                    "ExportSamplesMilliseconds": [
+                        0.1662,
+                        0.1638,
+                        0.1594,
+                        0.1602,
+                        0.1533
+                    ],
+                    "AmortizedSamplesMillisecondsPerTick": [
+                        0.019806258333333335,
+                        0.024309383333333335,
+                        0.02105313333333333,
+                        0.02351563333333333,
+                        0.023371883333333334,
+                        0.032631258333333339,
+                        0.022053133333333333
+                    ],
+                    "Completed": true,
+                    "ParityPassed": true,
+                    "Parity": {
+                        "Passed": true,
+                        "ComparedElementCount": 65536,
+                        "FirstMismatchIndex": -1,
+                        "ReferenceStateHash": "0xA0C8553481D23011",
+                        "CandidateStateHash": "0xA0C8553481D23011",
+                        "Reason": "Equivalent canonical exports."
+                    },
+                    "HotPathManagedAllocationBytes": 0,
+                    "BoundaryManagedAllocationBytes": 0,
+                    "ResidentBytes": 7864320,
+                    "StateHash": "0xA0C8553481D23011",
+                    "FailureReason": ""
+                }
+            ],
+            "HoldoutBaselineResult": {
+                "ScenarioId": "",
+                "Phase": 0,
+                "Candidate": {
+                    "CandidateId": "",
+                    "LayoutId": "",
+                    "DisplayName": "",
+                    "LogicalBatchSize": 0,
+                    "IsBaseline": false,
+                    "SortOrder": 0
+                },
+                "ElementCount": 0,
+                "StepsPerSample": 0,
+                "Latency": {
+                    "SampleCount": 0,
+                    "MinimumMilliseconds": 0.0,
+                    "MedianMilliseconds": 0.0,
+                    "P95Milliseconds": 0.0,
+                    "P99Milliseconds": 0.0,
+                    "MaximumMilliseconds": 0.0,
+                    "MedianAbsoluteDeviationMilliseconds": 0.0
+                },
+                "BoundaryCost": {
+                    "IngressLatency": {
+                        "SampleCount": 0,
+                        "MinimumMilliseconds": 0.0,
+                        "MedianMilliseconds": 0.0,
+                        "P95Milliseconds": 0.0,
+                        "P99Milliseconds": 0.0,
+                        "MaximumMilliseconds": 0.0,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0
+                    },
+                    "ExportLatency": {
+                        "SampleCount": 0,
+                        "MinimumMilliseconds": 0.0,
+                        "MedianMilliseconds": 0.0,
+                        "P95Milliseconds": 0.0,
+                        "P99Milliseconds": 0.0,
+                        "MaximumMilliseconds": 0.0,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0
+                    },
+                    "LifetimeTicks": 0,
+                    "AmortizedMedianMillisecondsPerTick": 0.0,
+                    "AmortizedP95MillisecondsPerTick": 0.0
+                },
+                "AmortizedLatency": {
+                    "SampleCount": 0,
+                    "MinimumMilliseconds": 0.0,
+                    "MedianMilliseconds": 0.0,
+                    "P95Milliseconds": 0.0,
+                    "P99Milliseconds": 0.0,
+                    "MaximumMilliseconds": 0.0,
+                    "MedianAbsoluteDeviationMilliseconds": 0.0
+                },
+                "ResidentSamplesMillisecondsPerTick": [],
+                "IngressSamplesMilliseconds": [],
+                "ExportSamplesMilliseconds": [],
+                "AmortizedSamplesMillisecondsPerTick": [],
+                "Completed": false,
+                "ParityPassed": false,
+                "Parity": {
+                    "Passed": false,
+                    "ComparedElementCount": 0,
+                    "FirstMismatchIndex": 0,
+                    "ReferenceStateHash": "",
+                    "CandidateStateHash": "",
+                    "Reason": ""
+                },
+                "HotPathManagedAllocationBytes": 0,
+                "BoundaryManagedAllocationBytes": 0,
+                "ResidentBytes": 0,
+                "StateHash": "",
+                "FailureReason": ""
+            },
+            "HoldoutSelectedResult": {
+                "ScenarioId": "",
+                "Phase": 0,
+                "Candidate": {
+                    "CandidateId": "",
+                    "LayoutId": "",
+                    "DisplayName": "",
+                    "LogicalBatchSize": 0,
+                    "IsBaseline": false,
+                    "SortOrder": 0
+                },
+                "ElementCount": 0,
+                "StepsPerSample": 0,
+                "Latency": {
+                    "SampleCount": 0,
+                    "MinimumMilliseconds": 0.0,
+                    "MedianMilliseconds": 0.0,
+                    "P95Milliseconds": 0.0,
+                    "P99Milliseconds": 0.0,
+                    "MaximumMilliseconds": 0.0,
+                    "MedianAbsoluteDeviationMilliseconds": 0.0
+                },
+                "BoundaryCost": {
+                    "IngressLatency": {
+                        "SampleCount": 0,
+                        "MinimumMilliseconds": 0.0,
+                        "MedianMilliseconds": 0.0,
+                        "P95Milliseconds": 0.0,
+                        "P99Milliseconds": 0.0,
+                        "MaximumMilliseconds": 0.0,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0
+                    },
+                    "ExportLatency": {
+                        "SampleCount": 0,
+                        "MinimumMilliseconds": 0.0,
+                        "MedianMilliseconds": 0.0,
+                        "P95Milliseconds": 0.0,
+                        "P99Milliseconds": 0.0,
+                        "MaximumMilliseconds": 0.0,
+                        "MedianAbsoluteDeviationMilliseconds": 0.0
+                    },
+                    "LifetimeTicks": 0,
+                    "AmortizedMedianMillisecondsPerTick": 0.0,
+                    "AmortizedP95MillisecondsPerTick": 0.0
+                },
+                "AmortizedLatency": {
+                    "SampleCount": 0,
+                    "MinimumMilliseconds": 0.0,
+                    "MedianMilliseconds": 0.0,
+                    "P95Milliseconds": 0.0,
+                    "P99Milliseconds": 0.0,
+                    "MaximumMilliseconds": 0.0,
+                    "MedianAbsoluteDeviationMilliseconds": 0.0
+                },
+                "ResidentSamplesMillisecondsPerTick": [],
+                "IngressSamplesMilliseconds": [],
+                "ExportSamplesMilliseconds": [],
+                "AmortizedSamplesMillisecondsPerTick": [],
+                "Completed": false,
+                "ParityPassed": false,
+                "Parity": {
+                    "Passed": false,
+                    "ComparedElementCount": 0,
+                    "FirstMismatchIndex": 0,
+                    "ReferenceStateHash": "",
+                    "CandidateStateHash": "",
+                    "Reason": ""
+                },
+                "HotPathManagedAllocationBytes": 0,
+                "BoundaryManagedAllocationBytes": 0,
+                "ResidentBytes": 0,
+                "StateHash": "",
+                "FailureReason": ""
+            }
+        }
+    ]
+}
