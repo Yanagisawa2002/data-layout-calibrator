@@ -1,0 +1,20 @@
+{
+  "name": "Yanagisawa.DataLayoutCalibrator.Benchmark",
+  "rootNamespace": "Yanagisawa.DataLayoutCalibrator.Benchmark",
+  "references": [
+    "Yanagisawa.DataLayoutCalibrator",
+    "Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate",
+    "Yanagisawa.DataLayoutCalibrator.Samples.TransformExport",
+    "Unity.Burst",
+    "Unity.Collections"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

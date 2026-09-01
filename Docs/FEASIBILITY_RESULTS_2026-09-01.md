@@ -1,44 +1,65 @@
-# Feasibility results — 2026-09-01
+# Validation status — 2026-09-01
 
 ## Decision
 
-**Engineering Go; product/generator gate remains closed.**
+**Reusable calibration pipeline: engineering Go. Source Generator and presentation milestone: correctly gated.**
 
-The concrete approach is real: all three jobs are present in the standalone Burst AOT manifest, output parity holds, the hot path allocates zero managed bytes, and AoSoA8 wins the frozen resident workload in three independent Player processes. This is enough to continue building the calibrator protocol. It is not enough to publish a general Unity performance claim or start a source generator.
+The v2 pipeline now proves that the core is workload-agnostic, measures full boundaries, can accept a real winner, and can return AoS for a negative control. It does not yet satisfy the required Windows IL2CPP gate because that Unity editor module is absent.
 
 ## Environment
 
-- Windows 11, AMD Ryzen 9 9950X, 7 Unity job workers.
+- Windows 11, AMD Ryzen 9 9950X, 7 Unity Job workers.
 - Unity 6000.5.3f1.
-- Burst 1.8.29; Collections 6.5.0; Mathematics 1.4.0.
-- Windows x64, Mono scripting backend, non-Development Release Player, Burst AOT.
-- D3D11-only build configuration, Graphics Jobs off; benchmark executed headless.
-- Calibration count 1,048,576; holdout count 1,000,003; 30 interleaved samples per candidate.
+- Burst 1.8.29; resolved Collections 6.5.0; Mathematics 1.4.0.
+- Windows x64 Mono scripting backend, non-Development Release Player, Burst AOT.
+- D3D11-only build, Graphics Jobs off; benchmark executed headless.
 
-Windows IL2CPP support is not installed for any local Unity editor, so the build guard rejected the IL2CPP attempt. This is an explicit remaining gate, not silently substituted evidence.
+## Verified implementation
 
-## Repeated-process results
+| Roadmap item | Status | Evidence |
+|---|---|---|
+| Data Layout Calibrator naming | Complete | Package ID, assemblies, UI, executable, output schema, docs |
+| Particle moved to Samples | Complete | Separate Sample asmdef; reflection test confirms no Particle type in core DLL |
+| Scenario/Candidate/Parity/BoundaryCost protocols | Complete | Public core interfaces; both Samples implement the same engine contract |
+| TransformExport negative control | Complete | Eight candidates, field-level parity, AoS fallback |
+| Full ingress/export/lifetime amortization | Complete | Separate raw samples and composite schema-2 metric |
+| Bootstrap CI/statistical tie | Complete | Deterministic bootstrap tests; `StatisticalTie` selects AoS |
+| Mono Burst AOT + IL2CPP before generator | Partial | Mono passes; IL2CPP module missing; generator not started |
+| Fixed-result heatmap/GIF | Not started by design | Waiting for prior gate; result file already freezes `FinalDecision` |
 
-| Process | Calibration selection | Tuned AoS baseline | Calibration P95 gain | Holdout P95: AoS → selected | Holdout gain |
-|---|---|---|---:|---:|---:|
-| 1 | AoSoA8, batch 128 | AoS, batch 256 | 81.6% | 0.8594 ms → 0.1735 ms | 79.8% |
-| 2 | AoSoA8, batch 128 | AoS, batch 128 | 80.7% | 0.7809 ms → 0.1677 ms | 78.5% |
-| 3 | AoSoA8, batch 256 | AoS, batch 32 | 79.9% | 0.8078 ms → 0.1704 ms | 78.9% |
+## Mono Release Player evidence
 
-All measured candidates reported parity pass, identical per-run state hashes, 0 hot-path managed allocation bytes, and approximately 48 MiB resident storage. The selected layout is stable; the exact batch and best AoS batch are not stable across processes.
+The Player build succeeded and emitted:
 
-## What the number means
+- `DataLayoutCalibrator.exe` in the Mono evidence build;
+- a non-empty `lib_burst_generated.dll`;
+- all ten required resident and boundary Job entrypoints for ParticleIntegrate and TransformExport.
 
-This large difference is plausible for the deliberately hot/cold workload but must be described precisely. AoS copy-modify-write touches a 48-byte logical record. SoA touches only the hot arrays. AoSoA8 additionally performs explicit eight-lane work through two `float4` groups per job iteration. The headline is therefore a **candidate pipeline** comparison, not a pure “layout alone” comparison.
+A 65,536-record integration run used 7 resident samples, 5 boundary samples, 600 lifetime ticks, and 500 bootstrap iterations. This short run validates behavior; it is not the final performance claim.
 
-The faster candidates also showed higher per-run MAD than the desired final evidence threshold. Cross-process P95 is stable, but confidence intervals and a noise-aware tie policy are not implemented yet.
+| Scenario | Calibration/holdout result | Parity | Managed allocation |
+|---|---|---:|---:|
+| Particle Integrate | AoSoA8-b256 accepted against AoS-b64; holdout amortized-P95 gain 49.6%, 95% CI [37.8%, 53.6%] | all 12 pass | 0 B resident, 0 B boundary |
+| Transform Export (negative control) | tuned AoS-b64 is also best measured; `Inconclusive`, select AoS-b64 | all 8 pass | 0 B resident, 0 B boundary |
 
-## Gates before source generation
+This is the important negative-control behavior: the calibrator does not force a non-AoS recommendation when the declared product threshold is not met.
 
-1. Add a common bounds/metadata/export consumer and retain the improvement.
-2. Measure optimized ingress, full egress, resident bytes, and amortized lifetime cost.
-3. Add bootstrap confidence intervals and avoid selecting a batch from statistical ties.
-4. Repeat on IL2CPP Release and at least one second CPU/workload profile.
-5. Build the result-file-driven heatmap/GIF view only from runs that pass those gates.
+The final EditMode suite passes 29/29 tests. The compiled core assembly references only `netstandard`, exposes `CandidateDescriptor` for arbitrary plugin-defined layout IDs, and contains zero Particle types.
 
-Raw local artifacts are under `Artifacts/aot-run-{1,2,3}` and are intentionally ignored until the schema and evidence policy are finalized.
+## IL2CPP gate evidence
+
+The formal Windows IL2CPP build was attempted after the two-workload Mono pass. Unity exited with code 1 and reported:
+
+```text
+Error building Player: Currently selected scripting backend (IL2CPP) is not installed.
+```
+
+All locally installed editors (`6000.4.10f1`, `6000.5.2f1`, `6000.5.3f1`) have Windows support directories but no Windows IL2CPP Player variation. This is an environment prerequisite failure, not a code or parity failure, and it must not be replaced by Mono evidence.
+
+## Next authorized sequence
+
+1. Install Windows Build Support (IL2CPP) for Unity 6000.5.3f1.
+2. Re-run `DataLayoutCalibratorBuild.BuildWindowsIl2CppFormal`.
+3. Run both workloads from that IL2CPP Release Player and compare the fixed suite schema with Mono.
+4. Only after both pass, implement the Source Generator.
+5. Only after generator parity/AOT verification, build a heatmap and GIF renderer that reads the fixed suite result without reselecting candidates.

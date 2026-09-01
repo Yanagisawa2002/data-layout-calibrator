@@ -1,0 +1,19 @@
+{
+  "name": "Yanagisawa.DataLayoutCalibrator.Samples.TransformExport",
+  "rootNamespace": "Yanagisawa.DataLayoutCalibrator.Samples.TransformExport",
+  "references": [
+    "Yanagisawa.DataLayoutCalibrator",
+    "Unity.Burst",
+    "Unity.Collections",
+    "Unity.Mathematics"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

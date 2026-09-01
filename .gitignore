@@ -10,6 +10,7 @@
 # Build and benchmark outputs
 **/Builds/
 **/BenchmarkResults/
+**/CalibrationResults/
 **/Artifacts/
 **/TestResults/
 **/TestResults-*.xml

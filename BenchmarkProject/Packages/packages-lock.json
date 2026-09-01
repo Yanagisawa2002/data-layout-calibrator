@@ -68,8 +68,8 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.yanagisawa.data-layout-autotuner": {
-      "version": "file:../../Packages/com.yanagisawa.data-layout-autotuner",
+    "com.yanagisawa.data-layout-calibrator": {
+      "version": "file:../../Packages/com.yanagisawa.data-layout-calibrator",
       "depth": 0,
       "source": "local",
       "dependencies": {

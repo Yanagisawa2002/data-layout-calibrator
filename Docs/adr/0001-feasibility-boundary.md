@@ -1,6 +1,6 @@
 # ADR 0001: Feasibility before source generation
 
-Status: Accepted  
+Status: Superseded by ADR 0002
 Date: 2026-09-01
 
 ## Decision

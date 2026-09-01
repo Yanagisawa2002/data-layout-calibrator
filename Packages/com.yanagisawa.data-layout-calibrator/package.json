@@ -1,0 +1,22 @@
+{
+  "name": "com.yanagisawa.data-layout-calibrator",
+  "version": "0.2.0-preview.1",
+  "displayName": "Data Layout Calibrator",
+  "description": "Concrete Burst data-layout calibration, parity validation, and device-scoped profile selection.",
+  "unity": "6000.0",
+  "author": {
+    "name": "Edwin Liu"
+  },
+  "dependencies": {
+    "com.unity.burst": "1.8.29",
+    "com.unity.collections": "2.6.3",
+    "com.unity.mathematics": "1.3.2"
+  },
+  "keywords": [
+    "burst",
+    "jobs",
+    "performance",
+    "calibration",
+    "data-layout"
+  ]
+}

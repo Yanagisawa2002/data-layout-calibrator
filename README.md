@@ -1,55 +1,81 @@
-# Data Layout Autotuner
+# Data Layout Calibrator
 
-Data Layout Autotuner is a clean-room-style Unity/Burst feasibility project for selecting the fastest correct data layout and job scheduling parameters for an explicitly declared numeric pipeline.
+Data Layout Calibrator is a reusable Unity/Burst calibration pipeline for comparing concrete data-layout implementations under one declared semantic contract. It does not rewrite arbitrary project code and does not claim to outsmart Burst. A workload plugin supplies concrete AOT-visible candidates; the core measures them, rejects incorrect or allocating variants, and falls back to AoS unless the evidence clears every gate.
 
-The first milestone deliberately does **not** rewrite arbitrary C# and does **not** compete with the Burst compiler. It compares concrete AoS, SoA, and AoSoA8 implementations in an AOT Player, validates output parity, and emits a device- and workload-scoped profile.
+The repository is independent from any product project and remains privately licensed.
 
-## Direct objective
+## What is reusable
 
-Reduce resident CPU pipeline latency or increase numeric-pipeline throughput without changing the input, algorithm, output, or workload size. Conversion and export costs are reported separately before any end-to-end claim.
+The core UPM assembly contains no Particle types. It exposes four plugin boundaries:
 
-## Feasibility scope
+- `ICalibrationScenarioFactory` / `ICalibrationScenario`: deterministic input, candidate set, and workload identity.
+- `ICalibrationCandidate`: one concrete layout plus literal Burst schedule sites.
+- `IParityValidator`: typed, field-level comparison of canonical exports.
+- `IBoundaryCost`: allocation-free full ingress and export operations.
 
-- Deterministic particle-update workload with hot and cold fields.
-- Concrete, non-generic Burst jobs for AoS, SoA, and AoSoA8.
-- Logical batch-size calibration.
-- Quantized output hash and field-level parity checks.
-- Warmup plus P50/P95/P99 Player measurements.
-- Static JSON profile and CSV evidence.
-- A Player overlay suitable for screen recording; a result-file-driven comparison view is the next milestone.
+`ScenarioCalibrationEngine` drives any implementation of those contracts. Workload code lives in separate Sample assemblies:
+
+- `particle-integrate-v2`: AoS, SoA, and explicit eight-lane AoSoA8; batch 32/64/128/256.
+- `transform-export-v1`: AoS and SoA full matrix export; deliberately retained as a negative control.
+
+## Frozen decision rule
+
+The primary value for each candidate is:
+
+```text
+amortized P95 ms/tick = resident P95
+                      + (ingress P95 + export P95) / declared lifetime ticks
+```
+
+The baseline is the fastest valid AoS batch, not a deliberately weak default. A non-AoS candidate is selected only when it:
+
+1. passes field-level parity and state-hash checks;
+2. allocates 0 managed bytes in resident, ingress, and export samples;
+3. improves amortized P95 by at least 10%;
+4. has a 95% non-parametric bootstrap confidence interval whose lower bound is above 0%; and
+5. repeats those gates on an untouched seed and count holdout.
+
+An insignificant difference is recorded as `StatisticalTie` and selects AoS. A sub-threshold point estimate is `Inconclusive` and also selects AoS.
 
 ## Repository layout
 
 ```text
-Packages/com.yanagisawa.data-layout-autotuner/  Reusable UPM package
-BenchmarkProject/                              Standalone Unity validation project
-Docs/adr/                                      Architecture decisions and go/no-go gates
+Packages/com.yanagisawa.data-layout-calibrator/
+  Runtime/                         workload-agnostic protocol, engine, statistics
+  Samples/ParticleIntegrate/       particle plugin and tests
+  Samples/TransformExport/         negative-control plugin and tests
+BenchmarkProject/                  standalone Release Player and evidence writer
+Docs/                              contracts, ADRs, validation status
 ```
 
-## Evidence boundary
+## Build and run
 
-A visual comparison is illustrative only. Performance claims require a release AOT Player, identical inputs, output parity, repeated samples, a frozen selection objective, and confirmation on an untouched holdout run.
-
-AoSoA8 changes both storage and kernel shape by executing eight logical records per job iteration. Its result is therefore a candidate-pipeline result, not a claim that layout alone caused the entire difference.
-
-## Run it
-
-The committed benchmark project uses Unity `6000.5.3f1`. From a shell with the Unity path adjusted for the local machine:
+The committed validation project uses Unity `6000.5.3f1`.
 
 ```powershell
-Unity.exe -batchmode -projectPath BenchmarkProject -runTests -testPlatform EditMode -testResults editmode.xml
+Unity.exe -batchmode -projectPath BenchmarkProject `
+  -runTests -testPlatform EditMode -testResults editmode.xml
 
 Unity.exe -batchmode -quit -projectPath BenchmarkProject `
-  -executeMethod Yanagisawa.DataLayoutAutotuner.Benchmark.Editor.DataLayoutBenchmarkBuild.BuildWindowsMonoAotEvidence
+  -executeMethod Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.DataLayoutCalibratorBuild.BuildWindowsMonoAotEvidence
 
-Builds/windows-x64/mono-aot-evidence/DataLayoutBenchmark.exe `
+Builds/windows-x64/mono-aot-evidence/DataLayoutCalibrator.exe `
   -batchmode -nographics -dla-run -dla-quit `
   -dla-count 1048576 -dla-holdout-count 1000003 `
-  -dla-samples 30 -dla-output BenchmarkResults/run-01
+  -dla-samples 40 -dla-boundary-samples 20 `
+  -dla-lifetime-ticks 600 -dla-bootstrap-iterations 4000 `
+  -dla-output CalibrationResults/run-01
 ```
 
-The build fails if the Burst native library or any of the three concrete AOT entrypoints is absent. `profile.json`, `samples.csv`, and `summary.txt` are written only after parity validation.
+The build fails unless the Burst library contains all ParticleIntegrate and TransformExport job entrypoints. A successful run writes:
 
-## Status
+- `calibration-suite.json`: immutable suite result and final decisions;
+- `<scenario>/profile.json`: scenario-scoped fixed result;
+- `<scenario>/samples.csv`: recorded ingress/resident/export samples;
+- summaries stating the exact measurement and presentation contract.
 
-Engineering feasibility is established for the synthetic resident `particle-integrate-v1` workload on the recorded Windows machine. See [the feasibility report](Docs/FEASIBILITY_RESULTS_2026-09-01.md). Source generation and a public/general performance claim remain gated.
+Future heatmaps and GIFs must read `calibration-suite.json`. They may format or filter it, but may not recompute or replace `FinalDecision`.
+
+## Current gate
+
+Mono Release + Burst AOT, both workload protocols, parity, boundary accounting, bootstrap selection, and the negative control are verified. Windows IL2CPP support is not installed in the local Unity editors, so the formal IL2CPP build fails before compilation. Per the gate, no Source Generator or result GIF has been implemented yet. See [validation status](Docs/FEASIBILITY_RESULTS_2026-09-01.md) and the [calibration contract](Docs/CALIBRATION_CONTRACT.md).
