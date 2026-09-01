@@ -1,0 +1,191 @@
+using System;
+using Unity.Collections;
+using Unity.Collections.LowLevel.Unsafe;
+using Unity.Jobs;
+using Unity.Mathematics;
+
+namespace Yanagisawa.DataLayoutAutotuner
+{
+    /// <summary>
+    /// Owns one persistent representation of the particle workload. Layout selection
+    /// remains managed; every hot schedule site targets a concrete Burst job.
+    /// </summary>
+    public sealed class ParticleLayoutDomain : IDisposable
+    {
+        private ParticleAoSStorage _aos;
+        private ParticleSoAStorage _soa;
+        private ParticleAoSoA8Storage _aosoa8;
+        private bool _disposed;
+
+        private ParticleLayoutDomain(LayoutKind layout, int logicalBatchSize)
+        {
+            Layout = layout;
+            LogicalBatchSize = Math.Max(1, logicalBatchSize);
+        }
+
+        public LayoutKind Layout { get; }
+
+        /// <summary>
+        /// Batch size expressed in logical records, not physical AoSoA blocks.
+        /// </summary>
+        public int LogicalBatchSize { get; }
+
+        public int Count
+        {
+            get
+            {
+                ThrowIfDisposed();
+                switch (Layout)
+                {
+                    case LayoutKind.AoS: return _aos.Count;
+                    case LayoutKind.SoA: return _soa.Count;
+                    case LayoutKind.AoSoA8: return _aosoa8.Count;
+                    default: throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        public long ResidentBytes
+        {
+            get
+            {
+                ThrowIfDisposed();
+                switch (Layout)
+                {
+                    case LayoutKind.AoS:
+                        return (long)_aos.Count * UnsafeUtility.SizeOf<ParticleRecord>();
+                    case LayoutKind.SoA:
+                        return (long)_soa.Count *
+                               ((UnsafeUtility.SizeOf<float3>() * 2) +
+                                UnsafeUtility.SizeOf<quaternion>() +
+                                UnsafeUtility.SizeOf<float>() +
+                                UnsafeUtility.SizeOf<int>());
+                    case LayoutKind.AoSoA8:
+                        return ((long)_aosoa8.BlockCount * UnsafeUtility.SizeOf<ParticleAoSoA8Block>()) +
+                               ((long)_aosoa8.Count *
+                                (UnsafeUtility.SizeOf<quaternion>() + UnsafeUtility.SizeOf<int>()));
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        public static ParticleLayoutDomain Create(
+            LayoutKind layout,
+            int logicalBatchSize,
+            NativeArray<ParticleRecord> source,
+            Allocator allocator = Allocator.Persistent)
+        {
+            if (!source.IsCreated)
+                throw new ArgumentException("Source records are not created.", nameof(source));
+
+            var domain = new ParticleLayoutDomain(layout, logicalBatchSize);
+            try
+            {
+                switch (layout)
+                {
+                    case LayoutKind.AoS:
+                        domain._aos = ParticleAoSStorage.FromRecords(source, allocator);
+                        break;
+                    case LayoutKind.SoA:
+                        domain._soa = ParticleSoAStorage.FromRecords(source, allocator);
+                        break;
+                    case LayoutKind.AoSoA8:
+                        domain._aosoa8 = ParticleAoSoA8Storage.FromRecords(source, allocator);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(layout), layout, null);
+                }
+
+                return domain;
+            }
+            catch
+            {
+                domain.Dispose();
+                throw;
+            }
+        }
+
+        public JobHandle Schedule(float deltaTime, JobHandle dependency = default)
+        {
+            ThrowIfDisposed();
+            switch (Layout)
+            {
+                case LayoutKind.AoS:
+                    return ParticleJobScheduler.Schedule(
+                        ref _aos,
+                        LogicalBatchSize,
+                        deltaTime,
+                        dependency);
+                case LayoutKind.SoA:
+                    return ParticleJobScheduler.Schedule(
+                        ref _soa,
+                        LogicalBatchSize,
+                        deltaTime,
+                        dependency);
+                case LayoutKind.AoSoA8:
+                    return ParticleJobScheduler.Schedule(
+                        ref _aosoa8,
+                        LogicalBatchSize,
+                        deltaTime,
+                        dependency);
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        public ParticleRecord ReadRecord(int index)
+        {
+            ThrowIfDisposed();
+            if ((uint)index >= (uint)Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
+
+            switch (Layout)
+            {
+                case LayoutKind.AoS: return _aos.ReadRecord(index);
+                case LayoutKind.SoA: return _soa.ReadRecord(index);
+                case LayoutKind.AoSoA8: return _aosoa8.ReadRecord(index);
+                default: throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        public void CopyTo(NativeArray<ParticleRecord> destination)
+        {
+            ThrowIfDisposed();
+            if (!destination.IsCreated || destination.Length != Count)
+                throw new ArgumentException("Destination must be created with the logical record count.", nameof(destination));
+
+            for (int index = 0; index < destination.Length; index++)
+                destination[index] = ReadRecord(index);
+        }
+
+        public ulong ComputeQuantizedHash()
+        {
+            ThrowIfDisposed();
+            switch (Layout)
+            {
+                case LayoutKind.AoS: return ParticleStateValidation.ComputeHash(ref _aos);
+                case LayoutKind.SoA: return ParticleStateValidation.ComputeHash(ref _soa);
+                case LayoutKind.AoSoA8: return ParticleStateValidation.ComputeHash(ref _aosoa8);
+                default: throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        public void Dispose()
+        {
+            if (_disposed)
+                return;
+
+            _aos.Dispose();
+            _soa.Dispose();
+            _aosoa8.Dispose();
+            _disposed = true;
+        }
+
+        private void ThrowIfDisposed()
+        {
+            if (_disposed)
+                throw new ObjectDisposedException(nameof(ParticleLayoutDomain));
+        }
+    }
+}

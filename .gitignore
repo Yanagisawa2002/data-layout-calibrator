@@ -1,0 +1,32 @@
+# Unity-generated directories
+**/Library/
+**/Temp/
+**/Obj/
+**/Logs/
+**/UserSettings/
+**/MemoryCaptures/
+**/Recordings/
+
+# Build and benchmark outputs
+**/Builds/
+**/BenchmarkResults/
+**/Artifacts/
+**/TestResults/
+**/TestResults-*.xml
+BenchmarkProject/Assets/Resources.meta
+BenchmarkProject/Assets/Resources/PerformanceTestRun*.json*
+*.csv
+*.jsonl
+
+# IDE files
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
