@@ -292,6 +292,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 case LayoutSelectionStatus.Inconclusive:
                 case LayoutSelectionStatus.Optimized:
                 case LayoutSelectionStatus.StatisticalTie:
+                case LayoutSelectionStatus.Regression:
                     return true;
                 default:
                     return false;

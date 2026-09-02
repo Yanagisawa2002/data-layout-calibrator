@@ -61,6 +61,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
 
         [TestCase(LayoutSelectionStatus.Inconclusive)]
         [TestCase(LayoutSelectionStatus.StatisticalTie)]
+        [TestCase(LayoutSelectionStatus.Regression)]
         [TestCase(LayoutSelectionStatus.Invalid)]
         public void NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline(
             LayoutSelectionStatus status)
@@ -98,6 +99,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
 
         [TestCase(LayoutSelectionStatus.Inconclusive)]
         [TestCase(LayoutSelectionStatus.StatisticalTie)]
+        [TestCase(LayoutSelectionStatus.Regression)]
         [TestCase(LayoutSelectionStatus.Invalid)]
         public void CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile(
             LayoutSelectionStatus status)
