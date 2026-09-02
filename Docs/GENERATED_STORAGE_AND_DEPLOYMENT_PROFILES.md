@@ -63,6 +63,10 @@ A schema-2 `FrozenDeploymentProfile` contains three authoritative payloads:
 
 The raw suite is retained for audit and replay. Neither the codec, store, nor resolver recomputes a winner from it. `FinalDecision` remains authoritative.
 
+`FrozenDeploymentProfileFactory.Create` is a trusted capture boundary. Its caller must copy the decision from the authoritative `ScenarioCalibrationProfile.FinalDecision`; it must not construct a replacement decision from display names, renderer output, or an independent interpretation of samples. The raw suite is deliberately opaque here. The document, raw-suite, decision, and fingerprint hashes detect later mutation, but they do not authenticate the caller or prove that arbitrary raw-suite bytes semantically produced the supplied decision.
+
+Only an `Optimized` frozen decision may select a candidate other than its baseline. `Inconclusive`, `StatisticalTie`, and `Invalid` decisions remain cacheable for audit and deterministic reuse only when their selected `CandidateId` equals their baseline `CandidateId`. The rule is expressed as “non-Optimized selects baseline,” so newly supported non-optimized statuses inherit the same conservative gate.
+
 `FrozenDeploymentProfileCodec` is a fixed-order Base64 field codec with a document SHA-256, raw-suite SHA-256, decision SHA-256, and fingerprint SHA-256. It uses direct field assignment without reflection or runtime type discovery. Schema-1 profile documents migrate in memory to schema 2 by adding and validating the frozen-decision hash; the raw suite and selected candidate are preserved unchanged. Unknown schemas are unsupported, not guessed.
 
 `FileFrozenDeploymentProfileStore` hashes logical keys before forming paths and replaces cache entries through a same-directory temporary file. It returns Missing, Corrupt, UnsupportedSchema, or StorageError rather than treating a failed read as a decision.

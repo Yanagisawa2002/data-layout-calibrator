@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -10,6 +11,10 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
 {
     public sealed class DeploymentProfileTests
     {
+        private const int Schema2DecisionStatusLineIndex = 27;
+        private const int Schema2DecisionHashLineIndex = 36;
+        private const string SyntheticRawSuite =
+            "{\"fixture\":\"synthetic-unit-test\",\"evidence\":false}";
         private static readonly string[] CurrentCandidateIds = { "AoS-b64", "SoA-b64" };
 
         [Test]
@@ -34,7 +39,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
         }
 
         [Test]
-        public void ExactFingerprintUsesFrozenDecisionWithoutReselection()
+        public void OptimizedExactFingerprintUsesFrozenNonBaselineDecisionWithoutReselection()
         {
             CalibrationProfileFingerprint fingerprint = CreateFingerprint();
             FrozenDeploymentProfile profile = CreateProfile(fingerprint);
@@ -52,6 +57,77 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             Assert.That(resolution.CandidateId, Is.EqualTo("SoA-b64"));
             Assert.That(resolution.UsedAoSFallback, Is.False);
             Assert.That(resolution.Profile.RawSuitePayload, Does.Contain("synthetic-unit-test"));
+        }
+
+        [TestCase(LayoutSelectionStatus.Inconclusive)]
+        [TestCase(LayoutSelectionStatus.StatisticalTie)]
+        [TestCase(LayoutSelectionStatus.Invalid)]
+        public void NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline(
+            LayoutSelectionStatus status)
+        {
+            CalibrationProfileFingerprint fingerprint = CreateFingerprint();
+            FrozenDeploymentDecision unsafeDecision = CreateDecision(status, "SoA-b64");
+
+            ArgumentException exception = Assert.Throws<ArgumentException>(() =>
+                FrozenDeploymentProfileFactory.Create(
+                    fingerprint,
+                    unsafeDecision,
+                    SyntheticRawSuite,
+                    CreateProvenance()));
+            Assert.That(exception.Message, Does.Contain("must select its baseline"));
+
+            FrozenDeploymentProfile baselineProfile = CreateProfile(
+                fingerprint,
+                status,
+                "AoS-b64");
+            ProfileDocumentLoadResult loaded = FrozenDeploymentProfileCodec.Decode(
+                FrozenDeploymentProfileCodec.Encode(baselineProfile));
+            ProfileResolution resolution = DeploymentProfileResolver.Resolve(
+                fingerprint,
+                loaded,
+                "AoS-b64",
+                CurrentCandidateIds);
+
+            Assert.That(FrozenDeploymentProfileFactory.HasValidIntegrity(baselineProfile), Is.True);
+            Assert.That(loaded.Status, Is.EqualTo(ProfileDocumentLoadStatus.Loaded));
+            Assert.That(loaded.Profile.FinalDecision.Status, Is.EqualTo(status));
+            Assert.That(loaded.Profile.FinalDecision.SelectedCandidateId, Is.EqualTo("AoS-b64"));
+            Assert.That(resolution.Status, Is.EqualTo(ProfileResolutionStatus.ExactMatch));
+            Assert.That(resolution.CandidateId, Is.EqualTo("AoS-b64"));
+        }
+
+        [TestCase(LayoutSelectionStatus.Inconclusive)]
+        [TestCase(LayoutSelectionStatus.StatisticalTie)]
+        [TestCase(LayoutSelectionStatus.Invalid)]
+        public void CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile(
+            LayoutSelectionStatus status)
+        {
+            FrozenDeploymentProfile optimized = CreateProfile(CreateFingerprint());
+            FrozenDeploymentDecision craftedDecision = CreateDecision(status, "SoA-b64");
+            craftedDecision.ImprovementPercent = optimized.FinalDecision.ImprovementPercent;
+            string crafted = ReplaceFieldAndChecksum(
+                FrozenDeploymentProfileCodec.Encode(optimized),
+                Schema2DecisionStatusLineIndex,
+                ((int)status).ToString(CultureInfo.InvariantCulture));
+            crafted = ReplaceFieldAndChecksum(
+                crafted,
+                Schema2DecisionHashLineIndex,
+                FrozenDeploymentProfileFactory.ComputeDecisionSha256(craftedDecision));
+
+            ProfileDocumentLoadResult result = FrozenDeploymentProfileCodec.Decode(crafted);
+            ProfileResolution resolution = DeploymentProfileResolver.Resolve(
+                optimized.Fingerprint,
+                result,
+                "AoS-b64",
+                CurrentCandidateIds);
+
+            Assert.That(result.Status, Is.EqualTo(ProfileDocumentLoadStatus.Corrupt));
+            Assert.That(result.Profile, Is.Null);
+            Assert.That(result.Diagnostic, Does.Contain("field-level integrity"));
+            AssertFallback(
+                resolution,
+                ProfileResolutionStatus.CorruptProfile,
+                ProfileInvalidationReason.Corrupt);
         }
 
         [TestCase("candidate", ProfileInvalidationReason.CandidateSet)]
@@ -334,27 +410,41 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
         }
 
         private static FrozenDeploymentProfile CreateProfile(
-            CalibrationProfileFingerprint fingerprint)
+            CalibrationProfileFingerprint fingerprint,
+            LayoutSelectionStatus status = LayoutSelectionStatus.Optimized,
+            string selectedCandidateId = "SoA-b64")
         {
             return FrozenDeploymentProfileFactory.Create(
                 fingerprint,
-                new FrozenDeploymentDecision
-                {
-                    BaselineCandidateId = "AoS-b64",
-                    SelectedCandidateId = "SoA-b64",
-                    Status = LayoutSelectionStatus.Optimized,
-                    ImprovementPercent = 12.5,
-                    Reason = "Synthetic frozen decision for resolver unit tests.",
-                },
-                "{\"fixture\":\"synthetic-unit-test\",\"evidence\":false}",
-                new DeploymentProfileProvenance
-                {
-                    RunId = "synthetic-profile-unit-test",
-                    CreatedUtcIso8601 = "2026-09-02T00:00:00Z",
-                    SourceRepository = "https://github.com/Yanagisawa2002/data-layout-calibrator",
-                    SourceCommit = "644893990ed18e56619da8d2737e6b7592eb6080",
-                    EvidenceScope = "Synthetic unit-test fixture; not Unity Player, device, ISA, hardware-counter, or cross-device evidence.",
-                });
+                CreateDecision(status, selectedCandidateId),
+                SyntheticRawSuite,
+                CreateProvenance());
+        }
+
+        private static FrozenDeploymentDecision CreateDecision(
+            LayoutSelectionStatus status,
+            string selectedCandidateId)
+        {
+            return new FrozenDeploymentDecision
+            {
+                BaselineCandidateId = "AoS-b64",
+                SelectedCandidateId = selectedCandidateId,
+                Status = status,
+                ImprovementPercent = status == LayoutSelectionStatus.Optimized ? 12.5 : 0.0,
+                Reason = "Synthetic frozen decision for resolver unit tests.",
+            };
+        }
+
+        private static DeploymentProfileProvenance CreateProvenance()
+        {
+            return new DeploymentProfileProvenance
+            {
+                RunId = "synthetic-profile-unit-test",
+                CreatedUtcIso8601 = "2026-09-02T00:00:00Z",
+                SourceRepository = "https://github.com/Yanagisawa2002/data-layout-calibrator",
+                SourceCommit = "644893990ed18e56619da8d2737e6b7592eb6080",
+                EvidenceScope = "Synthetic unit-test fixture; not Unity Player, device, ISA, hardware-counter, or cross-device evidence.",
+            };
         }
 
         private static ProfileDocumentLoadResult Loaded(FrozenDeploymentProfile profile)

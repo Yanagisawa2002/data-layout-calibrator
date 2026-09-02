@@ -162,6 +162,13 @@ namespace Yanagisawa.DataLayoutCalibrator
         }
     }
 
+    /// <summary>
+    /// Trusted capture boundary for deployment profiles. The caller must pass a
+    /// decision copied from the authoritative ScenarioCalibrationProfile.FinalDecision.
+    /// Hashes protect the captured fields from later mutation; they do not
+    /// authenticate the caller or prove that an opaque raw suite semantically
+    /// produced the supplied decision.
+    /// </summary>
     public static class FrozenDeploymentProfileFactory
     {
         public static FrozenDeploymentProfile Create(
@@ -185,6 +192,12 @@ namespace Yanagisawa.DataLayoutCalibrator
                 nameof(finalDecision.Reason));
             if (!IsSupportedDecisionStatus(finalDecision.Status))
                 throw new ArgumentException("The frozen decision status is unsupported.", nameof(finalDecision));
+            if (!HasSafeSelectionForStatus(finalDecision))
+            {
+                throw new ArgumentException(
+                    "Every non-Optimized frozen decision must select its baseline candidate.",
+                    nameof(finalDecision));
+            }
             if (double.IsNaN(finalDecision.ImprovementPercent) ||
                 double.IsInfinity(finalDecision.ImprovementPercent))
             {
@@ -232,6 +245,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 !ProfileCanonicalization.IsPresent(profile.FinalDecision.BaselineCandidateId) ||
                 !ProfileCanonicalization.IsPresent(profile.FinalDecision.SelectedCandidateId) ||
                 !IsSupportedDecisionStatus(profile.FinalDecision.Status) ||
+                !HasSafeSelectionForStatus(profile.FinalDecision) ||
                 double.IsNaN(profile.FinalDecision.ImprovementPercent) ||
                 double.IsInfinity(profile.FinalDecision.ImprovementPercent) ||
                 !ProfileCanonicalization.IsPresent(profile.FinalDecision.Reason) ||
@@ -282,6 +296,15 @@ namespace Yanagisawa.DataLayoutCalibrator
                 default:
                     return false;
             }
+        }
+
+        private static bool HasSafeSelectionForStatus(FrozenDeploymentDecision decision)
+        {
+            return decision.Status == LayoutSelectionStatus.Optimized ||
+                   string.Equals(
+                       decision.SelectedCandidateId,
+                       decision.BaselineCandidateId,
+                       StringComparison.Ordinal);
         }
     }
 

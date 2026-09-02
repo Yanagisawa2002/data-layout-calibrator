@@ -18,6 +18,8 @@ Persist a strict fingerprint, opaque raw suite, frozen final decision, and prove
 - Inputs are explicit. The core never guesses CPU, ISA, backend, compiler, or build facts.
 - The no-reflection profile codec performs direct fixed-order field parsing and validates document, raw-suite, decision, settings, and fingerprint SHA-256 values.
 - The raw suite is audit material. The resolver consumes the frozen selected `CandidateId` and never reselects from raw samples.
+- The public profile factory is a trusted capture boundary. Its caller must copy `ScenarioCalibrationProfile.FinalDecision`; hashes detect mutation but neither authenticate the caller nor prove that opaque raw-suite bytes semantically support an arbitrary supplied decision.
+- Only `Optimized` may select a non-baseline candidate. Every other supported status, including `Inconclusive`, `StatisticalTie`, and `Invalid`, must select its baseline; future non-optimized statuses inherit this rule.
 - Exact match is the default.
 - A compatible match requires an opt-in rule for one exact stored/expected fingerprint pair, enumerated allowed differences, and an evidence reference.
 - Fundamental workload, record schema, candidate, backend, build, CPU/ISA/worker, binary, settings, or integrity differences cannot be waived by a compatible rule.
@@ -35,6 +37,6 @@ Hosts must establish trustworthy capture for binary hash, build flags, CPU, and 
 
 ## Verification boundary
 
-Synthetic tests cover exact reuse, candidate/compiler/backend/settings/worker invalidation, missing/corrupt/unknown profiles, unavailable candidates, schema-1-to-2 document migration, record-schema hard invalidation, explicit compatibility pairs, atomic replacement, and raw-suite tamper detection. Synthetic names are labeled and are not Player, device, ISA, hardware-counter, or cross-device evidence. Release Player AOT status must be reported separately.
+Synthetic tests cover exact reuse, non-optimized baseline enforcement, rejection of fully rehashed unsafe decisions, candidate/compiler/backend/settings/worker invalidation, missing/corrupt/unknown profiles, unavailable candidates, schema-1-to-2 document migration, record-schema hard invalidation, explicit compatibility pairs, atomic replacement, and raw-suite tamper detection. Synthetic names are labeled and are not Player, device, ISA, hardware-counter, or cross-device evidence. Release Player AOT status must be reported separately.
 
 Copyright (c) 2026 Edwin Liu. All Rights Reserved.
