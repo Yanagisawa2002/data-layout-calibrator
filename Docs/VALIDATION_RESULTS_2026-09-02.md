@@ -80,3 +80,26 @@ The manifest repeats the source hash and frozen candidate IDs. The 3/3 renderer 
 - Fixed-result renderer: 3 passed, 0 failed.
 - Mono Release Player: exit 0 and complete result.
 - IL2CPP Release Player: exit 0 and complete result.
+
+## Preregistered full-size IL2CPP replications
+
+After the backend integration gate, a protocol was committed before running
+five full-size Player processes. The frozen configuration used 1,048,576
+calibration records, 1,000,003 untouched holdout records, 40 resident samples,
+20 boundary samples, 600 lifetime ticks, and 4,000 bootstrap iterations.
+
+The preregistered `run-01` primary result selected `SoA-b128` against tuned
+`AoS-b64` and reduced holdout amortized P95 by 70.70%, with a 95% bootstrap CI
+of [65.32%, 79.37%]. Across all five retained launches:
+
+- ParticleIntegrate selected a gated non-AoS result in 5/5 runs.
+- Holdout P95 reduction ranged from 66.11% to 74.81% (median 68.71%).
+- The worst per-run confidence lower bound was 40.07%.
+- TransformExport retained tuned AoS in 5/5 runs.
+- All retained results passed parity and recorded 0 managed allocation.
+
+The selected Particle layout varied between SoA and AoSoA8, and `run-04`
+retained a wider interval. Both facts remain visible rather than being removed
+after measurement. The protocol, all suites, hashes, and a descriptive manifest
+are under [`evidence/formal-il2cpp-2026-09-02`](evidence/formal-il2cpp-2026-09-02/README.md).
+No hierarchical cross-run confidence interval or cross-device claim is made.

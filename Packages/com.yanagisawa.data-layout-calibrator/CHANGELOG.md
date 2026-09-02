@@ -7,6 +7,7 @@
 - Verified the generated registry with four Roslyn tests, 29 Unity EditMode tests, and both included workloads in Windows Mono and IL2CPP Release Players with Burst AOT.
 - Added an immutable IL2CPP evidence snapshot and a standalone fixed-result heatmap/GIF renderer with provenance manifest.
 - Added renderer regression tests proving that changed measurements cannot replace the candidate stored in `FinalDecision`.
+- Added a preregistered five-launch, full-size IL2CPP evidence set using 40/20 samples and 4,000 bootstrap iterations; all raw suites are retained.
 
 ## 0.2.0-preview.1 — 2026-09-01
 

@@ -275,14 +275,14 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                 : string.Empty;
             if (decision.Status == LayoutSelectionStatus.Optimized)
             {
-                return $"Optimized: {CandidateId(decision.SelectedCandidate)} is " +
-                       $"{decision.ImprovementPercent:F1}% faster at amortized P95 than " +
+                return $"Optimized: {CandidateId(decision.SelectedCandidate)} " +
+                       $"has {decision.ImprovementPercent:F1}% lower amortized P95 than " +
                        $"{CandidateId(decision.BaselineCandidate)}{interval}";
             }
 
             return $"{decision.Status}: use {CandidateId(decision.BaselineCandidate)}; " +
-                   $"best measured {CandidateId(decision.BestMeasuredCandidate)} was " +
-                   $"{decision.ImprovementPercent:F1}% faster{interval}";
+                   $"best measured {CandidateId(decision.BestMeasuredCandidate)} " +
+                   $"had {decision.ImprovementPercent:F1}% lower amortized P95{interval}";
         }
 
         private static string CandidateId(CandidateDescriptor candidate)

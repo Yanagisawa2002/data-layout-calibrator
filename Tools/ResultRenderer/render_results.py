@@ -374,7 +374,7 @@ def render_heatmap(model: dict[str, Any], input_hash: str, output_path: Path) ->
         if scenario["Status"] == 2:
             badge = (
                 f"OPTIMIZED · {scenario['SelectedId']} · "
-                f"{scenario['ImprovementPercent']:.2f}% faster"
+                f"{scenario['ImprovementPercent']:.2f}% lower P95"
             )
             badge_fill, badge_ink, badge_outline = BLUE, WHITE, None
         else:
@@ -584,7 +584,7 @@ def _gif_frame(model: dict[str, Any], input_hash: str, progress: float) -> Image
             badge_fill, badge_ink, badge_outline = WHITE, INK, MUTED
         elif scenario["Status"] == 2:
             decision_text = scenario["SelectedId"]
-            badge_text = f"{scenario['ImprovementPercent']:.2f}% FASTER"
+            badge_text = f"{scenario['ImprovementPercent']:.2f}% LOWER P95"
             badge_fill, badge_ink, badge_outline = BLUE_DARK, WHITE, None
         else:
             decision_text = scenario["SelectedId"]
