@@ -4,13 +4,15 @@ Status: integration candidate; not released
 
 Date: 2026-09-02
 
-Branch: `codex/vnext-integration`
+Branch: `codex/vnext-05-integration`
 
 Package version: `0.3.0-preview.1` (unchanged)
 
 This report covers repository integration and executable validation. It does not
-promote v0.4, v0.5, or v0.6, replace published v0.3 evidence, or claim new
-performance, IL2CPP, hardware-counter, ISA, device, or cross-device results.
+promote v0.4, v0.5, or v0.6 or replace published v0.3 evidence. New performance
+evidence is scoped to five processes on one recorded Windows/CPU/IL2CPP
+configuration; it makes no hardware-counter, causal-mechanism, cross-ISA, or
+cross-device claim.
 
 ## Ordered branch record
 
@@ -55,10 +57,11 @@ resident and boundary hot paths.
 | Evidence Lab tests | passed, 22/22 |
 | Evidence Lab checked-in manifest validation | passed; schema 1 |
 | Evidence Lab deterministic plan | passed; 0 executable requests, 18 blocked matrix entries |
+| GitHub non-Unity CI | passed; repository-static, Python tools, and Source Generator jobs |
 | whitespace/conflict-marker check | passed |
-| local Markdown-link check | passed; all 31 Markdown files resolved |
+| local Markdown-link check | passed |
 | sensitive-path/credential-pattern scan | passed; no additions found |
-| rights, dependency, and historical-evidence review | passed; no rights-file or dependency change, and only the planning-only manifest is new under `Docs/evidence` |
+| rights, dependency, and historical-evidence review | passed; no rights-file or dependency change, and vNext evidence is isolated from immutable v0.3 evidence |
 
 Synthetic fixtures used by unit tests remain labelled synthetic and contribute no
 observed coverage.
@@ -85,23 +88,45 @@ performance evidence.
 
 ### Windows x64 IL2CPP
 
-The required merged-tree build was attempted and failed before IL2CPP compilation:
+After installing Windows Build Support (IL2CPP) for Unity 6000.5.3f1, the
+non-Development IL2CPP Player build completed with exit code 0. The build gate
+verified non-empty IL2CPP code and metadata, a non-empty Burst library, the Burst
+entrypoint manifest, and all required ParticleIntegrate/TransformExport jobs.
 
-```text
-Error building Player: Currently selected scripting backend (IL2CPP) is not installed.
-```
+The tiny opt-in IL2CPP behavioral audit also exited 0. It exercised the same
+generated-storage and frozen-profile AOT probe as Mono and produced a valid
+schema-3 two-scenario suite. Both tiny-run decisions conservatively retained AoS;
+the tiny timings are not retained as performance evidence.
 
-Unity returned exit code 1. No current-tree IL2CPP binary or Burst AOT result exists,
-so IL2CPP remains an explicit release blocker. Historical v0.3 IL2CPP artifacts do
-not satisfy this changed-tree gate.
+The frozen formal Player was then executed in five sequential, fresh processes
+under the [preregistered protocol](evidence/VNEXT_FORMAL_BENCHMARK_PROTOCOL_2026-09-02.md).
+Every process used 1,048,576 calibration records, a 1,000,003-record untouched
+holdout, 40 resident samples, 20 boundary samples, 600 lifetime ticks, and 4,000
+paired-block bootstrap iterations.
+
+The fixed primary run measured ParticleIntegrate at 83.57% lower holdout
+amortized P95 than its tuned AoS baseline, with a single-Player 95% paired-block
+CI of [83.14%, 84.57%]. Across all five retained runs, the reduction ranged from
+82.96% to 83.63% (median 83.57%); the worst per-run lower confidence bound was
+82.45%. ParticleIntegrate selected `AoSoA8 / PackedBranchless8` in 5/5 launches,
+while TransformExport retained tuned AoS in 5/5.
+
+All 240 calibration results and 10 Particle holdout results completed, passed
+typed parity, and recorded zero resident/boundary managed allocation. The suite
+hashes, preflight context, raw arrays, exact decisions, and descriptive manifest
+are retained under
+[`evidence/vnext-formal-il2cpp-2026-09-02`](evidence/vnext-formal-il2cpp-2026-09-02/README.md).
+No cross-process hierarchical interval was computed, so the five-run range is
+reported descriptively.
 
 ## Replay and presentation
 
-The tiny Mono suite was replayed through fixed-result renderer `1.2.0`. The manifest
-input SHA matched the suite bytes, and each scenario's status, baseline, selected,
-best-measured candidate, and improvement value matched `FinalDecision` exactly.
-The transient audit output remains under ignored `work/` during integration and is
-not promoted to formal evidence.
+The preregistered primary IL2CPP suite was replayed through fixed-result renderer
+`1.2.0`. The manifest input SHA matched the suite bytes, and each scenario's
+status, baseline, selected, best-measured candidate, improvement, confidence, and
+evidence-scope fields matched `FinalDecision` exactly. The checked-in PNG/GIF and
+renderer manifest are linked from the retained evidence README; the renderer did
+not rank or reselect candidates.
 
 ## Roadmap and release gaps
 
@@ -112,11 +137,12 @@ The following prevent a v0.4-v0.6 release claim:
 - no formal measured advantage-envelope axis scan or adaptive-vs-exhaustive run;
 - generated storage remains bounded scaffold coverage rather than production
   replacement of the benchmark storage paths;
-- no merged-tree IL2CPP consumer build;
 - no real counter provider, counter overhead experiment, or retained compiler
   mechanism artifact;
-- 0 configured executable device requests, no registered physical-device identity,
-  no new workload matrix, and no device-level hierarchical statistics; and
+- the retained five-process evidence has no process-level aggregate CI; the
+  planning matrix still has 0 configured executable requests, no registered
+  physical-device identity, no new workload matrix, and no device-level
+  hierarchical statistics; and
 - no authorization to merge `main`, tag, or publish a GitHub Release.
 
 The appropriate repository action is a draft pull request for review. A later
@@ -124,9 +150,10 @@ release must state exactly which remaining gates it actually satisfies.
 
 ## Provenance and rights
 
-Historical evidence files are unchanged. No external source, vendor binary,
-profiler capture, device identity, credential, or third-party code was added by this
-integration. The repository remains proprietary and All Rights Reserved under
+Historical evidence files are unchanged. The new vNext evidence contains suite
+JSON, preflight metadata, and renderer output but no Player binary, external
+source, profiler capture, credential, or third-party code. The repository remains
+proprietary and All Rights Reserved under
 [`LICENSE`](../LICENSE) and [`PROVENANCE.md`](../PROVENANCE.md).
 
 Copyright (c) 2026 Edwin Liu. All Rights Reserved.

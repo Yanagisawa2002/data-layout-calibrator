@@ -4,7 +4,7 @@ Status: v0.5 tooling slice
 
 Authoritative roadmap: `Docs/ROADMAP_V0.4_TO_V0.6.md`, items 5 and 6
 
-Evidence status: implementation and synthetic tests only; this document adds no Player, device, ISA, hardware-counter, or cross-device evidence
+Evidence status: implementation, deterministic tests, and tiny Mono/IL2CPP AOT behavioral probes passed; no performance, hardware-counter, ISA, or cross-device claim
 
 ## Boundary of the generator
 
@@ -86,7 +86,7 @@ Missing, damaged, unsupported, incompatible, or unauthorized profiles resolve to
 
 ## AOT consumer probe
 
-`V05GeneratedScaffoldAotProbe` is linked into the benchmark Player. Only when `-dla-v05-aot-probe` is passed does it directly construct generated Particle/Transform storage, round-trip small canonical buffers, and encode/decode/resolve a clearly labeled synthetic profile. Keeping the probe behind a separate flag prevents it from warming or perturbing ordinary calibration runs. The probe is behavioral validation only. It records no suite and makes no performance, device, ISA, hardware-counter, Mono, IL2CPP, or cross-device claim by itself.
+`V05GeneratedScaffoldAotProbe` is linked into the benchmark Player. Only when `-dla-v05-aot-probe` is passed does it directly construct generated Particle/Transform storage, round-trip small canonical buffers, and encode/decode/resolve a clearly labeled synthetic profile. Keeping the probe behind a separate flag prevents it from warming or perturbing ordinary calibration runs. Tiny non-Development Mono and IL2CPP Players have executed this probe successfully, establishing AOT reachability for the frozen tree. The probe records no performance suite and makes no performance, hardware-counter, ISA, or cross-device claim.
 
 ## Integrated version assignments
 

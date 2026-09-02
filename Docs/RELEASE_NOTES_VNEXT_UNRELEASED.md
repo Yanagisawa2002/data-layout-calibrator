@@ -33,16 +33,24 @@ has been created.
 - Result renderers: 25/25.
 - Evidence Lab: 22/22; checked-in plan remains 0 executable / 18 blocked.
 - Windows Mono Release + Burst AOT: build and tiny behavioral audit passed.
-- Windows IL2CPP: blocked because the installed Editor lacks the scripting backend.
+- Windows IL2CPP Release + Burst AOT: build and tiny behavioral audit passed.
+- Preregistered full-size IL2CPP evidence: 5/5 fresh processes complete; all 240
+  calibration and 10 Particle holdout candidate results passed parity with zero
+  measured resident/boundary managed allocation.
+- ParticleIntegrate: optimized in 5/5 processes. The primary holdout result was
+  83.57% lower amortized P95 than tuned AoS, with a per-Player 95% CI of
+  [83.14%, 84.57%]; the five-run descriptive range was 82.96%–83.63%.
+- TransformExport negative control: tuned AoS retained in 5/5 processes.
 
-The Mono audit used intentionally tiny settings and is not performance evidence.
-There is no new counter, ISA, device, or cross-device claim.
+The tiny Mono/IL2CPP audits used intentionally small settings and are not
+performance evidence. The formal evidence is same-device process replication;
+there is no new counter, causal-mechanism, cross-ISA, or cross-device claim.
 
 ## Not release-complete
 
 The remaining candidate/control matrix, production scaffold adoption, formal
-envelope/adaptive measurements, IL2CPP validation, counter provider work, and real
-multi-device/workload evidence are still pending. See
+envelope/adaptive measurements, counter provider work, process-hierarchical
+aggregation, and real multi-device/workload evidence are still pending. See
 [`VNEXT_DELIVERY_REPORT.md`](VNEXT_DELIVERY_REPORT.md) and
 [`ROADMAP_V0.4_TO_V0.6.md`](ROADMAP_V0.4_TO_V0.6.md).
 

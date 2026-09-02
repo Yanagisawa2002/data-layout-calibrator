@@ -8,7 +8,7 @@ Authoritative scope: [`ROADMAP_V0.4_TO_V0.6.md`](ROADMAP_V0.4_TO_V0.6.md)
 
 Integration baseline: `644893990ed18e56619da8d2737e6b7592eb6080`
 
-Integration branch: `codex/vnext-integration`
+Integration branch: `codex/vnext-05-integration`
 
 This plan coordinates implementation and verification; it does not expand the
 roadmap or make a release claim. The repository remains proprietary and All
@@ -106,16 +106,24 @@ gates, not inferred from the Editor results above.
 - Windows Mono Release + Burst AOT consumer: passed; required Burst library and
   job entrypoints were present. Tiny schema-3/profile/scaffold Player audit exited
   0 and is behavioral only, not performance evidence.
-- Windows IL2CPP Release + Burst AOT consumer: blocked; the installed Unity Editor
-  reports that the selected IL2CPP scripting backend is not installed.
-- Fresh fixed-result replay and renderer agreement: passed on the tiny Mono audit;
-  the renderer input hash and every copied frozen-decision field matched.
+- Windows IL2CPP Release + Burst AOT consumer: passed after installing the Unity
+  6000.5.3f1 Windows IL2CPP module; the required Burst library and job entrypoints
+  were present. The tiny schema-3/profile/scaffold audit exited 0.
+- Preregistered full-size IL2CPP evidence: passed in five sequential fresh Player
+  processes. ParticleIntegrate optimized in 5/5, TransformExport retained tuned
+  AoS in 5/5, every candidate passed parity, and measured resident/boundary
+  managed allocation was zero. The retained evidence is descriptive across
+  processes; no process-hierarchical aggregate CI was computed.
+- Fresh fixed-result replay and renderer agreement: passed on the preregistered
+  primary IL2CPP suite; the renderer input hash and every copied
+  frozen-decision field matched.
 - Counter-enabled supported-platform run: pending a real provider and platform.
 - Real multi-device/ISA/workload matrix: pending available hardware; no substitute
   evidence will be manufactured.
 - README, package documentation, ADR, CHANGELOG, release notes, sensitive-data,
   third-party authorization, and provenance review: passed for this integration
-  candidate. Historical evidence and rights files are unchanged; the new matrix
-  manifest is planning-only.
+  candidate. Historical evidence and rights files are unchanged; vNext formal
+  suites and preflight context are retained separately from the planning-only
+  device matrix manifest.
 - Merge to `main`, release tag, and GitHub Release: prohibited until every claimed
   gate actually passes and require a separate explicit release action.

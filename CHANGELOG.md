@@ -13,10 +13,13 @@
 - Added bounded generated storage/codec scaffolds, strict deployment fingerprint,
   frozen profile cache/resolver, counter-provider boundary, and deterministic
   device/ISA/workload planning.
-- Preserved package version `0.3.0-preview.1` and all historical evidence. The
-  merged-tree Mono result is a behavioral/AOT audit, not retained performance
-  evidence; there is no new IL2CPP, counter, ISA, device, or cross-device claim,
-  and this entry does not mark roadmap v0.4-v0.6 complete.
+- Passed merged-tree Windows Mono and IL2CPP Release/Burst AOT builds plus tiny
+  profile/scaffold behavioral audits, and retained a preregistered five-process
+  full-size IL2CPP evidence set with fixed-result PNG/GIF output.
+- Preserved package version `0.3.0-preview.1` and all historical evidence. The new
+  formal result is scoped to one recorded device; there is no new counter,
+  causal-mechanism, cross-ISA, or cross-device claim, and this entry does not mark
+  roadmap v0.4-v0.6 complete.
 
 Published package history is retained in
 [`Packages/com.yanagisawa.data-layout-calibrator/CHANGELOG.md`](Packages/com.yanagisawa.data-layout-calibrator/CHANGELOG.md).

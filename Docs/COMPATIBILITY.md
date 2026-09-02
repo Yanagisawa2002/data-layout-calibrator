@@ -24,8 +24,11 @@ entrypoint manifest; a tiny opt-in behavioral Player audit exited 0 with schema
 3, parity, allocation, and generated-storage/profile gates satisfied. Its
 timings are not performance evidence.
 
-The merged-tree IL2CPP attempt failed before compilation because the installed
-Unity Editor lacks the Windows IL2CPP scripting backend. Therefore vNext
-IL2CPP/Burst AOT remains unverified. Exact outcomes are recorded in
-[`VNEXT_DELIVERY_REPORT.md`](VNEXT_DELIVERY_REPORT.md); an unavailable backend
-is a blocker, never an inferred pass.
+Windows Build Support (IL2CPP) for Unity 6000.5.3f1 is now installed. The same
+merged tree passed a non-Development Windows x64 IL2CPP build, Burst library and
+required-entrypoint verification, and a tiny opt-in behavioral Player audit.
+Five additional full-size IL2CPP Release/Burst AOT processes produced retained
+schema-3 evidence under
+[`evidence/vnext-formal-il2cpp-2026-09-02`](evidence/vnext-formal-il2cpp-2026-09-02/README.md).
+That verification is exact for this Windows/CPU/Unity/Burst/backend combination;
+other environments remain hypotheses until separately measured.

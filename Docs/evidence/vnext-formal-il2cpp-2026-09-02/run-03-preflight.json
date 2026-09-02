@@ -1,0 +1,27 @@
+{
+  "RunOrdinal": 3,
+  "CapturedUtcIso8601": "2026-09-02T11:55:08.2577726Z",
+  "SourceCommit": "c84cf47b62f28b26c34d72acaf16ace23f674ddb",
+  "PlayerHashes": {
+    "Player": "1B8448700944F099D1E11D6B28E2BCD151A59430BF4858C60596E66515FED6A7",
+    "GameAssembly": "337E43DE4FF59CE5A120B500305D9B848AC5F49A64239288F2DBA6DDC595B4C9",
+    "Metadata": "7000B8FC2EA7ECBF25A2B45EC99026428A60F5A41325B84D7B9D9654F836DF0D",
+    "Burst": "3F3D31AD1834270189BD6D4D61E38A33F0238EF045E78D5E275D37225E17A1CE"
+  },
+  "ActivePowerScheme": "Power Scheme GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (Balanced)",
+  "OtherUnityProcesses": [
+    {
+      "ProcessId": 26092,
+      "Role": "Editor",
+      "CpuSecondsOverFiveSeconds": 0.016,
+      "WorkingSetBytes": 5278724096
+    },
+    {
+      "ProcessId": 8032,
+      "Role": "AssetImportWorker",
+      "CpuSecondsOverFiveSeconds": 0.016,
+      "WorkingSetBytes": 998379520
+    }
+  ],
+  "OtherUnityCpuSecondsOverFiveSeconds": 0.032
+}

@@ -134,7 +134,7 @@ See the [final validation evidence](Docs/VALIDATION_RESULTS_2026-09-02.md), [cal
 
 ## Unreleased vNext integration
 
-The `codex/vnext-integration` branch composes the v0.4 scientific foundation,
+The `codex/vnext-05-integration` branch composes the v0.4 scientific foundation,
 advantage-envelope/adaptive decision engine, v0.5 generator/profile foundation,
 and v0.6 evidence-lab foundation. It freezes canonical candidate hashes and
 reuses the scientific paired-bootstrap draws in the envelope. Schema-3 profiles
@@ -147,12 +147,23 @@ planning-only evidence manifest validates with 0 executable requests and 18
 blocked cells, exactly because no device, Player artifact, or identity
 attestation is configured.
 
+The merged tree now passes non-Development Windows x64 Mono and IL2CPP builds
+with Burst AOT entrypoint verification. Tiny opt-in Players on both backends
+passed generated-storage/profile reachability, parity, allocation, and schema
+gates; their timings are not performance evidence.
+
+A separate [preregistered vNext formal run set](Docs/evidence/vnext-formal-il2cpp-2026-09-02/README.md)
+retains five full-size IL2CPP Release/Burst AOT Player launches. The fixed primary
+run measured an 83.57% lower ParticleIntegrate holdout amortized P95 than its
+tuned AoS baseline, with a per-Player 95% paired-block CI of [83.14%, 84.57%].
+Across all five launches, the reduction ranged from 82.96% to 83.63% and
+TransformExport retained tuned AoS in 5/5 runs. This is same-device process
+evidence, not a hardware-counter, causal, cross-ISA, or cross-device claim.
+
 This branch remains an unreleased foundation at package version
-`0.3.0-preview.1`. Its merged-tree Mono result is a behavioral/AOT audit, not
-retained performance evidence; it adds no new IL2CPP, counter, ISA, device, or
-cross-device claim. Roadmap completion still requires the missing candidate and
-causal-control matrix, production generator adoption, real provider/device
-evidence, and every claimed merged-tree Player backend gate. See the
+`0.3.0-preview.1`. Roadmap completion still requires the expanded candidate and
+causal-control matrix, production generator adoption, formal envelope/adaptive
+measurements, a real counter provider, and multi-device/workload evidence. See the
 [integration ADR](Docs/adr/0006-vnext-integration-protocol.md) and
 [roadmap status](Docs/ROADMAP_V0.4_TO_V0.6.md).
 

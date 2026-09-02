@@ -15,6 +15,9 @@
 - Added optional counter capture contracts and the evidence-lab planning and
   retained-artifact verification foundation. No real provider or hardware
   evidence is included.
+- Passed merged-tree Windows Mono and IL2CPP Release/Burst AOT builds and tiny
+  generated-storage/profile Player audits. Retained five preregistered full-size
+  IL2CPP process replications separately from the immutable v0.3 evidence.
 - Kept version `0.3.0-preview.1`; this is not a release and does not supersede the
   published schema-2 Player evidence below.
 

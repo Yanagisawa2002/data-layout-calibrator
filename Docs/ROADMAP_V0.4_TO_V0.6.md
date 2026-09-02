@@ -28,14 +28,14 @@ foundation，不代表 v0.4、v0.5 或 v0.6 完成。package version 仍为
 
 | 条目 | 已集成 | 尚未满足的完成门禁 |
 | --- | --- | --- |
-| 1. 因子拆分 | 显式 layout/kernel/batch/execution policy、branchless AoS control、AoSoA8 与执行拓扑协议 | AoSoA4/AoSoA16、aligned/padded controls、完整 crossed main-effect/interaction 分析、merged-tree IL2CPP AOT |
-| 2. 配对/层级统计 | blocked order metadata、paired log-ratio bootstrap、同一 device 的 process hierarchy、冻结 holdout、稳定 fallback 状态 | 真实多 process 新 evidence、device-level hierarchy、发布后端门禁 |
+| 1. 因子拆分 | 显式 layout/kernel/batch/execution policy、branchless AoS control、AoSoA8 与执行拓扑协议；merged-tree Mono/IL2CPP Burst AOT 已通过 | AoSoA4/AoSoA16、aligned/padded controls、完整 crossed main-effect/interaction 分析 |
+| 2. 配对/层级统计 | blocked order metadata、paired log-ratio bootstrap、同一 device 的 process hierarchy、冻结 holdout、稳定 fallback 状态；5 次真实同机 Player evidence 已保留 | 对五次真实 evidence 形成 process-level hierarchical aggregate、device-level hierarchy |
 | 3. Advantage envelope | break-even regimes、immutable calibration/holdout cells、summary/renderer、scientific replicate adapter | 真实 axis scan 与正式 Player envelope evidence |
 | 4. 自适应/Pareto | conservative quick elimination、strict point-P95 frontier、audit-only exhaustive regret | 在正式候选矩阵上证明 exhaustive-equivalence/regret 与 calibration cost reduction |
-| 5. Generator scaffold | 两个不同 Sample record 的 AoS/SoA/AoSoA storage/codec scaffold、diagnostics、deterministic tests | 将 scaffold 接入正式 workload storage、merged-tree IL2CPP consumer |
-| 6. Fingerprint/cache | exact fingerprint、integrity codec/store/resolver、非 Optimized 强制 AoS | 权威 Player-side CPU/ISA/build provenance source、compatibility governance、merged-tree IL2CPP resolution |
+| 5. Generator scaffold | 两个不同 Sample record 的 AoS/SoA/AoSoA storage/codec scaffold、diagnostics、deterministic tests；Mono/IL2CPP AOT probe 已通过 | 将 scaffold 接入正式 workload storage |
+| 6. Fingerprint/cache | exact fingerprint、integrity codec/store/resolver、非 Optimized 强制 AoS；Mono/IL2CPP Player resolution probe 已通过 | 权威 Player-side CPU/ISA/build provenance source、compatibility governance |
 | 7. Counters | fail-closed optional provider contract、raw/derived/overhead/evidence-level models | 至少一个真实 provider、counter-enabled Release suite、overhead control 与 independently retained mechanism artifact |
-| 8. Device/ISA/workload | versioned planning manifest、process/physical-device identity separation、local artifact re-verification | 当前 0 executable / 18 blocked；无注册 device、无新 Player artifacts、无额外 workload 或 cross-device CI |
+| 8. Device/ISA/workload | versioned planning manifest、process/physical-device identity separation、local artifact re-verification；两个现有 workload 已有 5 次同机 IL2CPP Player evidence | 当前规划矩阵仍为 0 executable / 18 blocked；无注册 device、无额外 workload、ISA coverage 或 cross-device CI |
 
 共享协议已由 [`ADR 0006`](adr/0006-vnext-integration-protocol.md) 冻结：
 candidate canonical bytes、schema 版本、log-ratio uncertainty method、minimum-effect
