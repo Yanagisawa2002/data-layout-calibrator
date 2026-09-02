@@ -1,15 +1,31 @@
 using System;
 using Unity.Mathematics;
+using Yanagisawa.DataLayoutCalibrator;
 
 namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
 {
     [Serializable]
+    [GenerateDataLayout(
+        "particle-record",
+        1,
+        8,
+        MinimumCompatibleSchemaVersion = 1,
+        DefinitionVersion = 1)]
     public struct ParticleRecord
     {
+        [DataLayoutField(0, DataLayoutFieldTemperature.Hot)]
         public float3 Position;
+
+        [DataLayoutField(1, DataLayoutFieldTemperature.Hot)]
         public float3 Velocity;
+
+        [DataLayoutField(2, DataLayoutFieldTemperature.Cold)]
         public quaternion Rotation;
+
+        [DataLayoutField(3, DataLayoutFieldTemperature.Hot)]
         public float Lifetime;
+
+        [DataLayoutField(4, DataLayoutFieldTemperature.Cold)]
         public int Category;
     }
 
