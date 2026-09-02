@@ -12,14 +12,25 @@ import argparse
 import hashlib
 import json
 import math
-import math
 from pathlib import Path
 from typing import Any, Iterable
 
 from PIL import Image, ImageDraw, ImageFont
 
 
-RENDERER_VERSION = "1.1.0"
+RENDERER_VERSION = "1.2.0"
+
+MEASUREMENT_SCHEMA_CANONICAL_DESCRIPTOR = (
+    "dlc.scientific-envelope-measurement.v1\n"
+    "layout-benchmark-sample-schema=1\n"
+    "candidate-definition-schema=1\n"
+    "components=resident-p95-ms-per-tick,ingress-p95-ms,export-p95-ms\n"
+    "replicate-alignment=paired-measurement-block\n"
+    "estimand=log(candidate-amortized-p95/baseline-amortized-p95)\n"
+)
+MEASUREMENT_SCHEMA_SHA256 = hashlib.sha256(
+    MEASUREMENT_SCHEMA_CANONICAL_DESCRIPTOR.encode("utf-8")
+).hexdigest().upper()
 
 INK = (31, 42, 55)
 MUTED = (91, 105, 121)
@@ -105,6 +116,247 @@ def _canonical_identifier(value: Any, context: str) -> str:
     return value
 
 
+def _canonical_sha256(value: Any, context: str) -> str:
+    if (
+        not isinstance(value, str)
+        or len(value) != 64
+        or any(character not in "0123456789ABCDEF" for character in value)
+    ):
+        raise RenderContractError(
+            f"{context} must contain exactly 64 uppercase hexadecimal characters."
+        )
+    return value
+
+
+def _canonical_integer(mapping: dict[str, Any], key: str, context: str) -> int:
+    value = _required(mapping, key, context)
+    if isinstance(value, bool) or not isinstance(value, int):
+        raise RenderContractError(f"{context}.{key} must be an integer.")
+    return value
+
+
+def _canonical_boolean(mapping: dict[str, Any], key: str, context: str) -> bool:
+    value = _required(mapping, key, context)
+    if not isinstance(value, bool):
+        raise RenderContractError(f"{context}.{key} must be a boolean.")
+    return value
+
+
+def _length_prefixed(value: str) -> str:
+    return f"{len(value.encode('utf-8'))}:{value}\n"
+
+
+def _candidate_definition_bytes(candidate: dict[str, Any], context: str) -> bytes:
+    candidate_id = _candidate_id(candidate, context)
+    layout_id = _canonical_identifier(
+        _required(candidate, "LayoutId", context), f"{context}.LayoutId"
+    )
+    logical_batch_size = _canonical_integer(
+        candidate, "LogicalBatchSize", context
+    )
+    sort_order = _canonical_integer(candidate, "SortOrder", context)
+    is_baseline = _canonical_boolean(candidate, "IsBaseline", context)
+    policy_schema = _canonical_integer(candidate, "PolicySchemaVersion", context)
+    if policy_schema != 1 or logical_batch_size <= 0:
+        raise RenderContractError(
+            f"{context} has an unsupported policy schema or logical batch size."
+        )
+
+    layout = _required(candidate, "Layout", context)
+    kernel = _required(candidate, "Kernel", context)
+    batch = _required(candidate, "Batch", context)
+    execution = _required(candidate, "Execution", context)
+    if not all(isinstance(value, dict) for value in (layout, kernel, batch, execution)):
+        raise RenderContractError(f"{context} factor policies must be objects.")
+
+    layout_policy_id = _canonical_identifier(
+        _required(layout, "PolicyId", f"{context}.Layout"),
+        f"{context}.Layout.PolicyId",
+    )
+    block_width = _canonical_integer(layout, "BlockWidth", f"{context}.Layout")
+    alignment_bytes = _canonical_integer(
+        layout, "AlignmentBytes", f"{context}.Layout"
+    )
+    padding_bytes = _canonical_integer(layout, "PaddingBytes", f"{context}.Layout")
+    if (
+        layout_policy_id != layout_id
+        or block_width <= 0
+        or alignment_bytes < 0
+        or padding_bytes < 0
+    ):
+        raise RenderContractError(f"{context} layout policy is inconsistent.")
+
+    kernel_policy_id = _canonical_identifier(
+        _required(kernel, "PolicyId", f"{context}.Kernel"),
+        f"{context}.Kernel.PolicyId",
+    )
+    control_flow = _canonical_integer(kernel, "ControlFlow", f"{context}.Kernel")
+    vector_width = _canonical_integer(kernel, "VectorWidth", f"{context}.Kernel")
+    if control_flow not in (0, 1, 2) or vector_width <= 0:
+        raise RenderContractError(f"{context} kernel policy is inconsistent.")
+
+    batch_policy_id = _canonical_identifier(
+        _required(batch, "PolicyId", f"{context}.Batch"),
+        f"{context}.Batch.PolicyId",
+    )
+    batch_logical_size = _canonical_integer(
+        batch, "LogicalBatchSize", f"{context}.Batch"
+    )
+    if batch_logical_size != logical_batch_size:
+        raise RenderContractError(f"{context} batch policy is inconsistent.")
+
+    execution_policy_id = _canonical_identifier(
+        _required(execution, "PolicyId", f"{context}.Execution"),
+        f"{context}.Execution.PolicyId",
+    )
+    topology = _canonical_integer(execution, "Topology", f"{context}.Execution")
+    temporal_ticks = _canonical_integer(
+        execution, "TemporalBlockTicks", f"{context}.Execution"
+    )
+    permits_reordering = _canonical_boolean(
+        execution, "SemanticsPermitReordering", f"{context}.Execution"
+    )
+    if (
+        topology not in (0, 1, 2)
+        or temporal_ticks <= 0
+        or (topology == 2 and (temporal_ticks <= 1 or not permits_reordering))
+        or (topology != 2 and temporal_ticks != 1)
+    ):
+        raise RenderContractError(f"{context} execution policy is inconsistent.")
+
+    canonical = "".join(
+        (
+            _length_prefixed("dlc.candidate-definition.v1"),
+            "1\n",
+            f"{policy_schema}\n",
+            _length_prefixed(candidate_id),
+            _length_prefixed(layout_id),
+            f"{logical_batch_size}\n",
+            "1\n" if is_baseline else "0\n",
+            f"{sort_order}\n",
+            _length_prefixed(layout_policy_id),
+            f"{block_width}\n",
+            f"{alignment_bytes}\n",
+            f"{padding_bytes}\n",
+            _length_prefixed(kernel_policy_id),
+            f"{control_flow}\n",
+            f"{vector_width}\n",
+            _length_prefixed(batch_policy_id),
+            f"{batch_logical_size}\n",
+            _length_prefixed(execution_policy_id),
+            f"{topology}\n",
+            f"{temporal_ticks}\n",
+            "1\n" if permits_reordering else "0\n",
+        )
+    )
+    return canonical.encode("utf-8")
+
+
+def _candidate_set_sha256(candidates: list[dict[str, Any]], context: str) -> str:
+    definitions = sorted(
+        (
+            _candidate_id(candidate, f"{context}[{index}]"),
+            _candidate_definition_bytes(candidate, f"{context}[{index}]"),
+        )
+        for index, candidate in enumerate(candidates)
+    )
+    if not definitions:
+        raise RenderContractError(f"{context} must not be empty.")
+    for index in range(1, len(definitions)):
+        if definitions[index - 1][0] == definitions[index][0]:
+            raise RenderContractError(
+                f"{context} contains duplicate candidate identity '{definitions[index][0]}'."
+            )
+    canonical = (
+        _length_prefixed("dlc.candidate-set.v1") +
+        "1\n" +
+        f"{len(definitions)}\n"
+    ).encode("utf-8")
+    for _, definition in definitions:
+        canonical += f"{len(definition)}\n".encode("ascii") + definition
+    return hashlib.sha256(canonical).hexdigest().upper()
+
+
+def _validate_envelope_reference(
+    reference: Any,
+    scenario_id: str,
+    contract_version: int,
+    candidates: list[dict[str, Any]],
+    context: str,
+) -> dict[str, Any] | None:
+    if reference is None:
+        return None
+    if not isinstance(reference, dict):
+        raise RenderContractError(f"{context} must be an object or null.")
+    fields = (
+        "ArtifactId",
+        "ArtifactSha256",
+        "DecisionEngineVersion",
+        "ScenarioId",
+        "CandidateSetSha256",
+        "MeasurementSchemaSha256",
+    )
+    if (
+        int(reference.get("SchemaVersion", 1)) == 1
+        and int(reference.get("ArtifactSchemaVersion", 0)) == 0
+        and int(reference.get("ContractVersion", 0)) == 0
+        and all(not reference.get(field) for field in fields)
+    ):
+        return None
+
+    schema = _canonical_integer(reference, "SchemaVersion", context)
+    artifact_schema = _canonical_integer(
+        reference, "ArtifactSchemaVersion", context
+    )
+    reference_contract = _canonical_integer(reference, "ContractVersion", context)
+    artifact_id = _canonical_identifier(
+        _required(reference, "ArtifactId", context), f"{context}.ArtifactId"
+    )
+    artifact_sha = _canonical_sha256(
+        _required(reference, "ArtifactSha256", context),
+        f"{context}.ArtifactSha256",
+    )
+    decision_engine = _canonical_identifier(
+        _required(reference, "DecisionEngineVersion", context),
+        f"{context}.DecisionEngineVersion",
+    )
+    reference_scenario = _canonical_identifier(
+        _required(reference, "ScenarioId", context), f"{context}.ScenarioId"
+    )
+    candidate_set = _canonical_sha256(
+        _required(reference, "CandidateSetSha256", context),
+        f"{context}.CandidateSetSha256",
+    )
+    measurement_schema = _canonical_sha256(
+        _required(reference, "MeasurementSchemaSha256", context),
+        f"{context}.MeasurementSchemaSha256",
+    )
+    expected_set = _candidate_set_sha256(candidates, f"{context}.Candidates")
+    if (
+        schema != 1
+        or artifact_schema != 1
+        or decision_engine != "1.0.0"
+        or reference_scenario != scenario_id
+        or reference_contract != contract_version
+        or candidate_set != expected_set
+        or measurement_schema != MEASUREMENT_SCHEMA_SHA256
+    ):
+        raise RenderContractError(
+            f"{context} is not bound to this scenario, candidate set, and measurement schema."
+        )
+    return {
+        "SchemaVersion": schema,
+        "ArtifactId": artifact_id,
+        "ArtifactSha256": artifact_sha,
+        "ArtifactSchemaVersion": artifact_schema,
+        "DecisionEngineVersion": decision_engine,
+        "ScenarioId": reference_scenario,
+        "ContractVersion": reference_contract,
+        "CandidateSetSha256": candidate_set,
+        "MeasurementSchemaSha256": measurement_schema,
+    }
+
+
 def load_suite(path: Path) -> tuple[dict[str, Any], str]:
     payload = path.read_bytes()
     try:
@@ -154,6 +406,7 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
             raise RenderContractError(f"{context}.CalibrationResults must not be empty.")
 
         cells: list[dict[str, Any]] = []
+        raw_candidates: list[dict[str, Any]] = []
         candidate_ids: set[str] = set()
         factor_coordinates: set[tuple[str, int]] = set()
         for result_index, result in enumerate(results):
@@ -174,6 +427,7 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
                     f"{context} contains duplicate candidate id '{identifier}'."
                 )
             candidate_ids.add(identifier)
+            raw_candidates.append(candidate)
 
             latency = _required(result, "AmortizedLatency", result_context)
             p95_ms = _required(latency, "P95Milliseconds", f"{result_context}.AmortizedLatency")
@@ -451,6 +705,15 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
             if confidence_iterations > 0
             else f"descriptive only (no inferential CI) · {evidence_scope_name}"
         )
+        envelope_reference = None
+        if schema >= 3:
+            envelope_reference = _validate_envelope_reference(
+                raw.get("AdvantageEnvelope"),
+                str(scenario_id),
+                scenario_contract_version,
+                raw_candidates,
+                f"{context}.AdvantageEnvelope",
+            )
         scenarios.append(
             {
                 "ScenarioId": str(scenario_id),
@@ -494,6 +757,7 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
                 "HasLogRatioEstimate": has_log_ratio_estimate,
                 "EvidenceScopeName": evidence_scope_name,
                 "UncertaintyPresentation": uncertainty_presentation,
+                "AdvantageEnvelopeReference": envelope_reference,
                 "Reason": str(_required(decision, "Reason", context)),
             }
         )
@@ -513,8 +777,9 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
 def decision_snapshot(model: dict[str, Any]) -> list[dict[str, Any]]:
     """Return provenance fields for the manifest without inspecting measurements."""
 
-    return [
-        {
+    snapshots: list[dict[str, Any]] = []
+    for scenario in model["Scenarios"]:
+        snapshot = {
             "ScenarioId": scenario["ScenarioId"],
             "ScenarioContractVersion": scenario["ScenarioContractVersion"],
             "Status": scenario["Status"],
@@ -536,8 +801,12 @@ def decision_snapshot(model: dict[str, Any]) -> list[dict[str, Any]]:
             "EvidenceScope": scenario["EvidenceScopeName"],
             "UncertaintyPresentation": scenario["UncertaintyPresentation"],
         }
-        for scenario in model["Scenarios"]
-    ]
+        if scenario["AdvantageEnvelopeReference"] is not None:
+            snapshot["AdvantageEnvelopeReference"] = scenario[
+                "AdvantageEnvelopeReference"
+            ]
+        snapshots.append(snapshot)
+    return snapshots
 
 
 def _mix(start: tuple[int, int, int], end: tuple[int, int, int], amount: float) -> tuple[int, int, int]:

@@ -134,6 +134,47 @@ namespace Yanagisawa.DataLayoutCalibrator
         }
 
         /// <summary>
+        /// Exposes the exact aligned component-P95 draws used by the paired
+        /// scientific bootstrap. The advantage-envelope layer consumes these
+        /// already-realized draws and never chooses a second resampling design.
+        /// </summary>
+        public static PairedBootstrapCostReplicateSet BootstrapAmortizedP95CostReplicates(
+            LayoutBenchmarkResult baseline,
+            LayoutBenchmarkResult candidate,
+            int iterations = DefaultBootstrapIterations,
+            uint seed = 0x9E3779B9u)
+        {
+            ValidateBootstrapIterations(iterations);
+            PairedBenchmarkData paired = PreparePairedBenchmark(baseline, candidate);
+            uint normalizedSeed = NonZeroBootstrapSeed(seed);
+            uint randomState = normalizedSeed;
+            var baselineReplicates = new BootstrapCostReplicate[iterations];
+            var candidateReplicates = new BootstrapCostReplicate[iterations];
+            for (int iteration = 0; iteration < iterations; iteration++)
+            {
+                ResampledCompositeCostComponents(
+                    paired,
+                    ref randomState,
+                    out BootstrapCostReplicate baselineReplicate,
+                    out BootstrapCostReplicate candidateReplicate);
+                baselineReplicate.ReplicateId = iteration;
+                candidateReplicate.ReplicateId = iteration;
+                baselineReplicates[iteration] = baselineReplicate;
+                candidateReplicates[iteration] = candidateReplicate;
+            }
+
+            return new PairedBootstrapCostReplicateSet
+            {
+                SchemaVersion = PairedBootstrapCostReplicateSet.CurrentSchemaVersion,
+                EstimatorKind = BootstrapEstimatorKind.PairedBlockLogRatio,
+                RandomSeed = normalizedSeed,
+                ResamplingUnit = "paired measurement block",
+                BaselineReplicates = baselineReplicates,
+                CandidateReplicates = candidateReplicates,
+            };
+        }
+
+        /// <summary>
         /// Paired non-parametric block bootstrap of the composite P95 metric. The
         /// baseline and candidate retain their within-block relationship, and the
         /// estimand is log(candidate / baseline). Migrated schema-2 results without
@@ -568,6 +609,26 @@ namespace Yanagisawa.DataLayoutCalibrator
             PairedBenchmarkData paired,
             ref uint randomState)
         {
+            ResampledCompositeCostComponents(
+                paired,
+                ref randomState,
+                out BootstrapCostReplicate baseline,
+                out BootstrapCostReplicate candidate);
+            double baselineMetric = baseline.ResidentP95MillisecondsPerTick +
+                                    ((baseline.IngressP95Milliseconds +
+                                      baseline.ExportP95Milliseconds) / paired.LifetimeTicks);
+            double candidateMetric = candidate.ResidentP95MillisecondsPerTick +
+                                     ((candidate.IngressP95Milliseconds +
+                                       candidate.ExportP95Milliseconds) / paired.LifetimeTicks);
+            return CompositeLogRatio(baselineMetric, candidateMetric);
+        }
+
+        private static void ResampledCompositeCostComponents(
+            PairedBenchmarkData paired,
+            ref uint randomState,
+            out BootstrapCostReplicate baseline,
+            out BootstrapCostReplicate candidate)
+        {
             ResampledPairedPercentiles(
                 paired.Resident,
                 0.95d,
@@ -587,11 +648,18 @@ namespace Yanagisawa.DataLayoutCalibrator
                 out double baselineExport,
                 out double candidateExport);
 
-            double baselineMetric = baselineResident +
-                                    ((baselineIngress + baselineExport) / paired.LifetimeTicks);
-            double candidateMetric = candidateResident +
-                                     ((candidateIngress + candidateExport) / paired.LifetimeTicks);
-            return CompositeLogRatio(baselineMetric, candidateMetric);
+            baseline = new BootstrapCostReplicate
+            {
+                ResidentP95MillisecondsPerTick = baselineResident,
+                IngressP95Milliseconds = baselineIngress,
+                ExportP95Milliseconds = baselineExport,
+            };
+            candidate = new BootstrapCostReplicate
+            {
+                ResidentP95MillisecondsPerTick = candidateResident,
+                IngressP95Milliseconds = candidateIngress,
+                ExportP95Milliseconds = candidateExport,
+            };
         }
 
         private static void ResampledPairedPercentiles(
@@ -639,10 +707,15 @@ namespace Yanagisawa.DataLayoutCalibrator
 
         private static void ValidateBootstrapSettings(int iterations, double confidenceLevel)
         {
-            if (iterations < 100)
-                throw new ArgumentOutOfRangeException(nameof(iterations), "At least 100 bootstrap iterations are required.");
+            ValidateBootstrapIterations(iterations);
             if (!(confidenceLevel > 0d && confidenceLevel < 1d))
                 throw new ArgumentOutOfRangeException(nameof(confidenceLevel));
+        }
+
+        private static void ValidateBootstrapIterations(int iterations)
+        {
+            if (iterations < 100)
+                throw new ArgumentOutOfRangeException(nameof(iterations), "At least 100 bootstrap iterations are required.");
         }
 
         private static uint NonZeroBootstrapSeed(uint seed) =>

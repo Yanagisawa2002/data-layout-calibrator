@@ -327,6 +327,8 @@ namespace Yanagisawa.DataLayoutCalibrator
     /// </summary>
     public static class AdaptiveEliminationEngine
     {
+        private const double ThresholdTolerance = 1e-12d;
+
         public static AdaptiveEliminationPlan CreatePlan(AdaptiveEliminationRequest request)
         {
             ValidateRequest(request);
@@ -473,8 +475,9 @@ namespace Yanagisawa.DataLayoutCalibrator
                     decisions[index].QuickConfidenceAvailable = true;
                     decisions[index].QuickImprovementConfidenceInterval = interval;
                     decisions[index].Stage = AdaptiveEliminationStage.QuickCalibration;
-                    if (interval.UpperBoundPercent <
-                        request.Policy.MinimumImprovementPercent)
+                    if (IsStrictlyBelowThreshold(
+                            interval.UpperBoundPercent,
+                            request.Policy.MinimumImprovementPercent))
                     {
                         active[index] = false;
                         decisions[index].Reason =
@@ -1013,6 +1016,12 @@ namespace Yanagisawa.DataLayoutCalibrator
             DecisionCandidateEvidence right)
         {
             return DecisionEvidenceStatistics.CompareCandidate(left.Candidate, right.Candidate);
+        }
+
+        private static bool IsStrictlyBelowThreshold(double value, double threshold)
+        {
+            double scale = Math.Max(1d, Math.Max(Math.Abs(value), Math.Abs(threshold)));
+            return value < threshold - (ThresholdTolerance * scale);
         }
     }
 }

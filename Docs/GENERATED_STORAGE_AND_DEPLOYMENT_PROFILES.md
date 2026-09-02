@@ -4,7 +4,7 @@ Status: v0.5 tooling slice
 
 Authoritative roadmap: `Docs/ROADMAP_V0.4_TO_V0.6.md`, items 5 and 6
 
-Evidence status: implementation and synthetic tests only; this document adds no Player, device, ISA, hardware-counter, or cross-device evidence
+Evidence status: implementation, deterministic tests, and tiny Mono/IL2CPP AOT behavioral probes passed; no performance, hardware-counter, ISA, or cross-device claim
 
 ## Boundary of the generator
 
@@ -86,11 +86,11 @@ Missing, damaged, unsupported, incompatible, or unauthorized profiles resolve to
 
 ## AOT consumer probe
 
-`V05GeneratedScaffoldAotProbe` is linked into the benchmark Player. Only when `-dla-v05-aot-probe` is passed does it directly construct generated Particle/Transform storage, round-trip small canonical buffers, and encode/decode/resolve a clearly labeled synthetic profile. Keeping the probe behind a separate flag prevents it from warming or perturbing ordinary calibration runs. The probe is behavioral validation only. It records no suite and makes no performance, device, ISA, hardware-counter, Mono, IL2CPP, or cross-device claim by itself.
+`V05GeneratedScaffoldAotProbe` is linked into the benchmark Player. Only when `-dla-v05-aot-probe` is passed does it directly construct generated Particle/Transform storage, round-trip small canonical buffers, and encode/decode/resolve a clearly labeled synthetic profile. Keeping the probe behind a separate flag prevents it from warming or perturbing ordinary calibration runs. Tiny non-Development Mono and IL2CPP Players have executed this probe successfully, establishing AOT reachability for the frozen tree. The probe records no performance suite and makes no performance, hardware-counter, ISA, or cross-device claim.
 
-## Proposed version assignments for integration
+## Integrated version assignments
 
-| Model family | Proposed version |
+| Model family | Version |
 | --- | ---: |
 | Generator attribute definition | 1 |
 | Particle record schema | 1 |
@@ -98,11 +98,17 @@ Missing, damaged, unsupported, incompatible, or unauthorized profiles resolve to
 | Deployment fingerprint | 1 |
 | Frozen deployment profile document | 2 (schema 1 migratable in memory) |
 
-The integration branch owns any final top-level suite/package version. Historical schema-2 calibration suites and evidence remain byte-for-byte untouched.
+The top-level scientific suite is schema 3. Historical schema-2 calibration
+suites and evidence remain byte-for-byte untouched and migrate only in memory.
+The published package version remains `0.3.0-preview.1`; this tooling is an
+unreleased vNext foundation, not a package release.
 
-## Integration decisions still required
+## Resolved and remaining integration decisions
 
-- Freeze the v0.4 canonical candidate-definition serialization used to produce `CandidateSetHash`; it must include stable `CandidateId` and all layout/kernel/batch/execution factors.
+- [`ADR 0006`](adr/0006-vnext-integration-protocol.md) freezes
+  `dlc.candidate-definition.v1`, its uppercase SHA-256 representation, and an
+  order-independent candidate-set encoding over all stable
+  layout/kernel/batch/execution fields.
 - Choose authoritative Player-side sources for binary hash, build flags, CPU, and ISA. If a value cannot be captured accurately, the host must not publish a reusable fingerprint.
 - Decide governance for explicit compatibility-pair evidence. Exact-only should remain the release default.
 - Decide when a changed record schema has earned a new calibration; the generator deliberately does not authorize reuse across record schema version/hash changes.

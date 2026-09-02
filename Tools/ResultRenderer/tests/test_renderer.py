@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import math
 import sys
@@ -12,7 +13,14 @@ from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from render_results import RenderContractError, build_render_model, render_artifacts
+from render_results import (
+    MEASUREMENT_SCHEMA_SHA256,
+    RenderContractError,
+    _candidate_definition_bytes,
+    _candidate_set_sha256,
+    build_render_model,
+    render_artifacts,
+)
 
 
 def fixed_suite() -> dict:
@@ -119,7 +127,89 @@ def make_schema3(suite: dict) -> dict:
     return suite
 
 
+def attach_valid_envelope_reference(suite: dict) -> dict:
+    make_schema3(suite)
+    scenario = suite["Scenarios"][0]
+    candidates = [result["Candidate"] for result in scenario["CalibrationResults"]]
+    for candidate in candidates:
+        candidate["IsBaseline"] = candidate["LayoutId"] == "AoS"
+        candidate["Layout"]["AlignmentBytes"] = 0
+        candidate["Layout"]["PaddingBytes"] = 0
+        candidate["Execution"]["SemanticsPermitReordering"] = False
+    scenario["AdvantageEnvelope"] = {
+        "SchemaVersion": 1,
+        "ArtifactId": "synthetic-advantage-envelope",
+        "ArtifactSha256": "A" * 64,
+        "ArtifactSchemaVersion": 1,
+        "DecisionEngineVersion": "1.0.0",
+        "ScenarioId": scenario["Scenario"]["ScenarioId"],
+        "ContractVersion": scenario["Scenario"]["ContractVersion"],
+        "CandidateSetSha256": _candidate_set_sha256(
+            candidates, "synthetic candidates"
+        ),
+        "MeasurementSchemaSha256": MEASUREMENT_SCHEMA_SHA256,
+    }
+    return suite
+
+
 class FixedDecisionRendererTests(unittest.TestCase):
+    def test_candidate_definition_golden_vector_matches_runtime_protocol(self) -> None:
+        candidate = {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "aos",
+            "LayoutId": "AoS",
+            "LogicalBatchSize": 64,
+            "IsBaseline": True,
+            "SortOrder": 0,
+            "Layout": {
+                "PolicyId": "AoS",
+                "BlockWidth": 1,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0,
+            },
+            "Kernel": {
+                "PolicyId": "LegacyUnspecified",
+                "ControlFlow": 0,
+                "VectorWidth": 1,
+            },
+            "Batch": {"PolicyId": "JobBatch", "LogicalBatchSize": 64},
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": False,
+            },
+        }
+        digest = hashlib.sha256(
+            _candidate_definition_bytes(candidate, "candidate")
+        ).hexdigest().upper()
+        self.assertEqual(
+            "9484C1C638CF82EB5D499BB5DDBEF86C2F7610B202C6BA323597D0CC3E69470F",
+            digest,
+        )
+
+    def test_schema3_envelope_reference_is_validated_and_preserved(self) -> None:
+        suite = attach_valid_envelope_reference(fixed_suite())
+
+        model = build_render_model(suite)
+
+        reference = model["Scenarios"][0]["AdvantageEnvelopeReference"]
+        self.assertEqual("synthetic-advantage-envelope", reference["ArtifactId"])
+        self.assertEqual(MEASUREMENT_SCHEMA_SHA256, reference["MeasurementSchemaSha256"])
+
+        suite["Scenarios"][0]["CalibrationResults"][1]["Candidate"]["Layout"][
+            "AlignmentBytes"
+        ] = 64
+        with self.assertRaisesRegex(RenderContractError, "not bound"):
+            build_render_model(suite)
+
+    def test_schema3_envelope_reference_rejects_noncanonical_artifact_hash(self) -> None:
+        suite = attach_valid_envelope_reference(fixed_suite())
+        suite["Scenarios"][0]["AdvantageEnvelope"]["ArtifactSha256"] = "a" * 64
+
+        with self.assertRaisesRegex(RenderContractError, "64 uppercase hexadecimal"):
+            build_render_model(suite)
+
     def test_schema3_missing_factor_policies_is_rejected(self) -> None:
         suite = fixed_suite()
         make_schema3(suite)

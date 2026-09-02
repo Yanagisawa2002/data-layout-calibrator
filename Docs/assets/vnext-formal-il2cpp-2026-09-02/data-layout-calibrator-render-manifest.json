@@ -1,0 +1,59 @@
+{
+  "Decisions": [
+    {
+      "BaselineCandidateId": "AoS-ScalarBranched-b128-FrameFaithful",
+      "BaselineP95Microseconds": 691.2316916666666,
+      "BestMeasuredCandidateId": "AoSoA8-PackedBranchless8-b128-FrameFaithful",
+      "BestMeasuredP95Microseconds": 113.60281458333334,
+      "ConfidenceEstimatorKind": 2,
+      "ConfidenceEstimatorName": "paired-block log-ratio",
+      "ConfidenceIterations": 4000,
+      "ConfidenceLevel": 0.95,
+      "ConfidenceLowerPercent": 83.13685113524176,
+      "ConfidenceResamplingUnit": "paired measurement block",
+      "ConfidenceUpperPercent": 84.57244068297776,
+      "EvidenceScope": "single Player",
+      "HasLogRatioEstimate": true,
+      "ImprovementPercent": 83.56516115321342,
+      "ScenarioContractVersion": 2,
+      "ScenarioId": "particle-integrate-v2",
+      "SelectedCandidateId": "AoSoA8-PackedBranchless8-b128-FrameFaithful",
+      "Status": 2,
+      "StatusName": "OPTIMIZED",
+      "UncertaintyPresentation": "paired measurement block CI \u00b7 single Player"
+    },
+    {
+      "BaselineCandidateId": "AoS-FullMatrixExport-b64-FrameFaithful",
+      "BaselineP95Microseconds": 2484.2798833333336,
+      "BestMeasuredCandidateId": "AoS-FullMatrixExport-b64-FrameFaithful",
+      "BestMeasuredP95Microseconds": 2484.2798833333336,
+      "ConfidenceEstimatorKind": 0,
+      "ConfidenceEstimatorName": "no realized estimator",
+      "ConfidenceIterations": 0,
+      "ConfidenceLevel": 0.0,
+      "ConfidenceLowerPercent": 0.0,
+      "ConfidenceResamplingUnit": "",
+      "ConfidenceUpperPercent": 0.0,
+      "EvidenceScope": "single Player",
+      "HasLogRatioEstimate": false,
+      "ImprovementPercent": 0.0,
+      "ScenarioContractVersion": 1,
+      "ScenarioId": "transform-export-v1",
+      "SelectedCandidateId": "AoS-FullMatrixExport-b64-FrameFaithful",
+      "Status": 1,
+      "StatusName": "INCONCLUSIVE \u00b7 AOS RETAINED",
+      "UncertaintyPresentation": "descriptive only (no inferential CI) \u00b7 single Player"
+    }
+  ],
+  "InputPath": "Docs/evidence/vnext-formal-il2cpp-2026-09-02/run-01-calibration-suite.json",
+  "InputSha256": "09253ADEF4BD3D37BBE39BB1801906851581597FEE45946D295488F7BF6E3117",
+  "Outputs": {
+    "ComparisonGif": "data-layout-calibrator-comparison.gif",
+    "Heatmap": "data-layout-calibrator-heatmap.png"
+  },
+  "Renderer": "Data Layout Calibrator fixed-result renderer",
+  "RendererVersion": "1.2.0",
+  "RunId": "20260902-115027491",
+  "SchemaVersion": 3,
+  "SelectionContract": "All baseline, selected, and best markers are copied from FinalDecision; the renderer contains no candidate selection algorithm."
+}
