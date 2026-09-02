@@ -12,13 +12,14 @@ import argparse
 import hashlib
 import json
 import math
+import math
 from pathlib import Path
 from typing import Any, Iterable
 
 from PIL import Image, ImageDraw, ImageFont
 
 
-RENDERER_VERSION = "1.0.0"
+RENDERER_VERSION = "1.1.0"
 
 INK = (31, 42, 55)
 MUTED = (91, 105, 121)
@@ -34,9 +35,22 @@ INVALID = (239, 241, 244)
 
 STATUS_NAMES = {
     0: "INVALID",
-    1: "AOS RETAINED",
+    1: "INCONCLUSIVE · AOS RETAINED",
     2: "OPTIMIZED",
     3: "STATISTICAL TIE · AOS RETAINED",
+    4: "REGRESSION · AOS RETAINED",
+}
+
+EVIDENCE_SCOPE_NAMES = {
+    0: "single Player",
+    1: "multiple processes / one device",
+    2: "multiple devices",
+}
+
+ESTIMATOR_NAMES = {
+    1: "legacy independent percent",
+    2: "paired-block log-ratio",
+    3: "process-hierarchical log-ratio",
 }
 
 
@@ -80,8 +94,14 @@ def _required(mapping: dict[str, Any], key: str, context: str) -> Any:
 
 def _candidate_id(candidate: dict[str, Any], context: str) -> str:
     value = _required(candidate, "CandidateId", context)
-    if not isinstance(value, str) or not value:
-        raise RenderContractError(f"{context}.CandidateId must be a non-empty string.")
+    return _canonical_identifier(value, f"{context}.CandidateId")
+
+
+def _canonical_identifier(value: Any, context: str) -> str:
+    if not isinstance(value, str) or not value or value != value.strip():
+        raise RenderContractError(
+            f"{context} must be a non-empty string without surrounding whitespace."
+        )
     return value
 
 
@@ -104,8 +124,10 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
     """
 
     schema = _required(suite, "SchemaVersion", "suite")
-    if schema != 2:
-        raise RenderContractError(f"Unsupported suite schema {schema!r}; expected schema 2.")
+    if schema not in (2, 3):
+        raise RenderContractError(
+            f"Unsupported suite schema {schema!r}; expected schema 2 or 3."
+        )
 
     raw_scenarios = _required(suite, "Scenarios", "suite")
     if not isinstance(raw_scenarios, list) or not raw_scenarios:
@@ -116,7 +138,16 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
         context = f"suite.Scenarios[{scenario_index}]"
         descriptor = _required(raw, "Scenario", context)
         scenario_id = _required(descriptor, "ScenarioId", f"{context}.Scenario")
+        if schema >= 3:
+            scenario_id = _canonical_identifier(
+                scenario_id, f"{context}.Scenario.ScenarioId"
+            )
         display_name = _required(descriptor, "DisplayName", f"{context}.Scenario")
+        scenario_contract_version = int(descriptor.get("ContractVersion", 0))
+        if schema >= 3 and scenario_contract_version <= 0:
+            raise RenderContractError(
+                f"{context}.Scenario requires a positive ContractVersion."
+            )
         decision = _required(raw, "FinalDecision", context)
         results = _required(raw, "CalibrationResults", context)
         if not isinstance(results, list) or not results:
@@ -124,9 +155,19 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
 
         cells: list[dict[str, Any]] = []
         candidate_ids: set[str] = set()
+        factor_coordinates: set[tuple[str, int]] = set()
         for result_index, result in enumerate(results):
             result_context = f"{context}.CalibrationResults[{result_index}]"
             candidate = _required(result, "Candidate", result_context)
+            if schema >= 3:
+                if str(_required(result, "ScenarioId", result_context)) != str(scenario_id):
+                    raise RenderContractError(
+                        f"{result_context} ScenarioId disagrees with its enclosing scenario."
+                    )
+                if int(_required(result, "ScenarioContractVersion", result_context)) != scenario_contract_version:
+                    raise RenderContractError(
+                        f"{result_context} ContractVersion disagrees with its enclosing scenario."
+                    )
             identifier = _candidate_id(candidate, f"{result_context}.Candidate")
             if identifier in candidate_ids:
                 raise RenderContractError(
@@ -140,11 +181,83 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
             if is_valid and (not isinstance(p95_ms, (int, float)) or p95_ms <= 0):
                 raise RenderContractError(f"{result_context} has an invalid P95 measurement.")
 
+            layout_id = _canonical_identifier(
+                _required(candidate, "LayoutId", result_context),
+                f"{result_context}.Candidate.LayoutId",
+            )
+            layout_policy = candidate.get("Layout") or {}
+            kernel_policy = candidate.get("Kernel") or {}
+            batch_policy = candidate.get("Batch") or {}
+            execution_policy = candidate.get("Execution") or {}
+            explicit_factors = schema >= 3 and all(
+                isinstance(policy, dict) and policy.get("PolicyId")
+                for policy in (
+                    layout_policy,
+                    kernel_policy,
+                    batch_policy,
+                    execution_policy,
+                )
+            )
+            if schema >= 3 and not explicit_factors:
+                raise RenderContractError(
+                    f"{result_context}.Candidate is missing explicit schema-3 factor policies."
+                )
+            layout_factor = str(layout_policy.get("PolicyId") or layout_id)
+            kernel_factor = str(kernel_policy.get("PolicyId") or "LegacyUnspecified")
+            batch_factor = str(batch_policy.get("PolicyId") or "LegacyBatch")
+            execution_factor = str(
+                execution_policy.get("PolicyId") or "FrameFaithful"
+            )
+            logical_batch = int(
+                _required(candidate, "LogicalBatchSize", result_context)
+            )
+            if schema >= 3:
+                layout_factor = _canonical_identifier(
+                    layout_factor, f"{result_context}.Candidate.Layout.PolicyId"
+                )
+                kernel_factor = _canonical_identifier(
+                    kernel_factor, f"{result_context}.Candidate.Kernel.PolicyId"
+                )
+                batch_factor = _canonical_identifier(
+                    batch_factor, f"{result_context}.Candidate.Batch.PolicyId"
+                )
+                execution_factor = _canonical_identifier(
+                    execution_factor,
+                    f"{result_context}.Candidate.Execution.PolicyId",
+                )
+                if int(candidate.get("PolicySchemaVersion", 0)) != 1:
+                    raise RenderContractError(
+                        f"{result_context}.Candidate has an unsupported policy schema."
+                    )
+                if layout_factor != layout_id:
+                    raise RenderContractError(
+                        f"{result_context}.Candidate LayoutId disagrees with Layout.PolicyId."
+                    )
+                if int(batch_policy.get("LogicalBatchSize", 0)) != logical_batch:
+                    raise RenderContractError(
+                        f"{result_context}.Candidate logical batch fields disagree."
+                    )
+            row_id = "\x1f".join(
+                (layout_factor, kernel_factor, batch_factor, execution_factor)
+            )
+            factor_coordinate = (row_id, logical_batch)
+            if factor_coordinate in factor_coordinates:
+                raise RenderContractError(
+                    f"{context} contains a duplicate factor/batch coordinate."
+                )
+            factor_coordinates.add(factor_coordinate)
+
             cells.append(
                 {
                     "CandidateId": identifier,
-                    "LayoutId": str(_required(candidate, "LayoutId", result_context)),
-                    "Batch": int(_required(candidate, "LogicalBatchSize", result_context)),
+                    "LayoutId": layout_id,
+                    "LayoutPolicyId": layout_factor,
+                    "KernelPolicyId": kernel_factor,
+                    "BatchPolicyId": batch_factor,
+                    "ExecutionPolicyId": execution_factor,
+                    "RowId": row_id,
+                    "ExplicitFactors": explicit_factors,
+                    "Batch": logical_batch,
                     "SortOrder": int(candidate.get("SortOrder", 0)),
                     "P95Microseconds": float(p95_ms) * 1000.0 if is_valid else None,
                     "Valid": is_valid,
@@ -185,11 +298,25 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
                 f"{context} is optimized but SelectedCandidate and BestMeasuredCandidate differ."
             )
 
-        layout_order: dict[str, int] = {}
+        row_order: dict[str, int] = {}
+        rows_by_id: dict[str, dict[str, str | bool]] = {}
         for cell in cells:
-            layout = cell["LayoutId"]
-            layout_order[layout] = min(layout_order.get(layout, cell["SortOrder"]), cell["SortOrder"])
-        layouts = sorted(layout_order, key=lambda name: (layout_order[name], name))
+            row_id = cell["RowId"]
+            row_order[row_id] = min(
+                row_order.get(row_id, cell["SortOrder"]), cell["SortOrder"]
+            )
+            rows_by_id[row_id] = {
+                "Id": row_id,
+                "Layout": cell["LayoutPolicyId"],
+                "Kernel": cell["KernelPolicyId"],
+                "BatchPolicy": cell["BatchPolicyId"],
+                "Execution": cell["ExecutionPolicyId"],
+                "ExplicitFactors": cell["ExplicitFactors"],
+            }
+        factor_rows = [
+            rows_by_id[row_id]
+            for row_id in sorted(row_order, key=lambda name: (row_order[name], name))
+        ]
         batches = sorted({cell["Batch"] for cell in cells})
 
         confidence = _required(
@@ -197,14 +324,142 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
             "ImprovementConfidenceInterval",
             f"{context}.FinalDecision",
         )
+        if schema >= 3:
+            sampling_design = _required(raw, "SamplingDesign", context)
+            if int(sampling_design.get("SchemaVersion", 0)) != 1:
+                raise RenderContractError(
+                    f"{context}.SamplingDesign has an unsupported schema."
+                )
+            evidence_scope = int(
+                _required(sampling_design, "EvidenceScope", f"{context}.SamplingDesign")
+            )
+            if evidence_scope not in EVIDENCE_SCOPE_NAMES:
+                raise RenderContractError(
+                    f"{context}.SamplingDesign has unknown evidence scope {evidence_scope}."
+                )
+            confidence_iterations = int(confidence.get("Iterations", 0))
+            if confidence_iterations < 0:
+                raise RenderContractError(
+                    f"{context}.FinalDecision confidence interval has a negative iteration count."
+                )
+            if confidence_iterations > 0 and int(confidence.get("SchemaVersion", 0)) != 1:
+                raise RenderContractError(
+                    f"{context}.FinalDecision confidence interval has an unsupported schema."
+                )
+            evidence_scope_name = EVIDENCE_SCOPE_NAMES[evidence_scope]
+            confidence_resampling_unit = str(confidence.get("ResamplingUnit") or "")
+            if confidence_iterations > 0 and not confidence_resampling_unit:
+                raise RenderContractError(
+                    f"{context}.FinalDecision confidence interval is missing its resampling unit."
+                )
+            estimator_kind = int(confidence.get("EstimatorKind", 0))
+            has_log_ratio_estimate = bool(confidence.get("HasLogRatioEstimate", False))
+            if confidence_iterations > 0:
+                confidence_level = float(confidence.get("ConfidenceLevel", 0.0))
+                point_percent = float(confidence.get("PointEstimatePercent", 0.0))
+                lower_percent = float(confidence.get("LowerBoundPercent", 0.0))
+                upper_percent = float(confidence.get("UpperBoundPercent", 0.0))
+                if (
+                    not 0.0 < confidence_level < 1.0
+                    or not all(
+                        math.isfinite(value)
+                        for value in (point_percent, lower_percent, upper_percent)
+                    )
+                    or lower_percent > upper_percent
+                    or not str(confidence.get("Estimand") or "")
+                ):
+                    raise RenderContractError(
+                        f"{context}.FinalDecision confidence interval has invalid metadata or percent bounds."
+                    )
+                if estimator_kind not in ESTIMATOR_NAMES:
+                    raise RenderContractError(
+                        f"{context}.FinalDecision confidence interval has an unsupported estimator."
+                    )
+                if ((estimator_kind == 1 and has_log_ratio_estimate) or
+                        (estimator_kind in (2, 3) and not has_log_ratio_estimate)):
+                    raise RenderContractError(
+                        f"{context}.FinalDecision confidence interval has inconsistent log-ratio provenance."
+                    )
+                point_log_ratio = float(confidence.get("PointEstimateLogRatio", 0.0))
+                lower_log_ratio = float(confidence.get("LowerBoundLogRatio", 0.0))
+                upper_log_ratio = float(confidence.get("UpperBoundLogRatio", 0.0))
+                if estimator_kind == 1 and any(
+                    value != 0.0
+                    for value in (point_log_ratio, lower_log_ratio, upper_log_ratio)
+                ):
+                    raise RenderContractError(
+                        f"{context}.FinalDecision legacy percent interval must not expose realized log-ratio values."
+                    )
+                if estimator_kind == 1 and int(confidence.get("RandomSeed", 0)) != 0:
+                    raise RenderContractError(
+                        f"{context}.FinalDecision migrated legacy interval must not invent a bootstrap seed."
+                    )
+                if estimator_kind in (2, 3) and (
+                    int(confidence.get("RandomSeed", 0)) == 0
+                    or
+                    not all(
+                        math.isfinite(value)
+                        for value in (point_log_ratio, lower_log_ratio, upper_log_ratio)
+                    )
+                    or lower_log_ratio > upper_log_ratio
+                ):
+                    raise RenderContractError(
+                        f"{context}.FinalDecision confidence interval has invalid log-ratio bounds."
+                    )
+                if estimator_kind in (2, 3) and not all(
+                    math.isclose(actual, expected, rel_tol=1e-9, abs_tol=1e-9)
+                    for actual, expected in (
+                        (point_percent, (1.0 - math.exp(point_log_ratio)) * 100.0),
+                        (lower_percent, (1.0 - math.exp(upper_log_ratio)) * 100.0),
+                        (upper_percent, (1.0 - math.exp(lower_log_ratio)) * 100.0),
+                    )
+                ):
+                    raise RenderContractError(
+                        f"{context}.FinalDecision confidence interval has inconsistent percentage transforms."
+                    )
+            elif (
+                int(confidence.get("SchemaVersion", 0)) != 0
+                or estimator_kind != 0
+                or has_log_ratio_estimate
+                or float(confidence.get("ConfidenceLevel", 0.0)) != 0.0
+                or int(confidence.get("RandomSeed", 0)) != 0
+                or bool(confidence.get("Estimand"))
+                or bool(confidence.get("ResamplingUnit"))
+                or any(
+                    float(confidence.get(field, 0.0)) != 0.0
+                    for field in (
+                        "PointEstimateLogRatio",
+                        "LowerBoundLogRatio",
+                        "UpperBoundLogRatio",
+                        "PointEstimatePercent",
+                        "LowerBoundPercent",
+                        "UpperBoundPercent",
+                    )
+                )
+            ):
+                raise RenderContractError(
+                    f"{context}.FinalDecision absent confidence interval declares realized estimator metadata."
+                )
+        else:
+            confidence_iterations = int(confidence.get("Iterations", 0))
+            evidence_scope_name = "scope unspecified (schema 2)"
+            confidence_resampling_unit = "schema-2 bootstrap"
+            estimator_kind = 0
+            has_log_ratio_estimate = False
+        uncertainty_presentation = (
+            f"{confidence_resampling_unit} CI · {evidence_scope_name}"
+            if confidence_iterations > 0
+            else f"descriptive only (no inferential CI) · {evidence_scope_name}"
+        )
         scenarios.append(
             {
                 "ScenarioId": str(scenario_id),
+                "ScenarioContractVersion": scenario_contract_version,
                 "DisplayName": str(display_name),
                 "ElementCount": int(_required(raw, "ElementCount", context)),
                 "LifetimeTicks": int(_required(raw, "LifetimeTicks", context)),
                 "Cells": cells,
-                "Layouts": layouts,
+                "FactorRows": factor_rows,
                 "Batches": batches,
                 # The fields below are copied verbatim from FinalDecision. Do not derive
                 # any of them from Cells.
@@ -224,10 +479,21 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
                 "ImprovementPercent": float(
                     _required(decision, "ImprovementPercent", context)
                 ),
-                "ConfidenceIterations": int(confidence.get("Iterations", 0)),
+                "ConfidenceIterations": confidence_iterations,
                 "ConfidenceLevel": float(confidence.get("ConfidenceLevel", 0.0)),
                 "ConfidenceLowerPercent": float(confidence.get("LowerBoundPercent", 0.0)),
                 "ConfidenceUpperPercent": float(confidence.get("UpperBoundPercent", 0.0)),
+                "ConfidenceResamplingUnit": confidence_resampling_unit,
+                "ConfidenceEstimatorKind": estimator_kind,
+                "ConfidenceEstimatorName": ESTIMATOR_NAMES.get(
+                    estimator_kind,
+                    "no realized estimator"
+                    if schema >= 3
+                    else "schema-2 estimator unspecified",
+                ),
+                "HasLogRatioEstimate": has_log_ratio_estimate,
+                "EvidenceScopeName": evidence_scope_name,
+                "UncertaintyPresentation": uncertainty_presentation,
                 "Reason": str(_required(decision, "Reason", context)),
             }
         )
@@ -250,6 +516,7 @@ def decision_snapshot(model: dict[str, Any]) -> list[dict[str, Any]]:
     return [
         {
             "ScenarioId": scenario["ScenarioId"],
+            "ScenarioContractVersion": scenario["ScenarioContractVersion"],
             "Status": scenario["Status"],
             "StatusName": scenario["StatusName"],
             "BaselineCandidateId": scenario["BaselineId"],
@@ -262,6 +529,12 @@ def decision_snapshot(model: dict[str, Any]) -> list[dict[str, Any]]:
             "ConfidenceLevel": scenario["ConfidenceLevel"],
             "ConfidenceLowerPercent": scenario["ConfidenceLowerPercent"],
             "ConfidenceUpperPercent": scenario["ConfidenceUpperPercent"],
+            "ConfidenceResamplingUnit": scenario["ConfidenceResamplingUnit"],
+            "ConfidenceEstimatorKind": scenario["ConfidenceEstimatorKind"],
+            "ConfidenceEstimatorName": scenario["ConfidenceEstimatorName"],
+            "HasLogRatioEstimate": scenario["HasLogRatioEstimate"],
+            "EvidenceScope": scenario["EvidenceScopeName"],
+            "UncertaintyPresentation": scenario["UncertaintyPresentation"],
         }
         for scenario in model["Scenarios"]
     ]
@@ -286,6 +559,27 @@ def _cell_color(value: float | None, low: float, high: float) -> tuple[int, int,
 def _text_width(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont) -> int:
     box = draw.textbbox((0, 0), text, font=font)
     return box[2] - box[0]
+
+
+def _ellipsize(
+    draw: ImageDraw.ImageDraw,
+    text: str,
+    font: ImageFont.FreeTypeFont,
+    maximum_width: int,
+) -> str:
+    if _text_width(draw, text, font) <= maximum_width:
+        return text
+    suffix = "…"
+    low = 0
+    high = len(text)
+    while low < high:
+        middle = (low + high + 1) // 2
+        candidate = text[:middle] + suffix
+        if _text_width(draw, candidate, font) <= maximum_width:
+            low = middle
+        else:
+            high = middle - 1
+    return text[:low] + suffix
 
 
 def _draw_centered(
@@ -339,11 +633,13 @@ def _draw_dashed_rectangle(
 
 def render_heatmap(model: dict[str, Any], input_hash: str, output_path: Path) -> None:
     width = 1400
-    label_width = 230
-    grid_left = 280
+    grid_left = 380
     grid_right = width - 70
     cell_height = 96
-    panel_heights = [130 + len(scenario["Layouts"]) * cell_height for scenario in model["Scenarios"]]
+    panel_heights = [
+        130 + len(scenario["FactorRows"]) * cell_height
+        for scenario in model["Scenarios"]
+    ]
     height = 160 + sum(panel_heights) + 86
 
     image = Image.new("RGB", (width, height), WHITE)
@@ -380,6 +676,7 @@ def render_heatmap(model: dict[str, Any], input_hash: str, output_path: Path) ->
         else:
             badge = f"{scenario['StatusName']} · {scenario['SelectedId']}"
             badge_fill, badge_ink, badge_outline = GOLD_LIGHT, INK, GOLD
+        badge = _ellipsize(draw, badge, small_font, 620)
         badge_width = _text_width(draw, badge, small_font) + 24
         _draw_pill(
             draw,
@@ -395,7 +692,7 @@ def render_heatmap(model: dict[str, Any], input_hash: str, output_path: Path) ->
         batches = scenario["Batches"]
         cell_width = (grid_right - grid_left) // max(1, len(batches))
         header_y = y + 76
-        draw.text((64, header_y + 10), "LAYOUT / BATCH", font=axis_font, fill=MUTED)
+        draw.text((64, header_y + 10), "FACTORS / BATCH", font=axis_font, fill=MUTED)
         for column, batch in enumerate(batches):
             bounds = (
                 grid_left + column * cell_width,
@@ -413,14 +710,27 @@ def render_heatmap(model: dict[str, Any], input_hash: str, output_path: Path) ->
         low = min(valid_values)
         high = max(valid_values)
         by_coordinate = {
-            (cell["LayoutId"], cell["Batch"]): cell for cell in scenario["Cells"]
+            (cell["RowId"], cell["Batch"]): cell for cell in scenario["Cells"]
         }
 
-        for row, layout in enumerate(scenario["Layouts"]):
+        for row, factor_row in enumerate(scenario["FactorRows"]):
             row_y = header_y + 47 + row * cell_height
-            draw.text((64, row_y + 34), layout, font=panel_title_font, fill=INK)
+            draw.text((64, row_y + 20), factor_row["Layout"], font=panel_title_font, fill=INK)
+            if factor_row["ExplicitFactors"]:
+                draw.text(
+                    (64, row_y + 50),
+                    factor_row["Kernel"],
+                    font=id_font,
+                    fill=MUTED,
+                )
+                draw.text(
+                    (64, row_y + 68),
+                    f"{factor_row['BatchPolicy']} · {factor_row['Execution']}",
+                    font=id_font,
+                    fill=MUTED,
+                )
             for column, batch in enumerate(batches):
-                cell = by_coordinate.get((layout, batch))
+                cell = by_coordinate.get((factor_row["Id"], batch))
                 left = grid_left + column * cell_width
                 bounds = (left, row_y, left + cell_width - 8, row_y + cell_height - 8)
                 if cell is None:
@@ -445,7 +755,12 @@ def render_heatmap(model: dict[str, Any], input_hash: str, output_path: Path) ->
                 _draw_centered(
                     draw,
                     (bounds[0], bounds[3] - 25, bounds[2], bounds[3] - 3),
-                    cell["CandidateId"],
+                    _ellipsize(
+                        draw,
+                        cell["CandidateId"],
+                        id_font,
+                        (bounds[2] - bounds[0]) - 16,
+                    ),
                     id_font,
                     text_color,
                 )
@@ -591,7 +906,12 @@ def _gif_frame(model: dict[str, Any], input_hash: str, progress: float) -> Image
             badge_text = scenario["StatusName"]
             badge_fill, badge_ink, badge_outline = GOLD_LIGHT, INK, GOLD
 
-        draw.text((64, top + 157), decision_text, font=value_font, fill=INK)
+        draw.text(
+            (64, top + 157),
+            _ellipsize(draw, decision_text, value_font, 195),
+            font=value_font,
+            fill=INK,
+        )
         _draw_pill(
             draw,
             280,
@@ -603,14 +923,30 @@ def _gif_frame(model: dict[str, Any], input_hash: str, progress: float) -> Image
             badge_outline,
         )
         if progress >= 0.18 and scenario["ConfidenceIterations"] > 0:
+            resampling = {
+                "paired measurement block": "paired-block",
+                "Player process, then paired measurement block": "process→block",
+                "schema-2 bootstrap": "schema-2",
+            }.get(scenario["ConfidenceResamplingUnit"], "declared-unit")
             ci = (
-                f"{scenario['ConfidenceLevel']:.0%} bootstrap CI "
+                f"{scenario['ConfidenceLevel']:.0%} {resampling} CI · "
+                f"{scenario['EvidenceScopeName']} "
                 f"[{scenario['ConfidenceLowerPercent']:.2f}%, "
                 f"{scenario['ConfidenceUpperPercent']:.2f}%]"
             )
-            draw.text((610, top + 159), ci, font=small_font, fill=MUTED)
+            draw.text(
+                (610, top + 159),
+                _ellipsize(draw, ci, small_font, width - 650),
+                font=small_font,
+                fill=MUTED,
+            )
         elif progress >= 0.18:
-            reason_lines = _wrap(draw, scenario["Reason"], small_font, 560)
+            reason_lines = _wrap(
+                draw,
+                f"Descriptive only (no inferential CI) · {scenario['Reason']}",
+                small_font,
+                560,
+            )
             draw.text((610, top + 155), reason_lines[0], font=small_font, fill=MUTED)
 
         if scenario["BestId"] != scenario["SelectedId"]:
@@ -683,7 +1019,7 @@ def render_artifacts(input_path: Path, output_directory: Path) -> dict[str, Path
 
 def _parse_args(arguments: Iterable[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Render a schema-2 fixed calibration suite without reselecting candidates."
+        description="Render a schema-2 or schema-3 fixed calibration suite without reselecting candidates."
     )
     parser.add_argument("input", type=Path, help="Path to calibration-suite.json")
     parser.add_argument("output_directory", type=Path, help="Directory for PNG, GIF, and manifest")

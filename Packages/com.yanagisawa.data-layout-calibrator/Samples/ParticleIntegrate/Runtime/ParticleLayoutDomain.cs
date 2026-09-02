@@ -6,6 +6,13 @@ using Unity.Mathematics;
 
 namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
 {
+    internal enum ParticleKernelKind
+    {
+        ScalarBranched = 0,
+        ScalarBranchless = 1,
+        PackedBranchless8 = 2,
+    }
+
     /// <summary>
     /// Owns one persistent representation of the particle workload. Layout selection
     /// remains managed; every hot schedule site targets a concrete Burst job.
@@ -17,13 +24,19 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
         private ParticleAoSoA8Storage _aosoa8;
         private bool _disposed;
 
-        private ParticleLayoutDomain(LayoutKind layout, int logicalBatchSize)
+        private ParticleLayoutDomain(
+            LayoutKind layout,
+            ParticleKernelKind kernel,
+            int logicalBatchSize)
         {
             Layout = layout;
+            Kernel = kernel;
             LogicalBatchSize = Math.Max(1, logicalBatchSize);
         }
 
         public LayoutKind Layout { get; }
+
+        internal ParticleKernelKind Kernel { get; }
 
         /// <summary>
         /// Batch size expressed in logical records, not physical AoSoA blocks.
@@ -76,10 +89,27 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             NativeArray<ParticleRecord> source,
             Allocator allocator = Allocator.Persistent)
         {
+            return Create(
+                layout,
+                DefaultKernelForLayout(layout),
+                logicalBatchSize,
+                source,
+                allocator);
+        }
+
+        internal static ParticleLayoutDomain Create(
+            LayoutKind layout,
+            ParticleKernelKind kernel,
+            int logicalBatchSize,
+            NativeArray<ParticleRecord> source,
+            Allocator allocator = Allocator.Persistent)
+        {
             if (!source.IsCreated)
                 throw new ArgumentException("Source records are not created.", nameof(source));
 
-            var domain = new ParticleLayoutDomain(layout, logicalBatchSize);
+            ValidateKernel(layout, kernel);
+
+            var domain = new ParticleLayoutDomain(layout, kernel, logicalBatchSize);
             try
             {
                 switch (layout)
@@ -112,7 +142,15 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             switch (Layout)
             {
                 case LayoutKind.AoS:
-                    return ParticleJobScheduler.Schedule(
+                    if (Kernel == ParticleKernelKind.ScalarBranched)
+                    {
+                        return ParticleJobScheduler.Schedule(
+                            ref _aos,
+                            LogicalBatchSize,
+                            deltaTime,
+                            dependency);
+                    }
+                    return ParticleJobScheduler.ScheduleBranchless(
                         ref _aos,
                         LogicalBatchSize,
                         deltaTime,
@@ -219,6 +257,36 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             _soa.Dispose();
             _aosoa8.Dispose();
             _disposed = true;
+        }
+
+        private static ParticleKernelKind DefaultKernelForLayout(LayoutKind layout)
+        {
+            switch (layout)
+            {
+                case LayoutKind.AoS:
+                case LayoutKind.SoA:
+                    return ParticleKernelKind.ScalarBranched;
+                case LayoutKind.AoSoA8:
+                    return ParticleKernelKind.PackedBranchless8;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(layout), layout, null);
+            }
+        }
+
+        private static void ValidateKernel(LayoutKind layout, ParticleKernelKind kernel)
+        {
+            bool valid =
+                (layout == LayoutKind.AoS &&
+                 (kernel == ParticleKernelKind.ScalarBranched ||
+                  kernel == ParticleKernelKind.ScalarBranchless)) ||
+                (layout == LayoutKind.SoA && kernel == ParticleKernelKind.ScalarBranched) ||
+                (layout == LayoutKind.AoSoA8 && kernel == ParticleKernelKind.PackedBranchless8);
+            if (!valid)
+            {
+                throw new ArgumentException(
+                    $"Kernel {kernel} is not implemented for layout {layout}.",
+                    nameof(kernel));
+            }
         }
 
         private void ThrowIfDisposed()

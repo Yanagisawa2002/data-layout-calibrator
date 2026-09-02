@@ -137,6 +137,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             LayoutSelectionDecision calibration = CreateOptimizedCalibrationDecision(20d);
             LayoutBenchmarkResult baselineHoldout = CreateResult(LayoutKind.AoS, 64, 20d, elementCount: 1000);
             LayoutBenchmarkResult selectedHoldout = CreateResult(LayoutKind.SoA, 64, 16.4d, elementCount: 1000);
+            baselineHoldout.Phase = BenchmarkPhase.Holdout;
+            selectedHoldout.Phase = BenchmarkPhase.Holdout;
 
             LayoutSelectionDecision decision = LayoutSelector.ConfirmHoldout(
                 calibration,
@@ -156,6 +158,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             LayoutSelectionDecision calibration = CreateOptimizedCalibrationDecision(20d);
             LayoutBenchmarkResult baselineHoldout = CreateResult(LayoutKind.AoS, 64, 20d, elementCount: 1000);
             LayoutBenchmarkResult selectedHoldout = CreateResult(LayoutKind.SoA, 64, 18.2d, elementCount: 1000);
+            baselineHoldout.Phase = BenchmarkPhase.Holdout;
+            selectedHoldout.Phase = BenchmarkPhase.Holdout;
 
             LayoutSelectionDecision decision = LayoutSelector.ConfirmHoldout(
                 calibration,
@@ -190,11 +194,36 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             string json = JsonUtility.ToJson(suite);
             CalibrationSuiteProfile restored = JsonUtility.FromJson<CalibrationSuiteProfile>(json);
 
-            Assert.That(restored.SchemaVersion, Is.EqualTo(2));
+            Assert.That(restored.SchemaVersion, Is.EqualTo(3));
             Assert.That(restored.ProductName, Is.EqualTo("Data Layout Calibrator"));
             Assert.That(restored.Scenarios[0].Scenario.ScenarioId, Is.EqualTo("particle-integrate-v2"));
             Assert.That(restored.Scenarios[0].FinalDecision.SelectedCandidate.LayoutId, Is.EqualTo("SoA"));
             Assert.That(restored.Scenarios[0].CalibrationResults[0].AmortizedLatency.P95Milliseconds, Is.EqualTo(10d));
+        }
+
+        [Test]
+        public void Schema2Json_UpgradesWithoutChangingCandidateIdentity()
+        {
+            const string json =
+                "{\"SchemaVersion\":2,\"RunId\":\"legacy\",\"Scenarios\":[{" +
+                "\"SchemaVersion\":2,\"Scenario\":{\"ScenarioId\":\"legacy-scenario\",\"ContractVersion\":1},\"CalibrationResults\":[{" +
+                "\"Candidate\":{\"CandidateId\":\"AoS-b64\",\"LayoutId\":\"AoS\",\"LogicalBatchSize\":64,\"IsBaseline\":true}," +
+                "\"ResidentSamplesMillisecondsPerTick\":[1.0,1.1,1.2]," +
+                "\"IngressSamplesMilliseconds\":[0.1,0.1,0.1]," +
+                "\"ExportSamplesMilliseconds\":[0.2,0.2,0.2]}]}]}";
+            CalibrationSuiteProfile suite = JsonUtility.FromJson<CalibrationSuiteProfile>(json);
+
+            CalibrationProfileMigration.UpgradeInMemory(suite);
+
+            Assert.That(suite.SchemaVersion, Is.EqualTo(3));
+            Assert.That(suite.Scenarios[0].SchemaVersion, Is.EqualTo(3));
+            LayoutBenchmarkResult result = suite.Scenarios[0].CalibrationResults[0];
+            Assert.That(result.Candidate.CandidateId, Is.EqualTo("AoS-b64"));
+            Assert.That(result.Candidate.Layout.PolicyId, Is.EqualTo("AoS"));
+            Assert.That(result.Candidate.Execution.PolicyId, Is.EqualTo("FrameFaithful"));
+            Assert.That(result.ScenarioId, Is.EqualTo("legacy-scenario"));
+            Assert.That(result.ScenarioContractVersion, Is.EqualTo(1));
+            CollectionAssert.AreEqual(new[] { 0, 1, 2 }, result.ResidentBlockIds);
         }
 
         private static LayoutSelectionDecision CreateOptimizedCalibrationDecision(double improvementPercent)
@@ -222,11 +251,24 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             var resident = new double[20];
             var ingress = new double[10];
             var export = new double[10];
+            var residentBlockIds = new int[resident.Length];
+            var ingressBlockIds = new int[ingress.Length];
+            var exportBlockIds = new int[export.Length];
             for (int index = 0; index < resident.Length; index++)
+            {
                 resident[index] = p95Milliseconds;
+                residentBlockIds[index] = index;
+            }
+            for (int index = 0; index < ingress.Length; index++)
+            {
+                ingressBlockIds[index] = index;
+                exportBlockIds[index] = index;
+            }
 
             var result = new LayoutBenchmarkResult
             {
+                ScenarioId = "synthetic-selection-fixture",
+                ScenarioContractVersion = 1,
                 Candidate = new CandidateDescriptor(layout, batchSize),
                 ElementCount = elementCount,
                 StepsPerSample = 1,
@@ -236,6 +278,12 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 ResidentSamplesMillisecondsPerTick = resident,
                 IngressSamplesMilliseconds = ingress,
                 ExportSamplesMilliseconds = export,
+                ResidentBlockIds = residentBlockIds,
+                IngressBlockIds = ingressBlockIds,
+                ExportBlockIds = exportBlockIds,
+                ResidentOrderPositions = new int[resident.Length],
+                IngressOrderPositions = new int[ingress.Length],
+                ExportOrderPositions = new int[export.Length],
             };
             Recalculate(result);
             return result;

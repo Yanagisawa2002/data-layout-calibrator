@@ -192,7 +192,10 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                 .AppendLine($"Resident ticks per sample: {profile.TicksPerBlock}")
                 .AppendLine($"Resident / boundary samples: {profile.SamplesPerCandidate} / {profile.BoundarySamplesPerCandidate}")
                 .AppendLine($"Lifetime amortization: {profile.LifetimeTicks} ticks")
-                .AppendLine($"Bootstrap: {profile.BootstrapIterations} iterations at {profile.BootstrapConfidenceLevel:P0}")
+                .AppendLine($"Measurement order: {profile.SamplingDesign?.CandidateOrder.ToString() ?? "Unspecified"}")
+                .AppendLine($"Bootstrap: paired measurement blocks, {profile.BootstrapIterations} iterations at {profile.BootstrapConfidenceLevel:P0}")
+                .AppendLine($"Evidence scope: {profile.SamplingDesign?.EvidenceScope.ToString() ?? "Unspecified"}")
+                .AppendLine($"Decision uncertainty: {BuildUncertaintyLine(decision, profile.SamplingDesign)}")
                 .AppendLine($"Decision: {BuildDecisionLine(decision)}")
                 .AppendLine($"Reason: {decision.Reason}")
                 .AppendLine($"Ingress: {profile.BoundaryContract.IngressContract}")
@@ -208,7 +211,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         {
             var csv = new StringBuilder(8192);
             csv.AppendLine(
-                "scenario,phase,candidate_id,layout,logical_batch,sample_index,resident_ms_per_tick,ingress_ms,export_ms,amortized_ms_per_tick,amortized_p95_ms_per_tick,resident_alloc_bytes,boundary_alloc_bytes,parity_passed");
+                "scenario,phase,candidate_id,layout,logical_batch,sample_index,resident_ms_per_tick,ingress_ms,export_ms,amortized_ms_per_tick,amortized_p95_ms_per_tick,resident_alloc_bytes,boundary_alloc_bytes,parity_passed,layout_policy_id,kernel_policy_id,batch_policy_id,execution_policy_id,resident_block_id,resident_order_position,ingress_block_id,ingress_order_position,export_block_id,export_order_position,scenario_contract_version");
             AppendResults(csv, profile.CalibrationResults);
             if (profile.HoldoutBaselineResult != null)
                 AppendResult(csv, profile.HoldoutBaselineResult);
@@ -253,7 +256,24 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                     .Append(result.AmortizedLatency.P95Milliseconds.ToString("R", CultureInfo.InvariantCulture)).Append(',')
                     .Append(result.HotPathManagedAllocationBytes).Append(',')
                     .Append(result.BoundaryManagedAllocationBytes).Append(',')
-                    .Append(result.ParityPassed ? "true" : "false")
+                    .Append(result.ParityPassed ? "true" : "false").Append(',')
+                    .Append(result.Candidate.EffectiveLayout.PolicyId).Append(',')
+                    .Append(result.Candidate.EffectiveKernel.PolicyId).Append(',')
+                    .Append(result.Candidate.EffectiveBatch.PolicyId).Append(',')
+                    .Append(result.Candidate.EffectiveExecution.PolicyId).Append(',');
+                AppendOptional(csv, result.ResidentBlockIds, sample);
+                csv.Append(',');
+                AppendOptional(csv, result.ResidentOrderPositions, sample);
+                csv.Append(',');
+                AppendOptional(csv, result.IngressBlockIds, sample);
+                csv.Append(',');
+                AppendOptional(csv, result.IngressOrderPositions, sample);
+                csv.Append(',');
+                AppendOptional(csv, result.ExportBlockIds, sample);
+                csv.Append(',');
+                AppendOptional(csv, result.ExportOrderPositions, sample);
+                csv.Append(',')
+                    .Append(result.ScenarioContractVersion.ToString(CultureInfo.InvariantCulture))
                     .AppendLine();
             }
         }
@@ -264,6 +284,12 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         {
             if (values != null && index < values.Length)
                 builder.Append(values[index].ToString("R", CultureInfo.InvariantCulture));
+        }
+
+        private static void AppendOptional(StringBuilder builder, int[] values, int index)
+        {
+            if (values != null && index < values.Length)
+                builder.Append(values[index].ToString(CultureInfo.InvariantCulture));
         }
 
         private static string BuildDecisionLine(LayoutSelectionDecision decision)
@@ -283,6 +309,18 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             return $"{decision.Status}: use {CandidateId(decision.BaselineCandidate)}; " +
                    $"best measured {CandidateId(decision.BestMeasuredCandidate)} " +
                    $"had {decision.ImprovementPercent:F1}% lower amortized P95{interval}";
+        }
+
+        private static string BuildUncertaintyLine(
+            LayoutSelectionDecision decision,
+            SamplingDesignDescriptor samplingDesign)
+        {
+            BootstrapConfidenceInterval interval = decision.ImprovementConfidenceInterval;
+            if (interval.Iterations <= 0)
+                return "descriptive measurements only; no inferential confidence interval";
+
+            string scope = samplingDesign?.EvidenceScope.ToString() ?? "Unspecified";
+            return $"{interval.ResamplingUnit}; {scope}";
         }
 
         private static string CandidateId(CandidateDescriptor candidate)

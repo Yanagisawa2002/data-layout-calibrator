@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Yanagisawa.DataLayoutCalibrator
@@ -26,6 +27,7 @@ namespace Yanagisawa.DataLayoutCalibrator
         public uint CandidateOrderSeed = 0xA341316Cu;
         public uint BootstrapSeed = 0xB5297A4Du;
         public float ParityTolerance = 1e-5f;
+        public MeasurementOrderKind MeasurementOrder = MeasurementOrderKind.BalancedLatinSquare;
     }
 
     /// <summary>
@@ -67,11 +69,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             LayoutSelectionDecision finalDecision = calibrationDecision;
             if (calibrationDecision.Status == LayoutSelectionStatus.Optimized)
             {
-                var holdoutCandidates = new[]
-                {
-                    calibrationDecision.BaselineCandidate,
-                    calibrationDecision.SelectedCandidate,
-                };
+                CandidateDescriptor[] holdoutCandidates = HoldoutIsolation.Freeze(calibrationDecision);
                 PhaseMeasurement holdout = MeasurePhase(
                     factory,
                     settings,
@@ -120,6 +118,16 @@ namespace Yanagisawa.DataLayoutCalibrator
                     "allocation; dataset generation; parity scan; hashing; JSON/CSV serialization; visualization",
                 CalibrationDatasetHash = calibration.DatasetHash,
                 HoldoutDatasetHash = holdoutHash,
+                SamplingDesign = new SamplingDesignDescriptor
+                {
+                    CandidateOrder = settings.MeasurementOrder,
+                    PairingUnit = "complete measurement block",
+                    EvidenceScope = EvidenceScope.SinglePlayer,
+                    CalibrationTunesCandidates = true,
+                    HoldoutRetuningPermitted = false,
+                    UncertaintyDescription =
+                        "Paired block bootstrap within one Player process; this interval is not cross-process or cross-device evidence.",
+                },
                 BoundaryContract = calibration.BoundaryContract,
                 CalibrationDecision = calibrationDecision,
                 FinalDecision = finalDecision,
@@ -187,7 +195,11 @@ namespace Yanagisawa.DataLayoutCalibrator
                     settings.SamplesPerCandidate,
                     settings.BoundarySamplesPerCandidate);
                 WarmBoundaryOperations(candidates, settings.FixedDeltaTime);
-                MeasureIngress(candidates, settings.BoundarySamplesPerCandidate, orderSeed);
+                MeasureIngress(
+                    candidates,
+                    settings.BoundarySamplesPerCandidate,
+                    orderSeed,
+                    settings.MeasurementOrder);
 
                 int ticksPerBlock = fixedTicksPerBlock > 0
                     ? fixedTicksPerBlock
@@ -208,11 +220,13 @@ namespace Yanagisawa.DataLayoutCalibrator
                     ticksPerBlock,
                     settings.SamplesPerCandidate,
                     settings.FixedDeltaTime,
-                    orderSeed ^ 0x7F4A7C15u);
+                    orderSeed ^ 0x7F4A7C15u,
+                    settings.MeasurementOrder);
                 MeasureExport(
                     candidates,
                     settings.BoundarySamplesPerCandidate,
-                    orderSeed ^ 0x94D049BBu);
+                    orderSeed ^ 0x94D049BBu,
+                    settings.MeasurementOrder);
                 ValidateParity(scenario, candidates, settings.ParityTolerance);
 
                 return new PhaseMeasurement
@@ -225,7 +239,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                     TicksPerBlock = ticksPerBlock,
                     WarmupBlocks = warmupBlocks,
                     Results = BuildResults(
-                        factory.Descriptor.ScenarioId,
+                        factory.Descriptor,
                         phase,
                         candidates,
                         elementCount,
@@ -241,14 +255,30 @@ namespace Yanagisawa.DataLayoutCalibrator
             int boundarySampleCount)
         {
             var measurements = new CandidateMeasurement[scenario.CandidateCount];
+            var candidateIds = new HashSet<string>(StringComparer.Ordinal);
             for (int index = 0; index < measurements.Length; index++)
             {
+                ICalibrationCandidate candidate = scenario.GetCandidate(index);
+                CandidateDescriptor descriptor = candidate.Descriptor.NormalizePolicies();
+                descriptor.ValidateFactorConsistency();
+                if (!candidateIds.Add(descriptor.CandidateId))
+                {
+                    throw new InvalidOperationException(
+                        $"Scenario candidate IDs must be unique; duplicate '{descriptor.CandidateId}'.");
+                }
                 measurements[index] = new CandidateMeasurement
                 {
-                    Candidate = scenario.GetCandidate(index),
+                    Candidate = candidate,
+                    Descriptor = descriptor,
                     ResidentSamples = new double[residentSampleCount],
                     IngressSamples = new double[boundarySampleCount],
                     ExportSamples = new double[boundarySampleCount],
+                    ResidentBlockIds = new int[residentSampleCount],
+                    IngressBlockIds = new int[boundarySampleCount],
+                    ExportBlockIds = new int[boundarySampleCount],
+                    ResidentOrderPositions = new int[residentSampleCount],
+                    IngressOrderPositions = new int[boundarySampleCount],
+                    ExportOrderPositions = new int[boundarySampleCount],
                 };
             }
             return measurements;
@@ -273,19 +303,24 @@ namespace Yanagisawa.DataLayoutCalibrator
         private static void MeasureIngress(
             CandidateMeasurement[] candidates,
             int sampleCount,
-            uint orderSeed)
+            uint orderSeed,
+            MeasurementOrderKind orderKind)
         {
-            int[] order = CreateOrder(candidates.Length);
-            uint randomState = NonZero(orderSeed);
+            BlockedMeasurementOrder order = MeasurementOrder.Create(
+                candidates.Length,
+                sampleCount,
+                orderSeed,
+                orderKind);
             for (int round = 0; round < sampleCount; round++)
             {
-                Shuffle(order, ref randomState);
-                for (int position = 0; position < order.Length; position++)
+                for (int position = 0; position < candidates.Length; position++)
                 {
-                    CandidateMeasurement measurement = candidates[order[position]];
+                    CandidateMeasurement measurement = candidates[order.GetCandidateIndex(round, position)];
                     measurement.IngressSamples[round] = MeasureIngress(
                         measurement.Candidate,
                         out long allocationBytes);
+                    measurement.IngressBlockIds[round] = round;
+                    measurement.IngressOrderPositions[round] = position;
                     measurement.BoundaryManagedAllocationBytes += allocationBytes;
                 }
             }
@@ -315,22 +350,27 @@ namespace Yanagisawa.DataLayoutCalibrator
             int ticksPerBlock,
             int sampleCount,
             float fixedDeltaTime,
-            uint orderSeed)
+            uint orderSeed,
+            MeasurementOrderKind orderKind)
         {
-            int[] order = CreateOrder(candidates.Length);
-            uint randomState = NonZero(orderSeed);
+            BlockedMeasurementOrder order = MeasurementOrder.Create(
+                candidates.Length,
+                sampleCount,
+                orderSeed,
+                orderKind);
             for (int round = 0; round < sampleCount; round++)
             {
-                Shuffle(order, ref randomState);
-                for (int position = 0; position < order.Length; position++)
+                for (int position = 0; position < candidates.Length; position++)
                 {
-                    CandidateMeasurement measurement = candidates[order[position]];
+                    CandidateMeasurement measurement = candidates[order.GetCandidateIndex(round, position)];
                     double blockMilliseconds = MeasureResident(
                         measurement.Candidate,
                         ticksPerBlock,
                         fixedDeltaTime,
                         out long allocationBytes);
                     measurement.ResidentSamples[round] = blockMilliseconds / ticksPerBlock;
+                    measurement.ResidentBlockIds[round] = round;
+                    measurement.ResidentOrderPositions[round] = position;
                     measurement.HotPathManagedAllocationBytes += allocationBytes;
                 }
             }
@@ -339,19 +379,24 @@ namespace Yanagisawa.DataLayoutCalibrator
         private static void MeasureExport(
             CandidateMeasurement[] candidates,
             int sampleCount,
-            uint orderSeed)
+            uint orderSeed,
+            MeasurementOrderKind orderKind)
         {
-            int[] order = CreateOrder(candidates.Length);
-            uint randomState = NonZero(orderSeed);
+            BlockedMeasurementOrder order = MeasurementOrder.Create(
+                candidates.Length,
+                sampleCount,
+                orderSeed,
+                orderKind);
             for (int round = 0; round < sampleCount; round++)
             {
-                Shuffle(order, ref randomState);
-                for (int position = 0; position < order.Length; position++)
+                for (int position = 0; position < candidates.Length; position++)
                 {
-                    CandidateMeasurement measurement = candidates[order[position]];
+                    CandidateMeasurement measurement = candidates[order.GetCandidateIndex(round, position)];
                     measurement.ExportSamples[round] = MeasureExport(
                         measurement.Candidate,
                         out long allocationBytes);
+                    measurement.ExportBlockIds[round] = round;
+                    measurement.ExportOrderPositions[round] = position;
                     measurement.BoundaryManagedAllocationBytes += allocationBytes;
                 }
             }
@@ -373,7 +418,7 @@ namespace Yanagisawa.DataLayoutCalibrator
         }
 
         private static LayoutBenchmarkResult[] BuildResults(
-            string scenarioId,
+            ScenarioDescriptor scenario,
             BenchmarkPhase phase,
             CandidateMeasurement[] candidates,
             int elementCount,
@@ -411,9 +456,10 @@ namespace Yanagisawa.DataLayoutCalibrator
 
                 results[index] = new LayoutBenchmarkResult
                 {
-                    ScenarioId = scenarioId,
+                    ScenarioId = scenario.ScenarioId,
+                    ScenarioContractVersion = scenario.ContractVersion,
                     Phase = phase,
-                    Candidate = measurement.Candidate.Descriptor,
+                    Candidate = measurement.Descriptor,
                     ElementCount = elementCount,
                     StepsPerSample = ticksPerBlock,
                     Latency = resident,
@@ -432,6 +478,12 @@ namespace Yanagisawa.DataLayoutCalibrator
                     IngressSamplesMilliseconds = measurement.IngressSamples,
                     ExportSamplesMilliseconds = measurement.ExportSamples,
                     AmortizedSamplesMillisecondsPerTick = amortizedSamples,
+                    ResidentBlockIds = measurement.ResidentBlockIds,
+                    IngressBlockIds = measurement.IngressBlockIds,
+                    ExportBlockIds = measurement.ExportBlockIds,
+                    ResidentOrderPositions = measurement.ResidentOrderPositions,
+                    IngressOrderPositions = measurement.IngressOrderPositions,
+                    ExportOrderPositions = measurement.ExportOrderPositions,
                     Completed = true,
                     ParityPassed = measurement.Parity.Passed,
                     Parity = measurement.Parity,
@@ -538,30 +590,6 @@ namespace Yanagisawa.DataLayoutCalibrator
             return timestamps * 1000d / Stopwatch.Frequency;
         }
 
-        private static int[] CreateOrder(int count)
-        {
-            var order = new int[count];
-            for (int index = 0; index < count; index++)
-                order[index] = index;
-            return order;
-        }
-
-        private static void Shuffle(int[] order, ref uint state)
-        {
-            for (int index = order.Length - 1; index > 0; index--)
-            {
-                state ^= state << 13;
-                state ^= state >> 17;
-                state ^= state << 5;
-                int swapIndex = (int)(state % (uint)(index + 1));
-                int temporary = order[index];
-                order[index] = order[swapIndex];
-                order[swapIndex] = temporary;
-            }
-        }
-
-        private static uint NonZero(uint state) => state == 0u ? 0xA341316Cu : state;
-
         private static string FormatCandidate(CandidateDescriptor candidate)
         {
             return string.IsNullOrEmpty(candidate.CandidateId)
@@ -596,14 +624,26 @@ namespace Yanagisawa.DataLayoutCalibrator
             {
                 throw new ArgumentOutOfRangeException(nameof(settings), "Bootstrap settings are invalid.");
             }
+            if (settings.MeasurementOrder != MeasurementOrderKind.RandomizedBlocked &&
+                settings.MeasurementOrder != MeasurementOrderKind.BalancedLatinSquare)
+            {
+                throw new ArgumentOutOfRangeException(nameof(settings), "Measurement order is invalid.");
+            }
         }
 
         private sealed class CandidateMeasurement
         {
             public ICalibrationCandidate Candidate;
+            public CandidateDescriptor Descriptor;
             public double[] ResidentSamples;
             public double[] IngressSamples;
             public double[] ExportSamples;
+            public int[] ResidentBlockIds;
+            public int[] IngressBlockIds;
+            public int[] ExportBlockIds;
+            public int[] ResidentOrderPositions;
+            public int[] IngressOrderPositions;
+            public int[] ExportOrderPositions;
             public long HotPathManagedAllocationBytes;
             public long BoundaryManagedAllocationBytes;
             public ParityReport Parity;

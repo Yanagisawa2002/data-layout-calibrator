@@ -1,6 +1,6 @@
 # Fixed-result renderer
 
-This standalone tool turns a schema-2 `calibration-suite.json` into a PNG heatmap, an animated before/after GIF, and a provenance manifest. It is intentionally outside the Unity project and contains no selection algorithm.
+This standalone tool turns a schema-2 or schema-3 `calibration-suite.json` into a PNG heatmap, an animated before/after GIF, and a provenance manifest. It is intentionally outside the Unity project and contains no selection algorithm.
 
 ## Chart contract
 
@@ -23,4 +23,4 @@ python Tools/ResultRenderer/render_results.py `
 python -m unittest discover Tools/ResultRenderer/tests -v
 ```
 
-The manifest records the input SHA-256 and the exact frozen decision fields used by both visuals.
+The manifest records the input SHA-256 and the exact frozen decision fields used by both visuals. For schema 3 it also records the bootstrap estimator kind and whether the source interval contains a realized log-ratio estimate; inconsistent provenance is rejected.
