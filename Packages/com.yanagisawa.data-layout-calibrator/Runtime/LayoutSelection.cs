@@ -112,7 +112,14 @@ namespace Yanagisawa.DataLayoutCalibrator
                     return decision;
                 }
                 decision.ImprovementConfidenceInterval = interval;
-                if (interval.LowerBoundPercent <= 0d && interval.UpperBoundPercent >= 0d)
+                if (interval.UpperBoundPercent < 0d)
+                {
+                    decision.Reason =
+                        "The paired calibration interval supports a regression and contradicts the candidate ranking; the evidence is inconclusive and AoS remains selected.";
+                    return decision;
+                }
+
+                if (interval.LowerBoundPercent <= 0d)
                 {
                     decision.Status = LayoutSelectionStatus.StatisticalTie;
                     decision.FellBackBecauseStatisticalTie = true;

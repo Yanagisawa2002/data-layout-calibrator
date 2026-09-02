@@ -34,7 +34,7 @@ ParticleIntegrate adds a scalar branchless AoS kernel beside the existing scalar
 
 ## Compatibility and artifact versioning
 
-This branch proposes top-level result schema 3 and policy sub-schema 1. Schema-2 JSON fields are retained. `CalibrationProfileMigration.UpgradeInMemory` fills missing policies without changing `CandidateId`; it never edits a source evidence file. The integrator owns the final top-level schema and package version assignment.
+This branch proposes top-level result schema 3 and policy sub-schema 1. Schema-2 JSON fields are retained. `CalibrationProfileMigration.UpgradeInMemory` fills missing policies without changing `CandidateId`; it never edits a source evidence file. Policy migration is defined only from sub-schema 0 to 1. Sub-schema 1 is validated without normalization, and every other version is rejected. Canonical candidate, layout, and policy IDs are non-empty and may not contain surrounding whitespace. Schema-3 profiles are validation-only inputs to the migration API, so missing factors or inconsistent compatibility fields are rejected rather than reconstructed. The integrator owns the final top-level schema and package version assignment.
 
 The future profile-compatibility layer must additionally bind schema, candidate-set and binary hashes, environment, and calibration settings. That fingerprint/cache work remains roadmap item 6 and is not inferred from the scenario identity pair in this slice.
 

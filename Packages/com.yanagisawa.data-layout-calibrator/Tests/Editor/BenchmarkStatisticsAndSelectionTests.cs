@@ -251,8 +251,19 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             var resident = new double[20];
             var ingress = new double[10];
             var export = new double[10];
+            var residentBlockIds = new int[resident.Length];
+            var ingressBlockIds = new int[ingress.Length];
+            var exportBlockIds = new int[export.Length];
             for (int index = 0; index < resident.Length; index++)
+            {
                 resident[index] = p95Milliseconds;
+                residentBlockIds[index] = index;
+            }
+            for (int index = 0; index < ingress.Length; index++)
+            {
+                ingressBlockIds[index] = index;
+                exportBlockIds[index] = index;
+            }
 
             var result = new LayoutBenchmarkResult
             {
@@ -267,6 +278,12 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 ResidentSamplesMillisecondsPerTick = resident,
                 IngressSamplesMilliseconds = ingress,
                 ExportSamplesMilliseconds = export,
+                ResidentBlockIds = residentBlockIds,
+                IngressBlockIds = ingressBlockIds,
+                ExportBlockIds = exportBlockIds,
+                ResidentOrderPositions = new int[resident.Length],
+                IngressOrderPositions = new int[ingress.Length],
+                ExportOrderPositions = new int[export.Length],
             };
             Recalculate(result);
             return result;

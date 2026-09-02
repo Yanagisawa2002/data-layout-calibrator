@@ -12,6 +12,7 @@ import argparse
 import hashlib
 import json
 import math
+import math
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -44,6 +45,12 @@ EVIDENCE_SCOPE_NAMES = {
     0: "single Player",
     1: "multiple processes / one device",
     2: "multiple devices",
+}
+
+ESTIMATOR_NAMES = {
+    1: "legacy independent percent",
+    2: "paired-block log-ratio",
+    3: "process-hierarchical log-ratio",
 }
 
 
@@ -87,8 +94,14 @@ def _required(mapping: dict[str, Any], key: str, context: str) -> Any:
 
 def _candidate_id(candidate: dict[str, Any], context: str) -> str:
     value = _required(candidate, "CandidateId", context)
-    if not isinstance(value, str) or not value:
-        raise RenderContractError(f"{context}.CandidateId must be a non-empty string.")
+    return _canonical_identifier(value, f"{context}.CandidateId")
+
+
+def _canonical_identifier(value: Any, context: str) -> str:
+    if not isinstance(value, str) or not value or value != value.strip():
+        raise RenderContractError(
+            f"{context} must be a non-empty string without surrounding whitespace."
+        )
     return value
 
 
@@ -125,6 +138,10 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
         context = f"suite.Scenarios[{scenario_index}]"
         descriptor = _required(raw, "Scenario", context)
         scenario_id = _required(descriptor, "ScenarioId", f"{context}.Scenario")
+        if schema >= 3:
+            scenario_id = _canonical_identifier(
+                scenario_id, f"{context}.Scenario.ScenarioId"
+            )
         display_name = _required(descriptor, "DisplayName", f"{context}.Scenario")
         scenario_contract_version = int(descriptor.get("ContractVersion", 0))
         if schema >= 3 and scenario_contract_version <= 0:
@@ -164,7 +181,10 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
             if is_valid and (not isinstance(p95_ms, (int, float)) or p95_ms <= 0):
                 raise RenderContractError(f"{result_context} has an invalid P95 measurement.")
 
-            layout_id = str(_required(candidate, "LayoutId", result_context))
+            layout_id = _canonical_identifier(
+                _required(candidate, "LayoutId", result_context),
+                f"{result_context}.Candidate.LayoutId",
+            )
             layout_policy = candidate.get("Layout") or {}
             kernel_policy = candidate.get("Kernel") or {}
             batch_policy = candidate.get("Batch") or {}
@@ -192,6 +212,19 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
                 _required(candidate, "LogicalBatchSize", result_context)
             )
             if schema >= 3:
+                layout_factor = _canonical_identifier(
+                    layout_factor, f"{result_context}.Candidate.Layout.PolicyId"
+                )
+                kernel_factor = _canonical_identifier(
+                    kernel_factor, f"{result_context}.Candidate.Kernel.PolicyId"
+                )
+                batch_factor = _canonical_identifier(
+                    batch_factor, f"{result_context}.Candidate.Batch.PolicyId"
+                )
+                execution_factor = _canonical_identifier(
+                    execution_factor,
+                    f"{result_context}.Candidate.Execution.PolicyId",
+                )
                 if int(candidate.get("PolicySchemaVersion", 0)) != 1:
                     raise RenderContractError(
                         f"{result_context}.Candidate has an unsupported policy schema."
@@ -305,6 +338,10 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
                     f"{context}.SamplingDesign has unknown evidence scope {evidence_scope}."
                 )
             confidence_iterations = int(confidence.get("Iterations", 0))
+            if confidence_iterations < 0:
+                raise RenderContractError(
+                    f"{context}.FinalDecision confidence interval has a negative iteration count."
+                )
             if confidence_iterations > 0 and int(confidence.get("SchemaVersion", 0)) != 1:
                 raise RenderContractError(
                     f"{context}.FinalDecision confidence interval has an unsupported schema."
@@ -315,10 +352,100 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
                 raise RenderContractError(
                     f"{context}.FinalDecision confidence interval is missing its resampling unit."
                 )
+            estimator_kind = int(confidence.get("EstimatorKind", 0))
+            has_log_ratio_estimate = bool(confidence.get("HasLogRatioEstimate", False))
+            if confidence_iterations > 0:
+                confidence_level = float(confidence.get("ConfidenceLevel", 0.0))
+                point_percent = float(confidence.get("PointEstimatePercent", 0.0))
+                lower_percent = float(confidence.get("LowerBoundPercent", 0.0))
+                upper_percent = float(confidence.get("UpperBoundPercent", 0.0))
+                if (
+                    not 0.0 < confidence_level < 1.0
+                    or not all(
+                        math.isfinite(value)
+                        for value in (point_percent, lower_percent, upper_percent)
+                    )
+                    or lower_percent > upper_percent
+                    or not str(confidence.get("Estimand") or "")
+                ):
+                    raise RenderContractError(
+                        f"{context}.FinalDecision confidence interval has invalid metadata or percent bounds."
+                    )
+                if estimator_kind not in ESTIMATOR_NAMES:
+                    raise RenderContractError(
+                        f"{context}.FinalDecision confidence interval has an unsupported estimator."
+                    )
+                if ((estimator_kind == 1 and has_log_ratio_estimate) or
+                        (estimator_kind in (2, 3) and not has_log_ratio_estimate)):
+                    raise RenderContractError(
+                        f"{context}.FinalDecision confidence interval has inconsistent log-ratio provenance."
+                    )
+                point_log_ratio = float(confidence.get("PointEstimateLogRatio", 0.0))
+                lower_log_ratio = float(confidence.get("LowerBoundLogRatio", 0.0))
+                upper_log_ratio = float(confidence.get("UpperBoundLogRatio", 0.0))
+                if estimator_kind == 1 and any(
+                    value != 0.0
+                    for value in (point_log_ratio, lower_log_ratio, upper_log_ratio)
+                ):
+                    raise RenderContractError(
+                        f"{context}.FinalDecision legacy percent interval must not expose realized log-ratio values."
+                    )
+                if estimator_kind == 1 and int(confidence.get("RandomSeed", 0)) != 0:
+                    raise RenderContractError(
+                        f"{context}.FinalDecision migrated legacy interval must not invent a bootstrap seed."
+                    )
+                if estimator_kind in (2, 3) and (
+                    int(confidence.get("RandomSeed", 0)) == 0
+                    or
+                    not all(
+                        math.isfinite(value)
+                        for value in (point_log_ratio, lower_log_ratio, upper_log_ratio)
+                    )
+                    or lower_log_ratio > upper_log_ratio
+                ):
+                    raise RenderContractError(
+                        f"{context}.FinalDecision confidence interval has invalid log-ratio bounds."
+                    )
+                if estimator_kind in (2, 3) and not all(
+                    math.isclose(actual, expected, rel_tol=1e-9, abs_tol=1e-9)
+                    for actual, expected in (
+                        (point_percent, (1.0 - math.exp(point_log_ratio)) * 100.0),
+                        (lower_percent, (1.0 - math.exp(upper_log_ratio)) * 100.0),
+                        (upper_percent, (1.0 - math.exp(lower_log_ratio)) * 100.0),
+                    )
+                ):
+                    raise RenderContractError(
+                        f"{context}.FinalDecision confidence interval has inconsistent percentage transforms."
+                    )
+            elif (
+                int(confidence.get("SchemaVersion", 0)) != 0
+                or estimator_kind != 0
+                or has_log_ratio_estimate
+                or float(confidence.get("ConfidenceLevel", 0.0)) != 0.0
+                or int(confidence.get("RandomSeed", 0)) != 0
+                or bool(confidence.get("Estimand"))
+                or bool(confidence.get("ResamplingUnit"))
+                or any(
+                    float(confidence.get(field, 0.0)) != 0.0
+                    for field in (
+                        "PointEstimateLogRatio",
+                        "LowerBoundLogRatio",
+                        "UpperBoundLogRatio",
+                        "PointEstimatePercent",
+                        "LowerBoundPercent",
+                        "UpperBoundPercent",
+                    )
+                )
+            ):
+                raise RenderContractError(
+                    f"{context}.FinalDecision absent confidence interval declares realized estimator metadata."
+                )
         else:
             confidence_iterations = int(confidence.get("Iterations", 0))
             evidence_scope_name = "scope unspecified (schema 2)"
             confidence_resampling_unit = "schema-2 bootstrap"
+            estimator_kind = 0
+            has_log_ratio_estimate = False
         uncertainty_presentation = (
             f"{confidence_resampling_unit} CI · {evidence_scope_name}"
             if confidence_iterations > 0
@@ -357,6 +484,14 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
                 "ConfidenceLowerPercent": float(confidence.get("LowerBoundPercent", 0.0)),
                 "ConfidenceUpperPercent": float(confidence.get("UpperBoundPercent", 0.0)),
                 "ConfidenceResamplingUnit": confidence_resampling_unit,
+                "ConfidenceEstimatorKind": estimator_kind,
+                "ConfidenceEstimatorName": ESTIMATOR_NAMES.get(
+                    estimator_kind,
+                    "no realized estimator"
+                    if schema >= 3
+                    else "schema-2 estimator unspecified",
+                ),
+                "HasLogRatioEstimate": has_log_ratio_estimate,
                 "EvidenceScopeName": evidence_scope_name,
                 "UncertaintyPresentation": uncertainty_presentation,
                 "Reason": str(_required(decision, "Reason", context)),
@@ -395,6 +530,9 @@ def decision_snapshot(model: dict[str, Any]) -> list[dict[str, Any]]:
             "ConfidenceLowerPercent": scenario["ConfidenceLowerPercent"],
             "ConfidenceUpperPercent": scenario["ConfidenceUpperPercent"],
             "ConfidenceResamplingUnit": scenario["ConfidenceResamplingUnit"],
+            "ConfidenceEstimatorKind": scenario["ConfidenceEstimatorKind"],
+            "ConfidenceEstimatorName": scenario["ConfidenceEstimatorName"],
+            "HasLogRatioEstimate": scenario["HasLogRatioEstimate"],
             "EvidenceScope": scenario["EvidenceScopeName"],
             "UncertaintyPresentation": scenario["UncertaintyPresentation"],
         }

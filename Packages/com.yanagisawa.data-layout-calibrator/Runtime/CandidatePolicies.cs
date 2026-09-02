@@ -35,6 +35,33 @@ namespace Yanagisawa.DataLayoutCalibrator
         HoldoutConfirmation = 1,
     }
 
+    public enum BootstrapEstimatorKind
+    {
+        Unspecified = 0,
+        LegacyIndependentPercent = 1,
+        PairedBlockLogRatio = 2,
+        ProcessHierarchicalLogRatio = 3,
+    }
+
+    internal static class ProtocolIdentifier
+    {
+        public static bool IsCanonical(string value)
+        {
+            return !string.IsNullOrWhiteSpace(value) &&
+                   string.Equals(value, value.Trim(), StringComparison.Ordinal);
+        }
+
+        public static void RequireCanonical(string value, string parameterName, string description)
+        {
+            if (!IsCanonical(value))
+            {
+                throw new ArgumentException(
+                    $"{description} must be non-empty and have no surrounding whitespace.",
+                    parameterName);
+            }
+        }
+    }
+
     [Serializable]
     public struct LayoutPolicy : IEquatable<LayoutPolicy>
     {
@@ -49,8 +76,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             int alignmentBytes = 0,
             int paddingBytes = 0)
         {
-            if (string.IsNullOrWhiteSpace(policyId))
-                throw new ArgumentException("A layout policy ID is required.", nameof(policyId));
+            ProtocolIdentifier.RequireCanonical(policyId, nameof(policyId), "Layout policy ID");
             if (blockWidth <= 0)
                 throw new ArgumentOutOfRangeException(nameof(blockWidth));
             if (alignmentBytes < 0)
@@ -117,8 +143,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             KernelControlFlow controlFlow,
             int vectorWidth = 1)
         {
-            if (string.IsNullOrWhiteSpace(policyId))
-                throw new ArgumentException("A kernel policy ID is required.", nameof(policyId));
+            ProtocolIdentifier.RequireCanonical(policyId, nameof(policyId), "Kernel policy ID");
             if (vectorWidth <= 0)
                 throw new ArgumentOutOfRangeException(nameof(vectorWidth));
 
@@ -160,8 +185,7 @@ namespace Yanagisawa.DataLayoutCalibrator
 
         public BatchPolicy(string policyId, int logicalBatchSize)
         {
-            if (string.IsNullOrWhiteSpace(policyId))
-                throw new ArgumentException("A batch policy ID is required.", nameof(policyId));
+            ProtocolIdentifier.RequireCanonical(policyId, nameof(policyId), "Batch policy ID");
             if (logicalBatchSize <= 0)
                 throw new ArgumentOutOfRangeException(nameof(logicalBatchSize));
 
@@ -205,8 +229,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             int temporalBlockTicks = 1,
             bool semanticsPermitReordering = false)
         {
-            if (string.IsNullOrWhiteSpace(policyId))
-                throw new ArgumentException("An execution policy ID is required.", nameof(policyId));
+            ProtocolIdentifier.RequireCanonical(policyId, nameof(policyId), "Execution policy ID");
             if (temporalBlockTicks <= 0)
                 throw new ArgumentOutOfRangeException(nameof(temporalBlockTicks));
             if (topology == ExecutionTopology.TemporalBlock &&

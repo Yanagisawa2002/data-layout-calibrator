@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import json
+import math
 import sys
 import tempfile
 import unittest
@@ -80,7 +81,15 @@ def make_schema3(suite: dict) -> dict:
         }
         interval = scenario["FinalDecision"]["ImprovementConfidenceInterval"]
         interval["SchemaVersion"] = 1
+        interval["EstimatorKind"] = 2
+        interval["HasLogRatioEstimate"] = True
+        interval["RandomSeed"] = 1
+        interval["Estimand"] = "log(candidate_amortized_p95 / baseline_amortized_p95)"
         interval["ResamplingUnit"] = "paired measurement block"
+        interval["PointEstimateLogRatio"] = math.log(0.9)
+        interval["LowerBoundLogRatio"] = math.log(0.83)
+        interval["UpperBoundLogRatio"] = math.log(1.01)
+        interval["PointEstimatePercent"] = 10.0
         for result in scenario["CalibrationResults"]:
             result["ScenarioId"] = scenario["Scenario"]["ScenarioId"]
             result["ScenarioContractVersion"] = scenario["Scenario"]["ContractVersion"]
@@ -167,6 +176,43 @@ class FixedDecisionRendererTests(unittest.TestCase):
         self.assertEqual(
             "paired measurement block", scenario["ConfidenceResamplingUnit"]
         )
+        self.assertEqual("paired-block log-ratio", scenario["ConfidenceEstimatorName"])
+        self.assertTrue(scenario["HasLogRatioEstimate"])
+
+    def test_schema3_legacy_percent_interval_cannot_claim_log_ratio_values(self) -> None:
+        suite = fixed_suite()
+        make_schema3(suite)
+        interval = suite["Scenarios"][0]["FinalDecision"][
+            "ImprovementConfidenceInterval"
+        ]
+        interval["EstimatorKind"] = 1
+        interval["HasLogRatioEstimate"] = False
+        interval["RandomSeed"] = 0
+        interval["Estimand"] = "schema2 independent composite-P95 improvement percent"
+        interval["PointEstimateLogRatio"] = 0.0
+        interval["LowerBoundLogRatio"] = 0.0
+        interval["UpperBoundLogRatio"] = 0.0
+
+        model = build_render_model(suite)
+        self.assertEqual(
+            "legacy independent percent",
+            model["Scenarios"][0]["ConfidenceEstimatorName"],
+        )
+        self.assertFalse(model["Scenarios"][0]["HasLogRatioEstimate"])
+
+        interval["PointEstimateLogRatio"] = -0.1
+        with self.assertRaisesRegex(RenderContractError, "must not expose"):
+            build_render_model(suite)
+
+    def test_schema3_paired_interval_requires_log_ratio_provenance(self) -> None:
+        suite = fixed_suite()
+        make_schema3(suite)
+        suite["Scenarios"][0]["FinalDecision"]["ImprovementConfidenceInterval"][
+            "HasLogRatioEstimate"
+        ] = False
+
+        with self.assertRaisesRegex(RenderContractError, "inconsistent log-ratio"):
+            build_render_model(suite)
 
     def test_schema3_without_interval_is_labeled_descriptive_only(self) -> None:
         suite = fixed_suite()
@@ -175,7 +221,19 @@ class FixedDecisionRendererTests(unittest.TestCase):
             "ImprovementConfidenceInterval"
         ]
         interval["Iterations"] = 0
+        interval["SchemaVersion"] = 0
+        interval["EstimatorKind"] = 0
+        interval["HasLogRatioEstimate"] = False
+        interval["ConfidenceLevel"] = 0.0
+        interval["RandomSeed"] = 0
+        interval["Estimand"] = ""
         interval["ResamplingUnit"] = ""
+        interval["PointEstimateLogRatio"] = 0.0
+        interval["LowerBoundLogRatio"] = 0.0
+        interval["UpperBoundLogRatio"] = 0.0
+        interval["PointEstimatePercent"] = 0.0
+        interval["LowerBoundPercent"] = 0.0
+        interval["UpperBoundPercent"] = 0.0
 
         model = build_render_model(suite)
 
@@ -183,6 +241,20 @@ class FixedDecisionRendererTests(unittest.TestCase):
             "descriptive only (no inferential CI) · single Player",
             model["Scenarios"][0]["UncertaintyPresentation"],
         )
+        self.assertEqual(
+            "no realized estimator",
+            model["Scenarios"][0]["ConfidenceEstimatorName"],
+        )
+
+    def test_schema3_whitespace_candidate_identity_is_rejected(self) -> None:
+        suite = fixed_suite()
+        make_schema3(suite)
+        suite["Scenarios"][0]["CalibrationResults"][0]["Candidate"][
+            "CandidateId"
+        ] = " AoS-b64"
+
+        with self.assertRaisesRegex(RenderContractError, "surrounding whitespace"):
+            build_render_model(suite)
 
     def test_schema3_mismatched_scenario_contract_is_rejected(self) -> None:
         suite = fixed_suite()

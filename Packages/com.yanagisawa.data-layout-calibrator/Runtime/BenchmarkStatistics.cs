@@ -161,7 +161,8 @@ namespace Yanagisawa.DataLayoutCalibrator
                 iterations,
                 confidenceLevel,
                 NonZeroBootstrapSeed(seed),
-                "paired measurement block");
+                "paired measurement block",
+                BootstrapEstimatorKind.PairedBlockLogRatio);
         }
 
         /// <summary>
@@ -279,7 +280,8 @@ namespace Yanagisawa.DataLayoutCalibrator
                     iterations,
                     confidenceLevel,
                     NonZeroBootstrapSeed(seed),
-                    "Player process, then paired measurement block"),
+                    "Player process, then paired measurement block",
+                    BootstrapEstimatorKind.ProcessHierarchicalLogRatio),
             };
         }
 
@@ -289,7 +291,8 @@ namespace Yanagisawa.DataLayoutCalibrator
             int iterations,
             double confidenceLevel,
             uint seed,
-            string resamplingUnit)
+            string resamplingUnit,
+            BootstrapEstimatorKind estimatorKind)
         {
             HeapSort(logRatioEstimates, logRatioEstimates.Length);
             double tail = (1d - confidenceLevel) * 0.5d;
@@ -303,7 +306,9 @@ namespace Yanagisawa.DataLayoutCalibrator
                 1d - tail);
             return new BootstrapConfidenceInterval
             {
-                SchemaVersion = 1,
+                SchemaVersion = BootstrapConfidenceInterval.CurrentSchemaVersion,
+                EstimatorKind = estimatorKind,
+                HasLogRatioEstimate = true,
                 Iterations = iterations,
                 ConfidenceLevel = confidenceLevel,
                 RandomSeed = seed,
@@ -327,6 +332,8 @@ namespace Yanagisawa.DataLayoutCalibrator
             if (candidate == null)
                 throw new ArgumentNullException(nameof(candidate));
             ValidateComparisonContract(baseline, candidate);
+            ValidateSampleMetadata(baseline, "baseline");
+            ValidateSampleMetadata(candidate, "candidate");
             if (baseline.BoundaryCost.LifetimeTicks <= 0 ||
                 candidate.BoundaryCost.LifetimeTicks <= 0 ||
                 baseline.BoundaryCost.LifetimeTicks != candidate.BoundaryCost.LifetimeTicks)
@@ -373,6 +380,12 @@ namespace Yanagisawa.DataLayoutCalibrator
             LayoutBenchmarkResult baseline,
             LayoutBenchmarkResult candidate)
         {
+            if (baseline.SampleSchemaVersion != LayoutBenchmarkResult.CurrentSampleSchemaVersion ||
+                candidate.SampleSchemaVersion != LayoutBenchmarkResult.CurrentSampleSchemaVersion)
+            {
+                throw new ArgumentException(
+                    "Paired candidates require the current sample schema.");
+            }
             if (string.IsNullOrWhiteSpace(baseline.ScenarioId) ||
                 !string.Equals(baseline.ScenarioId, candidate.ScenarioId, StringComparison.Ordinal) ||
                 baseline.ScenarioContractVersion <= 0 ||
@@ -401,6 +414,51 @@ namespace Yanagisawa.DataLayoutCalibrator
             {
                 throw new ArgumentException(
                     "Paired inference requires one tuned AoS baseline and one distinct non-baseline candidate.");
+            }
+        }
+
+        private static void ValidateSampleMetadata(LayoutBenchmarkResult result, string role)
+        {
+            ValidateSeriesMetadata(
+                result.ResidentSamplesMillisecondsPerTick,
+                result.ResidentBlockIds,
+                result.ResidentOrderPositions,
+                role,
+                "resident");
+            ValidateSeriesMetadata(
+                result.IngressSamplesMilliseconds,
+                result.IngressBlockIds,
+                result.IngressOrderPositions,
+                role,
+                "ingress");
+            ValidateSeriesMetadata(
+                result.ExportSamplesMilliseconds,
+                result.ExportBlockIds,
+                result.ExportOrderPositions,
+                role,
+                "export");
+        }
+
+        private static void ValidateSeriesMetadata(
+            double[] samples,
+            int[] blockIds,
+            int[] orderPositions,
+            string role,
+            string component)
+        {
+            if (samples == null || blockIds == null || orderPositions == null ||
+                blockIds.Length != samples.Length || orderPositions.Length != samples.Length)
+            {
+                throw new ArgumentException(
+                    $"The {role} {component} samples require matching block IDs and order positions.");
+            }
+            for (int index = 0; index < samples.Length; index++)
+            {
+                if (blockIds[index] < 0 || orderPositions[index] < -1)
+                {
+                    throw new ArgumentException(
+                        $"The {role} {component} sample metadata contains an invalid value.");
+                }
             }
         }
 
@@ -458,12 +516,6 @@ namespace Yanagisawa.DataLayoutCalibrator
             }
 
             var map = new int[baselineLength];
-            if (baselineBlockIds == null && candidateBlockIds == null)
-            {
-                for (int index = 0; index < map.Length; index++)
-                    map[index] = index;
-                return map;
-            }
             if (baselineBlockIds == null || candidateBlockIds == null ||
                 baselineBlockIds.Length != baselineLength ||
                 candidateBlockIds.Length != candidateLength)

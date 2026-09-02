@@ -20,6 +20,9 @@ namespace Yanagisawa.DataLayoutCalibrator
     [Serializable]
     public struct CandidateDescriptor : IEquatable<CandidateDescriptor>
     {
+        public const int LegacyPolicySchemaVersion = 0;
+        public const int CurrentPolicySchemaVersion = 1;
+
         public int PolicySchemaVersion;
         public string CandidateId;
         public string LayoutId;
@@ -50,10 +53,11 @@ namespace Yanagisawa.DataLayoutCalibrator
             string displayName = null,
             string candidateId = null)
         {
-            if (string.IsNullOrWhiteSpace(layoutId))
-                throw new ArgumentException("Layout ID is required.", nameof(layoutId));
+            ProtocolIdentifier.RequireCanonical(layoutId, nameof(layoutId), "Layout ID");
             if (logicalBatchSize <= 0)
                 throw new ArgumentOutOfRangeException(nameof(logicalBatchSize));
+            if (candidateId != null && candidateId.Length > 0)
+                ProtocolIdentifier.RequireCanonical(candidateId, nameof(candidateId), "Candidate ID");
 
             LayoutId = layoutId;
             LogicalBatchSize = logicalBatchSize;
@@ -63,7 +67,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             CandidateId = string.IsNullOrWhiteSpace(candidateId)
                 ? $"{layoutId}-b{logicalBatchSize}"
                 : candidateId;
-            PolicySchemaVersion = 1;
+            PolicySchemaVersion = CurrentPolicySchemaVersion;
             Layout = LayoutPolicy.FromLegacy(layoutId);
             Kernel = KernelPolicy.LegacyUnspecified;
             Batch = BatchPolicy.JobBatch(logicalBatchSize);
@@ -88,8 +92,10 @@ namespace Yanagisawa.DataLayoutCalibrator
                 throw new ArgumentException("A positive batch policy is required.", nameof(batch));
             if (!execution.IsSpecified)
                 throw new ArgumentException("An execution policy is required.", nameof(execution));
+            if (candidateId != null && candidateId.Length > 0)
+                ProtocolIdentifier.RequireCanonical(candidateId, nameof(candidateId), "Candidate ID");
 
-            PolicySchemaVersion = 1;
+            PolicySchemaVersion = CurrentPolicySchemaVersion;
             Layout = layout;
             Kernel = kernel;
             Batch = batch;
@@ -124,25 +130,47 @@ namespace Yanagisawa.DataLayoutCalibrator
 
         public CandidateDescriptor NormalizePolicies()
         {
+            if (PolicySchemaVersion == CurrentPolicySchemaVersion)
+            {
+                ValidateFactorConsistency();
+                return this;
+            }
+            if (PolicySchemaVersion != LegacyPolicySchemaVersion)
+            {
+                throw new InvalidOperationException(
+                    $"Unsupported candidate policy schema {PolicySchemaVersion}.");
+            }
+
             CandidateDescriptor normalized = this;
-            normalized.PolicySchemaVersion = 1;
+            normalized.PolicySchemaVersion = CurrentPolicySchemaVersion;
             normalized.Layout = EffectiveLayout;
             normalized.Kernel = EffectiveKernel;
             normalized.Batch = EffectiveBatch;
             normalized.Execution = EffectiveExecution;
+            normalized.ValidateFactorConsistency();
             return normalized;
         }
 
         public void ValidateFactorConsistency()
         {
-            if (string.IsNullOrWhiteSpace(CandidateId))
+            if (PolicySchemaVersion != CurrentPolicySchemaVersion)
+                throw new InvalidOperationException($"Unsupported candidate policy schema {PolicySchemaVersion}.");
+            if (!ProtocolIdentifier.IsCanonical(CandidateId))
                 throw new InvalidOperationException("CandidateId is the required canonical candidate identity.");
-            if (string.IsNullOrWhiteSpace(LayoutId) || LogicalBatchSize <= 0)
+            if (!ProtocolIdentifier.IsCanonical(LayoutId) || LogicalBatchSize <= 0)
                 throw new InvalidOperationException("Legacy layout and logical-batch compatibility fields are required.");
-            LayoutPolicy layout = EffectiveLayout;
-            KernelPolicy kernel = EffectiveKernel;
-            BatchPolicy batch = EffectiveBatch;
-            ExecutionPolicy execution = EffectiveExecution;
+            LayoutPolicy layout = Layout;
+            KernelPolicy kernel = Kernel;
+            BatchPolicy batch = Batch;
+            ExecutionPolicy execution = Execution;
+            if (!ProtocolIdentifier.IsCanonical(layout.PolicyId) ||
+                !ProtocolIdentifier.IsCanonical(kernel.PolicyId) ||
+                !ProtocolIdentifier.IsCanonical(batch.PolicyId) ||
+                !ProtocolIdentifier.IsCanonical(execution.PolicyId))
+            {
+                throw new InvalidOperationException(
+                    "Policy IDs must be non-empty and have no surrounding whitespace.");
+            }
             if (!string.Equals(LayoutId, layout.PolicyId, StringComparison.Ordinal))
                 throw new InvalidOperationException("LayoutId must match Layout.PolicyId.");
             if (layout.BlockWidth <= 0 || layout.AlignmentBytes < 0 || layout.PaddingBytes < 0)
@@ -234,7 +262,11 @@ namespace Yanagisawa.DataLayoutCalibrator
     [Serializable]
     public struct BootstrapConfidenceInterval
     {
+        public const int CurrentSchemaVersion = 1;
+
         public int SchemaVersion;
+        public BootstrapEstimatorKind EstimatorKind;
+        public bool HasLogRatioEstimate;
         public int Iterations;
         public double ConfidenceLevel;
         public uint RandomSeed;
@@ -251,19 +283,29 @@ namespace Yanagisawa.DataLayoutCalibrator
     [Serializable]
     public sealed class SamplingDesignDescriptor
     {
-        public int SchemaVersion = 1;
+        public const int CurrentSchemaVersion = 1;
+
+        public int SchemaVersion = CurrentSchemaVersion;
         public MeasurementOrderKind CandidateOrder;
         public string PairingUnit;
         public EvidenceScope EvidenceScope;
         public bool CalibrationTunesCandidates;
         public bool HoldoutRetuningPermitted;
+        /// <summary>
+        /// True only for an in-memory schema-2 migration. Missing historical
+        /// phase/count fields remain unknown and are never synthesized.
+        /// </summary>
+        public bool ReconstructedFromSchema2;
         public string UncertaintyDescription;
     }
 
     [Serializable]
     public sealed class LayoutBenchmarkResult
     {
-        public int SampleSchemaVersion = 1;
+        public const int LegacySampleSchemaVersion = 0;
+        public const int CurrentSampleSchemaVersion = 1;
+
+        public int SampleSchemaVersion = CurrentSampleSchemaVersion;
         public string ScenarioId;
         public int ScenarioContractVersion;
         public BenchmarkPhase Phase;
@@ -317,7 +359,9 @@ namespace Yanagisawa.DataLayoutCalibrator
     [Serializable]
     public sealed class ProcessPairedBenchmarkResult
     {
-        public int SchemaVersion = 1;
+        public const int CurrentSchemaVersion = 1;
+
+        public int SchemaVersion = CurrentSchemaVersion;
         public string ProcessId;
         public string DeviceId;
         public LayoutBenchmarkResult Baseline;

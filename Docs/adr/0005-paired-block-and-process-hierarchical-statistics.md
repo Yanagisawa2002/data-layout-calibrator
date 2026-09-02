@@ -44,8 +44,10 @@ This branch proposes top-level schema 3 plus sampling/bootstrap sub-schema 1. Mi
 
 - Schema-2 sample-array indices are reconstructed as block IDs because the schema-2 engine contract stored one value per candidate per shuffled round at that index.
 - Historical within-block order was not serialized, so migrated order positions are `-1` (unknown).
-- Historical confidence intervals remain labeled as independent-resampling schema-2 estimates. Migration does not relabel them paired, invent a bootstrap seed, or recompute checked-in evidence.
+- Historical confidence intervals retain their stored percentage point and bounds and are marked `LegacyIndependentPercent`. They explicitly set `HasLogRatioEstimate` to false and keep the log-ratio fields at zero, so migration cannot make an independent percent interval appear to contain a realized log-ratio estimate. Migration does not relabel them paired, invent a bootstrap seed, or recompute checked-in evidence.
 - Historical evidence files remain byte-for-byte unchanged.
+
+Only schema-2 profiles may be reconstructed. Migration marks their sampling design with `ReconstructedFromSchema2`; this preserves legitimately absent historical phase/count fields as unknown instead of inventing values. A native schema-3 profile is validated without mutation: it must already declare sample sub-schema 1, policy sub-schema 1, a non-empty calibration result set with matching calibration phase and element count, complete block/order metadata for every recorded sample series, consistent scenario identity, and an estimator marker matching its interval fields. Any holdout results must match the holdout phase/count and the exact baseline and selected-winner descriptors frozen by `CalibrationDecision`; a fallback `FinalDecision` may still select the baseline. Unknown nested versions and partially present metadata fail closed. Sampling designs must explicitly declare calibration tuning, no holdout retuning, and their uncertainty interpretation.
 
 ## Consequences
 

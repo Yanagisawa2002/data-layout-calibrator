@@ -49,6 +49,43 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
         }
 
         [Test]
+        public void CandidateDescriptor_RejectsUnsupportedPolicySchema()
+        {
+            var descriptor = new CandidateDescriptor(
+                "AoS",
+                64,
+                isBaseline: true,
+                candidateId: "baseline");
+            descriptor.PolicySchemaVersion = 99;
+
+            Assert.Throws<InvalidOperationException>(() => descriptor.NormalizePolicies());
+            Assert.Throws<InvalidOperationException>(descriptor.ValidateFactorConsistency);
+        }
+
+        [Test]
+        public void CandidateDescriptor_RejectsSurroundingWhitespaceInProtocolIds()
+        {
+            Assert.Throws<ArgumentException>(() =>
+                new CandidateDescriptor(" AoS", 64, isBaseline: true));
+            Assert.Throws<ArgumentException>(() =>
+                new CandidateDescriptor("AoS", 64, isBaseline: true, candidateId: " baseline"));
+
+            var descriptor = new CandidateDescriptor(
+                "AoS",
+                64,
+                isBaseline: true,
+                candidateId: "baseline");
+            descriptor.CandidateId = "baseline ";
+            Assert.Throws<InvalidOperationException>(descriptor.ValidateFactorConsistency);
+
+            descriptor.CandidateId = "baseline";
+            LayoutPolicy layout = descriptor.Layout;
+            layout.PolicyId = "AoS ";
+            descriptor.Layout = layout;
+            Assert.Throws<InvalidOperationException>(descriptor.ValidateFactorConsistency);
+        }
+
+        [Test]
         public void TemporalBlock_RequiresExplicitReorderableSemantics()
         {
             Assert.Throws<ArgumentException>(() => ExecutionPolicy.TemporalBlock(4, false));
@@ -152,6 +189,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
 
             Assert.That(interval.Estimand, Does.StartWith("log(candidate_amortized_p95"));
             Assert.That(interval.ResamplingUnit, Is.EqualTo("paired measurement block"));
+            Assert.That(interval.EstimatorKind, Is.EqualTo(BootstrapEstimatorKind.PairedBlockLogRatio));
+            Assert.That(interval.HasLogRatioEstimate, Is.True);
             Assert.That(interval.PointEstimateLogRatio, Is.EqualTo(Math.Log(0.8d)).Within(1e-12));
             Assert.That(interval.PointEstimatePercent, Is.EqualTo(20d).Within(1e-9));
             Assert.That(interval.LowerBoundPercent, Is.EqualTo(20d).Within(1e-9));
@@ -206,6 +245,34 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
         }
 
         [Test]
+        public void PairedBootstrap_RejectsUnsupportedSampleSchema()
+        {
+            LayoutBenchmarkResult baseline = CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 });
+            LayoutBenchmarkResult candidate = CreateResult(
+                "candidate", false, new[] { 8d, 9d, 10d }, new[] { 0, 1, 2 });
+            candidate.SampleSchemaVersion = 99;
+
+            Assert.Throws<ArgumentException>(() =>
+                BenchmarkStatistics.BootstrapAmortizedP95Improvement(
+                    baseline, candidate, 500, 0.95d, 1u));
+        }
+
+        [Test]
+        public void PairedBootstrap_RejectsMissingCurrentSampleMetadata()
+        {
+            LayoutBenchmarkResult baseline = CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 });
+            LayoutBenchmarkResult candidate = CreateResult(
+                "candidate", false, new[] { 8d, 9d, 10d }, new[] { 0, 1, 2 });
+            candidate.ResidentOrderPositions = null;
+
+            Assert.Throws<ArgumentException>(() =>
+                BenchmarkStatistics.BootstrapAmortizedP95Improvement(
+                    baseline, candidate, 500, 0.95d, 1u));
+        }
+
+        [Test]
         public void ProcessHierarchy_ResamplesProcessesAndBlocksOnOneDevice()
         {
             ProcessPairedBenchmarkResult[] processes =
@@ -227,6 +294,9 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             Assert.That(first.DeviceCount, Is.EqualTo(1));
             Assert.That(first.ImprovementConfidenceInterval.ResamplingUnit,
                 Is.EqualTo("Player process, then paired measurement block"));
+            Assert.That(first.ImprovementConfidenceInterval.EstimatorKind,
+                Is.EqualTo(BootstrapEstimatorKind.ProcessHierarchicalLogRatio));
+            Assert.That(first.ImprovementConfidenceInterval.HasLogRatioEstimate, Is.True);
             Assert.That(second.ImprovementConfidenceInterval.LowerBoundLogRatio,
                 Is.EqualTo(first.ImprovementConfidenceInterval.LowerBoundLogRatio));
             Assert.That(second.ImprovementConfidenceInterval.UpperBoundLogRatio,
@@ -325,6 +395,31 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
         }
 
         [Test]
+        public void CalibrationNegativeInterval_CannotOptimizeFromContradictorySummary()
+        {
+            int[] blocks = { 0, 1, 2, 3, 4 };
+            LayoutBenchmarkResult baseline = CreateResult(
+                "baseline", true, new[] { 10d, 10d, 10d, 10d, 10d }, blocks);
+            LayoutBenchmarkResult candidate = CreateResult(
+                "candidate", false, new[] { 12d, 12d, 12d, 12d, 12d }, blocks);
+            LatencySummary contradictorySummary = candidate.AmortizedLatency;
+            contradictorySummary.P95Milliseconds = 8d;
+            candidate.AmortizedLatency = contradictorySummary;
+
+            LayoutSelectionDecision decision = LayoutSelector.SelectCalibration(
+                new[] { baseline, candidate },
+                2,
+                minimumImprovementPercent: 10d,
+                bootstrapIterations: 500,
+                bootstrapSeed: 0x31415926u);
+
+            Assert.That(decision.ImprovementPercent, Is.EqualTo(20d).Within(1e-9));
+            Assert.That(decision.ImprovementConfidenceInterval.UpperBoundPercent, Is.LessThan(0d));
+            Assert.That(decision.Status, Is.EqualTo(LayoutSelectionStatus.Inconclusive));
+            Assert.That(decision.SelectedCandidate.CandidateId, Is.EqualTo("baseline"));
+        }
+
+        [Test]
         public void HoldoutFreeze_ContainsOnlyFrozenBaselineAndWinner()
         {
             var calibration = new LayoutSelectionDecision
@@ -387,6 +482,14 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                     BaselineCandidate = legacyCandidate,
                     SelectedCandidate = legacyCandidate,
                     BestMeasuredCandidate = legacyCandidate,
+                    ImprovementConfidenceInterval = new BootstrapConfidenceInterval
+                    {
+                        Iterations = 500,
+                        ConfidenceLevel = 0.95d,
+                        PointEstimatePercent = 10d,
+                        LowerBoundPercent = -2d,
+                        UpperBoundPercent = 17d,
+                    },
                 },
             };
 
@@ -401,8 +504,254 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             CollectionAssert.AreEqual(new[] { -1, -1, -1 }, profile.CalibrationResults[0].ResidentOrderPositions);
             Assert.That(profile.SamplingDesign.CandidateOrder,
                 Is.EqualTo(MeasurementOrderKind.RandomizedBlocked));
+            Assert.That(profile.SamplingDesign.ReconstructedFromSchema2, Is.True);
             Assert.That(profile.SamplingDesign.UncertaintyDescription,
                 Does.Contain("do not retroactively change"));
+            Assert.That(profile.ElementCount, Is.Zero);
+            Assert.That(profile.CalibrationResults[0].ElementCount, Is.EqualTo(1));
+            BootstrapConfidenceInterval migratedInterval =
+                profile.FinalDecision.ImprovementConfidenceInterval;
+            Assert.That(migratedInterval.EstimatorKind,
+                Is.EqualTo(BootstrapEstimatorKind.LegacyIndependentPercent));
+            Assert.That(migratedInterval.HasLogRatioEstimate, Is.False);
+            Assert.That(migratedInterval.PointEstimateLogRatio, Is.Zero);
+            Assert.That(migratedInterval.LowerBoundLogRatio, Is.Zero);
+            Assert.That(migratedInterval.UpperBoundLogRatio, Is.Zero);
+            Assert.That(migratedInterval.PointEstimatePercent, Is.EqualTo(10d));
+            Assert.That(migratedInterval.LowerBoundPercent, Is.EqualTo(-2d));
+            Assert.That(migratedInterval.UpperBoundPercent, Is.EqualTo(17d));
+        }
+
+        [Test]
+        public void SuiteUpgrade_RejectsNullAndUnsupportedNestedScenarios()
+        {
+            var nullSuite = new CalibrationSuiteProfile
+            {
+                SchemaVersion = 3,
+                Scenarios = new ScenarioCalibrationProfile[] { null },
+            };
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(nullSuite));
+
+            var nested = CreateSchema3Profile(CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 }));
+            nested.SchemaVersion = 99;
+            var mismatchedSuite = new CalibrationSuiteProfile
+            {
+                SchemaVersion = 3,
+                Scenarios = new[] { nested },
+            };
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(mismatchedSuite));
+            Assert.That(mismatchedSuite.SchemaVersion, Is.EqualTo(3));
+            Assert.That(nested.SchemaVersion, Is.EqualTo(99));
+        }
+
+        [Test]
+        public void Schema3Upgrade_IsValidationOnly()
+        {
+            LayoutBenchmarkResult result = CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 });
+            ScenarioCalibrationProfile profile = CreateSchema3Profile(result);
+            int[] residentBlockIds = result.ResidentBlockIds;
+            int[] residentOrderPositions = result.ResidentOrderPositions;
+            SamplingDesignDescriptor samplingDesign = profile.SamplingDesign;
+
+            ScenarioCalibrationProfile upgraded =
+                CalibrationProfileMigration.UpgradeInMemory(profile);
+
+            Assert.That(upgraded, Is.SameAs(profile));
+            Assert.That(result.ResidentBlockIds, Is.SameAs(residentBlockIds));
+            Assert.That(result.ResidentOrderPositions, Is.SameAs(residentOrderPositions));
+            Assert.That(profile.SamplingDesign, Is.SameAs(samplingDesign));
+        }
+
+        [Test]
+        public void Schema3Upgrade_RejectsUnsupportedSampleAndPolicySchemas()
+        {
+            LayoutBenchmarkResult unsupportedSample = CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 });
+            unsupportedSample.SampleSchemaVersion = 99;
+            ScenarioCalibrationProfile sampleProfile = CreateSchema3Profile(unsupportedSample);
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(sampleProfile));
+            Assert.That(unsupportedSample.SampleSchemaVersion, Is.EqualTo(99));
+
+            LayoutBenchmarkResult unsupportedPolicy = CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 });
+            CandidateDescriptor candidate = unsupportedPolicy.Candidate;
+            candidate.PolicySchemaVersion = 99;
+            unsupportedPolicy.Candidate = candidate;
+            ScenarioCalibrationProfile policyProfile = CreateSchema3Profile(unsupportedPolicy);
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(policyProfile));
+            Assert.That(unsupportedPolicy.Candidate.PolicySchemaVersion, Is.EqualTo(99));
+        }
+
+        [Test]
+        public void Schema3Upgrade_RejectsMissingMetadataAndIdentityMismatchWithoutRepair()
+        {
+            LayoutBenchmarkResult missingMetadata = CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 });
+            missingMetadata.ResidentOrderPositions = null;
+            ScenarioCalibrationProfile metadataProfile = CreateSchema3Profile(missingMetadata);
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(metadataProfile));
+            Assert.That(missingMetadata.ResidentOrderPositions, Is.Null);
+
+            LayoutBenchmarkResult mismatchedIdentity = CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 });
+            mismatchedIdentity.ScenarioId = "different-scenario";
+            ScenarioCalibrationProfile identityProfile = CreateSchema3Profile(mismatchedIdentity);
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(identityProfile));
+            Assert.That(mismatchedIdentity.ScenarioId, Is.EqualTo("different-scenario"));
+        }
+
+        [Test]
+        public void Schema3Upgrade_RejectsDecisionCandidateIdentityMismatch()
+        {
+            LayoutBenchmarkResult result = CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 });
+            ScenarioCalibrationProfile profile = CreateSchema3Profile(result);
+            profile.CalibrationDecision = new LayoutSelectionDecision
+            {
+                DecisionStage = DecisionStage.Calibration,
+                Status = LayoutSelectionStatus.Inconclusive,
+                BaselineCandidate = result.Candidate,
+                SelectedCandidate = new CandidateDescriptor(
+                    "SoA", 64, false, candidateId: "baseline"),
+                BestMeasuredCandidate = result.Candidate,
+            };
+
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(profile));
+            Assert.That(profile.CalibrationDecision.SelectedCandidate.LayoutId,
+                Is.EqualTo("SoA"));
+        }
+
+        [Test]
+        public void Schema3Upgrade_RequiresNonEmptyCalibrationResultsWithMatchingPhaseAndCount()
+        {
+            LayoutBenchmarkResult seedResult = CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 });
+            ScenarioCalibrationProfile emptyProfile = CreateSchema3Profile(seedResult);
+            emptyProfile.CalibrationResults = new LayoutBenchmarkResult[0];
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(emptyProfile));
+
+            LayoutBenchmarkResult wrongPhase = CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 });
+            wrongPhase.Phase = BenchmarkPhase.Holdout;
+            ScenarioCalibrationProfile phaseProfile = CreateSchema3Profile(wrongPhase);
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(phaseProfile));
+
+            LayoutBenchmarkResult wrongCount = CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 });
+            ScenarioCalibrationProfile countProfile = CreateSchema3Profile(wrongCount);
+            countProfile.ElementCount = wrongCount.ElementCount + 1;
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(countProfile));
+        }
+
+        [Test]
+        public void Schema3Upgrade_RequiresCompleteSamplingDesignDeclarations()
+        {
+            ScenarioCalibrationProfile missingTuning = CreateSchema3Profile(CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 }));
+            missingTuning.SamplingDesign.CalibrationTunesCandidates = false;
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(missingTuning));
+
+            ScenarioCalibrationProfile missingUncertainty = CreateSchema3Profile(CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 }));
+            missingUncertainty.SamplingDesign.UncertaintyDescription = " ";
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(missingUncertainty));
+        }
+
+        [Test]
+        public void Schema3Upgrade_BindsHoldoutToFrozenCalibrationWinner()
+        {
+            LayoutBenchmarkResult baseline = CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, new[] { 0, 1, 2 });
+            LayoutBenchmarkResult winner = CreateResult(
+                "winner", false, new[] { 8d, 9d, 10d }, new[] { 0, 1, 2 });
+            LayoutBenchmarkResult arbitrary = CreateResult(
+                "arbitrary", false, new[] { 9d, 10d, 11d }, new[] { 0, 1, 2 });
+            ScenarioCalibrationProfile profile = CreateSchema3Profile(baseline);
+            profile.CalibrationResults = new[] { baseline, winner, arbitrary };
+            profile.HoldoutElementCount = 2;
+            profile.CalibrationDecision = new LayoutSelectionDecision
+            {
+                DecisionStage = DecisionStage.Calibration,
+                Status = LayoutSelectionStatus.Optimized,
+                BaselineCandidate = baseline.Candidate,
+                SelectedCandidate = winner.Candidate,
+                BestMeasuredCandidate = winner.Candidate,
+            };
+            profile.FinalDecision = new LayoutSelectionDecision
+            {
+                DecisionStage = DecisionStage.HoldoutConfirmation,
+                Status = LayoutSelectionStatus.Inconclusive,
+                BaselineCandidate = baseline.Candidate,
+                SelectedCandidate = baseline.Candidate,
+                BestMeasuredCandidate = winner.Candidate,
+            };
+            LayoutBenchmarkResult holdoutBaseline = CreateResult(
+                "baseline",
+                true,
+                new[] { 10d, 11d, 12d },
+                new[] { 0, 1, 2 },
+                BenchmarkPhase.Holdout);
+            holdoutBaseline.ElementCount = profile.HoldoutElementCount;
+            LayoutBenchmarkResult holdoutWinner = CreateResult(
+                "winner",
+                false,
+                new[] { 8d, 9d, 10d },
+                new[] { 0, 1, 2 },
+                BenchmarkPhase.Holdout);
+            holdoutWinner.ElementCount = profile.HoldoutElementCount;
+            profile.HoldoutBaselineResult = holdoutBaseline;
+            profile.HoldoutSelectedResult = holdoutWinner;
+
+            Assert.That(CalibrationProfileMigration.UpgradeInMemory(profile),
+                Is.SameAs(profile));
+
+            LayoutBenchmarkResult holdoutArbitrary = CreateResult(
+                "arbitrary",
+                false,
+                new[] { 9d, 10d, 11d },
+                new[] { 0, 1, 2 },
+                BenchmarkPhase.Holdout);
+            holdoutArbitrary.ElementCount = profile.HoldoutElementCount;
+            profile.HoldoutSelectedResult = holdoutArbitrary;
+            LayoutSelectionDecision arbitraryFallback = profile.FinalDecision;
+            arbitraryFallback.BestMeasuredCandidate = arbitrary.Candidate;
+            profile.FinalDecision = arbitraryFallback;
+
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(profile));
+            Assert.That(profile.HoldoutSelectedResult.Candidate.CandidateId,
+                Is.EqualTo("arbitrary"));
+        }
+
+        [Test]
+        public void Schema2Migration_RejectsWrongMetadataInsteadOfOverwritingIt()
+        {
+            LayoutBenchmarkResult result = CreateResult(
+                "baseline", true, new[] { 10d, 11d, 12d }, null);
+            result.SampleSchemaVersion = 0;
+            result.ResidentBlockIds = new[] { 0 };
+            result.ResidentOrderPositions = null;
+            ScenarioCalibrationProfile profile = CreateLegacyProfile(result);
+
+            Assert.Throws<ArgumentException>(() =>
+                CalibrationProfileMigration.UpgradeInMemory(profile));
+            Assert.That(profile.SchemaVersion, Is.EqualTo(2));
+            CollectionAssert.AreEqual(new[] { 0 }, result.ResidentBlockIds);
+            Assert.That(result.ResidentOrderPositions, Is.Null);
         }
 
         private static ProcessPairedBenchmarkResult CreateProcess(
@@ -425,6 +774,61 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 DeviceId = deviceId,
                 Baseline = CreateResult("baseline", true, baselineValues, blocks),
                 Candidate = CreateResult("candidate", false, candidateValues, blocks),
+            };
+        }
+
+        private static ScenarioCalibrationProfile CreateSchema3Profile(
+            LayoutBenchmarkResult result)
+        {
+            return new ScenarioCalibrationProfile
+            {
+                SchemaVersion = 3,
+                Scenario = new ScenarioDescriptor(
+                    "synthetic-statistics-fixture",
+                    "Synthetic statistics fixture",
+                    1,
+                    "Synthetic-only operation"),
+                ElementCount = result.ElementCount,
+                SamplingDesign = new SamplingDesignDescriptor
+                {
+                    CandidateOrder = MeasurementOrderKind.BalancedLatinSquare,
+                    PairingUnit = "complete measurement block",
+                    EvidenceScope = EvidenceScope.SinglePlayer,
+                    CalibrationTunesCandidates = true,
+                    HoldoutRetuningPermitted = false,
+                    UncertaintyDescription = "Synthetic validation fixture.",
+                },
+                CalibrationResults = new[] { result },
+                CalibrationDecision = new LayoutSelectionDecision
+                {
+                    DecisionStage = DecisionStage.Calibration,
+                },
+                FinalDecision = new LayoutSelectionDecision
+                {
+                    DecisionStage = DecisionStage.Calibration,
+                },
+            };
+        }
+
+        private static ScenarioCalibrationProfile CreateLegacyProfile(
+            LayoutBenchmarkResult result)
+        {
+            CandidateDescriptor legacyCandidate = result.Candidate;
+            legacyCandidate.PolicySchemaVersion = 0;
+            legacyCandidate.Layout = default;
+            legacyCandidate.Kernel = default;
+            legacyCandidate.Batch = default;
+            legacyCandidate.Execution = default;
+            result.Candidate = legacyCandidate;
+            return new ScenarioCalibrationProfile
+            {
+                SchemaVersion = 2,
+                Scenario = new ScenarioDescriptor(
+                    "synthetic-statistics-fixture",
+                    "Synthetic statistics fixture",
+                    1,
+                    "Synthetic-only operation"),
+                CalibrationResults = new[] { result },
             };
         }
 
@@ -458,6 +862,9 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 ResidentBlockIds = blockIds == null ? null : (int[])blockIds.Clone(),
                 IngressBlockIds = blockIds == null ? null : (int[])blockIds.Clone(),
                 ExportBlockIds = blockIds == null ? null : (int[])blockIds.Clone(),
+                ResidentOrderPositions = blockIds == null ? null : new int[resident.Length],
+                IngressOrderPositions = blockIds == null ? null : new int[resident.Length],
+                ExportOrderPositions = blockIds == null ? null : new int[resident.Length],
             };
             var scratch = new double[resident.Length];
             result.Latency = BenchmarkStatistics.Calculate(
