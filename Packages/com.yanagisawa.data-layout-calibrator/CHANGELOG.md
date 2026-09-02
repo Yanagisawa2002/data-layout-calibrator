@@ -1,5 +1,23 @@
 # Changelog
 
+## Unreleased — vNext integration foundation
+
+- Added explicit layout, kernel, batch, and execution policies plus native
+  schema-3 validation and in-memory-only schema-2 migration.
+- Added paired-block log-ratio and same-device process-hierarchical statistics,
+  stable regression/tie/inconclusive fallback states, and immutable holdout.
+- Added break-even, advantage-envelope, Pareto, adaptive elimination, and
+  exhaustive-regret audit APIs without weakening final evidence requirements.
+- Added canonical candidate-definition/set hashing and an adapter that reuses the
+  exact scientific bootstrap draws in the envelope.
+- Added bounded generated AoS/SoA/AoSoA storage/codec scaffolds for two sample
+  records and exact deployment profile fingerprint/cache/resolution APIs.
+- Added optional counter capture contracts and the evidence-lab planning and
+  retained-artifact verification foundation. No real provider or hardware
+  evidence is included.
+- Kept version `0.3.0-preview.1`; this is not a release and does not supersede the
+  published schema-2 Player evidence below.
+
 ## 0.3.0-preview.1 — 2026-09-02
 
 - Added an AOT-safe Scenario Registry Source Generator driven by explicit assembly attributes.

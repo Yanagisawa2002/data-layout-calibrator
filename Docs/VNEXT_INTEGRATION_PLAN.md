@@ -1,6 +1,6 @@
 # v0.4-v0.6 integration and release-gate plan
 
-Status: integration baseline established
+Status: integration candidate validated; release gates remain open
 
 Date: 2026-09-02
 
@@ -18,7 +18,7 @@ No Editor test, synthetic fixture, repeated process, or checked-in artifact is
 treated as new Unity Player, hardware-counter, ISA, device, or cross-device
 evidence.
 
-## Baseline inventory
+## Baseline inventory at `6448939`
 
 | Surface | Current responsibility | Primary verification |
 | --- | --- | --- |
@@ -38,25 +38,22 @@ The current fixed suite schema is version 2. Its stable joins are
 stores `LayoutId` and `LogicalBatchSize`. A renderer may copy a frozen decision
 but may not become another selector.
 
-## Ordered integration plan
+## Ordered integration record
 
 Roadmap order is a dependency order, including when implementation work occurs
 in parallel.
 
-| Order | Roadmap item | Incoming branch | Integration gate before the next item |
+| Order | Incoming immutable tip | Merge commit | Gate before next merge |
 | --- | --- | --- | --- |
-| 1 | Layout x Kernel x Execution factor split | `codex/v04-scientific-core` | explicit stable factor IDs, branchless AoS negative control, AoSoA variants, canonical ingress/export/parity/lifetime contract, schema migration path |
-| 2 | Paired / hierarchical statistics | `codex/v04-scientific-core` | deterministic blocked order and paired resampling tests; process/device levels represented honestly; calibration choices frozen before holdout |
-| 3 | Lifetime break-even and advantage envelope | `codex/advantage-envelope` | deterministic break-even CI and immutable envelope whose decisions agree with its serialized cells |
-| 4 | Adaptive elimination and Pareto frontier | `codex/advantage-envelope` | elimination audit trail, exhaustive-or-regret equivalence test, and independent finalist holdout |
-| 5 | Storage / codec Source Generator scaffolds | `codex/v05-generator-profiles` | bounded versioned schema, diagnostics, deterministic output, two distinct consumers, no reflection or invented business semantics |
-| 6 | Profile fingerprint, cache, and resolver | `codex/v05-generator-profiles` | exact-match default, explicit invalidation reasons, corrupt/missing/unsupported tuned-AoS fallback, AOT-safe frozen-profile resolution |
-| 7 | Hardware counters and causal evidence levels | `codex/v06-evidence-lab` | optional failure-isolated provider, overhead/control metadata, raw and derived fields separated, no causal wording above the evidence level |
-| 8 | Multi-device, multi-ISA, multi-workload validation | `codex/v06-evidence-lab` | device identity and independent-process hierarchy preserved; unsupported real-device matrix remains explicitly pending |
+| 1 | `codex/v04-scientific-core` at `5cec65f` | `dfe240d` | Unity 64/64, renderer 13/13, generator 4/4 |
+| 2 | `codex/advantage-envelope` at `13c8ebf` | `f0a1303` | combined Unity 83/83, renderer 22/22 |
+| 3 | `codex/v05-generator-profiles` at `5639b9f` | `dd0a390` | generator 11/11, combined Unity 109/109; schema-3 `Regression` compatibility fixed in `b23cfeb` |
+| 4 | `codex/v06-evidence-lab` at `7812d02` | `9c398aa` | combined Unity 133/133, Evidence Lab 22/22, manifest valid with 0 ready / 18 blocked |
 
-Merge and review order is the table order: scientific core, advantage engine,
-generator/profile work, then evidence lab. Each merge is followed by the tests
-for the affected layer before the next branch is applied.
+Merge and review order was scientific core, advantage engine,
+generator/profile work, then evidence lab. Each merge was pushed only after the
+listed affected-layer gate passed. Integration-owned candidate/uncertainty/artifact
+wiring followed in `135b90d` and passed Unity 139/139 plus renderer 25/25.
 
 ## Shared protocol freeze
 
@@ -80,9 +77,11 @@ for the affected layer before the next branch is applied.
 - Root/package versioning, README, CHANGELOG, ADR, release notes, and historical
   evidence reconciliation are integration-owned to avoid conflicting claims.
 
-The integrator will resolve the final suite schema number, canonical hash byte
-encoding, process/device observation IDs, and whether envelope/profile/counter
-artifacts are embedded or referenced after reviewing all four branch proposals.
+[`ADR 0006`](adr/0006-vnext-integration-protocol.md) resolves the suite and
+artifact schemas, canonical candidate bytes, uncertainty identifiers, decision
+threshold, multiplicity, Pareto, regret, and external-envelope attachment.
+Evidence Lab separately freezes process versus physical-device identity; it
+does not invent an identity source or claim a configured device.
 
 ## Baseline verification
 
@@ -100,15 +99,23 @@ gates, not inferred from the Editor results above.
 
 ## Release gate state
 
-- Automated baseline: passed for core/Samples EditMode, generator, and renderer.
-- Merged deterministic/schema/replay suite: pending worker integration.
-- Windows Mono Release + Burst AOT consumer: pending merged code.
-- Windows IL2CPP Release + Burst AOT consumer: pending merged code.
-- Fresh fixed-result replay and renderer agreement: pending the final schema.
+- Ordered branch integration: passed at the immutable tips and merge commits
+  recorded above.
+- Merged deterministic/schema suite: passed, currently Unity 139/139, generator
+  11/11, fixed-result renderers 25/25, and Evidence Lab 22/22.
+- Windows Mono Release + Burst AOT consumer: passed; required Burst library and
+  job entrypoints were present. Tiny schema-3/profile/scaffold Player audit exited
+  0 and is behavioral only, not performance evidence.
+- Windows IL2CPP Release + Burst AOT consumer: blocked; the installed Unity Editor
+  reports that the selected IL2CPP scripting backend is not installed.
+- Fresh fixed-result replay and renderer agreement: passed on the tiny Mono audit;
+  the renderer input hash and every copied frozen-decision field matched.
 - Counter-enabled supported-platform run: pending a real provider and platform.
 - Real multi-device/ISA/workload matrix: pending available hardware; no substitute
   evidence will be manufactured.
 - README, package documentation, ADR, CHANGELOG, release notes, sensitive-data,
-  third-party authorization, and provenance review: pending final integration.
+  third-party authorization, and provenance review: passed for this integration
+  candidate. Historical evidence and rights files are unchanged; the new matrix
+  manifest is planning-only.
 - Merge to `main`, release tag, and GitHub Release: prohibited until every claimed
   gate actually passes and require a separate explicit release action.

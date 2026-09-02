@@ -1,7 +1,12 @@
 # Data Layout Calibrator contract
 
-Status: Implemented protocol v2
-Result schema: 2
+Published status: protocol/result schema 2 (`v0.3.0-preview.1`)
+
+Unreleased integration status: additive schema 3 foundation
+
+Historical schema-2 artifacts remain immutable. Schema 2 migrates only in
+memory; native schema 3 is validation-only and rejects missing or unknown
+scientific metadata rather than repairing it.
 
 ## Plugin boundary
 
@@ -70,8 +75,15 @@ Ingress and export P95 are intentionally conservative boundary terms. Resident s
 
 - Baseline: lowest amortized-P95 valid AoS batch.
 - Point gate: non-AoS improvement must be at least 10%.
-- Significance gate: independent non-parametric bootstrap of the composite P95 metric; 4,000 iterations and 95% confidence by default.
-- Tie: if the confidence interval lower bound is `<= 0%`, status is `StatisticalTie` and the selected candidate is AoS.
+- Published schema-2 significance gate: independent non-parametric bootstrap of
+  the composite P95 metric; 4,000 iterations and 95% confidence by default.
+- Native schema-3 significance gate: paired measurement-block bootstrap of
+  `log(candidate / baseline)` with explicit block/order metadata; 4,000
+  iterations and 95% confidence by default. Process hierarchy is represented
+  separately and same-device processes are never called multiple devices.
+- Schema-3 outcome: an interval wholly below zero is `Regression`; an interval
+  spanning zero is `StatisticalTie`; a positive interval whose point estimate
+  misses the practical threshold is `Inconclusive`. Every case selects AoS.
 - Holdout: an optimized candidate must repeat point and significance gates on a new seed and non-eight-divisible count.
 - Any parity, allocation, count, or raw-sample failure falls back to AoS or invalidates the result.
 
@@ -79,4 +91,24 @@ Ingress and export P95 are intentionally conservative boundary terms. Resident s
 
 `calibration-suite.json` is the immutable input to any heatmap, dashboard, or GIF. Presentation code may choose axes, formatting, and annotations, but it may not call the selector, recompute `FinalDecision`, substitute a different candidate, or combine incompatible runs.
 
-The gate was satisfied on 2026-09-02 for both included workloads in Mono and IL2CPP Release Players with Burst AOT. The fixed-result renderer records the input SHA-256 and copied decision fields in a manifest; a regression test changes candidate measurements and verifies that the displayed selection remains the one stored in `FinalDecision`.
+The published schema-2 gate was satisfied on 2026-09-02 for both included
+workloads in Mono and IL2CPP Release Players with Burst AOT. That evidence does
+not validate the unreleased schema-3 implementation. The fixed-result renderer
+records the input SHA-256 and copied decision fields in a manifest; a regression
+test changes candidate measurements and verifies that the displayed selection
+remains the one stored in `FinalDecision`.
+
+## Unreleased schema-3 integration
+
+Schema 3 adds explicit layout/kernel/batch/execution policies, paired sample
+metadata, estimator provenance, stable `Inconclusive`, `StatisticalTie`, and
+`Regression` states, and optional external advantage-envelope attachment.
+`CandidateDefinitionProtocol` binds a canonical `CandidateId` to the full
+semantic definition. `ScientificAdvantageEnvelopeAdapter` passes the exact
+paired component-P95 bootstrap draws into the envelope; it requires explicit
+contract and memory-feasibility declarations and never infers them from timing.
+
+An envelope reference is valid only when its artifact SHA, schema, engine,
+scenario contract, candidate set, and measurement schema match. It remains
+external and cannot replace `FinalDecision`. The exact shared rules are frozen
+in [`ADR 0006`](adr/0006-vnext-integration-protocol.md).

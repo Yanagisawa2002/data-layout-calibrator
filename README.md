@@ -20,7 +20,11 @@ The core UPM assembly contains no Particle types. It exposes four plugin boundar
 - `particle-integrate-v2`: AoS, SoA, and explicit eight-lane AoSoA8; batch 32/64/128/256.
 - `transform-export-v1`: AoS and SoA full matrix export; deliberately retained as a negative control.
 
-An assembly-level registration attribute and packaged Roslyn Source Generator create the runtime factory registry as direct constructor calls. The generator is AOT-safe and intentionally narrow: it removes hand-maintained registration without attempting to synthesize layouts or rewrite workload code.
+An assembly-level registration attribute and packaged Roslyn Source Generator create
+the runtime factory registry as direct constructor calls. The unreleased vNext
+generator also emits bounded storage/codec scaffolds for explicitly annotated flat
+records. It still does not rewrite workload kernels, infer semantics, or claim a
+compiler optimization.
 
 ## Frozen decision rule
 
@@ -36,10 +40,13 @@ The baseline is the fastest valid AoS batch, not a deliberately weak default. A 
 1. passes field-level parity and state-hash checks;
 2. allocates 0 managed bytes in resident, ingress, and export samples;
 3. improves amortized P95 by at least 10%;
-4. has a 95% non-parametric bootstrap confidence interval whose lower bound is above 0%; and
+4. has a 95% confidence interval whose lower bound is above 0%; and
 5. repeats those gates on an untouched seed and count holdout.
 
-An insignificant difference is recorded as `StatisticalTie` and selects AoS. A sub-threshold point estimate is `Inconclusive` and also selects AoS.
+Native schema 3 uses paired measurement blocks and a log-ratio bootstrap; published
+schema-2 artifacts retain their historical independent estimator. An interval that
+spans zero is `StatisticalTie`, a statistically slower candidate is `Regression`,
+and a positive but sub-threshold point estimate is `Inconclusive`. All select AoS.
 
 ## Repository layout
 
@@ -52,6 +59,7 @@ Packages/com.yanagisawa.data-layout-calibrator/
   SourceGenerators~/               generator source and Roslyn tests
 BenchmarkProject/                  standalone Release Player and evidence writer
 Tools/ResultRenderer/               fixed-result PNG/GIF renderer and tests
+Tools/EvidenceLab/                  planning and retained-artifact evidence verifier
 Docs/                              contracts, ADRs, fixed evidence, rendered assets
 ```
 
@@ -81,6 +89,13 @@ dotnet test Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Tes
 python -m unittest discover Tools/ResultRenderer/tests -v
 python Tools/ResultRenderer/render_results.py `
   Docs/evidence/il2cpp-release-calibration-suite.json Docs/assets
+
+python -m unittest discover Tools/EvidenceLab/tests -v
+python Tools/EvidenceLab/evidence_lab.py validate `
+  Docs/evidence/device-isa-workload-validation-manifest-v1.json
+python Tools/EvidenceLab/evidence_lab.py plan `
+  Docs/evidence/device-isa-workload-validation-manifest-v1.json `
+  --output work/device-validation-plan.json
 ```
 
 The build fails unless the Burst library contains all ParticleIntegrate and TransformExport job entrypoints. A successful run writes:
@@ -92,9 +107,13 @@ The build fails unless the Burst library contains all ParticleIntegrate and Tran
 
 Heatmaps and GIFs read `calibration-suite.json`. They may format or filter it, but may not recompute or replace `FinalDecision`. The renderer writes a provenance manifest containing the input SHA-256 and exact copied decision fields.
 
-## Current gate
+## Published v0.3 historical gate
 
-The full roadmap gate is complete: 29/29 Unity EditMode tests, 4/4 generator tests, 3/3 renderer tests, Mono Release + Burst AOT, and IL2CPP Release + Burst AOT. Both workload plugins pass parity and zero-allocation gates in both Players.
+For `v0.3.0-preview.1`, the then-current release gate completed: 29/29 Unity
+EditMode tests, 4/4 generator tests, 3/3 renderer tests, Mono Release + Burst
+AOT, and IL2CPP Release + Burst AOT. Both workload plugins passed parity and
+zero-allocation gates in those published Players. This is historical evidence,
+not automatic validation of the unreleased vNext tree.
 
 The checked-in IL2CPP integration result is deliberately a short behavioral gate, not a universal hardware performance claim. On this run, ParticleIntegrate selected `AoSoA8-b128` with a 34.15% holdout amortized-P95 improvement; TransformExport retained `AoS-b256`, demonstrating the negative control. The immutable result SHA-256 is `85FAC20CDF81EBA674A3A736340CFCBEEB88EEF99CD1F5ECC776EE0215E53D78`.
 
@@ -112,6 +131,30 @@ same-device process replications, not a cross-hardware guarantee.
 ![Formal AoS baseline to frozen decision](Docs/assets/formal-il2cpp-2026-09-02/data-layout-calibrator-comparison.gif)
 
 See the [final validation evidence](Docs/VALIDATION_RESULTS_2026-09-02.md), [calibration contract](Docs/CALIBRATION_CONTRACT.md), and [fixed-result renderer contract](Tools/ResultRenderer/README.md).
+
+## Unreleased vNext integration
+
+The `codex/vnext-integration` branch composes the v0.4 scientific foundation,
+advantage-envelope/adaptive decision engine, v0.5 generator/profile foundation,
+and v0.6 evidence-lab foundation. It freezes canonical candidate hashes and
+reuses the scientific paired-bootstrap draws in the envelope. Schema-3 profiles
+may reference a locked external envelope; neither the reference nor a renderer
+can replace `FinalDecision`.
+
+Deterministic integration checks currently pass 139/139 Unity EditMode tests,
+11/11 generator tests, 25/25 renderer tests, and 22/22 Evidence Lab tests. The
+planning-only evidence manifest validates with 0 executable requests and 18
+blocked cells, exactly because no device, Player artifact, or identity
+attestation is configured.
+
+This branch remains an unreleased foundation at package version
+`0.3.0-preview.1`. Its merged-tree Mono result is a behavioral/AOT audit, not
+retained performance evidence; it adds no new IL2CPP, counter, ISA, device, or
+cross-device claim. Roadmap completion still requires the missing candidate and
+causal-control matrix, production generator adoption, real provider/device
+evidence, and every claimed merged-tree Player backend gate. See the
+[integration ADR](Docs/adr/0006-vnext-integration-protocol.md) and
+[roadmap status](Docs/ROADMAP_V0.4_TO_V0.6.md).
 
 ## Citation, authorship, and license
 

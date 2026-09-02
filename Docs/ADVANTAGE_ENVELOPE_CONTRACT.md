@@ -60,11 +60,12 @@ arrays from the scientific statistics layer. A replicate contains an explicit
 `ReplicateId` plus resident, ingress, and export P95 values. Baseline and
 candidate arrays must have identical unique replicate IDs.
 
-This boundary deliberately does not prescribe how replicates are produced.
-Paired, process-hierarchical, and future device-hierarchical methods can feed
-the engine without putting resampling design into the renderer or envelope
-selector. Raw samples remain in the source artifact referenced by
-`EvidenceHash`.
+The integration protocol now wires paired-block draws directly through
+`ScientificAdvantageEnvelopeAdapter` under uncertainty method
+`dlc.paired-block-bootstrap-log-ratio.v1`. Paired, process-hierarchical, and
+future device-hierarchical methods remain distinct versioned producers; only
+the paired single-Player bridge is implemented here. Raw samples remain in the
+source artifact referenced by `EvidenceHash`.
 
 For lifetime `L > 0`:
 
@@ -73,8 +74,10 @@ cost(candidate, L) = resident_p95(candidate)
                    + (ingress_p95(candidate) + export_p95(candidate)) / L
 ```
 
-An improvement interval is calculated across aligned replicate costs. The
-current selection rule matches the existing schema-2 rule:
+An improvement interval is calculated by sorting aligned replicate log-ratios,
+taking quantiles in log space, and transforming those bounds to improvement
+percent afterward. This is the exact estimator used by the schema-3 scientific
+core. The selection rule is:
 
 1. the point improvement must meet `MinimumImprovementPercent`;
 2. the confidence lower bound must be greater than zero;
@@ -187,19 +190,23 @@ The output manifest retains the input SHA-256, compatibility hashes, evidence
 scope, frozen decision policy, fixed summary, and exact cell decision snapshot
 used by the PNG and GIF.
 
-## Integration decisions still owned by the shared protocol
+## Resolved integration decisions
 
-- Freeze the exact paired/hierarchical bootstrap producer and its serialized
-  uncertainty-method identifier. The envelope already consumes aligned
-  replicate IDs and does not need to change when that choice is made.
-- Decide whether a future protocol raises the confidence gate from “lower bound
-  above zero” to “lower bound above the full minimum effect.” Schema v1 records
-  both point threshold and interval, so the distinction remains auditable.
-- Freeze any multiplicity/selection-regret control applied when many candidates
-  share a cell. The engine records per-candidate intervals and a single frozen
-  winner but does not invent an unapproved correction.
-- Decide how the additive envelope reference is attached to the eventual
-  top-level suite schema. Historical schema-2 evidence must not be rewritten.
-- Freeze whether strict Pareto decisions will use point P95 components or
-  uncertainty-aware component bounds after the scientific-core statistics API
-  lands.
+[`ADR 0006`](adr/0006-vnext-integration-protocol.md) freezes the shared v1
+behavior:
+
+- paired scientific component-P95 draws are reused exactly and interval
+  quantiles remain in log-ratio space;
+- the point estimate must meet the minimum effect while the confidence lower
+  bound must be strictly above zero;
+- multiplicity v1 is calibration selection plus independent frozen-winner
+  holdout, with no familywise correction claim;
+- strict Pareto decisions use point resident P95, total boundary P95, and
+  resident bytes; missing valid uncertainty bypasses pruning;
+- regret uses the exhaustive-best denominator, canonical tie order, and remains
+  audit-only; and
+- schema-3 scenario profiles may reference, but never embed or reselect, a
+  locked external schema-1 envelope bound to candidate and measurement hashes.
+
+Any familywise correction, uncertainty-aware Pareto frontier, device-level
+bootstrap, or different confidence gate requires a new versioned protocol.
