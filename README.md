@@ -2,7 +2,9 @@
 
 Data Layout Calibrator is a reusable Unity/Burst calibration pipeline for comparing concrete data-layout implementations under one declared semantic contract. It does not rewrite arbitrary project code and does not claim to outsmart Burst. A workload plugin supplies concrete AOT-visible candidates; the core measures them, rejects incorrect or allocating variants, and falls back to AoS unless the evidence clears every gate.
 
-The repository is independent from any product project and remains privately licensed.
+The repository is independent from any product project. Its source is visible
+for portfolio review and authorship verification, but remains proprietary and
+All Rights Reserved; see [LICENSE](LICENSE).
 
 ## What is reusable
 
@@ -101,3 +103,14 @@ The checked-in IL2CPP integration result is deliberately a short behavioral gate
 ![AoS baseline to frozen decision](Docs/assets/data-layout-calibrator-comparison.gif)
 
 See the [final validation evidence](Docs/VALIDATION_RESULTS_2026-09-02.md), [calibration contract](Docs/CALIBRATION_CONTRACT.md), and [fixed-result renderer contract](Tools/ResultRenderer/README.md).
+
+## Citation, authorship, and license
+
+The canonical repository is
+[`Yanagisawa2002/data-layout-calibrator`](https://github.com/Yanagisawa2002/data-layout-calibrator).
+Machine-readable citation metadata is provided in [`CITATION.cff`](CITATION.cff),
+and the project authorship boundary is recorded in [`AUTHORS.md`](AUTHORS.md)
+and [`PROVENANCE.md`](PROVENANCE.md).
+
+Copyright (c) 2026 Edwin Liu. All Rights Reserved. Public visibility does not
+grant permission to copy, modify, distribute, deploy, or sublicense the code.

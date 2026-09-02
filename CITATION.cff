@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: >-
+  If you discuss this software or its published benchmark evidence, please cite
+  the repository and release identified below.
+title: Data Layout Calibrator
+type: software
+authors:
+  - family-names: Liu
+    given-names: Edwin
+    alias: EdwinLiu2002
+version: 0.3.0-preview.1
+date-released: 2026-09-02
+repository-code: https://github.com/Yanagisawa2002/data-layout-calibrator
+url: https://github.com/Yanagisawa2002/data-layout-calibrator
+keywords:
+  - Unity
+  - Burst
+  - data layout
+  - performance calibration
+  - AOT
+  - benchmarking
+abstract: >-
+  A reusable Unity and Burst calibration pipeline that compares concrete data
+  layouts under declared semantic, correctness, allocation, boundary-cost,
+  statistical-confidence, and untouched-holdout gates.
