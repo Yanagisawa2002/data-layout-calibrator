@@ -1,8 +1,12 @@
 name: Non-Unity CI
 
-# Deliberately manual while Player hardware is reserved. Enable pull_request
-# after the first explicitly authorized CI run has established a green baseline.
+# Deliberately dormant while Player hardware is reserved. Before this workflow
+# reaches the default branch, adding the exact `run-non-unity-ci` PR label is the
+# explicit authorization signal. After merge, workflow_dispatch is also usable.
 on:
+  pull_request:
+    types:
+      - labeled
   workflow_dispatch:
     inputs:
       suite:
@@ -31,7 +35,11 @@ env:
 
 jobs:
   repository-static:
-    if: ${{ inputs.suite == 'all' || inputs.suite == 'static' }}
+    if: >-
+      ${{
+        (github.event_name == 'pull_request' && github.event.label.name == 'run-non-unity-ci') ||
+        (github.event_name == 'workflow_dispatch' && (inputs.suite == 'all' || inputs.suite == 'static'))
+      }}
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
@@ -52,7 +60,11 @@ jobs:
         run: git diff --check "$(git merge-base origin/main HEAD)"...HEAD
 
   source-generator:
-    if: ${{ inputs.suite == 'all' || inputs.suite == 'source-generator' }}
+    if: >-
+      ${{
+        (github.event_name == 'pull_request' && github.event.label.name == 'run-non-unity-ci') ||
+        (github.event_name == 'workflow_dispatch' && (inputs.suite == 'all' || inputs.suite == 'source-generator'))
+      }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -70,7 +82,11 @@ jobs:
           --nologo
 
   python-tools:
-    if: ${{ inputs.suite == 'all' || inputs.suite == 'python' }}
+    if: >-
+      ${{
+        (github.event_name == 'pull_request' && github.event.label.name == 'run-non-unity-ci') ||
+        (github.event_name == 'workflow_dispatch' && (inputs.suite == 'all' || inputs.suite == 'python'))
+      }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
