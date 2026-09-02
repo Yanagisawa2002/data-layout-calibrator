@@ -1,0 +1,368 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Yanagisawa2002/data-layout-calibrator/Tools/EvidenceLab/schemas/validation-manifest-v1.schema.json",
+  "title": "Data Layout Calibrator device/ISA/workload validation manifest v1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "manifestId",
+    "roadmapCommit",
+    "evidencePolicy",
+    "deviceTargets",
+    "registeredDevices",
+    "workloads",
+    "matrix"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "manifestId": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "roadmapCommit": {
+      "$ref": "#/$defs/commitSha"
+    },
+    "scopeStatus": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "evidencePolicy": {
+      "type": "object",
+      "required": [
+        "candidateJoinKey",
+        "scenarioIdentity",
+        "frozenDecisionAuthority",
+        "syntheticFixtureCountsAsObserved",
+        "processCountsAsDevice"
+      ],
+      "properties": {
+        "candidateJoinKey": {
+          "const": "CandidateDescriptor.CandidateId"
+        },
+        "scenarioIdentity": {
+          "const": [
+            "ScenarioId",
+            "ContractVersion"
+          ]
+        },
+        "frozenDecisionAuthority": {
+          "const": "ScenarioCalibrationProfile.FinalDecision"
+        },
+        "syntheticFixtureCountsAsObserved": {
+          "const": false
+        },
+        "processCountsAsDevice": {
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "deviceTargets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/deviceTarget"
+      }
+    },
+    "registeredDevices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/registeredDevice"
+      }
+    },
+    "workloads": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/workload"
+      }
+    },
+    "matrix": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/matrixEntry"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9A-Fa-f]{64}$"
+    },
+    "commitSha": {
+      "type": "string",
+      "pattern": "^[0-9A-Fa-f]{40}$"
+    },
+    "deviceTarget": {
+      "type": "object",
+      "required": [
+        "targetId",
+        "cpuFamily",
+        "isaId",
+        "operatingSystems",
+        "status"
+      ],
+      "properties": {
+        "targetId": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "cpuFamily": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "isaId": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "operatingSystems": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "status": {
+          "enum": [
+            "planned",
+            "active",
+            "retired"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "registeredDevice": {
+      "type": "object",
+      "required": [
+        "deviceId",
+        "targetId",
+        "cpuFamily",
+        "isaId",
+        "operatingSystem",
+        "environmentFingerprintSha256",
+        "status"
+      ],
+      "properties": {
+        "deviceId": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "targetId": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "cpuFamily": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "isaId": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "operatingSystem": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "environmentFingerprintSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "status": {
+          "enum": [
+            "available",
+            "unavailable",
+            "retired"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "workload": {
+      "type": "object",
+      "required": [
+        "workloadId",
+        "scenarioId",
+        "contractVersion",
+        "accessPattern",
+        "negativeControl",
+        "implementationStatus",
+        "workloadSchemaSha256",
+        "candidateSchemaSha256",
+        "execution"
+      ],
+      "properties": {
+        "workloadId": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "scenarioId": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "contractVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "accessPattern": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "negativeControl": {
+          "type": "boolean"
+        },
+        "implementationStatus": {
+          "enum": [
+            "available",
+            "planned",
+            "retired"
+          ]
+        },
+        "workloadSchemaSha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "candidateSchemaSha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "execution": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/configuredExecution"
+            },
+            {
+              "$ref": "#/$defs/unconfiguredExecution"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "configuredExecution": {
+      "type": "object",
+      "required": [
+        "status",
+        "executable",
+        "arguments",
+        "workingDirectory",
+        "resultArtifact",
+        "timeoutSeconds",
+        "settingsFingerprintSha256",
+        "player"
+      ],
+      "properties": {
+        "status": {
+          "const": "configured"
+        },
+        "executable": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "workingDirectory": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "resultArtifact": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "settingsFingerprintSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "player": {
+          "$ref": "#/$defs/player"
+        }
+      },
+      "additionalProperties": false
+    },
+    "unconfiguredExecution": {
+      "type": "object",
+      "required": [
+        "status",
+        "reason"
+      ],
+      "properties": {
+        "status": {
+          "const": "unconfigured"
+        },
+        "reason": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      },
+      "additionalProperties": false
+    },
+    "player": {
+      "type": "object",
+      "required": [
+        "buildType",
+        "developmentBuild",
+        "backend",
+        "binarySha256",
+        "sourceCommit",
+        "suiteSchemaVersion"
+      ],
+      "properties": {
+        "buildType": {
+          "const": "Release"
+        },
+        "developmentBuild": {
+          "const": false
+        },
+        "backend": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "binarySha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "sourceCommit": {
+          "$ref": "#/$defs/commitSha"
+        },
+        "suiteSchemaVersion": {
+          "const": 2
+        }
+      },
+      "additionalProperties": false
+    },
+    "matrixEntry": {
+      "type": "object",
+      "required": [
+        "targetId",
+        "workloadId",
+        "requiredIndependentProcesses"
+      ],
+      "properties": {
+        "targetId": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "workloadId": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "requiredIndependentProcesses": {
+          "type": "integer",
+          "minimum": 2
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
