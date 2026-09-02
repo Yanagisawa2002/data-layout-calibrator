@@ -765,14 +765,14 @@ namespace Yanagisawa.DataLayoutCalibrator
             RequireMetadata(request.ScenarioId, nameof(request.ScenarioId));
             if (request.ContractVersion <= 0)
                 throw new ArgumentOutOfRangeException(nameof(request.ContractVersion));
-            RequireMetadata(request.CandidateSetHash, nameof(request.CandidateSetHash));
-            RequireMetadata(request.MeasurementSchemaHash, nameof(request.MeasurementSchemaHash));
-            RequireMetadata(request.EnvironmentFingerprint, nameof(request.EnvironmentFingerprint));
-            RequireMetadata(
+            RequireSha256(request.CandidateSetHash, nameof(request.CandidateSetHash));
+            RequireSha256(request.MeasurementSchemaHash, nameof(request.MeasurementSchemaHash));
+            RequireSha256(request.EnvironmentFingerprint, nameof(request.EnvironmentFingerprint));
+            RequireSha256(
                 request.QuickCalibrationSettingsHash,
                 nameof(request.QuickCalibrationSettingsHash));
             RequireMetadata(request.SourceArtifactId, nameof(request.SourceArtifactId));
-            RequireMetadata(request.SourceArtifactSha256, nameof(request.SourceArtifactSha256));
+            RequireSha256(request.SourceArtifactSha256, nameof(request.SourceArtifactSha256));
             RequireMetadata(request.CalibrationPartitionId, nameof(request.CalibrationPartitionId));
             RequireMetadata(
                 request.PlannedHoldoutPartitionId,
@@ -860,6 +860,9 @@ namespace Yanagisawa.DataLayoutCalibrator
                 {
                     throw new ArgumentException(reason);
                 }
+                RequireSha256(
+                    evidence[index].EvidenceHash,
+                    nameof(DecisionCandidateEvidence.EvidenceHash));
                 for (int other = 0; other < index; other++)
                 {
                     if (string.Equals(
@@ -993,6 +996,16 @@ namespace Yanagisawa.DataLayoutCalibrator
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Required adaptive provenance metadata is missing.", name);
+        }
+
+        private static void RequireSha256(string value, string name)
+        {
+            if (!DecisionEvidenceStatistics.IsCanonicalSha256(value))
+            {
+                throw new ArgumentException(
+                    "A canonical SHA-256 value must contain exactly 64 uppercase hexadecimal characters.",
+                    name);
+            }
         }
 
         private static int CompareEvidence(

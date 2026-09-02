@@ -204,7 +204,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             Assert.That(restored.Cells[2].SelectedCandidateId, Is.EqualTo("soa-candidate"));
             Assert.That(
                 restored.Cells[2].HoldoutCandidateEvidenceHash,
-                Is.EqualTo("SYNTHETIC-synthetic-holdout-soa-candidate"));
+                Is.EqualTo(SyntheticEvidenceSha("synthetic-holdout", 1)));
             Assert.That(
                 restored.Cells[2].CandidateOutcomes[1].Candidate.CandidateId,
                 Is.EqualTo("soa-candidate"));
@@ -343,6 +343,68 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
         }
 
         [Test]
+        public void Envelope_CalibrationRejectsMalformedCompatibilityAndEvidenceHashes()
+        {
+            AdvantageEnvelopeCalibrationRequest malformedIdentity =
+                CreateEnvelopeRequest(new[] { 40 });
+            malformedIdentity.CandidateSetHash = "ABC";
+
+            Assert.That(
+                () => AdvantageEnvelopeEngine.Calibrate(malformedIdentity),
+                Throws.ArgumentException.With.Message.Contains("64 uppercase hexadecimal"));
+
+            AdvantageEnvelopeCalibrationRequest malformedEvidence =
+                CreateEnvelopeRequest(new[] { 40 });
+            malformedEvidence.Cells[0].CalibrationCandidates[1].EvidenceHash =
+                new string('a', 64);
+
+            Assert.That(
+                () => AdvantageEnvelopeEngine.Calibrate(malformedEvidence),
+                Throws.ArgumentException.With.Message.Contains("64 uppercase hexadecimal"));
+        }
+
+        [Test]
+        public void Envelope_HoldoutRejectsMalformedArtifactHashesAndEngineVersions()
+        {
+            AdvantageEnvelopeCalibration unsupported = AdvantageEnvelopeEngine.Calibrate(
+                CreateEnvelopeRequest(new[] { 40 }));
+            unsupported.DecisionEngineVersion = "2.0.0";
+
+            Assert.That(
+                () => AdvantageEnvelopeEngine.ConfirmHoldout(
+                    unsupported,
+                    CreateHoldoutRequest(new[] { 40 })),
+                Throws.ArgumentException.With.Message.Contains("DecisionEngineVersion is unsupported"));
+
+            AdvantageEnvelopeCalibration malformedArtifact = AdvantageEnvelopeEngine.Calibrate(
+                CreateEnvelopeRequest(new[] { 40 }));
+            malformedArtifact.Cells[0].CandidateOutcomes[1].SourceEvidenceHash = "BAD";
+
+            Assert.That(
+                () => AdvantageEnvelopeEngine.ConfirmHoldout(
+                    malformedArtifact,
+                    CreateHoldoutRequest(new[] { 40 })),
+                Throws.ArgumentException.With.Message.Contains("64 uppercase hexadecimal"));
+
+            AdvantageEnvelopeCalibration calibration = AdvantageEnvelopeEngine.Calibrate(
+                CreateEnvelopeRequest(new[] { 40 }));
+            AdvantageEnvelopeHoldoutRequest malformedHoldout =
+                CreateHoldoutRequest(new[] { 40 });
+            malformedHoldout.SourceArtifactSha256 = new string('f', 64);
+
+            Assert.That(
+                () => AdvantageEnvelopeEngine.ConfirmHoldout(calibration, malformedHoldout),
+                Throws.ArgumentException.With.Message.Contains("64 uppercase hexadecimal"));
+
+            malformedHoldout = CreateHoldoutRequest(new[] { 40 });
+            malformedHoldout.Cells[0].FrozenCandidate.EvidenceHash = "BAD";
+
+            Assert.That(
+                () => AdvantageEnvelopeEngine.ConfirmHoldout(calibration, malformedHoldout),
+                Throws.ArgumentException.With.Message.Contains("64 uppercase hexadecimal"));
+        }
+
+        [Test]
         public void ParetoFrontier_UsesStrictDominanceAndKeepsEqualPoints()
         {
             ParetoFrontierResult result = ParetoFrontier.Build(new[]
@@ -443,6 +505,24 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
         }
 
         [Test]
+        public void AdaptiveElimination_RejectsMalformedCompatibilityAndEvidenceHashes()
+        {
+            AdaptiveEliminationRequest malformedIdentity = CreateAdaptiveRequest();
+            malformedIdentity.QuickCalibrationSettingsHash = "BAD";
+
+            Assert.That(
+                () => AdaptiveEliminationEngine.CreatePlan(malformedIdentity),
+                Throws.ArgumentException.With.Message.Contains("64 uppercase hexadecimal"));
+
+            AdaptiveEliminationRequest malformedEvidence = CreateAdaptiveRequest();
+            malformedEvidence.Candidates[0].EvidenceHash = new string('a', 64);
+
+            Assert.That(
+                () => AdaptiveEliminationEngine.CreatePlan(malformedEvidence),
+                Throws.ArgumentException.With.Message.Contains("64 uppercase hexadecimal"));
+        }
+
+        [Test]
         public void AdaptiveAudit_MatchesExhaustiveSearchOrReportsBoundedRegret()
         {
             AdaptiveEliminationPlan plan = AdaptiveEliminationEngine.CreatePlan(
@@ -522,12 +602,12 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 CreatedUtcIso8601 = "2026-09-02T00:00:00Z",
                 ScenarioId = "synthetic-scenario",
                 ContractVersion = 7,
-                CandidateSetHash = "SYNTHETIC-CANDIDATE-SET-HASH",
-                MeasurementSchemaHash = "SYNTHETIC-MEASUREMENT-SCHEMA-HASH",
-                EnvironmentFingerprint = "SYNTHETIC-ENVIRONMENT-FINGERPRINT",
-                CalibrationSettingsHash = "SYNTHETIC-CALIBRATION-SETTINGS-HASH",
+                CandidateSetHash = SyntheticSha('A'),
+                MeasurementSchemaHash = SyntheticSha('B'),
+                EnvironmentFingerprint = SyntheticSha('C'),
+                CalibrationSettingsHash = SyntheticSha('D'),
                 SourceArtifactId = "synthetic-calibration-artifact",
-                SourceArtifactSha256 = "SYNTHETIC-CALIBRATION-SHA256",
+                SourceArtifactSha256 = SyntheticSha('E'),
                 EvidenceScope = "synthetic-test-fixture",
                 CalibrationUncertaintyMethod = "synthetic-aligned-bootstrap-replicates",
                 Policy = new AdvantageEnvelopePolicy
@@ -571,11 +651,11 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             return new AdvantageEnvelopeHoldoutRequest
             {
                 SourceArtifactId = "synthetic-holdout-artifact",
-                SourceArtifactSha256 = "SYNTHETIC-HOLDOUT-SHA256",
-                CandidateSetHash = "SYNTHETIC-CANDIDATE-SET-HASH",
-                MeasurementSchemaHash = "SYNTHETIC-MEASUREMENT-SCHEMA-HASH",
-                EnvironmentFingerprint = "SYNTHETIC-ENVIRONMENT-FINGERPRINT",
-                HoldoutSettingsHash = "SYNTHETIC-HOLDOUT-SETTINGS-HASH",
+                SourceArtifactSha256 = SyntheticSha('F'),
+                CandidateSetHash = SyntheticSha('A'),
+                MeasurementSchemaHash = SyntheticSha('B'),
+                EnvironmentFingerprint = SyntheticSha('C'),
+                HoldoutSettingsHash = SyntheticSha('0'),
                 EvidenceScope = "synthetic-test-fixture",
                 HoldoutUncertaintyMethod = "synthetic-aligned-bootstrap-replicates",
                 Cells = cells,
@@ -599,12 +679,12 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 CreatedUtcIso8601 = "2026-09-02T00:00:00Z",
                 ScenarioId = "synthetic-scenario",
                 ContractVersion = 7,
-                CandidateSetHash = "SYNTHETIC-CANDIDATE-SET-HASH",
-                MeasurementSchemaHash = "SYNTHETIC-MEASUREMENT-SCHEMA-HASH",
-                EnvironmentFingerprint = "SYNTHETIC-ENVIRONMENT-FINGERPRINT",
-                QuickCalibrationSettingsHash = "SYNTHETIC-QUICK-SETTINGS-HASH",
+                CandidateSetHash = SyntheticSha('A'),
+                MeasurementSchemaHash = SyntheticSha('B'),
+                EnvironmentFingerprint = SyntheticSha('C'),
+                QuickCalibrationSettingsHash = SyntheticSha('1'),
                 SourceArtifactId = "synthetic-quick-artifact",
-                SourceArtifactSha256 = "SYNTHETIC-QUICK-SHA256",
+                SourceArtifactSha256 = SyntheticSha('2'),
                 CalibrationPartitionId = "synthetic-quick",
                 PlannedHoldoutPartitionId = "synthetic-holdout",
                 EvidenceScope = "synthetic-test-fixture",
@@ -685,9 +765,27 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 ResidentSampleCount = 5,
                 BoundarySampleCount = 5,
                 EvidencePartitionId = partitionId,
-                EvidenceHash = "SYNTHETIC-" + partitionId + "-" + candidateId,
+                EvidenceHash = SyntheticEvidenceSha(partitionId, sortOrder),
                 BootstrapReplicates = replicates,
             };
+        }
+
+        private static string SyntheticEvidenceSha(string partitionId, int sortOrder)
+        {
+            int offset;
+            if (string.Equals(partitionId, "synthetic-calibration", StringComparison.Ordinal))
+                offset = 4;
+            else if (string.Equals(partitionId, "synthetic-holdout", StringComparison.Ordinal))
+                offset = 6;
+            else
+                offset = 8;
+            const string hexadecimal = "0123456789ABCDEF";
+            return SyntheticSha(hexadecimal[(offset + sortOrder) % hexadecimal.Length]);
+        }
+
+        private static string SyntheticSha(char character)
+        {
+            return new string(character, 64);
         }
 
         private static EnvelopeCandidateDescriptor Descriptor(

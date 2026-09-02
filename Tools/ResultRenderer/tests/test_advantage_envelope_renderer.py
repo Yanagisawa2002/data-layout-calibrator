@@ -18,6 +18,10 @@ from render_advantage_envelope import (
 )
 
 
+def synthetic_sha(character: str) -> str:
+    return character * 64
+
+
 def fixed_synthetic_envelope() -> dict:
     def descriptor(identifier: str, baseline: bool) -> dict:
         return {
@@ -36,10 +40,12 @@ def fixed_synthetic_envelope() -> dict:
         return [
             {
                 "Candidate": descriptor("aos-tuned", True),
+                "SourceEvidenceHash": synthetic_sha("4"),
                 "AmortizedP95MillisecondsPerTick": 10.0,
             },
             {
                 "Candidate": descriptor("soa-candidate", False),
+                "SourceEvidenceHash": synthetic_sha("5"),
                 "AmortizedP95MillisecondsPerTick": candidate_cost,
             },
         ]
@@ -76,10 +82,10 @@ def fixed_synthetic_envelope() -> dict:
             "CalibrationPartitionId": "synthetic-calibration",
             "HoldoutPartitionId": "synthetic-holdout" if holdout_confirmed else "",
             "HoldoutBaselineEvidenceHash": (
-                "SYNTHETIC-HOLDOUT-AOS-HASH" if holdout_confirmed else ""
+                synthetic_sha("6") if holdout_confirmed else ""
             ),
             "HoldoutCandidateEvidenceHash": (
-                "SYNTHETIC-HOLDOUT-CANDIDATE-HASH" if holdout_confirmed else ""
+                synthetic_sha("7") if holdout_confirmed else ""
             ),
             "BaselineCandidateId": "aos-tuned",
             "BestMeasuredCandidateId": "soa-candidate",
@@ -116,15 +122,15 @@ def fixed_synthetic_envelope() -> dict:
         "CreatedUtcIso8601": "2026-09-02T00:00:00Z",
         "ScenarioId": "synthetic-scenario",
         "ContractVersion": 7,
-        "CandidateSetHash": "SYNTHETIC-CANDIDATE-SET-HASH",
-        "MeasurementSchemaHash": "SYNTHETIC-MEASUREMENT-SCHEMA-HASH",
-        "EnvironmentFingerprint": "SYNTHETIC-ENVIRONMENT-FINGERPRINT",
-        "CalibrationSettingsHash": "SYNTHETIC-CALIBRATION-SETTINGS-HASH",
-        "HoldoutSettingsHash": "SYNTHETIC-HOLDOUT-SETTINGS-HASH",
+        "CandidateSetHash": synthetic_sha("A"),
+        "MeasurementSchemaHash": synthetic_sha("B"),
+        "EnvironmentFingerprint": synthetic_sha("C"),
+        "CalibrationSettingsHash": synthetic_sha("D"),
+        "HoldoutSettingsHash": synthetic_sha("E"),
         "CalibrationSourceArtifactId": "synthetic-calibration-artifact",
-        "CalibrationSourceArtifactSha256": "SYNTHETIC-CALIBRATION-SHA256",
+        "CalibrationSourceArtifactSha256": synthetic_sha("F"),
         "HoldoutSourceArtifactId": "synthetic-holdout-artifact",
-        "HoldoutSourceArtifactSha256": "SYNTHETIC-HOLDOUT-SHA256",
+        "HoldoutSourceArtifactSha256": synthetic_sha("0"),
         "EvidenceScope": "synthetic-test-fixture",
         "CalibrationUncertaintyMethod": "synthetic-aligned-bootstrap-replicates",
         "HoldoutUncertaintyMethod": "synthetic-aligned-bootstrap-replicates",
@@ -181,6 +187,42 @@ def fixed_synthetic_envelope() -> dict:
 
 
 class FrozenAdvantageEnvelopeRendererTests(unittest.TestCase):
+    def test_all_hash_fields_require_canonical_uppercase_sha256(self) -> None:
+        cases = [
+            (("CandidateSetHash",), "ABC"),
+            (("MeasurementSchemaHash",), synthetic_sha("a")),
+            (("EnvironmentFingerprint",), synthetic_sha("G")),
+            (("CalibrationSettingsHash",), ""),
+            (("HoldoutSettingsHash",), synthetic_sha("-")),
+            (("CalibrationSourceArtifactSha256",), synthetic_sha("z")),
+            (("HoldoutSourceArtifactSha256",), synthetic_sha(" ")),
+            (("Cells", 0, "CandidateOutcomes", 0, "SourceEvidenceHash"), "BAD"),
+            (("Cells", 1, "HoldoutBaselineEvidenceHash"), synthetic_sha("b")),
+            (("Cells", 1, "HoldoutCandidateEvidenceHash"), synthetic_sha("X")),
+        ]
+        for path, malformed in cases:
+            with self.subTest(path=path):
+                envelope = fixed_synthetic_envelope()
+                target = envelope
+                for component in path[:-1]:
+                    target = target[component]
+                target[path[-1]] = malformed
+
+                with self.assertRaisesRegex(
+                    EnvelopeRenderContractError,
+                    "64 uppercase hexadecimal|non-empty string",
+                ):
+                    build_render_model(envelope)
+
+    def test_unsupported_decision_engine_version_is_rejected(self) -> None:
+        envelope = fixed_synthetic_envelope()
+        envelope["DecisionEngineVersion"] = "2.0.0"
+
+        with self.assertRaisesRegex(
+            EnvelopeRenderContractError, "Unsupported DecisionEngineVersion"
+        ):
+            build_render_model(envelope)
+
     def test_changed_candidate_cost_cannot_change_frozen_selection(self) -> None:
         envelope = fixed_synthetic_envelope()
         original = build_render_model(envelope)

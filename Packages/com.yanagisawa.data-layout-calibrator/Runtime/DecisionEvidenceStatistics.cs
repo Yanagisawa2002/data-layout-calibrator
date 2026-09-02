@@ -109,10 +109,15 @@ namespace Yanagisawa.DataLayoutCalibrator
                 return CandidateEvidenceGateStatus.InsufficientSamples;
             }
 
-            if (string.IsNullOrWhiteSpace(evidence.EvidencePartitionId) ||
-                string.IsNullOrWhiteSpace(evidence.EvidenceHash))
+            if (string.IsNullOrWhiteSpace(evidence.EvidencePartitionId))
             {
-                reason = "Evidence partition and hash are required for provenance.";
+                reason = "Evidence partition is required for provenance.";
+                return CandidateEvidenceGateStatus.InvalidUncertaintyEvidence;
+            }
+
+            if (!IsCanonicalSha256(evidence.EvidenceHash))
+            {
+                reason = "EvidenceHash must be a canonical uppercase SHA-256 value.";
                 return CandidateEvidenceGateStatus.InvalidUncertaintyEvidence;
             }
 
@@ -472,6 +477,21 @@ namespace Yanagisawa.DataLayoutCalibrator
         internal static bool IsFiniteNonNegative(double value)
         {
             return value >= 0d && !double.IsNaN(value) && !double.IsInfinity(value);
+        }
+
+        internal static bool IsCanonicalSha256(string value)
+        {
+            if (value == null || value.Length != 64)
+                return false;
+            for (int index = 0; index < value.Length; index++)
+            {
+                char character = value[index];
+                bool digit = character >= '0' && character <= '9';
+                bool upperHex = character >= 'A' && character <= 'F';
+                if (!digit && !upperHex)
+                    return false;
+            }
+            return true;
         }
 
         internal static double Percentile(double[] values, double percentile)

@@ -36,6 +36,14 @@ Every request and frozen artifact binds:
 Compatibility fields are copied into output. The decision engine does not
 invent environment or evidence metadata.
 
+Every field named as a hash, SHA-256 value, or environment fingerprint uses
+one canonical representation: exactly 64 uppercase hexadecimal characters
+(`0-9`, `A-F`). This applies to candidate-set, measurement-schema,
+environment, calibration/quick/holdout settings, source-artifact, and
+per-candidate evidence hashes, including copied `SourceEvidenceHash` values.
+The scientific-core producer owns how the underlying bytes are canonicalized
+and hashed; schema-v1 consumers only validate and preserve the supplied digest.
+
 ## Decision-ready uncertainty
 
 The engine accepts point P95 components and aligned `BootstrapCostReplicate`
@@ -109,6 +117,8 @@ factor IDs, the holdout partition must differ from calibration, and
 candidate/schema/environment hashes must match. Holdout may confirm the frozen
 candidate or fall back to tuned AoS; it cannot nominate a replacement.
 Configured holdout sample minima cannot be lower than calibration minima.
+`ConfirmHoldout` accepts only calibration artifacts produced by the supported
+decision-engine version `1.0.0`.
 
 The final schema-v1 `advantage-envelope` sets `FinalDecisionLocked = true` and
 `HoldoutCanRerank = false`, and retains both holdout candidate evidence hashes.
@@ -150,7 +160,8 @@ scores; it never consumes holdout evidence.
 
 [`render_advantage_envelope.py`](../Tools/ResultRenderer/render_advantage_envelope.py)
 validates schema, candidate membership, fallback semantics, winner-region
-coverage, and summary consistency. It copies `Status`, `SelectedCandidateId`,
+coverage, canonical SHA-256 provenance fields, supported decision-engine
+version, and summary consistency. It copies `Status`, `SelectedCandidateId`,
 and confidence fields from frozen cells. Candidate cost values are not read for
 selection. Tests make a candidate arbitrarily faster and verify that the
 rendered selection does not change.

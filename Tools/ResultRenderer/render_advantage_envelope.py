@@ -20,6 +20,8 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 RENDERER_VERSION = "1.0.0"
+SUPPORTED_DECISION_ENGINE_VERSION = "1.0.0"
+UPPERCASE_HEX = frozenset("0123456789ABCDEF")
 
 INK = (29, 40, 53)
 MUTED = (91, 105, 121)
@@ -75,6 +77,29 @@ def _string(mapping: dict[str, Any], key: str, context: str) -> str:
     value = _required(mapping, key, context)
     if not isinstance(value, str):
         raise EnvelopeRenderContractError(f"{context}.{key} must be a string.")
+    return value
+
+
+def _canonical_sha256(value: str, context: str) -> str:
+    if len(value) != 64 or any(
+        character not in UPPERCASE_HEX for character in value
+    ):
+        raise EnvelopeRenderContractError(
+            f"{context} must contain exactly 64 uppercase hexadecimal characters."
+        )
+    return value
+
+
+def _sha256(mapping: dict[str, Any], key: str, context: str) -> str:
+    return _canonical_sha256(
+        _non_empty_string(mapping, key, context), f"{context}.{key}"
+    )
+
+
+def _optional_sha256(mapping: dict[str, Any], key: str, context: str) -> str:
+    value = _string(mapping, key, context)
+    if value:
+        _canonical_sha256(value, f"{context}.{key}")
     return value
 
 
@@ -205,6 +230,14 @@ def build_render_model(envelope: dict[str, Any]) -> dict[str, Any]:
         raise EnvelopeRenderContractError(
             f"Unsupported envelope schema {schema!r}; expected schema 1."
         )
+    decision_engine_version = _non_empty_string(
+        envelope, "DecisionEngineVersion", "envelope"
+    )
+    if decision_engine_version != SUPPORTED_DECISION_ENGINE_VERSION:
+        raise EnvelopeRenderContractError(
+            "Unsupported DecisionEngineVersion "
+            f"{decision_engine_version!r}; expected {SUPPORTED_DECISION_ENGINE_VERSION!r}."
+        )
     if _non_empty_string(envelope, "ArtifactType", "envelope") != "advantage-envelope":
         raise EnvelopeRenderContractError("ArtifactType must be 'advantage-envelope'.")
     if _required(envelope, "FinalDecisionLocked", "envelope") is not True:
@@ -232,6 +265,7 @@ def build_render_model(envelope: dict[str, Any]) -> dict[str, Any]:
         baseline_roles: dict[str, bool] = {}
         for outcome_index, outcome in enumerate(outcomes):
             outcome_context = f"{context}.CandidateOutcomes[{outcome_index}]"
+            _sha256(outcome, "SourceEvidenceHash", outcome_context)
             candidate = _required(outcome, "Candidate", outcome_context)
             identifier = _candidate_id(candidate, f"{outcome_context}.Candidate")
             if candidate["ExecutionPolicyId"] != axis["ExecutionPolicyId"]:
@@ -272,8 +306,12 @@ def build_render_model(envelope: dict[str, Any]) -> dict[str, Any]:
             raise EnvelopeRenderContractError(f"{context}.HoldoutConfirmed must be boolean.")
         calibration_partition = _string(raw, "CalibrationPartitionId", context)
         holdout_partition = _string(raw, "HoldoutPartitionId", context)
-        holdout_baseline_hash = _string(raw, "HoldoutBaselineEvidenceHash", context)
-        holdout_candidate_hash = _string(raw, "HoldoutCandidateEvidenceHash", context)
+        holdout_baseline_hash = _optional_sha256(
+            raw, "HoldoutBaselineEvidenceHash", context
+        )
+        holdout_candidate_hash = _optional_sha256(
+            raw, "HoldoutCandidateEvidenceHash", context
+        )
         if status != 0 and not calibration_partition:
             raise EnvelopeRenderContractError(
                 f"{context} valid decision is missing its calibration partition."
@@ -404,40 +442,36 @@ def build_render_model(envelope: dict[str, Any]) -> dict[str, Any]:
 
     return {
         "SchemaVersion": schema,
-        "DecisionEngineVersion": _non_empty_string(
-            envelope, "DecisionEngineVersion", "envelope"
-        ),
+        "DecisionEngineVersion": decision_engine_version,
         "EnvelopeId": _non_empty_string(envelope, "EnvelopeId", "envelope"),
         "CreatedUtcIso8601": _non_empty_string(
             envelope, "CreatedUtcIso8601", "envelope"
         ),
         "ScenarioId": _non_empty_string(envelope, "ScenarioId", "envelope"),
         "ContractVersion": contract_version,
-        "CandidateSetHash": _non_empty_string(
-            envelope, "CandidateSetHash", "envelope"
-        ),
-        "MeasurementSchemaHash": _non_empty_string(
+        "CandidateSetHash": _sha256(envelope, "CandidateSetHash", "envelope"),
+        "MeasurementSchemaHash": _sha256(
             envelope, "MeasurementSchemaHash", "envelope"
         ),
-        "EnvironmentFingerprint": _non_empty_string(
+        "EnvironmentFingerprint": _sha256(
             envelope, "EnvironmentFingerprint", "envelope"
         ),
-        "CalibrationSettingsHash": _non_empty_string(
+        "CalibrationSettingsHash": _sha256(
             envelope, "CalibrationSettingsHash", "envelope"
         ),
-        "HoldoutSettingsHash": _non_empty_string(
+        "HoldoutSettingsHash": _sha256(
             envelope, "HoldoutSettingsHash", "envelope"
         ),
         "CalibrationSourceArtifactId": _non_empty_string(
             envelope, "CalibrationSourceArtifactId", "envelope"
         ),
-        "CalibrationSourceArtifactSha256": _non_empty_string(
+        "CalibrationSourceArtifactSha256": _sha256(
             envelope, "CalibrationSourceArtifactSha256", "envelope"
         ),
         "HoldoutSourceArtifactId": _non_empty_string(
             envelope, "HoldoutSourceArtifactId", "envelope"
         ),
-        "HoldoutSourceArtifactSha256": _non_empty_string(
+        "HoldoutSourceArtifactSha256": _sha256(
             envelope, "HoldoutSourceArtifactSha256", "envelope"
         ),
         "EvidenceScope": _non_empty_string(envelope, "EvidenceScope", "envelope"),
