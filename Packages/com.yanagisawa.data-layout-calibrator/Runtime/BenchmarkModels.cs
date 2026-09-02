@@ -378,6 +378,27 @@ namespace Yanagisawa.DataLayoutCalibrator
         public BootstrapConfidenceInterval ImprovementConfidenceInterval;
     }
 
+    /// <summary>
+    /// Optional immutable reference from a schema-3 scenario profile to a
+    /// separately retained advantage-envelope artifact. The reference never
+    /// replaces or recomputes FinalDecision.
+    /// </summary>
+    [Serializable]
+    public sealed class AdvantageEnvelopeArtifactReference
+    {
+        public const int CurrentSchemaVersion = 1;
+
+        public int SchemaVersion = CurrentSchemaVersion;
+        public string ArtifactId;
+        public string ArtifactSha256;
+        public int ArtifactSchemaVersion;
+        public string DecisionEngineVersion;
+        public string ScenarioId;
+        public int ContractVersion;
+        public string CandidateSetSha256;
+        public string MeasurementSchemaSha256;
+    }
+
     [Serializable]
     public sealed class ScenarioCalibrationProfile
     {
@@ -409,6 +430,7 @@ namespace Yanagisawa.DataLayoutCalibrator
         public LayoutBenchmarkResult[] CalibrationResults;
         public LayoutBenchmarkResult HoldoutBaselineResult;
         public LayoutBenchmarkResult HoldoutSelectedResult;
+        public AdvantageEnvelopeArtifactReference AdvantageEnvelope;
     }
 
     [Serializable]

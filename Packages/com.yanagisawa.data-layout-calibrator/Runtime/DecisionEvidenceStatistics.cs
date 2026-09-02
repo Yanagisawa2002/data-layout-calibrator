@@ -224,8 +224,8 @@ namespace Yanagisawa.DataLayoutCalibrator
             if (!(baselinePoint > 0d))
                 throw new ArgumentException("Tuned AoS point cost must be positive.", nameof(baseline));
 
-            var improvements = new double[baselineReplicates.Length];
-            for (int index = 0; index < improvements.Length; index++)
+            var logRatios = new double[baselineReplicates.Length];
+            for (int index = 0; index < logRatios.Length; index++)
             {
                 double baselineCost = AmortizedCost(
                     baselineReplicates[index].ResidentP95MillisecondsPerTick,
@@ -237,25 +237,27 @@ namespace Yanagisawa.DataLayoutCalibrator
                     candidateReplicates[index].IngressP95Milliseconds,
                     candidateReplicates[index].ExportP95Milliseconds,
                     lifetimeTicks);
-                if (!(baselineCost > 0d))
+                if (!(baselineCost > 0d) || !(candidateCost > 0d))
                 {
                     throw new ArgumentException(
-                        "Every tuned AoS bootstrap cost must be positive.",
+                        "Every baseline and candidate bootstrap cost must be positive.",
                         nameof(baseline));
                 }
 
-                improvements[index] = ImprovementPercent(baselineCost, candidateCost);
+                logRatios[index] = Math.Log(candidateCost / baselineCost);
             }
 
-            Array.Sort(improvements);
+            Array.Sort(logRatios);
             double tail = (1d - confidenceLevel) * 0.5d;
+            double lowerLogRatio = PercentileOfSorted(logRatios, tail);
+            double upperLogRatio = PercentileOfSorted(logRatios, 1d - tail);
             return new EnvelopeConfidenceInterval
             {
-                ReplicateCount = improvements.Length,
+                ReplicateCount = logRatios.Length,
                 ConfidenceLevel = confidenceLevel,
                 PointEstimatePercent = ImprovementPercent(baselinePoint, candidatePoint),
-                LowerBoundPercent = PercentileOfSorted(improvements, tail),
-                UpperBoundPercent = PercentileOfSorted(improvements, 1d - tail),
+                LowerBoundPercent = LogRatioToImprovementPercent(upperLogRatio),
+                UpperBoundPercent = LogRatioToImprovementPercent(lowerLogRatio),
             };
         }
 
@@ -487,17 +489,7 @@ namespace Yanagisawa.DataLayoutCalibrator
 
         internal static bool IsCanonicalSha256(string value)
         {
-            if (value == null || value.Length != 64)
-                return false;
-            for (int index = 0; index < value.Length; index++)
-            {
-                char character = value[index];
-                bool digit = character >= '0' && character <= '9';
-                bool upperHex = character >= 'A' && character <= 'F';
-                if (!digit && !upperHex)
-                    return false;
-            }
-            return true;
+            return CandidateDefinitionProtocol.IsCanonicalSha256(value);
         }
 
         internal static double Percentile(double[] values, double percentile)
@@ -551,6 +543,11 @@ namespace Yanagisawa.DataLayoutCalibrator
             if (double.IsNaN(result) || double.IsInfinity(result))
                 throw new ArgumentException("Improvement percentage is not finite.");
             return result;
+        }
+
+        private static double LogRatioToImprovementPercent(double logRatio)
+        {
+            return (1d - Math.Exp(logRatio)) * 100d;
         }
 
         private static bool TryNormalizeReplicates(

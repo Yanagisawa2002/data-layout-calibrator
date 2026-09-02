@@ -114,6 +114,11 @@ namespace Yanagisawa.DataLayoutCalibrator
             }
             ValidateDecisionForMigration(profile.CalibrationDecision);
             ValidateDecisionForMigration(profile.FinalDecision);
+            if (!HasAbsentAdvantageEnvelopeReferenceShape(profile.AdvantageEnvelope))
+            {
+                throw new ArgumentException(
+                    "Schema 2 cannot contain a schema-3 advantage-envelope reference.");
+            }
             if (!HasLegacyAbsentSamplingDesignShape(profile.SamplingDesign))
                 ValidateSamplingDesign(profile.SamplingDesign);
 
@@ -256,6 +261,22 @@ namespace Yanagisawa.DataLayoutCalibrator
                    string.IsNullOrEmpty(design.UncertaintyDescription);
         }
 
+        private static bool HasAbsentAdvantageEnvelopeReferenceShape(
+            AdvantageEnvelopeArtifactReference reference)
+        {
+            if (reference == null)
+                return true;
+            return reference.SchemaVersion == AdvantageEnvelopeArtifactReference.CurrentSchemaVersion &&
+                   string.IsNullOrEmpty(reference.ArtifactId) &&
+                   string.IsNullOrEmpty(reference.ArtifactSha256) &&
+                   reference.ArtifactSchemaVersion == 0 &&
+                   string.IsNullOrEmpty(reference.DecisionEngineVersion) &&
+                   string.IsNullOrEmpty(reference.ScenarioId) &&
+                   reference.ContractVersion == 0 &&
+                   string.IsNullOrEmpty(reference.CandidateSetSha256) &&
+                   string.IsNullOrEmpty(reference.MeasurementSchemaSha256);
+        }
+
         private static void ValidateScenario3(ScenarioCalibrationProfile profile)
         {
             if (profile.SchemaVersion != ProposedSchemaVersion)
@@ -271,6 +292,8 @@ namespace Yanagisawa.DataLayoutCalibrator
                     profile.Scenario,
                     profile.ElementCount,
                     reconstructedFromSchema2);
+            if (!HasAbsentAdvantageEnvelopeReferenceShape(profile.AdvantageEnvelope))
+                ScientificAdvantageEnvelopeAdapter.ValidateArtifactReference(profile);
             bool holdoutBaselineAbsent =
                 IsAbsentOptionalResultShape(profile.HoldoutBaselineResult);
             bool holdoutSelectedAbsent =
