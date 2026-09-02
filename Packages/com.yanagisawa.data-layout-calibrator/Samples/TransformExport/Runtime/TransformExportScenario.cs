@@ -29,6 +29,11 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
     {
         private static readonly int[] BatchSizes = { 32, 64, 128, 256 };
         private static readonly LayoutKind[] Layouts = { LayoutKind.AoS, LayoutKind.SoA };
+        private static readonly ExecutionPolicy[] Executions =
+        {
+            ExecutionPolicy.FrameFaithful,
+            ExecutionPolicy.DependencyChain,
+        };
 
         private readonly NativeArray<TransformRecord> _canonicalInput;
         private readonly TransformExportCandidate[] _candidates;
@@ -99,11 +104,23 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
 
         private static CandidateDescriptor[] CreateDefaultCandidates()
         {
-            var candidates = new CandidateDescriptor[Layouts.Length * BatchSizes.Length];
+            var candidates = new CandidateDescriptor[
+                Layouts.Length * Executions.Length * BatchSizes.Length];
             int cursor = 0;
             for (int layout = 0; layout < Layouts.Length; layout++)
+            for (int execution = 0; execution < Executions.Length; execution++)
             for (int batch = 0; batch < BatchSizes.Length; batch++)
-                candidates[cursor++] = new CandidateDescriptor(Layouts[layout], BatchSizes[batch]);
+            {
+                candidates[cursor++] = new CandidateDescriptor(
+                    new LayoutPolicy(Layouts[layout].ToString()),
+                    new KernelPolicy(
+                        "FullMatrixExport",
+                        KernelControlFlow.Unspecified),
+                    BatchPolicy.JobBatch(BatchSizes[batch]),
+                    Executions[execution],
+                    isBaseline: Layouts[layout] == LayoutKind.AoS,
+                    sortOrder: (layout * 100) + (execution * 10) + batch);
+            }
             return candidates;
         }
 
@@ -125,6 +142,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
         private readonly NativeArray<TransformExportRecord> _residentOutput;
         private readonly NativeArray<TransformExportRecord> _canonicalExport;
         private readonly LayoutKind _layout;
+        private readonly ExecutionPolicy _execution;
         private TransformSoAStorage _soa;
         private bool _disposed;
 
@@ -132,11 +150,14 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
             CandidateDescriptor descriptor,
             NativeArray<TransformRecord> canonicalInput)
         {
-            _layout = ParseLayout(descriptor);
+            Descriptor = descriptor.NormalizePolicies();
+            Descriptor.ValidateFactorConsistency();
+            _layout = ParseLayout(Descriptor);
+            ValidateKernel(Descriptor);
+            _execution = ParseExecution(Descriptor);
             if (_layout != LayoutKind.AoS && _layout != LayoutKind.SoA)
                 throw new ArgumentOutOfRangeException(nameof(descriptor), "TransformExport supports AoS and SoA.");
 
-            Descriptor = descriptor;
             _canonicalInput = canonicalInput;
             _aosRecords = _layout == LayoutKind.AoS
                 ? new NativeArray<TransformRecord>(canonicalInput.Length, Allocator.Persistent, NativeArrayOptions.UninitializedMemory)
@@ -198,8 +219,24 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
             if (ticks <= 0)
                 throw new ArgumentOutOfRangeException(nameof(ticks));
 
-            for (int tick = 0; tick < ticks; tick++)
-                Schedule().Complete();
+            switch (_execution.Topology)
+            {
+                case ExecutionTopology.FrameFaithful:
+                    for (int tick = 0; tick < ticks; tick++)
+                        Schedule().Complete();
+                    return;
+
+                case ExecutionTopology.DependencyChain:
+                    JobHandle dependency = default;
+                    for (int tick = 0; tick < ticks; tick++)
+                        dependency = Schedule(dependency);
+                    dependency.Complete();
+                    return;
+
+                default:
+                    throw new NotSupportedException(
+                        $"TransformExport does not declare reorderable TemporalBlock semantics: {_execution.PolicyId}.");
+            }
         }
 
         public void Ingress()
@@ -242,7 +279,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
             _disposed = true;
         }
 
-        private JobHandle Schedule()
+        private JobHandle Schedule(JobHandle dependency = default)
         {
             if (_layout == LayoutKind.AoS)
             {
@@ -250,7 +287,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
                 {
                     Records = _aosRecords,
                     Output = _residentOutput,
-                }.Schedule(ElementCount, Math.Max(1, Descriptor.LogicalBatchSize));
+                }.Schedule(ElementCount, Math.Max(1, Descriptor.LogicalBatchSize), dependency);
             }
 
             return new TransformSoAExportJob
@@ -261,7 +298,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
                 EntityIds = _soa.EntityIds,
                 Flags = _soa.Flags,
                 Output = _residentOutput,
-            }.Schedule(ElementCount, Math.Max(1, Descriptor.LogicalBatchSize));
+            }.Schedule(ElementCount, Math.Max(1, Descriptor.LogicalBatchSize), dependency);
         }
 
         private void ThrowIfDisposed()
@@ -272,7 +309,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
 
         private static LayoutKind ParseLayout(CandidateDescriptor descriptor)
         {
-            if (Enum.TryParse(descriptor.LayoutId, true, out LayoutKind layout) &&
+            if (Enum.TryParse(descriptor.EffectiveLayout.PolicyId, true, out LayoutKind layout) &&
                 Enum.IsDefined(typeof(LayoutKind), layout))
             {
                 return layout;
@@ -282,6 +319,43 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
                 nameof(descriptor),
                 descriptor.LayoutId,
                 "TransformExport supports AoS and SoA.");
+        }
+
+        private static ExecutionPolicy ParseExecution(CandidateDescriptor descriptor)
+        {
+            ExecutionPolicy policy = descriptor.EffectiveExecution;
+            if (policy.Topology == ExecutionTopology.FrameFaithful &&
+                string.Equals(policy.PolicyId, "FrameFaithful", StringComparison.Ordinal))
+            {
+                return policy;
+            }
+            if (policy.Topology == ExecutionTopology.DependencyChain &&
+                string.Equals(policy.PolicyId, "DependencyChain", StringComparison.Ordinal))
+            {
+                return policy;
+            }
+
+            throw new ArgumentOutOfRangeException(
+                nameof(descriptor),
+                policy.PolicyId,
+                "TransformExport implements only FrameFaithful and DependencyChain execution.");
+        }
+
+        private static void ValidateKernel(CandidateDescriptor descriptor)
+        {
+            KernelPolicy policy = descriptor.EffectiveKernel;
+            if (string.Equals(policy.PolicyId, "LegacyUnspecified", StringComparison.Ordinal) ||
+                (string.Equals(policy.PolicyId, "FullMatrixExport", StringComparison.Ordinal) &&
+                 policy.ControlFlow == KernelControlFlow.Unspecified &&
+                 policy.VectorWidth == 1))
+            {
+                return;
+            }
+
+            throw new ArgumentOutOfRangeException(
+                nameof(descriptor),
+                policy.PolicyId,
+                "TransformExport implements only the FullMatrixExport kernel policy.");
         }
     }
 

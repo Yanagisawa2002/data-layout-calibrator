@@ -33,6 +33,41 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
         }
     }
 
+    /// <summary>
+    /// Negative control for attribution: it keeps the identical AoS storage and
+    /// scalar per-record work while replacing the respawn branch with selects.
+    /// </summary>
+    [BurstCompile(OptimizeFor = OptimizeFor.Performance)]
+    public struct ParticleAoSBranchlessStepJob : IJobParallelFor
+    {
+        public NativeArray<ParticleRecord> Records;
+        public float DeltaTime;
+
+        public void Execute(int index)
+        {
+            float3 acceleration = new float3(
+                ParticleStepContract.AccelerationX,
+                ParticleStepContract.AccelerationY,
+                ParticleStepContract.AccelerationZ);
+            ParticleRecord record = Records[index];
+            record.Velocity =
+                record.Velocity * ParticleStepContract.VelocityDamping +
+                acceleration * DeltaTime;
+            float3 integratedPosition = record.Position + record.Velocity * DeltaTime;
+            float integratedLifetime = record.Lifetime - DeltaTime;
+            bool expired = integratedLifetime <= 0.0f;
+            record.Lifetime = math.select(
+                integratedLifetime,
+                integratedLifetime + ParticleStepContract.RespawnLifetimeSeconds,
+                expired);
+            record.Position = math.select(
+                integratedPosition,
+                integratedPosition * ParticleStepContract.RespawnPositionScale,
+                expired);
+            Records[index] = record;
+        }
+    }
+
     [BurstCompile(OptimizeFor = OptimizeFor.Performance)]
     public struct ParticleSoAStepJob : IJobParallelFor
     {
@@ -127,6 +162,23 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             JobHandle dependency = default)
         {
             var job = new ParticleAoSStepJob
+            {
+                Records = storage.Records,
+                DeltaTime = deltaTime,
+            };
+            return job.Schedule(
+                storage.Count,
+                math.max(1, logicalBatchSize),
+                dependency);
+        }
+
+        public static JobHandle ScheduleBranchless(
+            ref ParticleAoSStorage storage,
+            int logicalBatchSize,
+            float deltaTime,
+            JobHandle dependency = default)
+        {
+            var job = new ParticleAoSBranchlessStepJob
             {
                 Records = storage.Records,
                 DeltaTime = deltaTime,
