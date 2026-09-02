@@ -173,7 +173,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             Assert.That(result.SchemaVersion, Is.EqualTo(1));
             Assert.That(result.Status, Is.EqualTo(CounterCollectionStatus.Collected));
             Assert.That(result.Origin, Is.EqualTo(CounterEvidenceOrigin.SyntheticFixture));
-            Assert.That(result.InterpretationLevel, Is.EqualTo(CounterInterpretationLevel.Correlation));
+            Assert.That(result.InterpretationLevel, Is.EqualTo(CounterInterpretationLevel.None));
+            Assert.That(result.StatusReason, Does.Contain("no evidence interpretation level"));
             Assert.That(result.Context.ProcessEvidenceId, Is.EqualTo("process-03"));
             Assert.That(result.Context.DeviceId, Is.EqualTo("device-alpha"));
             Assert.That(result.Context.ContractVersion, Is.EqualTo(4));
@@ -200,6 +201,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
 
             Assert.That(restored.SchemaVersion, Is.EqualTo(1));
             Assert.That(restored.Origin, Is.EqualTo(CounterEvidenceOrigin.SyntheticFixture));
+            Assert.That(restored.InterpretationLevel, Is.EqualTo(CounterInterpretationLevel.None));
             Assert.That(restored.RawCounters[0].Value, Is.EqualTo(1200d));
             Assert.That(restored.Context.RoundIndex, Is.EqualTo(7));
         }

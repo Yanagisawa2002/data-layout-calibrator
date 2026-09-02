@@ -49,9 +49,11 @@ provider artifact hash, and optional assembly/Inspector artifact provenance. Der
 metrics retain their formula and source counter IDs. A capture is labelled
 `Observed` or `SyntheticFixture`; fixtures are for deterministic tests only.
 
-A single capture is classified as correlation. Mechanism evidence requires an
-independently hashed compiler/assembly artifact. A causal claim additionally requires
-a preregistered controlled experiment. Neither promotion is performed automatically.
+An observed capture is classified as correlation. A synthetic fixture always has
+`CounterInterpretationLevel.None`; it cannot acquire an evidence interpretation level.
+Mechanism evidence requires an independently hashed compiler/assembly artifact. A
+causal claim additionally requires a preregistered controlled experiment. Neither
+promotion is performed automatically.
 
 `CounterOverheadEstimator` evaluates paired enabled/disabled duration arrays using
 deterministic medians. The provider or harness owns timing collection. Invalid or
@@ -60,18 +62,30 @@ zero.
 
 ## Device, ISA, workload, and process boundary
 
-The versioned manifest separates four identities:
+The versioned manifest separates these identities:
 
 1. A **device target** is a planned coverage requirement. It is not evidence.
-2. A **registered device** is one stable `DeviceId` bound to CPU family, ISA,
-   operating system, and environment fingerprint.
-3. A **process request** is one planned independent Release Player launch on one
+2. A **physical-device identity** is a stable `deviceIdentitySha256` with a retained,
+   hashed attestation artifact. It is deliberately separate from the environment or
+   build fingerprint.
+3. A **registered device label** is a human-readable `DeviceId` bound to the physical
+   identity, CPU family, ISA, operating system, and environment fingerprint.
+4. A **process request** is one planned independent Release Player launch on one
    registered device.
-4. A **process observation** is the provenance record for one executed request.
+5. A **process observation** is the provenance record for one executed request.
 
 Repeated processes increase process replication only. They never increase the
-distinct device count. Synthetic fixture observations increase neither observed
-process nor observed device coverage.
+distinct physical-device count. Duplicate physical identity hashes are rejected even
+when their `DeviceId` labels differ. Coverage groups the identity hash, not the label.
+Synthetic fixture observations increase neither observed process nor observed device
+coverage.
+
+The tool does not derive a physical identity and does not prescribe a hardware serial,
+inventory system, or vendor identifier. Registration must supply a privacy-reviewed
+external identity source as a versioned JSON attestation containing the identity hash,
+evidence origin, capture method, source reference, and capture time. The manifest
+retains the attestation path and SHA-256. An environment fingerprint is never accepted
+as a substitute for physical identity.
 
 The protocol normalizes AMD and Intel targets as CPU families sharing `isaId =
 x86_64`; ARM targets use `isaId = arm64`. This avoids treating vendor family names as
@@ -105,6 +119,7 @@ python Tools/EvidenceLab/evidence_lab.py run `
   work/device-validation-plan.json REQUEST_ID `
   --output-directory work/process-01 `
   --confirm-device-id DEVICE_ID `
+  --confirm-device-identity SHA256 `
   --confirm-environment-fingerprint SHA256 `
   --origin observed --acknowledge-observed-evidence
 
@@ -116,7 +131,8 @@ python Tools/EvidenceLab/evidence_lab.py report `
 
 Before a request becomes executable, the manifest requires all of the following:
 
-- an active target and an available registered device with a fingerprint;
+- an active target and an available registered device with distinct physical-identity
+  and environment fingerprints plus a retained identity attestation;
 - an implemented workload identified by `ScenarioId + ContractVersion`;
 - candidate- and workload-schema SHA-256 values;
 - a settings fingerprint and full source commit;
@@ -126,16 +142,34 @@ Before a request becomes executable, the manifest requires all of the following:
 The runner first proves that the supplied plan exactly matches a fresh deterministic
 expansion of the manifest. It launches without a shell, verifies the Player binary
 hash, refuses to overwrite a pre-existing result or observation artifact, requires an
-explicit matching device ID and environment fingerprint, and records the real process
-ID, timestamps, timeout state, exit code, standard-stream hashes, and result-artifact
-hash. A timeout, missing result, non-zero exit, malformed schema-2 suite, invalid frozen
-decision, or mismatched scenario/backend is a failed process observation.
+explicit matching device label, physical-identity hash, and environment fingerprint,
+and records the real process ID, timestamps, timeout state, exit code, retained
+standard-stream paths/hashes, and fixed-suite path/hash. A timeout, missing result,
+non-zero exit, malformed schema-2 suite, invalid frozen decision, or mismatched
+scenario/backend is a failed process observation.
 
-The reporter validates observations against deterministic requests. It reports
-process and distinct-device counts separately, excludes synthetic fixtures from all
-observed coverage, and states that cross-device hierarchical statistics were not
-computed. It verifies the frozen-decision authority but never invokes selection or
+The reporter validates observations against deterministic requests. Before a
+successful observation can contribute to observed coverage, it re-hashes the retained
+device-identity attestation, stdout, stderr, and fixed-suite artifacts, re-parses the
+schema-2 suite, and re-runs frozen-decision validation. Missing local artifacts make an
+imported observation `pending-unverified`; hash, suite, or copied-decision mismatches
+make it rejected. Neither category contributes to process, device, ISA, workload, or
+matrix coverage.
+
+Frozen-decision validation rejects schema-2 status 0. Status 2 (`Optimized`) is the
+only status allowed to select a non-baseline candidate; every other current or future
+non-Optimized status must select `BaselineCandidate`. This keeps Inconclusive,
+StatisticalTie, and a future Regression status on the tuned-AoS fallback invariant.
+
+The reporter groups verified physical identity hashes, retains `DeviceId` only as a
+label, excludes synthetic fixtures from all observed coverage, and states that
+cross-device hierarchical statistics were not computed. It never invokes selection or
 derives a different winner.
+
+This is a local retained-artifact verification boundary, not a remote signature or
+hardware-root-of-trust protocol. The manifest itself must come from a reviewed trusted
+source. Portable bundles and signed remote attestations remain integration-owned;
+without locally verifiable retained artifacts, imported observations stay pending.
 
 ## Remaining evidence gates
 

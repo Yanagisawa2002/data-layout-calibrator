@@ -150,6 +150,8 @@
         "isaId",
         "operatingSystem",
         "environmentFingerprintSha256",
+        "deviceIdentitySha256",
+        "deviceIdentityAttestation",
         "status"
       ],
       "properties": {
@@ -171,12 +173,45 @@
         "environmentFingerprintSha256": {
           "$ref": "#/$defs/sha256"
         },
+        "deviceIdentitySha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "deviceIdentityAttestation": {
+          "$ref": "#/$defs/deviceIdentityAttestationReference"
+        },
         "status": {
           "enum": [
             "available",
             "unavailable",
             "retired"
           ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "deviceIdentityAttestationReference": {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "evidenceOrigin",
+        "artifactPath",
+        "artifactSha256"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "evidenceOrigin": {
+          "enum": [
+            "observed",
+            "synthetic-fixture"
+          ]
+        },
+        "artifactPath": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "artifactSha256": {
+          "$ref": "#/$defs/sha256"
         }
       },
       "additionalProperties": false

@@ -19,8 +19,13 @@ configured Release Player artifacts. That result is intentional.
 - `CandidateDescriptor.CandidateId` is the cross-artifact candidate key.
 - Workloads bind `ScenarioId + ContractVersion`, workload/candidate schema hashes,
   settings, source commit, Player binary, backend, device, and environment.
-- One request and observation represent one Player process; a stable `DeviceId`
-  represents one device.
+- One request and observation represent one Player process. A verified
+  `deviceIdentitySha256` represents one physical device; `DeviceId` is only a label.
+- Physical identities require retained, hashed attestations from an explicitly named
+  external source. Environment/build fingerprints are not device identities, and the
+  tool invents no identity source.
+- Observed coverage requires local re-verification of identity, stdout, stderr, and
+  fixed-suite artifacts. Missing artifacts remain pending; mismatches are rejected.
 - `synthetic-fixture` observations are test inputs and never count as observed process,
   device, ISA, or workload coverage.
 - The reporter retains `ScenarioCalibrationProfile.FinalDecision` as authority and

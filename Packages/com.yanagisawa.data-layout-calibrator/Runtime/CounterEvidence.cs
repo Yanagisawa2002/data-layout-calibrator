@@ -377,9 +377,13 @@ namespace Yanagisawa.DataLayoutCalibrator
                 Provider = descriptor,
                 Status = CounterCollectionStatus.Collected,
                 Origin = measurement.Origin,
-                InterpretationLevel = CounterInterpretationLevel.Correlation,
+                InterpretationLevel = measurement.Origin == CounterEvidenceOrigin.Observed
+                    ? CounterInterpretationLevel.Correlation
+                    : CounterInterpretationLevel.None,
                 StatusCode = "collected",
-                StatusReason = "Counter capture completed. Values support correlation only.",
+                StatusReason = measurement.Origin == CounterEvidenceOrigin.Observed
+                    ? "Observed counter capture completed. Values support correlation only."
+                    : "Synthetic fixture capture completed. It has no evidence interpretation level.",
             };
             CopyMeasurement(result, measurement);
             return result;

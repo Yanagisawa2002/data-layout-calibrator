@@ -15,11 +15,21 @@ MANIFEST_SCHEMA_VERSION = 1
 PLAN_SCHEMA_VERSION = 1
 OBSERVATION_SCHEMA_VERSION = 1
 REPORT_SCHEMA_VERSION = 1
+DEVICE_IDENTITY_ATTESTATION_SCHEMA_VERSION = 1
+ARTIFACT_VERIFICATION_POLICY_VERSION = 1
 HEX_40 = re.compile(r"^[0-9a-fA-F]{40}$")
 HEX_64 = re.compile(r"^[0-9a-fA-F]{64}$")
 
 
 class EvidenceLabError(ValueError):
+    pass
+
+
+class ArtifactUnavailableError(EvidenceLabError):
+    pass
+
+
+class ArtifactVerificationError(EvidenceLabError):
     pass
 
 
@@ -162,6 +172,7 @@ def validate_manifest(manifest: dict[str, Any]) -> None:
                 f"device target {target_id}.status must be planned, active, or retired."
             )
 
+    seen_device_identity_hashes: set[str] = set()
     for device in devices:
         device_id = device["deviceId"]
         target_id = _require_string(device.get("targetId"), f"device {device_id}.targetId")
@@ -177,6 +188,36 @@ def validate_manifest(manifest: dict[str, Any]) -> None:
         _require_sha256(
             device.get("environmentFingerprintSha256"),
             f"device {device_id}.environmentFingerprintSha256",
+        )
+        device_identity = _require_sha256(
+            device.get("deviceIdentitySha256"),
+            f"device {device_id}.deviceIdentitySha256",
+        )
+        if device_identity in seen_device_identity_hashes:
+            raise EvidenceLabError(
+                f"Duplicate device identity hash for registered device {device_id}."
+            )
+        seen_device_identity_hashes.add(device_identity)
+        attestation = _require_mapping(
+            device.get("deviceIdentityAttestation"),
+            f"device {device_id}.deviceIdentityAttestation",
+        )
+        if attestation.get("schemaVersion") != DEVICE_IDENTITY_ATTESTATION_SCHEMA_VERSION:
+            raise EvidenceLabError(
+                f"device {device_id}.deviceIdentityAttestation.schemaVersion must be "
+                f"{DEVICE_IDENTITY_ATTESTATION_SCHEMA_VERSION}."
+            )
+        if attestation.get("evidenceOrigin") not in {"observed", "synthetic-fixture"}:
+            raise EvidenceLabError(
+                f"device {device_id}.deviceIdentityAttestation.evidenceOrigin is invalid."
+            )
+        _require_string(
+            attestation.get("artifactPath"),
+            f"device {device_id}.deviceIdentityAttestation.artifactPath",
+        )
+        _require_sha256(
+            attestation.get("artifactSha256"),
+            f"device {device_id}.deviceIdentityAttestation.artifactSha256",
         )
 
     for workload in workloads:
@@ -351,13 +392,20 @@ def build_plan(manifest: dict[str, Any]) -> dict[str, Any]:
             for launch_ordinal in range(1, entry["requiredIndependentProcesses"] + 1):
                 identity = (
                     f"{manifest_hash}|{entry['targetId']}|{device['deviceId']}|"
-                    f"{entry['workloadId']}|{launch_ordinal}"
+                    f"{device['deviceIdentitySha256']}|{entry['workloadId']}|"
+                    f"{launch_ordinal}"
                 )
                 requests.append(
                     {
                         "requestId": hashlib.sha256(identity.encode("utf-8")).hexdigest()[:24],
                         "targetId": entry["targetId"],
                         "deviceId": device["deviceId"],
+                        "deviceIdentitySha256": device[
+                            "deviceIdentitySha256"
+                        ].upper(),
+                        "deviceIdentityAttestation": copy.deepcopy(
+                            device["deviceIdentityAttestation"]
+                        ),
                         "cpuFamily": device["cpuFamily"],
                         "isaId": device["isaId"],
                         "operatingSystem": device["operatingSystem"],
@@ -415,6 +463,83 @@ def validate_plan_against_manifest(
         )
 
 
+def _verified_local_file(
+    path_value: Any, expected_sha256: Any, label: str
+) -> Path:
+    if not isinstance(path_value, str) or not path_value.strip():
+        raise ArtifactUnavailableError(f"No local path is retained for {label}.")
+    expected = _require_sha256(expected_sha256, f"{label} SHA-256")
+    path = Path(path_value).resolve()
+    if not path.is_file():
+        raise ArtifactUnavailableError(f"Retained {label} is unavailable at {path}.")
+    actual = sha256_file(path)
+    if actual != expected:
+        raise ArtifactVerificationError(
+            f"Retained {label} SHA-256 mismatch: expected {expected}, got {actual}."
+        )
+    return path
+
+
+def validate_device_identity_attestation(
+    attestation: dict[str, Any], request: dict[str, Any]
+) -> dict[str, Any]:
+    _require_mapping(attestation, "device identity attestation")
+    if attestation.get("schemaVersion") != DEVICE_IDENTITY_ATTESTATION_SCHEMA_VERSION:
+        raise ArtifactVerificationError(
+            "Device identity attestation has an unsupported schemaVersion."
+        )
+    reference = request["deviceIdentityAttestation"]
+    if attestation.get("evidenceOrigin") != reference["evidenceOrigin"]:
+        raise ArtifactVerificationError(
+            "Device identity attestation evidence origin does not match registration."
+        )
+    attested_identity = _require_sha256(
+        attestation.get("deviceIdentitySha256"),
+        "device identity attestation.deviceIdentitySha256",
+    )
+    if attested_identity != request["deviceIdentitySha256"]:
+        raise ArtifactVerificationError(
+            "Device identity attestation hash does not match the registered physical identity."
+        )
+    _require_string(
+        attestation.get("attestationMethod"),
+        "device identity attestation.attestationMethod",
+    )
+    _require_string(
+        attestation.get("sourceReference"),
+        "device identity attestation.sourceReference",
+    )
+    _require_string(
+        attestation.get("capturedUtc"),
+        "device identity attestation.capturedUtc",
+    )
+    return attestation
+
+
+def verify_device_identity_attestation(request: dict[str, Any]) -> dict[str, Any]:
+    reference = _require_mapping(
+        request.get("deviceIdentityAttestation"),
+        "process request.deviceIdentityAttestation",
+    )
+    path = _verified_local_file(
+        reference.get("artifactPath"),
+        reference.get("artifactSha256"),
+        "device identity attestation",
+    )
+    try:
+        value = load_json(path)
+    except (OSError, json.JSONDecodeError) as exception:
+        raise ArtifactVerificationError(
+            f"Device identity attestation is not valid JSON: {exception}"
+        ) from exception
+    try:
+        return validate_device_identity_attestation(value, request)
+    except EvidenceLabError as exception:
+        if isinstance(exception, ArtifactVerificationError):
+            raise
+        raise ArtifactVerificationError(str(exception)) from exception
+
+
 def validate_fixed_suite(
     suite: dict[str, Any], request: dict[str, Any]
 ) -> dict[str, Any]:
@@ -470,6 +595,11 @@ def validate_fixed_suite(
     baseline_id = decision_candidate_id("BaselineCandidate")
     selected_id = decision_candidate_id("SelectedCandidate")
     best_id = decision_candidate_id("BestMeasuredCandidate")
+    optimized_status = 2
+    if status != optimized_status and selected_id != baseline_id:
+        raise EvidenceLabError(
+            "A non-Optimized frozen decision must select its baseline CandidateId."
+        )
     calibration_results = _require_list(
         scenario.get("CalibrationResults"), "matching scenario.CalibrationResults"
     )
@@ -521,6 +651,7 @@ def run_request(
     request_id: str,
     output_directory: Path,
     confirmed_device_id: str,
+    confirmed_device_identity: str,
     confirmed_environment_fingerprint: str,
     origin: str,
     acknowledge_observed: bool,
@@ -539,6 +670,18 @@ def run_request(
     request = matches[0]
     if confirmed_device_id != request["deviceId"]:
         raise EvidenceLabError("Confirmed device ID does not match the run request.")
+    confirmed_identity = _require_sha256(
+        confirmed_device_identity, "confirmed device identity"
+    )
+    if confirmed_identity != request["deviceIdentitySha256"]:
+        raise EvidenceLabError(
+            "Confirmed physical-device identity does not match the run request."
+        )
+    identity_attestation = verify_device_identity_attestation(request)
+    if identity_attestation["evidenceOrigin"] != origin:
+        raise EvidenceLabError(
+            "Device identity attestation origin must match the process evidence origin."
+        )
     confirmed_fingerprint = _require_sha256(
         confirmed_environment_fingerprint, "confirmed environment fingerprint"
     )
@@ -646,6 +789,8 @@ def run_request(
         "failureDetail": failure_detail,
         "targetId": request["targetId"],
         "deviceId": request["deviceId"],
+        "deviceIdentitySha256": request["deviceIdentitySha256"],
+        "deviceIdentityAttestation": request["deviceIdentityAttestation"],
         "cpuFamily": request["cpuFamily"],
         "isaId": request["isaId"],
         "operatingSystem": request["operatingSystem"],
@@ -670,7 +815,9 @@ def run_request(
             "binarySha256": actual_binary_hash,
         },
         "artifacts": {
+            "stdoutArtifactPath": str(stdout_path),
             "stdoutSha256": sha256_file(stdout_path),
+            "stderrArtifactPath": str(stderr_path),
             "stderrSha256": sha256_file(stderr_path),
             "resultArtifactPath": str(result_path),
             "resultArtifactSha256": sha256_file(result_path) if result_exists else None,
@@ -683,8 +830,9 @@ def run_request(
             "reason": "No counter artifact was configured for this process request.",
         },
         "deviceConfirmation": {
-            "method": "explicit-device-id-and-environment-fingerprint",
+            "method": "explicit-label-physical-identity-and-environment-fingerprint",
             "confirmedDeviceId": confirmed_device_id,
+            "confirmedDeviceIdentitySha256": confirmed_identity,
         },
     }
     write_json(observation_path, observation)
@@ -709,6 +857,7 @@ def validate_observation(
     matching_fields = (
         "targetId",
         "deviceId",
+        "deviceIdentitySha256",
         "cpuFamily",
         "isaId",
         "operatingSystem",
@@ -725,6 +874,12 @@ def validate_observation(
             raise EvidenceLabError(
                 f"Observation {request_id} field {field} does not match its request."
             )
+    if observation.get("deviceIdentityAttestation") != request[
+        "deviceIdentityAttestation"
+    ]:
+        raise EvidenceLabError(
+            f"Observation {request_id} device identity attestation does not match."
+        )
     if observation.get("settingsFingerprintSha256") != request["execution"][
         "settingsFingerprintSha256"
     ].upper():
@@ -771,15 +926,39 @@ def validate_observation(
     artifacts = _require_mapping(
         observation.get("artifacts"), f"observation {request_id}.artifacts"
     )
+    _require_sha256(
+        artifacts.get("stdoutSha256"),
+        f"observation {request_id}.artifacts.stdoutSha256",
+    )
+    _require_sha256(
+        artifacts.get("stderrSha256"),
+        f"observation {request_id}.artifacts.stderrSha256",
+    )
+    for field in (
+        "stdoutArtifactPath",
+        "stderrArtifactPath",
+        "resultArtifactPath",
+    ):
+        value = artifacts.get(field)
+        if value is not None and (not isinstance(value, str) or not value.strip()):
+            raise EvidenceLabError(
+                f"Observation {request_id} artifact path {field} must be non-empty."
+            )
     if artifacts.get("frozenDecisionAuthority") != "ScenarioCalibrationProfile.FinalDecision":
         raise EvidenceLabError(
             f"Observation {request_id} does not retain the frozen decision authority."
         )
-    if observation["status"] == "succeeded":
+    result_hash = artifacts.get("resultArtifactSha256")
+    if result_hash is not None:
         _require_sha256(
-            artifacts.get("resultArtifactSha256"),
+            result_hash,
             f"observation {request_id}.artifacts.resultArtifactSha256",
         )
+    if observation["status"] == "succeeded":
+        if result_hash is None:
+            raise EvidenceLabError(
+                f"Observation {request_id} succeeded without a result artifact hash."
+            )
         if process["exitCode"] != 0:
             raise EvidenceLabError(
                 f"Observation {request_id} cannot succeed with a non-zero process exit code."
@@ -815,7 +994,68 @@ def validate_observation(
             raise EvidenceLabError(
                 f"Observation {request_id} must not reselect the frozen decision."
             )
+    confirmation = _require_mapping(
+        observation.get("deviceConfirmation"),
+        f"observation {request_id}.deviceConfirmation",
+    )
+    if confirmation.get("confirmedDeviceId") != request["deviceId"] or confirmation.get(
+        "confirmedDeviceIdentitySha256"
+    ) != request["deviceIdentitySha256"]:
+        raise EvidenceLabError(
+            f"Observation {request_id} device confirmation does not match its request."
+        )
     return request
+
+
+def verify_observation_artifacts(
+    observation: dict[str, Any], request: dict[str, Any]
+) -> dict[str, Any]:
+    identity_attestation = verify_device_identity_attestation(request)
+    if identity_attestation["evidenceOrigin"] != observation["evidenceOrigin"]:
+        raise ArtifactVerificationError(
+            "Device identity attestation origin does not match process evidence origin."
+        )
+    artifacts = observation["artifacts"]
+    stdout_path = _verified_local_file(
+        artifacts.get("stdoutArtifactPath"),
+        artifacts.get("stdoutSha256"),
+        "process stdout artifact",
+    )
+    stderr_path = _verified_local_file(
+        artifacts.get("stderrArtifactPath"),
+        artifacts.get("stderrSha256"),
+        "process stderr artifact",
+    )
+    suite_path = _verified_local_file(
+        artifacts.get("resultArtifactPath"),
+        artifacts.get("resultArtifactSha256"),
+        "fixed-suite result artifact",
+    )
+    try:
+        suite = load_json(suite_path)
+    except (OSError, json.JSONDecodeError) as exception:
+        raise ArtifactVerificationError(
+            f"Fixed-suite artifact is not valid JSON: {exception}"
+        ) from exception
+    try:
+        frozen = validate_fixed_suite(suite, request)
+    except EvidenceLabError as exception:
+        raise ArtifactVerificationError(
+            f"Fixed-suite validation failed: {exception}"
+        ) from exception
+    if artifacts.get("frozenDecision") != frozen:
+        raise ArtifactVerificationError(
+            "Copied frozen decision does not exactly match the retained fixed suite."
+        )
+    return {
+        "status": "verified",
+        "deviceIdentitySha256": request["deviceIdentitySha256"],
+        "deviceIdentityAttestationOrigin": identity_attestation["evidenceOrigin"],
+        "stdoutSha256": sha256_file(stdout_path),
+        "stderrSha256": sha256_file(stderr_path),
+        "resultArtifactSha256": sha256_file(suite_path),
+        "frozenDecision": frozen,
+    }
 
 
 def calculate_matrix_coverage(
@@ -832,14 +1072,20 @@ def calculate_matrix_coverage(
             if observation["targetId"] == entry["targetId"]
             and observation["workloadId"] == entry["workloadId"]
         ]
-        device_ids = sorted({item["deviceId"] for item in matching})
+        device_identities = sorted(
+            {item["deviceIdentitySha256"] for item in matching}
+        )
         processes_by_device = {
-            device_id: sum(1 for item in matching if item["deviceId"] == device_id)
-            for device_id in device_ids
+            identity: sum(
+                1
+                for item in matching
+                if item["deviceIdentitySha256"] == identity
+            )
+            for identity in device_identities
         }
         qualified_devices = sorted(
-            device_id
-            for device_id, process_count in processes_by_device.items()
+            identity
+            for identity, process_count in processes_by_device.items()
             if process_count >= entry["requiredIndependentProcesses"]
         )
         rows.append(
@@ -848,7 +1094,7 @@ def calculate_matrix_coverage(
                 "workloadId": entry["workloadId"],
                 "requiredIndependentProcesses": entry["requiredIndependentProcesses"],
                 "processCount": len(matching),
-                "distinctDeviceCount": len(device_ids),
+                "distinctDeviceCount": len(device_identities),
                 "qualifiedDeviceCount": len(qualified_devices),
                 "status": "covered" if qualified_devices else "missing",
             }
@@ -864,10 +1110,12 @@ def build_report(
     seen_observation_ids: set[str] = set()
     seen_process_evidence_ids: set[str] = set()
     accepted_observed: list[dict[str, Any]] = []
-    synthetic: list[dict[str, Any]] = []
+    verified_synthetic: list[dict[str, Any]] = []
+    pending_verification: list[dict[str, Any]] = []
+    rejected_verification: list[dict[str, Any]] = []
     failed: list[dict[str, Any]] = []
     for observation in sorted(observations, key=lambda item: item.get("requestId", "")):
-        validate_observation(observation, plan)
+        request = validate_observation(observation, plan)
         request_id = observation["requestId"]
         observation_id = _require_string(
             observation.get("observationId"), f"observation {request_id}.observationId"
@@ -887,8 +1135,31 @@ def build_report(
         seen_process_evidence_ids.add(process_evidence_id)
         if observation["status"] != "succeeded":
             failed.append(observation)
-        elif observation["evidenceOrigin"] == "synthetic-fixture":
-            synthetic.append(observation)
+            continue
+        try:
+            verify_observation_artifacts(observation, request)
+        except (ArtifactUnavailableError, OSError) as exception:
+            pending_verification.append(
+                {
+                    "observationId": observation_id,
+                    "requestId": request_id,
+                    "evidenceOrigin": observation["evidenceOrigin"],
+                    "reason": str(exception),
+                }
+            )
+            continue
+        except (ArtifactVerificationError, EvidenceLabError) as exception:
+            rejected_verification.append(
+                {
+                    "observationId": observation_id,
+                    "requestId": request_id,
+                    "evidenceOrigin": observation["evidenceOrigin"],
+                    "reason": str(exception),
+                }
+            )
+            continue
+        if observation["evidenceOrigin"] == "synthetic-fixture":
+            verified_synthetic.append(observation)
         else:
             accepted_observed.append(observation)
 
@@ -907,11 +1178,18 @@ def build_report(
     ]
 
     device_summaries: list[dict[str, Any]] = []
-    for device_id in sorted({item["deviceId"] for item in accepted_observed}):
-        matching = [item for item in accepted_observed if item["deviceId"] == device_id]
+    for identity in sorted(
+        {item["deviceIdentitySha256"] for item in accepted_observed}
+    ):
+        matching = [
+            item
+            for item in accepted_observed
+            if item["deviceIdentitySha256"] == identity
+        ]
         device_summaries.append(
             {
-                "deviceId": device_id,
+                "deviceIdentitySha256": identity,
+                "deviceIds": sorted({item["deviceId"] for item in matching}),
                 "cpuFamily": matching[0]["cpuFamily"],
                 "isaId": matching[0]["isaId"],
                 "operatingSystem": matching[0]["operatingSystem"],
@@ -923,7 +1201,27 @@ def build_report(
             }
         )
 
-    if not accepted_observed:
+    pending_observed_count = sum(
+        1 for item in pending_verification if item["evidenceOrigin"] == "observed"
+    )
+    pending_synthetic_count = sum(
+        1
+        for item in pending_verification
+        if item["evidenceOrigin"] == "synthetic-fixture"
+    )
+    rejected_observed_count = sum(
+        1 for item in rejected_verification if item["evidenceOrigin"] == "observed"
+    )
+    rejected_synthetic_count = sum(
+        1
+        for item in rejected_verification
+        if item["evidenceOrigin"] == "synthetic-fixture"
+    )
+    if not accepted_observed and pending_observed_count > 0:
+        scope_status = "pending-unverified-observed-evidence"
+    elif not accepted_observed and rejected_observed_count > 0:
+        scope_status = "rejected-observed-evidence"
+    elif not accepted_observed:
         scope_status = "no-observed-evidence"
     elif all(row["status"] == "covered" for row in matrix_rows):
         scope_status = "manifest-targets-covered"
@@ -935,6 +1233,7 @@ def build_report(
         key=lambda item: (item.get("requestId", ""), item.get("observationId", "")),
     )
     report_identity = {
+        "artifactVerificationPolicyVersion": ARTIFACT_VERIFICATION_POLICY_VERSION,
         "manifestSha256": plan["sourceManifestSha256"],
         "observationSha256": sha256_json(normalized_observations),
     }
@@ -964,7 +1263,11 @@ def build_report(
             "acceptedObservedWorkloadIds": sorted(
                 {item["workloadId"] for item in accepted_observed}
             ),
-            "syntheticFixtureSucceededProcessCount": len(synthetic),
+            "verifiedSyntheticFixtureSucceededProcessCount": len(verified_synthetic),
+            "pendingUnverifiedObservedProcessCount": pending_observed_count,
+            "pendingUnverifiedSyntheticFixtureProcessCount": pending_synthetic_count,
+            "rejectedObservedProcessCount": rejected_observed_count,
+            "rejectedSyntheticFixtureProcessCount": rejected_synthetic_count,
             "failedObservedProcessCount": failed_observed_count,
             "failedSyntheticFixtureProcessCount": failed_synthetic_count,
             "unsubmittedProcessRequestCount": len(plan["requests"]) - len(seen_requests),
@@ -972,38 +1275,77 @@ def build_report(
         },
         "processVsDevice": {
             "processEvidenceUnit": "one independent Player launch",
-            "deviceEvidenceUnit": "one registered DeviceId",
+            "deviceEvidenceUnit": "one verified deviceIdentitySha256",
+            "deviceIdRole": "human-readable registration label only",
             "processesCountAsDevices": False,
         },
         "deviceSummaries": device_summaries,
         "matrixCoverage": matrix_rows,
         "syntheticFixtureSummary": {
-            "succeededProcessCount": len(synthetic),
+            "verifiedSucceededProcessCount": len(verified_synthetic),
+            "pendingUnverifiedProcessCount": pending_synthetic_count,
+            "rejectedProcessCount": rejected_synthetic_count,
             "failedProcessCount": failed_synthetic_count,
             "countsTowardObservedCoverage": False,
-            "observationIds": sorted(item["observationId"] for item in synthetic),
+            "verifiedObservationIds": sorted(
+                item["observationId"] for item in verified_synthetic
+            ),
+        },
+        "artifactVerification": {
+            "policyVersion": ARTIFACT_VERIFICATION_POLICY_VERSION,
+            "acceptedObservedProcessCount": len(accepted_observed),
+            "verifiedSyntheticFixtureProcessCount": len(verified_synthetic),
+            "pendingUnverified": pending_verification,
+            "rejected": rejected_verification,
         },
         "crossDeviceStatistics": {
             "distinctObservedDeviceCount": len(device_summaries),
             "hierarchicalConfidenceIntervalComputed": False,
             "status": "not-computed",
         },
-        "limitations": _limitations(scope_status, plan, device_summaries),
+        "limitations": _limitations(
+            scope_status,
+            plan,
+            device_summaries,
+            len(pending_verification),
+            len(rejected_verification),
+        ),
     }
 
 
 def _limitations(
-    scope_status: str, plan: dict[str, Any], device_summaries: list[dict[str, Any]]
+    scope_status: str,
+    plan: dict[str, Any],
+    device_summaries: list[dict[str, Any]],
+    pending_verification_count: int,
+    rejected_verification_count: int,
 ) -> list[str]:
     limitations = [
         "This report validates provenance and matrix coverage; it does not reselect a layout.",
         "A process launch is not a device, and repeated processes do not increase device count.",
+        "Device counts group verified stable identity hashes; DeviceId is only a label.",
         "No cross-device hierarchical confidence interval is computed by this scaffold.",
     ]
     if scope_status == "no-observed-evidence":
         limitations.append("No observed Release Player evidence was supplied.")
+    elif scope_status == "pending-unverified-observed-evidence":
+        limitations.append(
+            "Observed claims were supplied, but none had locally verifiable retained artifacts."
+        )
+    elif scope_status == "rejected-observed-evidence":
+        limitations.append(
+            "Observed claims were supplied, but retained-artifact verification rejected all of them."
+        )
     if plan["blockedMatrixEntries"]:
         limitations.append("One or more matrix entries are blocked by missing implementation or device setup.")
+    if pending_verification_count:
+        limitations.append(
+            "One or more imported observations are pending because retained local artifacts could not be verified."
+        )
+    if rejected_verification_count:
+        limitations.append(
+            "One or more observations were rejected after retained-artifact verification failed."
+        )
     if len(device_summaries) < 2:
         limitations.append("Fewer than two observed devices are present; no cross-device claim is supported.")
     return limitations
@@ -1052,6 +1394,7 @@ def create_parser() -> argparse.ArgumentParser:
     run_parser.add_argument("request_id")
     run_parser.add_argument("--output-directory", required=True, type=Path)
     run_parser.add_argument("--confirm-device-id", required=True)
+    run_parser.add_argument("--confirm-device-identity", required=True)
     run_parser.add_argument("--confirm-environment-fingerprint", required=True)
     run_parser.add_argument(
         "--origin", required=True, choices=("observed", "synthetic-fixture")
@@ -1094,6 +1437,7 @@ def main() -> int:
                 arguments.request_id,
                 arguments.output_directory,
                 arguments.confirm_device_id,
+                arguments.confirm_device_identity,
                 arguments.confirm_environment_fingerprint,
                 arguments.origin,
                 arguments.acknowledge_observed_evidence,
