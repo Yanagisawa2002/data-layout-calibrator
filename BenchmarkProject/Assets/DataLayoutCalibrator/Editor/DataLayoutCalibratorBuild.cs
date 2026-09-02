@@ -237,6 +237,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark.Editor
             string[] requiredEntrypoints =
             {
                 "ParticleAoSStepJob",
+                "ParticleAoSBranchlessStepJob",
                 "ParticleSoAStepJob",
                 "ParticleAoSoA8StepJob",
                 "ParticleSoAIngressJob",
