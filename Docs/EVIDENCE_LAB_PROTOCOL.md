@@ -22,12 +22,19 @@ counter source. The package does not reimplement a sampler and this branch does 
 provide an observed provider. A host may configure `UnavailableCounterProvider` to
 record why a provider is missing.
 
-Every capture is associated with:
+Every capture that can reach `Collected` is fail-closed and associated with:
 
 - `ScenarioId` plus `ContractVersion`;
 - canonical `CandidateDescriptor.CandidateId`, never `DisplayName`;
-- candidate-schema, environment, and settings fingerprints;
+- canonical candidate-schema, physical-device-identity, environment, and settings
+  SHA-256 fingerprints;
 - phase, round, element count, Player-process evidence ID, and stable device ID.
+
+Provider availability defaults to `Unknown`, not `Available`. Before collection is
+accepted, the runner validates the provider identity, version, mechanism, artifact
+hash, declared counter IDs, raw and derived values, artifact provenance, and overhead
+metadata. Any invalid metadata records `Failed`, runs the measured action exactly
+once, and retains no partial counter values.
 
 The result records one of four explicit states:
 
@@ -136,7 +143,8 @@ Before a request becomes executable, the manifest requires all of the following:
 - an implemented workload identified by `ScenarioId + ContractVersion`;
 - candidate- and workload-schema SHA-256 values;
 - a settings fingerprint and full source commit;
-- a non-Development Release Player, backend, schema-2 suite version, and binary hash;
+- a non-Development Release Player, backend, declared suite schema version 2 or 3,
+  and binary hash;
 - an exact output path for the fixed suite artifact.
 
 The runner first proves that the supplied plan exactly matches a fresh deterministic
@@ -145,21 +153,28 @@ hash, refuses to overwrite a pre-existing result or observation artifact, requir
 explicit matching device label, physical-identity hash, and environment fingerprint,
 and records the real process ID, timestamps, timeout state, exit code, retained
 standard-stream paths/hashes, and fixed-suite path/hash. A timeout, missing result,
-non-zero exit, malformed schema-2 suite, invalid frozen decision, or mismatched
+non-zero exit, malformed schema-2/schema-3 suite, invalid frozen decision, or mismatched
 scenario/backend is a failed process observation.
 
 The reporter validates observations against deterministic requests. Before a
 successful observation can contribute to observed coverage, it re-hashes the retained
 device-identity attestation, stdout, stderr, and fixed-suite artifacts, re-parses the
-schema-2 suite, and re-runs frozen-decision validation. Missing local artifacts make an
+retained suite at its request-declared schema, and re-runs frozen-decision validation.
+Missing local artifacts make an
 imported observation `pending-unverified`; hash, suite, or copied-decision mismatches
 make it rejected. Neither category contributes to process, device, ISA, workload, or
 matrix coverage.
 
-Frozen-decision validation rejects schema-2 status 0. Status 2 (`Optimized`) is the
-only status allowed to select a non-baseline candidate; every other current or future
-non-Optimized status must select `BaselineCandidate`. This keeps Inconclusive,
-StatisticalTie, and a future Regression status on the tuned-AoS fallback invariant.
+The configured request may declare suite schema 2 or 3, and the retained suite must
+match it exactly. Schema 2 accepts only statuses 0 through 3; schema 3 accepts only
+statuses 0 through 4. Status 0 is invalid evidence in both schemas, and unknown future
+integers are rejected. Status 2 (`Optimized`) is the only status allowed to select a
+non-baseline candidate; Inconclusive, StatisticalTie, and schema-3 Regression must
+select `BaselineCandidate`.
+
+This compatibility gate does not rewrite historical schema-2 suites, promote them to
+schema 3, or claim that any schema-3 Release Player, device, ISA, or counter evidence
+was collected by this change.
 
 The reporter groups verified physical identity hashes, retains `DeviceId` only as a
 label, excludes synthetic fixtures from all observed coverage, and states that

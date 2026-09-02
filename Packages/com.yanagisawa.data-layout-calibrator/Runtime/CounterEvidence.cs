@@ -23,9 +23,10 @@ namespace Yanagisawa.DataLayoutCalibrator
 
     public enum CounterProviderAvailabilityStatus
     {
-        Available = 0,
-        Unavailable = 1,
-        Failed = 2,
+        Unknown = 0,
+        Available = 1,
+        Unavailable = 2,
+        Failed = 3,
     }
 
     public enum CounterOverheadStatus
@@ -60,6 +61,7 @@ namespace Yanagisawa.DataLayoutCalibrator
         public int ElementCount;
         public string ProcessEvidenceId;
         public string DeviceId;
+        public string DeviceIdentitySha256;
         public string EnvironmentFingerprintSha256;
         public string SettingsFingerprintSha256;
     }
@@ -258,6 +260,16 @@ namespace Yanagisawa.DataLayoutCalibrator
                     "Counter collection was disabled.");
             }
 
+            try
+            {
+                ValidateContext(context);
+            }
+            catch (Exception exception)
+            {
+                measuredAction();
+                return ProviderFailure(context, default, "context-invalid", exception);
+            }
+
             if (provider == null)
             {
                 measuredAction();
@@ -278,6 +290,16 @@ namespace Yanagisawa.DataLayoutCalibrator
             {
                 measuredAction();
                 return ProviderFailure(context, default, "descriptor-failed", exception);
+            }
+
+            try
+            {
+                ValidateProviderIdentity(descriptor);
+            }
+            catch (Exception exception)
+            {
+                measuredAction();
+                return ProviderFailure(context, descriptor, "descriptor-invalid", exception);
             }
 
             CounterProviderAvailability availability;
@@ -306,6 +328,16 @@ namespace Yanagisawa.DataLayoutCalibrator
                     string.IsNullOrWhiteSpace(availability.Reason)
                         ? "The provider did not report itself available."
                         : availability.Reason);
+            }
+
+            try
+            {
+                ValidateAvailableProviderDescriptor(descriptor);
+            }
+            catch (Exception exception)
+            {
+                measuredAction();
+                return ProviderFailure(context, descriptor, "descriptor-invalid", exception);
             }
 
             ICounterCapture capture;
@@ -339,12 +371,24 @@ namespace Yanagisawa.DataLayoutCalibrator
                 measurement = capture.Complete();
                 if (measurement == null)
                     throw new InvalidOperationException("The provider returned a null measurement.");
-                ValidateMeasurement(measurement);
             }
             catch (Exception exception)
             {
                 providerException = exception;
                 failureCode = "complete-failed";
+            }
+
+            if (providerException == null)
+            {
+                try
+                {
+                    ValidateMeasurement(measurement, descriptor);
+                }
+                catch (Exception exception)
+                {
+                    providerException = exception;
+                    failureCode = "measurement-invalid";
+                }
             }
 
             try
@@ -362,13 +406,11 @@ namespace Yanagisawa.DataLayoutCalibrator
 
             if (providerException != null)
             {
-                CounterCaptureResult failed = ProviderFailure(
+                return ProviderFailure(
                     context,
                     descriptor,
                     failureCode,
                     providerException);
-                CopyMeasurement(failed, measurement);
-                return failed;
             }
 
             var result = new CounterCaptureResult
@@ -403,31 +445,343 @@ namespace Yanagisawa.DataLayoutCalibrator
             destination.Overhead = measurement.Overhead;
         }
 
-        private static void ValidateMeasurement(CounterProviderMeasurement measurement)
+        private static void ValidateContext(CounterCaptureContext context)
         {
-            if (measurement.Origin == CounterEvidenceOrigin.None)
-                throw new InvalidOperationException("The provider did not label the evidence origin.");
-            if (measurement.RawCounters == null || measurement.RawCounters.Length == 0)
-                throw new InvalidOperationException("A collected measurement must contain raw counters.");
-
-            for (int index = 0; index < measurement.RawCounters.Length; index++)
+            RequireStableId(context.RunId, "capture RunId");
+            RequireStableId(context.ScenarioId, "capture ScenarioId");
+            if (context.ContractVersion <= 0)
+                throw new InvalidOperationException("Capture ContractVersion must be positive.");
+            RequireStableId(context.CandidateId, "capture CandidateId");
+            RequireCanonicalSha256(context.CandidateSchemaSha256, "capture candidate schema");
+            if (context.Phase != BenchmarkPhase.Calibration &&
+                context.Phase != BenchmarkPhase.Holdout)
             {
-                RawCounterValue counter = measurement.RawCounters[index];
-                if (string.IsNullOrWhiteSpace(counter.CounterId))
-                    throw new InvalidOperationException($"Raw counter {index} has no stable counter ID.");
-                if (string.IsNullOrWhiteSpace(counter.Unit))
-                    throw new InvalidOperationException($"Raw counter {counter.CounterId} has no unit.");
-                if (double.IsNaN(counter.Value) || double.IsInfinity(counter.Value))
-                    throw new InvalidOperationException($"Raw counter {counter.CounterId} is not finite.");
-                if (counter.IsScaled &&
-                    (double.IsNaN(counter.ScaleFactor) ||
-                     double.IsInfinity(counter.ScaleFactor) ||
-                     counter.ScaleFactor <= 0d))
+                throw new InvalidOperationException("Capture phase is not defined.");
+            }
+            if (context.RoundIndex < 0)
+                throw new InvalidOperationException("Capture RoundIndex must be non-negative.");
+            if (context.ElementCount <= 0)
+                throw new InvalidOperationException("Capture ElementCount must be positive.");
+            RequireStableId(context.ProcessEvidenceId, "capture ProcessEvidenceId");
+            RequireStableId(context.DeviceId, "capture DeviceId");
+            RequireCanonicalSha256(context.DeviceIdentitySha256, "capture device identity");
+            RequireCanonicalSha256(
+                context.EnvironmentFingerprintSha256,
+                "capture environment fingerprint");
+            RequireCanonicalSha256(
+                context.SettingsFingerprintSha256,
+                "capture settings fingerprint");
+        }
+
+        private static void ValidateProviderIdentity(CounterProviderDescriptor descriptor)
+        {
+            RequireStableId(descriptor.ProviderId, "provider ID");
+            RequireStableId(descriptor.ProviderVersion, "provider version");
+            RequireStableId(descriptor.CollectionMechanism, "provider collection mechanism");
+            if (descriptor.SupportedCounterIds == null)
+                throw new InvalidOperationException("Provider supported-counter IDs are required.");
+        }
+
+        private static void ValidateAvailableProviderDescriptor(
+            CounterProviderDescriptor descriptor)
+        {
+            RequireCanonicalSha256(descriptor.ProviderArtifactSha256, "provider artifact");
+            if (descriptor.SupportedCounterIds.Length == 0)
+                throw new InvalidOperationException("An available provider must declare counters.");
+            for (int index = 0; index < descriptor.SupportedCounterIds.Length; index++)
+            {
+                string counterId = descriptor.SupportedCounterIds[index];
+                RequireStableId(counterId, $"provider counter ID {index}");
+                for (int previous = 0; previous < index; previous++)
                 {
-                    throw new InvalidOperationException(
-                        $"Scaled raw counter {counter.CounterId} has an invalid scale factor.");
+                    if (string.Equals(
+                            descriptor.SupportedCounterIds[previous],
+                            counterId,
+                            StringComparison.Ordinal))
+                    {
+                        throw new InvalidOperationException(
+                            $"Provider counter ID {counterId} is duplicated.");
+                    }
                 }
             }
+        }
+
+        private static void ValidateMeasurement(
+            CounterProviderMeasurement measurement,
+            CounterProviderDescriptor descriptor)
+        {
+            if (measurement.Origin != CounterEvidenceOrigin.Observed &&
+                measurement.Origin != CounterEvidenceOrigin.SyntheticFixture)
+            {
+                throw new InvalidOperationException(
+                    "The provider did not declare a supported evidence origin.");
+            }
+            if (measurement.RawCounters == null || measurement.RawCounters.Length == 0)
+                throw new InvalidOperationException("A collected measurement must contain raw counters.");
+            if (measurement.DerivedMetrics == null)
+                throw new InvalidOperationException("Derived metric metadata must be an explicit array.");
+            if (measurement.Artifacts == null)
+                throw new InvalidOperationException("Artifact provenance must be an explicit array.");
+
+            ValidateRawCounters(measurement.RawCounters, descriptor.SupportedCounterIds);
+            ValidateDerivedMetrics(measurement.DerivedMetrics, measurement.RawCounters);
+            ValidateArtifacts(measurement.Artifacts);
+            ValidateOverhead(measurement.Overhead);
+        }
+
+        private static void ValidateRawCounters(
+            RawCounterValue[] counters,
+            string[] supportedCounterIds)
+        {
+            for (int index = 0; index < counters.Length; index++)
+            {
+                RawCounterValue counter = counters[index];
+                RequireStableId(counter.CounterId, $"raw counter ID {index}");
+                RequireStableId(counter.Unit, $"raw counter {counter.CounterId} unit");
+                if (!IsFinite(counter.Value) || counter.Value < 0d)
+                {
+                    throw new InvalidOperationException(
+                        $"Raw counter {counter.CounterId} must be finite and non-negative.");
+                }
+                if (counter.IsScaled)
+                {
+                    if (!IsFinite(counter.ScaleFactor) || counter.ScaleFactor <= 0d)
+                    {
+                        throw new InvalidOperationException(
+                            $"Scaled raw counter {counter.CounterId} has an invalid scale factor.");
+                    }
+                }
+                else if (counter.ScaleFactor != 1d)
+                {
+                    throw new InvalidOperationException(
+                        $"Unscaled raw counter {counter.CounterId} must use scale factor 1.");
+                }
+                if (!ContainsStableId(supportedCounterIds, counter.CounterId))
+                {
+                    throw new InvalidOperationException(
+                        $"Raw counter {counter.CounterId} is not declared by the provider.");
+                }
+                for (int previous = 0; previous < index; previous++)
+                {
+                    if (string.Equals(
+                            counters[previous].CounterId,
+                            counter.CounterId,
+                            StringComparison.Ordinal))
+                    {
+                        throw new InvalidOperationException(
+                            $"Raw counter {counter.CounterId} is duplicated.");
+                    }
+                }
+            }
+        }
+
+        private static void ValidateDerivedMetrics(
+            DerivedCounterMetric[] metrics,
+            RawCounterValue[] rawCounters)
+        {
+            for (int index = 0; index < metrics.Length; index++)
+            {
+                DerivedCounterMetric metric = metrics[index];
+                RequireStableId(metric.MetricId, $"derived metric ID {index}");
+                RequireStableId(metric.Unit, $"derived metric {metric.MetricId} unit");
+                RequireText(metric.Formula, $"derived metric {metric.MetricId} formula");
+                if (!IsFinite(metric.Value))
+                {
+                    throw new InvalidOperationException(
+                        $"Derived metric {metric.MetricId} is not finite.");
+                }
+                if (metric.SourceCounterIds == null || metric.SourceCounterIds.Length == 0)
+                {
+                    throw new InvalidOperationException(
+                        $"Derived metric {metric.MetricId} must name source counters.");
+                }
+                for (int source = 0; source < metric.SourceCounterIds.Length; source++)
+                {
+                    string sourceId = metric.SourceCounterIds[source];
+                    RequireStableId(
+                        sourceId,
+                        $"derived metric {metric.MetricId} source counter {source}");
+                    if (!ContainsRawCounter(rawCounters, sourceId))
+                    {
+                        throw new InvalidOperationException(
+                            $"Derived metric {metric.MetricId} references unknown counter {sourceId}.");
+                    }
+                    for (int previous = 0; previous < source; previous++)
+                    {
+                        if (string.Equals(
+                                metric.SourceCounterIds[previous],
+                                sourceId,
+                                StringComparison.Ordinal))
+                        {
+                            throw new InvalidOperationException(
+                                $"Derived metric {metric.MetricId} repeats source {sourceId}.");
+                        }
+                    }
+                }
+                for (int previous = 0; previous < index; previous++)
+                {
+                    if (string.Equals(
+                            metrics[previous].MetricId,
+                            metric.MetricId,
+                            StringComparison.Ordinal))
+                    {
+                        throw new InvalidOperationException(
+                            $"Derived metric {metric.MetricId} is duplicated.");
+                    }
+                }
+            }
+        }
+
+        private static void ValidateArtifacts(CounterArtifactProvenance[] artifacts)
+        {
+            for (int index = 0; index < artifacts.Length; index++)
+            {
+                CounterArtifactProvenance artifact = artifacts[index];
+                RequireStableId(artifact.ArtifactKind, $"artifact kind {index}");
+                RequireText(artifact.ArtifactPath, $"artifact {artifact.ArtifactKind} path");
+                RequireCanonicalSha256(
+                    artifact.ArtifactSha256,
+                    $"artifact {artifact.ArtifactKind}");
+                RequireStableId(
+                    artifact.Producer,
+                    $"artifact {artifact.ArtifactKind} producer");
+                RequireStableId(
+                    artifact.ProducerVersion,
+                    $"artifact {artifact.ArtifactKind} producer version");
+            }
+        }
+
+        private static void ValidateOverhead(CounterOverheadMetadata overhead)
+        {
+            if (!IsFinite(overhead.DisabledMedianNanoseconds) ||
+                !IsFinite(overhead.EnabledMedianNanoseconds) ||
+                !IsFinite(overhead.EstimatedAddedNanoseconds) ||
+                !IsFinite(overhead.EstimatedOverheadPercent) ||
+                overhead.DisabledMedianNanoseconds < 0d ||
+                overhead.EnabledMedianNanoseconds < 0d)
+            {
+                throw new InvalidOperationException("Counter overhead values are invalid.");
+            }
+            RequireText(overhead.Method, "counter overhead method");
+
+            switch (overhead.Status)
+            {
+                case CounterOverheadStatus.Measured:
+                    if (overhead.Repetitions <= 0)
+                        throw new InvalidOperationException("Measured overhead requires repetitions.");
+                    if (!string.IsNullOrEmpty(overhead.FailureReason))
+                        throw new InvalidOperationException("Measured overhead cannot have a failure reason.");
+                    double expectedPercent = overhead.DisabledMedianNanoseconds > 0d
+                        ? overhead.EstimatedAddedNanoseconds /
+                          overhead.DisabledMedianNanoseconds * 100d
+                        : 0d;
+                    if (!IsFinite(expectedPercent) ||
+                        !NearlyEqual(overhead.EstimatedOverheadPercent, expectedPercent))
+                    {
+                        throw new InvalidOperationException(
+                            "Measured overhead percent is inconsistent with its medians and delta.");
+                    }
+                    break;
+                case CounterOverheadStatus.NotMeasured:
+                    RequireZeroOverheadPayload(overhead, "NotMeasured");
+                    RequireText(overhead.FailureReason, "not-measured overhead reason");
+                    break;
+                case CounterOverheadStatus.Failed:
+                    RequireZeroOverheadPayload(overhead, "Failed");
+                    RequireText(overhead.FailureReason, "failed overhead reason");
+                    break;
+                default:
+                    throw new InvalidOperationException("Counter overhead status is not defined.");
+            }
+        }
+
+        private static void RequireZeroOverheadPayload(
+            CounterOverheadMetadata overhead,
+            string status)
+        {
+            if (overhead.Repetitions != 0 ||
+                overhead.DisabledMedianNanoseconds != 0d ||
+                overhead.EnabledMedianNanoseconds != 0d ||
+                overhead.EstimatedAddedNanoseconds != 0d ||
+                overhead.EstimatedOverheadPercent != 0d)
+            {
+                throw new InvalidOperationException(
+                    $"{status} overhead cannot contain measured values.");
+            }
+        }
+
+        private static bool ContainsStableId(string[] values, string target)
+        {
+            for (int index = 0; index < values.Length; index++)
+            {
+                if (string.Equals(values[index], target, StringComparison.Ordinal))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static bool ContainsRawCounter(RawCounterValue[] values, string target)
+        {
+            for (int index = 0; index < values.Length; index++)
+            {
+                if (string.Equals(values[index].CounterId, target, StringComparison.Ordinal))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static void RequireStableId(string value, string label)
+        {
+            RequireText(value, label);
+            for (int index = 0; index < value.Length; index++)
+            {
+                if (char.IsWhiteSpace(value[index]))
+                    throw new InvalidOperationException($"{label} must not contain whitespace.");
+            }
+        }
+
+        private static void RequireText(string value, string label)
+        {
+            if (string.IsNullOrWhiteSpace(value) ||
+                !string.Equals(value, value.Trim(), StringComparison.Ordinal))
+            {
+                throw new InvalidOperationException($"{label} is required and must be canonical.");
+            }
+            for (int index = 0; index < value.Length; index++)
+            {
+                if (char.IsControl(value[index]))
+                    throw new InvalidOperationException($"{label} must not contain control characters.");
+            }
+        }
+
+        private static void RequireCanonicalSha256(string value, string label)
+        {
+            if (value == null || value.Length != 64)
+                throw new InvalidOperationException($"{label} SHA-256 must contain 64 uppercase hex characters.");
+            for (int index = 0; index < value.Length; index++)
+            {
+                char character = value[index];
+                bool isDigit = character >= '0' && character <= '9';
+                bool isUpperHex = character >= 'A' && character <= 'F';
+                if (!isDigit && !isUpperHex)
+                {
+                    throw new InvalidOperationException(
+                        $"{label} SHA-256 must contain 64 uppercase hex characters.");
+                }
+            }
+        }
+
+        private static bool IsFinite(double value)
+        {
+            return !double.IsNaN(value) && !double.IsInfinity(value);
+        }
+
+        private static bool NearlyEqual(double left, double right)
+        {
+            double scale = Math.Max(1d, Math.Max(Math.Abs(left), Math.Abs(right)));
+            return Math.Abs(left - right) <= 1e-9d * scale;
         }
 
         private static CounterCaptureResult ProviderFailure(
@@ -465,6 +819,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 {
                     Status = CounterOverheadStatus.NotMeasured,
                     Method = "not-measured",
+                    FailureReason = reason,
                 },
                 StatusCode = code,
                 StatusReason = reason,

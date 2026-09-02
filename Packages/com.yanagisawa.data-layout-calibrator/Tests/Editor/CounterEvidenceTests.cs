@@ -44,6 +44,54 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
         }
 
         [Test]
+        public void Capture_WithDefaultAvailability_FailsClosedWithoutBeginning()
+        {
+            var provider = FakeProvider.WithAvailability(default);
+            int calls = 0;
+
+            CounterCaptureResult result = CounterCaptureRunner.Capture(
+                provider,
+                true,
+                CreateContext(),
+                () => calls++);
+
+            Assert.That(calls, Is.EqualTo(1));
+            Assert.That(provider.ProbeCalls, Is.EqualTo(1));
+            Assert.That(provider.BeginCalls, Is.Zero);
+            Assert.That(result.Status, Is.EqualTo(CounterCollectionStatus.Failed));
+            Assert.That(result.StatusCode, Is.EqualTo("probe-not-available"));
+        }
+
+        [TestCase("identity")]
+        [TestCase("version")]
+        [TestCase("hash")]
+        public void Capture_WithInvalidContext_FailsBeforeProviderAccess(string defect)
+        {
+            var provider = FakeProvider.Available();
+            CounterCaptureContext context = CreateContext();
+            if (defect == "identity")
+                context.ProcessEvidenceId = null;
+            else if (defect == "version")
+                context.ContractVersion = 0;
+            else
+                context.DeviceIdentitySha256 = new string('f', 64);
+            int calls = 0;
+
+            CounterCaptureResult result = CounterCaptureRunner.Capture(
+                provider,
+                true,
+                context,
+                () => calls++);
+
+            Assert.That(calls, Is.EqualTo(1));
+            Assert.That(provider.DescriptorCalls, Is.Zero);
+            Assert.That(provider.ProbeCalls, Is.Zero);
+            Assert.That(provider.BeginCalls, Is.Zero);
+            Assert.That(result.Status, Is.EqualTo(CounterCollectionStatus.Failed));
+            Assert.That(result.StatusCode, Is.EqualTo("context-invalid"));
+        }
+
+        [Test]
         public void Capture_WithUnavailableProvider_RunsWorkloadAndPreservesReason()
         {
             var provider = FakeProvider.WithAvailability(
@@ -63,6 +111,35 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             Assert.That(result.Status, Is.EqualTo(CounterCollectionStatus.Unavailable));
             Assert.That(result.StatusCode, Is.EqualTo("permission-denied"));
             Assert.That(result.Provider.ProviderId, Is.EqualTo("fixture-provider"));
+        }
+
+        [TestCase("provider-id")]
+        [TestCase("provider-version")]
+        [TestCase("mechanism")]
+        [TestCase("artifact-hash")]
+        public void Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning(string defect)
+        {
+            var provider = FakeProvider.Available();
+            if (defect == "provider-id")
+                provider.DescriptorValue.ProviderId = null;
+            else if (defect == "provider-version")
+                provider.DescriptorValue.ProviderVersion = null;
+            else if (defect == "mechanism")
+                provider.DescriptorValue.CollectionMechanism = null;
+            else
+                provider.DescriptorValue.ProviderArtifactSha256 = new string('c', 64);
+            int calls = 0;
+
+            CounterCaptureResult result = CounterCaptureRunner.Capture(
+                provider,
+                true,
+                CreateContext(),
+                () => calls++);
+
+            Assert.That(calls, Is.EqualTo(1));
+            Assert.That(provider.BeginCalls, Is.Zero);
+            Assert.That(result.Status, Is.EqualTo(CounterCollectionStatus.Failed));
+            Assert.That(result.StatusCode, Is.EqualTo("descriptor-invalid"));
         }
 
         [Test]
@@ -137,8 +214,51 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 () => { });
 
             Assert.That(result.Status, Is.EqualTo(CounterCollectionStatus.Failed));
-            Assert.That(result.StatusCode, Is.EqualTo("complete-failed"));
+            Assert.That(result.StatusCode, Is.EqualTo("measurement-invalid"));
             Assert.That(result.StatusReason, Does.Contain("must contain raw counters"));
+        }
+
+        [TestCase("derived-source")]
+        [TestCase("artifact-hash")]
+        [TestCase("overhead-repetitions")]
+        [TestCase("overhead-percent")]
+        public void Capture_WithInvalidMeasurementMetadata_FailsClosed(string defect)
+        {
+            var provider = FakeProvider.Available();
+            provider.Capture.Measurement = CreateMeasurement(
+                CounterEvidenceOrigin.SyntheticFixture);
+            if (defect == "derived-source")
+            {
+                provider.Capture.Measurement.DerivedMetrics[0].SourceCounterIds =
+                    new[] { "undeclared-counter" };
+            }
+            else if (defect == "artifact-hash")
+            {
+                provider.Capture.Measurement.Artifacts[0].ArtifactSha256 =
+                    new string('b', 64);
+            }
+            else if (defect == "overhead-repetitions")
+            {
+                provider.Capture.Measurement.Overhead.Repetitions = 0;
+            }
+            else
+            {
+                provider.Capture.Measurement.Overhead.EstimatedOverheadPercent = 999d;
+            }
+            int calls = 0;
+
+            CounterCaptureResult result = CounterCaptureRunner.Capture(
+                provider,
+                true,
+                CreateContext(),
+                () => calls++);
+
+            Assert.That(calls, Is.EqualTo(1));
+            Assert.That(provider.Capture.Disposed, Is.True);
+            Assert.That(result.Status, Is.EqualTo(CounterCollectionStatus.Failed));
+            Assert.That(result.StatusCode, Is.EqualTo("measurement-invalid"));
+            Assert.That(result.RawCounters, Is.Empty);
+            Assert.That(result.InterpretationLevel, Is.EqualTo(CounterInterpretationLevel.None));
         }
 
         [Test]
@@ -249,6 +369,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 ElementCount = 1024,
                 ProcessEvidenceId = "process-03",
                 DeviceId = "device-alpha",
+                DeviceIdentitySha256 = new string('F', 64),
                 EnvironmentFingerprintSha256 = new string('A', 64),
                 SettingsFingerprintSha256 = new string('E', 64),
             };
@@ -313,10 +434,19 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             public int BeginCalls;
             public bool ThrowOnBegin;
             public readonly FakeCapture Capture = new FakeCapture();
+            public CounterProviderDescriptor DescriptorValue;
 
             private FakeProvider(CounterProviderAvailability availability)
             {
                 _availability = availability;
+                DescriptorValue = new CounterProviderDescriptor
+                {
+                    ProviderId = "fixture-provider",
+                    ProviderVersion = "1",
+                    CollectionMechanism = "synthetic-fixture",
+                    ProviderArtifactSha256 = new string('C', 64),
+                    SupportedCounterIds = new[] { "cycles" },
+                };
                 Capture.Measurement = CreateMeasurement(CounterEvidenceOrigin.SyntheticFixture);
             }
 
@@ -325,14 +455,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 get
                 {
                     DescriptorCalls++;
-                    return new CounterProviderDescriptor
-                    {
-                        ProviderId = "fixture-provider",
-                        ProviderVersion = "1",
-                        CollectionMechanism = "synthetic-fixture",
-                        ProviderArtifactSha256 = new string('C', 64),
-                        SupportedCounterIds = new[] { "cycles" },
-                    };
+                    return DescriptorValue;
                 }
             }
 

@@ -185,8 +185,9 @@ def synthetic_fixed_suite(request: dict) -> dict:
     def candidate(candidate_id: str) -> dict:
         return {"Candidate": {"CandidateId": candidate_id}}
 
+    player = request.get("execution", {}).get("player", {})
     return {
-        "SchemaVersion": 2,
+        "SchemaVersion": player.get("suiteSchemaVersion", 2),
         "RunId": "synthetic-fixture-run",
         "Environment": {
             "BuildType": "Release",
@@ -287,8 +288,9 @@ class EvidenceLabTests(unittest.TestCase):
         with self.assertRaisesRegex(EvidenceLabError, "non-Optimized"):
             validate_fixed_suite(suite, request)
 
-    def test_future_non_optimized_status_is_safe_when_it_selects_baseline(self) -> None:
+    def test_schema_3_regression_status_is_safe_when_it_selects_baseline(self) -> None:
         manifest = configured_manifest()
+        manifest["workloads"][0]["execution"]["player"]["suiteSchemaVersion"] = 3
         request = build_plan(manifest)["requests"][0]
         suite = synthetic_fixed_suite(request)
         suite["Scenarios"][0]["FinalDecision"]["Status"] = 4
@@ -297,6 +299,46 @@ class EvidenceLabTests(unittest.TestCase):
 
         self.assertEqual(4, frozen["status"])
         self.assertEqual(frozen["baselineCandidateId"], frozen["selectedCandidateId"])
+        suite["Scenarios"][0]["FinalDecision"]["SelectedCandidate"][
+            "CandidateId"
+        ] = "fixture-soa-b64"
+        with self.assertRaisesRegex(EvidenceLabError, "non-Optimized"):
+            validate_fixed_suite(suite, request)
+
+    def test_schema_2_rejects_schema_3_decision_status(self) -> None:
+        request = build_plan(configured_manifest())["requests"][0]
+        suite = synthetic_fixed_suite(request)
+        suite["Scenarios"][0]["FinalDecision"]["Status"] = 4
+
+        with self.assertRaisesRegex(EvidenceLabError, "not defined for suite schema 2"):
+            validate_fixed_suite(suite, request)
+
+    def test_schema_3_rejects_unknown_future_decision_status(self) -> None:
+        manifest = configured_manifest()
+        manifest["workloads"][0]["execution"]["player"]["suiteSchemaVersion"] = 3
+        request = build_plan(manifest)["requests"][0]
+        suite = synthetic_fixed_suite(request)
+        suite["Scenarios"][0]["FinalDecision"]["Status"] = 5
+
+        with self.assertRaisesRegex(EvidenceLabError, "not defined for suite schema 3"):
+            validate_fixed_suite(suite, request)
+
+    def test_retained_suite_schema_must_exactly_match_request(self) -> None:
+        manifest = configured_manifest()
+        manifest["workloads"][0]["execution"]["player"]["suiteSchemaVersion"] = 3
+        request = build_plan(manifest)["requests"][0]
+        suite = synthetic_fixed_suite(request)
+        suite["SchemaVersion"] = 2
+
+        with self.assertRaisesRegex(EvidenceLabError, "exactly match"):
+            validate_fixed_suite(suite, request)
+
+    def test_configured_execution_rejects_unknown_suite_schema(self) -> None:
+        manifest = configured_manifest()
+        manifest["workloads"][0]["execution"]["player"]["suiteSchemaVersion"] = 4
+
+        with self.assertRaisesRegex(EvidenceLabError, "must be 2 or 3"):
+            validate_manifest(manifest)
 
     def test_runner_records_fixture_process_and_report_excludes_it(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

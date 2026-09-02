@@ -17,6 +17,10 @@ OBSERVATION_SCHEMA_VERSION = 1
 REPORT_SCHEMA_VERSION = 1
 DEVICE_IDENTITY_ATTESTATION_SCHEMA_VERSION = 1
 ARTIFACT_VERIFICATION_POLICY_VERSION = 1
+SUITE_DECISION_STATUSES = {
+    2: frozenset({0, 1, 2, 3}),
+    3: frozenset({0, 1, 2, 3, 4}),
+}
 HEX_40 = re.compile(r"^[0-9a-fA-F]{40}$")
 HEX_64 = re.compile(r"^[0-9a-fA-F]{64}$")
 
@@ -321,9 +325,13 @@ def _validate_configured_execution(
         raise EvidenceLabError(
             f"workload {workload_id}.execution.player.sourceCommit must be a full commit SHA."
         )
-    if player.get("suiteSchemaVersion") != 2:
+    suite_schema_version = _require_int(
+        player.get("suiteSchemaVersion"),
+        f"workload {workload_id}.execution.player.suiteSchemaVersion",
+    )
+    if suite_schema_version not in SUITE_DECISION_STATUSES:
         raise EvidenceLabError(
-            f"workload {workload_id}.execution.player.suiteSchemaVersion must be 2."
+            f"workload {workload_id}.execution.player.suiteSchemaVersion must be 2 or 3."
         )
 
 
@@ -544,15 +552,35 @@ def validate_fixed_suite(
     suite: dict[str, Any], request: dict[str, Any]
 ) -> dict[str, Any]:
     _require_mapping(suite, "calibration suite")
-    if suite.get("SchemaVersion") != 2:
-        raise EvidenceLabError("Result artifact must be a schema-2 calibration suite.")
+    request_player = _require_mapping(
+        _require_mapping(request.get("execution"), "process request.execution").get("player"),
+        "process request.execution.player",
+    )
+    declared_schema_version = _require_int(
+        request_player.get("suiteSchemaVersion"),
+        "process request.execution.player.suiteSchemaVersion",
+    )
+    if declared_schema_version not in SUITE_DECISION_STATUSES:
+        raise EvidenceLabError(
+            "Process request suiteSchemaVersion must be 2 or 3."
+        )
+    retained_schema_version = _require_int(
+        suite.get("SchemaVersion"), "calibration suite.SchemaVersion"
+    )
+    if retained_schema_version != declared_schema_version:
+        raise EvidenceLabError(
+            "Retained suite SchemaVersion does not exactly match the process request."
+        )
     run_id = _require_string(suite.get("RunId"), "calibration suite.RunId")
     environment = _require_mapping(
         suite.get("Environment"), "calibration suite.Environment"
     )
     if environment.get("BuildType") != "Release":
         raise EvidenceLabError("Result artifact is not from a Release Player.")
-    if environment.get("ScriptingBackend") != request["execution"]["player"]["backend"]:
+    request_backend = _require_string(
+        request_player.get("backend"), "process request.execution.player.backend"
+    )
+    if environment.get("ScriptingBackend") != request_backend:
         raise EvidenceLabError(
             "Result artifact scripting backend does not match the process request."
         )
@@ -580,6 +608,11 @@ def validate_fixed_suite(
         scenario.get("FinalDecision"), "matching scenario.FinalDecision"
     )
     status = _require_int(decision.get("Status"), "matching scenario.FinalDecision.Status", 0)
+    if status not in SUITE_DECISION_STATUSES[retained_schema_version]:
+        raise EvidenceLabError(
+            f"Frozen decision status {status} is not defined for suite schema "
+            f"{retained_schema_version}."
+        )
     if status == 0:
         raise EvidenceLabError("Matching scenario has an Invalid frozen decision.")
 
