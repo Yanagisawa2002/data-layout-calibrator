@@ -148,6 +148,12 @@ namespace Yanagisawa.DataLayoutCalibrator
                 reason = "CandidateId and every stable factor ID are required.";
                 return false;
             }
+            if (!IsCanonicalSha256(candidate.CandidateDefinitionSha256))
+            {
+                reason =
+                    "CandidateDefinitionSha256 must contain exactly 64 uppercase hexadecimal characters.";
+                return false;
+            }
 
             reason = string.Empty;
             return true;

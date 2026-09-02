@@ -26,6 +26,7 @@ def fixed_synthetic_envelope() -> dict:
     def descriptor(identifier: str, baseline: bool) -> dict:
         return {
             "CandidateId": identifier,
+            "CandidateDefinitionSha256": synthetic_sha("A" if baseline else "B"),
             "DisplayName": identifier,
             "LayoutPolicyId": "aos-layout-v1" if baseline else "soa-layout-v1",
             "KernelPolicyId": "synthetic-kernel-v1",
@@ -187,6 +188,17 @@ def fixed_synthetic_envelope() -> dict:
 
 
 class FrozenAdvantageEnvelopeRendererTests(unittest.TestCase):
+    def test_candidate_definition_hash_is_required(self) -> None:
+        envelope = fixed_synthetic_envelope()
+        del envelope["Cells"][0]["CandidateOutcomes"][0]["Candidate"][
+            "CandidateDefinitionSha256"
+        ]
+
+        with self.assertRaisesRegex(
+            EnvelopeRenderContractError, "CandidateDefinitionSha256"
+        ):
+            build_render_model(envelope)
+
     def test_all_hash_fields_require_canonical_uppercase_sha256(self) -> None:
         cases = [
             (("CandidateSetHash",), "ABC"),
@@ -197,6 +209,17 @@ class FrozenAdvantageEnvelopeRendererTests(unittest.TestCase):
             (("CalibrationSourceArtifactSha256",), synthetic_sha("z")),
             (("HoldoutSourceArtifactSha256",), synthetic_sha(" ")),
             (("Cells", 0, "CandidateOutcomes", 0, "SourceEvidenceHash"), "BAD"),
+            (
+                (
+                    "Cells",
+                    0,
+                    "CandidateOutcomes",
+                    0,
+                    "Candidate",
+                    "CandidateDefinitionSha256",
+                ),
+                synthetic_sha("g"),
+            ),
             (("Cells", 1, "HoldoutBaselineEvidenceHash"), synthetic_sha("b")),
             (("Cells", 1, "HoldoutCandidateEvidenceHash"), synthetic_sha("X")),
         ]

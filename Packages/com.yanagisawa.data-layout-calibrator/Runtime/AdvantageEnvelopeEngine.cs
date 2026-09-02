@@ -513,6 +513,21 @@ namespace Yanagisawa.DataLayoutCalibrator
             RequireSha256(
                 holdout.FrozenCandidate.EvidenceHash,
                 nameof(DecisionCandidateEvidence.EvidenceHash));
+            if (!DecisionEvidenceStatistics.HasValidCandidateDescriptor(
+                    holdout.Baseline.Candidate,
+                    out string baselineDescriptorReason))
+            {
+                throw new ArgumentException(
+                    "Holdout tuned AoS descriptor is invalid. " + baselineDescriptorReason);
+            }
+            if (!DecisionEvidenceStatistics.HasValidCandidateDescriptor(
+                    holdout.FrozenCandidate.Candidate,
+                    out string candidateDescriptorReason))
+            {
+                throw new ArgumentException(
+                    "Holdout frozen-candidate descriptor is invalid. " +
+                    candidateDescriptorReason);
+            }
             if (!string.Equals(
                     holdout.Baseline.Candidate.CandidateId,
                     calibration.BaselineCandidateId,
@@ -550,7 +565,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                     holdout.FrozenCandidate.Candidate))
             {
                 throw new ArgumentException(
-                    "Holdout candidate factor IDs differ from the frozen calibration descriptors.");
+                    "Holdout candidate definitions differ from the frozen calibration descriptors.");
             }
             if (!string.Equals(
                     holdout.Baseline.EvidencePartitionId,

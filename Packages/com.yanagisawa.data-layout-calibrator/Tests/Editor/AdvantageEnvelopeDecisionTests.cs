@@ -208,6 +208,9 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             Assert.That(
                 restored.Cells[2].CandidateOutcomes[1].Candidate.CandidateId,
                 Is.EqualTo("soa-candidate"));
+            Assert.That(
+                restored.Cells[2].CandidateOutcomes[1].Candidate.CandidateDefinitionSha256,
+                Is.EqualTo(SyntheticCandidateDefinitionSha(1)));
             Assert.That(restored.WinnerRegions[1].SampledLifetimeTicks, Is.EqualTo(new[] { 20, 40 }));
         }
 
@@ -259,6 +262,24 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             Assert.That(
                 () => AdvantageEnvelopeEngine.ConfirmHoldout(calibration, holdout),
                 Throws.ArgumentException.With.Message.Contains("substitute"));
+        }
+
+        [Test]
+        public void Envelope_HoldoutRejectsChangedCandidateDefinitionHash()
+        {
+            AdvantageEnvelopeCalibration calibration = AdvantageEnvelopeEngine.Calibrate(
+                CreateEnvelopeRequest(new[] { 40 }));
+            AdvantageEnvelopeHoldoutRequest holdout = CreateHoldoutRequest(new[] { 40 });
+            EnvelopeCandidateDescriptor changedDefinition =
+                holdout.Cells[0].FrozenCandidate.Candidate;
+            changedDefinition.CandidateDefinitionSha256 = SyntheticSha('C');
+            holdout.Cells[0].FrozenCandidate.Candidate = changedDefinition;
+
+            Assert.That(changedDefinition.CandidateId, Is.EqualTo("soa-candidate"));
+            Assert.That(
+                () => AdvantageEnvelopeEngine.ConfirmHoldout(calibration, holdout),
+                Throws.ArgumentException.With.Message.Contains(
+                    "candidate definitions differ"));
         }
 
         [Test]
@@ -361,6 +382,17 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             Assert.That(
                 () => AdvantageEnvelopeEngine.Calibrate(malformedEvidence),
                 Throws.ArgumentException.With.Message.Contains("64 uppercase hexadecimal"));
+
+            AdvantageEnvelopeCalibrationRequest malformedDefinition =
+                CreateEnvelopeRequest(new[] { 40 });
+            EnvelopeCandidateDescriptor descriptor =
+                malformedDefinition.Cells[0].CalibrationCandidates[1].Candidate;
+            descriptor.CandidateDefinitionSha256 = "BAD";
+            malformedDefinition.Cells[0].CalibrationCandidates[1].Candidate = descriptor;
+
+            Assert.That(
+                () => AdvantageEnvelopeEngine.Calibrate(malformedDefinition),
+                Throws.ArgumentException.With.Message.Contains("CandidateDefinitionSha256"));
         }
 
         [Test]
@@ -795,6 +827,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
         {
             return new EnvelopeCandidateDescriptor(
                 candidateId,
+                SyntheticCandidateDefinitionSha(sortOrder),
                 baseline ? "aos-layout-v1" : "soa-layout-v1",
                 "synthetic-kernel-v1",
                 "batch-64-v1",
@@ -803,6 +836,12 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 baseline,
                 sortOrder,
                 candidateId);
+        }
+
+        private static string SyntheticCandidateDefinitionSha(int sortOrder)
+        {
+            const string hexadecimal = "ABCDEF0123456789";
+            return SyntheticSha(hexadecimal[sortOrder % hexadecimal.Length]);
         }
 
         private static AdvantageEnvelopeAxis Axis(int lifetimeTicks)

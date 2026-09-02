@@ -189,6 +189,7 @@ def _axis_key(axis: dict[str, Any]) -> tuple[str, int, float, int, int]:
 
 def _candidate_id(candidate: dict[str, Any], context: str) -> str:
     identifier = _non_empty_string(candidate, "CandidateId", context)
+    _sha256(candidate, "CandidateDefinitionSha256", context)
     # Explicit factor IDs are required, but they never participate in selecting
     # or inferring CandidateId.
     _non_empty_string(candidate, "LayoutPolicyId", context)

@@ -24,6 +24,14 @@ candidate descriptors also carry explicit `LayoutPolicyId`, `KernelPolicyId`,
 `BatchPolicyId`, `ExecutionPolicyId`, and logical batch size so a renderer or
 consumer never has to reverse-engineer factor identity from a label.
 
+Every descriptor also requires `CandidateDefinitionSha256`. The scientific
+producer computes this digest over its full canonical `CandidateDescriptor`,
+including every semantic factor field: layout block width, alignment, and
+padding; kernel control flow and vector width; batch semantics; and execution
+topology, temporal ticks, and reordering settings. This decision-engine
+contract deliberately does not define or reproduce the canonical byte
+encoding; the scientific adapter owns that encoding and digest production.
+
 Every request and frozen artifact binds:
 
 - `ScenarioId` plus `ContractVersion`;
@@ -38,9 +46,10 @@ invent environment or evidence metadata.
 
 Every field named as a hash, SHA-256 value, or environment fingerprint uses
 one canonical representation: exactly 64 uppercase hexadecimal characters
-(`0-9`, `A-F`). This applies to candidate-set, measurement-schema,
-environment, calibration/quick/holdout settings, source-artifact, and
-per-candidate evidence hashes, including copied `SourceEvidenceHash` values.
+(`0-9`, `A-F`). This applies to candidate-definition, candidate-set,
+measurement-schema, environment, calibration/quick/holdout settings,
+source-artifact, and per-candidate evidence hashes, including copied
+`SourceEvidenceHash` values.
 The scientific-core producer owns how the underlying bytes are canonicalized
 and hashed; schema-v1 consumers only validate and preserve the supplied digest.
 
@@ -113,9 +122,10 @@ freezes at most one non-AoS candidate per cell.
 
 `ConfirmHoldout` accepts only tuned AoS and that exact frozen `CandidateId` for
 each provisional advantage cell. Descriptors must retain the same explicit
-factor IDs, the holdout partition must differ from calibration, and
-candidate/schema/environment hashes must match. Holdout may confirm the frozen
-candidate or fall back to tuned AoS; it cannot nominate a replacement.
+factor IDs and `CandidateDefinitionSha256`; the holdout partition must differ
+from calibration; and candidate/schema/environment hashes must match. Holdout
+may confirm the frozen candidate or fall back to tuned AoS; it cannot nominate
+a replacement.
 Configured holdout sample minima cannot be lower than calibration minima.
 `ConfirmHoldout` accepts only calibration artifacts produced by the supported
 decision-engine version `1.0.0`.

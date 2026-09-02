@@ -54,13 +54,15 @@ namespace Yanagisawa.DataLayoutCalibrator
 
     /// <summary>
     /// Artifact-local candidate identity. CandidateId is always supplied
-    /// explicitly and is the canonical join key; DisplayName is never used for
-    /// identity or selection.
+    /// explicitly and is the canonical join key. CandidateDefinitionSha256
+    /// binds that ID to the full scientific candidate definition; DisplayName
+    /// is never used for identity or selection.
     /// </summary>
     [Serializable]
     public struct EnvelopeCandidateDescriptor : IEquatable<EnvelopeCandidateDescriptor>
     {
         public string CandidateId;
+        public string CandidateDefinitionSha256;
         public string DisplayName;
         public string LayoutPolicyId;
         public string KernelPolicyId;
@@ -72,6 +74,7 @@ namespace Yanagisawa.DataLayoutCalibrator
 
         public EnvelopeCandidateDescriptor(
             string candidateId,
+            string candidateDefinitionSha256,
             string layoutPolicyId,
             string kernelPolicyId,
             string batchPolicyId,
@@ -83,6 +86,12 @@ namespace Yanagisawa.DataLayoutCalibrator
         {
             if (string.IsNullOrWhiteSpace(candidateId))
                 throw new ArgumentException("Candidate ID is required.", nameof(candidateId));
+            if (!DecisionEvidenceStatistics.IsCanonicalSha256(candidateDefinitionSha256))
+            {
+                throw new ArgumentException(
+                    "Candidate definition SHA-256 must contain exactly 64 uppercase hexadecimal characters.",
+                    nameof(candidateDefinitionSha256));
+            }
             if (string.IsNullOrWhiteSpace(layoutPolicyId))
                 throw new ArgumentException("Layout policy ID is required.", nameof(layoutPolicyId));
             if (string.IsNullOrWhiteSpace(kernelPolicyId))
@@ -95,6 +104,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 throw new ArgumentOutOfRangeException(nameof(logicalBatchSize));
 
             CandidateId = candidateId;
+            CandidateDefinitionSha256 = candidateDefinitionSha256;
             DisplayName = string.IsNullOrWhiteSpace(displayName) ? candidateId : displayName;
             LayoutPolicyId = layoutPolicyId;
             KernelPolicyId = kernelPolicyId;
@@ -108,6 +118,10 @@ namespace Yanagisawa.DataLayoutCalibrator
         public bool Equals(EnvelopeCandidateDescriptor other)
         {
             return string.Equals(CandidateId, other.CandidateId, StringComparison.Ordinal) &&
+                   string.Equals(
+                       CandidateDefinitionSha256,
+                       other.CandidateDefinitionSha256,
+                       StringComparison.Ordinal) &&
                    string.Equals(LayoutPolicyId, other.LayoutPolicyId, StringComparison.Ordinal) &&
                    string.Equals(KernelPolicyId, other.KernelPolicyId, StringComparison.Ordinal) &&
                    string.Equals(BatchPolicyId, other.BatchPolicyId, StringComparison.Ordinal) &&
@@ -127,6 +141,9 @@ namespace Yanagisawa.DataLayoutCalibrator
             unchecked
             {
                 int hash = CandidateId == null ? 0 : CandidateId.GetHashCode();
+                hash = (hash * 397) ^ (CandidateDefinitionSha256 == null
+                    ? 0
+                    : CandidateDefinitionSha256.GetHashCode());
                 hash = (hash * 397) ^ (LayoutPolicyId == null ? 0 : LayoutPolicyId.GetHashCode());
                 hash = (hash * 397) ^ (KernelPolicyId == null ? 0 : KernelPolicyId.GetHashCode());
                 hash = (hash * 397) ^ (BatchPolicyId == null ? 0 : BatchPolicyId.GetHashCode());
