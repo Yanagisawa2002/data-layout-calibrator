@@ -69,6 +69,17 @@ Player factories, hot jobs and cold jobs have concrete AOT scheduling sites.
 Output directories and artifact files cannot be overwritten. Failed process
 runs retain logs/receipts and the script continues the remaining declared runs.
 
+To verify the same binary before measuring, first call the script with
+`-PrepareOnly` into a new preparation directory. Run the integrated generated,
+matrix and counter correctness probes against that produced Player. Then call
+it into another new directory with `-UseExistingBuild -ExistingBuildIdentity
+<preparation>/build-identity.json -DeclarationPath <preparation>/grid-declaration.json`.
+This skips rebuilding and validates current source commit, package lock, Unity,
+declaration and every actual binary hash against the preserved preparation
+identity. Keep the preparation directory (including its compiler log) with the
+formal evidence. Both calls require the shared lock. Start-Process -Wait keeps
+the process tree inside its lifetime.
+
 The build identity hashes actual Player/Burst/native/metadata binaries, Unity,
 package lock, compiler build log and source commit. Player receipts capture CPU,
 OS, Unity/assembly versions, actual worker counts in cell axes and a separately

@@ -6,7 +6,8 @@
     "Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate",
     "Yanagisawa.DataLayoutCalibrator.Samples.TransformExport",
     "Unity.Burst",
-    "Unity.Collections"
+    "Unity.Collections",
+    "Unity.Mathematics"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],

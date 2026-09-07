@@ -9,6 +9,9 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests
         [TestCase(LayoutKind.AoS)]
         [TestCase(LayoutKind.SoA)]
         [TestCase(LayoutKind.AoSoA8)]
+        [TestCase(LayoutKind.AoSoA4)]
+        [TestCase(LayoutKind.AoSoA16)]
+        [TestCase(LayoutKind.AoSPadded64)]
         public void ColdPass_ChangesAllColdComponentsAndPreservesHotFields(LayoutKind layout)
         {
             using (var input = ParticleDataSet.Create(17, ParticleDataSet.CalibrationSeed, Allocator.TempJob))
@@ -35,8 +38,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests
         {
             var factory = new ParticleIntegrateScenarioFactory(period);
             using (ICalibrationScenario scenario = factory.Create(17, ParticleDataSet.CalibrationSeed,
-                       new[] { new CandidateDescriptor(LayoutKind.AoS, 64),
-                           new CandidateDescriptor(LayoutKind.SoA, 64), new CandidateDescriptor(LayoutKind.AoSoA8, 64) }))
+                       ParticleCandidateMatrix.CreateCandidates(new[] { 64, 256 })))
             using (ICalibrationScenario control = factory.Create(17, ParticleDataSet.CalibrationSeed,
                        new[] { new CandidateDescriptor(LayoutKind.AoS, 64) }))
             {

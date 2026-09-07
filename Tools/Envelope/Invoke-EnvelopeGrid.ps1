@@ -3,14 +3,17 @@ param(
     [Parameter(Mandatory=$true)][string]$OutputDirectory,
     [string]$Repository = (Resolve-Path "$PSScriptRoot/../..").Path,
     [string]$ValidationLockScript,
-    [switch]$LockAlreadyHeld
+    [switch]$LockAlreadyHeld,
+    [switch]$PrepareOnly,
+    [switch]$UseExistingBuild,
+    [string]$ExistingBuildIdentity,
+    [string]$DeclarationPath
 )
 $ErrorActionPreference = 'Stop'
 
 function Invoke-EnvelopeChild([string]$Executable, [string[]]$Arguments) {
     $quoted = @($Arguments | ForEach-Object { if ($_.Contains('"')) { throw 'Embedded quote in argument.' }; '"' + $_ + '"' })
-    $child = Start-Process -FilePath $Executable -ArgumentList $quoted -WindowStyle Hidden -PassThru
-    $child.WaitForExit()
+    $child = Start-Process -FilePath $Executable -ArgumentList $quoted -WindowStyle Hidden -PassThru -Wait
     if ($child.ExitCode -ne 0) { throw "Child failed ($($child.ExitCode)): $Executable" }
 }
 
@@ -32,6 +35,33 @@ $runGrid = {
     $orchestration = [ordered]@{ protocol='dlc.measured-envelope-grid.v1'; sourceCommit=$sourceCommit;
         startedUtc=[DateTime]::UtcNow.ToString('O'); completedRuns=0; failure=$null; runs=@() }
     try {
+        if ($UseExistingBuild) {
+            if (-not $ExistingBuildIdentity -or -not $DeclarationPath) {
+                throw '-UseExistingBuild requires -ExistingBuildIdentity and -DeclarationPath.'
+            }
+            $existing = Get-Content -Raw -LiteralPath $ExistingBuildIdentity | ConvertFrom-Json
+            if ($existing.sourceCommit -ne $sourceCommit -or
+                $existing.packagesLockSha256 -ne (Get-FileHash -LiteralPath (Join-Path $project 'Packages/packages-lock.json')).Hash -or
+                $existing.declarationSha256 -ne (Get-FileHash -LiteralPath $DeclarationPath).Hash -or
+                $existing.unitySha256 -ne (Get-FileHash -LiteralPath $UnityPath).Hash) {
+                throw 'Existing source/package/declaration/Unity identity does not match this run.'
+            }
+            if (-not $existing.binaries -or -not ($existing.binaries | Where-Object { $_.path -match 'lib_burst_generated.dll$' })) {
+                throw 'Existing identity has no complete binary/Burst AOT table.'
+            }
+            foreach ($binary in $existing.binaries) {
+                $binaryPath = [IO.Path]::GetFullPath((Join-Path $buildDirectory $binary.path.TrimStart('/','\')))
+                if (-not $binaryPath.StartsWith([IO.Path]::GetFullPath($buildDirectory) + [IO.Path]::DirectorySeparatorChar,
+                    [StringComparison]::OrdinalIgnoreCase)) { throw 'Binary path escapes build directory.' }
+                if ((Get-FileHash -LiteralPath $binaryPath).Hash -ne $binary.sha256) { throw "Binary changed: $binaryPath" }
+            }
+            $currentBinaryCount = @(Get-ChildItem -LiteralPath $buildDirectory -File -Recurse |
+                Where-Object { $_.Extension -in '.dll','.exe','.dat' }).Count
+            if ($currentBinaryCount -ne @($existing.binaries).Count) { throw 'Binary file set changed.' }
+            Copy-Item -LiteralPath $DeclarationPath -Destination $declaration
+            Copy-Item -LiteralPath $ExistingBuildIdentity -Destination $manifestPath
+        }
+        else {
         Invoke-EnvelopeChild $UnityPath @('-batchmode','-nographics','-quit','-projectPath',$project,
             '-executeMethod','Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.EnvelopeGridBuild.Declare',
             '-dla-grid-output',$declaration,'-logFile',$declareLog)
@@ -61,7 +91,9 @@ $runGrid = {
             binaries=$binaries
         }
         $identity | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath $manifestPath -Encoding utf8NoBOM
+        }
         $buildIdentity = (Get-FileHash -LiteralPath $manifestPath).Hash
+        if ($PrepareOnly) { $orchestration.preparedOnly=$true; return }
         for ($processIndex=1; $processIndex -le 5; $processIndex++) {
             if ((& git -C $repoPath rev-parse HEAD).Trim() -ne $sourceCommit) { throw 'Source changed during formal grid.' }
             $runOutput = Join-Path $outPath ('run-{0:D2}' -f $processIndex)

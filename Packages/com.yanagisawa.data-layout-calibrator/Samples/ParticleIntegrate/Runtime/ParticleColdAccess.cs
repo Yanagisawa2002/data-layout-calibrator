@@ -21,6 +21,13 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
                     return ScheduleColdArrays(_soa.Rotations, _soa.Categories, dependency);
                 case LayoutKind.AoSoA8:
                     return ScheduleColdArrays(_aosoa8.Rotations, _aosoa8.Categories, dependency);
+                case LayoutKind.AoSoA4:
+                    return ScheduleColdArrays(_aosoa4.Cold_Rotation, _aosoa4.Cold_Category, dependency);
+                case LayoutKind.AoSoA16:
+                    return ScheduleColdArrays(_aosoa16.Cold_Rotation, _aosoa16.Cold_Category, dependency);
+                case LayoutKind.AoSPadded64:
+                    return new ParticleColdPaddedJob { Records = _padded64.Records }
+                        .Schedule(Count, LogicalBatchSize, dependency);
                 default: throw new NotSupportedException("Cold access is not implemented for " + Layout);
             }
         }
@@ -40,6 +47,19 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             ParticleRecord record = Records[index];
             record.Rotation.value += new float4(0.0001f, -0.0001f, 0.0002f, -0.0002f);
             record.Category = unchecked(record.Category + 1);
+            Records[index] = record;
+        }
+    }
+
+    [BurstCompile(FloatMode = FloatMode.Strict, FloatPrecision = FloatPrecision.Standard)]
+    internal struct ParticleColdPaddedJob : IJobParallelFor
+    {
+        public NativeArray<ParticleRecordGeneratedPadded64Record> Records;
+        public void Execute(int index)
+        {
+            ParticleRecordGeneratedPadded64Record record = Records[index];
+            record.Value.Rotation.value += new float4(0.0001f, -0.0001f, 0.0002f, -0.0002f);
+            record.Value.Category = unchecked(record.Value.Category + 1);
             Records[index] = record;
         }
     }
