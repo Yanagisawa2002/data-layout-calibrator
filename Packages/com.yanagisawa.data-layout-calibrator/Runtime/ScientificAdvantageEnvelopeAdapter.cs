@@ -75,13 +75,14 @@ namespace Yanagisawa.DataLayoutCalibrator
             AdvantageEnvelopeAxis axis,
             ScientificEvidenceBinding[] bindings,
             int bootstrapIterations = BenchmarkStatistics.DefaultBootstrapIterations,
-            uint bootstrapSeed = 0x9E3779B9u)
+            uint bootstrapSeed = 0x9E3779B9u,
+            string tunedBaselineCandidateId = null)
         {
             PreparedBinding[] prepared = PrepareBindings(
                 axis,
                 bindings,
                 BenchmarkPhase.Calibration);
-            int baselineIndex = FindSingleBaseline(prepared);
+            int baselineIndex = FindSingleBaseline(prepared, tunedBaselineCandidateId);
             if (prepared.Length < 2)
             {
                 throw new ArgumentException(
@@ -112,12 +113,12 @@ namespace Yanagisawa.DataLayoutCalibrator
                     throw new InvalidOperationException(
                         "Identical tuned-AoS inputs and bootstrap seeds produced different aligned draws.");
                 }
-                evidence[index] = CreateEvidence(prepared[index], pair.CandidateReplicates);
+                evidence[index] = CreateEvidence(prepared[index], pair.CandidateReplicates, false);
             }
 
             evidence[baselineIndex] = CreateEvidence(
                 prepared[baselineIndex],
-                sharedBaselineReplicates);
+                sharedBaselineReplicates, true);
             return new AdvantageEnvelopeCellInput
             {
                 Axis = axis,
@@ -335,12 +336,14 @@ namespace Yanagisawa.DataLayoutCalibrator
             return prepared;
         }
 
-        private static int FindSingleBaseline(PreparedBinding[] prepared)
+        private static int FindSingleBaseline(PreparedBinding[] prepared, string tunedBaselineCandidateId = null)
         {
             int baselineIndex = -1;
             for (int index = 0; index < prepared.Length; index++)
             {
-                if (!prepared[index].Candidate.IsBaseline)
+                if (!prepared[index].Candidate.IsBaseline ||
+                    (tunedBaselineCandidateId != null && !string.Equals(
+                        prepared[index].Candidate.CandidateId, tunedBaselineCandidateId, StringComparison.Ordinal)))
                     continue;
                 if (baselineIndex >= 0)
                     throw new ArgumentException("Cell evidence must contain exactly one tuned AoS baseline.");
@@ -353,14 +356,16 @@ namespace Yanagisawa.DataLayoutCalibrator
 
         private static DecisionCandidateEvidence CreateEvidence(
             PreparedBinding prepared,
-            BootstrapCostReplicate[] replicates)
+            BootstrapCostReplicate[] replicates, bool? isTunedBaseline = null)
         {
             if (replicates == null || replicates.Length == 0)
                 throw new ArgumentException("Aligned bootstrap replicates are required.", nameof(replicates));
             LayoutBenchmarkResult result = prepared.Binding.Result;
+            EnvelopeCandidateDescriptor descriptor = CandidateDefinitionProtocol.ToEnvelopeCandidate(prepared.Candidate);
+            descriptor.IsTunedAoSBaseline = isTunedBaseline ?? prepared.Candidate.IsBaseline;
             return new DecisionCandidateEvidence
             {
-                Candidate = CandidateDefinitionProtocol.ToEnvelopeCandidate(prepared.Candidate),
+                Candidate = descriptor,
                 Completed = result.Completed,
                 ContractFeasible = prepared.Binding.ContractFeasible,
                 MemoryFeasible = prepared.Binding.MemoryFeasible,

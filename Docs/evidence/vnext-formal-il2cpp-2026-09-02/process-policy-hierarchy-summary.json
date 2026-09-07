@@ -1,0 +1,755 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "retained-process-selection-policy-summary",
+  "analysisRole": "post-hoc robustness summary; does not change preregistered primary",
+  "estimand": "equal-process mean log ratio of calibration-selected candidate vs calibration-tuned AoS on untouched holdout",
+  "fixedCandidateClaim": false,
+  "primaryRun": "run-01",
+  "deviceCount": 1,
+  "deviceIdentityScope": "same physical device declared by historical protocol; CPU model is not a unique device ID",
+  "processCount": 5,
+  "processesCountAsDevices": false,
+  "sourceManifestSha256": "B086520FB72915B0F29BC9B9B7DB782375E258A1CE8464E706D328FC080A24E9",
+  "analysisScriptSha256": "03DEF53D25D65A95B3EC8897BC5752E39802E5E672973F099EAA41965C6D0B12",
+  "recordedBinaryHashes": {
+    "playerSha256": "1B8448700944F099D1E11D6B28E2BCD151A59430BF4858C60596E66515FED6A7",
+    "gameAssemblySha256": "337E43DE4FF59CE5A120B500305D9B848AC5F49A64239288F2DBA6DDC595B4C9",
+    "globalMetadataSha256": "7000B8FC2EA7ECBF25A2B45EC99026428A60F5A41325B84D7B9D9654F836DF0D",
+    "burstLibrarySha256": "3F3D31AD1834270189BD6D4D61E38A33F0238EF045E78D5E275D37225E17A1CE"
+  },
+  "binaryHashVerification": "manifest provenance only; binaries not retained here",
+  "environment": {
+    "UnityVersion": "6000.5.3f1",
+    "BurstVersion": "1.8.29",
+    "CollectionsVersion": "6.5.0",
+    "MathematicsVersion": "1.4.0",
+    "ScriptingBackend": "IL2CPP",
+    "BuildType": "Release",
+    "OperatingSystem": "Windows 11  (10.0.26200)",
+    "Processor": "AMD Ryzen 9 9950X 16-Core Processor ",
+    "LogicalProcessorCount": 8,
+    "JobWorkerCount": 7,
+    "GraphicsDevice": "Null Device"
+  },
+  "settings": {
+    "Scenario": {
+      "ScenarioId": "particle-integrate-v2",
+      "DisplayName": "Particle Integrate",
+      "ContractVersion": 2,
+      "ResidentOperation": "Integrate position, velocity and lifetime while preserving cold rotation/category fields."
+    },
+    "ElementCount": 1048576,
+    "HoldoutElementCount": 1000003,
+    "CalibrationSeed": 12648430,
+    "HoldoutSeed": 195936478,
+    "FixedDeltaTime": 0.01666666753590107,
+    "SamplesPerCandidate": 40,
+    "BoundarySamplesPerCandidate": 20,
+    "LifetimeTicks": 600,
+    "CandidateOrderSeed": 2738958700,
+    "BootstrapIterations": 4000,
+    "BootstrapConfidenceLevel": 0.95,
+    "MinimumImprovementPercent": 10.0,
+    "CalibrationDatasetHash": "0x622485F4F76D20B1",
+    "HoldoutDatasetHash": "0xEE87D087F45C8667"
+  },
+  "runs": [
+    {
+      "run": "run-01",
+      "runId": "20260902-115027491",
+      "file": "run-01-calibration-suite.json",
+      "sha256": "09253ADEF4BD3D37BBE39BB1801906851581597FEE45946D295488F7BF6E3117",
+      "preflightFile": "run-01-preflight.json",
+      "preflightSha256": "B0C478DFE580D797995DD594BF907449CCF4290EAD4FB59EF634BB57185439A9"
+    },
+    {
+      "run": "run-02",
+      "runId": "20260902-115501066",
+      "file": "run-02-calibration-suite.json",
+      "sha256": "4E213A44913332E960A4823A52BF14A6C5C30A87F8130211D0093479E6BCB01C",
+      "preflightFile": "run-02-preflight.json",
+      "preflightSha256": "DA058E72E3EAB6EC9F03073110F115786B4FBFAD1BEEF4F5B3CF5C32F7A4A1DB"
+    },
+    {
+      "run": "run-03",
+      "runId": "20260902-115714173",
+      "file": "run-03-calibration-suite.json",
+      "sha256": "36A7692C6D2D0CC08FD71552299504381EAFAE1B291CBDF43933134AAC32C38B",
+      "preflightFile": "run-03-preflight.json",
+      "preflightSha256": "FED8A75B9C816A3A1FF28184DB23BA320CE4BCCC3EA7C958568793C40F315408"
+    },
+    {
+      "run": "run-04",
+      "runId": "20260902-115925631",
+      "file": "run-04-calibration-suite.json",
+      "sha256": "A9139C663B95C804919E7D0FF74E45DD764141C3E3A7D81D8AAE3B84A2C7B884",
+      "preflightFile": "run-04-preflight.json",
+      "preflightSha256": "4CBC7D23A5FCB00B3EB48D6DB7936850FE33E49A78CD14620D4144FE51A1AF80"
+    },
+    {
+      "run": "run-05",
+      "runId": "20260902-120137221",
+      "file": "run-05-calibration-suite.json",
+      "sha256": "58C4A8C1BF078B2DF6953CEFC4B69B90B3B9620293DB9C391AFD887F6CCBC72A",
+      "preflightFile": "run-05-preflight.json",
+      "preflightSha256": "1BBE5DDD3E4DC8CC5469859BC2C73465BC51EEDBCE9DF1D805866A106CF15273"
+    }
+  ],
+  "perProcessSelections": [
+    {
+      "run": "run-01",
+      "baselineId": "AoS-ScalarBranched-b128-FrameFaithful",
+      "selectedId": "AoSoA8-PackedBranchless8-b128-FrameFaithful",
+      "rawImprovementPercent": 83.56516115321342,
+      "finalDecision": {
+        "DecisionStage": 1,
+        "Status": 2,
+        "BaselineCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoS-ScalarBranched-b128-FrameFaithful",
+          "LayoutId": "AoS",
+          "DisplayName": "AoS / ScalarBranched / FrameFaithful / b128",
+          "LogicalBatchSize": 128,
+          "IsBaseline": true,
+          "SortOrder": 2,
+          "Layout": {
+            "PolicyId": "AoS",
+            "BlockWidth": 1,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "ScalarBranched",
+            "ControlFlow": 1,
+            "VectorWidth": 1
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 128
+          },
+          "Execution": {
+            "PolicyId": "FrameFaithful",
+            "Topology": 0,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "SelectedCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoSoA8-PackedBranchless8-b128-FrameFaithful",
+          "LayoutId": "AoSoA8",
+          "DisplayName": "AoSoA8 / PackedBranchless8 / FrameFaithful / b128",
+          "LogicalBatchSize": 128,
+          "IsBaseline": false,
+          "SortOrder": 302,
+          "Layout": {
+            "PolicyId": "AoSoA8",
+            "BlockWidth": 8,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "PackedBranchless8",
+            "ControlFlow": 2,
+            "VectorWidth": 8
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 128
+          },
+          "Execution": {
+            "PolicyId": "FrameFaithful",
+            "Topology": 0,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "BestMeasuredCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoSoA8-PackedBranchless8-b128-FrameFaithful",
+          "LayoutId": "AoSoA8",
+          "DisplayName": "AoSoA8 / PackedBranchless8 / FrameFaithful / b128",
+          "LogicalBatchSize": 128,
+          "IsBaseline": false,
+          "SortOrder": 302,
+          "Layout": {
+            "PolicyId": "AoSoA8",
+            "BlockWidth": 8,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "PackedBranchless8",
+            "ControlFlow": 2,
+            "VectorWidth": 8
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 128
+          },
+          "Execution": {
+            "PolicyId": "FrameFaithful",
+            "Topology": 0,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "BaselineP95Milliseconds": 0.6912316916666666,
+        "BestMeasuredP95Milliseconds": 0.11360281458333334,
+        "ImprovementPercent": 83.56516115321342,
+        "ImprovementConfidenceInterval": {
+          "SchemaVersion": 1,
+          "EstimatorKind": 2,
+          "HasLogRatioEstimate": true,
+          "Iterations": 4000,
+          "ConfidenceLevel": 0.95,
+          "RandomSeed": 3721029609,
+          "Estimand": "log(candidate_amortized_p95 / baseline_amortized_p95)",
+          "ResamplingUnit": "paired measurement block",
+          "PointEstimateLogRatio": -1.8057667844090868,
+          "LowerBoundLogRatio": -1.86901470989358,
+          "UpperBoundLogRatio": -1.7800394854460933,
+          "PointEstimatePercent": 83.56516115321342,
+          "LowerBoundPercent": 83.13685113524176,
+          "UpperBoundPercent": 84.57244068297776
+        },
+        "MinimumRequiredImprovementPercent": 10.0,
+        "SelectionRegretPercent": 0.0,
+        "FellBackBecauseStatisticalTie": false,
+        "EligibleCandidateCount": 2,
+        "RejectedParityCandidateCount": 0,
+        "MultiplicityControl": "Calibration winner selection followed by confirmation on an untouched holdout dataset.",
+        "Reason": "The frozen candidate repeated the required amortized P95 improvement and paired significance gate on untouched holdout data."
+      },
+      "stepsPerSample": 64
+    },
+    {
+      "run": "run-02",
+      "baselineId": "AoS-ScalarBranched-b256-FrameFaithful",
+      "selectedId": "AoSoA8-PackedBranchless8-b256-DependencyChain",
+      "rawImprovementPercent": 83.59838886196898,
+      "finalDecision": {
+        "DecisionStage": 1,
+        "Status": 2,
+        "BaselineCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoS-ScalarBranched-b256-FrameFaithful",
+          "LayoutId": "AoS",
+          "DisplayName": "AoS / ScalarBranched / FrameFaithful / b256",
+          "LogicalBatchSize": 256,
+          "IsBaseline": true,
+          "SortOrder": 3,
+          "Layout": {
+            "PolicyId": "AoS",
+            "BlockWidth": 1,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "ScalarBranched",
+            "ControlFlow": 1,
+            "VectorWidth": 1
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 256
+          },
+          "Execution": {
+            "PolicyId": "FrameFaithful",
+            "Topology": 0,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "SelectedCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoSoA8-PackedBranchless8-b256-DependencyChain",
+          "LayoutId": "AoSoA8",
+          "DisplayName": "AoSoA8 / PackedBranchless8 / DependencyChain / b256",
+          "LogicalBatchSize": 256,
+          "IsBaseline": false,
+          "SortOrder": 313,
+          "Layout": {
+            "PolicyId": "AoSoA8",
+            "BlockWidth": 8,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "PackedBranchless8",
+            "ControlFlow": 2,
+            "VectorWidth": 8
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 256
+          },
+          "Execution": {
+            "PolicyId": "DependencyChain",
+            "Topology": 1,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "BestMeasuredCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoSoA8-PackedBranchless8-b256-DependencyChain",
+          "LayoutId": "AoSoA8",
+          "DisplayName": "AoSoA8 / PackedBranchless8 / DependencyChain / b256",
+          "LogicalBatchSize": 256,
+          "IsBaseline": false,
+          "SortOrder": 313,
+          "Layout": {
+            "PolicyId": "AoSoA8",
+            "BlockWidth": 8,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "PackedBranchless8",
+            "ControlFlow": 2,
+            "VectorWidth": 8
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 256
+          },
+          "Execution": {
+            "PolicyId": "DependencyChain",
+            "Topology": 1,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "BaselineP95Milliseconds": 0.7635736208333334,
+        "BestMeasuredP95Milliseconds": 0.12523837604166668,
+        "ImprovementPercent": 83.598388861969,
+        "ImprovementConfidenceInterval": {
+          "SchemaVersion": 1,
+          "EstimatorKind": 2,
+          "HasLogRatioEstimate": true,
+          "Iterations": 4000,
+          "ConfidenceLevel": 0.95,
+          "RandomSeed": 3721029609,
+          "Estimand": "log(candidate_amortized_p95 / baseline_amortized_p95)",
+          "ResamplingUnit": "paired measurement block",
+          "PointEstimateLogRatio": -1.8077906158593415,
+          "LowerBoundLogRatio": -1.8642056224493724,
+          "UpperBoundLogRatio": -1.7540560491842785,
+          "PointEstimatePercent": 83.59838886196898,
+          "LowerBoundPercent": 82.69294647177274,
+          "UpperBoundPercent": 84.49806951578209
+        },
+        "MinimumRequiredImprovementPercent": 10.0,
+        "SelectionRegretPercent": 0.0,
+        "FellBackBecauseStatisticalTie": false,
+        "EligibleCandidateCount": 2,
+        "RejectedParityCandidateCount": 0,
+        "MultiplicityControl": "Calibration winner selection followed by confirmation on an untouched holdout dataset.",
+        "Reason": "The frozen candidate repeated the required amortized P95 improvement and paired significance gate on untouched holdout data."
+      },
+      "stepsPerSample": 64
+    },
+    {
+      "run": "run-03",
+      "baselineId": "AoS-ScalarBranchless-b256-DependencyChain",
+      "selectedId": "AoSoA8-PackedBranchless8-b256-FrameFaithful",
+      "rawImprovementPercent": 83.35672729660644,
+      "finalDecision": {
+        "DecisionStage": 1,
+        "Status": 2,
+        "BaselineCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoS-ScalarBranchless-b256-DependencyChain",
+          "LayoutId": "AoS",
+          "DisplayName": "AoS / ScalarBranchless / DependencyChain / b256",
+          "LogicalBatchSize": 256,
+          "IsBaseline": true,
+          "SortOrder": 113,
+          "Layout": {
+            "PolicyId": "AoS",
+            "BlockWidth": 1,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "ScalarBranchless",
+            "ControlFlow": 2,
+            "VectorWidth": 1
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 256
+          },
+          "Execution": {
+            "PolicyId": "DependencyChain",
+            "Topology": 1,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "SelectedCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoSoA8-PackedBranchless8-b256-FrameFaithful",
+          "LayoutId": "AoSoA8",
+          "DisplayName": "AoSoA8 / PackedBranchless8 / FrameFaithful / b256",
+          "LogicalBatchSize": 256,
+          "IsBaseline": false,
+          "SortOrder": 303,
+          "Layout": {
+            "PolicyId": "AoSoA8",
+            "BlockWidth": 8,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "PackedBranchless8",
+            "ControlFlow": 2,
+            "VectorWidth": 8
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 256
+          },
+          "Execution": {
+            "PolicyId": "FrameFaithful",
+            "Topology": 0,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "BestMeasuredCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoSoA8-PackedBranchless8-b256-FrameFaithful",
+          "LayoutId": "AoSoA8",
+          "DisplayName": "AoSoA8 / PackedBranchless8 / FrameFaithful / b256",
+          "LogicalBatchSize": 256,
+          "IsBaseline": false,
+          "SortOrder": 303,
+          "Layout": {
+            "PolicyId": "AoSoA8",
+            "BlockWidth": 8,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "PackedBranchless8",
+            "ControlFlow": 2,
+            "VectorWidth": 8
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 256
+          },
+          "Execution": {
+            "PolicyId": "FrameFaithful",
+            "Topology": 0,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "BaselineP95Milliseconds": 0.68856795,
+        "BestMeasuredP95Milliseconds": 0.11460024166666666,
+        "ImprovementPercent": 83.35672729660645,
+        "ImprovementConfidenceInterval": {
+          "SchemaVersion": 1,
+          "EstimatorKind": 2,
+          "HasLogRatioEstimate": true,
+          "Iterations": 4000,
+          "ConfidenceLevel": 0.95,
+          "RandomSeed": 3721029609,
+          "Estimand": "log(candidate_amortized_p95 / baseline_amortized_p95)",
+          "ResamplingUnit": "paired measurement block",
+          "PointEstimateLogRatio": -1.7931640930467596,
+          "LowerBoundLogRatio": -1.8630723011880463,
+          "UpperBoundLogRatio": -1.7779881403796771,
+          "PointEstimatePercent": 83.35672729660644,
+          "LowerBoundPercent": 83.1022234935356,
+          "UpperBoundPercent": 84.48049088913858
+        },
+        "MinimumRequiredImprovementPercent": 10.0,
+        "SelectionRegretPercent": 0.0,
+        "FellBackBecauseStatisticalTie": false,
+        "EligibleCandidateCount": 2,
+        "RejectedParityCandidateCount": 0,
+        "MultiplicityControl": "Calibration winner selection followed by confirmation on an untouched holdout dataset.",
+        "Reason": "The frozen candidate repeated the required amortized P95 improvement and paired significance gate on untouched holdout data."
+      },
+      "stepsPerSample": 64
+    },
+    {
+      "run": "run-04",
+      "baselineId": "AoS-ScalarBranchless-b128-DependencyChain",
+      "selectedId": "AoSoA8-PackedBranchless8-b256-DependencyChain",
+      "rawImprovementPercent": 83.63250865745646,
+      "finalDecision": {
+        "DecisionStage": 1,
+        "Status": 2,
+        "BaselineCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoS-ScalarBranchless-b128-DependencyChain",
+          "LayoutId": "AoS",
+          "DisplayName": "AoS / ScalarBranchless / DependencyChain / b128",
+          "LogicalBatchSize": 128,
+          "IsBaseline": true,
+          "SortOrder": 112,
+          "Layout": {
+            "PolicyId": "AoS",
+            "BlockWidth": 1,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "ScalarBranchless",
+            "ControlFlow": 2,
+            "VectorWidth": 1
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 128
+          },
+          "Execution": {
+            "PolicyId": "DependencyChain",
+            "Topology": 1,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "SelectedCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoSoA8-PackedBranchless8-b256-DependencyChain",
+          "LayoutId": "AoSoA8",
+          "DisplayName": "AoSoA8 / PackedBranchless8 / DependencyChain / b256",
+          "LogicalBatchSize": 256,
+          "IsBaseline": false,
+          "SortOrder": 313,
+          "Layout": {
+            "PolicyId": "AoSoA8",
+            "BlockWidth": 8,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "PackedBranchless8",
+            "ControlFlow": 2,
+            "VectorWidth": 8
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 256
+          },
+          "Execution": {
+            "PolicyId": "DependencyChain",
+            "Topology": 1,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "BestMeasuredCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoSoA8-PackedBranchless8-b256-DependencyChain",
+          "LayoutId": "AoSoA8",
+          "DisplayName": "AoSoA8 / PackedBranchless8 / DependencyChain / b256",
+          "LogicalBatchSize": 256,
+          "IsBaseline": false,
+          "SortOrder": 313,
+          "Layout": {
+            "PolicyId": "AoSoA8",
+            "BlockWidth": 8,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "PackedBranchless8",
+            "ControlFlow": 2,
+            "VectorWidth": 8
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 256
+          },
+          "Execution": {
+            "PolicyId": "DependencyChain",
+            "Topology": 1,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "BaselineP95Milliseconds": 0.7112727083333333,
+        "BestMeasuredP95Milliseconds": 0.11641749895833334,
+        "ImprovementPercent": 83.63250865745646,
+        "ImprovementConfidenceInterval": {
+          "SchemaVersion": 1,
+          "EstimatorKind": 2,
+          "HasLogRatioEstimate": true,
+          "Iterations": 4000,
+          "ConfidenceLevel": 0.95,
+          "RandomSeed": 3721029609,
+          "Estimand": "log(candidate_amortized_p95 / baseline_amortized_p95)",
+          "ResamplingUnit": "paired measurement block",
+          "PointEstimateLogRatio": -1.8098730535970162,
+          "LowerBoundLogRatio": -1.933273055223751,
+          "UpperBoundLogRatio": -1.7866171503839618,
+          "PointEstimatePercent": 83.63250865745646,
+          "LowerBoundPercent": 83.2474072790293,
+          "UpperBoundPercent": 85.53261029548126
+        },
+        "MinimumRequiredImprovementPercent": 10.0,
+        "SelectionRegretPercent": 0.0,
+        "FellBackBecauseStatisticalTie": false,
+        "EligibleCandidateCount": 2,
+        "RejectedParityCandidateCount": 0,
+        "MultiplicityControl": "Calibration winner selection followed by confirmation on an untouched holdout dataset.",
+        "Reason": "The frozen candidate repeated the required amortized P95 improvement and paired significance gate on untouched holdout data."
+      },
+      "stepsPerSample": 64
+    },
+    {
+      "run": "run-05",
+      "baselineId": "AoS-ScalarBranchless-b256-DependencyChain",
+      "selectedId": "AoSoA8-PackedBranchless8-b256-DependencyChain",
+      "rawImprovementPercent": 82.96222538018756,
+      "finalDecision": {
+        "DecisionStage": 1,
+        "Status": 2,
+        "BaselineCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoS-ScalarBranchless-b256-DependencyChain",
+          "LayoutId": "AoS",
+          "DisplayName": "AoS / ScalarBranchless / DependencyChain / b256",
+          "LogicalBatchSize": 256,
+          "IsBaseline": true,
+          "SortOrder": 113,
+          "Layout": {
+            "PolicyId": "AoS",
+            "BlockWidth": 1,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "ScalarBranchless",
+            "ControlFlow": 2,
+            "VectorWidth": 1
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 256
+          },
+          "Execution": {
+            "PolicyId": "DependencyChain",
+            "Topology": 1,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "SelectedCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoSoA8-PackedBranchless8-b256-DependencyChain",
+          "LayoutId": "AoSoA8",
+          "DisplayName": "AoSoA8 / PackedBranchless8 / DependencyChain / b256",
+          "LogicalBatchSize": 256,
+          "IsBaseline": false,
+          "SortOrder": 313,
+          "Layout": {
+            "PolicyId": "AoSoA8",
+            "BlockWidth": 8,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "PackedBranchless8",
+            "ControlFlow": 2,
+            "VectorWidth": 8
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 256
+          },
+          "Execution": {
+            "PolicyId": "DependencyChain",
+            "Topology": 1,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "BestMeasuredCandidate": {
+          "PolicySchemaVersion": 1,
+          "CandidateId": "AoSoA8-PackedBranchless8-b256-DependencyChain",
+          "LayoutId": "AoSoA8",
+          "DisplayName": "AoSoA8 / PackedBranchless8 / DependencyChain / b256",
+          "LogicalBatchSize": 256,
+          "IsBaseline": false,
+          "SortOrder": 313,
+          "Layout": {
+            "PolicyId": "AoSoA8",
+            "BlockWidth": 8,
+            "AlignmentBytes": 0,
+            "PaddingBytes": 0
+          },
+          "Kernel": {
+            "PolicyId": "PackedBranchless8",
+            "ControlFlow": 2,
+            "VectorWidth": 8
+          },
+          "Batch": {
+            "PolicyId": "JobBatch",
+            "LogicalBatchSize": 256
+          },
+          "Execution": {
+            "PolicyId": "DependencyChain",
+            "Topology": 1,
+            "TemporalBlockTicks": 1,
+            "SemanticsPermitReordering": false
+          }
+        },
+        "BaselineP95Milliseconds": 0.6859462375,
+        "BestMeasuredP95Milliseconds": 0.11686997395833333,
+        "ImprovementPercent": 82.96222538018756,
+        "ImprovementConfidenceInterval": {
+          "SchemaVersion": 1,
+          "EstimatorKind": 2,
+          "HasLogRatioEstimate": true,
+          "Iterations": 4000,
+          "ConfidenceLevel": 0.95,
+          "RandomSeed": 3721029609,
+          "Estimand": "log(candidate_amortized_p95 / baseline_amortized_p95)",
+          "ResamplingUnit": "paired measurement block",
+          "PointEstimateLogRatio": -1.769737270544356,
+          "LowerBoundLogRatio": -1.8246895777062933,
+          "UpperBoundLogRatio": -1.7399726999493776,
+          "PointEstimatePercent": 82.96222538018756,
+          "LowerBoundPercent": 82.44748076017734,
+          "UpperBoundPercent": 83.87323025509154
+        },
+        "MinimumRequiredImprovementPercent": 10.0,
+        "SelectionRegretPercent": 0.0,
+        "FellBackBecauseStatisticalTie": false,
+        "EligibleCandidateCount": 2,
+        "RejectedParityCandidateCount": 0,
+        "MultiplicityControl": "Calibration winner selection followed by confirmation on an untouched holdout dataset.",
+        "Reason": "The frozen candidate repeated the required amortized P95 improvement and paired significance gate on untouched holdout data."
+      },
+      "stepsPerSample": 64
+    }
+  ],
+  "hierarchicalInterval": {
+    "pointImprovementPercent": 83.424862651939,
+    "lowerImprovementPercent": 83.12510890385082,
+    "upperImprovementPercent": 84.08245934379846,
+    "meanProcessLogRatio": -1.7972663634913117,
+    "confidenceLevel": 0.95,
+    "iterations": 4000,
+    "seed": 3266489909,
+    "rng": "xorshift32-modulo-v1",
+    "quantile": "linear interpolation at (n-1)*p",
+    "resamplingUnit": "Player process, then paired measurement block within each component",
+    "processWeight": "equal, regardless of within-process sample count"
+  },
+  "limitations": [
+    "Five processes on one device; no device-population inference.",
+    "Winner and tuned AoS vary by process: this estimates the frozen selection procedure, not one fixed layout/kernel.",
+    "Adaptive ticks per measurement block may vary by process; each process retains its own measured block normalization.",
+    "Bootstrap describes retained process/block variability; it does not control thermal, clock or external-app interference.",
+    "TransformExport fallback has no measured holdout and receives no fabricated interval."
+  ]
+}
