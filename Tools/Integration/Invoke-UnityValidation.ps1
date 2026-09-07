@@ -1,6 +1,8 @@
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('EditMode', 'Mono', 'IL2CPP')][string]$Stage,
+    [ValidateSet('EditMode', 'Mono', 'IL2CPP', 'Declare')][string]$Stage,
+    [string]$DeclarationPath,
+    [switch]$LockAlreadyHeld,
     [string]$Unity = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Unity.exe',
     [string]$SerializationRunner = 'C:/Users/EdwinLiu/Documents/Codex/2026-09-07/w-m/work/optimization-vnext/Invoke-SerializedValidation.ps1',
     [Parameter(Mandatory = $true)][string]$EvidenceDirectory
@@ -26,12 +28,17 @@ function Get-ProcessSnapshot {
     })
 }
 
-& $SerializationRunner -Action {
+$runValidation = {
     $arguments = @('-batchmode', '-nographics', '-projectPath',
         (Join-Path $repository 'BenchmarkProject'), '-logFile', (Join-Path $evidence 'unity.log'))
     if ($Stage -eq 'EditMode') {
         $arguments += @('-runTests', '-testPlatform', 'EditMode', '-testResults',
             (Join-Path $evidence 'editmode.xml'))
+    } elseif ($Stage -eq 'Declare') {
+        if (-not $DeclarationPath) { throw 'Declare requires DeclarationPath.' }
+        $arguments += @('-quit', '-executeMethod',
+            'Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.EnvelopeGridBuild.Declare',
+            '-dla-grid-output', [IO.Path]::GetFullPath($DeclarationPath))
     } else {
         $method = if ($Stage -eq 'Mono') { 'BuildWindowsMonoAotEvidence' } else { 'BuildWindowsIl2CppFormal' }
         $arguments += @('-quit', '-executeMethod',
@@ -106,6 +113,8 @@ function Get-ProcessSnapshot {
             if ($testResult.'test-run'.result -ne 'Passed' -or [int]$testResult.'test-run'.failed -ne 0) {
                 throw 'EditMode XML does not report a passing test run.'
             }
+        } elseif ($Stage -eq 'Declare') {
+            if (-not (Test-Path -LiteralPath $DeclarationPath)) { throw 'Declaration artifact missing.' }
         } else {
             $label = if ($Stage -eq 'Mono') { 'mono-aot-evidence' } else { 'il2cpp-formal' }
             $buildDirectory = Join-Path $repository ('Builds/windows-x64/' + $label)
@@ -129,3 +138,5 @@ function Get-ProcessSnapshot {
     }
     Write-Output "$Stage passed in $([Math]::Round($record.elapsedSeconds, 1)) seconds. Evidence: $evidence"
 }
+
+if ($LockAlreadyHeld) { & $runValidation } else { & $SerializationRunner -Action $runValidation }

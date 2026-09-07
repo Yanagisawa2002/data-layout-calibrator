@@ -38,7 +38,7 @@ $binaryFiles = @(Get-ChildItem -LiteralPath $playerDirectory -Recurse -File |
     Where-Object { $_.Extension -in '.exe', '.dll', '.dat' } | Sort-Object FullName |
     ForEach-Object { @{ path=$_.FullName.Substring($playerDirectory.Length + 1); sha256=(Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash } })
 foreach ($binary in $binaryFiles) {
-    $bound = @($buildIdentity.binaries | Where-Object { $_.path -eq $binary.path -and $_.sha256 -eq $binary.sha256 })
+    $bound = @($buildIdentity.binaries | Where-Object { $_.path.Replace('\','/').TrimStart('/') -eq $binary.path.Replace('\','/').TrimStart('/') -and $_.sha256 -eq $binary.sha256 })
     if ($bound.Count -ne 1) { throw "Build receipt does not bind actual binary: $($binary.path)" }
 }
 function Get-InterferenceSnapshot {

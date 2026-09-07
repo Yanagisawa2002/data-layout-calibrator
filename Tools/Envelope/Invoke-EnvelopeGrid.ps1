@@ -77,13 +77,11 @@ $runGrid = {
             Copy-Item -LiteralPath $ExistingBuildIdentity -Destination $manifestPath
         }
         else {
-        Invoke-EnvelopeChild $UnityPath @('-batchmode','-nographics','-quit','-projectPath',$project,
-            '-executeMethod','Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.EnvelopeGridBuild.Declare',
-            '-dla-grid-output',$declaration,'-logFile',$declareLog)
-        if (-not (Test-Path -LiteralPath $declaration)) { throw 'Declaration generation produced no artifact.' }
-        Invoke-EnvelopeChild $UnityPath @('-batchmode','-nographics','-quit','-projectPath',$project,
-            '-executeMethod','Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.DataLayoutCalibratorBuild.BuildWindowsIl2CppFormal',
-            '-logFile',$buildLog)
+        $validationRunner = Join-Path $repoPath 'Tools/Integration/Invoke-UnityValidation.ps1'
+        & $validationRunner -Stage Declare -Unity $UnityPath -DeclarationPath $declaration -LockAlreadyHeld -EvidenceDirectory (Join-Path $outPath 'declaration-invocation')
+        Copy-Item -LiteralPath (Join-Path $outPath 'declaration-invocation/unity.log') -Destination $declareLog
+        & $validationRunner -Stage IL2CPP -Unity $UnityPath -LockAlreadyHeld -EvidenceDirectory (Join-Path $outPath 'build-invocation')
+        Copy-Item -LiteralPath (Join-Path $outPath 'build-invocation/unity.log') -Destination $buildLog
         $binaries = @(Get-ChildItem -LiteralPath $buildDirectory -File -Recurse |
             Where-Object { $_.Extension -in '.dll','.exe','.dat' -or $_.Name -eq 'global-metadata.dat' } |
             Sort-Object FullName | ForEach-Object {
