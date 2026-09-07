@@ -46,7 +46,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.Tests
         public void UnsupportedLayoutIsRejected()
         {
             var descriptor = new CandidateDescriptor(new LayoutPolicy("AoSoA8", 8),
-                new KernelPolicy("RadiusGather", KernelControlFlow.Branched), BatchPolicy.JobBatch(64), ExecutionPolicy.FrameFaithful);
+                new KernelPolicy("RadiusGather", KernelControlFlow.Branched), BatchPolicy.JobBatch(64), ExecutionPolicy.FrameFaithful, isBaseline: false);
             Assert.Throws<ArgumentException>(() => new SpatialNeighborhoodScenarioFactory().Create(7, 1, new[] { descriptor }));
         }
     }

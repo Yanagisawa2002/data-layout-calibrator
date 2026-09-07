@@ -36,7 +36,8 @@ New-Item -ItemType Directory -Path $counterOutput | Out-Null
         Scenarios = $Scenarios; CreatedUtc = [DateTime]::UtcNow.ToString('O');
         Interference = 'Shared validation mutex held; external user applications, CPU clocks, affinity and thermal state uncontrolled.'
     } | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $counterOutput 'invocation.json')
-    $counterProcess = Start-Process -FilePath $counterPlayer -ArgumentList $counterArgs -WindowStyle Hidden -PassThru -Wait
+    $counterProcess = Start-Process -FilePath $counterPlayer -ArgumentList $counterArgs -WindowStyle Hidden -PassThru
+    $counterProcess.WaitForExit()
     $counterExit = $counterProcess.ExitCode
     [IO.File]::WriteAllText((Join-Path $counterOutput 'exit-code.txt'), [string]$counterExit)
     $evidencePath = Join-Path $counterOutput 'cpu-counter-evidence.json'
