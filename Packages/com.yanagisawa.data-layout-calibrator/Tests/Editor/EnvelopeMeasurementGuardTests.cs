@@ -29,6 +29,23 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             Assert.Throws<ArgumentException>(() => Run(settings));
         }
 
+        [Test]
+        public void RuntimeAllocationProviderSurvivesSerializedSettingsFreeze()
+        {
+            var settings = Settings();
+            settings.AllocationCounter = new UnavailableAllocationCounter();
+            var error = Assert.Throws<NotSupportedException>(() => Run(settings));
+            Assert.That(error.Message, Is.EqualTo("injected allocation unavailable"));
+        }
+
+        private sealed class UnavailableAllocationCounter : IManagedAllocationCounter
+        {
+            public string Identity => "synthetic unavailable counter";
+            public void Validate() => throw new NotSupportedException("injected allocation unavailable");
+            public void Begin() => Assert.Fail("No allocation window should start.");
+            public long End() => throw new InvalidOperationException();
+        }
+
         private static CalibrationRunSettings Settings() => new CalibrationRunSettings
             { ElementCount = 17, HoldoutElementCount = 17, LifetimeTicks = 16 };
 

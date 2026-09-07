@@ -14,6 +14,7 @@ namespace Yanagisawa.DataLayoutCalibrator
     public sealed class EnvelopeRawPhase
     {
         public string ArtifactId;
+        public string ManagedAllocationMeasurement;
         public string DatasetHash;
         public int TicksPerBlock;
         public int WarmupBlocks;
@@ -59,12 +60,15 @@ namespace Yanagisawa.DataLayoutCalibrator
                 throw new ArgumentException("Envelope evidence requires 40 resident, 20 boundary and 4000 bootstrap samples.");
 
             // Snapshot caller-owned mutable settings before any callback or work.
+            IManagedAllocationCounter allocationCounter = settings.AllocationCounter;
             settings = codec.Deserialize<CalibrationRunSettings>(codec.Serialize(settings));
+            settings.AllocationCounter = allocationCounter;
+            allocationCounter.Validate();
             string settingsHash = EnvelopeHash(codec.Serialize(settings));
             RunPreflight(factory, settings);
             PhaseMeasurement measured = MeasurePhase(factory, settings, BenchmarkPhase.Calibration,
                 settings.ElementCount, settings.CalibrationSeed, null, 0, 0, settings.CandidateOrderSeed);
-            EnvelopeRawPhase raw = EnvelopeRaw(artifactId + "-calibration", measured);
+            EnvelopeRawPhase raw = EnvelopeRaw(artifactId + "-calibration", measured, allocationCounter.Identity);
             string rawJson = codec.Serialize(raw, true);
             writeImmutableArtifact(raw.ArtifactId, rawJson);
 
@@ -118,7 +122,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 PhaseMeasurement held = MeasurePhase(factory, settings, BenchmarkPhase.Holdout,
                     settings.HoldoutElementCount, settings.HoldoutSeed, selected, measured.TicksPerBlock,
                     measured.WarmupBlocks, settings.CandidateOrderSeed ^ 0x9E3779B9u);
-                holdoutRaw = EnvelopeRaw(holdoutRaw.ArtifactId, held);
+                holdoutRaw = EnvelopeRaw(holdoutRaw.ArtifactId, held, allocationCounter.Identity);
                 ScientificEvidenceBinding[] heldBindings = BindEnvelope(holdoutRaw, codec);
                 holdoutCells.Add(ScientificAdvantageEnvelopeAdapter.CreateHoldoutCell(axis,
                     heldBindings[0], heldBindings[1], settings.BootstrapIterations, settings.BootstrapSeed ^ 0x68E31DA4u));
@@ -144,9 +148,9 @@ namespace Yanagisawa.DataLayoutCalibrator
 
         private static string EnvelopeHash(string value) => CandidateDefinitionProtocol.ComputeSha256Utf8(value);
 
-        private static EnvelopeRawPhase EnvelopeRaw(string id, PhaseMeasurement phase) => new EnvelopeRawPhase
+        private static EnvelopeRawPhase EnvelopeRaw(string id, PhaseMeasurement phase, string allocationIdentity) => new EnvelopeRawPhase
         {
-            ArtifactId = id, DatasetHash = phase.DatasetHash, Results = phase.Results,
+            ArtifactId = id, ManagedAllocationMeasurement = allocationIdentity, DatasetHash = phase.DatasetHash, Results = phase.Results,
             TicksPerBlock = phase.TicksPerBlock, WarmupBlocks = phase.WarmupBlocks,
         };
 
