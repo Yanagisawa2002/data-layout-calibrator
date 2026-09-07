@@ -49,15 +49,12 @@ function Get-ProcessSnapshot {
     $record | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $evidence 'invocation.json') -Encoding utf8
     $timer = [Diagnostics.Stopwatch]::StartNew()
     try {
-        $startInfo = [Diagnostics.ProcessStartInfo]::new()
-        $startInfo.FileName = $Unity
-        $startInfo.WorkingDirectory = $repository
-        $startInfo.UseShellExecute = $false
-        $startInfo.CreateNoWindow = $true
-        foreach ($argument in $arguments) { $startInfo.ArgumentList.Add($argument) }
-        $process = [Diagnostics.Process]::Start($startInfo)
+        # On Windows, Start-Process -Wait waits for descendants too. Unity can leave
+        # a Roslyn compiler server alive after its own process exits; keep the lock
+        # through that lifetime instead of allowing a detached build helper.
+        $quotedArguments = @($arguments | ForEach-Object { '"' + $_.Replace('"', '\"') + '"' })
+        $process = Start-Process -FilePath $Unity -ArgumentList $quotedArguments -WorkingDirectory $repository -WindowStyle Hidden -Wait -PassThru
         $record.processId = $process.Id
-        $process.WaitForExit()
         $record.exitCode = $process.ExitCode
         $process.Dispose()
         if ($record.exitCode -ne 0) { throw "Unity exited $($record.exitCode); inspect unity.log." }
