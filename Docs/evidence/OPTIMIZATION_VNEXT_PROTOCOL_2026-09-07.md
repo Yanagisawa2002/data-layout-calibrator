@@ -99,3 +99,11 @@ retain noisy or negative paired deltas. This diagnostic provider does not feed
 the envelope or search decisions. A separate short no-provider run validates
 fallback, while the main correctness/calibration suite runs with counters off.
 
+One bounded integrated registry suite executes all four workloads with counters
+off: 65,536 calibration / 65,539 held-out records, lifetime 256, eight workers,
+40 resident / 20 boundary samples, 4,000 bootstrap iterations, 95% confidence,
+10% improvement gate, target 2 ms, maximum 64 ticks, warmup four blocks/minimum
+0.05 seconds. It retains every default registry candidate and the independent
+holdout decision. This single-process suite validates the new workloads and
+the existing negative control; it is not a new five-process performance claim.
+
