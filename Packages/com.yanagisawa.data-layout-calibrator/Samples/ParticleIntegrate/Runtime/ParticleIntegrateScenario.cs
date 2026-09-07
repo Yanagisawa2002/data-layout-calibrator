@@ -45,12 +45,12 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             if (elementCount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(elementCount));
 
-            _canonicalInput = ParticleDataSet.Create(elementCount, seed, Allocator.Persistent);
-            DatasetHash = FormatHash(ParticleStateValidation.ComputeHash(_canonicalInput));
             CandidateDescriptor[] definitions = requestedCandidates ?? CreateDefaultCandidates();
             if (definitions.Length == 0)
                 throw new ArgumentException("At least one candidate is required.", nameof(requestedCandidates));
 
+            _canonicalInput = ParticleDataSet.Create(elementCount, seed, Allocator.Persistent);
+            DatasetHash = FormatHash(ParticleStateValidation.ComputeHash(_canonicalInput));
             _candidates = new ParticleIntegrateCandidate[definitions.Length];
             try
             {
@@ -195,6 +195,11 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
         {
             Descriptor = descriptor.NormalizePolicies();
             Descriptor.ValidateFactorConsistency();
+            if (Descriptor.EffectiveKernel.PolicyId != "LegacyUnspecified")
+            {
+                string unsupported = ParticleCandidateMatrix.UnsupportedReason(Descriptor);
+                if (unsupported.Length != 0) throw new ArgumentException(unsupported, nameof(descriptor));
+            }
             _layout = ParseLayout(Descriptor);
             _kernel = ParseKernel(Descriptor, _layout);
             _execution = ParseExecution(Descriptor);
@@ -306,7 +311,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             throw new ArgumentOutOfRangeException(
                 nameof(descriptor),
                 descriptor.LayoutId,
-                "ParticleIntegrate supports AoS, SoA, and AoSoA8.");
+                "ParticleIntegrate requires an implemented ParticleCandidateMatrix layout.");
         }
 
         private static ParticleKernelKind ParseKernel(
@@ -326,34 +331,10 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
                 }
             }
 
-            if (layout == LayoutKind.AoS &&
-                string.Equals(policy.PolicyId, "ScalarBranched", StringComparison.Ordinal) &&
-                policy.ControlFlow == KernelControlFlow.Branched &&
-                policy.VectorWidth == 1)
-            {
-                return ParticleKernelKind.ScalarBranched;
-            }
-            if (layout == LayoutKind.AoS &&
-                string.Equals(policy.PolicyId, "ScalarBranchless", StringComparison.Ordinal) &&
-                policy.ControlFlow == KernelControlFlow.Branchless &&
-                policy.VectorWidth == 1)
-            {
-                return ParticleKernelKind.ScalarBranchless;
-            }
-            if (layout == LayoutKind.SoA &&
-                string.Equals(policy.PolicyId, "ScalarBranched", StringComparison.Ordinal) &&
-                policy.ControlFlow == KernelControlFlow.Branched &&
-                policy.VectorWidth == 1)
-            {
-                return ParticleKernelKind.ScalarBranched;
-            }
-            if (layout == LayoutKind.AoSoA8 &&
-                string.Equals(policy.PolicyId, "PackedBranchless8", StringComparison.Ordinal) &&
-                policy.ControlFlow == KernelControlFlow.Branchless &&
-                policy.VectorWidth == 8)
-            {
-                return ParticleKernelKind.PackedBranchless8;
-            }
+            if (Enum.TryParse(policy.PolicyId, false, out ParticleKernelKind kernel) &&
+                Enum.IsDefined(typeof(ParticleKernelKind), kernel) &&
+                ParticleCandidateMatrix.UnsupportedReason(descriptor).Length == 0)
+                return kernel;
 
             throw new ArgumentOutOfRangeException(
                 nameof(descriptor),
