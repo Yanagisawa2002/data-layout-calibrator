@@ -26,7 +26,11 @@ has been created.
 - Only `Optimized` may select a non-baseline deployment candidate.
 - The default reusable profile path remains exact fingerprint match.
 
-## Validation summary
+## Historical validation summary
+
+The historical managed-allocation zero fields are now known to lack a validated
+runtime counter. See [the allocation limitation](evidence/HISTORICAL_ALLOCATION_MEASUREMENT_LIMIT.md).
+The retained timings and their replay do not repair that acceptance gate.
 
 - Unity EditMode: 139/139.
 - Source Generator: 11/11.
@@ -35,11 +39,10 @@ has been created.
 - Windows Mono Release + Burst AOT: build and tiny behavioral audit passed.
 - Windows IL2CPP Release + Burst AOT: build and tiny behavioral audit passed.
 - Preregistered full-size IL2CPP evidence: 5/5 fresh processes complete; all 240
-  calibration and 10 Particle holdout candidate results passed parity with zero
-  measured resident/boundary managed allocation.
+  calibration and 10 Particle holdout candidate results passed parity; their recorded allocation zero values are unverified.
 - ParticleIntegrate: optimized in 5/5 processes. The primary holdout result was
   83.57% lower amortized P95 than tuned AoS, with a per-Player 95% CI of
-  [83.14%, 84.57%]; the five-run descriptive range was 82.96%–83.63%.
+  [83.14%, 84.57%]; the five-run descriptive range was 82.96%â€“83.63%.
 - TransformExport negative control: tuned AoS retained in 5/5 processes.
 
 The tiny Mono/IL2CPP audits used intentionally small settings and are not

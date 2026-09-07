@@ -26,6 +26,10 @@ generator also emits bounded storage/codec scaffolds for explicitly annotated fl
 records. It still does not rewrite workload kernels, infer semantics, or claim a
 compiler optimization.
 
+Historical Unity allocation observations require the qualification in
+[the allocation measurement note](Docs/evidence/HISTORICAL_ALLOCATION_MEASUREMENT_LIMIT.md).
+New runs reject counters that fail real positive and empty controls.
+
 ## Frozen decision rule
 
 The primary value for each candidate is:

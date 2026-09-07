@@ -3,6 +3,8 @@
 import argparse
 import hashlib
 import json
+import math
+import statistics
 from pathlib import Path
 
 
@@ -21,6 +23,7 @@ def validate(path: Path, require_collected: bool = True) -> dict:
             raise ValueError("Unsupported PMU metric must be unavailable with no numeric value")
     counts = {"collected": 0, "unavailable": 0, "failed": 0}
     pairs = {}
+    timings = {}
     definitions = {}
     hashes = {}
     for row in document["Rows"]:
@@ -28,11 +31,12 @@ def validate(path: Path, require_collected: bool = True) -> dict:
         pair_key = key + (row["Pair"],)
         position = row["OrderPosition"]
         expected_on = (row["Pair"] % 2 == 0) == (position == 1)
-        if position not in (0, 1) or row["Enabled"] != expected_on or row["EndToEndNanoseconds"] < 0:
+        if position not in (0, 1) or row["Enabled"] != expected_on or not math.isfinite(row["EndToEndNanoseconds"]) or row["EndToEndNanoseconds"] < 0:
             raise ValueError("Invalid AB/BA order or timing")
         if position in pairs.setdefault(pair_key, set()):
             raise ValueError("Duplicate arm")
         pairs[pair_key].add(position)
+        timings.setdefault(key, {}).setdefault(row["Pair"], {})[row["Enabled"]] = row["EndToEndNanoseconds"]
         if definitions.setdefault(key, row["CandidateDefinitionSha256"]) != row["CandidateDefinitionSha256"]:
             raise ValueError("Candidate identity changed within run")
         if hashes.setdefault(key, row["StateHash"]) != row["StateHash"]:
@@ -80,7 +84,22 @@ def validate(path: Path, require_collected: bool = True) -> dict:
     summaries = document["Summaries"]
     if len(summaries) != len(definitions):
         raise ValueError("Missing candidate summaries")
+    seen_summaries = set()
     for summary in summaries:
+        key = summary["ScenarioId"], summary["CandidateId"]
+        if key not in timings or key in seen_summaries:
+            raise ValueError("Missing or duplicate summary identity")
+        seen_summaries.add(key)
+        arms = [timings[key][i] for i in range(document["Pairs"])]
+        off = statistics.median(a[False] for a in arms)
+        on = statistics.median(a[True] for a in arms)
+        added = statistics.median(a[True] - a[False] for a in arms)
+        expected = {"DisabledMedianNanoseconds": off, "EnabledMedianNanoseconds": on,
+                    "EstimatedAddedNanoseconds": added, "EstimatedOverheadPercent": added / off * 100 if off > 0 else 0}
+        for field, value in expected.items():
+            actual = summary["Overhead"].get(field)
+            if actual is None or not math.isfinite(actual) or not math.isclose(actual, value, rel_tol=1e-9, abs_tol=1e-6):
+                raise ValueError("Raw paired overhead replay mismatch: " + field)
         if not summary["ParityPassed"] or any(summary[k] != 0 for k in ("ResidentAllocationBytes", "IngressAllocationBytes", "ExportAllocationBytes")):
             raise ValueError("Workload parity/allocation gate failed")
         if summary["Overhead"]["Status"] != 1 or summary["Overhead"]["Repetitions"] != document["Pairs"]:

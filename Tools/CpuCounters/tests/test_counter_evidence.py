@@ -24,9 +24,10 @@ class CounterArchiveTests(unittest.TestCase):
         unsupported = ("retired-instructions", "cache-references", "cache-misses", "branch-instructions", "branch-misses")
         self.document = {"Identity": identity, "Metrics": [{"MetricId": m, "Status": "Unavailable"} for m in unsupported],
                          "Rows": [], "Pairs": 2, "CollectedCaptures": 2, "UnavailableCaptures": 0, "FailedCaptures": 0,
-                         "ActualCounterGate": "passed-process-cycles-only", "Summaries": [{"ParityPassed": True,
+                         "ActualCounterGate": "passed-process-cycles-only", "Summaries": [{"ScenarioId": "fixture", "CandidateId": "a", "ParityPassed": True,
                          "ResidentAllocationBytes": 0, "IngressAllocationBytes": 0, "ExportAllocationBytes": 0,
-                         "Overhead": {"Status": 1, "Repetitions": 2}}]}
+                         "Overhead": {"Status": 1, "Repetitions": 2, "DisabledMedianNanoseconds": 100,
+                                      "EnabledMedianNanoseconds": 100, "EstimatedAddedNanoseconds": 0, "EstimatedOverheadPercent": 0}}]}
         for pair in range(2):
             for position in range(2):
                 on = (pair % 2 == 0) == (position == 1)
@@ -49,6 +50,19 @@ class CounterArchiveTests(unittest.TestCase):
         return VALIDATOR.validate(self.path, collected)
 
     def test_valid_archive_preserves_integer_endpoints_above_double_precision(self):
+        self.assertEqual(self.validate()["collected"], 2)
+
+    def test_wrong_overhead_summary_rejected_against_raw_arms(self):
+        self.document["Summaries"][0]["Overhead"]["EstimatedOverheadPercent"] = 5
+        with self.assertRaisesRegex(ValueError, "overhead replay mismatch"):
+            self.validate()
+
+    def test_negative_paired_overhead_is_retained(self):
+        for row in self.document["Rows"]:
+            if row["Enabled"]:
+                row["EndToEndNanoseconds"] = 80
+        self.document["Summaries"][0]["Overhead"].update(EnabledMedianNanoseconds=80,
+            EstimatedAddedNanoseconds=-20, EstimatedOverheadPercent=-20)
         self.assertEqual(self.validate()["collected"], 2)
 
     def test_synthetic_provider_cannot_be_promoted(self):

@@ -114,7 +114,10 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark.Editor
 
             ConfigureReleasePlayer(target, namedTarget, backend);
             ConfigureBurstForWindows();
-            GenerateBenchmarkScene();
+            // Reuse the committed bootstrap scene: regenerating it changes local file IDs
+            // and dirties source provenance on every otherwise identical build.
+            if (!File.Exists(SceneAssetPath)) GenerateBenchmarkScene();
+            else EditorSceneManager.OpenScene(SceneAssetPath, OpenSceneMode.Single);
 
             string repositoryRoot = Path.GetFullPath(Path.Combine(Application.dataPath, "..", ".."));
             string outputDirectory = Path.Combine(
