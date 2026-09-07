@@ -7,7 +7,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
     internal sealed class UnityManagedAllocationCounter : IManagedAllocationCounter, IDisposable
     {
         private readonly UnityAllocationRecorder _recorder = new UnityAllocationRecorder();
-        public string Identity => UnityAllocationRecorder.Provider + "; unit=" + _recorder.Unit +
+        public string Identity => _recorder.Identity + "; unit=" + _recorder.Unit +
             "; positive and empty controls; zero bytes inferred only from zero events";
         public void Validate() => _recorder.ValidatePositiveAndEmptyControls();
         public void Begin() => _recorder.Begin();
