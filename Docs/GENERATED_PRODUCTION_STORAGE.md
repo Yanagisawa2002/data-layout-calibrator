@@ -77,9 +77,16 @@ The Player flag `-dla-generated-workloads -dla-output <directory>` independently
 runs the actual generated factory registry, selecting ParticleIntegrate and
 TransformExport with every currently registered default candidate. It covers
 11 counts around widths 4/8/16 plus 4099, each with two deterministic seeds.
-After 16 warmups it measures main-thread managed allocations separately for 16
-ingress calls, 16 executions of 3 ticks, and 16 exports. A deliberate allocation
-must increment the counter before any zero is accepted. It checks parity,
+After 16 warmups it measures main-thread managed allocation events separately for
+16 ingress calls, 16 executions of 3 ticks, and 16 exports. A `ProfilerRecorder`
+for `GC.Alloc` records individual events on the current thread, without frame
+aggregation or ring-buffer overwrite. Small-object and 4096-byte-array controls
+must produce at least two events; an empty/reset control must produce zero.
+Controls run before the workload, after each cell, and at the end. Unavailable
+recorders, failed controls, and full buffers reject the gate. The gate uses event
+count, not a heap-size difference. Byte totals are only reported if Unity declares
+the metric's unit as Bytes; otherwise the byte field is -1 (unavailable).
+It checks parity,
 48-tick reset/reexecution equivalence, duplicate disposal, and rejection of
 disposed access. Hashing, validation, JSON, and scenario setup are outside the
 allocation windows. Worker kernels must be present in the Burst AOT manifest;
@@ -108,3 +115,22 @@ Worker validation retained in
 integration, not a completed Player allocation/AOT or performance gate. The
 summary identifies the tested revision and the final constructor/provenance
 changes that still require the integrated validation run.
+
+### Allocation-counter correction after the first integrated Mono run
+
+The original `GC.GetAllocatedBytesForCurrentThread` positive control correctly
+rejected the first real Mono Release run. Unity 6000.5.3f1's bundled
+`external/mono/mono/metadata/boehm-gc.c` returns zero in that function;
+`libil2cpp/icalls/mscorlib/System/GC.cpp` marks it not implemented. Consequently,
+old zero readings from this API are not evidence of zero allocation on these
+backends. They are retained as historical observations, not upgraded to passes.
+
+The replacement follows Unity's documented
+[current-thread GC.Alloc recorder pattern](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Unity.Profiling.ProfilerRecorderOptions.CollectOnlyOnCurrentThread.html).
+[ProfilerRecorder supports Release Players](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Unity.Profiling.ProfilerRecorder.html),
+but this does not guarantee that a particular marker exists in every Player.
+The positive/empty controls remain mandatory on both Mono and IL2CPP, and the
+Release gate stays unresolved until they and actual workload observations pass.
+The engine-neutral formal calibration engine must use an independently validated
+injected provider as well; fixing this validator does not repair its older raw
+counter calls. Integration owns that injection and rejects unsupported counters.

@@ -19,7 +19,10 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             public string UnityVersion, Backend, Processor, OperatingSystem, Error;
             public bool Passed, Release, BurstEnabled;
             public int WorkerCount;
-            public long AllocationCounterPositiveControlBytes;
+            public string AllocationProvider, AllocationValueUnit;
+            public bool AllocationCounterValidated;
+            public long AllocationCounterPositiveControlBytes = -1;
+            public long AllocationCounterPositiveControlEvents;
             public Row[] Candidates;
         }
 
@@ -29,7 +32,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             public string Scenario, Candidate, StateHash;
             public int Count;
             public uint Seed;
-            public long IngressAllocatedBytes, ExecuteAllocatedBytes, ExportAllocatedBytes;
+            public long IngressAllocatedBytes = -1, ExecuteAllocatedBytes = -1, ExportAllocatedBytes = -1;
+            public long IngressAllocationEvents = -1, ExecuteAllocationEvents = -1, ExportAllocationEvents = -1;
             public bool ParityPassed, ResetPassed, DisposedAccessRejected;
         }
 
@@ -57,27 +61,32 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             {
                 if (!receipt.Release || !receipt.BurstEnabled || Application.isEditor)
                     throw new InvalidOperationException("Validation requires a Release Player with Burst enabled.");
-                long before = GC.GetAllocatedBytesForCurrentThread();
-                GC.KeepAlive(new byte[4096]);
-                receipt.AllocationCounterPositiveControlBytes = GC.GetAllocatedBytesForCurrentThread() - before;
-                if (receipt.AllocationCounterPositiveControlBytes < 4096)
-                    throw new InvalidOperationException("Allocation counter failed its positive control; zero cannot be evidence.");
-                ICalibrationScenarioFactory[] factories = GeneratedCalibrationScenarioRegistry.CreateFactories();
-                ICalibrationScenarioFactory[] again = GeneratedCalibrationScenarioRegistry.CreateFactories();
-                if (factories.Length != again.Length) throw new InvalidOperationException("Registry is nondeterministic.");
-                int workloads = 0;
-                for (int f = 0; f < factories.Length; f++)
+                receipt.AllocationProvider = UnityAllocationRecorder.Provider;
+                using (var allocation = new UnityAllocationRecorder())
                 {
-                    string id = factories[f].Descriptor.ScenarioId;
-                    if (id != again[f].Descriptor.ScenarioId) throw new InvalidOperationException("Registry order differs.");
-                    if (id != "particle-integrate-v2" && id != "transform-export-v1") continue;
-                    workloads++;
-                    foreach (int count in new[] { 1, 3, 4, 5, 7, 8, 9, 15, 16, 17, 4099 })
-                    foreach (uint seed in new[] { 137u, 9137u })
-                        Validate(factories[f], count, seed, rows);
+                    var control = allocation.ValidatePositiveAndEmptyControls();
+                    receipt.AllocationCounterPositiveControlBytes = control.Bytes;
+                    receipt.AllocationCounterPositiveControlEvents = control.Events;
+                    receipt.AllocationValueUnit = allocation.Unit;
+                    receipt.AllocationCounterValidated = true;
+                    ICalibrationScenarioFactory[] factories = GeneratedCalibrationScenarioRegistry.CreateFactories();
+                    ICalibrationScenarioFactory[] again = GeneratedCalibrationScenarioRegistry.CreateFactories();
+                    if (factories.Length != again.Length) throw new InvalidOperationException("Registry is nondeterministic.");
+                    int workloads = 0;
+                    for (int f = 0; f < factories.Length; f++)
+                    {
+                        string id = factories[f].Descriptor.ScenarioId;
+                        if (id != again[f].Descriptor.ScenarioId) throw new InvalidOperationException("Registry order differs.");
+                        if (id != "particle-integrate-v2" && id != "transform-export-v1") continue;
+                        workloads++;
+                        foreach (int count in new[] { 1, 3, 4, 5, 7, 8, 9, 15, 16, 17, 4099 })
+                        foreach (uint seed in new[] { 137u, 9137u })
+                            Validate(factories[f], count, seed, rows, allocation);
+                    }
+                    if (workloads != 2) throw new InvalidOperationException("Both production workload factories must be registered.");
+                    allocation.ValidatePositiveAndEmptyControls();
+                    receipt.Passed = true;
                 }
-                if (workloads != 2) throw new InvalidOperationException("Both production workload factories must be registered.");
-                receipt.Passed = true;
             }
             catch (Exception exception)
             {
@@ -91,7 +100,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             Application.Quit(receipt.Passed ? 0 : 1);
         }
 
-        private static void Validate(ICalibrationScenarioFactory factory, int count, uint seed, List<Row> rows)
+        private static void Validate(ICalibrationScenarioFactory factory, int count, uint seed, List<Row> rows, UnityAllocationRecorder allocation)
         {
             using (ICalibrationScenario scenario = factory.Create(count, seed))
             {
@@ -108,17 +117,23 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                     {
                         candidate.BoundaryCost.Ingress(); candidate.Execute(3, 1f / 60f); candidate.BoundaryCost.Export();
                     }
-                    long before = GC.GetAllocatedBytesForCurrentThread();
+                    allocation.Begin();
                     for (int repeat = 0; repeat < 16; repeat++) candidate.BoundaryCost.Ingress();
-                    row.IngressAllocatedBytes = GC.GetAllocatedBytesForCurrentThread() - before;
-                    before = GC.GetAllocatedBytesForCurrentThread();
+                    var ingressObservation = allocation.End();
+                    row.IngressAllocatedBytes = ingressObservation.Bytes;
+                    row.IngressAllocationEvents = ingressObservation.Events;
+                    allocation.Begin();
                     for (int repeat = 0; repeat < 16; repeat++) candidate.Execute(3, 1f / 60f);
-                    row.ExecuteAllocatedBytes = GC.GetAllocatedBytesForCurrentThread() - before;
-                    before = GC.GetAllocatedBytesForCurrentThread();
+                    var executeObservation = allocation.End();
+                    row.ExecuteAllocatedBytes = executeObservation.Bytes;
+                    row.ExecuteAllocationEvents = executeObservation.Events;
+                    allocation.Begin();
                     for (int repeat = 0; repeat < 16; repeat++) candidate.BoundaryCost.Export();
-                    row.ExportAllocatedBytes = GC.GetAllocatedBytesForCurrentThread() - before;
+                    var exportObservation = allocation.End();
+                    row.ExportAllocatedBytes = exportObservation.Bytes;
+                    row.ExportAllocationEvents = exportObservation.Events;
                     row.StateHash = candidate.ExportedStateHash;
-                    if (row.IngressAllocatedBytes != 0 || row.ExecuteAllocatedBytes != 0 || row.ExportAllocatedBytes != 0)
+                    if (row.IngressAllocationEvents != 0 || row.ExecuteAllocationEvents != 0 || row.ExportAllocationEvents != 0)
                         throw new InvalidOperationException("Steady-state managed allocation: " + row.Candidate);
                 }
                 var reference = candidates[scenario.ReferenceCandidateIndex];
@@ -139,6 +154,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                     catch (ObjectDisposedException) { local[i].DisposedAccessRejected = true; }
                     if (!local[i].DisposedAccessRejected) throw new InvalidOperationException("Disposed candidate accepted ingress.");
                 }
+                allocation.ValidatePositiveAndEmptyControls();
                 scenario.Dispose(); // Subsequent using disposal must also be inert.
             }
         }

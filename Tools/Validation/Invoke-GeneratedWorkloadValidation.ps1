@@ -71,7 +71,14 @@ foreach ($backend in $Backends) {
         } | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath (Join-Path $runDirectory 'provenance.json') -Encoding utf8
         if ($process.ExitCode -ne 0) { throw "$backend workload Player failed: $($process.ExitCode)" }
         $receipt = Get-Content -Raw -LiteralPath (Join-Path $runDirectory 'generated-workload-validation.json') | ConvertFrom-Json
-        if (!$receipt.Passed -or !$receipt.Release -or !$receipt.BurstEnabled -or $receipt.Backend -ne $backend) { throw 'Invalid workload validation receipt.' }
+        if (!$receipt.Passed -or !$receipt.Release -or !$receipt.BurstEnabled -or $receipt.Backend -ne $backend -or
+            !$receipt.AllocationCounterValidated -or $receipt.AllocationCounterPositiveControlEvents -lt 2) { throw 'Invalid workload validation receipt.' }
+        foreach ($row in $receipt.Candidates) {
+            foreach ($phase in @('Ingress', 'Execute', 'Export')) {
+                $eventProperty = $row.PSObject.Properties["${phase}AllocationEvents"]
+                if ($null -eq $eventProperty -or $eventProperty.Value -ne 0) { throw 'Missing or nonzero allocation-event observation.' }
+            }
+        }
         Write-Output "${backend}: passed $($receipt.Candidates.Count) actual workload candidate/count/seed cases."
     }
 }
