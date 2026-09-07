@@ -42,7 +42,7 @@ The retained timings and their replay do not repair that acceptance gate.
   calibration and 10 Particle holdout candidate results passed parity; their recorded allocation zero values are unverified.
 - ParticleIntegrate: optimized in 5/5 processes. The primary holdout result was
   83.57% lower amortized P95 than tuned AoS, with a per-Player 95% CI of
-  [83.14%, 84.57%]; the five-run descriptive range was 82.96%â€“83.63%.
+  [83.14%, 84.57%]; the five-run descriptive range was 82.96%–83.63%.
 - TransformExport negative control: tuned AoS retained in 5/5 processes.
 
 The tiny Mono/IL2CPP audits used intentionally small settings and are not

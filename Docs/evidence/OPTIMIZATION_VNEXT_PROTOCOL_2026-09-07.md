@@ -1,4 +1,4 @@
-# Integrated vNext validation protocol â€” 2026-09-07
+# Integrated vNext validation protocol — 2026-09-07
 
 This protocol is declared before integrated formal measurements. The execution
 manifest written before the first launch will additionally freeze the integrated
@@ -120,3 +120,13 @@ and thresholds remain fixed. Formal receipts must match the corrected count.
 The same correctness run rejected the managed allocation counter because its
 4096-byte positive control returned zero. No allocation pass is inferred from
 that attempt. A validated provider is required before formal evidence is accepted.
+
+Allocation acceptance uses the validated native Mono/IL2CPP runtime profiler
+callback when the Unity GC.Alloc recorder is unavailable. The exact native plugin
+is bound in each binary manifest; registration occurs outside sampling. Windows
+thread-local event/object-size counters bracket the synchronous main-thread
+operation, with positive array/object/string controls and empty/reset controls.
+Recorder Begin/End setup is excluded from resident/boundary timing; the runtime
+callback infrastructure remains present for all compared candidates. CPU counter
+adapter on/off runs use the same allocation instrumentation in both arms. This
+provides main-thread allocation evidence, not a claim about native allocations.

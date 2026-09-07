@@ -39,7 +39,7 @@ aligned bootstrap replicates, 95% intervals, and a 10% point improvement gate
 with confidence lower bound above zero. Warmup is 32 blocks/minimum 0.1 seconds;
 target block duration is 2 ms, capped at 256 ticks. Actual ticks and warmup are
 retained. A block's candidate order uses the scientific balanced Latin square.
-Estimated grid duration is 15Ã¢â‚¬â€œ45 minutes on this Ryzen 9 9950X, excluding build;
+Estimated grid duration is 15–45 minutes on this Ryzen 9 9950X, excluding build;
 actual durations may exceed that under application interference.
 
 For process p in 1..5 and cell c in 0..23, offset=p*1000+c. Calibration seed is
