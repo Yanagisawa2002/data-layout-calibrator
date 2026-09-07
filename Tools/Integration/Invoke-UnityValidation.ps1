@@ -49,12 +49,54 @@ function Get-ProcessSnapshot {
     $record | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $evidence 'invocation.json') -Encoding utf8
     $timer = [Diagnostics.Stopwatch]::StartNew()
     try {
-        # On Windows, Start-Process -Wait waits for descendants too. Unity can leave
-        # a Roslyn compiler server alive after its own process exits; keep the lock
-        # through that lifetime instead of allowing a detached build helper.
         $quotedArguments = @($arguments | ForEach-Object { '"' + $_.Replace('"', '\"') + '"' })
-        $process = Start-Process -FilePath $Unity -ArgumentList $quotedArguments -WorkingDirectory $repository -WindowStyle Hidden -Wait -PassThru
+        $process = Start-Process -FilePath $Unity -ArgumentList $quotedArguments -WorkingDirectory $repository -WindowStyle Hidden -PassThru
         $record.processId = $process.Id
+        $record | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $evidence 'invocation.json') -Encoding utf8
+        # Track observed descendants while their parents still exist. Waiting only
+        # on Unity lets Roslyn escape the mutex; Start-Process -Wait can instead
+        # retain a job after Unity exits. Explicit ownership also permits a normal
+        # shutdown of our own compiler pipe without touching a pre-existing server.
+        $owned = @{}
+        $owned[$process.Id] = [ordered]@{ id=$process.Id; parent=$PID; name='Unity.exe'; creation=$process.StartTime; shutdownRequested=$false }
+        do {
+            $snapshot = @(Get-CimInstance Win32_Process -Property ProcessId,ParentProcessId,CreationDate,Name)
+            do {
+                $discovered = $false
+                foreach ($child in $snapshot) {
+                    $childId = [int]$child.ProcessId
+                    $parentId = [int]$child.ParentProcessId
+                    if (-not $owned.ContainsKey($childId) -and $owned.ContainsKey($parentId) -and
+                        $child.CreationDate -ge $owned[$parentId].creation) {
+                        $owned[$childId] = [ordered]@{ id=$childId; parent=$parentId; name=$child.Name; creation=$child.CreationDate; shutdownRequested=$false }
+                        $discovered = $true
+                    }
+                }
+            } while ($discovered)
+            $process.Refresh()
+            if ($process.HasExited) {
+                foreach ($child in $snapshot) {
+                    $childId = [int]$child.ProcessId
+                    if (-not $owned.ContainsKey($childId) -or $owned[$childId].shutdownRequested -or
+                        $child.Name -ne 'dotnet.exe' -or $child.CreationDate -ne $owned[$childId].creation) { continue }
+                    $details = Get-CimInstance Win32_Process -Filter "ProcessId=$childId"
+                    if ($details.ExecutablePath -like ((Split-Path $Unity) + '\Data\DotNetSdk\*') -and
+                        $details.CommandLine -match 'exec\s+"([^"]+VBCSCompiler\.dll)"\s+"?-pipename:([^"\s]+)') {
+                        $compilerDll = $Matches[1]; $compilerPipe = $Matches[2]
+                        $owned[$childId].shutdownRequested = $true
+                        $owned[$childId].compilerPipe = $compilerPipe
+                        $cleanup = Start-Process -FilePath $details.ExecutablePath -ArgumentList @('exec', ('"' + $compilerDll + '"'), ('-pipename:' + $compilerPipe), '-shutdown') -WindowStyle Hidden -PassThru
+                        $cleanup.WaitForExit()
+                        $owned[$childId].shutdownExitCode = $cleanup.ExitCode
+                        $cleanup.Dispose()
+                    }
+                }
+            }
+            $liveOwned = @($snapshot | Where-Object { $owned.ContainsKey([int]$_.ProcessId) -and $_.CreationDate -eq $owned[[int]$_.ProcessId].creation })
+            if ($liveOwned.Count -gt 0) { Start-Sleep -Milliseconds 500 }
+        } while (-not $process.HasExited -or $liveOwned.Count -gt 0)
+        $process.WaitForExit()
+        @($owned.Values) | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $evidence 'owned-processes.json') -Encoding utf8
         $record.exitCode = $process.ExitCode
         $process.Dispose()
         if ($record.exitCode -ne 0) { throw "Unity exited $($record.exitCode); inspect unity.log." }
