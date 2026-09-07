@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "status": "ready_for_integration",
+  "scope": "Correctness and generated-code compilation only; no Player allocation or performance conclusion",
+  "baselineCommit": "7276f600d81eba48243a29c8b84e80bae5fd754f",
+  "unityTestSourceCommit": "7459a93ac77aa1b4e5f4edab36759ab520087b0c",
+  "sourceGeneratorTests": {
+    "failed": 0,
+    "notes": "Includes 3 option rejection cases added after 7459a93",
+    "runtime": "net8.0 Release",
+    "passed": 14
+  },
+  "unityEditMode": {
+    "skipped": 0,
+    "version": "6000.5.3f1",
+    "exitCode": 0,
+    "serialized": true,
+    "passed": 158,
+    "durationSeconds": 2.9759259,
+    "nativeLifetime": "Zero and partial packed blocks, repeated owner disposal and disposed boundary rejection; no broad OS leak claim",
+    "failed": 0
+  },
+  "postTestChanges": [
+    "Transform empty-candidate validation moved before canonical native allocation; final integration EditMode rerun required",
+    "Runner adds tracked source/compiler/package/target provenance; script parse checked, Player runner not executed"
+  ],
+  "artifacts": [
+    {
+      "path": "Artifacts/generator/editmode.xml",
+      "sha256": "28EF973F56F9F402963639EE9516DE1D5A307103E5ED9DDE6C377818DC9801B1"
+    },
+    {
+      "path": "Artifacts/generator/editmode-retry.log",
+      "sha256": "85BAF819A31631B2FB5C84ED6E2D376A8F86852B95643B0F117BD31807FA9A04"
+    },
+    {
+      "path": "Artifacts/generator/editmode.log",
+      "sha256": "D1A8A1E3FAB9A9821B012B84FB085A4216564D59A385B1EEB62F4C569D68F0B4"
+    },
+    {
+      "path": "Artifacts/generator/generator-tests.trx",
+      "sha256": "AE0049A662E8EBCF6EE5E48F7686B4288BA500637830B79CE7B4AC058D1CD19F"
+    }
+  ],
+  "initialAttempt": {
+    "result": "compile_error_in_new_test_fixed",
+    "details": "Readonly using NativeArray write in new tests; corrected with borrowed writable local view",
+    "orchestrationLimit": "Direct GUI invocation returned no reliable exit code; possible mutex lifetime uncertainty from 04:58:04 to 04:58:32 UTC reported to coordinator. Retry used Start-Process -Wait."
+  },
+  "requiredPending": [
+    "Mono Release actual registered workload allocation/lifecycle/parity and Burst AOT artifacts",
+    "IL2CPP Release actual registered workload allocation/lifecycle/parity and Burst AOT artifacts",
+    "Actual dispatched ISA evidence if required by integrated protocol (validator records unavailable)",
+    "Frozen integrated candidate formal measurements"
+  ]
+}

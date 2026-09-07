@@ -5,3 +5,6 @@ Docs/assets/**/data-layout-calibrator-render-manifest.json text eol=lf
 # Replay script identity is byte-stable across Windows and Unix checkouts.
 Tools/EvidenceLab/process_hierarchy.py text eol=lf
 Tools/EvidenceLab/search_replay.py text eol=lf
+# Preserve the original test-runner bytes referenced by validation SHA256 receipts.
+Docs/evidence/generated-production-storage-2026-09-07/*.xml -text
+Docs/evidence/generated-production-storage-2026-09-07/*.trx -text
