@@ -25,7 +25,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark.Editor
                 string relative = path.Substring(root.Length + 1).Replace('\\', '/');
                 if (relative.Contains("/bin/") || relative.Contains("/obj/")) continue;
                 string ext = Path.GetExtension(path);
-                if (ext != ".cs" && ext != ".dll" && ext != ".asmdef" && ext != ".json" && ext != ".asset" && ext != ".rsp") continue;
+                if (ext != ".cs" && ext != ".dll" && ext != ".asmdef" && ext != ".json" && ext != ".asset" && ext != ".rsp" && ext != ".meta") continue;
                 using (var sha = SHA256.Create())
                 using (var stream = File.OpenRead(path))
                     inputs.Add(new Entry { Path = relative, Sha256 = BitConverter.ToString(sha.ComputeHash(stream)).Replace("-", "") });
