@@ -11,7 +11,9 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         public NativeArray<int> Result;
         public void Execute()
         {
-            Result[0] = (X86.Sse2.IsSse2Supported ? 1 : 0) | (X86.Avx2.IsAvx2Supported ? 2 : 0);
+            if (X86.Avx2.IsAvx2Supported) Result[0] = 3;
+            else if (X86.Sse2.IsSse2Supported) Result[0] = 1;
+            else Result[0] = 0;
         }
 
         public static int Capture()
