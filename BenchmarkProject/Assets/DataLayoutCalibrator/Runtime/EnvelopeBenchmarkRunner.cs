@@ -20,7 +20,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         public int[] ElementCounts = { 4096, 65536 };
         public int[] LifetimeTicks = { 1, 16, 256 };
         public int[] ColdAccessEveryTicks = { 1, 8 };
-        public int[] WorkerCounts = { 1, 8 };
+        public int[] WorkerCounts = { 1, 7 };
         public int IndependentProcesses = 5;
         public CandidateDescriptor[] Candidates;
         public CalibrationRunSettings Settings = new CalibrationRunSettings
@@ -43,7 +43,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             CheckAxis(ElementCounts, new[] { 4096, 65536 });
             CheckAxis(LifetimeTicks, new[] { 1, 16, 256 });
             CheckAxis(ColdAccessEveryTicks, new[] { 1, 8 });
-            CheckAxis(WorkerCounts, new[] { 1, 8 });
+            CheckAxis(WorkerCounts, new[] { 1, 7 });
             var ids = new HashSet<string>();
             var matched = new HashSet<string>();
             foreach (CandidateDescriptor candidate in Candidates)

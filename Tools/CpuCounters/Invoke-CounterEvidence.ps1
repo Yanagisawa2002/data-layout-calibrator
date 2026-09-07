@@ -26,7 +26,7 @@ New-Item -ItemType Directory -Path $counterOutput | Out-Null
         [IO.File]::WriteAllText((Join-Path $counterOutput 'wpr-pmcsources.txt'), $wprOutput)
     }
     $pmu | ConvertTo-Json | Set-Content (Join-Path $counterOutput 'pmu-availability.json')
-    $counterArgs = @('-batchmode', '-nographics', '-dla-counter-run', '-dla-quit',
+    $counterArgs = @('-batchmode', '-nographics', '-job-worker-count', '7', '-dla-counter-run', '-dla-quit',
         '-dla-counter-count', $Count, '-dla-counter-ticks', $Ticks, '-dla-counter-pairs', $Pairs,
         '-dla-counter-scenarios', $Scenarios, '-dla-output', ('"' + $counterOutput + '"'),
         '-logFile', ('"' + (Join-Path $counterOutput 'player.log') + '"'))

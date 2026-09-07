@@ -1,4 +1,4 @@
-# Integrated vNext validation protocol — 2026-09-07
+# Integrated vNext validation protocol â€” 2026-09-07
 
 This protocol is declared before integrated formal measurements. The execution
 manifest written before the first launch will additionally freeze the integrated
@@ -53,7 +53,7 @@ Five fresh sequential processes, each with 24 cells:
 | Calibration records | 4,096; 65,536 |
 | Lifetime ticks | 1; 16; 256 |
 | Actual field access | Observable cold pass every 1 or 8 resident ticks |
-| Unity Job workers | 1; 8 |
+| Unity Job workers | 1; 7 |
 | Execution | FrameFaithful |
 | Logical batch | 64; 256 |
 | Layout/kernel | All expanded layouts and matched scalar/packed controls |
@@ -69,7 +69,7 @@ bound by the worker protocol and execution manifest before launch.
 ## Search matrix
 
 Five fresh sequential processes, count 65,536, independent holdout count 65,539,
-lifetime 256, eight workers, batches 64/256, all expanded layout/kernel controls.
+lifetime 256, seven workers, batches 64/256, all expanded layout/kernel controls.
 FrameFaithful and DependencyChain are separate cells with the same candidate set
 for both search methods. Runs 1/3/5 execute adaptive first; runs 2/4 execute
 exhaustive first. Freeze both calibration selections before either holdout.
@@ -100,10 +100,23 @@ the envelope or search decisions. A separate short no-provider run validates
 fallback, while the main correctness/calibration suite runs with counters off.
 
 One bounded integrated registry suite executes all four workloads with counters
-off: 65,536 calibration / 65,539 held-out records, lifetime 256, eight workers,
+off: 65,536 calibration / 65,539 held-out records, lifetime 256, seven workers,
 40 resident / 20 boundary samples, 4,000 bootstrap iterations, 95% confidence,
 10% improvement gate, target 2 ms, maximum 64 ticks, warmup four blocks/minimum
 0.05 seconds. It retains every default registry candidate and the independent
 holdout decision. This single-process suite validates the new workloads and
 the existing negative control; it is not a new five-process performance claim.
 
+
+## Pre-measurement environment correction
+
+The integrated Mono Release correctness run on 2026-09-07 observed seven actual
+Unity Job workers despite requesting eight. The OS exposes eight logical CPUs;
+the processor brand string does not establish the available worker count. Before
+any formal measurement, the worker axis was therefore changed from 1/8 to 1/7,
+and the search/counter/main-suite launch count to seven. All other axes, budgets,
+and thresholds remain fixed. Formal receipts must match the corrected count.
+
+The same correctness run rejected the managed allocation counter because its
+4096-byte positive control returned zero. No allocation pass is inferred from
+that attempt. A validated provider is required before formal evidence is accepted.

@@ -62,7 +62,7 @@ Release IL2CPP/Burst AOT build. Required design:
 | Layout pool | Expanded matrix: AoS, SoA, AoSoA4/8/16, AoSPadded64; matched scalar and supported packed kernels |
 | Batches | 64, 256; preserve every corresponding tuned AoS control |
 | Execution | FrameFaithful and DependencyChain, independent frozen cells |
-| Lifetime / workers | 256 ticks / 8 actual Unity Job workers |
+| Lifetime / workers | 256 ticks / 7 actual Unity Job workers |
 | Hot/cold ratio | Default Particle contract: 28 resident hot bytes / 20 boundary-preserved cold bytes |
 | Quick | 6 resident, 4 ingress, 4 export; 200 bootstrap draws |
 | Full and holdout | 40 resident, 20 ingress, 20 export; 4,000 draws, 95% confidence |

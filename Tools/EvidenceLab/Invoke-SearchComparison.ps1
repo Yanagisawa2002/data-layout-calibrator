@@ -65,7 +65,7 @@ $plan = @{
     candidateSetSha256=$candidateInput.CandidateSetSha256
     processor=@(Get-CimInstance Win32_Processor | Select-Object Name,Manufacturer,ProcessorId,NumberOfCores,NumberOfLogicalProcessors)
     isa=$isa; isaScope='actual host CLR ISA capability; not proof of Burst emitted instructions'
-    policy=@{count=65536; holdoutCount=65539; lifetime=256; workers=8; batches=@(64,256)
+    policy=@{count=65536; holdoutCount=65539; lifetime=256; workers=7; batches=@(64,256)
         quickResident=6; quickBoundary=4; quickBootstrap=200; fullResident=40; fullBoundary=20; fullBootstrap=4000
         holdoutResident=40; holdoutBoundary=20; holdoutBootstrap=4000; confidence=.95; improvementPercent=10
         maximumAllowedRegretPercent=1; targetBlockMs=2; maxTicks=64; warmupBlocks=4; minWarmupSeconds=.05
@@ -85,7 +85,7 @@ Write-NewJson (Join-Path $OutputRoot 'preregistration.json') $plan
         }
         $run = 'run-{0:d2}' -f ($index+1)
         $directory = Join-Path $OutputRoot $run
-        $arguments = @('-batchmode','-nographics','-job-worker-count','8','-dla-search-run',
+        $arguments = @('-batchmode','-nographics','-job-worker-count','7','-dla-search-run',
             '-dla-search-candidates',$CandidateFile,'-dla-search-order',$plan.policy.order[$index],
             '-dla-count','65536','-dla-holdout-count','65539','-dla-lifetime-ticks','256',
             '-dla-samples','40','-dla-boundary-samples','20','-dla-bootstrap-iterations','4000',

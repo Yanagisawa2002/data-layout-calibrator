@@ -160,7 +160,7 @@ def validate_formal_root(root):
         seen_ids.add(environment["RunId"])
         require(environment["Backend"] == "IL2CPP" and not environment["Development"] and environment["BurstEnabled"],
                 "Formal Release IL2CPP/Burst gate unmet")
-        require(environment["WorkerCount"] == 8 and environment["CandidateFileSha256"] == registration["candidateFileSha256"],
+        require(environment["WorkerCount"] == 7 and environment["CandidateFileSha256"] == registration["candidateFileSha256"],
                 "Executed worker/candidate identity mismatch")
         paths = sorted(directory.glob("*/comparison.json"))
         require(len(paths) == 2, "Missing execution cell")

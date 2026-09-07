@@ -116,7 +116,7 @@ $runGrid = {
             $run = [ordered]@{ processIndex=$processIndex; output=$runOutput; completed=$false; elapsedSeconds=0; failure=$null }
             try {
                 Invoke-EnvelopeChild $player @('-batchmode','-nographics','-dla-envelope-run',$declaration,
-                    '-job-worker-count','8',
+                    '-job-worker-count','7',
                     '-dla-process-index',"$processIndex",'-dla-build-identity',$buildIdentity,
                     '-dla-output',$runOutput,'-logFile',$runLog)
                 $receipt = Get-Content -Raw -LiteralPath (Join-Path $runOutput 'receipt.json') | ConvertFrom-Json
