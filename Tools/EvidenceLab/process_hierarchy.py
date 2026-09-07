@@ -214,7 +214,7 @@ def main():
             "Output must be a new artifact; retained evidence cannot be overwritten")
     report = summarize(args.manifest, args.scenario, args.iterations, args.seed)
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    args.output.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(report["hierarchicalInterval"], indent=2))
 
 

@@ -184,5 +184,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     require(not args.output.exists(), "Output already exists")
     report = validate_formal_root(args.root)
-    args.output.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    args.output.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8", newline="\n")
     print("Replayed 10 retained comparisons; inspect regret and holdout gates separately.")
