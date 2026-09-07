@@ -6,6 +6,7 @@ param(
     [Parameter(Mandatory = $true)][string]$EvidenceDirectory
 )
 $ErrorActionPreference = 'Stop'
+$Unity = (Resolve-Path -LiteralPath $Unity).Path
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $evidence = [IO.Path]::GetFullPath($EvidenceDirectory)
 if (Test-Path -LiteralPath (Join-Path $evidence 'invocation.json')) {
