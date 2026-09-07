@@ -7,7 +7,7 @@ decisions. Worker implementation/tests do not satisfy those gates.
 
 The frozen grid has counts 4,096 and 65,536; lifetime amortization contexts 1, 16
 and 256 ticks; cold passes every 1 and 8 ticks; and Job System worker counts 1
-and 8. Each process runs all 24 cells. Each cell measures all 30 expanded
+and 7. Each process runs all 24 cells. Each cell measures all 30 expanded
 FrameFaithful candidates: six layouts crossed with scalar branched/branchless
 kernels and batches 64/256, plus the matching packed kernel for AoSoA4/8/16.
 The fastest valid measured AoS becomes the reference; all AoS controls remain in
@@ -15,8 +15,8 @@ the raw evidence. Historical default candidates cannot satisfy the declaration.
 The Player starts with `-job-worker-count 7` and verifies the entire worker axis
 against JobWorkerMaximumCount before any cell is measured. Receipts retain startup
 worker count, maximum and OS-exposed logical processors. This host currently exposes
-8 logical processors despite its 9950X brand; the 8-worker point can oversubscribe
-when the main thread and user applications also run. No full-chip core-count
+8 logical processors despite its 9950X brand; the 7-worker point shares the exposed processors
+with the main thread and user applications. No full-chip core-count
 capacity is inferred from the processor name.
 
 Cold work reads and writes all four Rotation components and Category in the
@@ -39,7 +39,7 @@ aligned bootstrap replicates, 95% intervals, and a 10% point improvement gate
 with confidence lower bound above zero. Warmup is 32 blocks/minimum 0.1 seconds;
 target block duration is 2 ms, capped at 256 ticks. Actual ticks and warmup are
 retained. A block's candidate order uses the scientific balanced Latin square.
-Estimated grid duration is 15â€“45 minutes on this Ryzen 9 9950X, excluding build;
+Estimated grid duration is 15Ã¢â‚¬â€œ45 minutes on this Ryzen 9 9950X, excluding build;
 actual durations may exceed that under application interference.
 
 For process p in 1..5 and cell c in 0..23, offset=p*1000+c. Calibration seed is
