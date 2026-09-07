@@ -126,6 +126,8 @@ def audit(root: Path) -> dict:
     if len(environments) > 1:
         raise ValueError('CPU/OS/Unity/ISA identity differs across independent runs')
     counts = Counter(r['status'] for r in records)
+    if counts['Invalid']:
+        missing.append(f"{counts['Invalid']} cells have invalid scientific evidence")
     valid = len(records) - counts['Invalid']
     stable = defaultdict(list)
     for record in records:
