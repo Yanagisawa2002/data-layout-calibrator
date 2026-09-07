@@ -23,6 +23,8 @@ namespace Yanagisawa.DataLayoutCalibrator
         public GenerateDataLayoutAttribute(string schemaId, int schemaVersion, int aoSoABlockSize = 8) { }
         public int MinimumCompatibleSchemaVersion { get; set; }
         public int DefinitionVersion { get; set; } = 1;
+        public bool GeneratePackedFloat4 { get; set; }
+        public int PaddedRecordSize { get; set; }
     }
 
     [System.AttributeUsage(System.AttributeTargets.Field)]
@@ -41,6 +43,7 @@ namespace Unity.Mathematics
     public struct float4x4 { public float4 c0, c1, c2, c3; }
 }
 
+namespace Unity.Collections.LowLevel.Unsafe { public static class UnsafeUtility { public static int SizeOf<T>() where T : struct => 64; } }
 namespace Unity.Collections
 {
     public enum Allocator { Temp = 0, Persistent = 1 }
@@ -53,6 +56,7 @@ namespace Unity.Collections
         public int Length => 0;
         public T this[int index] { get => default; set { } }
         public void Dispose() { }
+        public void CopyFrom(NativeArray<T> source) { }
     }
 }
 ";
@@ -66,7 +70,7 @@ using Unity.Mathematics;
 
 namespace Samples.Particles
 {
-    [GenerateDataLayout(""particle-record"", 2, 8, MinimumCompatibleSchemaVersion = 1)]
+    [GenerateDataLayout(""particle-record"", 2, 8, MinimumCompatibleSchemaVersion = 1, GeneratePackedFloat4 = true, PaddedRecordSize = 64)]
     public struct ParticleRecord
     {
         [DataLayoutField(0, DataLayoutFieldTemperature.Hot)] public float3 Position;
@@ -100,6 +104,11 @@ namespace Samples.Transforms
             Assert.That(generated, Does.Contain("ParticleRecordGeneratedDataLayoutCodec"));
             Assert.That(generated, Does.Contain("ParticleRecordGeneratedParityFieldMap"));
             Assert.That(generated, Does.Contain("Cold_Category"));
+            foreach (int width in new[] { 4, 8, 16 })
+                Assert.That(generated, Does.Contain("ParticleRecordGeneratedPackedAoSoA" + width + "Storage"));
+            Assert.That(generated, Does.Contain("ParticleRecordGeneratedPadded64Storage"));
+            Assert.That(generated, Does.Contain("PositionX1"));
+            Assert.That(generated, Does.Contain("IngressBlock"));
             Assert.That(generated, Does.Contain("TransformExportRecordGeneratedAoSoA4Storage"));
             Assert.That(generated, Does.Not.Contain("Activator"));
             Assert.That(generated, Does.Not.Contain("System.Reflection"));

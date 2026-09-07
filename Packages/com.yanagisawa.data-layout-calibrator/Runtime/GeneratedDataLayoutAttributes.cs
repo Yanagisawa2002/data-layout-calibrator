@@ -27,6 +27,14 @@ namespace Yanagisawa.DataLayoutCalibrator
 
         public int AoSoABlockSize { get; }
 
+        /// <summary>Emit additional component-packed float4 blocks at widths 4, 8 and 16.
+        /// Hot fields must be float or float3. Does not imply cache-line aligned allocation.</summary>
+        public bool GeneratePackedFloat4 { get; set; }
+
+        /// <summary>Optional physical AoS stride (0 or 64). Allocation rejects records larger than the stride.
+        /// Padding does not increase the guaranteed base alignment.</summary>
+        public int PaddedRecordSize { get; set; }
+
         /// <summary>
         /// Lowest record schema version that the author explicitly declares to
         /// have the same generated field map. This is metadata, not an automatic

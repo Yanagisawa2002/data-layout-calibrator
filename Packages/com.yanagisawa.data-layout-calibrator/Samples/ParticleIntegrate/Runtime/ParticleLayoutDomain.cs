@@ -1,3 +1,4 @@
+using ParticleAoSoA8Block = Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.ParticleRecordGeneratedPackedAoSoA8Block;
 using System;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;

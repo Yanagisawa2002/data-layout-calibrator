@@ -1,3 +1,4 @@
+using ParticleAoSoA8Block = Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.ParticleRecordGeneratedPackedAoSoA8Block;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
