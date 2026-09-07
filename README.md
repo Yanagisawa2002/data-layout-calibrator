@@ -121,5 +121,7 @@ Machine-readable citation metadata is provided in [`CITATION.cff`](CITATION.cff)
 and the project authorship boundary is recorded in [`AUTHORS.md`](AUTHORS.md)
 and [`PROVENANCE.md`](PROVENANCE.md).
 
-Copyright (c) 2026 Edwin Liu. All Rights Reserved. Public visibility does not
-grant permission to copy, modify, distribute, deploy, or sublicense the code.
+Copyright (c) 2026 Edwin Liu. All other rights reserved. The [limited benchmark
+reproduction permission](LICENSE) permits running benchmarks, making local
+reproduction changes, and publishing measurement results. It does not grant
+general redistribution, sublicensing, or product integration rights.
