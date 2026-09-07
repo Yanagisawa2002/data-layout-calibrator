@@ -8,47 +8,16 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
 {
     public struct TransformSoAStorage : IDisposable
     {
-        public NativeArray<float3> Positions;
-        public NativeArray<quaternion> Rotations;
-        public NativeArray<float3> Scales;
-        public NativeArray<int> EntityIds;
-        public NativeArray<int> Flags;
-
-        public int Count => Positions.IsCreated ? Positions.Length : 0;
-
-        public static TransformSoAStorage Allocate(int count, Allocator allocator)
-        {
-            return new TransformSoAStorage
-            {
-                Positions = NewArray<float3>(count, allocator),
-                Rotations = NewArray<quaternion>(count, allocator),
-                Scales = NewArray<float3>(count, allocator),
-                EntityIds = NewArray<int>(count, allocator),
-                Flags = NewArray<int>(count, allocator),
-            };
-        }
-
-        public void Dispose()
-        {
-            DisposeIfCreated(ref Positions);
-            DisposeIfCreated(ref Rotations);
-            DisposeIfCreated(ref Scales);
-            DisposeIfCreated(ref EntityIds);
-            DisposeIfCreated(ref Flags);
-        }
-
-        private static NativeArray<T> NewArray<T>(int count, Allocator allocator)
-            where T : struct
-        {
-            return new NativeArray<T>(count, allocator, NativeArrayOptions.UninitializedMemory);
-        }
-
-        private static void DisposeIfCreated<T>(ref NativeArray<T> array)
-            where T : struct
-        {
-            if (array.IsCreated)
-                array.Dispose();
-        }
+        public TransformRecordGeneratedSoAStorage Generated;
+        public NativeArray<float3> Positions { get => Generated.Field_Position; set => Generated.Field_Position = value; }
+        public NativeArray<quaternion> Rotations { get => Generated.Field_Rotation; set => Generated.Field_Rotation = value; }
+        public NativeArray<float3> Scales { get => Generated.Field_Scale; set => Generated.Field_Scale = value; }
+        public NativeArray<int> EntityIds { get => Generated.Field_EntityId; set => Generated.Field_EntityId = value; }
+        public NativeArray<int> Flags { get => Generated.Field_Flags; set => Generated.Field_Flags = value; }
+        public int Count => Generated.Count;
+        public static TransformSoAStorage Allocate(int count, Allocator allocator) =>
+            new TransformSoAStorage { Generated = TransformRecordGeneratedSoAStorage.Allocate(count, allocator) };
+        public void Dispose() => Generated.Dispose();
     }
 
     [BurstCompile(OptimizeFor = OptimizeFor.Performance)]
@@ -63,12 +32,12 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
 
         public void Execute(int index)
         {
-            TransformRecord record = Source[index];
-            Positions[index] = record.Position;
-            Rotations[index] = record.Rotation;
-            Scales[index] = record.Scale;
-            EntityIds[index] = record.EntityId;
-            Flags[index] = record.Flags;
+            var storage = new TransformRecordGeneratedSoAStorage
+            {
+                Field_Position = Positions, Field_Rotation = Rotations, Field_Scale = Scales,
+                Field_EntityId = EntityIds, Field_Flags = Flags,
+            };
+            storage.WriteRecord(index, Source[index]);
         }
     }
 

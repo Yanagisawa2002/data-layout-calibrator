@@ -138,7 +138,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
             "Candidate-owned NativeArray<TransformExportRecord> to the canonical consumer buffer.");
 
         private readonly NativeArray<TransformRecord> _canonicalInput;
-        private readonly NativeArray<TransformRecord> _aosRecords;
+        private TransformRecordGeneratedAoSStorage _aos;
         private readonly NativeArray<TransformExportRecord> _residentOutput;
         private readonly NativeArray<TransformExportRecord> _canonicalExport;
         private readonly LayoutKind _layout;
@@ -159,8 +159,10 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
                 throw new ArgumentOutOfRangeException(nameof(descriptor), "TransformExport supports AoS and SoA.");
 
             _canonicalInput = canonicalInput;
-            _aosRecords = _layout == LayoutKind.AoS
-                ? new NativeArray<TransformRecord>(canonicalInput.Length, Allocator.Persistent, NativeArrayOptions.UninitializedMemory)
+            try
+            {
+            _aos = _layout == LayoutKind.AoS
+                ? TransformRecordGeneratedAoSStorage.Allocate(canonicalInput.Length, Allocator.Persistent)
                 : default;
             _soa = _layout == LayoutKind.SoA
                 ? TransformSoAStorage.Allocate(canonicalInput.Length, Allocator.Persistent)
@@ -173,8 +175,6 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
                 canonicalInput.Length,
                 Allocator.Persistent,
                 NativeArrayOptions.UninitializedMemory);
-            try
-            {
                 Ingress();
             }
             catch
@@ -244,7 +244,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
             ThrowIfDisposed();
             if (_layout == LayoutKind.AoS)
             {
-                _aosRecords.CopyFrom(_canonicalInput);
+                _aos.Ingress(_canonicalInput);
                 return;
             }
 
@@ -269,8 +269,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
         {
             if (_disposed)
                 return;
-            if (_aosRecords.IsCreated)
-                _aosRecords.Dispose();
+            _aos.Dispose();
             _soa.Dispose();
             if (_residentOutput.IsCreated)
                 _residentOutput.Dispose();
@@ -285,7 +284,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
             {
                 return new TransformAoSExportJob
                 {
-                    Records = _aosRecords,
+                    Records = _aos.Records,
                     Output = _residentOutput,
                 }.Schedule(ElementCount, Math.Max(1, Descriptor.LogicalBatchSize), dependency);
             }

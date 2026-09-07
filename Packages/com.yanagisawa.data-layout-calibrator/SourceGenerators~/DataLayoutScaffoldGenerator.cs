@@ -16,7 +16,7 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
     /// schedules kernels, or rewrites developer code.
     /// </summary>
     [Generator]
-    public sealed class DataLayoutScaffoldGenerator : ISourceGenerator
+    public sealed partial class DataLayoutScaffoldGenerator : ISourceGenerator
     {
         private const string RecordAttributeMetadataName =
             "Yanagisawa.DataLayoutCalibrator.GenerateDataLayoutAttribute";
@@ -373,6 +373,18 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
                 invalid = true;
             }
 
+            bool packed = attribute.NamedArguments.Any(pair => pair.Key == "GeneratePackedFloat4" && pair.Value.Value is bool enabled && enabled);
+            int padded = NamedInt(attribute, "PaddedRecordSize", 0);
+            if (packed && fields.Any(field => field.IsHot && field.DisplayType != "float" && field.DisplayType != "Unity.Mathematics.float3"))
+            {
+                Report(context, UnsupportedLayout, location, displayName, "packed float4 storage requires float or float3 hot fields");
+                invalid = true;
+            }
+            if (padded != 0 && padded != 64)
+            {
+                Report(context, UnsupportedLayout, location, displayName, "only the opt-in 64-byte padded stride is supported");
+                invalid = true;
+            }
             if (invalid)
                 return null;
 
@@ -395,9 +407,9 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
                 schemaVersion,
                 minimumCompatibleVersion,
                 blockSize,
-                Sha256(canonicalSchema),
+                Sha256(canonicalSchema + (packed || padded != 0 ? $"packed-float4={packed}\npadded={padded}\n" : string.Empty)),
                 fields,
-                location);
+                location, packed, padded);
         }
 
         private static string Generate(RecordSchema schema)
@@ -420,6 +432,15 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
             AppendSoAStorage(source, schema, indent);
             AppendAoSoAStorage(source, schema, indent);
             AppendCodec(source, schema, indent);
+            if (schema.GeneratePacked)
+            {
+                foreach (int width in new[] { 4, 8, 16 })
+                {
+                    var variant = schema.PackedVariant(width);
+                    AppendAoSoAStorage(source, variant, indent);
+                }
+            }
+            if (schema.PaddedSize != 0) AppendPaddedStorage(source, schema, indent);
 
             if (schema.NamespaceName.Length != 0)
                 source.AppendLine("}");
@@ -523,7 +544,7 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
             AppendCommonStorageMethods(source, schema, indent, type, "Records[index]", "Records[index] = record;");
             source.Append(indent).AppendLine("    public void Dispose()")
                 .Append(indent).AppendLine("    {")
-                .Append(indent).AppendLine("        if (Records.IsCreated) Records.Dispose();")
+                .Append(indent).AppendLine("        if (Records.IsCreated) Records.Dispose(); Records = default;")
                 .Append(indent).AppendLine("        Count = 0;")
                 .Append(indent).AppendLine("    }")
                 .Append(indent).AppendLine("}")
@@ -580,7 +601,7 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
             foreach (RecordField field in schema.Fields)
             {
                 source.Append(indent).Append("        if (Field_").Append(field.Identifier).Append(".IsCreated) Field_")
-                    .Append(field.Identifier).AppendLine(".Dispose();");
+                    .Append(field.Identifier).Append(".Dispose(); ").Append("Field_").Append(field.Identifier).AppendLine(" = default;");
             }
             source.Append(indent).AppendLine("        Count = 0;")
                 .Append(indent).AppendLine("    }")
@@ -598,10 +619,17 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
             source.Append(indent).Append("public struct ").Append(schema.AoSoABlockType).AppendLine()
                 .Append(indent).AppendLine("{");
             foreach (RecordField field in hot)
-            for (int lane = 0; lane < schema.BlockSize; lane++)
             {
-                source.Append(indent).Append("    public ").Append(field.TypeName).Append(' ')
-                    .Append(field.Identifier).Append('_').Append(lane).AppendLine(";");
+                if (schema.IsPacked)
+                {
+                    foreach (string component in Components(field))
+                    for (int group = 0; group < schema.BlockSize / 4; group++)
+                        source.Append(indent).Append("    public global::Unity.Mathematics.float4 ")
+                            .Append(field.Identifier).Append(component.ToUpperInvariant()).Append(group).AppendLine(";");
+                }
+                else for (int lane = 0; lane < schema.BlockSize; lane++)
+                    source.Append(indent).Append("    public ").Append(field.TypeName).Append(' ')
+                        .Append(field.Identifier).Append('_').Append(lane).AppendLine(";");
             }
             source.Append(indent).AppendLine("}")
                 .AppendLine();
@@ -626,7 +654,7 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
                 .Append(indent).Append("        var storage = new ").Append(type).AppendLine("();")
                 .Append(indent).AppendLine("        try")
                 .Append(indent).AppendLine("        {")
-                .Append(indent).AppendLine("            int blockCount = (count + BlockWidth - 1) / BlockWidth;")
+                .Append(indent).AppendLine("            int blockCount = count / BlockWidth + (count % BlockWidth == 0 ? 0 : 1);")
                 .Append(indent).Append("            storage.HotBlocks = new global::Unity.Collections.NativeArray<").Append(schema.AoSoABlockType)
                 .AppendLine(">(blockCount, allocator, global::Unity.Collections.NativeArrayOptions.ClearMemory);");
             foreach (RecordField field in cold)
@@ -645,6 +673,7 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
                 .Append(indent).AppendLine("        }")
                 .Append(indent).AppendLine("    }")
                 .AppendLine();
+            AppendBlockIngress(source, schema, indent);
             AppendFromRecordsAndBoundaryLoops(source, schema, indent, type);
             source.Append(indent).Append("    public ").Append(schema.FullyQualifiedRecordType).AppendLine(" ReadRecord(int index)")
                 .Append(indent).AppendLine("    {")
@@ -687,11 +716,11 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
                 AppendAoSoAFieldAccessors(source, schema, field, indent);
             source.Append(indent).AppendLine("    public void Dispose()")
                 .Append(indent).AppendLine("    {")
-                .Append(indent).AppendLine("        if (HotBlocks.IsCreated) HotBlocks.Dispose();");
+                .Append(indent).AppendLine("        if (HotBlocks.IsCreated) HotBlocks.Dispose(); HotBlocks = default;");
             foreach (RecordField field in cold)
             {
                 source.Append(indent).Append("        if (Cold_").Append(field.Identifier).Append(".IsCreated) Cold_")
-                    .Append(field.Identifier).AppendLine(".Dispose();");
+                    .Append(field.Identifier).Append(".Dispose(); Cold_").Append(field.Identifier).AppendLine(" = default;");
             }
             source.Append(indent).AppendLine("        Count = 0;")
                 .Append(indent).AppendLine("    }")
@@ -730,20 +759,24 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
                 .Append(schema.FullyQualifiedRecordType).AppendLine("> source, global::Unity.Collections.Allocator allocator)")
                 .Append(indent).AppendLine("    {")
                 .Append(indent).Append("        ").Append(storageType).AppendLine(" storage = Allocate(source.Length, allocator);")
-                .Append(indent).AppendLine("        storage.Ingress(source);")
-                .Append(indent).AppendLine("        return storage;")
+                .Append(indent).AppendLine("        try { storage.Ingress(source); return storage; }")
+                .Append(indent).AppendLine("        catch { storage.Dispose(); throw; }")
                 .Append(indent).AppendLine("    }")
                 .AppendLine()
                 .Append(indent).Append("    public void Ingress(global::Unity.Collections.NativeArray<").Append(schema.FullyQualifiedRecordType).AppendLine("> source)")
                 .Append(indent).AppendLine("    {")
                 .Append(indent).AppendLine("        ValidateLength(source.Length);")
-                .Append(indent).AppendLine("        for (int index = 0; index < Count; index++) WriteRecord(index, source[index]);")
+                .Append(indent).AppendLine(storageType == schema.AoSStorageType
+                    ? "        Records.CopyFrom(source);"
+                    : "        for (int index = 0; index < Count; index++) WriteRecord(index, source[index]);")
                 .Append(indent).AppendLine("    }")
                 .AppendLine()
                 .Append(indent).Append("    public void Export(global::Unity.Collections.NativeArray<").Append(schema.FullyQualifiedRecordType).AppendLine("> destination)")
                 .Append(indent).AppendLine("    {")
                 .Append(indent).AppendLine("        ValidateLength(destination.Length);")
-                .Append(indent).AppendLine("        for (int index = 0; index < Count; index++) destination[index] = ReadRecord(index);")
+                .Append(indent).AppendLine(storageType == schema.AoSStorageType
+                    ? "        destination.CopyFrom(Records);"
+                    : "        for (int index = 0; index < Count; index++) destination[index] = ReadRecord(index);")
                 .Append(indent).AppendLine("    }")
                 .AppendLine()
                 .Append(indent).AppendLine("    private void ValidateLength(int length)")
@@ -760,6 +793,11 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
             RecordField field,
             string indent)
         {
+            if (schema.IsPacked)
+            {
+                AppendPackedAccessors(source, schema, field, indent);
+                return;
+            }
             source.Append(indent).Append("    private static ").Append(field.TypeName).Append(" Read_")
                 .Append(field.Identifier).Append('(').Append(schema.AoSoABlockType).AppendLine(" block, int lane)")
                 .Append(indent).AppendLine("    {")
@@ -1006,8 +1044,11 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
                 int blockSize,
                 string schemaHash,
                 IReadOnlyList<RecordField> fields,
-                Location location)
+                Location location, bool generatePacked = false, int paddedSize = 0, bool isPacked = false)
             {
+                GeneratePacked = generatePacked;
+                PaddedSize = paddedSize;
+                IsPacked = isPacked;
                 NamespaceName = namespaceName;
                 RecordName = recordName;
                 FullyQualifiedRecordType = fullyQualifiedRecordType;
@@ -1025,6 +1066,12 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
                            schemaHash.Substring(0, 12) + ".g.cs";
             }
 
+            internal bool GeneratePacked { get; }
+            internal int PaddedSize { get; }
+            internal bool IsPacked { get; }
+            internal RecordSchema PackedVariant(int width) => new RecordSchema(NamespaceName, RecordName,
+                FullyQualifiedRecordType, SchemaId, SchemaVersion, MinimumCompatibleVersion, width,
+                SchemaHash, Fields, Location, false, 0, true);
             internal string NamespaceName { get; }
             internal string RecordName { get; }
             internal string FullyQualifiedRecordType { get; }
@@ -1040,8 +1087,8 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
             internal string ParityMapType => RecordName + "GeneratedParityFieldMap";
             internal string AoSStorageType => RecordName + "GeneratedAoSStorage";
             internal string SoAStorageType => RecordName + "GeneratedSoAStorage";
-            internal string AoSoABlockType => RecordName + "GeneratedAoSoA" + BlockSize + "Block";
-            internal string AoSoAStorageType => RecordName + "GeneratedAoSoA" + BlockSize + "Storage";
+            internal string AoSoABlockType => RecordName + (IsPacked ? "GeneratedPackedAoSoA" : "GeneratedAoSoA") + BlockSize + "Block";
+            internal string AoSoAStorageType => RecordName + (IsPacked ? "GeneratedPackedAoSoA" : "GeneratedAoSoA") + BlockSize + "Storage";
             internal string CodecType => RecordName + "GeneratedDataLayoutCodec";
         }
 

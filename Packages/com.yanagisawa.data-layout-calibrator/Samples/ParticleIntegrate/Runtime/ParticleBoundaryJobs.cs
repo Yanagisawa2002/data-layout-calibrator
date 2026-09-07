@@ -1,3 +1,4 @@
+using ParticleAoSoA8Block = Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.ParticleRecordGeneratedPackedAoSoA8Block;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
@@ -18,12 +19,12 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
 
         public void Execute(int index)
         {
-            ParticleRecord record = Source[index];
-            Positions[index] = record.Position;
-            Velocities[index] = record.Velocity;
-            Rotations[index] = record.Rotation;
-            Lifetimes[index] = record.Lifetime;
-            Categories[index] = record.Category;
+            var storage = new ParticleRecordGeneratedSoAStorage
+            {
+                Field_Position = Positions, Field_Velocity = Velocities,
+                Field_Rotation = Rotations, Field_Lifetime = Lifetimes, Field_Category = Categories,
+            };
+            storage.WriteRecord(index, Source[index]);
         }
     }
 
@@ -39,14 +40,12 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
 
         public void Execute(int index)
         {
-            Destination[index] = new ParticleRecord
+            var storage = new ParticleRecordGeneratedSoAStorage
             {
-                Position = Positions[index],
-                Velocity = Velocities[index],
-                Rotation = Rotations[index],
-                Lifetime = Lifetimes[index],
-                Category = Categories[index],
+                Field_Position = Positions, Field_Velocity = Velocities,
+                Field_Rotation = Rotations, Field_Lifetime = Lifetimes, Field_Category = Categories,
             };
+            Destination[index] = storage.ReadRecord(index);
         }
     }
 
@@ -63,25 +62,12 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
 
         public void Execute(int blockIndex)
         {
-            ParticleAoSoA8Block block = default;
-            int first = blockIndex * ParticleAoSoA8Storage.BlockWidth;
-            int count = math.min(ParticleAoSoA8Storage.BlockWidth, LogicalCount - first);
-            for (int lane = 0; lane < count; lane++)
+            var storage = new ParticleRecordGeneratedPackedAoSoA8Storage
             {
-                int index = first + lane;
-                ParticleRecord record = Source[index];
-                ParticleAoSoA8Storage.SetLane(ref block.PositionX0, ref block.PositionX1, lane, record.Position.x);
-                ParticleAoSoA8Storage.SetLane(ref block.PositionY0, ref block.PositionY1, lane, record.Position.y);
-                ParticleAoSoA8Storage.SetLane(ref block.PositionZ0, ref block.PositionZ1, lane, record.Position.z);
-                ParticleAoSoA8Storage.SetLane(ref block.VelocityX0, ref block.VelocityX1, lane, record.Velocity.x);
-                ParticleAoSoA8Storage.SetLane(ref block.VelocityY0, ref block.VelocityY1, lane, record.Velocity.y);
-                ParticleAoSoA8Storage.SetLane(ref block.VelocityZ0, ref block.VelocityZ1, lane, record.Velocity.z);
-                ParticleAoSoA8Storage.SetLane(ref block.Lifetime0, ref block.Lifetime1, lane, record.Lifetime);
-                Rotations[index] = record.Rotation;
-                Categories[index] = record.Category;
-            }
-
-            HotBlocks[blockIndex] = block;
+                HotBlocks = HotBlocks, Cold_Rotation = Rotations, Cold_Category = Categories,
+                Count = LogicalCount,
+            };
+            storage.IngressBlock(blockIndex, Source);
         }
     }
 
@@ -95,23 +81,11 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
 
         public void Execute(int index)
         {
-            int blockIndex = index / ParticleAoSoA8Storage.BlockWidth;
-            int lane = index % ParticleAoSoA8Storage.BlockWidth;
-            ParticleAoSoA8Block block = HotBlocks[blockIndex];
-            Destination[index] = new ParticleRecord
+            var storage = new ParticleRecordGeneratedPackedAoSoA8Storage
             {
-                Position = new float3(
-                    ParticleAoSoA8Storage.GetLane(block.PositionX0, block.PositionX1, lane),
-                    ParticleAoSoA8Storage.GetLane(block.PositionY0, block.PositionY1, lane),
-                    ParticleAoSoA8Storage.GetLane(block.PositionZ0, block.PositionZ1, lane)),
-                Velocity = new float3(
-                    ParticleAoSoA8Storage.GetLane(block.VelocityX0, block.VelocityX1, lane),
-                    ParticleAoSoA8Storage.GetLane(block.VelocityY0, block.VelocityY1, lane),
-                    ParticleAoSoA8Storage.GetLane(block.VelocityZ0, block.VelocityZ1, lane)),
-                Rotation = Rotations[index],
-                Lifetime = ParticleAoSoA8Storage.GetLane(block.Lifetime0, block.Lifetime1, lane),
-                Category = Categories[index],
+                HotBlocks = HotBlocks, Cold_Rotation = Rotations, Cold_Category = Categories,
             };
+            Destination[index] = storage.ReadRecord(index);
         }
     }
 

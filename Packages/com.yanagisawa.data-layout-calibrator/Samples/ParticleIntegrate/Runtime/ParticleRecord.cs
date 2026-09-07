@@ -10,7 +10,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
         1,
         8,
         MinimumCompatibleSchemaVersion = 1,
-        DefinitionVersion = 1)]
+        DefinitionVersion = 1, GeneratePackedFloat4 = true, PaddedRecordSize = 64)]
     public struct ParticleRecord
     {
         [DataLayoutField(0, DataLayoutFieldTemperature.Hot)]
