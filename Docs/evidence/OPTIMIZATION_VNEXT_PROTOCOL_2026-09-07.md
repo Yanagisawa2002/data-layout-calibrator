@@ -52,7 +52,7 @@ Five fresh sequential processes, each with 24 cells:
 | --- | --- |
 | Calibration records | 4,096; 65,536 |
 | Lifetime ticks | 1; 16; 256 |
-| Actual field access | Hot fields; observable hot plus cold fields |
+| Actual field access | Observable cold pass every 1 or 8 resident ticks |
 | Unity Job workers | 1; 8 |
 | Execution | FrameFaithful |
 | Logical batch | 64; 256 |
@@ -62,6 +62,7 @@ Cold-field access must change executable observable work. Keep full ingress and
 export in amortized P95 and preserve the fastest valid measured AoS control in
 each cell. Report per-process uncertainty, gray regions, fallback and break-even
 intervals. No interpolation turns unmeasured points into measured coverage.
+The Rotation (four components) and Category cold pass is observable. The logical hot/cold byte ratios are 1.4 and 11.2, from 28/(20/period); they are not measured bandwidth or a cache-state assertion. Use 40 resident and 20 samples for each boundary, 4,000 bootstrap iterations, 32 warmup blocks/minimum 0.1 seconds, a 2 ms target block and maximum 256 ticks. Holdout retains each cell count but uses a distinct input seed and fresh timing samples.
 Input seeds/counts, sampling settings and raw-artifact structure are additionally
 bound by the worker protocol and execution manifest before launch.
 
@@ -85,3 +86,4 @@ An unsuccessful elimination or a slower adaptive run is a valid result, not a
 reason to change thresholds, discard evidence or claim a gain. Additional broad
 historical/compiler-version comparisons are follow-up work, not a substitute
 for these bounded required experiments.
+
