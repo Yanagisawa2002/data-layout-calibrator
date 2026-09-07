@@ -101,3 +101,10 @@ insufficient; the workload receipt must also pass.
 These checks do not prove a performance benefit, measured advantage envelope,
 adaptive search quality, or hardware-counter behavior. Formal comparison on the
 integrated, frozen candidate set remains a separate integration gate.
+
+Worker validation retained in
+[validation-summary.json](evidence/generated-production-storage-2026-09-07/validation-summary.json):
+14 generator tests and 158 Unity EditMode tests passed. This is ready for
+integration, not a completed Player allocation/AOT or performance gate. The
+summary identifies the tested revision and the final constructor/provenance
+changes that still require the integrated validation run.

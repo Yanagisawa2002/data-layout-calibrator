@@ -1,3 +1,6 @@
 # Retained JSON evidence uses canonical LF so hashes survive Windows checkouts.
 Docs/evidence/**/*.json text eol=lf
 Docs/assets/**/data-layout-calibrator-render-manifest.json text eol=lf
+# Preserve the original test-runner bytes referenced by validation SHA256 receipts.
+Docs/evidence/generated-production-storage-2026-09-07/*.xml -text
+Docs/evidence/generated-production-storage-2026-09-07/*.trx -text

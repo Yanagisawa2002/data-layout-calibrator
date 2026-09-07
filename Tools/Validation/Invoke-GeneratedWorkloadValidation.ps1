@@ -12,6 +12,11 @@ $OutputDirectory = [IO.Path]::GetFullPath($OutputDirectory)
 New-Item -ItemType Directory -Force $OutputDirectory | Out-Null
 $sourceCommit = (& git -C $repository rev-parse HEAD).Trim()
 $sourceStatus = @(& git -C $repository status --porcelain)
+$sourceHashes = @(& git -C $repository ls-files '*.cs' '*.dll' '*.asmdef' 'BenchmarkProject/Packages/*.json' 'BenchmarkProject/ProjectSettings/*' |
+    ForEach-Object { [ordered]@{ Path = $_; SHA256 = (Get-FileHash -LiteralPath (Join-Path $repository $_) -Algorithm SHA256).Hash } })
+$compilerRoot = Join-Path (Split-Path -Parent $UnityEditor) 'Data/DotNetSdk/sdk'
+$compilerHashes = @(Get-ChildItem -LiteralPath $compilerRoot -Recurse -Filter csc.dll -File |
+    ForEach-Object { [ordered]@{ Path = $_.FullName; SHA256 = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash } })
 
 foreach ($backend in $Backends) {
     $runDirectory = Join-Path $OutputDirectory $backend.ToLowerInvariant()
@@ -52,13 +57,18 @@ foreach ($backend in $Backends) {
             ForEach-Object { [ordered]@{ Path = $_.FullName.Substring($buildDirectory.Length + 1); SHA256 = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash } })
         [ordered]@{
             SourceCommit = $sourceCommit; SourceStatusBeforeBuild = $sourceStatus; Backend = $backend;
+            SourceFilesBeforeBuild = $sourceHashes; CSharpCompilerHashes = $compilerHashes;
             UnityEditor = $UnityEditor; UnityEditorSHA256 = (Get-FileHash -LiteralPath $UnityEditor -Algorithm SHA256).Hash;
             PlayerProcessId = $process.Id; StartedUtc = $started; CompletedUtc = [DateTime]::UtcNow.ToString('O');
             ExitCode = $process.ExitCode; BinaryHashes = $hashes;
             BurstManifestSHA256 = (Get-FileHash -LiteralPath $manifests[0].FullName -Algorithm SHA256).Hash;
+            ResolvedPackageLock = (Get-Content -Raw -LiteralPath (Join-Path $repository 'BenchmarkProject/Packages/packages-lock.json') | ConvertFrom-Json);
+            ConfiguredBurstTargets = (Get-Content -Raw -LiteralPath (Join-Path $repository 'BenchmarkProject/ProjectSettings/BurstAotSettings_StandaloneWindows.json') | ConvertFrom-Json);
+            ActualBurstDispatchedIsa = $null;
+            IsaEvidenceLimit = 'Configured targets and emitted entrypoint manifest retained; dynamic dispatch ISA not observed by this allocation validator';
             AllocationScope = 'Main thread after warmup; worker jobs independently required in Burst AOT manifest';
             MeasurementScope = 'Correctness and allocation validation only; no performance inference'
-        } | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $runDirectory 'provenance.json') -Encoding utf8
+        } | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath (Join-Path $runDirectory 'provenance.json') -Encoding utf8
         if ($process.ExitCode -ne 0) { throw "$backend workload Player failed: $($process.ExitCode)" }
         $receipt = Get-Content -Raw -LiteralPath (Join-Path $runDirectory 'generated-workload-validation.json') | ConvertFrom-Json
         if (!$receipt.Passed -or !$receipt.Release -or !$receipt.BurstEnabled -or $receipt.Backend -ne $backend) { throw 'Invalid workload validation receipt.' }

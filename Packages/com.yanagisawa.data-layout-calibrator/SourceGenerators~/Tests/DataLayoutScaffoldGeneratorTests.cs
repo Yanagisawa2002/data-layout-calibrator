@@ -254,6 +254,23 @@ public struct Second
             Assert.That(result.Results.Single().GeneratedSources, Is.Empty);
         }
 
+        [TestCase("GeneratePackedFloat4 = true")]
+        [TestCase("PaddedRecordSize = 32")]
+        [TestCase("PaddedRecordSize = 128")]
+        public void UnsupportedProductionStorageOptionsAreRejected(string option)
+        {
+            string source = @"
+using Yanagisawa.DataLayoutCalibrator;
+[GenerateDataLayout(""invalid-production-layout"", 1, " + option + @")]
+public struct Record
+{
+    [DataLayoutField(0, DataLayoutFieldTemperature.Hot)] public int Value;
+}";
+            GeneratorDriverRunResult result = Run(source, assertCompilerSuccess: false);
+            Assert.That(result.Diagnostics.Select(item => item.Id), Does.Contain("DLCGEN104"));
+            Assert.That(result.Results.Single().GeneratedSources, Is.Empty);
+        }
+
         private static GeneratorDriverRunResult Run(
             string source,
             bool assertCompilerSuccess = true)

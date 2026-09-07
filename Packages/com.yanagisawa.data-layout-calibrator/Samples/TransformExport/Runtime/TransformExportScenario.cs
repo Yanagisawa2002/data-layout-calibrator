@@ -42,12 +42,12 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
 
         internal TransformExportScenario(int count, uint seed, CandidateDescriptor[] requested)
         {
-            _canonicalInput = TransformExportDataSet.Create(count, seed, Allocator.Persistent);
-            DatasetHash = $"0x{TransformExportValidation.ComputeInputHash(_canonicalInput):X16}";
             CandidateDescriptor[] definitions = requested ?? CreateDefaultCandidates();
             if (definitions.Length == 0)
                 throw new ArgumentException("At least one candidate is required.", nameof(requested));
 
+            _canonicalInput = TransformExportDataSet.Create(count, seed, Allocator.Persistent);
+            DatasetHash = $"0x{TransformExportValidation.ComputeInputHash(_canonicalInput):X16}";
             _candidates = new TransformExportCandidate[definitions.Length];
             try
             {
@@ -161,20 +161,20 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.TransformExport
             _canonicalInput = canonicalInput;
             try
             {
-            _aos = _layout == LayoutKind.AoS
-                ? TransformRecordGeneratedAoSStorage.Allocate(canonicalInput.Length, Allocator.Persistent)
-                : default;
-            _soa = _layout == LayoutKind.SoA
-                ? TransformSoAStorage.Allocate(canonicalInput.Length, Allocator.Persistent)
-                : default;
-            _residentOutput = new NativeArray<TransformExportRecord>(
-                canonicalInput.Length,
-                Allocator.Persistent,
-                NativeArrayOptions.UninitializedMemory);
-            _canonicalExport = new NativeArray<TransformExportRecord>(
-                canonicalInput.Length,
-                Allocator.Persistent,
-                NativeArrayOptions.UninitializedMemory);
+                _aos = _layout == LayoutKind.AoS
+                    ? TransformRecordGeneratedAoSStorage.Allocate(canonicalInput.Length, Allocator.Persistent)
+                    : default;
+                _soa = _layout == LayoutKind.SoA
+                    ? TransformSoAStorage.Allocate(canonicalInput.Length, Allocator.Persistent)
+                    : default;
+                _residentOutput = new NativeArray<TransformExportRecord>(
+                    canonicalInput.Length,
+                    Allocator.Persistent,
+                    NativeArrayOptions.UninitializedMemory);
+                _canonicalExport = new NativeArray<TransformExportRecord>(
+                    canonicalInput.Length,
+                    Allocator.Persistent,
+                    NativeArrayOptions.UninitializedMemory);
                 Ingress();
             }
             catch
