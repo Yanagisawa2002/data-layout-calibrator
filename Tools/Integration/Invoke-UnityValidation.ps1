@@ -15,11 +15,12 @@ New-Item -ItemType Directory -Path $evidence -Force | Out-Null
 
 function Get-ProcessSnapshot {
     @(Get-Process | ForEach-Object {
+        $observedProcess = $_
         try {
-            [ordered]@{ id=$_.Id; name=$_.ProcessName; cpuSeconds=$_.CPU;
-                startUtc=$_.StartTime.ToUniversalTime().ToString('O') }
+            [ordered]@{ id=$observedProcess.Id; name=$observedProcess.ProcessName; cpuSeconds=$observedProcess.CPU;
+                startUtc=$observedProcess.StartTime.ToUniversalTime().ToString('O') }
         } catch {
-            [ordered]@{ id=$_.Id; name=$_.ProcessName; unavailable=$_.Exception.Message }
+            [ordered]@{ id=$observedProcess.Id; name=$observedProcess.ProcessName; unavailable=$_.Exception.Message }
         }
     })
 }
@@ -65,6 +66,14 @@ function Get-ProcessSnapshot {
             if ($testResult.'test-run'.result -ne 'Passed' -or [int]$testResult.'test-run'.failed -ne 0) {
                 throw 'EditMode XML does not report a passing test run.'
             }
+        } else {
+            $label = if ($Stage -eq 'Mono') { 'mono-aot-evidence' } else { 'il2cpp-formal' }
+            $buildDirectory = Join-Path $repository ('Builds/windows-x64/' + $label)
+            $artifacts = @(Get-ChildItem -LiteralPath $buildDirectory -File -Recurse | Sort-Object FullName | ForEach-Object {
+                [ordered]@{ path=[IO.Path]::GetRelativePath($buildDirectory, $_.FullName);
+                    bytes=$_.Length; sha256=(Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash }
+            })
+            $artifacts | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $evidence 'build-artifacts.json') -Encoding utf8
         }
         $record.result = 'passed'
     } catch {
