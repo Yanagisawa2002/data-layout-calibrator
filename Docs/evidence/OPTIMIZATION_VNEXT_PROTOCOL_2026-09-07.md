@@ -1,0 +1,87 @@
+# Integrated vNext validation protocol — 2026-09-07
+
+This protocol is declared before integrated formal measurements. The execution
+manifest written before the first launch will additionally freeze the integrated
+implementation commit, Player/IL2CPP metadata/Burst hashes, exact candidate
+descriptors and their canonical set hashes. A generic Unity executable hash alone
+does not identify the measured implementation.
+
+## Scope and retention
+
+The only device is the local Ryzen 9 9950X Windows host. Formal measurements use
+Unity 6000.5.3f1, non-Development Windows x64 IL2CPP Release and Burst AOT. Mono
+Release AOT is an additional correctness gate. This is not a cross-device or
+cross-ISA experiment. No result becomes a production default merely by entering
+the candidate matrix.
+
+All Unity/build/Player/timing work holds the shared
+`Local\CodexR9700VNextUnityGpu` mutex until its child processes exit. No global
+cache deletion, elevation, user-process termination or detached benchmark is
+permitted. Retain competing-process observations, exact commands, failures,
+unavailable metrics and every launch ordinal. Do not replace a launch because
+its performance result is unfavorable. Source repairs invalidate the previous
+binary identity and require a separately identified attempt.
+
+## Acceptance gates
+
+1. Generated ParticleIntegrate and TransformExport storage/codec paths execute
+   in actual Mono and IL2CPP workloads with canonical parity, complete boundary
+   operations, zero measured steady-state managed allocation and correct lifetime.
+2. Expanded AoS/SoA/AoSoA4/8/16/padded controls pass boundary/tail correctness,
+   explicit kernel/execution factor checks and Burst AOT reachability. Preserve
+   matched AoS controls; document unsupported combinations.
+3. Execute the measured envelope below, including independent held-out input and
+   newly sampled timing after the candidate selection is frozen.
+4. Execute adaptive and exhaustive calibration on identical frozen sets. Include
+   quick search, planning and full evaluation in search cost; separately report
+   common setup and holdout costs. Compare decisions, regret and evaluation count.
+5. Replay the five retained historical processes using process-level resampling
+   and paired blocks within each process. Varying selected candidates define a
+   calibration-policy estimand, not a fixed-candidate or device population.
+6. Execute both new access-pattern workloads and actual optional CPU-cycle
+   capture, including provider-disabled and provider-enabled overhead controls.
+   Missing instructions/cache/branch PMU data remain unavailable. Process CPU
+   cycles are not instructions, frequency, wall-clock time, or isolated kernel PMU
+   counts and do not alone establish a causal mechanism.
+
+## Envelope matrix
+
+Five fresh sequential processes, each with 24 cells:
+
+| Axis | Declared values |
+| --- | --- |
+| Calibration records | 4,096; 65,536 |
+| Lifetime ticks | 1; 16; 256 |
+| Actual field access | Hot fields; observable hot plus cold fields |
+| Unity Job workers | 1; 8 |
+| Execution | FrameFaithful |
+| Logical batch | 64; 256 |
+| Layout/kernel | All expanded layouts and matched scalar/packed controls |
+
+Cold-field access must change executable observable work. Keep full ingress and
+export in amortized P95 and preserve the fastest valid measured AoS control in
+each cell. Report per-process uncertainty, gray regions, fallback and break-even
+intervals. No interpolation turns unmeasured points into measured coverage.
+Input seeds/counts, sampling settings and raw-artifact structure are additionally
+bound by the worker protocol and execution manifest before launch.
+
+## Search matrix
+
+Five fresh sequential processes, count 65,536, independent holdout count 65,539,
+lifetime 256, eight workers, batches 64/256, all expanded layout/kernel controls.
+FrameFaithful and DependencyChain are separate cells with the same candidate set
+for both search methods. Runs 1/3/5 execute adaptive first; runs 2/4 execute
+exhaustive first. Freeze both calibration selections before either holdout.
+
+Quick evaluation uses six resident samples, four boundary samples and 200
+bootstrap iterations. Full evaluation and holdout use 40/20 samples and 4,000
+iterations at 95% confidence. The improvement threshold is 10%; the declared
+regret limit is 1%. Target block duration is 2 ms, maximum 64 ticks; warmup is at
+least four blocks and 0.05 seconds. Record the common block-sizing cost and actual
+block size. Distinct declared calibration and holdout dataset seeds remain fixed
+across process replications, whose timing samples are independent launches.
+
+An unsuccessful elimination or a slower adaptive run is a valid result, not a
+reason to change thresholds, discard evidence or claim a gain. Additional broad
+historical/compiler-version comparisons are follow-up work, not a substitute
+for these bounded required experiments.
