@@ -95,8 +95,11 @@ The runner writes preregistration before measurement, hashes actual Player DLLs,
 executables and metadata, records actual host CPU/ISA capability (not emitted
 Burst ISA), holds the shared validation lock across all processes, and retains
 failed launch receipts. It neither edits caches nor changes power plans or other
-apps. Source identity is the integrator declaration linked to a hashed build
-receipt; hashing a binary alone is not source attestation. The default hard bound
+apps. The build receipt must contain `sourceCommit` and `binaries: [{path, sha256}]`;
+the script rejects a different commit or any actual binary absent from that table.
+Source identity remains an integrator build declaration; hashing a binary alone
+is not source attestation. Each launch also retains hashed before/after process
+CPU/start-time and active-power-plan snapshots to expose interference. The default hard bound
 is 900 seconds per Player, five Players, excluding builds and lock waits. This is
 a timeout budget, not an observed runtime prediction.
 

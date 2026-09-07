@@ -144,8 +144,23 @@ namespace Yanagisawa.DataLayoutCalibrator
             int iterations = DefaultBootstrapIterations,
             uint seed = 0x9E3779B9u)
         {
+            return BootstrapCostReplicates(baseline, candidate, iterations, seed, false);
+        }
+
+        // Calibration-only AoS controls remain original candidate definitions. This
+        // never relaxes public paired confirmation or fixed-candidate hierarchy gates.
+        internal static PairedBootstrapCostReplicateSet BootstrapCalibrationControlCostReplicates(
+            LayoutBenchmarkResult baseline, LayoutBenchmarkResult candidate, int iterations, uint seed)
+        {
+            return BootstrapCostReplicates(baseline, candidate, iterations, seed, true);
+        }
+
+        private static PairedBootstrapCostReplicateSet BootstrapCostReplicates(
+            LayoutBenchmarkResult baseline, LayoutBenchmarkResult candidate, int iterations, uint seed,
+            bool allowCalibrationControl)
+        {
             ValidateBootstrapIterations(iterations);
-            PairedBenchmarkData paired = PreparePairedBenchmark(baseline, candidate);
+            PairedBenchmarkData paired = PreparePairedBenchmark(baseline, candidate, allowCalibrationControl);
             uint normalizedSeed = NonZeroBootstrapSeed(seed);
             uint randomState = normalizedSeed;
             var baselineReplicates = new BootstrapCostReplicate[iterations];
@@ -366,13 +381,14 @@ namespace Yanagisawa.DataLayoutCalibrator
 
         private static PairedBenchmarkData PreparePairedBenchmark(
             LayoutBenchmarkResult baseline,
-            LayoutBenchmarkResult candidate)
+            LayoutBenchmarkResult candidate,
+            bool allowCalibrationControl = false)
         {
             if (baseline == null)
                 throw new ArgumentNullException(nameof(baseline));
             if (candidate == null)
                 throw new ArgumentNullException(nameof(candidate));
-            ValidateComparisonContract(baseline, candidate);
+            ValidateComparisonContract(baseline, candidate, allowCalibrationControl);
             ValidateSampleMetadata(baseline, "baseline");
             ValidateSampleMetadata(candidate, "candidate");
             if (baseline.BoundaryCost.LifetimeTicks <= 0 ||
@@ -419,8 +435,11 @@ namespace Yanagisawa.DataLayoutCalibrator
 
         private static void ValidateComparisonContract(
             LayoutBenchmarkResult baseline,
-            LayoutBenchmarkResult candidate)
+            LayoutBenchmarkResult candidate,
+            bool allowCalibrationControl = false)
         {
+            if (allowCalibrationControl && (baseline.Phase != BenchmarkPhase.Calibration || candidate.Phase != BenchmarkPhase.Calibration))
+                throw new ArgumentException("AoS control comparisons are restricted to calibration.");
             if (baseline.SampleSchemaVersion != LayoutBenchmarkResult.CurrentSampleSchemaVersion ||
                 candidate.SampleSchemaVersion != LayoutBenchmarkResult.CurrentSampleSchemaVersion)
             {
@@ -447,7 +466,7 @@ namespace Yanagisawa.DataLayoutCalibrator
 
             CandidateDescriptor normalizedBaseline = NormalizeAndValidate(baseline.Candidate);
             CandidateDescriptor normalizedCandidate = NormalizeAndValidate(candidate.Candidate);
-            if (!normalizedBaseline.IsBaseline || normalizedCandidate.IsBaseline ||
+            if (!normalizedBaseline.IsBaseline || (!allowCalibrationControl && normalizedCandidate.IsBaseline) ||
                 string.Equals(
                     normalizedBaseline.CandidateId,
                     normalizedCandidate.CandidateId,

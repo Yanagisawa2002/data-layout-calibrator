@@ -92,7 +92,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             quickSettings.SamplesPerCandidate = Math.Min(6, settings.SamplesPerCandidate);
             quickSettings.BoundarySamplesPerCandidate = Math.Min(4, settings.BoundarySamplesPerCandidate);
             quickSettings.BootstrapIterations = Math.Min(200, settings.BootstrapIterations);
-            string quickSettingsHash = PersistSearchArtifact(persist, "quick-settings", quickSettings);
+            string quickSettingsHash;
             var clock = Stopwatch.StartNew();
             // Preflight only the declared pool, not a potentially different factory default.
             RunPreflight(new FrozenSearchFactory(factory, frozen), settings);
@@ -116,6 +116,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 clock.Stop(); result.ExhaustiveFullMilliseconds = clock.Elapsed.TotalMilliseconds;
             }
             clock.Restart();
+            quickSettingsHash = PersistSearchArtifact(persist, "quick-settings", quickSettings);
             result.Quick = MeasureSearchCalibration(factory, quickSettings, frozen, commonTicks, commonWarmup);
             VerifySearchPool(result.Quick, result.CandidateSetSha256);
             result.QuickSha256 = PersistSearchArtifact(persist, "quick", result.Quick);
@@ -200,6 +201,8 @@ namespace Yanagisawa.DataLayoutCalibrator
             Type type = value.GetType();
             text.Append(type.FullName).Append(':');
             if (value is string label) { text.Append(label.Length).Append(':').Append(label); return; }
+            if (value is double real) { text.Append(BitConverter.DoubleToInt64Bits(real).ToString("X16", CultureInfo.InvariantCulture)); return; }
+            if (value is float single) { text.Append(BitConverter.ToString(BitConverter.GetBytes(single))); return; }
             if (type.IsPrimitive || type.IsEnum || value is decimal)
             { text.Append(Convert.ToString(value, CultureInfo.InvariantCulture)).Append(';'); return; }
             if (value is Array array)

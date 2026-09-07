@@ -292,12 +292,16 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 new[] {9d, 10d, 11d}, new[] {1d, 2d, 3d}, new[] {1d, 2d, 3d});
             var bindings = new[] { Binding(a, "calibration", 'A'), Binding(b, "calibration", 'B') };
             Assert.Throws<ArgumentException>(() => ScientificAdvantageEnvelopeAdapter.CreateCalibrationCell(Axis(), bindings, 100));
+            Assert.Throws<ArgumentException>(() => BenchmarkStatistics.BootstrapAmortizedP95CostReplicates(a, b, 100));
             var cell = ScientificAdvantageEnvelopeAdapter.CreateCalibrationCell(Axis(), bindings, 100, BootstrapSeed, "aos-b");
             Assert.That(cell.CalibrationCandidates[0].Candidate.IsTunedAoSBaseline, Is.False);
             Assert.That(cell.CalibrationCandidates[1].Candidate.IsTunedAoSBaseline, Is.True);
             Assert.That(cell.CalibrationCandidates[0].Candidate.CandidateDefinitionSha256,
                 Is.EqualTo(CandidateDefinitionProtocol.ComputeCandidateDefinitionSha256(a.Candidate)));
             Assert.Throws<ArgumentException>(() => ScientificAdvantageEnvelopeAdapter.CreateCalibrationCell(Axis(), bindings, 100, BootstrapSeed, "missing"));
+            a.Phase = BenchmarkPhase.Holdout; b.Phase = BenchmarkPhase.Holdout;
+            Assert.Throws<ArgumentException>(() => ScientificAdvantageEnvelopeAdapter.CreateHoldoutCell(
+                Axis(), Binding(a, "holdout", 'A'), Binding(b, "holdout", 'B'), 100));
         }
 
         private static AdvantageEnvelopeAxis Axis()

@@ -97,12 +97,13 @@ namespace Yanagisawa.DataLayoutCalibrator
                 if (index == baselineIndex)
                     continue;
 
-                PairedBootstrapCostReplicateSet pair =
-                    BenchmarkStatistics.BootstrapAmortizedP95CostReplicates(
-                        prepared[baselineIndex].Binding.Result,
-                        prepared[index].Binding.Result,
-                        bootstrapIterations,
-                        bootstrapSeed);
+                PairedBootstrapCostReplicateSet pair = prepared[index].Candidate.IsBaseline && tunedBaselineCandidateId != null
+                    ? BenchmarkStatistics.BootstrapCalibrationControlCostReplicates(
+                        prepared[baselineIndex].Binding.Result, prepared[index].Binding.Result,
+                        bootstrapIterations, bootstrapSeed)
+                    : BenchmarkStatistics.BootstrapAmortizedP95CostReplicates(
+                        prepared[baselineIndex].Binding.Result, prepared[index].Binding.Result,
+                        bootstrapIterations, bootstrapSeed);
                 ValidateReplicateSet(pair, bootstrapIterations);
                 if (sharedBaselineReplicates == null)
                 {

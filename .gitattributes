@@ -1,3 +1,7 @@
 # Retained JSON evidence uses canonical LF so hashes survive Windows checkouts.
 Docs/evidence/**/*.json text eol=lf
 Docs/assets/**/data-layout-calibrator-render-manifest.json text eol=lf
+
+# Replay script identity is byte-stable across Windows and Unix checkouts.
+Tools/EvidenceLab/process_hierarchy.py text eol=lf
+Tools/EvidenceLab/search_replay.py text eol=lf
