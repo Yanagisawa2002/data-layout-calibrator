@@ -57,8 +57,13 @@ function Snapshot {
                 if(!$profile.ManagedAllocationMeasurement -or $profile.ElementCount -ne $count -or $profile.HoldoutElementCount -ne $holdout -or
                     $profile.SamplesPerCandidate -ne $samples -or $profile.BoundarySamplesPerCandidate -ne $boundary -or $profile.BootstrapIterations -ne $bootstrap){throw 'Profile budget or allocation identity missing.'}
                 $total+=@($profile.CalibrationResults).Count
-                foreach($candidate in @($profile.CalibrationResults)+@($profile.HoldoutBaselineResult,$profile.HoldoutSelectedResult)){
-                    if($null -eq $candidate){continue}
+                $measured=@($profile.CalibrationResults)
+                if($profile.CalibrationDecision.Status -eq 2){
+                    if(!$profile.HoldoutBaselineResult.Completed -or !$profile.HoldoutSelectedResult.Completed){throw 'Optimized calibration lacks actual holdout.'}
+                    $measured+=@($profile.HoldoutBaselineResult,$profile.HoldoutSelectedResult)
+                }elseif($profile.HoldoutBaselineResult.Completed -or $profile.HoldoutSelectedResult.Completed){throw 'Fallback unexpectedly retuned holdout.'}
+                foreach($candidate in $measured){
+                    if($null -eq $candidate -or !$candidate.Completed){throw 'Incomplete measured candidate.'}
                     if(!$candidate.ParityPassed -or $candidate.HotPathManagedAllocationBytes -ne 0 -or $candidate.BoundaryManagedAllocationBytes -ne 0){throw 'Correctness/allocation gate failed.'}
                 }
             }
