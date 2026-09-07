@@ -1,0 +1,17 @@
+**********************************************************************
+** Visual Studio 2026 Developer Command Prompt v18.8.0
+** Copyright (c) 2026 Microsoft Corporation
+**********************************************************************
+C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\Hostx64\x64\cl.exe
+Compiler Passes:
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\cl.exe:        Version 19.51.36248.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\c1.dll:        Version 19.51.36248.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\c1xx.dll:      Version 19.51.36248.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\c2.dll:        Version 19.51.36248.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\c1xx.dll:      Version 19.51.36248.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe:      Version 14.51.36248.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\mspdb140.dll:  Version 14.51.36248.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\1033\clui.dll: Version 19.51.36248.0
+
+allocation_profiler.cpp
+   Creating library C:\Users\EdwinLiu\Downloads\opt-next-layout-generator\Artifacts\allocation-native-build/DlcAllocationProfiler.lib and object C:\Users\EdwinLiu\Downloads\opt-next-layout-generator\Artifacts\allocation-native-build/DlcAllocationProfiler.exp

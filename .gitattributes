@@ -9,3 +9,5 @@ Tools/EvidenceLab/search_replay.py text eol=lf
 Docs/evidence/generated-production-storage-2026-09-07/*.xml -text
 Docs/evidence/generated-production-storage-2026-09-07/*.trx -text
 Tools/AllocationRecorder/allocation_profiler.cpp text eol=lf
+# Keep original runtime receipts and compiler logs byte-for-byte with their hashes.
+Docs/evidence/allocation-counter-correction-2026-09-07/** -text whitespace=cr-at-eol,-blank-at-eof

@@ -143,3 +143,12 @@ including an allocation callsite warmed before registration. Other platforms or
 runtime builds without working exports remain unsupported. Runtime object-size
 bytes are distinct from GC heap occupancy/rounding; the zero-allocation gate
 continues to require zero observed events for the actual workload.
+
+The [retained Mono Release run](evidence/allocation-counter-correction-2026-09-07/summary.json)
+passed 1056 actual candidate/count/seed cases with native allocation callbacks:
+the precompiled four-allocation control recorded four events and 4273 runtime
+object-size bytes; all ingress, execute and export windows recorded zero events.
+Canonical parity, reset/reexecution, and disposed-access checks passed. Compiler,
+native DLL, Player/runtime binary identities and the two preceding failed
+counter attempts are retained. This establishes the worker's original candidate
+set on Mono; actual IL2CPP and final expanded integrated candidates remain gates.

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "status": "Mono_actual_gate_passed_IL2CPP_pending",
+  "testedImplementationCommit": "716059fdfd7d9650205405f6a8da14fe93178a34",
+  "buildSourceAttestation": "Build launched from dd86f85 with working changes later committed as716059f. Every tracked C# source hash in build provenance matches tested implementation (zero mismatches). Native C++ and DLL independently hashed in native build provenance; unrelated generated scene was restored after execution.",
+  "unityVersion": "6000.5.3f1",
+  "backend": "Mono",
+  "release": true,
+  "burstAot": true,
+  "processor": "AMD Ryzen 9 9950X 16-Core Processor ",
+  "jobWorkers": 7,
+  "playerExitCode": 0,
+  "actualCandidateCountSeedCases": 1056,
+  "counts": [
+    1,
+    3,
+    4,
+    5,
+    7,
+    8,
+    9,
+    15,
+    16,
+    17,
+    4099
+  ],
+  "seeds": [
+    137,
+    9137
+  ],
+  "provider": "NativeRuntimeProfiler/current-thread/object-size-bytes",
+  "positiveControl": {
+    "allocations": "byte[1],byte[4096],object,string37; identical callsite warmed before profiler registration",
+    "runtimeObjectSizeBytes": 4273,
+    "events": 4
+  },
+  "allocationEvents": {
+    "executeTotal": 0,
+    "exportTotal": 0,
+    "ingressTotal": 0
+  },
+  "parityResetDisposedAccessAllPassed": true,
+  "nativeCompiler": "MSVC19.51.36248.0, x64 /O2 /MT /W4 /WX",
+  "nativePluginSHA256": "1C4D75D854AB8B298194232F3DEF86C6E8C031579AD67FCEBE176051ACBF4234",
+  "nativeSourceSHA256": "5633182D87B122204CE663BA4FF461E8CDD95F5B4AA44E2AF3401A162D5E0CEB",
+  "retainedFailures": [
+    "Original .NET thread allocation API positive control returned0; rejected",
+    "Unity GC.Alloc unavailable in real Mono Release; rejected before workload"
+  ],
+  "artifacts": [
+    {
+      "file": "mono-native-workloads.json",
+      "sha256": "5F0F3EC1E3E1F8CAEB41EB21A521D427B675C4A281492D6600868CFCA4344CA7"
+    },
+    {
+      "file": "mono-native-provenance.json",
+      "sha256": "769DC5E47212C1F21E3F6F091D16A083FD5FA8CA9ED3562B7DCAF221E6325886"
+    },
+    {
+      "file": "mono-native-player.log",
+      "sha256": "CBA378AE6472023BC1BED4AF7F13E9574F9CA3A07A027C9334360937AFB1EE2C"
+    },
+    {
+      "file": "mono-burst-entrypoints.txt",
+      "sha256": "0834F99D7D1A9E923F52EF3DAB21842D2EC6C32C58B245414263525C63B11846"
+    },
+    {
+      "file": "native-build-provenance.json",
+      "sha256": "3822F7E301E6E3E96C4036A3BF1E1CDB854BDC24375BFC5655B5CD6A321D180F"
+    },
+    {
+      "file": "native-compiler.log",
+      "sha256": "14C66525AB7250D628CC6BB14F208F290AAF46FC89BB05B861B99D7061868F46"
+    },
+    {
+      "file": "mono-gc-marker-unavailable.json",
+      "sha256": "B13C7B80E03432ABDE071D74D24798F483A0892D513B4D094E322CE657F3E36B"
+    },
+    {
+      "file": "mono-original-counter-zero.json",
+      "sha256": "822CAD0CCD0AF3A42B3A60C48BE64CE11DCA5DEBEE225CCA5D027ED2C0DFEB58"
+    }
+  ],
+  "unmetGates": [
+    "Actual IL2CPP Release profiler export/positive control and workload validation by integration",
+    "Final integrated expanded candidate/source tree Mono and IL2CPP validations by integration",
+    "Formal performance/counter/envelope/search evidence with validated core injection; no performance conclusion from this correctness run"
+  ],
+  "historicalEvidenceCaveat": "Previous raw zero allocation observations from GC.GetAllocatedBytesForCurrentThread on Unity Boehm/IL2CPP do not establish zero allocation and are not upgraded by this new run."
+}
