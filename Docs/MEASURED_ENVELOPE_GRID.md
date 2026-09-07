@@ -87,6 +87,9 @@ executed Burst SSE2/AVX2 dispatch probe. The probe is not an instruction audit o
 every kernel. Raw binary/compiler artifacts remain necessary for exact auditing.
 No device claim is inferred from the GPU. Clocks, caches, affinity, thermal state
 and user application interference remain uncontrolled and are recorded as limits.
+Read-only process ID/name/cumulative CPU/start-time and active power-plan snapshots
+surround each process. Clock and thermal readings are explicitly unavailable;
+the snapshots cannot exclude short interference during a run.
 
 The summary copies fixed decisions, reports credible/gray/fallback/rejected
 coverage over sampled points and five-process winner repeatability. It preserves

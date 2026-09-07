@@ -17,6 +17,21 @@ function Invoke-EnvelopeChild([string]$Executable, [string[]]$Arguments) {
     if ($child.ExitCode -ne 0) { throw "Child failed ($($child.ExitCode)): $Executable" }
 }
 
+function Write-EnvelopeInterference([string]$Path) {
+    $processes = @(Get-Process | ForEach-Object {
+        $startUtc=$null
+        try { $startUtc=$_.StartTime.ToUniversalTime().ToString('O') } catch { }
+        [ordered]@{ id=$_.Id; name=$_.ProcessName; cpuSeconds=$_.CPU; startUtc=$startUtc }
+    })
+    $powerPlan = @(& powercfg.exe /getactivescheme 2>&1 | ForEach-Object { $_.ToString() })
+    $snapshot = [ordered]@{ capturedUtc=[DateTime]::UtcNow.ToString('O'); processes=$processes;
+        activePowerPlan=$powerPlan; powerPlanQueryExitCode=$LASTEXITCODE;
+        clockMHz=$null; clockStatus='unavailable-not-captured'; thermalCelsius=$null;
+        thermalStatus='unavailable-not-captured'; caches='uncontrolled'; affinity='uncontrolled';
+        note='Read-only process snapshots surround each run; transient interference inside the run may be missed.' }
+    $snapshot | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $Path -Encoding utf8NoBOM
+}
+
 $runGrid = {
     $repoPath = (Resolve-Path -LiteralPath $Repository).Path
     $outPath = [IO.Path]::GetFullPath($OutputDirectory)
@@ -98,6 +113,7 @@ $runGrid = {
             if ((& git -C $repoPath rev-parse HEAD).Trim() -ne $sourceCommit) { throw 'Source changed during formal grid.' }
             $runOutput = Join-Path $outPath ('run-{0:D2}' -f $processIndex)
             $runLog = Join-Path $outPath ('run-{0:D2}.log' -f $processIndex)
+            Write-EnvelopeInterference (Join-Path $outPath ('run-{0:D2}-interference-before.json' -f $processIndex))
             $timer = [Diagnostics.Stopwatch]::StartNew()
             $run = [ordered]@{ processIndex=$processIndex; output=$runOutput; completed=$false; elapsedSeconds=0; failure=$null }
             try {
@@ -110,7 +126,11 @@ $runGrid = {
                 $orchestration.completedRuns++
             }
             catch { $run.failure=$_.ToString() }
-            finally { $run.elapsedSeconds=$timer.Elapsed.TotalSeconds; $orchestration.runs += $run }
+            finally {
+                $run.elapsedSeconds=$timer.Elapsed.TotalSeconds
+                Write-EnvelopeInterference (Join-Path $outPath ('run-{0:D2}-interference-after.json' -f $processIndex))
+                $orchestration.runs += $run
+            }
         }
         if ($orchestration.completedRuns -ne 5) { throw 'One or more formal process runs failed; retained evidence is incomplete.' }
     }
