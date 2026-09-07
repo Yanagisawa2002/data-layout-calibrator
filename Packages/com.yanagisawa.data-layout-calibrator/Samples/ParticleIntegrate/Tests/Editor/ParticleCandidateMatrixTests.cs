@@ -33,6 +33,9 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests
             definition.Layout.AlignmentBytes = 64;
             Assert.That(ParticleCandidateMatrix.UnsupportedReason(definition), Does.Contain("no allocator contract"));
             Assert.Throws<ArgumentException>(() => new ParticleIntegrateScenarioFactory().Create(1, 1, new[] { definition }));
+            var legacy = new CandidateDescriptor(LayoutKind.AoS, 64);
+            legacy.Layout.PaddingBytes = 16;
+            Assert.Throws<ArgumentException>(() => new ParticleIntegrateScenarioFactory().Create(1, 1, new[] { legacy }));
         }
 
         [Test]

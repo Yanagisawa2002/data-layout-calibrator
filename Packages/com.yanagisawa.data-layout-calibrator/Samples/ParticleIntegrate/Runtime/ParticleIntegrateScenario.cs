@@ -216,11 +216,15 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             _coldAccessEveryTicks = coldAccessEveryTicks;
             Descriptor = descriptor.NormalizePolicies();
             Descriptor.ValidateFactorConsistency();
-            if (Descriptor.EffectiveKernel.PolicyId != "LegacyUnspecified")
+            var implementedDefinition = Descriptor;
+            if (implementedDefinition.Kernel.Equals(KernelPolicy.LegacyUnspecified))
             {
-                string unsupported = ParticleCandidateMatrix.UnsupportedReason(Descriptor);
-                if (unsupported.Length != 0) throw new ArgumentException(unsupported, nameof(descriptor));
+                implementedDefinition.Kernel = implementedDefinition.LayoutId == "AoSoA8"
+                    ? new KernelPolicy("PackedBranchless8", KernelControlFlow.Branchless, 8)
+                    : new KernelPolicy("ScalarBranched", KernelControlFlow.Branched);
             }
+            string unsupported = ParticleCandidateMatrix.UnsupportedReason(implementedDefinition);
+            if (unsupported.Length != 0) throw new ArgumentException(unsupported, nameof(descriptor));
             _layout = ParseLayout(Descriptor);
             _kernel = ParseKernel(Descriptor, _layout);
             _execution = ParseExecution(Descriptor);
