@@ -64,6 +64,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                 receipt.AllocationProvider = UnityAllocationRecorder.Provider;
                 using (var allocation = new UnityAllocationRecorder())
                 {
+                    receipt.AllocationProvider = allocation.Identity;
                     var control = allocation.ValidatePositiveAndEmptyControls();
                     receipt.AllocationCounterPositiveControlBytes = control.Bytes;
                     receipt.AllocationCounterPositiveControlEvents = control.Events;

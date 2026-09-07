@@ -1,4 +1,6 @@
 using System;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Unity.Profiling;
 using Unity.Profiling.LowLevel;
 
@@ -11,10 +13,14 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         private ProfilerRecorder _recorder;
         private static object _smallControl;
         private static object _largeControl;
+        private static object _objectControl;
+        private static object _stringControl;
         private readonly bool _valuesAreBytes;
+        private readonly bool _native;
 
         internal const string Provider = "Unity.ProfilerRecorder/GC.Alloc/current-thread/unaggregated";
-        internal string Unit => _recorder.UnitType.ToString();
+        internal string Identity => _native ? "NativeRuntimeProfiler/current-thread/object-size-bytes" : Provider;
+        internal string Unit => _native ? "Bytes" : _recorder.UnitType.ToString();
 
         internal readonly struct Observation
         {
@@ -26,6 +32,9 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
 
         internal UnityAllocationRecorder()
         {
+            // Compile/run the same escaping allocation callsite BEFORE installing
+            // a native profiler, so controls also detect missed already-JITted paths.
+            AllocateControls();
             // Deliberately omit SumAllSamplesInFrame and WrapAroundWhenCapacityReached.
             // This synchronous validator never advances a Player frame inside a measurement.
             _recorder = new ProfilerRecorder(ProfilerCategory.Internal, "GC.Alloc", 4096,
@@ -33,13 +42,32 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             if (!_recorder.Valid)
             {
                 _recorder.Dispose();
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR
+#if ENABLE_IL2CPP
+                const int backend = 1;
+#else
+                const int backend = 0;
+#endif
+                int status = NativeInitialize(backend);
+                if (status != 0)
+                    throw new NotSupportedException("GC.Alloc unavailable and native allocation profiler initialization failed: " + status);
+                _native = true;
+                _valuesAreBytes = true;
+                return;
+#else
                 throw new NotSupportedException("GC.Alloc recorder is unavailable in this Player; zero allocation cannot be established.");
+#endif
             }
             _valuesAreBytes = _recorder.UnitType == ProfilerMarkerDataUnit.Bytes;
         }
 
         internal void Begin()
         {
+            if (_native)
+            {
+                if (NativeBegin() != 0) throw new InvalidOperationException("Native allocation window could not begin.");
+                return;
+            }
             _recorder.Reset();
             _recorder.Start();
             if (!_recorder.IsRunning)
@@ -48,6 +76,12 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
 
         internal Observation End()
         {
+            if (_native)
+            {
+                if (NativeEnd(out long events, out long allocatedBytes) != 0)
+                    throw new InvalidOperationException("Native allocation window is invalid or overflowed.");
+                return new Observation(events, allocatedBytes);
+            }
             _recorder.Stop();
             int samples = _recorder.Count;
             if (_recorder.WrappedAround || samples >= _recorder.Capacity)
@@ -62,24 +96,44 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         {
             // Warm the recorder control/read APIs before accepting an empty window.
             Begin();
-            _smallControl = new byte[1];
-            _largeControl = new byte[4096];
+            AllocateControls();
             End();
             Begin();
-            _smallControl = new byte[1];
-            _largeControl = new byte[4096];
+            AllocateControls();
             Observation positive = End();
-            if (positive.Events < 2 || (_valuesAreBytes && positive.Bytes < 4097))
-                throw new NotSupportedException("GC.Alloc failed its small-object/large-array positive control; an empty recorder is not evidence.");
+            if (positive.Events < 4 || (_valuesAreBytes && positive.Bytes < 4097))
+                throw new NotSupportedException("Allocation provider failed precompiled array/object/string positive controls; zero cannot be evidence.");
             Begin();
             Observation empty = End();
             if (empty.Events != 0)
                 throw new InvalidOperationException("GC.Alloc empty control is contaminated or Reset retained stale samples.");
             GC.KeepAlive(_smallControl);
             GC.KeepAlive(_largeControl);
+            GC.KeepAlive(_objectControl);
+            GC.KeepAlive(_stringControl);
             return positive;
         }
 
-        public void Dispose() => _recorder.Dispose();
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void AllocateControls()
+        {
+            _smallControl = new byte[1];
+            _largeControl = new byte[4096];
+            _objectControl = new object();
+            _stringControl = new string('x', 37);
+        }
+
+        [DllImport("DlcAllocationProfiler", EntryPoint = "dlc_allocation_initialize", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int NativeInitialize(int backend);
+        [DllImport("DlcAllocationProfiler", EntryPoint = "dlc_allocation_begin", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int NativeBegin();
+        [DllImport("DlcAllocationProfiler", EntryPoint = "dlc_allocation_end", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int NativeEnd(out long events, out long bytes);
+
+        public void Dispose()
+        {
+            if (_native) NativeEnd(out _, out _); // Stop an interrupted window, retaining runtime callback lifetime.
+            else _recorder.Dispose();
+        }
     }
 }

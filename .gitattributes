@@ -8,3 +8,4 @@ Tools/EvidenceLab/search_replay.py text eol=lf
 # Preserve the original test-runner bytes referenced by validation SHA256 receipts.
 Docs/evidence/generated-production-storage-2026-09-07/*.xml -text
 Docs/evidence/generated-production-storage-2026-09-07/*.trx -text
+Tools/AllocationRecorder/allocation_profiler.cpp text eol=lf

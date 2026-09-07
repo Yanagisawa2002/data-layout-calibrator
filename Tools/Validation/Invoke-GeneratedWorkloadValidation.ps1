@@ -72,7 +72,7 @@ foreach ($backend in $Backends) {
         if ($process.ExitCode -ne 0) { throw "$backend workload Player failed: $($process.ExitCode)" }
         $receipt = Get-Content -Raw -LiteralPath (Join-Path $runDirectory 'generated-workload-validation.json') | ConvertFrom-Json
         if (!$receipt.Passed -or !$receipt.Release -or !$receipt.BurstEnabled -or $receipt.Backend -ne $backend -or
-            !$receipt.AllocationCounterValidated -or $receipt.AllocationCounterPositiveControlEvents -lt 2) { throw 'Invalid workload validation receipt.' }
+            !$receipt.AllocationCounterValidated -or $receipt.AllocationCounterPositiveControlEvents -lt 4) { throw 'Invalid workload validation receipt.' }
         foreach ($row in $receipt.Candidates) {
             foreach ($phase in @('Ingress', 'Execute', 'Export')) {
                 $eventProperty = $row.PSObject.Properties["${phase}AllocationEvents"]

@@ -83,7 +83,7 @@ for `GC.Alloc` records individual events on the current thread, without frame
 aggregation or ring-buffer overwrite. Small-object and 4096-byte-array controls
 must produce at least two events; an empty/reset control must produce zero.
 Controls run before the workload, after each cell, and at the end. Unavailable
-recorders, failed controls, and full buffers reject the gate. The gate uses event
+recorders without a validated native fallback, failed controls, and full buffers reject the gate. The gate uses event
 count, not a heap-size difference. Byte totals are only reported if Unity declares
 the metric's unit as Bytes; otherwise the byte field is -1 (unavailable).
 It checks parity,
@@ -134,3 +134,12 @@ Release gate stays unresolved until they and actual workload observations pass.
 The engine-neutral formal calibration engine must use an independently validated
 injected provider as well; fixing this validator does not repair its older raw
 counter calls. Integration owns that injection and rejects unsupported counters.
+
+The subsequent Mono Release attempt confirmed `GC.Alloc` itself was unavailable.
+A Windows-only [native runtime profiler adapter](../Tools/AllocationRecorder/README.md)
+therefore supplies a fallback through existing Mono/IL2CPP allocation profiler
+exports. It uses no managed callback and has the same positive/empty controls,
+including an allocation callsite warmed before registration. Other platforms or
+runtime builds without working exports remain unsupported. Runtime object-size
+bytes are distinct from GC heap occupancy/rounding; the zero-allocation gate
+continues to require zero observed events for the actual workload.
