@@ -418,6 +418,7 @@ namespace Yanagisawa.DataLayoutCalibrator
         public int BootstrapIterations;
         public double BootstrapConfidenceLevel;
         public double MinimumImprovementPercent;
+        public string ManagedAllocationMeasurement;
         public string PrimaryTimingMetric;
         public string TimingIncludes;
         public string TimingExcludes;

@@ -61,6 +61,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             public MetricAvailability[] Metrics;
             public Row[] Rows;
             public CandidateSummary[] Summaries;
+            public string ManagedAllocationMeasurement;
             public string Failure;
         }
 
@@ -87,6 +88,9 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                 evidence.Ticks = Integer("-dla-counter-ticks", 32, 1, 4096);
                 evidence.Pairs = Integer("-dla-counter-pairs", 8, 2, 128);
                 evidence.Identity = CaptureIdentity();
+                using var allocation = new UnityManagedAllocationCounter();
+                allocation.Validate();
+                evidence.ManagedAllocationMeasurement = allocation.Identity;
                 string buildManifest = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "source-identity.json"));
                 if (File.Exists(buildManifest)) File.Copy(buildManifest, Path.Combine(output, "source-identity.json"), false);
                 CandidateSetFile candidateSets = null;
@@ -136,12 +140,13 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                             candidate.BoundaryCost.Ingress(); CounterCaptureRunner.Capture(provider, false, context, action);
                             candidate.BoundaryCost.Ingress(); CounterCaptureRunner.Capture(provider, true, context, action);
                             candidate.BoundaryCost.Ingress(); action(); candidate.BoundaryCost.Export();
-                            long before = GC.GetAllocatedBytesForCurrentThread(); action();
-                            long residentAllocation = GC.GetAllocatedBytesForCurrentThread() - before;
-                            before = GC.GetAllocatedBytesForCurrentThread(); candidate.BoundaryCost.Ingress();
-                            long ingressAllocation = GC.GetAllocatedBytesForCurrentThread() - before;
-                            before = GC.GetAllocatedBytesForCurrentThread(); candidate.BoundaryCost.Export();
-                            long exportAllocation = GC.GetAllocatedBytesForCurrentThread() - before;
+                            allocation.Begin(); action();
+                            long residentAllocation = allocation.End();
+                            allocation.Begin(); candidate.BoundaryCost.Ingress();
+                            long ingressAllocation = allocation.End();
+                            allocation.Begin(); candidate.BoundaryCost.Export();
+                            long exportAllocation = allocation.End();
+                            allocation.Validate();
                             var disabled = new double[evidence.Pairs]; var enabled = new double[evidence.Pairs];
                             string expectedHash = null;
                             for (int pair = 0; pair < evidence.Pairs; pair++)

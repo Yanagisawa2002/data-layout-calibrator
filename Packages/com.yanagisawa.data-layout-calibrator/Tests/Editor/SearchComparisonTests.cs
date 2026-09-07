@@ -16,6 +16,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
 
         private static CalibrationRunSettings Settings() => new CalibrationRunSettings
         {
+            AllocationCounter = new FixtureAllocationCounter(),
             ElementCount = 8, HoldoutElementCount = 9, PreflightElementCount = 3, PreflightTicks = 1,
             WarmupBlocks = 1, MinimumWarmupSeconds = 0, SamplesPerCandidate = 6, BoundarySamplesPerCandidate = 4,
             MaximumTicksPerBlock = 1, TargetBlockMilliseconds = .01, BootstrapIterations = 100, LifetimeTicks = 4,
@@ -102,6 +103,46 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                     return new string('B', 64);
                 }));
             Assert.That(factory.Frozen, Is.False);
+        }
+
+        [Test]
+        public void UnavailableAllocationMeasurementCannotProduceScientificEvidence()
+        {
+            var settings = Settings();
+            settings.AllocationCounter = new FixtureAllocationCounter { Unavailable = true };
+            var error = Assert.Throws<NotSupportedException>(() => ScenarioCalibrationEngine.RunSearchComparison(
+                new FixtureFactory(), settings, Pool, new AdvantageEnvelopeAxis(8, 4, 1, 1, "FrameFaithful"),
+                new string('A', 64), true, (name, value) => new string('B', 64)));
+            Assert.That(error.Message, Does.Contain("fixture unavailable"));
+        }
+
+        [Test]
+        public void AllocationObservationsAreInjectedIntoOrdinaryCalibration()
+        {
+            var counter = new FixtureAllocationCounter { Bytes = 64 };
+            var settings = Settings(); settings.AllocationCounter = counter;
+            var profile = ScenarioCalibrationEngine.Run(new FixtureFactory(), settings);
+            Assert.That(counter.Windows, Is.GreaterThan(0));
+            Assert.That(profile.ManagedAllocationMeasurement, Is.EqualTo(counter.Identity));
+            foreach (var result in profile.CalibrationResults)
+            {
+                Assert.That(result.HotPathManagedAllocationBytes, Is.GreaterThan(0));
+                Assert.That(result.BoundaryManagedAllocationBytes, Is.GreaterThan(0));
+            }
+            Assert.That(profile.FinalDecision.Status, Is.Not.EqualTo(LayoutSelectionStatus.Optimized));
+        }
+
+        // Protocol fixtures inject synthetic observations only. Real Unity allocation
+        // availability and zero-allocation claims require retained Player controls.
+        private sealed class FixtureAllocationCounter : IManagedAllocationCounter
+        {
+            public bool Unavailable;
+            public long Bytes;
+            public int Windows;
+            public string Identity => "synthetic unit-test allocation counter";
+            public void Validate() { if (Unavailable) throw new NotSupportedException("fixture unavailable"); }
+            public void Begin() { Windows++; }
+            public long End() => Bytes;
         }
 
         private sealed class FixtureFactory : ICalibrationScenarioFactory

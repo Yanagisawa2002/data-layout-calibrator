@@ -7,6 +7,7 @@ namespace Yanagisawa.DataLayoutCalibrator
     [Serializable]
     public sealed class CalibrationRunSettings
     {
+        [NonSerialized] public IManagedAllocationCounter AllocationCounter = new ThreadManagedAllocationCounter();
         public int ElementCount = 1_048_576;
         public int HoldoutElementCount = 1_000_003;
         public uint CalibrationSeed = 0xA511E9B3u;
@@ -112,6 +113,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 MinimumImprovementPercent = settings.MinimumImprovementPercent,
                 PrimaryTimingMetric =
                     "amortized_p95_ms_per_tick = resident_p95 + (ingress_p95 + export_p95) / lifetime_ticks",
+                ManagedAllocationMeasurement = settings.AllocationCounter.Identity,
                 TimingIncludes =
                     "candidate dispatch; job Schedule; worker execution; Complete; separately timed full ingress and export",
                 TimingExcludes =
@@ -185,6 +187,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             int fixedWarmupBlocks,
             uint orderSeed)
         {
+            settings.AllocationCounter.Validate();
             using (ICalibrationScenario scenario = factory.Create(
                        elementCount,
                        datasetSeed,
@@ -199,7 +202,8 @@ namespace Yanagisawa.DataLayoutCalibrator
                     candidates,
                     settings.BoundarySamplesPerCandidate,
                     orderSeed,
-                    settings.MeasurementOrder);
+                    settings.MeasurementOrder,
+                    settings.AllocationCounter);
 
                 int ticksPerBlock = fixedTicksPerBlock > 0
                     ? fixedTicksPerBlock
@@ -221,13 +225,16 @@ namespace Yanagisawa.DataLayoutCalibrator
                     settings.SamplesPerCandidate,
                     settings.FixedDeltaTime,
                     orderSeed ^ 0x7F4A7C15u,
-                    settings.MeasurementOrder);
+                    settings.MeasurementOrder,
+                    settings.AllocationCounter);
                 MeasureExport(
                     candidates,
                     settings.BoundarySamplesPerCandidate,
                     orderSeed ^ 0x94D049BBu,
-                    settings.MeasurementOrder);
+                    settings.MeasurementOrder,
+                    settings.AllocationCounter);
                 ValidateParity(scenario, candidates, settings.ParityTolerance);
+                settings.AllocationCounter.Validate();
 
                 return new PhaseMeasurement
                 {
@@ -304,7 +311,8 @@ namespace Yanagisawa.DataLayoutCalibrator
             CandidateMeasurement[] candidates,
             int sampleCount,
             uint orderSeed,
-            MeasurementOrderKind orderKind)
+            MeasurementOrderKind orderKind,
+            IManagedAllocationCounter allocationCounter)
         {
             BlockedMeasurementOrder order = MeasurementOrder.Create(
                 candidates.Length,
@@ -318,6 +326,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                     CandidateMeasurement measurement = candidates[order.GetCandidateIndex(round, position)];
                     measurement.IngressSamples[round] = MeasureIngress(
                         measurement.Candidate,
+                        allocationCounter,
                         out long allocationBytes);
                     measurement.IngressBlockIds[round] = round;
                     measurement.IngressOrderPositions[round] = position;
@@ -351,7 +360,8 @@ namespace Yanagisawa.DataLayoutCalibrator
             int sampleCount,
             float fixedDeltaTime,
             uint orderSeed,
-            MeasurementOrderKind orderKind)
+            MeasurementOrderKind orderKind,
+            IManagedAllocationCounter allocationCounter)
         {
             BlockedMeasurementOrder order = MeasurementOrder.Create(
                 candidates.Length,
@@ -367,6 +377,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                         measurement.Candidate,
                         ticksPerBlock,
                         fixedDeltaTime,
+                        allocationCounter,
                         out long allocationBytes);
                     measurement.ResidentSamples[round] = blockMilliseconds / ticksPerBlock;
                     measurement.ResidentBlockIds[round] = round;
@@ -380,7 +391,8 @@ namespace Yanagisawa.DataLayoutCalibrator
             CandidateMeasurement[] candidates,
             int sampleCount,
             uint orderSeed,
-            MeasurementOrderKind orderKind)
+            MeasurementOrderKind orderKind,
+            IManagedAllocationCounter allocationCounter)
         {
             BlockedMeasurementOrder order = MeasurementOrder.Create(
                 candidates.Length,
@@ -394,6 +406,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                     CandidateMeasurement measurement = candidates[order.GetCandidateIndex(round, position)];
                     measurement.ExportSamples[round] = MeasureExport(
                         measurement.Candidate,
+                        allocationCounter,
                         out long allocationBytes);
                     measurement.ExportBlockIds[round] = round;
                     measurement.ExportOrderPositions[round] = position;
@@ -501,6 +514,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             ICalibrationCandidate baseline,
             CalibrationRunSettings settings)
         {
+            settings.AllocationCounter.Validate();
             baseline.BoundaryCost.Ingress();
             baseline.Execute(4, settings.FixedDeltaTime);
             int ticks = 1;
@@ -511,6 +525,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                     baseline,
                     ticks,
                     settings.FixedDeltaTime,
+                    settings.AllocationCounter,
                     out _);
                 if (milliseconds >= settings.TargetBlockMilliseconds ||
                     ticks >= settings.MaximumTicksPerBlock)
@@ -530,12 +545,14 @@ namespace Yanagisawa.DataLayoutCalibrator
             if (settings.MinimumWarmupSeconds <= 0d)
                 return settings.WarmupBlocks;
 
+            settings.AllocationCounter.Validate();
             baseline.BoundaryCost.Ingress();
             baseline.Execute(4, settings.FixedDeltaTime);
             double blockMilliseconds = MeasureResident(
                 baseline,
                 ticksPerBlock,
                 settings.FixedDeltaTime,
+                settings.AllocationCounter,
                 out _);
             baseline.BoundaryCost.Ingress();
             int timeBased = (int)Math.Ceiling(
@@ -548,40 +565,43 @@ namespace Yanagisawa.DataLayoutCalibrator
             ICalibrationCandidate candidate,
             int ticks,
             float fixedDeltaTime,
+            IManagedAllocationCounter allocationCounter,
             out long managedAllocationBytes)
         {
-            long allocationStart = GC.GetAllocatedBytesForCurrentThread();
+            allocationCounter.Begin();
             long timestampStart = Stopwatch.GetTimestamp();
             candidate.Execute(ticks, fixedDeltaTime);
             long timestampEnd = Stopwatch.GetTimestamp();
-            long allocationEnd = GC.GetAllocatedBytesForCurrentThread();
-            managedAllocationBytes = Math.Max(0L, allocationEnd - allocationStart);
+            managedAllocationBytes = allocationCounter.End();
+            if (managedAllocationBytes < 0) throw new InvalidOperationException("Allocation observation unavailable.");
             return TimestampsToMilliseconds(timestampEnd - timestampStart);
         }
 
         private static double MeasureIngress(
             ICalibrationCandidate candidate,
+            IManagedAllocationCounter allocationCounter,
             out long managedAllocationBytes)
         {
-            long allocationStart = GC.GetAllocatedBytesForCurrentThread();
+            allocationCounter.Begin();
             long timestampStart = Stopwatch.GetTimestamp();
             candidate.BoundaryCost.Ingress();
             long timestampEnd = Stopwatch.GetTimestamp();
-            long allocationEnd = GC.GetAllocatedBytesForCurrentThread();
-            managedAllocationBytes = Math.Max(0L, allocationEnd - allocationStart);
+            managedAllocationBytes = allocationCounter.End();
+            if (managedAllocationBytes < 0) throw new InvalidOperationException("Allocation observation unavailable.");
             return TimestampsToMilliseconds(timestampEnd - timestampStart);
         }
 
         private static double MeasureExport(
             ICalibrationCandidate candidate,
+            IManagedAllocationCounter allocationCounter,
             out long managedAllocationBytes)
         {
-            long allocationStart = GC.GetAllocatedBytesForCurrentThread();
+            allocationCounter.Begin();
             long timestampStart = Stopwatch.GetTimestamp();
             candidate.BoundaryCost.Export();
             long timestampEnd = Stopwatch.GetTimestamp();
-            long allocationEnd = GC.GetAllocatedBytesForCurrentThread();
-            managedAllocationBytes = Math.Max(0L, allocationEnd - allocationStart);
+            managedAllocationBytes = allocationCounter.End();
+            if (managedAllocationBytes < 0) throw new InvalidOperationException("Allocation observation unavailable.");
             return TimestampsToMilliseconds(timestampEnd - timestampStart);
         }
 
@@ -601,6 +621,7 @@ namespace Yanagisawa.DataLayoutCalibrator
         {
             if (settings == null)
                 throw new ArgumentNullException(nameof(settings));
+            if (settings.AllocationCounter == null) throw new ArgumentNullException(nameof(settings.AllocationCounter));
             if (settings.ElementCount <= 0 || settings.HoldoutElementCount <= 0 ||
                 settings.PreflightElementCount <= 0)
             {

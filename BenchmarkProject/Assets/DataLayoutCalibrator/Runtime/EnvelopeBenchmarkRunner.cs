@@ -166,6 +166,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             int previousWorkers = JobsUtility.JobWorkerCount;
             try
             {
+                using var allocation = new UnityManagedAllocationCounter();
+                allocation.Validate();
                 foreach (int workers in grid.WorkerCounts)
                     if (workers > JobsUtility.JobWorkerMaximumCount)
                         throw new InvalidOperationException("Declared worker axis unavailable; no formal cell was measured.");
@@ -182,6 +184,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                         var axis = new AdvantageEnvelopeAxis(count, lifetime, 1.4d * period, workers, "FrameFaithful");
                         var factory = new FrozenEnvelopeFactory(new ParticleIntegrateScenarioFactory(period), grid.Candidates);
                         var settings = JsonUtility.FromJson<CalibrationRunSettings>(JsonUtility.ToJson(grid.Settings));
+                        settings.AllocationCounter = allocation;
                         settings.ElementCount = settings.HoldoutElementCount = count;
                         settings.LifetimeTicks = lifetime;
                         // Seeds are predeclared functions of process and cell, disjoint by phase.

@@ -82,8 +82,11 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             };
             string fingerprint = Save(config.OutputDirectory, "environment", environment);
             Save(config.OutputDirectory, "candidate-input", input);
+            using var allocation = new UnityManagedAllocationCounter();
+            allocation.Validate();
             var settings = new CalibrationRunSettings
             {
+                AllocationCounter = allocation,
                 ElementCount = config.ElementCount, HoldoutElementCount = config.HoldoutElementCount,
                 CalibrationSeed = ParticleDataSet.CalibrationSeed, HoldoutSeed = ParticleDataSet.HoldoutSeed,
                 WarmupBlocks = config.WarmupBlocks, MinimumWarmupSeconds = config.MinimumWarmupSeconds,

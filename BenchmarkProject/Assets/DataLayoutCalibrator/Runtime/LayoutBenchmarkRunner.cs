@@ -71,6 +71,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             Directory.CreateDirectory(_configuration.OutputDirectory);
             ICalibrationScenarioFactory[] factories =
                 GeneratedCalibrationScenarioRegistry.CreateFactories();
+            using var allocation = new UnityManagedAllocationCounter();
+            allocation.Validate();
             var profiles = new ScenarioCalibrationProfile[factories.Length];
             for (int index = 0; index < factories.Length; index++)
             {
@@ -78,9 +80,9 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                 _phase = "CALIBRATING";
                 _detail = factory.Descriptor.DisplayName;
                 _progress = index / (float)factories.Length;
-                profiles[index] = ScenarioCalibrationEngine.Run(
-                    factory,
-                    CreateSettings(factory.Descriptor.ScenarioId));
+                var settings = CreateSettings(factory.Descriptor.ScenarioId);
+                settings.AllocationCounter = allocation;
+                profiles[index] = ScenarioCalibrationEngine.Run(factory, settings);
                 _latestScenario = profiles[index];
                 WriteScenarioArtifacts(profiles[index]);
                 _progress = (index + 1) / (float)factories.Length;

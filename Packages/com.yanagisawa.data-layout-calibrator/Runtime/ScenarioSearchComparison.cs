@@ -362,6 +362,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 MinimumImprovementPercent = settings.MinimumImprovementPercent,
                 PrimaryTimingMetric =
                     "amortized_p95_ms_per_tick = resident_p95 + (ingress_p95 + export_p95) / lifetime_ticks",
+                ManagedAllocationMeasurement = settings.AllocationCounter.Identity,
                 TimingIncludes =
                     "candidate dispatch; job Schedule; worker execution; Complete; separately timed full ingress and export",
                 TimingExcludes =
@@ -391,6 +392,7 @@ namespace Yanagisawa.DataLayoutCalibrator
         {
             return new CalibrationRunSettings
             {
+                AllocationCounter = source.AllocationCounter,
                 ElementCount = source.ElementCount,
                 HoldoutElementCount = source.HoldoutElementCount,
                 CalibrationSeed = source.CalibrationSeed,
