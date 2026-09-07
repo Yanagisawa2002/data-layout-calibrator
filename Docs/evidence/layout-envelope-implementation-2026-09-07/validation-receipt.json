@@ -1,0 +1,50 @@
+{
+  "scope": "implementation correctness only; no formal performance evidence",
+  "sourceHead": "d4f18ed",
+  "dependencies": [
+    "generator d95081a",
+    "matrix3edfaf6"
+  ],
+  "firstAttempt": {
+    "retained": true,
+    "failure": "Burst BC1199 in ISA probe, fixed byf5baaa1",
+    "total": 155,
+    "passed": 154,
+    "failed": 1
+  },
+  "rerun": {
+    "waitedForProcessTree": true,
+    "lock": "Local\\CodexR9700VNextUnityGpu",
+    "total": 155,
+    "passed": 155,
+    "failed": 0
+  },
+  "python": {
+    "renderer": 25,
+    "envelope": 6,
+    "result": "passed"
+  },
+  "requiredFormalGate": "Five integrated Release IL2CPP/Burst AOT processes with24cells each remains unmeasured",
+  "files": [
+    {
+      "name": "editmode-rerun.log",
+      "bytes": 34121,
+      "sha256": "7E0E63563CE438B4A91E47F02A227973946D6FFE98662525463EADED39001156"
+    },
+    {
+      "name": "editmode-rerun.xml",
+      "bytes": 143867,
+      "sha256": "C3C1D5275810AFF16A0F11F6CA752F669F695F8F425B80854DA12B930477A11C"
+    },
+    {
+      "name": "editmode.log",
+      "bytes": 279015,
+      "sha256": "0041FD7A033AEC73C6DD3941BA07F20EC208F9EBD98F9F1E258AB145D681918C"
+    },
+    {
+      "name": "editmode.xml",
+      "bytes": 147323,
+      "sha256": "98ECE89E95B2C04661626EEB5D44054A1A9A439AB3E8BC1EEFE06F2F90B1D813"
+    }
+  ]
+}
