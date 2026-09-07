@@ -12,14 +12,28 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             2,
             "Integrate position, velocity and lifetime while preserving cold rotation/category fields.");
 
-        public ScenarioDescriptor Descriptor => Scenario;
+        public int ColdAccessEveryTicks { get; }
+
+        public ParticleIntegrateScenarioFactory() : this(0) { }
+
+        public ParticleIntegrateScenarioFactory(int coldAccessEveryTicks)
+        {
+            if (coldAccessEveryTicks != 0 && coldAccessEveryTicks != 1 && coldAccessEveryTicks != 8)
+                throw new ArgumentOutOfRangeException(nameof(coldAccessEveryTicks));
+            ColdAccessEveryTicks = coldAccessEveryTicks;
+        }
+
+        public ScenarioDescriptor Descriptor => ColdAccessEveryTicks == 0 ? Scenario :
+            new ScenarioDescriptor("particle-cold-pass-every-" + ColdAccessEveryTicks + "-v1",
+                "Particle Integrate with separate cold pass every " + ColdAccessEveryTicks + " ticks", 1,
+                "Full integration plus observable Rotation/Category updates in a separately scheduled pass.");
 
         public ICalibrationScenario Create(
             int elementCount,
             uint seed,
             CandidateDescriptor[] candidates = null)
         {
-            return new ParticleIntegrateScenario(elementCount, seed, candidates);
+            return new ParticleIntegrateScenario(elementCount, seed, candidates, ColdAccessEveryTicks);
         }
     }
 
@@ -36,15 +50,18 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
         private readonly ParticleIntegrateCandidate[] _candidates;
         private readonly ParticleParityValidator _parityValidator = new ParticleParityValidator();
         private bool _disposed;
+        private readonly int _coldAccessEveryTicks;
 
         internal ParticleIntegrateScenario(
             int elementCount,
             uint seed,
-            CandidateDescriptor[] requestedCandidates)
+            CandidateDescriptor[] requestedCandidates,
+            int coldAccessEveryTicks = 0)
         {
             if (elementCount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(elementCount));
 
+            _coldAccessEveryTicks = coldAccessEveryTicks;
             CandidateDescriptor[] definitions = requestedCandidates ?? CreateDefaultCandidates();
             if (definitions.Length == 0)
                 throw new ArgumentException("At least one candidate is required.", nameof(requestedCandidates));
@@ -58,7 +75,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
                 for (int index = 0; index < definitions.Length; index++)
                 {
                     CandidateDescriptor definition = definitions[index];
-                    _candidates[index] = new ParticleIntegrateCandidate(definition, _canonicalInput);
+                    _candidates[index] = new ParticleIntegrateCandidate(definition, _canonicalInput, coldAccessEveryTicks);
                     if (referenceIndex < 0 && definition.IsBaseline)
                         referenceIndex = index;
                 }
@@ -74,7 +91,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             }
         }
 
-        public ScenarioDescriptor Descriptor => new ParticleIntegrateScenarioFactory().Descriptor;
+        public ScenarioDescriptor Descriptor => new ParticleIntegrateScenarioFactory(_coldAccessEveryTicks).Descriptor;
 
         public string DatasetHash { get; }
 
@@ -188,11 +205,15 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
         private readonly ExecutionPolicy _execution;
         private ParticleLayoutDomain _domain;
         private bool _disposed;
+        private readonly int _coldAccessEveryTicks;
+        private int _coldTick;
 
         public ParticleIntegrateCandidate(
             CandidateDescriptor descriptor,
-            NativeArray<ParticleRecord> canonicalInput)
+            NativeArray<ParticleRecord> canonicalInput,
+            int coldAccessEveryTicks = 0)
         {
+            _coldAccessEveryTicks = coldAccessEveryTicks;
             Descriptor = descriptor.NormalizePolicies();
             Descriptor.ValidateFactorConsistency();
             if (Descriptor.EffectiveKernel.PolicyId != "LegacyUnspecified")
@@ -255,13 +276,13 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             {
                 case ExecutionTopology.FrameFaithful:
                     for (int tick = 0; tick < ticks; tick++)
-                        _domain.Schedule(fixedDeltaTime).Complete();
+                        ScheduleTick(fixedDeltaTime, default).Complete();
                     return;
 
                 case ExecutionTopology.DependencyChain:
                     JobHandle dependency = default;
                     for (int tick = 0; tick < ticks; tick++)
-                        dependency = _domain.Schedule(fixedDeltaTime, dependency);
+                        dependency = ScheduleTick(fixedDeltaTime, dependency);
                     dependency.Complete();
                     return;
 
@@ -275,6 +296,16 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
         {
             ThrowIfDisposed();
             _domain.Ingress(_canonicalInput);
+            _coldTick = 0;
+        }
+
+        private JobHandle ScheduleTick(float deltaTime, JobHandle dependency)
+        {
+            JobHandle hot = _domain.Schedule(deltaTime, dependency);
+            if (_coldAccessEveryTicks == 0) return hot;
+            if (++_coldTick < _coldAccessEveryTicks) return hot;
+            _coldTick = 0;
+            return _domain.ScheduleColdFields(hot);
         }
 
         public void Export()

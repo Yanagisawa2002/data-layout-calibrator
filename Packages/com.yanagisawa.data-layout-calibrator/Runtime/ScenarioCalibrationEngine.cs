@@ -34,7 +34,7 @@ namespace Yanagisawa.DataLayoutCalibrator
     /// Workload-agnostic synchronous calibration pipeline. It knows only the public
     /// Scenario/Candidate/Parity/BoundaryCost contracts.
     /// </summary>
-    public static class ScenarioCalibrationEngine
+    public static partial class ScenarioCalibrationEngine
     {
         public static ScenarioCalibrationProfile Run(
             ICalibrationScenarioFactory factory,
