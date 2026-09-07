@@ -87,6 +87,8 @@ def audit(root: Path) -> dict:
             if {r['Candidate']['CandidateId'] for r in calibration['Results']} != set(declared_candidates):
                 raise ValueError('Calibration did not measure the complete declared pool')
             for phase_index, raw in enumerate((calibration, holdout)):
+                if raw['Results'] and not raw.get('ManagedAllocationMeasurement'):
+                    raise ValueError('Validated allocation provider identity is missing')
                 for result in raw['Results']:
                     if (result['Candidate'] != declared_candidates.get(result['Candidate']['CandidateId']) or
                             result['Phase'] != phase_index or result['ElementCount'] != axis['ElementCount'] or

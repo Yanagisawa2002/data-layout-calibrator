@@ -168,6 +168,8 @@ def validate_formal_root(root):
         for path in paths:
             result = read(path)
             require(result["AdaptiveFirst"] == (i % 2 == 0), "Preregistered AB/BA order changed")
+            for profile in (result["Quick"], result["Adaptive"], result["Exhaustive"]):
+                require(bool(profile.get("ManagedAllocationMeasurement")), "Validated allocation provider identity is missing")
             for profile in (result["Adaptive"], result["Exhaustive"]):
                 for field, expected in (("ElementCount", 65536), ("HoldoutElementCount", 65539),
                     ("LifetimeTicks", 256), ("SamplesPerCandidate", 40), ("BoundarySamplesPerCandidate", 20),

@@ -22,7 +22,7 @@ class CounterArchiveTests(unittest.TestCase):
         identity = {"RunId": "fixture", "ProcessEvidenceId": "fixture-process", "Cpu": "fixture-cpu", "BuildType": "Release",
                     "Binaries": [{"Path": "lib_burst_generated.dll", "Sha256": "A" * 64}]}
         unsupported = ("retired-instructions", "cache-references", "cache-misses", "branch-instructions", "branch-misses")
-        self.document = {"Identity": identity, "Metrics": [{"MetricId": m, "Status": "Unavailable"} for m in unsupported],
+        self.document = {"ManagedAllocationMeasurement": "synthetic fixture only", "Identity": identity, "Metrics": [{"MetricId": m, "Status": "Unavailable"} for m in unsupported],
                          "Rows": [], "Pairs": 2, "CollectedCaptures": 2, "UnavailableCaptures": 0, "FailedCaptures": 0,
                          "ActualCounterGate": "passed-process-cycles-only", "Summaries": [{"ScenarioId": "fixture", "CandidateId": "a", "ParityPassed": True,
                          "ResidentAllocationBytes": 0, "IngressAllocationBytes": 0, "ExportAllocationBytes": 0,

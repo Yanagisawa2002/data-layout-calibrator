@@ -12,6 +12,8 @@ def validate(path: Path, require_collected: bool = True) -> dict:
     document = json.loads(path.read_text(encoding="utf-8-sig"))
     if document.get("Failure"):
         raise ValueError("Player reported a failure: " + document["Failure"])
+    if not document.get("ManagedAllocationMeasurement"):
+        raise ValueError("Validated allocation provider identity is missing")
     identity = document["Identity"]
     if identity["BuildType"] != "Release" or not identity["Cpu"] or not identity["ProcessEvidenceId"]:
         raise ValueError("Missing Release/process/CPU identity")
