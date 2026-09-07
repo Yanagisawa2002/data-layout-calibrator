@@ -120,6 +120,8 @@ def validate_comparison(path):
           ("SharedPreflightMilliseconds", "QuickMilliseconds", "PlanningMilliseconds", "AdaptiveFullMilliseconds")), "adaptive wall cost")
     close(result["ExhaustiveCalibrationMilliseconds"], result["SharedPreflightMilliseconds"] + result["ExhaustiveFullMilliseconds"], "exhaustive wall cost")
     require(all(math.isfinite(v) and v >= 0 for k, v in result.items() if k.endswith("Milliseconds")), "Invalid wall clock")
+    best_id = min(exhaustive, key=exhaustive.get)
+    require(result["ExhaustiveWinnerEliminated"] == (best_id not in adaptive), "Missed winner flag mismatch")
     best = min(exhaustive.values())
     shortlist_regret = 100 * (min(exhaustive[k] for k in adaptive) / best - 1)
     selected = result["Adaptive"]["CalibrationDecision"]["SelectedCandidate"]["CandidateId"]
@@ -142,12 +144,18 @@ def validate_formal_root(root):
     registration = read(root / "preregistration.json")
     require(registration["policy"]["processCount"] == 5, "Five processes must be preregistered")
     reports, seen_ids = [], set()
+    shared_environment = None
     for i in range(5):
         run = "run-%02d" % (i + 1)
         directory = root / run
         receipt = read(root / (run + "-receipt.json"))
         require(receipt["exitCode"] == 0 and not receipt["timedOut"], "Failed launch retained; formal gate unmet")
+        for phase in ("preflight", "postflight"):
+            require(sha(root / (run + "-" + phase + ".json")) == receipt[phase + "Sha256"], "Interference snapshot hash mismatch")
         environment = read(directory / "environment.json")
+        current_environment = {k: environment[k] for k in ("Processor", "OperatingSystem", "UnityVersion", "WorkerCount", "Backend", "Development", "BurstEnabled")}
+        if shared_environment is None: shared_environment = current_environment
+        require(shared_environment == current_environment, "Cross-process environment changed")
         require(environment["RunId"] not in seen_ids, "Duplicate process identity")
         seen_ids.add(environment["RunId"])
         require(environment["Backend"] == "IL2CPP" and not environment["Development"] and environment["BurstEnabled"],

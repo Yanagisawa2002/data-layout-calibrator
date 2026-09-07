@@ -33,7 +33,7 @@ class SearchReplayTests(unittest.TestCase):
             "AdaptiveFullMilliseconds": 4, "ExhaustiveFullMilliseconds": 5,
             "AdaptiveCalibrationMilliseconds": 10, "ExhaustiveCalibrationMilliseconds": 6,
             "ShortlistOracleRegretPercent": 0, "ActualAdaptiveSelectionOracleRegretPercent": 0,
-            "MaximumAllowedRegretPercent": 1, "RegretGatePassed": True}
+            "MaximumAllowedRegretPercent": 1, "RegretGatePassed": True, "ExhaustiveWinnerEliminated": False}
         def write(name, value):
             path = directory / (name + ".json")
             path.write_text(json.dumps(value), encoding="utf-8")
@@ -59,7 +59,7 @@ class SearchReplayTests(unittest.TestCase):
             for field, value in (("AdaptiveCalibrationMilliseconds", 4),
                                  ("AdaptiveComponentEvaluationCount", 1),
                                  ("ActualAdaptiveSelectionOracleRegretPercent", 3),
-                                 ("RegretGatePassed", False)):
+                                 ("RegretGatePassed", False), ("ExhaustiveWinnerEliminated", True)):
                 changed = copy.deepcopy(result); changed[field] = value
                 path.write_text(json.dumps(changed))
                 with self.assertRaises(ValueError): replay.validate_comparison(path)
