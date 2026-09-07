@@ -111,6 +111,11 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                     calibrationSeed = TransformExportDataSet.CalibrationSeed;
                     holdoutSeed = TransformExportDataSet.HoldoutSeed;
                     break;
+                case "spatial-neighborhood-v1":
+                case "animation-state-v1":
+                    calibrationSeed = 0x19283745;
+                    holdoutSeed = 0x81726354;
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(scenarioId), scenarioId, "No dataset seeds are registered.");
             }

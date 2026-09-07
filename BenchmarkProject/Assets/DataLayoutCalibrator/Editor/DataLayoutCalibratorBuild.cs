@@ -146,6 +146,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark.Editor
             }
 
             VerifyBurstAotArtifacts(outputDirectory);
+            CounterBuildIdentity.Write(repositoryRoot, outputDirectory);
 
             Debug.Log(
                 $"Windows x64 {outputLabel} build succeeded: '{summary.outputPath}', " +
@@ -247,6 +248,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark.Editor
                 "TransformSoAIngressJob",
                 "TransformAoSExportJob",
                 "TransformSoAExportJob",
+                "SpatialAoSQueryJob", "SpatialSoAQueryJob",
+                "AnimationAoSStepJob", "AnimationSoAStepJob", "CounterIsaIdentityJob",
             };
             for (int i = 0; i < requiredEntrypoints.Length; i++)
             {

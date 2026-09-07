@@ -1,11 +1,8 @@
 {
-  "name": "Yanagisawa.DataLayoutCalibrator.Benchmark",
-  "rootNamespace": "Yanagisawa.DataLayoutCalibrator.Benchmark",
+  "name": "Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads",
+  "rootNamespace": "Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads",
   "references": [
     "Yanagisawa.DataLayoutCalibrator",
-    "Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate",
-    "Yanagisawa.DataLayoutCalibrator.Samples.TransformExport",
-    "Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads",
     "Unity.Burst",
     "Unity.Collections",
     "Unity.Mathematics"
@@ -15,7 +12,7 @@
   "allowUnsafeCode": false,
   "overrideReferences": false,
   "precompiledReferences": [],
-  "autoReferenced": true,
+  "autoReferenced": false,
   "defineConstraints": [],
   "versionDefines": [],
   "noEngineReferences": false
