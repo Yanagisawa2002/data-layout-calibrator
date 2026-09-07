@@ -1,0 +1,586 @@
+{
+  "schemaVersion": 1,
+  "analysisScriptSha256": "11A578EAAF3C1CA8372940600D7AE06133CF03DD3F283A66A65ADCA42F5638AD",
+  "envelope": {
+    "statusCounts": {
+      "AoSFallback": 21,
+      "CredibleAdvantage": 65,
+      "StatisticalGreyZone": 14,
+      "HoldoutRejected": 20
+    },
+    "coveragePercent": 54.166666666666664,
+    "measuredHoldoutCells": 85,
+    "credibleHoldoutEffectPercent": {
+      "count": 65,
+      "median": 41.51698355676275,
+      "minimum": 16.605903614891577,
+      "maximum": 66.67527424668535
+    },
+    "credibleWorstLowerBoundPercent": 1.6663936060548945,
+    "allHoldoutWorstLowerBoundPercent": -166.26819648951826,
+    "axesAllFiveConfirmSameWinner": 0,
+    "axesAllFiveHaveCredibleAdvantage": 8
+  },
+  "scope": "same-device descriptive process summaries, not new confidence intervals or decision rules",
+  "sourceCommit": "4ffa47271306e985d9cade5d77489bd172c0360f",
+  "search": {
+    "comparisons": 10,
+    "costReductionPercent": {
+      "count": 10,
+      "median": 5.513553638743162,
+      "minimum": -3.8230844383093654,
+      "maximum": 28.5096812775506
+    },
+    "evaluationReductionPercent": {
+      "count": 10,
+      "median": 55.833333333333336,
+      "minimum": 49.16666666666667,
+      "maximum": 59.166666666666664
+    },
+    "regretPercent": {
+      "count": 10,
+      "median": 106.90991289738764,
+      "minimum": 15.300381125261664,
+      "maximum": 189.01703820688795
+    },
+    "regretGatePassCount": 0,
+    "fasterCount": 8,
+    "defaultPromotion": false
+  },
+  "matchedFactorContrasts": [
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "FrameFaithful",
+      "layout": "SoA",
+      "kernel": "ScalarBranched",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": -0.02614752664560349,
+        "minimum": -25.724315642140194,
+        "maximum": 12.97051414582262
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "FrameFaithful",
+      "layout": "SoA",
+      "kernel": "ScalarBranchless",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 8.123939872834008,
+        "minimum": -18.197647566090637,
+        "maximum": 20.29223470448034
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "FrameFaithful",
+      "layout": "AoSoA4",
+      "kernel": "ScalarBranched",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 36.43665647842553,
+        "minimum": 16.851743153100095,
+        "maximum": 52.41318736777345
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "FrameFaithful",
+      "layout": "AoSoA4",
+      "kernel": "ScalarBranchless",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 37.376251997833265,
+        "minimum": 21.35595843643533,
+        "maximum": 51.44665251364992
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "FrameFaithful",
+      "layout": "AoSoA8",
+      "kernel": "ScalarBranched",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 28.594356528795462,
+        "minimum": 22.35871033920347,
+        "maximum": 37.52183979830592
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "FrameFaithful",
+      "layout": "AoSoA8",
+      "kernel": "ScalarBranchless",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 35.723147193166064,
+        "minimum": 23.34436474405981,
+        "maximum": 40.601270958587364
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "FrameFaithful",
+      "layout": "AoSoA16",
+      "kernel": "ScalarBranched",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 26.511811524496174,
+        "minimum": 8.96301974670848,
+        "maximum": 36.517997135501304
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "FrameFaithful",
+      "layout": "AoSoA16",
+      "kernel": "ScalarBranchless",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 27.523852540096705,
+        "minimum": 10.115995237158849,
+        "maximum": 37.79452427138453
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "FrameFaithful",
+      "layout": "AoSPadded64",
+      "kernel": "ScalarBranched",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": -19.62844748637542,
+        "minimum": -50.99824451874164,
+        "maximum": 7.860650111749845
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "FrameFaithful",
+      "layout": "AoSPadded64",
+      "kernel": "ScalarBranchless",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": -16.551225323151076,
+        "minimum": -21.482108955472647,
+        "maximum": 4.553413242178683
+      }
+    },
+    {
+      "factor": "layout x scalar-kernel interaction",
+      "execution": "FrameFaithful",
+      "layout": "SoA",
+      "meaning": "Positive values mean branchless strengthened this layout relative to matched AoS; calibration-only descriptive ratio of ratios.",
+      "improvementPercent": {
+        "count": 5,
+        "median": 12.527791974237179,
+        "minimum": -22.361570896748283,
+        "maximum": 27.98580235825714
+      }
+    },
+    {
+      "factor": "layout x scalar-kernel interaction",
+      "execution": "FrameFaithful",
+      "layout": "AoSoA4",
+      "meaning": "Positive values mean branchless strengthened this layout relative to matched AoS; calibration-only descriptive ratio of ratios.",
+      "improvementPercent": {
+        "count": 5,
+        "median": 10.970753128674126,
+        "minimum": -46.63109795744151,
+        "maximum": 41.606295396245166
+      }
+    },
+    {
+      "factor": "layout x scalar-kernel interaction",
+      "execution": "FrameFaithful",
+      "layout": "AoSoA8",
+      "meaning": "Positive values mean branchless strengthened this layout relative to matched AoS; calibration-only descriptive ratio of ratios.",
+      "improvementPercent": {
+        "count": 5,
+        "median": 0.14920494978293286,
+        "minimum": -5.921875255090092,
+        "maximum": 23.495952603418857
+      }
+    },
+    {
+      "factor": "layout x scalar-kernel interaction",
+      "execution": "FrameFaithful",
+      "layout": "AoSoA16",
+      "meaning": "Positive values mean branchless strengthened this layout relative to matched AoS; calibration-only descriptive ratio of ratios.",
+      "improvementPercent": {
+        "count": 5,
+        "median": -4.456619544414764,
+        "minimum": -11.882043293082202,
+        "maximum": 31.6701020227806
+      }
+    },
+    {
+      "factor": "layout x scalar-kernel interaction",
+      "execution": "FrameFaithful",
+      "layout": "AoSPadded64",
+      "meaning": "Positive values mean branchless strengthened this layout relative to matched AoS; calibration-only descriptive ratio of ratios.",
+      "improvementPercent": {
+        "count": 5,
+        "median": 7.618478765258752,
+        "minimum": -31.246799100744393,
+        "maximum": 36.78960503016003
+      }
+    },
+    {
+      "factor": "scalar branchless versus scalar branched",
+      "execution": "FrameFaithful",
+      "improvementPercent": {
+        "count": 5,
+        "median": -0.32401272486917154,
+        "minimum": -2.4102631508505112,
+        "maximum": 9.184023612757619
+      }
+    },
+    {
+      "factor": "batch256 versus batch64",
+      "execution": "FrameFaithful",
+      "improvementPercent": {
+        "count": 5,
+        "median": 7.0202017435836765,
+        "minimum": 1.5320052709848153,
+        "maximum": 19.78673157373865
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "DependencyChain",
+      "layout": "SoA",
+      "kernel": "ScalarBranched",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 11.482489509726957,
+        "minimum": -29.496366527021078,
+        "maximum": 30.082971717452622
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "DependencyChain",
+      "layout": "SoA",
+      "kernel": "ScalarBranchless",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 2.9460656888686154,
+        "minimum": -32.50033278169524,
+        "maximum": 29.549154739980498
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "DependencyChain",
+      "layout": "AoSoA4",
+      "kernel": "ScalarBranched",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 44.34968342958899,
+        "minimum": 17.02760827132228,
+        "maximum": 54.08659061679937
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "DependencyChain",
+      "layout": "AoSoA4",
+      "kernel": "ScalarBranchless",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 30.21630079001142,
+        "minimum": -3.6411981661392367,
+        "maximum": 60.50495975201565
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "DependencyChain",
+      "layout": "AoSoA8",
+      "kernel": "ScalarBranched",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 46.25755528097956,
+        "minimum": 16.82909084312524,
+        "maximum": 52.88579211428777
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "DependencyChain",
+      "layout": "AoSoA8",
+      "kernel": "ScalarBranchless",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 33.253039587605116,
+        "minimum": 4.9385243344542085,
+        "maximum": 44.82302781203597
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "DependencyChain",
+      "layout": "AoSoA16",
+      "kernel": "ScalarBranched",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 36.200239587071984,
+        "minimum": 24.044836565806815,
+        "maximum": 52.42118959509019
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "DependencyChain",
+      "layout": "AoSoA16",
+      "kernel": "ScalarBranchless",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": 35.83151187485261,
+        "minimum": 21.01412753101748,
+        "maximum": 41.79723231992936
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "DependencyChain",
+      "layout": "AoSPadded64",
+      "kernel": "ScalarBranched",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": -12.31257949147917,
+        "minimum": -55.50220076052925,
+        "maximum": 6.470085413443716
+      }
+    },
+    {
+      "factor": "layout versus matched AoS",
+      "execution": "DependencyChain",
+      "layout": "AoSPadded64",
+      "kernel": "ScalarBranchless",
+      "batches": [
+        64,
+        256
+      ],
+      "improvementPercent": {
+        "count": 5,
+        "median": -13.08554606684169,
+        "minimum": -59.732947113713884,
+        "maximum": 5.900899853965125
+      }
+    },
+    {
+      "factor": "layout x scalar-kernel interaction",
+      "execution": "DependencyChain",
+      "layout": "SoA",
+      "meaning": "Positive values mean branchless strengthened this layout relative to matched AoS; calibration-only descriptive ratio of ratios.",
+      "improvementPercent": {
+        "count": 5,
+        "median": -3.6860260283471113,
+        "minimum": -28.090819458032467,
+        "maximum": 20.410272645703063
+      }
+    },
+    {
+      "factor": "layout x scalar-kernel interaction",
+      "execution": "DependencyChain",
+      "layout": "AoSoA4",
+      "meaning": "Positive values mean branchless strengthened this layout relative to matched AoS; calibration-only descriptive ratio of ratios.",
+      "improvementPercent": {
+        "count": 5,
+        "median": -51.98980025108286,
+        "minimum": -117.63897089136175,
+        "maximum": 52.39978090889033
+      }
+    },
+    {
+      "factor": "layout x scalar-kernel interaction",
+      "execution": "DependencyChain",
+      "layout": "AoSoA8",
+      "meaning": "Positive values mean branchless strengthened this layout relative to matched AoS; calibration-only descriptive ratio of ratios.",
+      "improvementPercent": {
+        "count": 5,
+        "median": -19.095334950342636,
+        "minimum": -76.88342270723271,
+        "maximum": 3.187748808608226
+      }
+    },
+    {
+      "factor": "layout x scalar-kernel interaction",
+      "execution": "DependencyChain",
+      "layout": "AoSoA16",
+      "meaning": "Positive values mean branchless strengthened this layout relative to matched AoS; calibration-only descriptive ratio of ratios.",
+      "improvementPercent": {
+        "count": 5,
+        "median": 4.607768181287176,
+        "minimum": -34.867785846376776,
+        "maximum": 17.617557057935564
+      }
+    },
+    {
+      "factor": "layout x scalar-kernel interaction",
+      "execution": "DependencyChain",
+      "layout": "AoSPadded64",
+      "meaning": "Positive values mean branchless strengthened this layout relative to matched AoS; calibration-only descriptive ratio of ratios.",
+      "improvementPercent": {
+        "count": 5,
+        "median": -2.720698699113533,
+        "minimum": -24.67715704398241,
+        "maximum": 2.3010051863865955
+      }
+    },
+    {
+      "factor": "scalar branchless versus scalar branched",
+      "execution": "DependencyChain",
+      "improvementPercent": {
+        "count": 5,
+        "median": -2.4592518669068086,
+        "minimum": -18.04869038686274,
+        "maximum": 18.875232450579517
+      }
+    },
+    {
+      "factor": "batch256 versus batch64",
+      "execution": "DependencyChain",
+      "improvementPercent": {
+        "count": 5,
+        "median": 2.9850508038615886,
+        "minimum": -2.4373578305706634,
+        "maximum": 13.301682721169483
+      }
+    },
+    {
+      "factor": "DependencyChain versus FrameFaithful",
+      "improvementPercent": {
+        "count": 5,
+        "median": 10.745342002759262,
+        "minimum": -52.69398727186567,
+        "maximum": 19.421692951162417
+      }
+    }
+  ],
+  "contrastMethod": "Within each process, equal-weight mean log cost ratios across the explicitly matched conditions; report five process improvements as descriptive median/min/max. Layout contrasts hold kernel and execution fixed and match batches. No tuned-AoS selection is replaced. Execution contrast includes each cell's actual pilot-sized block.",
+  "contrastLimits": "Calibration-only exploration; multiple comparisons, no multiplicity-adjusted inference or held-out factor effects. Changing layout includes its storage/boundary costs; no claim of isolated CPU instruction or cache causality.",
+  "counterOverheadPercentByWorkload": {
+    "animation-state-v1": {
+      "count": 8,
+      "median": 124.91193041866515,
+      "minimum": 65.48787868598905,
+      "maximum": 155.19972760344797
+    },
+    "particle-integrate-v2": {
+      "count": 32,
+      "median": 473.30930966898313,
+      "minimum": 331.99645686728013,
+      "maximum": 1023.6587015329125
+    },
+    "spatial-neighborhood-v1": {
+      "count": 8,
+      "median": 26.600317160925005,
+      "minimum": 19.611706485425596,
+      "maximum": 34.63296039590789
+    },
+    "transform-export-v1": {
+      "count": 16,
+      "median": 286.4177147364937,
+      "minimum": 222.74284352566204,
+      "maximum": 392.4505588993981
+    }
+  },
+  "sources": {
+    "search-formal-attempt-01\\run-01\\FrameFaithful\\exhaustive-calibration.json": "B030E4E83E53BC275CE3CF6B3C6E8678715519E21D1707036DDA57669370778C",
+    "search-formal-attempt-01\\run-01\\DependencyChain\\exhaustive-calibration.json": "94D9D41DDB96DF3C0B79A1F1C4A4DC0E3C6363661DD3D4C344B5BDF98E1F7155",
+    "search-formal-attempt-01\\run-02\\FrameFaithful\\exhaustive-calibration.json": "CF239926C0138A597BFB2181F271E933A0ECD8543F18E28A1E012B0C96AAEC4E",
+    "search-formal-attempt-01\\run-02\\DependencyChain\\exhaustive-calibration.json": "389D9A3D84364B989406CCAA91B6D5ADF7905FE9996842A80D4942FD7550CF32",
+    "search-formal-attempt-01\\run-03\\FrameFaithful\\exhaustive-calibration.json": "32A6069C190995A2F601EFE042B8CEA326897A1AD2C52D381789D2F8031877F5",
+    "search-formal-attempt-01\\run-03\\DependencyChain\\exhaustive-calibration.json": "4DCC937E5F60F1DDD0787D67C19D266C97DF31B988B07377BA321A4B262F6BD1",
+    "search-formal-attempt-01\\run-04\\FrameFaithful\\exhaustive-calibration.json": "398083C372951957FA5DDD23D1DCCFFD943D89BFE7D357DF7D4D70A67099F6C5",
+    "search-formal-attempt-01\\run-04\\DependencyChain\\exhaustive-calibration.json": "6C142DFABB92B18C80C261DAA8C2F5C33A1C1CE36F4C7FD6DAEB8D85ECD4093F",
+    "search-formal-attempt-01\\run-05\\FrameFaithful\\exhaustive-calibration.json": "503778FEAC4584C79DB7EA83B0C50971AEB40B8C5E2E558820387014B0F66546",
+    "search-formal-attempt-01\\run-05\\DependencyChain\\exhaustive-calibration.json": "3B4AEF029FBD39D642DB6D6C2FB2FEA577A78857233965CE1711A1E48CCB0BE6"
+  },
+  "inputSha256": {
+    "search-formal-replay.json": "6B0120638137AA8229B2E31B62021271D26087A7EC68EF963274C21A70B4F917",
+    "counter-formal-attempt-02/cpu-counter-evidence.json": "5F3A05BB46A22920CA868BFF1B1B5CCC0BC46A1E4F2A28D74502AC5B5F5F0A96",
+    "envelope-formal-summary.json": "1509ACEDB520ECF9BBCDC3B18AE812D1970263F8A9398F51EBAAC9ECE2B51980"
+  }
+}

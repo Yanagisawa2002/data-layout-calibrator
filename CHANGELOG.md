@@ -1,5 +1,21 @@
 # Changelog
 
+## Unreleased — measured optimization integration (2026-09-07)
+
+- Adopted generated storage/codecs in production samples and added the expanded
+  scalar/packed AoSoA4/8/16/padded64 matrix with explicit unsupported controls.
+- Executed five-process measured envelopes and independent adaptive/exhaustive
+  comparisons, real optional process CPU cycles and two new workload patterns.
+- Replaced unsupported Unity allocation observations with validated native profiler
+  controls throughout the scientific runners; qualified historical zero values.
+- Validated 198 Unity tests, 69 scientific tests, 14 generator tests, 74 Python tests,
+  both Release/Burst AOT backends and actual generated/matrix/workload gates.
+- Retained 120 valid envelope cells (65 confirmed), ten search comparisons (zero
+  passing the 1% regret gate), and 768 cycle captures with substantial measured
+  full-adapter overhead. No adaptive/counter default promotion or release tag.
+- See [the report](Docs/OPTIMIZATION_VNEXT_REPORT_2026-09-07.md) for sample migration,
+  source/binary identities, raw archives, scope and replay instructions.
+
 ## Unreleased — vNext integration foundation
 
 - Integrated the v0.4 scientific core, advantage envelope/adaptive engine, v0.5

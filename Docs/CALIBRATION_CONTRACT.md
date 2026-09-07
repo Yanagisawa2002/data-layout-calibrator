@@ -112,3 +112,24 @@ An envelope reference is valid only when its artifact SHA, schema, engine,
 scenario contract, candidate set, and measurement schema match. It remains
 external and cannot replace `FinalDecision`. The exact shared rules are frozen
 in [`ADR 0006`](adr/0006-vnext-integration-protocol.md).
+
+## Validated managed allocation measurement (2026-09-07)
+
+`CalibrationRunSettings.AllocationCounter` injects a synchronous `IManagedAllocationCounter`.
+Use one counter for a sequential calibration run; implementations own their window state
+and must not be shared by concurrent runs. The engine calls `Validate` around measurement
+phases and brackets actual actions with `Begin`/`End`; unknown or negative observations
+must throw. `End` returns exact managed bytes, or zero inferred from a validated zero-event
+window. Do not substitute heap-live-size differences or unsupported API zeros.
+
+The portable default validates a real positive allocation and an empty control. Unity
+runtimes that do not implement the .NET thread-allocation API must supply a supported
+counter. The benchmark's reference adapter uses the separately registered native
+Mono/IL2CPP profiler fallback described in [the allocation recorder](../Tools/AllocationRecorder/README.md).
+It measures main-thread object-size bytes; native memory and worker-thread allocation
+are outside that scope. The optional OS CPU-cycle provider is a different diagnostic
+and may be absent without inventing CPU counter values.
+
+New scenario profiles and raw envelope phases retain `ManagedAllocationMeasurement`.
+Historical raw zeros remain immutable but unverified as explained in
+[the historical correction](evidence/HISTORICAL_ALLOCATION_MEASUREMENT_LIMIT.md).

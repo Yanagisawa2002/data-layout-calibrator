@@ -1,0 +1,949 @@
+{
+    "Protocol": "dlc.measured-envelope-grid.v1",
+    "ElementCounts": [
+        4096,
+        65536
+    ],
+    "LifetimeTicks": [
+        1,
+        16,
+        256
+    ],
+    "ColdAccessEveryTicks": [
+        1,
+        8
+    ],
+    "WorkerCounts": [
+        1,
+        7
+    ],
+    "IndependentProcesses": 5,
+    "Candidates": [
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoS-ScalarBranched-b64-FrameFaithful",
+            "LayoutId": "AoS",
+            "DisplayName": "AoS / ScalarBranched / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": true,
+            "SortOrder": 1,
+            "Layout": {
+                "PolicyId": "AoS",
+                "BlockWidth": 1,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranched",
+                "ControlFlow": 1,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoS-ScalarBranched-b256-FrameFaithful",
+            "LayoutId": "AoS",
+            "DisplayName": "AoS / ScalarBranched / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": true,
+            "SortOrder": 3,
+            "Layout": {
+                "PolicyId": "AoS",
+                "BlockWidth": 1,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranched",
+                "ControlFlow": 1,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoS-ScalarBranchless-b64-FrameFaithful",
+            "LayoutId": "AoS",
+            "DisplayName": "AoS / ScalarBranchless / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": true,
+            "SortOrder": 101,
+            "Layout": {
+                "PolicyId": "AoS",
+                "BlockWidth": 1,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranchless",
+                "ControlFlow": 2,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoS-ScalarBranchless-b256-FrameFaithful",
+            "LayoutId": "AoS",
+            "DisplayName": "AoS / ScalarBranchless / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": true,
+            "SortOrder": 103,
+            "Layout": {
+                "PolicyId": "AoS",
+                "BlockWidth": 1,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranchless",
+                "ControlFlow": 2,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "SoA-ScalarBranched-b64-FrameFaithful",
+            "LayoutId": "SoA",
+            "DisplayName": "SoA / ScalarBranched / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": false,
+            "SortOrder": 201,
+            "Layout": {
+                "PolicyId": "SoA",
+                "BlockWidth": 1,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranched",
+                "ControlFlow": 1,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "SoA-ScalarBranched-b256-FrameFaithful",
+            "LayoutId": "SoA",
+            "DisplayName": "SoA / ScalarBranched / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": false,
+            "SortOrder": 203,
+            "Layout": {
+                "PolicyId": "SoA",
+                "BlockWidth": 1,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranched",
+                "ControlFlow": 1,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "SoA-ScalarBranchless-b64-FrameFaithful",
+            "LayoutId": "SoA",
+            "DisplayName": "SoA / ScalarBranchless / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": false,
+            "SortOrder": 1001,
+            "Layout": {
+                "PolicyId": "SoA",
+                "BlockWidth": 1,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranchless",
+                "ControlFlow": 2,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "SoA-ScalarBranchless-b256-FrameFaithful",
+            "LayoutId": "SoA",
+            "DisplayName": "SoA / ScalarBranchless / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": false,
+            "SortOrder": 1003,
+            "Layout": {
+                "PolicyId": "SoA",
+                "BlockWidth": 1,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranchless",
+                "ControlFlow": 2,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA4-ScalarBranched-b64-FrameFaithful",
+            "LayoutId": "AoSoA4",
+            "DisplayName": "AoSoA4 / ScalarBranched / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": false,
+            "SortOrder": 1401,
+            "Layout": {
+                "PolicyId": "AoSoA4",
+                "BlockWidth": 4,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranched",
+                "ControlFlow": 1,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA4-ScalarBranched-b256-FrameFaithful",
+            "LayoutId": "AoSoA4",
+            "DisplayName": "AoSoA4 / ScalarBranched / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": false,
+            "SortOrder": 1403,
+            "Layout": {
+                "PolicyId": "AoSoA4",
+                "BlockWidth": 4,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranched",
+                "ControlFlow": 1,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA4-ScalarBranchless-b64-FrameFaithful",
+            "LayoutId": "AoSoA4",
+            "DisplayName": "AoSoA4 / ScalarBranchless / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": false,
+            "SortOrder": 1501,
+            "Layout": {
+                "PolicyId": "AoSoA4",
+                "BlockWidth": 4,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranchless",
+                "ControlFlow": 2,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA4-ScalarBranchless-b256-FrameFaithful",
+            "LayoutId": "AoSoA4",
+            "DisplayName": "AoSoA4 / ScalarBranchless / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": false,
+            "SortOrder": 1503,
+            "Layout": {
+                "PolicyId": "AoSoA4",
+                "BlockWidth": 4,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranchless",
+                "ControlFlow": 2,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA4-PackedBranchless4-b64-FrameFaithful",
+            "LayoutId": "AoSoA4",
+            "DisplayName": "AoSoA4 / PackedBranchless4 / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": false,
+            "SortOrder": 1601,
+            "Layout": {
+                "PolicyId": "AoSoA4",
+                "BlockWidth": 4,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "PackedBranchless4",
+                "ControlFlow": 2,
+                "VectorWidth": 4
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA4-PackedBranchless4-b256-FrameFaithful",
+            "LayoutId": "AoSoA4",
+            "DisplayName": "AoSoA4 / PackedBranchless4 / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": false,
+            "SortOrder": 1603,
+            "Layout": {
+                "PolicyId": "AoSoA4",
+                "BlockWidth": 4,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "PackedBranchless4",
+                "ControlFlow": 2,
+                "VectorWidth": 4
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA8-ScalarBranched-b64-FrameFaithful",
+            "LayoutId": "AoSoA8",
+            "DisplayName": "AoSoA8 / ScalarBranched / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": false,
+            "SortOrder": 1901,
+            "Layout": {
+                "PolicyId": "AoSoA8",
+                "BlockWidth": 8,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranched",
+                "ControlFlow": 1,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA8-ScalarBranched-b256-FrameFaithful",
+            "LayoutId": "AoSoA8",
+            "DisplayName": "AoSoA8 / ScalarBranched / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": false,
+            "SortOrder": 1903,
+            "Layout": {
+                "PolicyId": "AoSoA8",
+                "BlockWidth": 8,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranched",
+                "ControlFlow": 1,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA8-ScalarBranchless-b64-FrameFaithful",
+            "LayoutId": "AoSoA8",
+            "DisplayName": "AoSoA8 / ScalarBranchless / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": false,
+            "SortOrder": 2001,
+            "Layout": {
+                "PolicyId": "AoSoA8",
+                "BlockWidth": 8,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranchless",
+                "ControlFlow": 2,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA8-ScalarBranchless-b256-FrameFaithful",
+            "LayoutId": "AoSoA8",
+            "DisplayName": "AoSoA8 / ScalarBranchless / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": false,
+            "SortOrder": 2003,
+            "Layout": {
+                "PolicyId": "AoSoA8",
+                "BlockWidth": 8,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranchless",
+                "ControlFlow": 2,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA8-PackedBranchless8-b64-FrameFaithful",
+            "LayoutId": "AoSoA8",
+            "DisplayName": "AoSoA8 / PackedBranchless8 / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": false,
+            "SortOrder": 301,
+            "Layout": {
+                "PolicyId": "AoSoA8",
+                "BlockWidth": 8,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "PackedBranchless8",
+                "ControlFlow": 2,
+                "VectorWidth": 8
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA8-PackedBranchless8-b256-FrameFaithful",
+            "LayoutId": "AoSoA8",
+            "DisplayName": "AoSoA8 / PackedBranchless8 / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": false,
+            "SortOrder": 303,
+            "Layout": {
+                "PolicyId": "AoSoA8",
+                "BlockWidth": 8,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "PackedBranchless8",
+                "ControlFlow": 2,
+                "VectorWidth": 8
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA16-ScalarBranched-b64-FrameFaithful",
+            "LayoutId": "AoSoA16",
+            "DisplayName": "AoSoA16 / ScalarBranched / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": false,
+            "SortOrder": 2401,
+            "Layout": {
+                "PolicyId": "AoSoA16",
+                "BlockWidth": 16,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranched",
+                "ControlFlow": 1,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA16-ScalarBranched-b256-FrameFaithful",
+            "LayoutId": "AoSoA16",
+            "DisplayName": "AoSoA16 / ScalarBranched / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": false,
+            "SortOrder": 2403,
+            "Layout": {
+                "PolicyId": "AoSoA16",
+                "BlockWidth": 16,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranched",
+                "ControlFlow": 1,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA16-ScalarBranchless-b64-FrameFaithful",
+            "LayoutId": "AoSoA16",
+            "DisplayName": "AoSoA16 / ScalarBranchless / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": false,
+            "SortOrder": 2501,
+            "Layout": {
+                "PolicyId": "AoSoA16",
+                "BlockWidth": 16,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranchless",
+                "ControlFlow": 2,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA16-ScalarBranchless-b256-FrameFaithful",
+            "LayoutId": "AoSoA16",
+            "DisplayName": "AoSoA16 / ScalarBranchless / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": false,
+            "SortOrder": 2503,
+            "Layout": {
+                "PolicyId": "AoSoA16",
+                "BlockWidth": 16,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranchless",
+                "ControlFlow": 2,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA16-PackedBranchless16-b64-FrameFaithful",
+            "LayoutId": "AoSoA16",
+            "DisplayName": "AoSoA16 / PackedBranchless16 / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": false,
+            "SortOrder": 2801,
+            "Layout": {
+                "PolicyId": "AoSoA16",
+                "BlockWidth": 16,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "PackedBranchless16",
+                "ControlFlow": 2,
+                "VectorWidth": 16
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSoA16-PackedBranchless16-b256-FrameFaithful",
+            "LayoutId": "AoSoA16",
+            "DisplayName": "AoSoA16 / PackedBranchless16 / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": false,
+            "SortOrder": 2803,
+            "Layout": {
+                "PolicyId": "AoSoA16",
+                "BlockWidth": 16,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 0
+            },
+            "Kernel": {
+                "PolicyId": "PackedBranchless16",
+                "ControlFlow": 2,
+                "VectorWidth": 16
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSPadded64-ScalarBranched-b64-FrameFaithful",
+            "LayoutId": "AoSPadded64",
+            "DisplayName": "AoSPadded64 / ScalarBranched / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": false,
+            "SortOrder": 2901,
+            "Layout": {
+                "PolicyId": "AoSPadded64",
+                "BlockWidth": 1,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 16
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranched",
+                "ControlFlow": 1,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSPadded64-ScalarBranched-b256-FrameFaithful",
+            "LayoutId": "AoSPadded64",
+            "DisplayName": "AoSPadded64 / ScalarBranched / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": false,
+            "SortOrder": 2903,
+            "Layout": {
+                "PolicyId": "AoSPadded64",
+                "BlockWidth": 1,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 16
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranched",
+                "ControlFlow": 1,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSPadded64-ScalarBranchless-b64-FrameFaithful",
+            "LayoutId": "AoSPadded64",
+            "DisplayName": "AoSPadded64 / ScalarBranchless / FrameFaithful / b64",
+            "LogicalBatchSize": 64,
+            "IsBaseline": false,
+            "SortOrder": 3001,
+            "Layout": {
+                "PolicyId": "AoSPadded64",
+                "BlockWidth": 1,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 16
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranchless",
+                "ControlFlow": 2,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 64
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        },
+        {
+            "PolicySchemaVersion": 1,
+            "CandidateId": "AoSPadded64-ScalarBranchless-b256-FrameFaithful",
+            "LayoutId": "AoSPadded64",
+            "DisplayName": "AoSPadded64 / ScalarBranchless / FrameFaithful / b256",
+            "LogicalBatchSize": 256,
+            "IsBaseline": false,
+            "SortOrder": 3003,
+            "Layout": {
+                "PolicyId": "AoSPadded64",
+                "BlockWidth": 1,
+                "AlignmentBytes": 0,
+                "PaddingBytes": 16
+            },
+            "Kernel": {
+                "PolicyId": "ScalarBranchless",
+                "ControlFlow": 2,
+                "VectorWidth": 1
+            },
+            "Batch": {
+                "PolicyId": "JobBatch",
+                "LogicalBatchSize": 256
+            },
+            "Execution": {
+                "PolicyId": "FrameFaithful",
+                "Topology": 0,
+                "TemporalBlockTicks": 1,
+                "SemanticsPermitReordering": false
+            }
+        }
+    ],
+    "Settings": {
+        "ElementCount": 1048576,
+        "HoldoutElementCount": 1000003,
+        "CalibrationSeed": 2769414579,
+        "HoldoutSeed": 3629064647,
+        "PreflightElementCount": 4099,
+        "PreflightTicks": 256,
+        "FixedDeltaTime": 0.01666666753590107,
+        "WarmupBlocks": 32,
+        "MinimumWarmupSeconds": 0.1,
+        "SamplesPerCandidate": 40,
+        "BoundarySamplesPerCandidate": 20,
+        "LifetimeTicks": 600,
+        "TargetBlockMilliseconds": 2.0,
+        "MaximumTicksPerBlock": 256,
+        "MinimumImprovementPercent": 10.0,
+        "BootstrapIterations": 4000,
+        "BootstrapConfidenceLevel": 0.95,
+        "CandidateOrderSeed": 2738958700,
+        "BootstrapSeed": 3039394381,
+        "ParityTolerance": 0.000009999999747378752,
+        "MeasurementOrder": 1
+    },
+    "AccessDefinition": "hot logical bytes=28 per tick; cold logical bytes=20 per cold pass; hot/cold ratio=1.4*period; each pass reads/writes all Rotation components and Category in layout-owned storage; separate cold pass dispatch included; not physical bandwidth or cache-cold evidence",
+    "LifetimeDefinition": "resident component P95 plus complete ingress/export P95 divided by declared lifetime; fresh measurements per cell; modeled amortization, not direct finite-lifetime transaction P95",
+    "UnmeasuredAxes": "other counts/lifetimes/access frequencies/workers; other CPUs/ISAs/devices; other execution topologies; other workloads; cache-cold; hardware counters; cross-process confidence intervals"
+}

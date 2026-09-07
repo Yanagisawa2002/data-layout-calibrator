@@ -5,6 +5,20 @@
 基线版本：`v0.3.0-preview.1`  
 目标仓库：`Yanagisawa2002/data-layout-calibrator`
 
+## 2026-09-07 measured integration checkpoint
+
+The five assigned optimization workstreams and bounded local measurements are complete;
+see [the measured report](OPTIMIZATION_VNEXT_REPORT_2026-09-07.md). Generated production
+storage, all expanded controls, five-process envelope/search evidence, real process
+cycles, two additional workloads and the historical timing-policy replay are retained.
+
+The envelope confirmed 65/120 cells, while adaptive failed the 1% regret gate in all
+10 comparisons. Diagnostic counters have substantial measured overhead and remain
+opt-in. Historical Unity allocation zeros are unverified; current evidence uses a
+positive-control-validated native recorder. This checkpoint does not declare all
+v0.4-v0.6 release, multi-device or PMU mechanism goals complete. The older table below
+records the state of the 2026-09-02 checkpoint rather than current execution status.
+
 ## 总览
 
 | 版本 | 重点 | 难度 | 项目价值 |

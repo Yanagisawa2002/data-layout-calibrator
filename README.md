@@ -6,6 +6,12 @@ The repository is independent from any product project. Its source is visible
 for portfolio review and authorship verification, but remains proprietary and
 All Rights Reserved; see [LICENSE](LICENSE).
 
+The [2026-09-07 integration report](Docs/OPTIMIZATION_VNEXT_REPORT_2026-09-07.md)
+retains real Mono/IL2CPP validation, 120 envelope cells, ten adaptive/exhaustive
+comparisons and 768 process-cycle captures. Credible sampled coverage was 54.17%;
+adaptive did not pass its regret requirement and remains experimental. The ordinary
+exhaustive selector and tuned-AoS fallback remain unchanged.
+
 ## What is reusable
 
 The core UPM assembly contains no Particle types. It exposes four plugin boundaries:
@@ -19,11 +25,13 @@ The core UPM assembly contains no Particle types. It exposes four plugin boundar
 
 - `particle-integrate-v2`: AoS, SoA, and explicit eight-lane AoSoA8; batch 32/64/128/256.
 - `transform-export-v1`: AoS and SoA full matrix export; deliberately retained as a negative control.
+- `spatial-neighborhood-v1`: generated AoS/SoA radius-gather query workload.
+- `animation-state-v1`: generated AoS/SoA conditional state/phase/blend update.
 
 An assembly-level registration attribute and packaged Roslyn Source Generator create
 the runtime factory registry as direct constructor calls. The unreleased vNext
-generator also emits bounded storage/codec scaffolds for explicitly annotated flat
-records. It still does not rewrite workload kernels, infer semantics, or claim a
+generator emits production storage/codecs for explicitly annotated flat records,
+including packed AoSoA4/8/16 and a padded64 stride control. It still does not rewrite workload kernels, infer semantics, or claim a
 compiler optimization.
 
 Historical Unity allocation observations require the qualification in

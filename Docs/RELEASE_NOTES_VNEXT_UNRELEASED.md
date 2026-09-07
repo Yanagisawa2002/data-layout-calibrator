@@ -1,5 +1,10 @@
 # Unreleased vNext integration notes
 
+Current checkpoint: [2026-09-07 measured optimization integration](OPTIMIZATION_VNEXT_REPORT_2026-09-07.md).
+The assigned implementation and bounded experiments are complete. Adaptive's quality
+acceptance failed, exact envelope winners varied, and counters remain opt-in. The
+package is unreleased; the older sections below are the 2026-09-02 historical state.
+
 These notes describe a review candidate on `codex/vnext-integration`. They are not a
 release announcement. The package remains `0.3.0-preview.1`; no tag or GitHub Release
 has been created.

@@ -1,5 +1,8 @@
 # vNext integration delivery report
 
+Historical checkpoint. The current integration and allocation qualification are in
+[the 2026-09-07 report](OPTIMIZATION_VNEXT_REPORT_2026-09-07.md).
+
 Status: integration candidate; not released
 
 Date: 2026-09-02
