@@ -21,7 +21,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         {
             public string RunId, ProcessEvidenceId, Cpu, OperatingSystem, ProcessArchitecture, RuntimeBurstTargetCapabilities;
             public string IsaScope = "Capabilities returned inside a dispatched Burst job; not instruction-by-instruction disassembly or a per-kernel ISA claim.";
-            public string UnityVersion, Backend, BuildType, SourceIdentityStatus;
+            public string UnityVersion, Backend, BuildType, SourceIdentityStatus, IdentityCapturedUtc;
             public int ProcessId, LogicalProcessors, JobWorkers;
             public Binary[] Binaries;
         }
@@ -220,8 +220,13 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             {
                 var binaries = new List<Binary>();
                 string root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
-                foreach (string path in new[] { process.MainModule.FileName, Path.Combine(root, "UnityPlayer.dll"), ImplementationBinary(),
-                    Path.Combine(Application.dataPath, "Plugins", "x86_64", "lib_burst_generated.dll"), Path.Combine(root, "source-identity.json"),
+                // IL2CPP does not implement Process.Modules/MainModule. The actual
+                // launch argument identifies the executable without module enumeration.
+                string executable = Path.GetFullPath(Environment.GetCommandLineArgs()[0]);
+                if (!File.Exists(executable)) throw new FileNotFoundException("Player executable identity is unavailable.", executable);
+                foreach (string path in new[] { executable, Path.Combine(root, "UnityPlayer.dll"), ImplementationBinary(),
+                    Path.Combine(Application.dataPath, "Plugins", "x86_64", "lib_burst_generated.dll"),
+                    Path.Combine(Application.dataPath, "Plugins", "x86_64", "DlcAllocationProfiler.dll"), Path.Combine(root, "source-identity.json"),
                     Path.Combine(Environment.SystemDirectory, "kernel32.dll"), Path.Combine(Environment.SystemDirectory, "KernelBase.dll") })
                     if (File.Exists(path)) binaries.Add(new Binary { Path = path, Sha256 = Hash.HashFile(path) });
                 string managed = Path.Combine(Application.dataPath, "Managed");
@@ -234,7 +239,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                 try { new CounterIsaIdentityJob { Result = isa }.Schedule().Complete(); capabilities = isa[0] == 2 ? "AVX2" : isa[0] == 1 ? "SSE2" : "unavailable"; }
                 finally { isa.Dispose(); }
                 return new Identity { RunId = run, ProcessId = process.Id,
-                    ProcessEvidenceId = process.Id + "-" + process.StartTime.ToUniversalTime().Ticks + "-" + run,
+                    ProcessEvidenceId = process.Id + "-" + run,
+                    IdentityCapturedUtc = DateTime.UtcNow.ToString("O", CultureInfo.InvariantCulture),
                     Cpu = SystemInfo.processorType, OperatingSystem = SystemInfo.operatingSystem,
                     ProcessArchitecture = IntPtr.Size == 8 ? "64-bit-Windows-player" : "32-bit-Windows-player", RuntimeBurstTargetCapabilities = capabilities,
                     UnityVersion = Application.unityVersion, Backend = Backend(), BuildType = UnityEngine.Debug.isDebugBuild ? "Development" : "Release",

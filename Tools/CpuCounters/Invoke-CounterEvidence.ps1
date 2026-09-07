@@ -14,6 +14,13 @@ $counterPlayer = (Resolve-Path -LiteralPath $PlayerPath).Path
 $counterOutput = [IO.Path]::GetFullPath($OutputDirectory)
 if (Test-Path -LiteralPath $counterOutput) { throw 'Use a fresh output directory for each retained attempt.' }
 New-Item -ItemType Directory -Path $counterOutput | Out-Null
+function Write-CounterInterference([string]$Path) {
+    [ordered]@{utc=[DateTime]::UtcNow.ToString('O');powerPlan=(@(& powercfg.exe /getactivescheme) -join ' ');
+        processes=@(Get-Process | ForEach-Object { $start=$null;try{$start=$_.StartTime.ToUniversalTime().ToString('O')}catch{};
+            [ordered]@{id=$_.Id;name=$_.ProcessName;cpuSeconds=$_.CPU;startUtc=$start}});
+        limits='Read-only snapshots; transient interference, clocks, affinity, caches and thermal state uncontrolled.'
+    } | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $Path -Encoding utf8NoBOM
+}
 & $SerializationScript -Action {
     # Read-only capability query. It does not start/stop an ETW session or enable privileges.
     $wpr = Get-Command wpr.exe -ErrorAction SilentlyContinue
@@ -36,9 +43,13 @@ New-Item -ItemType Directory -Path $counterOutput | Out-Null
         Scenarios = $Scenarios; CreatedUtc = [DateTime]::UtcNow.ToString('O');
         Interference = 'Shared validation mutex held; external user applications, CPU clocks, affinity and thermal state uncontrolled.'
     } | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $counterOutput 'invocation.json')
+    Write-CounterInterference (Join-Path $counterOutput 'interference-before.json')
     $counterProcess = Start-Process -FilePath $counterPlayer -ArgumentList $counterArgs -WindowStyle Hidden -PassThru
     $counterProcess.WaitForExit()
     $counterExit = $counterProcess.ExitCode
+    Write-CounterInterference (Join-Path $counterOutput 'interference-after.json')
+    [ordered]@{processId=$counterProcess.Id;exitCode=$counterExit;completedUtc=[DateTime]::UtcNow.ToString('O')} | ConvertTo-Json | Set-Content (Join-Path $counterOutput 'process-receipt.json')
+    $counterProcess.Dispose()
     [IO.File]::WriteAllText((Join-Path $counterOutput 'exit-code.txt'), [string]$counterExit)
     $evidencePath = Join-Path $counterOutput 'cpu-counter-evidence.json'
     if (!(Test-Path -LiteralPath $evidencePath)) { throw "Player exited $counterExit without counter evidence. See player.log." }
