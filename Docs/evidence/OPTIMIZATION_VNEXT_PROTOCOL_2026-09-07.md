@@ -87,3 +87,15 @@ reason to change thresholds, discard evidence or claim a gain. Additional broad
 historical/compiler-version comparisons are follow-up work, not a substitute
 for these bounded required experiments.
 
+## Counter and workload checks
+
+The integrated IL2CPP counter run uses 65,536 records, 64 ticks per action and
+12 paired enabled/disabled repetitions per registered candidate in all four
+workloads: ParticleIntegrate, TransformExport, SpatialNeighborhood and
+AnimationState. Freeze the actually executed registry candidate definitions.
+Alternate AB/BA within each candidate and reset identical input before each arm.
+Measure the complete adapter overhead, including raw endpoint persistence, and
+retain noisy or negative paired deltas. This diagnostic provider does not feed
+the envelope or search decisions. A separate short no-provider run validates
+fallback, while the main correctness/calibration suite runs with counters off.
+
