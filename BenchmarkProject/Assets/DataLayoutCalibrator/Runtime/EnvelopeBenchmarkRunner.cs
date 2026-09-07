@@ -87,6 +87,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         public string UnityVersion;
         public string Processor;
         public int LogicalProcessors;
+        public int StartupJobWorkerCount;
+        public int JobWorkerMaximumCount;
         public int ProcessId;
         public int ProcessIndex;
         public string OperatingSystem;
@@ -147,6 +149,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                 CandidateSetSha256 = CandidateDefinitionProtocol.ComputeCandidateSetSha256(grid.Candidates),
                 BuildIdentity = buildIdentity, UnityVersion = Application.unityVersion,
                 Processor = SystemInfo.processorType, LogicalProcessors = SystemInfo.processorCount,
+                StartupJobWorkerCount = JobsUtility.JobWorkerCount,
+                JobWorkerMaximumCount = JobsUtility.JobWorkerMaximumCount,
                 ProcessId = Process.GetCurrentProcess().Id, ProcessIndex = processIndex,
                 OperatingSystem = SystemInfo.operatingSystem, ScriptingBackend = "IL2CPP",
                 BurstEnabled = BurstCompiler.IsEnabled, DevelopmentBuild = UnityEngine.Debug.isDebugBuild,
@@ -162,6 +166,9 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             int previousWorkers = JobsUtility.JobWorkerCount;
             try
             {
+                foreach (int workers in grid.WorkerCounts)
+                    if (workers > JobsUtility.JobWorkerMaximumCount)
+                        throw new InvalidOperationException("Declared worker axis unavailable; no formal cell was measured.");
                 int cellIndex = 0;
                 foreach (int workers in grid.WorkerCounts)
                 {

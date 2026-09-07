@@ -12,6 +12,12 @@ FrameFaithful candidates: six layouts crossed with scalar branched/branchless
 kernels and batches 64/256, plus the matching packed kernel for AoSoA4/8/16.
 The fastest valid measured AoS becomes the reference; all AoS controls remain in
 the raw evidence. Historical default candidates cannot satisfy the declaration.
+The Player starts with `-job-worker-count 8` and verifies the entire worker axis
+against JobWorkerMaximumCount before any cell is measured. Receipts retain startup
+worker count, maximum and OS-exposed logical processors. This host currently exposes
+8 logical processors despite its 9950X brand; the 8-worker point can oversubscribe
+when the main thread and user applications also run. No full-chip core-count
+capacity is inferred from the processor name.
 
 Cold work reads and writes all four Rotation components and Category in the
 candidate's actual persistent layout storage. The separately scheduled pass is
