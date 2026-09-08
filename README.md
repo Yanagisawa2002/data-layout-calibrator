@@ -6,6 +6,35 @@ The repository is independent from any product project. Its source is visible
 for portfolio review and authorship verification, but remains proprietary and
 All Rights Reserved; see [LICENSE](LICENSE).
 
+## When to use it
+
+Use this when a Unity/Burst workload has several concrete data layouts and enough
+resident ticks to amortize conversion. It compares total lifecycle cost against
+the fastest valid AoS baseline, rather than choosing a layout by kernel time alone.
+The ParticleIntegrate sample demonstrates a beneficial selection; TransformExport
+demonstrates retaining AoS when conversion/export costs do not justify a switch.
+
+## Measured results and scope
+
+The full roadmap gate is complete: 29/29 Unity EditMode tests, 4/4 generator tests, 3/3 renderer tests, Mono Release + Burst AOT, and IL2CPP Release + Burst AOT. Both workload plugins pass parity and zero-allocation gates in both Players.
+
+The checked-in IL2CPP integration result is deliberately a short behavioral gate, not a universal hardware performance claim. On this run, ParticleIntegrate selected `AoSoA8-b128` with a 34.15% holdout amortized-P95 improvement; TransformExport retained `AoS-b256`, demonstrating the negative control. The immutable result SHA-256 is `85FAC20CDF81EBA674A3A736340CFCBEEB88EEF99CD1F5ECC776EE0215E53D78`.
+
+A separate [preregistered formal run set](Docs/evidence/formal-il2cpp-2026-09-02/README.md)
+retains five sequential, fresh IL2CPP Player processes using 1,048,576
+calibration records, 1,000,003 holdout records, 40 resident samples, 20 boundary
+samples, and 4,000 bootstrap iterations. The preregistered primary run reduced
+ParticleIntegrate holdout P95 by 70.70% versus its tuned AoS baseline, with a
+95% CI of [65.32%, 79.37%]. Across all five launches, the reduction ranged from
+66.11% to 74.81%; TransformExport retained tuned AoS in 5/5 launches. These are
+same-device process replications, not a cross-hardware guarantee.
+
+![Formal IL2CPP fixed-result heatmap](Docs/assets/formal-il2cpp-2026-09-02/data-layout-calibrator-heatmap.png)
+
+![Formal AoS baseline to frozen decision](Docs/assets/formal-il2cpp-2026-09-02/data-layout-calibrator-comparison.gif)
+
+See the [final validation evidence](Docs/VALIDATION_RESULTS_2026-09-02.md), [calibration contract](Docs/CALIBRATION_CONTRACT.md), and [fixed-result renderer contract](Tools/ResultRenderer/README.md).
+
 ## What is reusable
 
 The core UPM assembly contains no Particle types. It exposes four plugin boundaries:
@@ -91,27 +120,6 @@ The build fails unless the Burst library contains all ParticleIntegrate and Tran
 - summaries stating the exact measurement and presentation contract.
 
 Heatmaps and GIFs read `calibration-suite.json`. They may format or filter it, but may not recompute or replace `FinalDecision`. The renderer writes a provenance manifest containing the input SHA-256 and exact copied decision fields.
-
-## Current gate
-
-The full roadmap gate is complete: 29/29 Unity EditMode tests, 4/4 generator tests, 3/3 renderer tests, Mono Release + Burst AOT, and IL2CPP Release + Burst AOT. Both workload plugins pass parity and zero-allocation gates in both Players.
-
-The checked-in IL2CPP integration result is deliberately a short behavioral gate, not a universal hardware performance claim. On this run, ParticleIntegrate selected `AoSoA8-b128` with a 34.15% holdout amortized-P95 improvement; TransformExport retained `AoS-b256`, demonstrating the negative control. The immutable result SHA-256 is `85FAC20CDF81EBA674A3A736340CFCBEEB88EEF99CD1F5ECC776EE0215E53D78`.
-
-A separate [preregistered formal run set](Docs/evidence/formal-il2cpp-2026-09-02/README.md)
-retains five sequential, fresh IL2CPP Player processes using 1,048,576
-calibration records, 1,000,003 holdout records, 40 resident samples, 20 boundary
-samples, and 4,000 bootstrap iterations. The preregistered primary run reduced
-ParticleIntegrate holdout P95 by 70.70% versus its tuned AoS baseline, with a
-95% CI of [65.32%, 79.37%]. Across all five launches, the reduction ranged from
-66.11% to 74.81%; TransformExport retained tuned AoS in 5/5 launches. These are
-same-device process replications, not a cross-hardware guarantee.
-
-![Formal IL2CPP fixed-result heatmap](Docs/assets/formal-il2cpp-2026-09-02/data-layout-calibrator-heatmap.png)
-
-![Formal AoS baseline to frozen decision](Docs/assets/formal-il2cpp-2026-09-02/data-layout-calibrator-comparison.gif)
-
-See the [final validation evidence](Docs/VALIDATION_RESULTS_2026-09-02.md), [calibration contract](Docs/CALIBRATION_CONTRACT.md), and [fixed-result renderer contract](Tools/ResultRenderer/README.md).
 
 ## Citation, authorship, and license
 
