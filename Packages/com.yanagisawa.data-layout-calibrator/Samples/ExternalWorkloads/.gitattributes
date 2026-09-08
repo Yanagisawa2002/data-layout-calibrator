@@ -1,0 +1,3 @@
+# Preserve locked upstream/fixture bytes across Windows and POSIX checkouts.
+Upstream~/** -text -whitespace
+Fixtures~/** -text -whitespace

@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework><RollForward>Major</RollForward>
+    <OutputType Condition="'$(RealUnityCompile)' != 'true'">Exe</OutputType>
+    <OutputType Condition="'$(RealUnityCompile)' == 'true'">Library</OutputType>
+    <DefineConstants Condition="'$(RealUnityCompile)' == 'true'">$(DefineConstants);UNITY_5_3_OR_NEWER</DefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems><UseSharedCompilation>false</UseSharedCompilation>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Yanagisawa.DataLayoutCalibrator.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <Reference Include="UnityEngine.MathematicsModule"><HintPath>$(UnityManagedPath)/UnityEngine.MathematicsModule.dll</HintPath></Reference>
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Runtime/*.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleRecord.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleStorages.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleJobs.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleMatrixJobs.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/Particle*BoundaryJobs.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleHotColdStorage.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleBlockExportJobs.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportRecords.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportJobs.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformPackedExport.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Runtime/*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(RealUnityCompile)' != 'true'">
+    <Compile Include="UnityCpuModel.cs" /><Compile Include="Program.cs" />
+    <None Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Fixtures~/llama-msvc-prefix17.json" Link="llama-msvc-prefix17.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(RealUnityCompile)' == 'true'">
+    <Reference Include="$(UnityManagedPath)/*.dll" />
+    <Reference Include="$(UnityScriptAssembliesPath)/Unity.Burst.dll" />
+    <Reference Include="$(UnityScriptAssembliesPath)/Unity.Collections.dll" />
+  </ItemGroup>
+  <Target Name="ValidateUnityReferencePaths" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(UnityManagedPath)/UnityEngine.MathematicsModule.dll')" Text="Supply -p:UnityManagedPath pointing to the Unity editor Managed/UnityEngine directory. No Unity process is launched." />
+    <Error Condition="'$(RealUnityCompile)' == 'true' And !Exists('$(UnityScriptAssembliesPath)/Unity.Burst.dll')" Text="RealUnityCompile requires -p:UnityScriptAssembliesPath pointing to existing compiled Unity package assemblies." />
+  </Target>
+</Project>

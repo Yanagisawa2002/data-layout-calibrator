@@ -1,0 +1,26 @@
+{
+  "kind": "compile-and-mathematics-reference-identities",
+  "performanceStatus": "Unmeasured",
+  "references": [
+    {
+      "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.5.3f1\\Editor\\Data\\Managed\\UnityEngine\\UnityEngine.MathematicsModule.dll",
+      "sha256": "2bf79c9399b2045cba9732a757dbb67d3c5463dd404d3aecdc26763bbd53c3ee"
+    },
+    {
+      "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.5.3f1\\Editor\\Data\\Managed\\UnityEngine\\UnityEngine.CoreModule.dll",
+      "sha256": "21ec8a41d2cf18dfaf67ce95f6b000c9e7d12b0dfaa07ec7cac0564d20182c85"
+    },
+    {
+      "path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.5.3f1\\Editor\\Data\\Managed\\UnityEngine\\UnityEngine.SharedInternalsModule.dll",
+      "sha256": "98eef1f72bada21c41d3457c0dba4ce5c062d03db40b01bc1cfc8b1461f15c9a"
+    },
+    {
+      "path": "C:\\Users\\EdwinLiu\\Downloads\\data-layout-calibrator\\BenchmarkProject\\Library\\ScriptAssemblies\\Unity.Burst.dll",
+      "sha256": "dac155b913ec49ab862f999e0e4d6befa30d918aa2569f342d914d3c8a855bce"
+    },
+    {
+      "path": "C:\\Users\\EdwinLiu\\Downloads\\data-layout-calibrator\\BenchmarkProject\\Library\\ScriptAssemblies\\Unity.Collections.dll",
+      "sha256": "d8717fe5a6e1382ffaa832a97f4ccaaa3ae2d004e8c66f3562d7c07c6ed10dfa"
+    }
+  ]
+}

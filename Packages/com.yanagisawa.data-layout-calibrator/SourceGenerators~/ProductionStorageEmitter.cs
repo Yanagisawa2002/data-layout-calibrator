@@ -56,6 +56,28 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
                 .AppendLine($"{indent}    }}");
         }
 
+        private static void AppendBlockExport(StringBuilder source, RecordSchema schema, string indent)
+        {
+            // One hot-block load per scheduled unit. ReadRecord per lane can otherwise
+            // materialize the entire block repeatedly at an AoSoA -> canonical boundary.
+            source.AppendLine($"{indent}    public void ExportBlock(int blockIndex, global::Unity.Collections.NativeArray<{schema.FullyQualifiedRecordType}> destination)")
+                .AppendLine($"{indent}    {{")
+                .AppendLine($"{indent}        var block = HotBlocks[blockIndex];")
+                .AppendLine($"{indent}        int first = blockIndex * BlockWidth;")
+                .AppendLine($"{indent}        int lanes = global::System.Math.Min(BlockWidth, Count - first);")
+                .AppendLine($"{indent}        for (int lane = 0; lane < lanes; lane++)")
+                .AppendLine($"{indent}        {{")
+                .AppendLine($"{indent}            int index = first + lane;")
+                .AppendLine($"{indent}            destination[index] = new {schema.FullyQualifiedRecordType}")
+                .AppendLine($"{indent}            {{");
+            foreach (RecordField field in schema.Fields)
+                source.AppendLine($"{indent}                {field.EscapedName} = " + (field.IsHot
+                    ? $"Read_{field.Identifier}(block, lane)," : $"Cold_{field.Identifier}[index],"));
+            source.AppendLine($"{indent}            }};")
+                .AppendLine($"{indent}        }}")
+                .AppendLine($"{indent}    }}");
+        }
+
         private static void AppendPaddedStorage(StringBuilder source, RecordSchema schema, string indent)
         {
             string element = schema.RecordName + "GeneratedPadded64Record";

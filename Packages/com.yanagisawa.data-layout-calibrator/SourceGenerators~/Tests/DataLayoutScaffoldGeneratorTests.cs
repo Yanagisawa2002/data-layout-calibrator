@@ -109,6 +109,9 @@ namespace Samples.Transforms
             Assert.That(generated, Does.Contain("ParticleRecordGeneratedPadded64Storage"));
             Assert.That(generated, Does.Contain("PositionX1"));
             Assert.That(generated, Does.Contain("IngressBlock"));
+            Assert.That(generated, Does.Contain("ExportBlock"));
+            Assert.That(generated, Does.Contain("blockIndex < BlockCount; blockIndex++) IngressBlock(blockIndex, source)"));
+            Assert.That(generated, Does.Contain("blockIndex < BlockCount; blockIndex++) ExportBlock(blockIndex, destination)"));
             Assert.That(generated, Does.Contain("TransformExportRecordGeneratedAoSoA4Storage"));
             Assert.That(generated, Does.Not.Contain("Activator"));
             Assert.That(generated, Does.Not.Contain("System.Reflection"));

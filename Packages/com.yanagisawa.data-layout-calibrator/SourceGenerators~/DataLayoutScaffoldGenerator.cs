@@ -674,6 +674,7 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
                 .Append(indent).AppendLine("    }")
                 .AppendLine();
             AppendBlockIngress(source, schema, indent);
+            AppendBlockExport(source, schema, indent);
             AppendFromRecordsAndBoundaryLoops(source, schema, indent, type);
             source.Append(indent).Append("    public ").Append(schema.FullyQualifiedRecordType).AppendLine(" ReadRecord(int index)")
                 .Append(indent).AppendLine("    {")
@@ -768,6 +769,8 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
                 .Append(indent).AppendLine("        ValidateLength(source.Length);")
                 .Append(indent).AppendLine(storageType == schema.AoSStorageType
                     ? "        Records.CopyFrom(source);"
+                    : storageType == schema.AoSoAStorageType
+                    ? "        for (int blockIndex = 0; blockIndex < BlockCount; blockIndex++) IngressBlock(blockIndex, source);"
                     : "        for (int index = 0; index < Count; index++) WriteRecord(index, source[index]);")
                 .Append(indent).AppendLine("    }")
                 .AppendLine()
@@ -776,6 +779,8 @@ namespace Yanagisawa.DataLayoutCalibrator.SourceGenerator
                 .Append(indent).AppendLine("        ValidateLength(destination.Length);")
                 .Append(indent).AppendLine(storageType == schema.AoSStorageType
                     ? "        destination.CopyFrom(Records);"
+                    : storageType == schema.AoSoAStorageType
+                    ? "        for (int blockIndex = 0; blockIndex < BlockCount; blockIndex++) ExportBlock(blockIndex, destination);"
                     : "        for (int index = 0; index < Count; index++) destination[index] = ReadRecord(index);")
                 .Append(indent).AppendLine("    }")
                 .AppendLine()
