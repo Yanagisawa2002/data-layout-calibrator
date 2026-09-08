@@ -23,6 +23,7 @@ BenchmarkProject/Assets/Resources/PerformanceTestRun*.json*
 *.csproj
 !Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/*.csproj
 !Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Tests/*.csproj
+!Tools/ScientificTests/ScientificTests.csproj
 *.sln
 *.suo
 *.user

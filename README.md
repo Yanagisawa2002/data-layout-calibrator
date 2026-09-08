@@ -46,6 +46,12 @@ selection with traceable input hashes.
 [Build and run](#build-and-run). Detailed runs and the fixed-result heatmap
 remain in the expandable evaluation section.
 
+The [2026-09-07 integration report](Docs/OPTIMIZATION_VNEXT_REPORT_2026-09-07.md)
+retains real Mono/IL2CPP validation, 120 envelope cells, ten adaptive/exhaustive
+comparisons and 768 process-cycle captures. Credible sampled coverage was 54.17%;
+adaptive did not pass its regret requirement and remains experimental. The ordinary
+exhaustive selector and tuned-AoS fallback remain unchanged.
+
 ## What is reusable
 
 The core UPM assembly contains no Particle types. It exposes four plugin boundaries:
@@ -59,8 +65,18 @@ The core UPM assembly contains no Particle types. It exposes four plugin boundar
 
 - `particle-integrate-v2`: AoS, SoA, and explicit eight-lane AoSoA8; batch 32/64/128/256.
 - `transform-export-v1`: AoS and SoA full matrix export; deliberately retained as a negative control.
+- `spatial-neighborhood-v1`: generated AoS/SoA radius-gather query workload.
+- `animation-state-v1`: generated AoS/SoA conditional state/phase/blend update.
 
-An assembly-level registration attribute and packaged Roslyn Source Generator create the runtime factory registry as direct constructor calls. The generator is AOT-safe and intentionally narrow: it removes hand-maintained registration without attempting to synthesize layouts or rewrite workload code.
+An assembly-level registration attribute and packaged Roslyn Source Generator create
+the runtime factory registry as direct constructor calls. The unreleased vNext
+generator emits production storage/codecs for explicitly annotated flat records,
+including packed AoSoA4/8/16 and a padded64 stride control. It still does not rewrite workload kernels, infer semantics, or claim a
+compiler optimization.
+
+Historical Unity allocation observations require the qualification in
+[the allocation measurement note](Docs/evidence/HISTORICAL_ALLOCATION_MEASUREMENT_LIMIT.md).
+New runs reject counters that fail real positive and empty controls.
 
 ## Frozen decision rule
 
@@ -76,10 +92,13 @@ The baseline is the fastest valid AoS batch, not a deliberately weak default. A 
 1. passes field-level parity and state-hash checks;
 2. allocates 0 managed bytes in resident, ingress, and export samples;
 3. improves amortized P95 by at least 10%;
-4. has a 95% non-parametric bootstrap confidence interval whose lower bound is above 0%; and
+4. has a 95% confidence interval whose lower bound is above 0%; and
 5. repeats those gates on an untouched seed and count holdout.
 
-An insignificant difference is recorded as `StatisticalTie` and selects AoS. A sub-threshold point estimate is `Inconclusive` and also selects AoS.
+Native schema 3 uses paired measurement blocks and a log-ratio bootstrap; published
+schema-2 artifacts retain their historical independent estimator. An interval that
+spans zero is `StatisticalTie`, a statistically slower candidate is `Regression`,
+and a positive but sub-threshold point estimate is `Inconclusive`. All select AoS.
 
 ## Repository layout
 
@@ -92,6 +111,7 @@ Packages/com.yanagisawa.data-layout-calibrator/
   SourceGenerators~/               generator source and Roslyn tests
 BenchmarkProject/                  standalone Release Player and evidence writer
 Tools/ResultRenderer/               fixed-result PNG/GIF renderer and tests
+Tools/EvidenceLab/                  planning and retained-artifact evidence verifier
 Docs/                              contracts, ADRs, fixed evidence, rendered assets
 ```
 
@@ -121,6 +141,13 @@ dotnet test Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Tes
 python -m unittest discover Tools/ResultRenderer/tests -v
 python Tools/ResultRenderer/render_results.py `
   Docs/evidence/il2cpp-release-calibration-suite.json Docs/assets
+
+python -m unittest discover Tools/EvidenceLab/tests -v
+python Tools/EvidenceLab/evidence_lab.py validate `
+  Docs/evidence/device-isa-workload-validation-manifest-v1.json
+python Tools/EvidenceLab/evidence_lab.py plan `
+  Docs/evidence/device-isa-workload-validation-manifest-v1.json `
+  --output work/device-validation-plan.json
 ```
 
 The build fails unless the Burst library contains all ParticleIntegrate and TransformExport job entrypoints. A successful run writes:
@@ -135,9 +162,13 @@ Heatmaps and GIFs read `calibration-suite.json`. They may format or filter it, b
 <details>
 <summary>Evaluation details, tradeoffs and supported scope</summary>
 
-## Measured results and scope
+## Published v0.3 historical gate
 
-The full roadmap gate is complete: 29/29 Unity EditMode tests, 4/4 generator tests, 3/3 renderer tests, Mono Release + Burst AOT, and IL2CPP Release + Burst AOT. Both workload plugins pass parity and zero-allocation gates in both Players.
+For `v0.3.0-preview.1`, the then-current release gate completed: 29/29 Unity
+EditMode tests, 4/4 generator tests, 3/3 renderer tests, Mono Release + Burst
+AOT, and IL2CPP Release + Burst AOT. Both workload plugins passed parity and
+zero-allocation gates in those published Players. This is historical evidence,
+not automatic validation of the unreleased vNext tree.
 
 The checked-in IL2CPP integration result is deliberately a short behavioral gate, not a universal hardware performance claim. On this run, ParticleIntegrate selected `AoSoA8-b128` with a 34.15% holdout amortized-P95 improvement; TransformExport retained `AoS-b256`, demonstrating the negative control. The immutable result SHA-256 is `85FAC20CDF81EBA674A3A736340CFCBEEB88EEF99CD1F5ECC776EE0215E53D78`.
 
@@ -157,6 +188,41 @@ same-device process replications, not a cross-hardware guarantee.
 See the [final validation evidence](Docs/VALIDATION_RESULTS_2026-09-02.md), [calibration contract](Docs/CALIBRATION_CONTRACT.md), and [fixed-result renderer contract](Tools/ResultRenderer/README.md).
 
 </details>
+
+## Unreleased vNext integration
+
+The `codex/vnext-05-integration` branch composes the v0.4 scientific foundation,
+advantage-envelope/adaptive decision engine, v0.5 generator/profile foundation,
+and v0.6 evidence-lab foundation. It freezes canonical candidate hashes and
+reuses the scientific paired-bootstrap draws in the envelope. Schema-3 profiles
+may reference a locked external envelope; neither the reference nor a renderer
+can replace `FinalDecision`.
+
+Deterministic integration checks currently pass 139/139 Unity EditMode tests,
+11/11 generator tests, 25/25 renderer tests, and 22/22 Evidence Lab tests. The
+planning-only evidence manifest validates with 0 executable requests and 18
+blocked cells, exactly because no device, Player artifact, or identity
+attestation is configured.
+
+The merged tree now passes non-Development Windows x64 Mono and IL2CPP builds
+with Burst AOT entrypoint verification. Tiny opt-in Players on both backends
+passed generated-storage/profile reachability, parity, allocation, and schema
+gates; their timings are not performance evidence.
+
+A separate [preregistered vNext formal run set](Docs/evidence/vnext-formal-il2cpp-2026-09-02/README.md)
+retains five full-size IL2CPP Release/Burst AOT Player launches. The fixed primary
+run measured an 83.57% lower ParticleIntegrate holdout amortized P95 than its
+tuned AoS baseline, with a per-Player 95% paired-block CI of [83.14%, 84.57%].
+Across all five launches, the reduction ranged from 82.96% to 83.63% and
+TransformExport retained tuned AoS in 5/5 runs. This is same-device process
+evidence, not a hardware-counter, causal, cross-ISA, or cross-device claim.
+
+This branch remains an unreleased foundation at package version
+`0.3.0-preview.1`. Roadmap completion still requires the expanded candidate and
+causal-control matrix, production generator adoption, formal envelope/adaptive
+measurements, a real counter provider, and multi-device/workload evidence. See the
+[integration ADR](Docs/adr/0006-vnext-integration-protocol.md) and
+[roadmap status](Docs/ROADMAP_V0.4_TO_V0.6.md).
 
 ## Citation, authorship, and license
 

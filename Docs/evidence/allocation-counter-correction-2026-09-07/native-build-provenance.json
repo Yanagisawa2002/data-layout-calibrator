@@ -1,0 +1,8 @@
+{
+  "SourceSHA256": "5633182D87B122204CE663BA4FF461E8CDD95F5B4AA44E2AF3401A162D5E0CEB",
+  "BinarySHA256": "1C4D75D854AB8B298194232F3DEF86C6E8C031579AD67FCEBE176051ACBF4234",
+  "CompilerIdentityLog": "C:\\Users\\EdwinLiu\\Downloads\\opt-next-layout-generator\\Artifacts\\allocation-native-build\\build.log",
+  "CompilerIdentityLogSHA256": "14C66525AB7250D628CC6BB14F208F290AAF46FC89BB05B861B99D7061868F46",
+  "Flags": "/LD /O2 /W4 /WX /EHsc /std:c++17 /MT, Windows x64",
+  "RuntimeABI": "Loaded mono-2.0-bdwgc.dll or GameAssembly.dll exports only; no runtime replacement"
+}

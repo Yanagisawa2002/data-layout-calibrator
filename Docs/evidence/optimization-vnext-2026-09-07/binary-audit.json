@@ -1,0 +1,292 @@
+{
+  "status": "passed",
+  "sourceCommit": "4ffa47271306e985d9cade5d77489bd172c0360f",
+  "binaryCount": 71,
+  "buildIdentitySha256": "189C5A180C3D982A44243B4629F7998BFF08B646CC1694EBC89D294F2851B2DC",
+  "binaries": [
+    {
+      "path": "/baselib.dll",
+      "sha256": "EE6BE50ED14D63C554260C4F2344E672B1F15341B212ED9F310B134F0C6C2128"
+    },
+    {
+      "path": "/D3D12/D3D12Core.dll",
+      "sha256": "625BD40005B1C3708695D5256ECF230D278E6B8EDBA5A88AF70F3D91324F3052"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Mono.Security.dll",
+      "sha256": "C2B0426EA11F03582448048FFC9B93F0863BD3AD07988EFE1EF3EDC209578119"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/mscorlib.dll",
+      "sha256": "32364482CC3D5E4321E53E938D320943DB701242DB62918F030FE3C98124DD5D"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.Configuration.dll",
+      "sha256": "1B2FBC0CEE6D60B9A6C154D71A71EC94F01488BDD4BD2F9CDF5B0C0A7394A9FE"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.Core.dll",
+      "sha256": "89579C7ACF58A69A99B4D350F258B6EB46908358206338F742E736742C65EEEA"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.dll",
+      "sha256": "1225E73E74BAE4090CD1A9B54CFC5050EAF399AC322C1FE135A1F2780547585A"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.Runtime.CompilerServices.Unsafe.dll",
+      "sha256": "47DB6E48D6A7CB97A3156E14800196636AA9123C9C94FB99D6919A2FE709F538"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.Xml.dll",
+      "sha256": "238DDEC2FA97A99FD14179EDE508DBCCAF2C9391F87B7FF7CEF471BD90713F4D"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Unity.Burst.dll",
+      "sha256": "B73651A007651684735EA14814D1A90DCD380E2AC7F13BDBA37CB7818C811065"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Unity.Burst.Unsafe.dll",
+      "sha256": "F676D0A2487518BA3044D7F626F9D0F0E4B79E978474A15692042CCC3113DE28"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Unity.Collections.dll",
+      "sha256": "8D891611E548941A2D9A026229571E20A615901242F5013E60E3E85B8A0A162C"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Unity.Collections.LowLevel.ILSupport.dll",
+      "sha256": "5571FBC636BC33CB7AFC660B29ACB0DCE331FF13A0574CA947FE990D20E2E22B"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Unity.Scripting.dll",
+      "sha256": "92387407F2B9DCD48A497BE836C3DE025CADA17EA8EC1758AB58A7A1AAA41C02"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AccessibilityModule.dll",
+      "sha256": "B14BEE8DFABFDDE1248711F967E519FD4CEF9B492B30699DA2CDA2E4769FCF97"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AdaptivePerformanceModule.dll",
+      "sha256": "680BDCB69C1B4E1357FE2E1DB4DBBC7263A3A675DBAE2B7DF7379E9ADA9D2937"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AIModule.dll",
+      "sha256": "5300AF5E968C42373D65ADF1AE20F375E6FBE6EFFBD21CD5AC06A12B1A5833DF"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AndroidJNIModule.dll",
+      "sha256": "368BC7E53C7F981C404AE630040858A1DDF6E280EDB3EE76B1784CAFE0E3EAC7"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AnimationModule.dll",
+      "sha256": "7957129C093E56968A0698DC806BB4D304638DEB0675F6B53624C33D0CD1484C"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AssetBundleModule.dll",
+      "sha256": "64F009E14A55D4EEB10BBCE04808CBD1FE8A2BFA3240C7E7CD02950466275FFD"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.AudioModule.dll",
+      "sha256": "0B3A132782C771B847A9DE06E6338DD971DD2765905246844EE91BAEC7F809F3"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.ContentLoadModule.dll",
+      "sha256": "BDC2A1607C2ADCAD50A6FAFCE37A1C10A9711118280D2A1E2D0303178B0E420D"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.CoreModule.dll",
+      "sha256": "FE204991927100B26B3AFA12D3CB43B2C81C886284904EF707AE64E1E5684E2D"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.DirectorModule.dll",
+      "sha256": "F58E56D18552D3CABD829719F897A99C84D6354B5338E66A4F77016EA27753C7"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.dll",
+      "sha256": "7D136217E6B77F5F78ADCFC36CE7EB932D3D0949ACFEC28583394BCFEF7F4E8A"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.GridModule.dll",
+      "sha256": "40267B638AA3CB04FCA0928E98AAFA259168356D5D72A43DA1358E555D2EC426"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.HierarchyCoreModule.dll",
+      "sha256": "59FAE4A1DFD92146754036D8A68F6F581EB507F5DF4B8657258AC3592DFAA1B8"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.IMGUIModule.dll",
+      "sha256": "876CE0A5B9B73D2DA318A1630BB1FB397419B30FF2A0BB60683F14FE292CEFB7"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputForUIModule.dll",
+      "sha256": "30D8A4B45DD8327FC6FD91AC7356E6E887A342E1615E8B3B9CBF9923EE8F0C57"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputLegacyModule.dll",
+      "sha256": "23FED81F6B821D02066448CCD9C9EA061CB88D84E21A222A6FFD2796E8637779"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.InputModule.dll",
+      "sha256": "1CB6F4BF17DDF75F15FD7A4C7D5AF899B021F2A0DCDC2EF2FB07BE7DC1A90920"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.JSONSerializeModule.dll",
+      "sha256": "088661B4554812512EAA1FCE4851FAFE9DE728EEA30C532A8290F346CB8E1C21"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.MarshallingModule.dll",
+      "sha256": "7E0CDF2C1AC7EF3FF95AD421AF67A8D248E20CC4BF38A4C9754DE6D883283425"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.MathematicsModule.dll",
+      "sha256": "73F03F3EA0C00B08BFCED6180C7D765698FF3996EC220FBCD1C65B14B586FAF7"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.ParticleSystemModule.dll",
+      "sha256": "34BFA549CCA66B681B754518B0290DF8091A222D01A36CA8A9ABCDC1438A93E1"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.Physics2DModule.dll",
+      "sha256": "F43C49D79F3AC0F5F6CF24F7B61E76F4A6AD206E4D85078BA06872E4FF44E840"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PhysicsCore2DModule.dll",
+      "sha256": "64222C966B3374AD307D6CBBB5A307C2E1D83FE2FF13E83235A7C028155F8B26"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PhysicsModule.dll",
+      "sha256": "382C172974ABBC08F47EC01B8387956EAA73805E5C0F75034191975D41E8528D"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.PropertiesModule.dll",
+      "sha256": "071A7B21566719CCF6B15CD263B781D323F2377C7A5FD8F8D9B7A5CBB16533F5"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.ScriptingModule.dll",
+      "sha256": "C13924001950256D70395F13E15CA0A50E77E011501A4FAB49C7CE52E0E78039"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SharedInternalsModule.dll",
+      "sha256": "19A19B699B0C48F38AB4EDCB1A244870C33BFE50BBF8E9E1185E289CB60AAC00"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.SubsystemsModule.dll",
+      "sha256": "A245B845473121DACFAF8EAE420FEEDF72976440A0FE6399258DE06515E0F507"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TerrainModule.dll",
+      "sha256": "1BCE0D440982E3D2CE2DDB18E78F5CDB987E3D85EF8B006FD51C5A29207C0437"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TextCoreFontEngineModule.dll",
+      "sha256": "7D1568AA0AE90C27A065B110C3D5147E9A8CA052F238AE3D2C31D2165380C247"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TextCoreTextEngineModule.dll",
+      "sha256": "34147D6E43A206DB65C7F31FAE749B3C469D3F57F499C33CBE0F6D588B138844"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TextRenderingModule.dll",
+      "sha256": "C8CC4E1B89C0615EB596FC40A4BAAA273B1DF37363A778FF44F7F80729565093"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.TilemapModule.dll",
+      "sha256": "80FC691386D87DE37513F526200A0FAFE36B2D900D8153A5CC978ED565C95185"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIElementsModule.dll",
+      "sha256": "E9C87047D6C71C81BE92464C515956DCA27AA65A2DE8B54D4E256605D0A8D6BC"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UIModule.dll",
+      "sha256": "196001C3177BDD94D7348AE004CB486DDF350FDF39E3C1B861DBD8578A3D99CD"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityAnalyticsCommonModule.dll",
+      "sha256": "702DC52196F90CD7AC277BE9D343C96B756ADA60733958F54B191D08F2B3E927"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityAnalyticsModule.dll",
+      "sha256": "8677C678DD62ADDEE9227207BA3AAAC0BE1D71A0F81580C1FBFB0077F82AB4C6"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityConsentModule.dll",
+      "sha256": "E66D6351332A19BFB50DAEF85EF1BD870013D45CF2B52CF8203A63B636BEDD4A"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.UnityWebRequestModule.dll",
+      "sha256": "3C028807125E5F6D41F58F13ABD2E5AFFAD22E61E72338EE078E061F5CA04759"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VFXModule.dll",
+      "sha256": "1D12CF376C150B3167A300D7614788A79480806C634B152BDA6BCEE4F0C17FFC"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.VideoModule.dll",
+      "sha256": "FDCC5A0FD1C4E0B43B979FEA191FC190D3726F1D38C3C94A20D5D984A9884483"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/UnityEngine.XRModule.dll",
+      "sha256": "F11CB075D4C6E1255C5957ABC66B75CF3617768B909596DC78A9F2D15C598C7C"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Yanagisawa.DataLayoutCalibrator.Benchmark.dll",
+      "sha256": "177F73E77F942CAF26BF35C5A1A3359D9360DE8268BE0854CD525FF50CFDD0CA"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Yanagisawa.DataLayoutCalibrator.dll",
+      "sha256": "545ACC1D42ACE6C63B452C1EA3DE0FA06B3F86C7033ADB444DF71E7AD35EA197"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.dll",
+      "sha256": "7D00544DD2AAF76A3DFB88E129785B210C335BFDA4063BD51754B3ECDAB9772A"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.dll",
+      "sha256": "9FE5A16B59E8E3AD6B4CFB9048984582CC5F1F6C004A0818C3F9D32F104575D3"
+    },
+    {
+      "path": "/DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame/Managed/Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.dll",
+      "sha256": "7D6EE8CF9DDB6D4537ADF29A2CA7253C791ABEA30E29CEBC98026253C26AD208"
+    },
+    {
+      "path": "/DataLayoutCalibrator_Data/il2cpp_data/Metadata/global-metadata.dat",
+      "sha256": "7BF14FCD2315EE1F630C9E47CF8144050C95ACB1C5A8D34856D3EC01BFAC7EB1"
+    },
+    {
+      "path": "/DataLayoutCalibrator_Data/il2cpp_data/Resources/mscorlib.dll-resources.dat",
+      "sha256": "C5BAA176A5B72CD545266340E42102D393A5E43D38C95796BC828918BB95277F"
+    },
+    {
+      "path": "/DataLayoutCalibrator_Data/Plugins/x86_64/DlcAllocationProfiler.dll",
+      "sha256": "1C4D75D854AB8B298194232F3DEF86C6E8C031579AD67FCEBE176051ACBF4234"
+    },
+    {
+      "path": "/DataLayoutCalibrator_Data/Plugins/x86_64/lib_burst_generated.dll",
+      "sha256": "1B7B01FA220ABC8001701D4025F9C85E77A8A29E3047C7145AB3F59C90500E1E"
+    },
+    {
+      "path": "/DataLayoutCalibrator.exe",
+      "sha256": "1B8448700944F099D1E11D6B28E2BCD151A59430BF4858C60596E66515FED6A7"
+    },
+    {
+      "path": "/dstorage.dll",
+      "sha256": "CAE65787F61514BEC6F012F44546E68B19E39D8854A9AB52AF813370D44B272A"
+    },
+    {
+      "path": "/dstoragecore.dll",
+      "sha256": "CF85B19A92A8276F8BACA0DB9BBCD60735BAD50768DEB303D310E84D5F4FDD11"
+    },
+    {
+      "path": "/GameAssembly.dll",
+      "sha256": "93DCA08409BFBE1251949CFD9A3B20443BE79D029593F0A4140F6B7003F35689"
+    },
+    {
+      "path": "/UnityCrashHandler64.exe",
+      "sha256": "D8CF67E4D979A4C8988582B327FBB0C15EF1D9CA31514F4DDD4563975F1CFDCA"
+    },
+    {
+      "path": "/UnityPlayer.dll",
+      "sha256": "7522C4FFF604D61DA3BA0EBE29897986D9D7980B4054FE13A9DBECE929B83070"
+    }
+  ]
+}

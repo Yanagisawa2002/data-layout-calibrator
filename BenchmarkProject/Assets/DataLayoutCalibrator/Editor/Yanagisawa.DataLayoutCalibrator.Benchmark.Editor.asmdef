@@ -2,7 +2,10 @@
   "name": "Yanagisawa.DataLayoutCalibrator.Benchmark.Editor",
   "rootNamespace": "Yanagisawa.DataLayoutCalibrator.Benchmark.Editor",
   "references": [
-    "Unity.Burst"
+    "Unity.Burst",
+    "Yanagisawa.DataLayoutCalibrator",
+    "Yanagisawa.DataLayoutCalibrator.Benchmark",
+    "Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate"
   ],
   "includePlatforms": [
     "Editor"

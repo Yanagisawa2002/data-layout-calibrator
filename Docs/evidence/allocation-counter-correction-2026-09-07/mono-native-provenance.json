@@ -1,0 +1,1320 @@
+{
+  "SourceCommit": "dd86f8579aba112430325f10308e50da0decf28a",
+  "SourceStatusBeforeBuild": [
+    " M BenchmarkProject/Assets/DataLayoutCalibrator/Generated/DataLayoutCalibrator.unity",
+    " M BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/GeneratedWorkloadValidation.cs",
+    " M BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/UnityAllocationRecorder.cs",
+    " M BenchmarkProject/ProjectSettings/ProjectSettings.asset",
+    " M Tools/Validation/Invoke-GeneratedWorkloadValidation.ps1",
+    "?? BenchmarkProject/Assets/Plugins.meta",
+    "?? BenchmarkProject/Assets/Plugins/",
+    "?? Tools/AllocationRecorder/"
+  ],
+  "Backend": "Mono",
+  "SourceFilesBeforeBuild": [
+    {
+      "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Editor/DataLayoutCalibratorBuild.cs",
+      "SHA256": "47D55D70C0417CA394F039639A1AB1D36A19B316576A5B7B2492CC201FBB7981"
+    },
+    {
+      "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Editor/Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.asmdef",
+      "SHA256": "C9E260CFE3BEFB368BEED1B342CDF38329538AE4E99A696080C5356FC8D878B0"
+    },
+    {
+      "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/BenchmarkConfiguration.cs",
+      "SHA256": "C53A838E525C7E9344597C1962CA71000B1E7F1250002AFECD4CE986EDF1204E"
+    },
+    {
+      "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/GeneratedWorkloadValidation.cs",
+      "SHA256": "23C1D91D476F56647309BFDBF214490C5FC0D454BBC67F0E304E83F3F219A1A4"
+    },
+    {
+      "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/LayoutBenchmarkRunner.cs",
+      "SHA256": "77D6FB079DA79A545E5BFDF06A13671E7E6FE9295BA6D37F9CCF3E088FFF14E1"
+    },
+    {
+      "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/RegisteredScenarioFactories.cs",
+      "SHA256": "899AFB78DD25067CBF9ACB07B428A6477595F25BB8EBD2673C5A304475F339FB"
+    },
+    {
+      "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/UnityAllocationRecorder.cs",
+      "SHA256": "AE4B03C3D00FDD5837820A889A0510BA332E95C01BD2FB1397D5137434887D76"
+    },
+    {
+      "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/V05GeneratedScaffoldAotProbe.cs",
+      "SHA256": "59058DF26AB791F67F8A6C88A0E1415E3BEC53A7028E0108DA56C8E7A7BE80A3"
+    },
+    {
+      "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/Yanagisawa.DataLayoutCalibrator.Benchmark.asmdef",
+      "SHA256": "6027C4937E86C2D6826AB619DB595FB5EB7E08013BE65DC66778F10F93E5BAA5"
+    },
+    {
+      "Path": "BenchmarkProject/Packages/manifest.json",
+      "SHA256": "472528F7245ABDCBF80E5A3EB63C17B967B94127DF108E2906CB7A233A1737E8"
+    },
+    {
+      "Path": "BenchmarkProject/Packages/packages-lock.json",
+      "SHA256": "D84966E9A1CDF33A4372A81244491F5DE6D4543452E50EC0301096A699A09314"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/AudioManager.asset",
+      "SHA256": "2E46C3310C149875BED869AA2D8CC26F01E9B052A6220DDD75A71C4C373444E4"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/BurstAotSettings_StandaloneWindows.json",
+      "SHA256": "16FE1E838437D11EB0799C9ED129148D40BF84A2B4EC174224007083504FB297"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/ClusterInputManager.asset",
+      "SHA256": "06A192320121E445DCFF1AE8DDAD2A948FF671CA134603C043D9F4E920427EA9"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/DynamicsManager.asset",
+      "SHA256": "14449A4AF3F7CC685D73268538844D1D8794C4A48592E41061C37C11FF435546"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/EditorBuildSettings.asset",
+      "SHA256": "65F012CB8F5697059ABD088F540367A11927A57F0D4ACFFDE2B9E1ED68EB4966"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/EditorSettings.asset",
+      "SHA256": "C84B8372B7866347B98666A94E45414F23C35C5E5716AE7C1E62E80AF20DF444"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/GraphicsSettings.asset",
+      "SHA256": "E095AFB4234E89368044D564B29D2D6887DB2BD65B3F6FAFF1A52677400F3AA6"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/InputManager.asset",
+      "SHA256": "14AFACFF3668DA089908B16C02642E0B388E3CA7831BAD469AC6AEBA18F7263E"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/MemorySettings.asset",
+      "SHA256": "3D4AA5BB13D3A82647E224989CBEC1031EC59488D549C71F7A2B8C556A8F08AB"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/MultiplayerManager.asset",
+      "SHA256": "83DED116CA3ED35A6ACAC9B0FED830F04DFE5C008C185BE50B1C132C88AEA505"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/NavMeshAreas.asset",
+      "SHA256": "75DA067E99628DC5C30D90492887CDAFF68171E7B33D1217A1311B182AA47B50"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/Physics2DSettings.asset",
+      "SHA256": "65B22F8CC5FD6FCC4636100739C9A1A7F7CE60202E3A1B17C919E40D740D7A79"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/PhysicsCoreProjectSettings2D.asset",
+      "SHA256": "6356FF823CF80282A698FE03796EA05F52EA16D948027399A638082E07469558"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/PresetManager.asset",
+      "SHA256": "6BA879310E2BE2E5BA18702578CDA93B26B030ECD88E883FEF22AB456A9F9697"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/ProjectSettings.asset",
+      "SHA256": "2FDE0D1503A2331823535F8D5EFBBD124895CDF69822BD3D88441AF34D87C6E5"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/ProjectVersion.txt",
+      "SHA256": "85A51E827FD1E8385C3F727516BAFC8B13CE9D80D43BA397D3016D135BEE1ABC"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/QualitySettings.asset",
+      "SHA256": "3FFEFFAE0C0D6984A8DB7774C8F2C7CDC46F0E8B3DC6160190291276BCC3F02E"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/SceneTemplateSettings.json",
+      "SHA256": "E0CBB98BD0AA9449840CE663A4B81751AB0828F5D8D2BD37923644FEE7095E62"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/TagManager.asset",
+      "SHA256": "BD51BB00D350E430A891B9ADFC3CA95867334CF0642409E9DE53E18378449535"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/TimeManager.asset",
+      "SHA256": "04C070E2F9716503B8014933B8603D21EDBF3784AFB00E32A2633A0ECEE075F2"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/UnityConnectSettings.asset",
+      "SHA256": "84B91BD844E9632367405D0445062325E7FB80A18067A39930A1B874060707ED"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/VFXManager.asset",
+      "SHA256": "B61A694C821740D94F56270892B0C36C16DCE80AAA0FEC83FE1E17C41A385B20"
+    },
+    {
+      "Path": "BenchmarkProject/ProjectSettings/VersionControlSettings.asset",
+      "SHA256": "3FE15395F872B9CFE908A111A1E87BE2055C6EE367E2876E7E83A408C2B89D57"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/AdaptiveElimination.cs",
+      "SHA256": "242CB48A68490FBFC51933E60674C257DB37BE75E83B63C4BB0A3977A081DDAA"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/AdvantageEnvelopeEngine.cs",
+      "SHA256": "708D09B1CF76FD9C7187EB8AF3163A166E19BF700B00F5BB7D87058A0C3619D4"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/AdvantageEnvelopeModels.cs",
+      "SHA256": "9268DE2350C9E578DC4A5CAA12612EB5FFFCDACE9EE1CE85B9DA73D5DC43E81F"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/BenchmarkModels.cs",
+      "SHA256": "9D580E297C12E740D86E6227D4CFB3C64138946ADEF233C02C543FCC6FDD9BD4"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/BenchmarkStatistics.cs",
+      "SHA256": "9F28544B777B69793B2B7EEA4E8D8C731C968E58E81711FAFABCE60E7059F84D"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CalibrationProfileFingerprintBuilder.cs",
+      "SHA256": "C46D6BD1AC8781ACC5D6A6224E327671C216432085E7960910A9A31CE9857AD3"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CalibrationProfileMigration.cs",
+      "SHA256": "5A0D04FFC1B8A997CF1582FF7B074282CFB739FEE72DC59DB57B6D2DBBBE9CA7"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CalibrationProtocols.cs",
+      "SHA256": "2B56B45DD220134855505AE0187F2A035A32DFDFD5B9CA4A597B75FD92CFB5C8"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CandidateDefinitionProtocol.cs",
+      "SHA256": "8979FD75BABAB4D1098091A903C80857A431BB918F7B45C023D392211BAB5A5F"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CandidatePolicies.cs",
+      "SHA256": "653E695E0B10D80BFCE687F7EDC536C61F447E854062FF21DBEDB3471606659E"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CounterEvidence.cs",
+      "SHA256": "3D9DB8E75470F308E8F25566E554351381238EA94F4D8418E99173D87E16C84C"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/DecisionEvidenceStatistics.cs",
+      "SHA256": "27E335F63EFCC2D3FD91F4BBA98290C92EFEA7C56BC3B7E72F861AEF3F484BE4"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/DeploymentProfileModels.cs",
+      "SHA256": "93EFB2D88EAE9C95AC47BF8CEAE8C1FC771BE2E8B912CDB9034CD824B876F758"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/DeploymentProfileResolver.cs",
+      "SHA256": "01747F0B77AD201CF843428D45B073DA377010054C24AD9BF5B3EFF01C5F1475"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/FrozenDeploymentProfileCodec.cs",
+      "SHA256": "BAE652EF87E791314B47BEB4B96C82C5231D16514B3F147A3109FBA573DA787B"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/FrozenDeploymentProfileStore.cs",
+      "SHA256": "47EF0CC0973AF485CF7358E14B9A4EB0A335ADE0E4B27E753E3FE6A31AB9617F"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/GeneratedDataLayoutAttributes.cs",
+      "SHA256": "2700DFB30FFD5A5E8AED4114366F112420760DB2066D73747CED74564550259B"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/LayoutKind.cs",
+      "SHA256": "D1BDAEA797C5F5B2B6018965312815B014853B33D391EDDD84FB25662461DFD6"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/LayoutSelection.cs",
+      "SHA256": "737D80D7E1328EE9679099D4B391342B889DF7AEB655A15DC3C8B5A55A36F3FA"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/MeasurementDesign.cs",
+      "SHA256": "DFA5E9A3B13BB3D807FE7812B631B2FDB60A47F74E8000A152BB549ADD3A882C"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/RegisterCalibrationScenarioFactoryAttribute.cs",
+      "SHA256": "EFE4AAB84B22A130FE7E6E8A444FC3FA9C3BE2E626ADC7D3132769E40A4E27A5"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ScenarioCalibrationEngine.cs",
+      "SHA256": "978C05084F5116DE36F462DB8EA3898F4614211A4C9898E37B2354F62E573388"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ScientificAdvantageEnvelopeAdapter.cs",
+      "SHA256": "6786A8B17F72600C94C8C5E36B5E76C37D2C5E3C34BFA51D9CC0575FC37060AB"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/Yanagisawa.DataLayoutCalibrator.asmdef",
+      "SHA256": "C00149F36EE90D72460F86D3F8948C84B426CC75172BBE2ACA938FAEDDA2EEA6"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleBoundaryJobs.cs",
+      "SHA256": "BDAD3863E3B1E4C3C689D35A0003EE9EB40A79D1917F89F65DB58026FE3FC848"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleDataSet.cs",
+      "SHA256": "3562B668AD0CA61C148ACE33F4BBED66A9D971E1F9D7FE564D422C2541B23ACD"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleIntegrateScenario.cs",
+      "SHA256": "B4263A36FC3B21DB32300687A378BAC7C48F13D335EA828E22466B048B3CA09B"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleJobs.cs",
+      "SHA256": "2A3AE989F6F87E68BED4F8CCBA734371C7262E52B1423E750422569C0BE81A53"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleLayoutDomain.cs",
+      "SHA256": "A88C4ED504FEDCD73B0C4FC50EEB960D61A833DB0E4AB210927D1AB366AC88F5"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleRecord.cs",
+      "SHA256": "3FBBAF511E44AD43D00885AED467E6ECB642DBE7F464E3FB049E7A7D0FBF0903"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleStateValidation.cs",
+      "SHA256": "8EEFCB9A9957AE903AFA98BAABE1CBC0EC822061ED0CDAF2651B25A5E1979188"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleStorages.cs",
+      "SHA256": "3B719193DA46011B70F934980AB5E3549FB99FA3C8886346B8B552FD1AD26527"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.asmdef",
+      "SHA256": "A889A75A36E2C909C755EA9EE6CD7743C5D87A56B76E2B489E14895B56D3D040"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/GeneratedParticleStorageScaffoldTests.cs",
+      "SHA256": "63CCF37E2B9186FAE5248E19873970C97A42DA80E9A042674E4FDA8F59A8B486"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/GeneratedProductionStorageTests.cs",
+      "SHA256": "C91B76E9386665E229B691860539948500221B29F23A4EFA46C39B395E73213E"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/ParticleDataSetTests.cs",
+      "SHA256": "E766A5C53D0A3AE13D25C9863559998106830EC153C9A48C8FA702E9F556D2D8"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/ParticleIntegrateScenarioTests.cs",
+      "SHA256": "E952DDEEB3390299ED1F2D1E9BEE15E7A1BBD4D54EF41E9C6A888AD0C1FEDE41"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/ParticleLayoutParityTests.cs",
+      "SHA256": "978497A154F3719785640A9C405F97C508741F2228337F897F46E3A0224C3F00"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.Editor.asmdef",
+      "SHA256": "F12752E68ECE8E19938427B40F7F5478E359DE5C6665B62E21674A568936E673"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportDataSet.cs",
+      "SHA256": "2E52037713DBBDF859624DE6308FB0B91D0A5207CA12C63716675CA411CD750B"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportJobs.cs",
+      "SHA256": "8392CA5B1CC748FABF7E79B4011FF113DAE065A912042C5E26DC34D13C5CF0C8"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportRecords.cs",
+      "SHA256": "063D795807AFE68729663FC7F6CAB7F7AB22619E581AB58DCDBBD251AB0BEFB6"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportScenario.cs",
+      "SHA256": "2CAADF6A903C4A8EFEC02784E4E29F613B37BD90DE16DD9D0524A3758167B436"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportValidation.cs",
+      "SHA256": "C2C306FB701D80E5152E09E9C51DCA00054123EB01BFE3A85EC61E1E89CAB6E1"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.asmdef",
+      "SHA256": "6628FA4D33145ED3981880129326B56CB38FCB3B38600CEE7BA3EF6FFD096247"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Tests/Editor/GeneratedTransformStorageScaffoldTests.cs",
+      "SHA256": "722C0D3B7F6572853BFFF9D8AD7989C58F25C9E1A5222D0CA3C09B587B402F2F"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Tests/Editor/TransformExportScenarioTests.cs",
+      "SHA256": "AD5FC14263F9E300109C6AB4058FEC0E5C7E12A51921572AA7EFE0DCCF22144C"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Tests/Editor/Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.Editor.asmdef",
+      "SHA256": "AA6F2AF5D11B05E3C4C50A29812FE7AB53D70CF13D45527DCEE20AC235093115"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators/Yanagisawa.DataLayoutCalibrator.SourceGenerator.dll",
+      "SHA256": "A35E8BFADC2754C5C039668569880968523E36E264AFAE1F0C693DC222DB5187"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/DataLayoutScaffoldGenerator.cs",
+      "SHA256": "92E334596A41FCDDC3DDACC39A63B26ACBF506A083E0C055FD45C82A55BABD09"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/ProductionStorageEmitter.cs",
+      "SHA256": "0EEBB00471592D61335920888DF3BCACF333162F89D3556B6353A073ECF566FA"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/ScenarioRegistryGenerator.cs",
+      "SHA256": "BACC463A8ED4BCB4FB6407250CB901168507E2E007CB4D3BD4AEC52EC2C7B890"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Tests/DataLayoutScaffoldGeneratorTests.cs",
+      "SHA256": "A9BDF544AB63F0B6F7DCCFE09BAFA01EC2412574CE3A9EC6EEAB869EF5932424"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Tests/ScenarioRegistryGeneratorTests.cs",
+      "SHA256": "A57BFD8D9A71C92119878063A07F23896AD9B5BA56A61B973508F7F1771EBB06"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/AdvantageEnvelopeDecisionTests.cs",
+      "SHA256": "5A9687FD645F4E3C41B0BD68B378E6FA94F69BD8983F04743EC75D7B9AA87AD5"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/BenchmarkStatisticsAndSelectionTests.cs",
+      "SHA256": "FBEA37AC91FD82730D4485552358A5BC4CB96C3C6A75E6E8961E5D45B29A0542"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/CounterEvidenceTests.cs",
+      "SHA256": "01BD676407BFE7C255E2F5E30AEDA15B83FF4879A898A538D58D4DB9E9722967"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/DeploymentProfileTests.cs",
+      "SHA256": "898786597C7ACBFF7D4976C53077B5EFE6B92053C3055ED4F7F14D1FEAB7EA25"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/ScientificCoreV04Tests.cs",
+      "SHA256": "7ED7B982D33A834DDBD71825108A2732E832D98526B0559EDB72814F3C69A729"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/VNextIntegrationProtocolTests.cs",
+      "SHA256": "426713777AB42A73B3BB1A2FBF80BFAA5E9454D216A86571088172F026B10933"
+    },
+    {
+      "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/Yanagisawa.DataLayoutCalibrator.Tests.Editor.asmdef",
+      "SHA256": "7A5D4E1EADBAADD80A68CC079398FB74D7A0D46E470D4F63B79FF71BF3738904"
+    }
+  ],
+  "CSharpCompilerHashes": [
+    {
+      "Path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.5.3f1\\Editor\\Data\\DotNetSdk\\sdk\\8.0.318\\Roslyn\\bincore\\csc.dll",
+      "SHA256": "C60B9AB07F8462B53BB4EAA0072F4D53DCFFAB421AF654CF302B111979E25371"
+    }
+  ],
+  "UnityEditor": "C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Unity.exe",
+  "UnityEditorSHA256": "5E54F3A9953179419DDF8AF860C3CCDCBB6ADA45276FA9DF06FDAAAA1124A118",
+  "PlayerProcessId": 29700,
+  "StartedUtc": "2026-09-07T06:11:16.1705735Z",
+  "CompletedUtc": "2026-09-07T06:11:19.1045775Z",
+  "ExitCode": 0,
+  "BinaryHashes": [
+    {
+      "Path": "DataLayoutCalibrator.exe",
+      "SHA256": "5AE0C84993C6BFF7D0F03166CAFD148CDEC61F67EC85B5D97600E04B2ABB26E4"
+    },
+    {
+      "Path": "dstorage.dll",
+      "SHA256": "CAE65787F61514BEC6F012F44546E68B19E39D8854A9AB52AF813370D44B272A"
+    },
+    {
+      "Path": "dstoragecore.dll",
+      "SHA256": "CF85B19A92A8276F8BACA0DB9BBCD60735BAD50768DEB303D310E84D5F4FDD11"
+    },
+    {
+      "Path": "UnityCrashHandler64.exe",
+      "SHA256": "F2EBCBC9DE1031DCA72A53CCCB768923384E96F26110FC6812B12682D6A159C9"
+    },
+    {
+      "Path": "UnityPlayer.dll",
+      "SHA256": "943E879C113F50F1417E5766BF6649AFC253D99CBC27BB0D815B8369A22A702C"
+    },
+    {
+      "Path": "D3D12\\D3D12Core.dll",
+      "SHA256": "625BD40005B1C3708695D5256ECF230D278E6B8EDBA5A88AF70F3D91324F3052"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\Mono.Security.dll",
+      "SHA256": "1849437C1D2FE7698C0FDE2A9A6AAD9A864372A373B7C1D887DA902A36965B36"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\mscorlib.dll",
+      "SHA256": "F7698BD46AF58D3EE9DAC59A286CFEDFD28E51F71C0FE3940671A3CCC7AF5711"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\netstandard.dll",
+      "SHA256": "6AE62E082DC494A2433984177F60CA4DB5FAE69B1F360A8B33754172B310B8C5"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Buffers.dll",
+      "SHA256": "762F8FDBE975E05B76BE5FE996C53CE7C75E4A2830F2F50B02A5948EF6BA0AEB"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Collections.Immutable.dll",
+      "SHA256": "5B1B1C83BA3D135C2FDFE425842FBE9C7432878B7E468623ACB554C69B4C130F"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.ComponentModel.Composition.dll",
+      "SHA256": "335D76D10AE5B80D1FAAE4833937B9166551CCC9E79EE8262D2DA4D58843F79D"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Configuration.dll",
+      "SHA256": "D7139DD6B622233D316AAC733B392B9C1A545375804F62685F57F9D36F1C7AC2"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Core.dll",
+      "SHA256": "A4637C44A11EA827D686313CFCA3F5191225D2A96F7EAF0F10AA32DE446380D2"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Data.DataSetExtensions.dll",
+      "SHA256": "80432A96154F8D2935B2F1C9E61B2EE6109FD6234E281327B3B297451C8931BA"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Data.dll",
+      "SHA256": "AB47D362CFF6F6E665CADBC8C6C81F9FA3612F23483A44D08B339347AC99F116"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.dll",
+      "SHA256": "D26CADA0FC3DCAE061F0FA421DF15A082CB35CCF81CCAEEBC8B0E2D2E6877099"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Drawing.dll",
+      "SHA256": "3C3586BA170C1788A8D3A4E419EB1F50F092070F4D81E90238B2FE6C5405CF2C"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.EnterpriseServices.dll",
+      "SHA256": "00595C8EEA345FE0E47DA702100E460AAAF8F14D27A24950B71D926CBF1201C4"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.IO.Compression.dll",
+      "SHA256": "A2803C059BD49C7FE520673F7E2B06657BB0419B253A5267E3F1DA14B357DD5A"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.IO.Compression.FileSystem.dll",
+      "SHA256": "F45CA89827639A880DCBEAB1917AF99A5BD18AEC4433FBCB2D7774CCF9FE7121"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Memory.dll",
+      "SHA256": "C4F030A2CBA7DA7CDCF493257C24560E203D355904AEE490D645A935842F834A"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Net.Http.dll",
+      "SHA256": "128B31FEC424C70356952314ABFF2F6B1408F64B7613D2AE4BDE5E84C2F8AC03"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Numerics.dll",
+      "SHA256": "B968DC8852985029FD5DD08A1A9C3A6B8750EA4470CD677A5051C33FC5A08639"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Reflection.Metadata.dll",
+      "SHA256": "AFCFD6C166FE0D59F45CC6363082806F6A7EA8CEED9DC6C75EEC9FD79CCB5717"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Runtime.CompilerServices.Unsafe.dll",
+      "SHA256": "FD67ABC4C4AF10AFFBCD42FD68A2A7BC361B26714AFE6965D4D0D139459D8297"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Runtime.dll",
+      "SHA256": "E0A7334B7BA419AAAB6BD3BB6992D693E689341A9178172C9BF99C2AA6A085BD"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Runtime.Serialization.dll",
+      "SHA256": "685123ACDBB6AC313E503E89F4831FED096BE838CCB000B85B33EE903562807F"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Security.dll",
+      "SHA256": "02D51B98DC8C877124FEA386C9FBF7264790AAE381AB15577EB0E2D082D1BCC4"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.ServiceModel.Internals.dll",
+      "SHA256": "077333ADC8BF20EB40E94D1909DB2D07A16925A9192B69064F34EAF128804C8B"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Transactions.dll",
+      "SHA256": "6557E5029469211193CCEC80DD4D3AD090F5EB87D80F5D5341D77A6D3506B64B"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Xml.dll",
+      "SHA256": "32129A7D847A5EFEACEE6BD4B0D6BBFFC8923551C5446A8C216D8EF1191B1DE1"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\System.Xml.Linq.dll",
+      "SHA256": "FD300E794B9CCD85D95BBAB54E282DA1333FAA20A9209457944E831C27452B00"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\Unity.Burst.dll",
+      "SHA256": "D766480507550D6154F2DC11DBAF5BBA3963271D86E3EA8519110CD6B0116D41"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\Unity.Burst.Unsafe.dll",
+      "SHA256": "9D9C1FF52411DECBEE5D9F0D1CD61EBEAA222077AA77A52101EA3DEBAFAE98E2"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\Unity.Collections.dll",
+      "SHA256": "A7C6353D97239B3C4A0BD922F2EE9AAC168E7E0C516360511B81865B54E307D0"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\Unity.Collections.LowLevel.ILSupport.dll",
+      "SHA256": "FF50383F807F9692E4913B97E47D86FEFCB8FAA33D6D48CD3E3FD6FC7FFB448D"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\Unity.Mathematics.dll",
+      "SHA256": "B38EC19C23D981EF07B524D8C9DB8AFE507C6E4B5818CBBBAA27BDE5B53B4161"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\Unity.Multiplayer.Center.Common.dll",
+      "SHA256": "398A5E8B8329E0C14C1A46776AAF91BA9F2CC27AFCF2BBCA64A78D333F39C067"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\Unity.Scripting.dll",
+      "SHA256": "F39C575C54E8AE52239D9FBA9D691B3256B641D11C6A8315E30B3EC7EEFC7C9E"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.AccessibilityModule.dll",
+      "SHA256": "E8C0BE5C4B1EBD640DEBDE13D820F31E45E4B6341C3C0BB0EC9CC8E4CFC28E66"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.AdaptivePerformanceModule.dll",
+      "SHA256": "D022BF9CA14904649F159C7773CFB02D0CF26C7F0EE869E94ABB4B3C5CFAC274"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.AIModule.dll",
+      "SHA256": "D869567D24E78E7A085AD362674E4EA69DA0A19372E239836ACC17CE6E5C21D6"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.AMDModule.dll",
+      "SHA256": "69090676FB2DD645DA5B452B58036A520B3461B7496A1C1CF42711CC3294533E"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.AndroidJNIModule.dll",
+      "SHA256": "7EA63F649A453AC85A8E78DABB0886C8EB72D75B6CEDBB483740353E47F8D3FB"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.AnimationModule.dll",
+      "SHA256": "6DC36EC2AB36F0B904A0AE9A2CD2A7DACCA0378C45C9AAD118BEE186549264BD"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.ARModule.dll",
+      "SHA256": "FA23C7A6C0DADEC4FAAFC610C0B8C1E9DC18AAEFBD34387D9B3E96C2337E896D"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.AssetBundleModule.dll",
+      "SHA256": "B7ECBAFD4DD671EA94FA6158868985ABC4CADF85D94D7C141D7DEF1F6851CFAE"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.AudioModule.dll",
+      "SHA256": "0406AB50C380BEA47147ECD0955C06B6F043509F66F7278DC88F62E1D3AD0024"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.ClothModule.dll",
+      "SHA256": "1ED8034ACE8AF7DDFE991005F16EE516B22E38DB981F126A24BC6F24E0614966"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.ClusterInputModule.dll",
+      "SHA256": "3CEF44518DF8AED7274B751552B2F2A519A9B0EE2E8EE9F23934A62C25608EF3"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.ClusterRendererModule.dll",
+      "SHA256": "05491D89C27D3BD19DD38DD7C3300243542898FB438C2B81980F6B159E785F2D"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.ContentLoadModule.dll",
+      "SHA256": "D280F885AB45D2642756A5ADAC48BEFA916FB48C110F586FD4E0E816EDB7679B"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.CoreModule.dll",
+      "SHA256": "CDBC20D1FC498C1DD8468BDA141BF4118123FF7CD9CE4CFACF46069DF0F6F4EF"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.CrashReportingModule.dll",
+      "SHA256": "F2B7B16476C3A4A4EAAE41A89C67349CD8D39CCE3A16AC067610854D52BB72C4"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.DirectorModule.dll",
+      "SHA256": "D89B71763C0D2DC7EB6C9C2D41ABFA929F0D2939A0B2F37812BA4217DB8B218B"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.dll",
+      "SHA256": "B5577CE3901D0B22AA2546EAEAAF10538AEC84ECDAB1F8609056DB05ABD75B85"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.DSPGraphModule.dll",
+      "SHA256": "C503FC68B20F4DD57A46B38283D1DC54FD060EF4B578B43C314A934E2DAA76E7"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.GameCenterModule.dll",
+      "SHA256": "D12C4575A77B1CB5056C42F3D50CD453A816FCD424BE052E9B6CBC3E1938D7ED"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.GIModule.dll",
+      "SHA256": "FA2A212563B3D31E7FB67649A51709ABD4FC28E6182C42DA2D18BD46E4A84360"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.GraphicsStateCollectionSerializerModule.dll",
+      "SHA256": "20CA4E1470D31F12F78EB1028095628D93D510B684FCDEA92A665AA1F64CF961"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.GridModule.dll",
+      "SHA256": "77CCA1E3EED8EC5E372F83D0229E5E3D3B27C1C5DD042C024A62DE4C82495E62"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.HierarchyCoreModule.dll",
+      "SHA256": "223B40F8FD716BEC4C168CF614D9B2D2821919FE69B898D1EBA2A3AE56E8A94A"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.HierarchyModule.dll",
+      "SHA256": "BB0AF2DB3CDE73E29DCC5C87BAE7A31461FCBD4FDB02B99FD1AF0FEDF1914201"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.HotReloadModule.dll",
+      "SHA256": "AB144AD38D160A8B08950FB9555440ADD12F3C1E1491F0FCAD09CA6CC28018F3"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.IdentifiersModule.dll",
+      "SHA256": "8D79CF79997EA468F70A065290087D1E5A90F454C28F2EE5E493EF9A94009CC0"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.ImageConversionModule.dll",
+      "SHA256": "BCA9DD5E5F7EC9035A31A28AE7F2088C642F575FAE7BB572ED875F3459333D61"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.IMGUIModule.dll",
+      "SHA256": "700B5071528C36948DB24E2761919B5918526476E07CA35C2B10E66319895956"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.InputForUIModule.dll",
+      "SHA256": "5E4EE0AB3EB115944984144269CE9AA17BAF9152C3DBED72DBA5BBA6C07CD131"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.InputLegacyModule.dll",
+      "SHA256": "AA48325098C886C231EDB014EF4BBE2F456C0A3C948FA205A917FFFF7E521FC1"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.InputModule.dll",
+      "SHA256": "538206BFDF31B8AB4C15C471EA7700F1BC70FA086A7CCCD5808E0AE3765CA29D"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.InsightsModule.dll",
+      "SHA256": "FB81B06F6AEC72B0E9343A2A927BBF942A325544F103D5706956ED5731440102"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.JSONSerializeModule.dll",
+      "SHA256": "29A2B8C528D9419D18A56E8436B3A2F2B444F1E62C812F7C760446E0FB5B5FB4"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.LocalizationModule.dll",
+      "SHA256": "3EC11B005163E3F54376E7CA8E44B686025E434B15D91DABF77169239D5B19AF"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.MarshallingModule.dll",
+      "SHA256": "1A02502417BDEB154E78C713491E4B848CB4C513A0F41F6F9E9B6A18D534F6E6"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.MathematicsModule.dll",
+      "SHA256": "AC6FB418CBA55AEADCC55CE77E34C9F6F00EF2CC409BF6BF213D30B2598DA74D"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.MultiplayerModule.dll",
+      "SHA256": "63BE971DE2B892E22CD79350063D771CBD235D9D8EC4231D33630EC567689EC5"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.NVIDIAModule.dll",
+      "SHA256": "D5134219794F82818091F69340350DBC64DF6D6614FD23B9C60D220667D0CEC9"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.ParticleSystemModule.dll",
+      "SHA256": "630701F24C1D14184B1EFAA1FDC398DD33C30A6C42476BF0FE83AF0CB181817B"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.PerformanceReportingModule.dll",
+      "SHA256": "2EB68FAAD867132516A1E820D25898D57B5D093231FFA6A4673842D0D0869275"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.Physics2DModule.dll",
+      "SHA256": "0E350EB7BE446ABA0DD8804E2859B83E27D5095A6964EAF468D82AFC77206BB7"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.PhysicsBackendPhysXModule.dll",
+      "SHA256": "31FF165DC78245CAD7C3B9F85194D97AB7B2A3FD4F0345B49AB2D1E602730D93"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.PhysicsCore2DModule.dll",
+      "SHA256": "592A225F4BD61CD8E080DA244A6979600A31176D5A4A5E8DE50DD51B078C1B4F"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.PhysicsModule.dll",
+      "SHA256": "ECD4D433694E43843ED41344458EB9FE7663B21003764D576FB0325E09F53780"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.PropertiesModule.dll",
+      "SHA256": "C527033B933EDA7313E7B68163D5D0AC7145A5BB8F1FD2BA6C09CAE7514A014E"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.RenderAs2DModule.dll",
+      "SHA256": "591A3EC5436C2C3A2B679F2CF2B35BEC2D5EC5A5E00C32A50456EFF9ECC614CF"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll",
+      "SHA256": "55098D40FD07E51C5C48B18830E02073CE3A81E9D97C24DE6FCFD78DA0F04BFC"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.ScreenCaptureModule.dll",
+      "SHA256": "EE1856AB9FB3DF78FAC0D6084932C292FFA85BA99232189C66950044E055C932"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.ScriptingModule.dll",
+      "SHA256": "2126BED2DFDE4404B189D46F0731F058ADB3F1F0B0EA93F2EBAF8ECC899A2465"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.ShaderVariantAnalyticsModule.dll",
+      "SHA256": "93A3C78BB64410CB55A1C5396A5360CDDF5F5CF8850685AEE96932C60EBCA6EA"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.SharedInternalsModule.dll",
+      "SHA256": "316BFCFE188264DAE08B7ACBFCA3CF35A1B623FBF089A591B99F279961282200"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.SpriteMaskModule.dll",
+      "SHA256": "90676303CE9714295923638D9B1D4D798CA5CAE2445E5853045C4B10D30C118A"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.SpriteShapeModule.dll",
+      "SHA256": "AC7935A49D88FDD50762A5304B52B654057457FB35C659A178515BE8113008DF"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.StreamingModule.dll",
+      "SHA256": "21D1826D13E52DB0205D203FBD799D29B22EE80476460AAC1A415ADE82C02B8C"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.SubstanceModule.dll",
+      "SHA256": "E155A6AF83D8F25002422D1114892885CC335BA0AC15BA73AD1F4129BB9660FD"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.SubsystemsModule.dll",
+      "SHA256": "22EA0EB7F807C5FD0FE711A3946C0714F9BE78F6BECEB7F547F762333F3902DF"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.TerrainModule.dll",
+      "SHA256": "32D197FA56EDF655941D09B5B8A94DF9B042DF8C1B12E89E4FDB5485A533B619"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.TerrainPhysicsModule.dll",
+      "SHA256": "141D933FABE9A95AEE0300A85AB4EC0D85877788B5E62B640AF736DC8108F69E"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.TextCoreFontEngineModule.dll",
+      "SHA256": "0C43A09890A2DD18ABC4B66D7FA302DAE73562A4AEAB934B4A64DC8C204519F6"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.TextCoreTextEngineModule.dll",
+      "SHA256": "5CCB598F6C3DBF24087404DA5458B4F74767B18F4D9B6513723D436B65C7AF2A"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.TextRenderingModule.dll",
+      "SHA256": "32ABD807C4BFC285151AF7FF272545CC9D93D6F2C894C8BDE520E002B9A8FCE3"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.TilemapModule.dll",
+      "SHA256": "E5C25EABC6B81D92138B24754340E88CAE0E180D1988455BD917A470BB98968C"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.TLSModule.dll",
+      "SHA256": "4A6490CA6C344C3F3969CA221AA1BB6841ACD757FA8C044ECCF2B7043FAD5B2A"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.U2DRuntimeModule.dll",
+      "SHA256": "3BFEEC369EF6775C4F89BCC5BE34180AF3EDE7FD1A9D656D6EED2FFB98CCF414"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.UIElementsModule.dll",
+      "SHA256": "EE6CCB8B788CCE4F7C2BDBA98043D627644E32107B88AB79EABBB70C1C95D455"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.UIModule.dll",
+      "SHA256": "400D5834C565D8A3BAADDDEC4BB3F2A2392994FC10A7FF03FF3F478E5DCAC1B3"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.UmbraModule.dll",
+      "SHA256": "CF9A1BE095BCDE2EB5C24EB95968AEB40C1820CE44E236C3B62965079D4912B9"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.UnityAnalyticsCommonModule.dll",
+      "SHA256": "5B054A15DB493242C1037B29D035E1921C74BE5C203D7DB6E78BE3AB4B596B1D"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.UnityAnalyticsModule.dll",
+      "SHA256": "AFC86AD7B6090F6517071C276DE077FB0520CF3D52CF9F76DB46145AA3736FF2"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.UnityConnectModule.dll",
+      "SHA256": "D9AF0161986B9D339DB9CF2E226CF51F122B5464876C3436882D1AF3C7B05C8A"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.UnityConsentModule.dll",
+      "SHA256": "16CE719D56BE09A40E6875CCB6E2F102671A7857BA72B20AD1F59C5B18CD0509"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.UnityCurlModule.dll",
+      "SHA256": "CA801D843B3A01AA225211FAF88B4CA2EB87DDC5B1566590A6E5F95EC156E63E"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.UnityWebRequestAssetBundleModule.dll",
+      "SHA256": "38F340CBB45E7CD8F56DED3DEE9E12CBA73DF34CDC277ED2EC21999BD3417B1C"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.UnityWebRequestAudioModule.dll",
+      "SHA256": "975E2F5B123F5D697ABAE44AE3C8BE35F46D1CEDB3B9202C0F43AF273A05875C"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.UnityWebRequestModule.dll",
+      "SHA256": "16F983587335F57B8D6BF0166519FEA79B057BA254CD9996FF9136B92182FED6"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.UnityWebRequestTextureModule.dll",
+      "SHA256": "C3FD72F7E2F9288C266D59CC7B7191718E152E71792BC601709EB88D43F35D05"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.UnityWebRequestWWWModule.dll",
+      "SHA256": "F2317DC54BF535AE1CBB89708F76FE7A92E4C7E6A6AFA89F0F4B4C53CEEF722D"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.VectorGraphicsModule.dll",
+      "SHA256": "9AB9EAA57BD11A1FE88CE08A5A71E8A4F0DB4BB503896B1328BEDBDF841EA2AD"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.VehiclesModule.dll",
+      "SHA256": "68F545F7488CCCDF6B144532765EA931D76EC6C51F225F2BD83AEEAB5C10442D"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.VFXModule.dll",
+      "SHA256": "FD7C47658F81909C36D4308070853815C96825076C0CC312E3D79A5E8BD406AC"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.VideoModule.dll",
+      "SHA256": "2B29CF9AD9DAEBE412BBE4A85492D54E669E92FB7F038E7C973BF7ACE1CC7F93"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.VirtualTexturingModule.dll",
+      "SHA256": "E9D3BDD63CFFB1811C8E9FFFF8A3446A674A2C82402256A6AD0927C0A64D3F5C"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.WindModule.dll",
+      "SHA256": "B6652E9C6C0F98A109C023B5BE172D22DA3F57F672A187558C3582A16D237589"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\UnityEngine.XRModule.dll",
+      "SHA256": "B988E053AAF7B176497BBEC200EF1641A55E6B25361EEA76EF0B00C492A07166"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\Yanagisawa.DataLayoutCalibrator.Benchmark.dll",
+      "SHA256": "85B4E58898286FB9F1AB4D33A8D45359831A33D2B99BC1F86038587103EBB8CA"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\Yanagisawa.DataLayoutCalibrator.dll",
+      "SHA256": "9A6200F95D38D13CBC36CEB0E4DD95790998D59C930D3D8F5FDA7FDE04EA904D"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.dll",
+      "SHA256": "EE6A626C7A592A130761AA4262C8012C36AA677099B05916DED3725E95D1ACF6"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Managed\\Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.dll",
+      "SHA256": "634AF8B2CCE629137001420316A83B7EA85CB3CAA2234C6737E4B0450D24B774"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Plugins\\x86_64\\DlcAllocationProfiler.dll",
+      "SHA256": "1C4D75D854AB8B298194232F3DEF86C6E8C031579AD67FCEBE176051ACBF4234"
+    },
+    {
+      "Path": "DataLayoutCalibrator_Data\\Plugins\\x86_64\\lib_burst_generated.dll",
+      "SHA256": "1A74DB03AEF36D34F7184A2A5292B112AA58605097080888F198D4BA2C66E065"
+    },
+    {
+      "Path": "MonoBleedingEdge\\EmbedRuntime\\mono-2.0-bdwgc.dll",
+      "SHA256": "AA8DFB115337FADEC287B4B0BF3EC41346286582F397925BD04FF3B5EAE16C1F"
+    },
+    {
+      "Path": "MonoBleedingEdge\\EmbedRuntime\\MonoPosixHelper.dll",
+      "SHA256": "7598D0619617408CD246258F74EBD1239A88F13BD69D4D6D5148678AD00F8AA5"
+    }
+  ],
+  "BurstManifestSHA256": "0834F99D7D1A9E923F52EF3DAB21842D2EC6C32C58B245414263525C63B11846",
+  "ResolvedPackageLock": {
+    "dependencies": {
+      "com.unity.burst": {
+        "version": "1.8.29",
+        "depth": 0,
+        "source": "registry",
+        "dependencies": {
+          "com.unity.mathematics": "1.2.1",
+          "com.unity.modules.jsonserialize": "1.0.0"
+        },
+        "url": "https://packages.unity.com"
+      },
+      "com.unity.collections": {
+        "version": "6.5.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.burst": "1.8.25",
+          "com.unity.nuget.mono-cecil": "1.11.6",
+          "com.unity.test-framework": "1.4.6",
+          "com.unity.test-framework.performance": "3.2.0"
+        }
+      },
+      "com.unity.ext.nunit": {
+        "version": "2.1.0",
+        "depth": 1,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.mathematics": {
+        "version": "1.4.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.multiplayer.center": {
+        "version": "1.0.1",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.uielements": "1.0.0"
+        }
+      },
+      "com.unity.nuget.mono-cecil": {
+        "version": "1.11.6",
+        "depth": 1,
+        "source": "registry",
+        "dependencies": {},
+        "url": "https://packages.unity.com"
+      },
+      "com.unity.test-framework": {
+        "version": "1.7.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.ext.nunit": "2.1.0",
+          "com.unity.modules.imgui": "1.0.0",
+          "com.unity.modules.jsonserialize": "1.0.0"
+        }
+      },
+      "com.unity.test-framework.performance": {
+        "version": "3.5.0",
+        "depth": 1,
+        "source": "registry",
+        "dependencies": {
+          "com.unity.test-framework": "1.1.33",
+          "com.unity.modules.jsonserialize": "1.0.0"
+        },
+        "url": "https://packages.unity.com"
+      },
+      "com.yanagisawa.data-layout-calibrator": {
+        "version": "file:../../Packages/com.yanagisawa.data-layout-calibrator",
+        "depth": 0,
+        "source": "local",
+        "dependencies": {
+          "com.unity.burst": "1.8.29",
+          "com.unity.collections": "2.6.3",
+          "com.unity.mathematics": "1.3.2"
+        }
+      },
+      "com.unity.modules.accessibility": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.adaptiveperformance": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.subsystems": "1.0.0"
+        }
+      },
+      "com.unity.modules.ai": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.androidjni": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.jsonserialize": "1.0.0"
+        }
+      },
+      "com.unity.modules.animation": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.assetbundle": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.audio": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.cloth": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.physics": "1.0.0"
+        }
+      },
+      "com.unity.modules.director": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.audio": "1.0.0",
+          "com.unity.modules.animation": "1.0.0"
+        }
+      },
+      "com.unity.modules.hierarchycore": {
+        "version": "1.0.0",
+        "depth": 1,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.imageconversion": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.imgui": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.jsonserialize": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.particlesystem": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.physics": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.physics2d": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.physicscore2d": "1.0.0"
+        }
+      },
+      "com.unity.modules.physicscore2d": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.screencapture": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.imageconversion": "1.0.0"
+        }
+      },
+      "com.unity.modules.subsystems": {
+        "version": "1.0.0",
+        "depth": 1,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.jsonserialize": "1.0.0"
+        }
+      },
+      "com.unity.modules.terrain": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.terrainphysics": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.physics": "1.0.0",
+          "com.unity.modules.terrain": "1.0.0"
+        }
+      },
+      "com.unity.modules.tilemap": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.physics2d": "1.0.0"
+        }
+      },
+      "com.unity.modules.ui": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.uielements": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.ui": "1.0.0",
+          "com.unity.modules.imgui": "1.0.0",
+          "com.unity.modules.jsonserialize": "1.0.0",
+          "com.unity.modules.hierarchycore": "1.0.0",
+          "com.unity.modules.physics": "1.0.0",
+          "com.unity.modules.animation": "1.0.0"
+        }
+      },
+      "com.unity.modules.umbra": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.unityanalytics": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.unitywebrequest": "1.0.0",
+          "com.unity.modules.jsonserialize": "1.0.0"
+        }
+      },
+      "com.unity.modules.unitywebrequest": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.unitywebrequestassetbundle": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.assetbundle": "1.0.0",
+          "com.unity.modules.unitywebrequest": "1.0.0"
+        }
+      },
+      "com.unity.modules.unitywebrequestaudio": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.unitywebrequest": "1.0.0",
+          "com.unity.modules.audio": "1.0.0"
+        }
+      },
+      "com.unity.modules.unitywebrequesttexture": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.unitywebrequest": "1.0.0",
+          "com.unity.modules.imageconversion": "1.0.0"
+        }
+      },
+      "com.unity.modules.unitywebrequestwww": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.unitywebrequest": "1.0.0",
+          "com.unity.modules.unitywebrequestassetbundle": "1.0.0",
+          "com.unity.modules.unitywebrequestaudio": "1.0.0",
+          "com.unity.modules.audio": "1.0.0",
+          "com.unity.modules.assetbundle": "1.0.0",
+          "com.unity.modules.imageconversion": "1.0.0"
+        }
+      },
+      "com.unity.modules.vectorgraphics": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.uielements": "1.0.0",
+          "com.unity.modules.imageconversion": "1.0.0",
+          "com.unity.modules.imgui": "1.0.0"
+        }
+      },
+      "com.unity.modules.vehicles": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.physics": "1.0.0"
+        }
+      },
+      "com.unity.modules.video": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.audio": "1.0.0",
+          "com.unity.modules.ui": "1.0.0",
+          "com.unity.modules.unitywebrequest": "1.0.0"
+        }
+      },
+      "com.unity.modules.wind": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.xr": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.physics": "1.0.0",
+          "com.unity.modules.jsonserialize": "1.0.0",
+          "com.unity.modules.subsystems": "1.0.0"
+        }
+      }
+    }
+  },
+  "ConfiguredBurstTargets": {
+    "MonoBehaviour": {
+      "Version": 5,
+      "EnableBurstCompilation": true,
+      "EnableOptimisations": true,
+      "EnableSafetyChecks": false,
+      "EnableDebugInAllBuilds": false,
+      "DebugDataKind": 1,
+      "EnableArmv9SecurityFeatures": false,
+      "CpuMinTargetX32": 0,
+      "CpuMaxTargetX32": 0,
+      "CpuMinTargetX64": 0,
+      "CpuMaxTargetX64": 0,
+      "CpuTargetsX32": 6,
+      "CpuTargetsX64": 72,
+      "OptimizeFor": 0,
+      "FloatMode": 0
+    }
+  },
+  "ActualBurstDispatchedIsa": null,
+  "IsaEvidenceLimit": "Configured targets and emitted entrypoint manifest retained; dynamic dispatch ISA not observed by this allocation validator",
+  "AllocationScope": "Main thread after warmup; worker jobs independently required in Burst AOT manifest",
+  "MeasurementScope": "Correctness and allocation validation only; no performance inference"
+}

@@ -1,0 +1,112 @@
+name: Non-Unity CI
+
+# Deliberately dormant while Player hardware is reserved. Before this workflow
+# reaches the default branch, adding the exact `run-non-unity-ci` PR label is the
+# explicit authorization signal. After merge, workflow_dispatch is also usable.
+on:
+  pull_request:
+    types:
+      - labeled
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: Checks to run
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - static
+          - source-generator
+          - python
+
+permissions:
+  contents: read
+
+concurrency:
+  group: non-unity-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_NOLOGO: 1
+  PIP_DISABLE_PIP_VERSION_CHECK: 1
+  PYTHONDONTWRITEBYTECODE: 1
+
+jobs:
+  repository-static:
+    if: >-
+      ${{
+        (github.event_name == 'pull_request' && github.event.label.name == 'run-non-unity-ci') ||
+        (github.event_name == 'workflow_dispatch' && (inputs.suite == 'all' || inputs.suite == 'static'))
+      }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12.10'
+      - name: Validate tracked repository metadata
+        run: python Tools/CI/check_repository.py
+      - name: Compile-check Python tools
+        run: python -m compileall -q Tools
+      - name: Reject whitespace errors
+        shell: bash
+        run: git diff --check "$(git merge-base origin/main HEAD)"...HEAD
+
+  source-generator:
+    if: >-
+      ${{
+        (github.event_name == 'pull_request' && github.event.label.name == 'run-non-unity-ci') ||
+        (github.event_name == 'workflow_dispatch' && (inputs.suite == 'all' || inputs.suite == 'source-generator'))
+      }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up .NET
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: 10.0.302
+      - name: Test Source Generator
+        run: >-
+          dotnet test
+          Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Tests/Yanagisawa.DataLayoutCalibrator.SourceGenerator.Tests.csproj
+          --configuration Release
+          --nologo
+
+  python-tools:
+    if: >-
+      ${{
+        (github.event_name == 'pull_request' && github.event.label.name == 'run-non-unity-ci') ||
+        (github.event_name == 'workflow_dispatch' && (inputs.suite == 'all' || inputs.suite == 'python'))
+      }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12.10'
+          cache: pip
+          cache-dependency-path: Tools/ResultRenderer/requirements.txt
+      - name: Install renderer dependencies
+        run: python -m pip install -r Tools/ResultRenderer/requirements.txt
+      - name: Test fixed-result renderers
+        run: python -m unittest discover Tools/ResultRenderer/tests -v
+      - name: Test Evidence Lab when present
+        shell: bash
+        run: |
+          if [[ -d Tools/EvidenceLab/tests ]]; then
+            python -m unittest discover Tools/EvidenceLab/tests -v
+          else
+            echo 'Evidence Lab is introduced in a later stacked PR; skipping.'
+          fi

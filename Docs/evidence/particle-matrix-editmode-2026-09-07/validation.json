@@ -1,0 +1,39 @@
+{
+  "kind": "Unity EditMode candidate correctness; not Release performance",
+  "sourceCommit": "9c50626d0a22eed5266d3dce50580dd68689b712",
+  "unity": "6000.5.3f1",
+  "passedTests": 3,
+  "failedTests": 0,
+  "actualCandidateChecks": 2166,
+  "supportedCandidates": 120,
+  "declaredCells": 360,
+  "excludedCells": 240,
+  "resultSha256": "4F6DF2C8F81A679E56F63034D7AC03DD582A7A7EC2F652F04661A7ED4A217017",
+  "logSha256": "32DED0F12B7F5144E89F159F764BCA2F647B1ED8D52CE9EF72920418F75252CD",
+  "priorFailureSha256": "75D5E41DCAD2B9CC07A97B739FFD09D8FE16F79A6BDB6D0CB79402F435E7BF5B",
+  "hostIdentity": {
+    "kind": "host identity only; not executed Burst job ISA proof",
+    "utc": "2026-09-07T05:14:21.338354Z",
+    "cpu": {
+      "Name": "AMD Ryzen 9 9950X 16-Core Processor            ",
+      "Manufacturer": "AuthenticAMD",
+      "ProcessorId": "178BFBFF00B40F40",
+      "NumberOfCores": 8,
+      "NumberOfLogicalProcessors": 8
+    },
+    "os": {
+      "Caption": "Microsoft Windows 11 Pro",
+      "Version": "10.0.26200",
+      "BuildNumber": "26200"
+    },
+    "hostProcessArchitecture": "X64",
+    "hostRuntimeAvx2": true,
+    "hostRuntimeAvx512F": true
+  },
+  "unmet": [
+    "Actual Release Player/Burst AOT correctness",
+    "Integrated zero-managed-allocation measurements",
+    "Formal CPU comparisons and held-out/process replication",
+    "Executed job ISA/disassembly/counter evidence"
+  ]
+}

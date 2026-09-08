@@ -1,0 +1,232 @@
+{
+  "$schema": "../../Tools/EvidenceLab/schemas/validation-manifest-v1.schema.json",
+  "schemaVersion": 1,
+  "manifestId": "v06-device-isa-workload-planning-2026-09-02",
+  "roadmapCommit": "644893990ed18e56619da8d2737e6b7592eb6080",
+  "scopeStatus": "planning-only-no-observed-evidence",
+  "evidencePolicy": {
+    "candidateJoinKey": "CandidateDescriptor.CandidateId",
+    "scenarioIdentity": [
+      "ScenarioId",
+      "ContractVersion"
+    ],
+    "frozenDecisionAuthority": "ScenarioCalibrationProfile.FinalDecision",
+    "syntheticFixtureCountsAsObserved": false,
+    "processCountsAsDevice": false
+  },
+  "deviceTargets": [
+    {
+      "targetId": "planned-amd-x86-64",
+      "cpuFamily": "amd",
+      "isaId": "x86_64",
+      "operatingSystems": [
+        "windows",
+        "linux"
+      ],
+      "status": "planned",
+      "notes": "Target definition only. No AMD device is registered or validated by this manifest."
+    },
+    {
+      "targetId": "planned-intel-x86-64",
+      "cpuFamily": "intel",
+      "isaId": "x86_64",
+      "operatingSystems": [
+        "windows",
+        "linux"
+      ],
+      "status": "planned",
+      "notes": "Target definition only. No Intel device is registered or validated by this manifest."
+    },
+    {
+      "targetId": "planned-arm64",
+      "cpuFamily": "arm",
+      "isaId": "arm64",
+      "operatingSystems": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "status": "planned",
+      "notes": "Target definition only. No ARM64 device is registered or validated by this manifest."
+    }
+  ],
+  "registeredDevices": [],
+  "workloads": [
+    {
+      "workloadId": "particle-integrate-v2",
+      "scenarioId": "particle-integrate-v2",
+      "contractVersion": 2,
+      "accessPattern": "hot-field resident integration with canonical full-record boundaries",
+      "negativeControl": false,
+      "implementationStatus": "available",
+      "workloadSchemaSha256": null,
+      "candidateSchemaSha256": null,
+      "execution": {
+        "status": "unconfigured",
+        "reason": "No device-specific Release Player binary or compatible schema/settings hashes are registered."
+      }
+    },
+    {
+      "workloadId": "transform-export-v1",
+      "scenarioId": "transform-export-v1",
+      "contractVersion": 1,
+      "accessPattern": "output-heavy full transform matrix export",
+      "negativeControl": true,
+      "implementationStatus": "available",
+      "workloadSchemaSha256": null,
+      "candidateSchemaSha256": null,
+      "execution": {
+        "status": "unconfigured",
+        "reason": "No device-specific Release Player binary or compatible schema/settings hashes are registered."
+      }
+    },
+    {
+      "workloadId": "skeletal-transform-v1",
+      "scenarioId": "skeletal-transform-v1",
+      "contractVersion": 1,
+      "accessPattern": "hierarchical transform traversal and pose export",
+      "negativeControl": false,
+      "implementationStatus": "planned",
+      "workloadSchemaSha256": null,
+      "candidateSchemaSha256": null,
+      "execution": {
+        "status": "unconfigured",
+        "reason": "Workload implementation and Release Player artifact do not exist in this branch."
+      }
+    },
+    {
+      "workloadId": "spatial-hash-neighborhood-v1",
+      "scenarioId": "spatial-hash-neighborhood-v1",
+      "contractVersion": 1,
+      "accessPattern": "irregular spatial hash construction and neighborhood query",
+      "negativeControl": false,
+      "implementationStatus": "planned",
+      "workloadSchemaSha256": null,
+      "candidateSchemaSha256": null,
+      "execution": {
+        "status": "unconfigured",
+        "reason": "Workload implementation and Release Player artifact do not exist in this branch."
+      }
+    },
+    {
+      "workloadId": "audio-mixing-v1",
+      "scenarioId": "audio-mixing-v1",
+      "contractVersion": 1,
+      "accessPattern": "streaming channel accumulation and output mixing",
+      "negativeControl": false,
+      "implementationStatus": "planned",
+      "workloadSchemaSha256": null,
+      "candidateSchemaSha256": null,
+      "execution": {
+        "status": "unconfigured",
+        "reason": "Workload implementation and Release Player artifact do not exist in this branch."
+      }
+    },
+    {
+      "workloadId": "branchless-particle-control-v1",
+      "scenarioId": "branchless-particle-control-v1",
+      "contractVersion": 1,
+      "accessPattern": "particle integration with matched branchless AoS control",
+      "negativeControl": true,
+      "implementationStatus": "planned",
+      "workloadSchemaSha256": null,
+      "candidateSchemaSha256": null,
+      "execution": {
+        "status": "unconfigured",
+        "reason": "Negative-control workload implementation and Release Player artifact do not exist in this branch."
+      }
+    }
+  ],
+  "matrix": [
+    {
+      "targetId": "planned-amd-x86-64",
+      "workloadId": "particle-integrate-v2",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-amd-x86-64",
+      "workloadId": "transform-export-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-amd-x86-64",
+      "workloadId": "skeletal-transform-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-amd-x86-64",
+      "workloadId": "spatial-hash-neighborhood-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-amd-x86-64",
+      "workloadId": "audio-mixing-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-amd-x86-64",
+      "workloadId": "branchless-particle-control-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-intel-x86-64",
+      "workloadId": "particle-integrate-v2",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-intel-x86-64",
+      "workloadId": "transform-export-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-intel-x86-64",
+      "workloadId": "skeletal-transform-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-intel-x86-64",
+      "workloadId": "spatial-hash-neighborhood-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-intel-x86-64",
+      "workloadId": "audio-mixing-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-intel-x86-64",
+      "workloadId": "branchless-particle-control-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-arm64",
+      "workloadId": "particle-integrate-v2",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-arm64",
+      "workloadId": "transform-export-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-arm64",
+      "workloadId": "skeletal-transform-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-arm64",
+      "workloadId": "spatial-hash-neighborhood-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-arm64",
+      "workloadId": "audio-mixing-v1",
+      "requiredIndependentProcesses": 5
+    },
+    {
+      "targetId": "planned-arm64",
+      "workloadId": "branchless-particle-control-v1",
+      "requiredIndependentProcesses": 5
+    }
+  ]
+}

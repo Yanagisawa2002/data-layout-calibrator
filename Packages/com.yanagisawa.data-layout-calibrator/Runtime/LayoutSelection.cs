@@ -1,3 +1,5 @@
+using System;
+
 namespace Yanagisawa.DataLayoutCalibrator
 {
     public static class LayoutSelector
@@ -69,6 +71,7 @@ namespace Yanagisawa.DataLayoutCalibrator
 
             LayoutSelectionDecision decision = new LayoutSelectionDecision
             {
+                DecisionStage = DecisionStage.Calibration,
                 Status = LayoutSelectionStatus.Inconclusive,
                 BaselineCandidate = baseline.Candidate,
                 SelectedCandidate = baseline.Candidate,
@@ -77,28 +80,45 @@ namespace Yanagisawa.DataLayoutCalibrator
                 BestMeasuredP95Milliseconds = PrimaryP95(best),
                 ImprovementPercent = improvementPercent,
                 MinimumRequiredImprovementPercent = minimumImprovementPercent,
+                SelectionRegretPercent = Math.Max(0d, improvementPercent),
                 EligibleCandidateCount = eligibleCount,
                 RejectedParityCandidateCount = rejectedParityCount,
+                MultiplicityControl =
+                    "Calibration winner selection followed by confirmation on an untouched holdout dataset.",
                 Reason = "The best valid result did not clear the required P95 improvement over the best AoS result.",
             };
 
-            if (!best.Candidate.IsBaseline && improvementPercent >= minimumImprovementPercent)
+            if (!best.Candidate.IsBaseline)
             {
                 if (!HasBootstrapSamples(baseline) || !HasBootstrapSamples(best))
                 {
                     decision.Reason =
-                        "The point estimate cleared the product threshold, but raw ingress/resident/export samples are missing; AoS remains selected.";
+                        "Raw ingress/resident/export samples required for paired inference are missing; AoS remains selected.";
                     return decision;
                 }
 
-                BootstrapConfidenceInterval interval =
-                    BenchmarkStatistics.BootstrapAmortizedP95Improvement(
+                if (!TryBootstrap(
                         baseline,
                         best,
                         bootstrapIterations,
                         bootstrapConfidenceLevel,
-                        bootstrapSeed);
+                        bootstrapSeed,
+                        out BootstrapConfidenceInterval interval,
+                        out string bootstrapFailure))
+                {
+                    decision.Reason =
+                        "The paired calibration bootstrap evidence is invalid; AoS remains selected. " +
+                        bootstrapFailure;
+                    return decision;
+                }
                 decision.ImprovementConfidenceInterval = interval;
+                if (interval.UpperBoundPercent < 0d)
+                {
+                    decision.Reason =
+                        "The paired calibration interval supports a regression and contradicts the candidate ranking; the evidence is inconclusive and AoS remains selected.";
+                    return decision;
+                }
+
                 if (interval.LowerBoundPercent <= 0d)
                 {
                     decision.Status = LayoutSelectionStatus.StatisticalTie;
@@ -108,10 +128,18 @@ namespace Yanagisawa.DataLayoutCalibrator
                     return decision;
                 }
 
+                if (improvementPercent < minimumImprovementPercent)
+                {
+                    decision.Reason =
+                        "The paired interval excludes no effect, but the measured gain did not clear the minimum practical improvement; AoS remains selected.";
+                    return decision;
+                }
+
                 decision.Status = LayoutSelectionStatus.Optimized;
                 decision.SelectedCandidate = best.Candidate;
+                decision.SelectionRegretPercent = 0d;
                 decision.Reason =
-                    "A non-AoS candidate cleared both the required amortized P95 improvement and the bootstrap significance gate.";
+                    "A non-AoS candidate cleared both the required amortized P95 improvement and the paired block-bootstrap significance gate.";
             }
 
             return decision;
@@ -139,7 +167,10 @@ namespace Yanagisawa.DataLayoutCalibrator
             }
 
             if (!IsEligible(baselineHoldout) ||
-                baselineHoldout.Candidate != calibrationDecision.BaselineCandidate)
+                baselineHoldout.Phase != BenchmarkPhase.Holdout ||
+                !MatchesFrozenCandidate(
+                    baselineHoldout.Candidate,
+                    calibrationDecision.BaselineCandidate))
             {
                 LayoutSelectionDecision invalid = HoldoutFallback(
                     calibrationDecision,
@@ -149,7 +180,10 @@ namespace Yanagisawa.DataLayoutCalibrator
             }
 
             if (!IsEligible(selectedHoldout) ||
-                selectedHoldout.Candidate != calibrationDecision.SelectedCandidate)
+                selectedHoldout.Phase != BenchmarkPhase.Holdout ||
+                !MatchesFrozenCandidate(
+                    selectedHoldout.Candidate,
+                    calibrationDecision.SelectedCandidate))
             {
                 return HoldoutFallback(
                     calibrationDecision,
@@ -168,6 +202,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 PrimaryP95(selectedHoldout));
             LayoutSelectionDecision decision = new LayoutSelectionDecision
             {
+                DecisionStage = DecisionStage.HoldoutConfirmation,
                 Status = LayoutSelectionStatus.Optimized,
                 BaselineCandidate = baselineHoldout.Candidate,
                 SelectedCandidate = selectedHoldout.Candidate,
@@ -176,18 +211,12 @@ namespace Yanagisawa.DataLayoutCalibrator
                 BestMeasuredP95Milliseconds = PrimaryP95(selectedHoldout),
                 ImprovementPercent = holdoutImprovement,
                 MinimumRequiredImprovementPercent = minimumImprovementPercent,
+                SelectionRegretPercent = 0d,
                 EligibleCandidateCount = 2,
                 RejectedParityCandidateCount = 0,
-                Reason = "The selected candidate repeated the required amortized P95 improvement and bootstrap significance on holdout data.",
+                MultiplicityControl = calibrationDecision.MultiplicityControl,
+                Reason = "The frozen candidate repeated the required amortized P95 improvement and paired significance gate on untouched holdout data.",
             };
-
-            if (holdoutImprovement < minimumImprovementPercent)
-            {
-                decision.Status = LayoutSelectionStatus.Inconclusive;
-                decision.SelectedCandidate = baselineHoldout.Candidate;
-                decision.Reason = "The selected candidate did not repeat the required P95 improvement on holdout data; the profile falls back to AoS.";
-                return decision;
-            }
 
             if (!HasBootstrapSamples(baselineHoldout) || !HasBootstrapSamples(selectedHoldout))
             {
@@ -198,21 +227,52 @@ namespace Yanagisawa.DataLayoutCalibrator
                 return decision;
             }
 
-            BootstrapConfidenceInterval interval =
-                BenchmarkStatistics.BootstrapAmortizedP95Improvement(
+            if (!TryBootstrap(
                     baselineHoldout,
                     selectedHoldout,
                     bootstrapIterations,
                     bootstrapConfidenceLevel,
-                    bootstrapSeed);
+                    bootstrapSeed,
+                    out BootstrapConfidenceInterval interval,
+                    out string bootstrapFailure))
+            {
+                decision.Status = LayoutSelectionStatus.Inconclusive;
+                decision.SelectedCandidate = baselineHoldout.Candidate;
+                decision.SelectionRegretPercent = Math.Max(0d, holdoutImprovement);
+                decision.Reason =
+                    "The paired holdout bootstrap evidence is invalid; the profile falls back to AoS. " +
+                    bootstrapFailure;
+                return decision;
+            }
             decision.ImprovementConfidenceInterval = interval;
-            if (interval.LowerBoundPercent <= 0d)
+            if (interval.UpperBoundPercent < 0d)
+            {
+                decision.Status = LayoutSelectionStatus.Regression;
+                decision.SelectedCandidate = baselineHoldout.Candidate;
+                decision.SelectionRegretPercent = 0d;
+                decision.Reason =
+                    "The frozen candidate is statistically slower on holdout data; the regression falls back to AoS.";
+                return decision;
+            }
+
+            if (interval.LowerBoundPercent <= 0d && interval.UpperBoundPercent >= 0d)
             {
                 decision.Status = LayoutSelectionStatus.StatisticalTie;
                 decision.SelectedCandidate = baselineHoldout.Candidate;
+                decision.SelectionRegretPercent = Math.Max(0d, holdoutImprovement);
                 decision.FellBackBecauseStatisticalTie = true;
                 decision.Reason =
-                    "The holdout bootstrap confidence interval includes no improvement; the statistically tied result falls back to AoS.";
+                    "The paired holdout confidence interval includes no effect; the statistically tied result falls back to AoS.";
+                return decision;
+            }
+
+            if (holdoutImprovement < minimumImprovementPercent)
+            {
+                decision.Status = LayoutSelectionStatus.Inconclusive;
+                decision.SelectedCandidate = baselineHoldout.Candidate;
+                decision.SelectionRegretPercent = Math.Max(0d, holdoutImprovement);
+                decision.Reason =
+                    "The frozen candidate is distinguishable from AoS but did not repeat the minimum practical improvement on holdout data; the profile falls back to AoS.";
                 return decision;
             }
 
@@ -299,12 +359,67 @@ namespace Yanagisawa.DataLayoutCalibrator
                    result.ExportSamplesMilliseconds.Length >= 3;
         }
 
+        private static bool MatchesFrozenCandidate(
+            CandidateDescriptor measured,
+            CandidateDescriptor frozen)
+        {
+            if (string.IsNullOrWhiteSpace(measured.CandidateId) ||
+                !string.Equals(measured.CandidateId, frozen.CandidateId, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            try
+            {
+                CandidateDescriptor normalizedMeasured = measured.NormalizePolicies();
+                CandidateDescriptor normalizedFrozen = frozen.NormalizePolicies();
+                normalizedMeasured.ValidateFactorConsistency();
+                normalizedFrozen.ValidateFactorConsistency();
+                return normalizedMeasured == normalizedFrozen;
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+        }
+
+        private static bool TryBootstrap(
+            LayoutBenchmarkResult baseline,
+            LayoutBenchmarkResult candidate,
+            int iterations,
+            double confidenceLevel,
+            uint seed,
+            out BootstrapConfidenceInterval interval,
+            out string failure)
+        {
+            try
+            {
+                interval = BenchmarkStatistics.BootstrapAmortizedP95Improvement(
+                    baseline,
+                    candidate,
+                    iterations,
+                    confidenceLevel,
+                    seed);
+                failure = string.Empty;
+                return true;
+            }
+            catch (ArgumentException exception)
+            {
+                interval = default;
+                failure = exception.Message;
+                return false;
+            }
+        }
+
         private static LayoutSelectionDecision InvalidDecision(double minimumImprovementPercent, string reason)
         {
             return new LayoutSelectionDecision
             {
+                DecisionStage = DecisionStage.Calibration,
                 Status = LayoutSelectionStatus.Invalid,
                 MinimumRequiredImprovementPercent = minimumImprovementPercent,
+                MultiplicityControl =
+                    "Calibration winner selection followed by confirmation on an untouched holdout dataset.",
                 Reason = reason,
             };
         }
@@ -314,7 +429,11 @@ namespace Yanagisawa.DataLayoutCalibrator
             string reason)
         {
             calibrationDecision.Status = LayoutSelectionStatus.Inconclusive;
+            calibrationDecision.DecisionStage = DecisionStage.HoldoutConfirmation;
             calibrationDecision.SelectedCandidate = calibrationDecision.BaselineCandidate;
+            calibrationDecision.SelectionRegretPercent = Math.Max(
+                0d,
+                calibrationDecision.ImprovementPercent);
             calibrationDecision.Reason = reason;
             return calibrationDecision;
         }
