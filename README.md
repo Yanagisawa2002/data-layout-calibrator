@@ -19,6 +19,12 @@ selects among concrete AoS, SoA and AoSoA implementations.
 The comparison includes amortized ingress/export costs; these are same-device
 process replications with Unity 6000.5.3f1 and Burst AOT.
 
+## Visual walkthrough
+
+[![Engineering overview and evidence](Docs/portfolio/overview.svg)](Docs/portfolio/overview.png)
+
+Memory-layout schematics explain the design choices; the chart reads each formal run’s recorded final decision and interval. [Sources and reproduction](Docs/portfolio/README.md).
+
 ## Engineering challenges
 
 1. **Measure the lifecycle, not just the kernel.** Layout conversion must be
