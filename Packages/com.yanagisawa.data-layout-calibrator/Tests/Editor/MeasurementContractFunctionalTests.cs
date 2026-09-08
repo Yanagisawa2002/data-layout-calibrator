@@ -205,13 +205,6 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             Assert.That(ConservativeLifetimeEnvelope.Estimate(rows, iterations: 100).Status, Is.EqualTo(LifetimeEnvelopeStatus.Unknown));
         }
 
-        [Test]
-        public void PerformancePolicyDefaultsToDenied()
-        {
-            Assert.Throws<InvalidOperationException>(() => MeasurementExecutionPolicy.Require(null));
-            Assert.That(new CalibrationRunSettings().ExecutionPermit, Is.Null);
-        }
-
         private static LayoutBenchmarkResult Result(bool baseline, double cost, bool holdout = false)
         {
             var values = new[] { cost, cost, cost, cost, cost };

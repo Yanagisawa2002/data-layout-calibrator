@@ -1,5 +1,5 @@
 > 2026-09-08 integration: current performance is **Unmeasured**. Measurement entrypoints
-> require new explicit authorization and an exact source fingerprint. Allocation
+> remain explicitly callable with an exact source fingerprint. Allocation
 > eligibility requires available, scoped, positively controlled observations; default
 > current-thread counters cannot certify worker/native allocations. Historical P95
 > fields retain their original numbers and describe a component-P95 selection score,

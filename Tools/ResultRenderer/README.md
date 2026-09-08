@@ -15,7 +15,7 @@ python -m unittest discover -s Tools/ResultRenderer/tests -p test_measurement_co
 ```
 
 This round did not regenerate historical PNG/GIF artifacts. Old renderer instructions
-below describe optional fixed-artifact rendering, not measurement authorization.
+below describe optional fixed-artifact rendering; rendering does not perform measurements.
 
 # Fixed-result renderer
 

@@ -31,8 +31,6 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ExternalWorkloads
             c = a; b = Scalar * c; c = a + b; a = b + Scalar * c; dot = a * b * count;
         }
 
-        public static void RefusePerformanceRun() => throw new InvalidOperationException(
-            "Performance execution is disabled. New explicit user authorization and a reviewed runner change are required.");
     }
 
     // Separate entrypoints preserve upstream pass boundaries and field traffic.

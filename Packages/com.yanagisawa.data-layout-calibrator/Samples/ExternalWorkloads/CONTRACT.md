@@ -1,11 +1,12 @@
 # External workload ports — Unmeasured
 
-No benchmark, calibration, stress run, clock/counter collection, GPU dispatch or
-Player is permitted by this delivery. The new assembly has no scenario factory,
-timing loop or automatic registration. `BabelStreamContract.RefusePerformanceRun`
-and the external source tool's `--run` always reject. Enabling a future performance
-runner requires a new explicit user authorization and a reviewed code change.
-There is no environment-variable or dry-run bypass.
+This delivery performed no benchmark, calibration, stress run, real clock/counter
+collection, GPU dispatch or Player execution. The new assembly has no scenario
+factory, timing loop or automatic registration. Its kernel APIs remain callable;
+they contain no chat authorization or permanent performance-disable checks.
+The external source tool is preparation-only: default hash verification, optional
+object compilation. Native benchmark drivers are separate explicit entrypoints,
+and were not executed during this delivery.
 
 ## Source identity and classification
 

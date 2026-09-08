@@ -8,15 +8,22 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class FunctionalPolicyTests(unittest.TestCase):
-    def test_legacy_scripts_refuse_before_any_work(self):
-        for name in (
-            'Integration/Invoke-UnityValidation.ps1', 'Integration/Invoke-PlayerValidation.ps1',
-            'CpuCounters/Invoke-CounterEvidence.ps1', 'Envelope/Invoke-EnvelopeGrid.ps1',
-            'EvidenceLab/Invoke-SearchComparison.ps1', 'Validate-ParticleMatrix.ps1',
-            'Validation/Invoke-GeneratedWorkloadValidation.ps1',
-        ):
-            source = (ROOT / 'Tools' / name).read_text(encoding='utf-8')
-            self.assertRegex(source, r"\n\)\nthrow 'Legacy performance/Player orchestration is disabled")
+    def test_default_validation_dispatches_only_build_and_functional_tests(self):
+        from validate_functional import validation_commands
+        import sys
+        commands = validation_commands(False)
+        self.assertEqual(validation_commands(True), [["dotnet", "build", "Tools/FunctionalTests/FunctionalTests.csproj", "-c", "Release", "--nologo"]])
+        allowed = {
+            ("dotnet", "build", "Tools/FunctionalTests/FunctionalTests.csproj"),
+            ("dotnet", "test", "Tools/FunctionalTests/FunctionalTests.csproj"),
+        }
+        for command in commands:
+            if command[0] == "dotnet":
+                self.assertIn(tuple(command[:3]), allowed)
+            else:
+                self.assertEqual(command[:4], [sys.executable, "-m", "unittest", "discover"])
+                self.assertIn(command[command.index("-p") + 1], ("test_functional_policy.py", "test_measurement_contract.py"))
+            self.assertFalse(any(arg.endswith(".ps1") or arg.startswith("-dla-") or arg == "--run" for arg in command))
 
     def test_functional_project_is_an_explicit_safe_test_allowlist(self):
         project_path = ROOT / 'Tools/FunctionalTests/FunctionalTests.csproj'
@@ -32,11 +39,13 @@ class FunctionalPolicyTests(unittest.TestCase):
             text = (project_path.parent / source).read_text(encoding='utf-8')
             self.assertIsNone(forbidden.search(text), source)
 
-    def test_ci_enforces_functional_environment(self):
+    def test_ci_excludes_performance_paths(self):
         workflow = (ROOT / '.github/workflows/non-unity-ci.yml').read_text(encoding='utf-8')
-        self.assertIn("DLC_FUNCTIONAL_ONLY: '1'", workflow)
         self.assertIn('python Tools/CI/validate_functional.py', workflow)
         self.assertNotIn('runTests', workflow)
+        self.assertNotIn('Invoke-', workflow)
+        self.assertNotIn('--run', workflow)
+        self.assertIn('--filter FullyQualifiedName~DataLayoutScaffoldGeneratorTests', workflow)
         self.assertNotIn('Tools/ScientificTests/ScientificTests.csproj', workflow)
 
 

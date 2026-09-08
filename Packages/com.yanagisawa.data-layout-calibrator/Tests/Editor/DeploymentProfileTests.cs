@@ -18,6 +18,24 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
         private static readonly string[] CurrentCandidateIds = { "AoS-b64", "SoA-b64" };
 
         [Test]
+        public void CalibrationSettingsBindOnlyIntactSourceContext()
+        {
+            var settings = new CalibrationRunSettings();
+            var fingerprint = CreateFingerprint();
+            var scope = AllocationScope.CurrentThreadManaged | AllocationScope.WorkerThreadsManaged;
+            Assert.Throws<ArgumentException>(() => settings.BindSourceContext(null, scope));
+            settings.BindSourceContext(fingerprint, scope);
+            string boundHash = settings.SourceFingerprint;
+            Assert.That(boundHash, Is.EqualTo(fingerprint.FingerprintSha256));
+            Assert.That(settings.RequiredAllocationScope, Is.EqualTo(scope));
+
+            fingerprint.BinaryHash = new string('F', 64);
+            Assert.Throws<ArgumentException>(() => settings.BindSourceContext(fingerprint, AllocationScope.Native));
+            Assert.That(settings.SourceFingerprint, Is.EqualTo(boundHash));
+            Assert.That(settings.RequiredAllocationScope, Is.EqualTo(scope));
+        }
+
+        [Test]
         public void FingerprintIsDeterministicAndCandidateOrderIndependent()
         {
             CalibrationProfileFingerprint first = CreateFingerprint();

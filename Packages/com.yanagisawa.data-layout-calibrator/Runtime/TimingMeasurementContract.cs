@@ -99,10 +99,9 @@ namespace Yanagisawa.DataLayoutCalibrator
     public static class LifecycleCollector
     {
         public static void Collect(ICalibrationCandidate candidate, float deltaTime,
-            LifecycleObservation destination, IMeasurementClock clock, MeasurementExecutionPermit permit = null)
+            LifecycleObservation destination, IMeasurementClock clock)
         {
             if (candidate == null || destination == null || clock == null) throw new ArgumentNullException();
-            if (clock.Origin != TimingObservationOrigin.SyntheticFixture) MeasurementExecutionPolicy.Require(permit);
             if (!(deltaTime > 0) || float.IsInfinity(deltaTime) || destination.TickDurations == null ||
                 destination.TickDurations.Length == 0 || clock.Frequency <= 0 ||
                 destination.CandidateId != candidate.Descriptor.CandidateId)
@@ -135,18 +134,17 @@ namespace Yanagisawa.DataLayoutCalibrator
 
         /// <summary>The factory constructs one candidate from frozen canonical input.
         /// CompleteDuration includes construction, ingress, ticks, export and disposal.
-        /// The caller owns the preallocated destination and identity; this is opt-in only.</summary>
+        /// The caller owns the preallocated destination and identity; this is an explicit collection call.</summary>
         public static void CollectOwned(Func<ICalibrationCandidate> factory, float deltaTime,
-            LifecycleObservation destination, IMeasurementClock clock, MeasurementExecutionPermit permit = null)
+            LifecycleObservation destination, IMeasurementClock clock)
         {
             if (factory == null || destination == null || clock == null) throw new ArgumentNullException();
-            if (clock.Origin != TimingObservationOrigin.SyntheticFixture) MeasurementExecutionPolicy.Require(permit);
             destination.Completed = false;
             long start = clock.ReadTimestamp();
             ICalibrationCandidate candidate = factory();
             long constructed = clock.ReadTimestamp();
             long disposal = 0;
-            try { Collect(candidate, deltaTime, destination, clock, permit); }
+            try { Collect(candidate, deltaTime, destination, clock); }
             finally
             {
                 destination.Completed = false;

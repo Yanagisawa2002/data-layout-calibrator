@@ -13,8 +13,8 @@ scope and window gates, independent holdout/source checks, conservative process-
 lifetime bounds, individual-tick/full-lifecycle collector interfaces and additive
 TimingContract/renderer semantics. Historical numeric evidence is unchanged.
 Validation is restricted to allowlisted deterministic CPU tests, simulated clocks
-and counters, static checks and compilation. Legacy Player/performance scripts refuse
-execution; PR CI runs only build and pure functional checks.
+and counters, static checks and compilation. Explicit Player/performance scripts remain available outside PR CI; this delivery
+executes only build and pure functional checks. No chat authorization is part of the API.
 
 Current-source performance, actual worker/native allocation coverage, Unity/Burst
 execution and external benchmark results remain Unmeasured. Existing generated

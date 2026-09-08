@@ -113,7 +113,6 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         private static void Bootstrap()
         {
             if (Argument("-dla-envelope-run") == null) return;
-            MeasurementExecutionPolicy.Require(null); // Disabled until a newly authorized host supplies a permit.
             var host = new GameObject("Measured envelope runner");
             DontDestroyOnLoad(host);
             host.AddComponent<EnvelopeBenchmarkRunner>();
@@ -186,6 +185,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                         var factory = new FrozenEnvelopeFactory(new ParticleIntegrateScenarioFactory(period), grid.Candidates);
                         var settings = JsonUtility.FromJson<CalibrationRunSettings>(JsonUtility.ToJson(grid.Settings));
                         settings.AllocationCounter = allocation;
+                        settings.RequiredAllocationScope = BenchmarkConfiguration.ReadAllocationScope(settings.RequiredAllocationScope);
                         settings.ElementCount = settings.HoldoutElementCount = count;
                         settings.LifetimeTicks = lifetime;
                         // Seeds are predeclared functions of process and cell, disjoint by phase.
@@ -197,6 +197,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                         string id = "p" + processIndex + "-c" + cellIndex.ToString("D2");
                         string fingerprint = Hash(receipt.BuildIdentity + "\n" + receipt.UnityVersion + "\n" +
                             receipt.Processor + "\n" + receipt.OperatingSystem + "\nworkers=" + workers);
+                        settings.SourceFingerprint = Hash(fingerprint + "\n" + factory.Descriptor.ScenarioId + "\n" + factory.Descriptor.ContractVersion);
                         WriteNew(output, id + "-settings", JsonUtility.ToJson(settings, true));
                         var measured = ScenarioCalibrationEngine.RunEnvelopeCell(factory, settings, axis, fingerprint,
                             id, new UnityEnvelopeCodec(), (name, json) => WriteNew(output, name, json));

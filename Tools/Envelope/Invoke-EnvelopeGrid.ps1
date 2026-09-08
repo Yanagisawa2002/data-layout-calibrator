@@ -9,7 +9,6 @@ param(
     [string]$ExistingBuildIdentity,
     [string]$DeclarationPath
 )
-throw 'Legacy performance/Player orchestration is disabled. Use Tools/CI/validate_functional.py; re-enabling measurement requires NEW explicit user authorization and a reviewed launcher.'
 $ErrorActionPreference = 'Stop'
 
 function Invoke-EnvelopeChild([string]$Executable, [string[]]$Arguments) {

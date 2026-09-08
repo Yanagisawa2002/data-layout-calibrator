@@ -5,7 +5,6 @@ param(
     [ValidateSet('mono', 'il2cpp')][string]$Backend = 'mono',
     [string]$Batches = '64,256'
 )
-throw 'Legacy performance/Player orchestration is disabled. Use Tools/CI/validate_functional.py; re-enabling measurement requires NEW explicit user authorization and a reviewed launcher.'
 $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
 if (-not $OutputDirectory) { $OutputDirectory = Join-Path $taskRoot 'work/matrix-validation' }

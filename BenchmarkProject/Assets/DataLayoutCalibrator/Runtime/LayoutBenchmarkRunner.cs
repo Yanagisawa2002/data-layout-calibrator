@@ -35,7 +35,6 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             if (!BenchmarkConfiguration.ShouldRun())
                 return;
 
-            MeasurementExecutionPolicy.Require(null); // Disabled until a newly authorized host supplies a permit.
             var host = new GameObject("Data Layout Calibrator Runner");
             DontDestroyOnLoad(host);
             host.AddComponent<LayoutBenchmarkRunner>();
@@ -83,6 +82,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                 _progress = index / (float)factories.Length;
                 var settings = CreateSettings(factory.Descriptor.ScenarioId);
                 settings.AllocationCounter = allocation;
+                settings.RequiredAllocationScope = _configuration.RequiredAllocationScope;
+                BenchmarkSourceIdentity.Bind(settings, factory.Descriptor);
                 profiles[index] = ScenarioCalibrationEngine.Run(factory, settings);
                 _latestScenario = profiles[index];
                 WriteScenarioArtifacts(profiles[index]);

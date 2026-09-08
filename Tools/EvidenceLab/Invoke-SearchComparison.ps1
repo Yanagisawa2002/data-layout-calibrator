@@ -7,7 +7,6 @@ param(
     [Parameter(Mandatory=$true)][string]$ValidationLockScript,
     [int]$TimeoutSeconds = 900
 )
-throw 'Legacy performance/Player orchestration is disabled. Use Tools/CI/validate_functional.py; re-enabling measurement requires NEW explicit user authorization and a reviewed launcher.'
 $ErrorActionPreference = 'Stop'
 $Player = (Resolve-Path -LiteralPath $Player).Path
 $CandidateFile = (Resolve-Path -LiteralPath $CandidateFile).Path

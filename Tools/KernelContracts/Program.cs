@@ -269,15 +269,12 @@ internal static class Program
             }
             finally { storage.Dispose(); input.Dispose(); output.Dispose(); }
         }
-        bool forbidden = false;
-        try { BabelStreamContract.RefusePerformanceRun(); } catch (InvalidOperationException) { forbidden = true; }
-        Check(forbidden, "performance gate");
     }
 
     public static int Main(string[] args)
     {
         if (args.Length != 1 || args[0] != "--functional-only")
-        { Console.Error.WriteLine("Refused. Only --functional-only small deterministic contracts are available; performance requires new user authorization."); return 2; }
+        { Console.Error.WriteLine("This correctness executable accepts only --functional-only. Use a dedicated benchmark driver for measurements."); return 2; }
         try
         {
             ParticleCells(); PackedMatrixCells(); Codecs(); Transforms(); ExternalContracts();

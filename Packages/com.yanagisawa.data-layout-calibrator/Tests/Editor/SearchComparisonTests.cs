@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Yanagisawa.DataLayoutCalibrator.Tests
 {
-    [Explicit("Requires new explicit user authorization: timed calibration; excluded from default functional collections.")]
+    [Explicit("Explicit measurement test: timed calibration; excluded from default functional collections.")]
     public sealed class SearchComparisonTests
     {
         private static readonly CandidateDescriptor[] Pool =

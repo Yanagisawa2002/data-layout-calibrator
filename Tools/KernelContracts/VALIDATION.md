@@ -38,5 +38,12 @@ LLAMA C#/Burst sources passed actual Unity-reference C# compilation; that does
 not establish Burst lowering or original-native output/performance equivalence.
 
 Safe reproducible commands and source/semantic limitations are in `CONTRACT.md`
-and the external sample's `CONTRACT.md`. Any future performance run requires
-new explicit user authorization plus a reviewed runner change. None is scheduled.
+and the external sample's `CONTRACT.md`. Measurement entrypoints are separate from these functional checks. None is scheduled.
+
+The subsequent integration correction removes the product-level authorization/
+permanent-denial code and its one mirrored assertion. The 31,155 count above is
+this earlier receipt; the corrected functional model contains 31,154 assertions.
+No kernel computation or upstream bytes changed in that correction.
+The integration task rebuilt that corrected Release model and executed its
+`--functional-only` path: all 31,154 assertions passed. Offline source/fixture hashes
+also passed again. No native benchmark entrypoint, clock or hardware counter ran.

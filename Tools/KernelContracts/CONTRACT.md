@@ -72,9 +72,9 @@ python Tools/KernelContracts/external_sources.py
 
 The normal executable refuses an empty/unknown invocation, including performance
 options. `external_sources.py` defaults to offline hash verification and only
-offers object compilation. Its `--run` is permanently refused in this delivery.
-Do not call historical validation scripts: they can launch Players, calibration,
-allocation/cycle recording or mixed performance collections.
+offers object compilation. It has no run subcommand: native drivers are separate
+measurement commands. Existing validation scripts can launch Players, calibration
+or counters; none is called by the functional runner or PR CI.
 
 The external input-only preparer is a separate MPL-2.0 file. It only generates
 17 initial records; it cannot run n-body kernels or accept a benchmark-sized count.

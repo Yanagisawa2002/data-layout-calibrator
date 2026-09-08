@@ -63,10 +63,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--compile-objects", choices=["llama-code-comp", "babel-omp", "stream", "hec-stencil3d"])
     parser.add_argument("--compiler", help="Compiler executable; MSVC callers must supply the normal INCLUDE environment.")
-    parser.add_argument("--run", action="store_true", help="Always refused; requires new explicit user authorization and a reviewed runner change.")
     args = parser.parse_args()
-    if args.run:
-        parser.error("Performance execution is disabled; new explicit user authorization and a reviewed runner change are required.")
     verify()
     if args.compile_objects:
         if not args.compiler:

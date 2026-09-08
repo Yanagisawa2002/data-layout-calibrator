@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Yanagisawa.DataLayoutCalibrator.Tests
 {
-    [Explicit("Requires new explicit user authorization: real CPU counter acquisition; excluded from default functional collections.")]
+    [Explicit("Explicit measurement test: real CPU counter acquisition; excluded from default functional collections.")]
     public sealed class WindowsProcessCycleCounterTests
     {
         [Test]

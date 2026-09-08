@@ -56,7 +56,7 @@ source, process, partition, candidate, dataset and lifecycle IDs remain associat
 Incomplete, negative, inconsistent, duplicate and mixed-source observations are
 rejected; interrupted capture cannot publish zero as complete. Instrumentation is
 inside the complete window and is not subtracted or claimed cost-free. Synthetic
-clock output remains `SyntheticFixture`. Production clock calls require authorization.
+clock output remains `SyntheticFixture`. Production clocks are explicitly supplied by callers without a chat credential.
 
 The selector retains existing paired block/log-ratio and process hierarchy math.
 New source-aware pairs require the same dataset, partition and source fingerprint;
@@ -81,7 +81,7 @@ or proof of gains beyond sampled workloads. Existing envelope break-even values 
 their original model and schema; they are not rewritten as this new estimate.
 The exact existing deployment fingerprint binds workload/schema, candidate definitions,
 Unity/Burst/dependencies, architecture/device/workers, flags and binary/kernel hash.
-`BindAuthorizedContext` requires an intact fingerprint before new measurements.
+`BindSourceContext` accepts an intact fingerprint and declared allocation scope; it has no authorization parameter.
 No old samples were attached to a new build fingerprint or republished as new results.
 
 ## Execution restrictions and validation
@@ -89,14 +89,16 @@ No old samples were attached to a new build fingerprint or republished as new re
 `Tools/CI/validate_functional.py` uses an explicit .NET test allowlist and renderer DTO
 fixtures. `--build-only` only builds. Historical `SearchComparisonTests` and native
 counter tests are excluded because they read real clocks/counters even with fixture
-workloads. The new PR workflow sets `DLC_FUNCTIONAL_ONLY=1`, which rejects measurement
-permits, and never launches Unity, Player or external performance workloads.
+workloads. The PR workflow calls only the allowlisted functional commands and never
+launches Unity, Player or external performance workloads. Production code does not
+inspect a CI/Codex authorization environment variable.
 
-Legacy mixed validation/Player/counter/search/envelope launchers now refuse execution
-before dependency resolution or process/time collection. Unity benchmark Bootstrap
-methods refuse the old run flags. The optional `Build-UnityCompileOnly.ps1` checks a
-short isolated path and manifest, then allows headless Editor script compilation only;
-it was not executed here. No drive, power, cache or window settings were changed.
+Existing validation/Player/counter/search/envelope launchers are explicit measurement
+commands and remain functional. Their production Bootstrap methods retain their
+original named run flags. They were not invoked in this delivery. The optional
+`Build-UnityCompileOnly.ps1` checks a short isolated path and manifest before headless
+Editor compilation; it was not executed here. No drive, power, cache or window
+settings were changed.
 
 Executed on the integrated tree: portable Runtime compilation with no warnings/errors; 82 allowlisted
 deterministic C# tests and six renderer-model tests. These counts cover synthetic
@@ -105,10 +107,10 @@ historical DTO semantics, and are not benchmark evidence. Kernel integration and
 
 No performance test/comparison, benchmark, calibration, autotuning, stress test,
 profiling, real counter acquisition, recording, Unity scene or Player was run.
-Future measurements require a **new explicit user authorization**, a reviewed host,
-an intact current fingerprint and allocation coverage suitable for the chosen claim.
-`MeasurementExecutionPermit.FromNewExplicitUserAuthorization` and the dormant engine/
-collector APIs are preparation points, not authorization to execute this round.
+Existing measurement APIs are callable without chat credentials, Codex context or
+source edits. Source identity, allocation capability, scope and statistical checks
+remain enforced. Restoring a path is not a record of executing it: all real
+measurement paths remain unexecuted during this repair.
 
 ## Historical source identity
 
@@ -134,8 +136,8 @@ identity and do not inherit old performance results.
 | --- | --- |
 | Portable Runtime build and allowlisted deterministic C# tests | PASS, 82 tests, no build warnings/errors |
 | Renderer DTO/semantic tests | PASS, 6 tests; no GIF/video generation |
-| Static default-denial/CI/allowlist tests | PASS, 3 tests |
-| Kernel contracts with managed scheduling/arrays and actual Unity mathematics | PASS, 31,155 bounded assertions; maximum 17 records |
+| Static functional-command/CI/allowlist tests | PASS, 3 tests |
+| Kernel contracts with managed scheduling/arrays and actual Unity mathematics | PASS, 31,154 bounded assertions after entrypoint correction; one denial-only assertion removed from the previous 31,155 receipt |
 | Filtered DataLayoutScaffoldGeneratorTests | PASS, 10 pure Roslyn/compiler tests |
 | All Runtime/Samples/host/Editor/test C# sources, actual installed Unity references | PASS under Editor, Mono and IL2CPP symbols including UNITY_5_3_OR_NEWER; library only, no Editor/Player/Burst launch |
 | Offline upstream file and fixture/preparer source verification | PASS, 22 pinned source/license files plus input hashes |
@@ -187,3 +189,46 @@ They compile original sources to objects only. All benchmark mains, full upstrea
 workloads, real allocation controls, hardware counters, timing, profiling and Player
 execution remain unexecuted. Performance conclusions for this integrated source
 are **Unmeasured / 待验证**. Nothing is scheduled for later execution.
+
+
+## Entrypoint correction following final review
+
+Commit `4d1621e` was superseded by the entrypoint restoration patch on the same
+isolated integration branch. The session's restriction on **our execution** does not
+become an authorization system in a reusable product. Removed the permission/permit
+SDK types, authorization parameters, unconditional Bootstrap failures, unconditional
+script-header throws and BabelStream's denial-only method. Old run flags and named
+measurement scripts retain their functions. External source preparation keeps hash
+verification as its default and object compilation as its only execution action;
+its artificial `--run` denial switch was removed rather than inventing a new driver.
+
+Player hosts now populate the previously unconnected source fingerprint from the
+build's retained source manifest, actual binaries, device and workload/settings
+identity. The envelope host reuses its existing build/environment identity. This
+occurs outside measurement windows. Public SDK callers may supply `SourceFingerprint`
+or use `BindSourceContext`; missing/corrupt provenance is still rejected. There is no
+permission token, environment authorization or chat-context dependency.
+
+The suite/search hosts' `-dla-allocation-scope` option defaults to their legacy
+`current-thread-managed` claim. `all-managed` or `all` explicitly requires worker
+and/or native coverage; insufficient or unavailable providers still fail closed.
+The envelope host preserves the grid's declared scope unless the option explicitly
+overrides it, and persists that choice with the cell settings. The SDK's conservative
+scope default is unchanged. Declaring current-thread scope
+never claims zero allocations on workers or in native memory. Existing counters,
+positive controls, statistics, source association, profile invalidation and
+Unmeasured candidate states were not relaxed.
+
+The functional regression replaces denial-mirroring assertions with checks of the
+actual command plan and CI/test allowlist. Real-clock/counter tests remain Explicit.
+No restored Player, calibration, warmup, counter or external benchmark path was run.
+
+Validation repeated after this correction: the portable build (zero warnings/errors),
+82 Runtime tests including valid/corrupt source-context binding, six renderer tests,
+three command-plan/CI allowlist tests, and 31,154 bounded kernel assertions passed.
+The complete Unity-reference library compilation passed again in Editor, Mono and
+IL2CPP symbol configurations with the same three/two/two existing CS0649 warnings.
+Offline source/fixture hashes, Python compilation and PowerShell source parsing
+passed. Source-generator code and pinned upstream bytes were unchanged; its earlier
+ten-test filtered validation receipt remains recorded above. No timings from test
+runner/build diagnostics are used as performance evidence.

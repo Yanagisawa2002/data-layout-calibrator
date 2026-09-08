@@ -68,7 +68,6 @@ namespace Yanagisawa.DataLayoutCalibrator
             Func<string, object, string> persist)
         {
             ValidateSettings(settings);
-            MeasurementExecutionPolicy.Require(settings.ExecutionPermit);
             settings = CloneSearchSettings(settings);
             if (factory == null || persist == null) throw new ArgumentNullException();
             if (frozenCandidates == null || frozenCandidates.Length < 2)
@@ -393,7 +392,6 @@ namespace Yanagisawa.DataLayoutCalibrator
         {
             return new CalibrationRunSettings
             {
-                ExecutionPermit = source.ExecutionPermit,
                 RequiredAllocationScope = source.RequiredAllocationScope,
                 SourceFingerprint = source.SourceFingerprint,
                 AllocationCounter = source.AllocationCounter,

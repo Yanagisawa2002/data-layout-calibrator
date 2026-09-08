@@ -1,6 +1,6 @@
 {
   "status": "Unmeasured",
-  "performanceExecution": "Forbidden; requires new user authorization and a reviewed runner change",
+  "performanceExecution": "Not measured in this delivery. Preparation tool verifies sources or compiles objects; use native benchmark drivers explicitly for measurement.",
   "sources": [
     {
       "name": "BabelStream",

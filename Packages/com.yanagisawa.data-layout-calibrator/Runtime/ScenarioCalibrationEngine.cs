@@ -7,7 +7,6 @@ namespace Yanagisawa.DataLayoutCalibrator
     [Serializable]
     public sealed class CalibrationRunSettings
     {
-        [NonSerialized] public MeasurementExecutionPermit ExecutionPermit;
         // Scope is explicit: default thread-only providers cannot certify worker or native allocation freedom.
         public AllocationScope RequiredAllocationScope = AllocationScope.CurrentThreadManaged | AllocationScope.WorkerThreadsManaged;
         public string SourceFingerprint;
@@ -34,12 +33,11 @@ namespace Yanagisawa.DataLayoutCalibrator
         public float ParityTolerance = 1e-5f;
         public MeasurementOrderKind MeasurementOrder = MeasurementOrderKind.BalancedLatinSquare;
 
-        public void BindAuthorizedContext(MeasurementExecutionPermit permit,
-            CalibrationProfileFingerprint fingerprint, AllocationScope requiredScope)
+        public void BindSourceContext(CalibrationProfileFingerprint fingerprint, AllocationScope requiredScope)
         {
-            if (permit == null || !CalibrationProfileFingerprintBuilder.HasValidIntegrity(fingerprint))
-                throw new ArgumentException("New authorization and an intact source/device/compiler/workload fingerprint are required.");
-            ExecutionPermit = permit; SourceFingerprint = fingerprint.FingerprintSha256;
+            if (!CalibrationProfileFingerprintBuilder.HasValidIntegrity(fingerprint))
+                throw new ArgumentException("An intact source/device/compiler/workload fingerprint is required.");
+            SourceFingerprint = fingerprint.FingerprintSha256;
             RequiredAllocationScope = requiredScope;
         }
     }
@@ -57,7 +55,6 @@ namespace Yanagisawa.DataLayoutCalibrator
             if (factory == null)
                 throw new ArgumentNullException(nameof(factory));
             ValidateSettings(settings);
-            MeasurementExecutionPolicy.Require(settings.ExecutionPermit);
             settings = CloneSearchSettings(settings);
             RunPreflight(factory, settings);
 

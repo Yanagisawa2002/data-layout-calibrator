@@ -39,7 +39,6 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         private static void Bootstrap()
         {
             if (Array.IndexOf(Environment.GetCommandLineArgs(), "-dla-search-run") < 0) return;
-            MeasurementExecutionPolicy.Require(null); // Disabled until a newly authorized host supplies a permit.
             if (BenchmarkConfiguration.ShouldRun()) throw new InvalidOperationException("Do not combine ordinary and search runners.");
             var host = new GameObject("Search Comparison Runner");
             DontDestroyOnLoad(host); host.AddComponent<SearchBenchmarkRunner>();
@@ -88,6 +87,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             var settings = new CalibrationRunSettings
             {
                 AllocationCounter = allocation,
+                RequiredAllocationScope = config.RequiredAllocationScope,
                 ElementCount = config.ElementCount, HoldoutElementCount = config.HoldoutElementCount,
                 CalibrationSeed = ParticleDataSet.CalibrationSeed, HoldoutSeed = ParticleDataSet.HoldoutSeed,
                 WarmupBlocks = config.WarmupBlocks, MinimumWarmupSeconds = config.MinimumWarmupSeconds,
@@ -96,6 +96,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                 MaximumTicksPerBlock = config.MaximumTicksPerBlock, MinimumImprovementPercent = config.MinimumImprovementPercent,
                 BootstrapIterations = config.BootstrapIterations, BootstrapConfidenceLevel = config.BootstrapConfidenceLevel,
             };
+            BenchmarkSourceIdentity.Bind(settings, new ParticleIntegrateScenarioFactory().Descriptor);
             var policies = new SortedSet<string>(StringComparer.Ordinal);
             foreach (CandidateDescriptor candidate in input.Candidates) policies.Add(candidate.EffectiveExecution.PolicyId);
             foreach (string policy in policies)

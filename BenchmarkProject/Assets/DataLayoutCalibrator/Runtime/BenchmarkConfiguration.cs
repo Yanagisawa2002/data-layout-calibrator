@@ -23,6 +23,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         public string OutputDirectory;
         public bool QuitWhenComplete;
         public bool ShowGui = true;
+        // The supplied Unity provider measures this legacy scope only. Workers/native remain unknown.
+        public AllocationScope RequiredAllocationScope = AllocationScope.CurrentThreadManaged;
 
         public static bool ShouldRun()
         {
@@ -89,6 +91,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                 configuration.BootstrapConfidenceLevel);
             configuration.OutputDirectory = ReadString("-dla-output");
             configuration.QuitWhenComplete = HasFlag("-dla-quit") || Application.isBatchMode;
+            configuration.RequiredAllocationScope = ReadAllocationScope();
             configuration.ShowGui = !HasFlag("-dla-no-gui") && !Application.isBatchMode;
 
             if (string.IsNullOrWhiteSpace(configuration.OutputDirectory))
@@ -102,6 +105,18 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
 
             configuration.OutputDirectory = Path.GetFullPath(configuration.OutputDirectory);
             return configuration;
+        }
+
+        internal static AllocationScope ReadAllocationScope(AllocationScope fallback = AllocationScope.CurrentThreadManaged)
+        {
+            switch (ReadString("-dla-allocation-scope"))
+            {
+                case null: return fallback;
+                case "current-thread-managed": return AllocationScope.CurrentThreadManaged;
+                case "all-managed": return AllocationScope.CurrentThreadManaged | AllocationScope.WorkerThreadsManaged;
+                case "all": return AllocationScope.CurrentThreadManaged | AllocationScope.WorkerThreadsManaged | AllocationScope.Native;
+                default: throw new ArgumentException("Unknown -dla-allocation-scope; use current-thread-managed, all-managed or all.");
+            }
         }
 
         private static bool HasFlag(string name)

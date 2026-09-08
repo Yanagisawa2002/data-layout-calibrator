@@ -7,7 +7,6 @@ param(
     [string]$SerializationRunner = 'C:/Users/EdwinLiu/Documents/Codex/2026-09-07/w-m/work/optimization-vnext/Invoke-SerializedValidation.ps1',
     [Parameter(Mandatory = $true)][string]$EvidenceDirectory
 )
-throw 'Legacy performance/Player orchestration is disabled. Use Tools/CI/validate_functional.py; re-enabling measurement requires NEW explicit user authorization and a reviewed launcher.'
 $ErrorActionPreference = 'Stop'
 $Unity = (Resolve-Path -LiteralPath $Unity).Path
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))

@@ -23,7 +23,7 @@ for the current source. No new default algorithm is promoted on theoretical cost
 - Conservative lifetime cost bounds with complete setup/teardown costs and paired
   independent-process inputs. Missing costs, source identity or an uncertain savings
   denominator yield Unknown. The model does not manufacture a measured speedup.
-- Default-denied measurement entrypoints and a PR workflow restricted to static,
+- Explicit measurement commands separated from a PR workflow restricted to static,
   build and allowlisted deterministic CPU correctness checks.
 
 [Repair contract and validation scope](Docs/MEASUREMENT_REPAIR_2026-09-08.md) ·
@@ -66,10 +66,14 @@ DTOs and synthetic fixtures; they do not render recordings or collect measuremen
 
 `Tools/CI/Build-UnityCompileOnly.ps1` is an optional headless Editor script-compilation
 entry with short-path/dependency prechecks. It was not executed in this repair run.
-Legacy Player/performance orchestration scripts now refuse execution. A future
-measurement host must be reviewed under new explicit user authorization, bind the
-full profile fingerprint and provide a counter covering the declared scope. Neither
-historical settings nor a CI environment can supply authorization.
+Existing Player/performance scripts and `-dla-run`, `-dla-search-run`,
+`-dla-envelope-run` and `-dla-counter-run` remain explicit measurement entrypoints.
+They were not executed in this delivery. Source fingerprints and allocation
+capability/coverage checks still apply. Player hosts bind their build manifest and binary identity automatically;
+`-dla-allocation-scope current-thread-managed|all-managed|all` declares the required
+coverage. Suite/search hosts default to current-thread managed coverage; envelope
+runs retain their declared scope. Worker and native allocation freedom remain
+Unknown unless the provider covers them.
 
 ## External workloads
 
