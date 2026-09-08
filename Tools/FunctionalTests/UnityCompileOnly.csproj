@@ -6,9 +6,9 @@
     <UseSharedCompilation>false</UseSharedCompilation>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <UnityCompileFlavor Condition="'$(UnityCompileFlavor)' == ''">Editor</UnityCompileFlavor>
-    <DefineConstants Condition="'$(UnityCompileFlavor)' == 'Editor'">UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_STANDALONE_WIN;UNITY_2022_2_OR_NEWER</DefineConstants>
-    <DefineConstants Condition="'$(UnityCompileFlavor)' == 'Mono'">UNITY_STANDALONE_WIN;UNITY_2022_2_OR_NEWER</DefineConstants>
-    <DefineConstants Condition="'$(UnityCompileFlavor)' == 'IL2CPP'">UNITY_STANDALONE_WIN;ENABLE_IL2CPP;UNITY_2022_2_OR_NEWER</DefineConstants>
+    <DefineConstants Condition="'$(UnityCompileFlavor)' == 'Editor'">UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_5_3_OR_NEWER;UNITY_STANDALONE_WIN;UNITY_2022_2_OR_NEWER</DefineConstants>
+    <DefineConstants Condition="'$(UnityCompileFlavor)' == 'Mono'">UNITY_5_3_OR_NEWER;UNITY_STANDALONE_WIN;UNITY_2022_2_OR_NEWER</DefineConstants>
+    <DefineConstants Condition="'$(UnityCompileFlavor)' == 'IL2CPP'">UNITY_5_3_OR_NEWER;UNITY_STANDALONE_WIN;ENABLE_IL2CPP;UNITY_2022_2_OR_NEWER</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <!-- Compile only against installed assemblies. No Unity executable or native API is invoked. -->

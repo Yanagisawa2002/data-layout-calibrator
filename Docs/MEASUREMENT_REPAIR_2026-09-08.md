@@ -98,11 +98,10 @@ methods refuse the old run flags. The optional `Build-UnityCompileOnly.ps1` chec
 short isolated path and manifest, then allows headless Editor script compilation only;
 it was not executed here. No drive, power, cache or window settings were changed.
 
-Executed so far: portable Runtime compilation with no warnings/errors; 82 allowlisted
+Executed on the integrated tree: portable Runtime compilation with no warnings/errors; 82 allowlisted
 deterministic C# tests and six renderer-model tests. These counts cover synthetic
 statistics, simulated time/counters, profile invalidation/serialization and read-only
-historical DTO semantics, and are not benchmark evidence. Kernel integration and its
-separate compile/functional/source-lock results are recorded below when complete.
+historical DTO semantics, and are not benchmark evidence. Kernel integration and its separate compile/functional/source-lock results are recorded below.
 
 No performance test/comparison, benchmark, calibration, autotuning, stress test,
 profiling, real counter acquisition, recording, Unity scene or Player was run.
@@ -118,3 +117,73 @@ Historical v0.3 formal measurements identify implementation
 `c84cf47b62f28b26c34d72acaf16ace23f674ddb`; the September 7 integrated archive identifies
 `4ffa47271306e985d9cade5d77489bd172c0360f`. Their raw hashes, JSON, binary records and
 figures remain unchanged. See the root README for links and allocation qualifications.
+
+
+## Completed kernel integration and final checks
+
+The independent kernel feature `fe61d721e6b4c0a8fe250e43fec3f8c5974dc7da` was
+cherry-picked as `04e234c`, after allocation/statistical repair `314d719` and
+compile-only support `6223cb2`. This is completed integration, not a pending task.
+The new hot/cold AoS, block codec/exports, packed TRS and external n-body sources
+are detailed in [the kernel contract](../Tools/KernelContracts/CONTRACT.md).
+New layout candidates remain opt-in/unregistered and Unmeasured. The generator
+codec changes are compiled into the package analyzer; they carry a new source/binary
+identity and do not inherit old performance results.
+
+| Check executed on this integration worktree | Result |
+| --- | --- |
+| Portable Runtime build and allowlisted deterministic C# tests | PASS, 82 tests, no build warnings/errors |
+| Renderer DTO/semantic tests | PASS, 6 tests; no GIF/video generation |
+| Static default-denial/CI/allowlist tests | PASS, 3 tests |
+| Kernel contracts with managed scheduling/arrays and actual Unity mathematics | PASS, 31,155 bounded assertions; maximum 17 records |
+| Filtered DataLayoutScaffoldGeneratorTests | PASS, 10 pure Roslyn/compiler tests |
+| All Runtime/Samples/host/Editor/test C# sources, actual installed Unity references | PASS under Editor, Mono and IL2CPP symbols including UNITY_5_3_OR_NEWER; library only, no Editor/Player/Burst launch |
+| Offline upstream file and fixture/preparer source verification | PASS, 22 pinned source/license files plus input hashes |
+| Python compile checks, PowerShell parsing, JSON/Markdown metadata and integration diff whitespace | PASS |
+
+The broad Unity-reference compile has three Editor CS0649 warnings (two JSON-filled
+legacy DTO fields and the Editor-excluded native flag), and two in each non-Editor
+symbol configuration. They are documented rather than hidden. This is a .NET C#
+API/type check using Unity references, not a Unity Editor build, IL2CPP conversion,
+Burst AOT validation, native job-safety test or true parallel-worker execution.
+`Tools/FunctionalTests/UnityCompileOnly.csproj` is a library project; its test sources
+are compiled but never executed. `Tools/KernelContracts/VALIDATION.md` additionally
+retains the sibling's object-only LLAMA compile and bounded input preparation receipt.
+
+```powershell
+$unityMath = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/Managed/UnityEngine'
+$unityPackages = 'C:/Users/EdwinLiu/Downloads/data-layout-calibrator/BenchmarkProject/Library/ScriptAssemblies'
+dotnet build Tools/FunctionalTests/UnityCompileOnly.csproj -c Release -p:UnityCompileFlavor=Editor -p:UnityManagedPath="$unityMath" -p:UnityScriptAssembliesPath="$unityPackages"
+# Mono and IL2CPP values compile other conditional branches, still a library only.
+```
+
+PR CI also verifies the offline source lock and runs the filtered generator suite.
+Hosted CI does not have licensed Unity assemblies, so the explicit Unity-reference
+and real-mathematics kernel checks above were performed locally. No all-tests Unity
+collection or old mixed measurement project was executed.
+
+## External locks and prepared entries
+
+| Source | Exact upstream identity | Delivery and boundary |
+| --- | --- | --- |
+| BabelStream | `17ab377b0e919e14fd3df2b67268761fdac8abb3` | Unmodified OpenMP sources/license; double C#/Burst operation/checker **port**; original default driver unexecuted |
+| STREAM 5.10 | SHA-256 `a52bae5e175bea3f7832112af9c085adab47117f7d2ce219165379849231692b` | Official website has no Git commit; exact stream.c with embedded license retained; object-build entry only |
+| LLAMA nbody_code_comp | `086e66e7565f677d6b3aff88542e28c7dd6d8228` | MPL-2.0 library-native example, separate MPL-2.0 C#/Burst port; squared-component formula and source order retained |
+| HeCBench stencil3d-omp | `7d2d3c567be522a2104065165de0a4a233a6ea1a` | Concrete workload/local MIT license retained; source/object-build entry only |
+
+The [lock](../Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Upstream~/upstream-lock.json),
+[port/default/validation contract](../Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/CONTRACT.md)
+and [third-party notices](../THIRD_PARTY_NOTICES.md) are part of this delivery.
+BabelStream/STREAM supply bandwidth workloads. No matching general standard suite
+was established for the repository's exact particle respawn or Transform TRS semantics.
+LLAMA code_comp remains a library-native example, and its local small equivalence
+assertions are not an upstream numerical acceptance criterion or native score.
+
+The following entries are prepared and **were not run** on this integration task:
+`external_sources.py --compile-objects babel-omp --compiler <POSIX OpenMP C++ compiler>`,
+`--compile-objects stream --compiler <POSIX OpenMP compiler>` and
+`--compile-objects hec-stencil3d --compiler <OpenMP target compiler>`.
+They compile original sources to objects only. All benchmark mains, full upstream
+workloads, real allocation controls, hardware counters, timing, profiling and Player
+execution remain unexecuted. Performance conclusions for this integrated source
+are **Unmeasured / 待验证**. Nothing is scheduled for later execution.

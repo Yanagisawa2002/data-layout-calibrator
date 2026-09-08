@@ -56,6 +56,7 @@ python -m pip install -r Tools/ResultRenderer/requirements.txt
 python Tools/CI/validate_functional.py --build-only
 python Tools/CI/validate_functional.py
 python Tools/CI/check_repository.py
+python Tools/KernelContracts/external_sources.py
 ```
 
 The allowlist excludes historical tests that read real counters or run timed
@@ -78,7 +79,12 @@ are library-native workloads, not a general benchmark suite. HeCBench must be na
 by concrete workload. Ports retain that label and cannot claim original benchmark
 scores. Google Benchmark, BenchmarkDotNet and Unity Performance Testing are
 measurement frameworks, not standardized workloads; PRK is not a ranking suite.
-Sources, licenses, commits and build-only preparation accompany the kernel changes.
+[Source/semantic contract](Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/CONTRACT.md),
+[source lock](Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Upstream~/upstream-lock.json)
+and [kernel delivery](Tools/KernelContracts/CONTRACT.md) accompany the code.
+Implemented kernel increments include hot/cold AoS, block codecs/exports, four-record
+TRS and LLAMA four-target n-body with source-block reuse and an update/move barrier.
+All new candidates remain unregistered and Unmeasured.
 This round prepares and compiles external code only; it executes no external benchmark.
 
 ## Historical evidence

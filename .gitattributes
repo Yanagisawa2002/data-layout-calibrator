@@ -15,3 +15,6 @@ Docs/evidence/allocation-counter-correction-2026-09-07/** -text whitespace=cr-at
 # Retained integration evidence preserves the exact bytes verified by its manifest.
 Docs/evidence/optimization-vnext-2026-09-07/** -text whitespace=cr-at-eol,-blank-at-eof
 Tools/Integration/analyze_layout_evidence.py text eol=lf
+
+# Original compiler logs are retained verbatim, including their whitespace.
+Docs/evidence/layout-envelope-implementation-2026-09-07/*.log -whitespace
