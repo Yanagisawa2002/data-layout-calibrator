@@ -5,7 +5,7 @@ namespace Yanagisawa.DataLayoutCalibrator
 {
     /// <summary>
     /// Proposed additive schema transition for the scientific-core branch. Schema 2
-    /// is migrated in memory; schema 3 is validation-only. This API never writes an
+    /// is migrated in memory; schema 3 validates and adds descriptive timing metadata only. This API never writes an
     /// evidence file.
     /// </summary>
     public static class CalibrationProfileMigration
@@ -80,7 +80,25 @@ namespace Yanagisawa.DataLayoutCalibrator
             var results = new List<LayoutBenchmarkResult>(profile.CalibrationResults ?? Array.Empty<LayoutBenchmarkResult>());
             if (profile.HoldoutBaselineResult != null) results.Add(profile.HoldoutBaselineResult);
             if (profile.HoldoutSelectedResult != null) results.Add(profile.HoldoutSelectedResult);
-            foreach (var result in results) result?.TimingContract?.Validate();
+            foreach (var result in results)
+            {
+                result?.TimingContract?.Validate();
+                if (result?.TimingContract != null &&
+                    (result.TimingContract.IndividualTicksAvailable || result.TimingContract.CompleteLifecyclesAvailable))
+                {
+                    if (result.LifecycleObservations == null || result.LifecycleObservations.Length == 0)
+                        throw new ArgumentException("A timing availability claim requires actual lifecycle records.");
+                    foreach (var observation in result.LifecycleObservations)
+                    {
+                        if (observation == null) throw new ArgumentException("Null lifecycle.");
+                        observation.Validate();
+                        if (observation.CandidateId != result.Candidate.CandidateId ||
+                            observation.PartitionId != result.EvidencePartitionId ||
+                            observation.DatasetHash != result.DatasetHash || observation.SourceFingerprint != result.SourceFingerprint)
+                            throw new ArgumentException("Lifecycle observation association differs from its result.");
+                    }
+                }
+            }
             if (profile.TimingContract == null) profile.TimingContract = TimingMeasurementContract.Historical();
             foreach (var result in results)
                 if (result != null && result.TimingContract == null) result.TimingContract = TimingMeasurementContract.Historical();

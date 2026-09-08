@@ -307,6 +307,7 @@ namespace Yanagisawa.DataLayoutCalibrator
 
         public int SampleSchemaVersion = CurrentSampleSchemaVersion;
         public TimingMeasurementContract TimingContract;
+        public LifecycleObservation[] LifecycleObservations;
         public AllocationCounterCapability AllocationCapability;
         public AllocationScope RequiredAllocationScope;
         public bool AllocationWindowsComplete;
@@ -416,6 +417,7 @@ namespace Yanagisawa.DataLayoutCalibrator
     {
         public int SchemaVersion = 3;
         public TimingMeasurementContract TimingContract;
+        public ConservativeLifetimeEstimate LifetimeEnvelope;
         public ScenarioDescriptor Scenario;
         public int ElementCount;
         public int HoldoutElementCount;

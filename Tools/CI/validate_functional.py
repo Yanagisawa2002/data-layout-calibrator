@@ -23,7 +23,8 @@ def main() -> int:
     # No wildcard test collection: historical suites include real timestamp/counter reads.
     commands = [["dotnet", "build", PROJECT, "-c", "Release", "--nologo"]]
     if not args.build_only:
-        commands += [["dotnet", "test", PROJECT, "-c", "Release", "--no-build", "--nologo"],
+        commands += [[sys.executable, "-m", "unittest", "discover", "-s", "Tools/CI", "-p", "test_functional_policy.py", "-v"],
+                     ["dotnet", "test", PROJECT, "-c", "Release", "--no-build", "--nologo"],
                      [sys.executable, "-m", "unittest", "discover", "-s", "Tools/ResultRenderer/tests",
                       "-p", "test_measurement_contract.py", "-v"]]
     for command in commands:

@@ -39,3 +39,4 @@ BenchmarkProject/Assets/Resources/PerformanceTestRun*.json*
 # OS files
 .DS_Store
 Thumbs.db
+!Tools/FunctionalTests/UnityCompileOnly.csproj

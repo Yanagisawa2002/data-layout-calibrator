@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>obj/$(MSBuildProjectName)/$(UnityCompileFlavor)/</BaseIntermediateOutputPath>
+    <BaseOutputPath>bin/$(MSBuildProjectName)/$(UnityCompileFlavor)/</BaseOutputPath>
+  </PropertyGroup>
+</Project>

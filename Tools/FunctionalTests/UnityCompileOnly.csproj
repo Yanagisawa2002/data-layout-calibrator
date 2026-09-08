@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <UseSharedCompilation>false</UseSharedCompilation>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UnityCompileFlavor Condition="'$(UnityCompileFlavor)' == ''">Editor</UnityCompileFlavor>
+    <DefineConstants Condition="'$(UnityCompileFlavor)' == 'Editor'">UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_STANDALONE_WIN;UNITY_2022_2_OR_NEWER</DefineConstants>
+    <DefineConstants Condition="'$(UnityCompileFlavor)' == 'Mono'">UNITY_STANDALONE_WIN;UNITY_2022_2_OR_NEWER</DefineConstants>
+    <DefineConstants Condition="'$(UnityCompileFlavor)' == 'IL2CPP'">UNITY_STANDALONE_WIN;ENABLE_IL2CPP;UNITY_2022_2_OR_NEWER</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Compile only against installed assemblies. No Unity executable or native API is invoked. -->
+    <Reference Include="$(UnityManagedPath)/*.dll" />
+    <Reference Include="$(UnityScriptAssembliesPath)/Unity.Burst.dll" />
+    <Reference Include="$(UnityScriptAssembliesPath)/Unity.Collections.dll" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <ProjectReference Include="../../Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Yanagisawa.DataLayoutCalibrator.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Runtime/*.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/*/Runtime/*.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/*.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Samples/*/Tests/Editor/*.cs" />
+    <Compile Include="../../BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/*.cs" />
+    <Compile Include="../../BenchmarkProject/Assets/DataLayoutCalibrator/Editor/*.cs" />
+  </ItemGroup>
+  <Target Name="RequireExistingDependencies" BeforeTargets="ResolveReferences">
+    <Error Condition="'$(UnityCompileFlavor)' != 'Editor' And '$(UnityCompileFlavor)' != 'Mono' And '$(UnityCompileFlavor)' != 'IL2CPP'" Text="Unknown UnityCompileFlavor." />
+    <Error Condition="!Exists('$(UnityManagedPath)/UnityEngine.CoreModule.dll')" Text="Provide UnityManagedPath: installed Editor/Data/Managed/UnityEngine; compilation only." />
+    <Error Condition="!Exists('$(UnityScriptAssembliesPath)/Unity.Burst.dll') Or !Exists('$(UnityScriptAssembliesPath)/Unity.Collections.dll')" Text="Provide existing UnityScriptAssembliesPath with Burst/Collections assemblies. Never launch a Player to prepare these dependencies." />
+  </Target>
+</Project>

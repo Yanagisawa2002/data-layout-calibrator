@@ -112,6 +112,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             return new ScenarioCalibrationProfile
             {
                 TimingContract = new TimingMeasurementContract(),
+                LifetimeEnvelope = ConservativeLifetimeEnvelope.Estimate(null), // One process has no independent process cost evidence.
                 Scenario = factory.Descriptor,
                 ElementCount = settings.ElementCount,
                 HoldoutElementCount = settings.HoldoutElementCount,
