@@ -101,7 +101,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             Begin();
             AllocateControls();
             Observation positive = End();
-            if (positive.Events < 4 || (_valuesAreBytes && positive.Bytes < 4097))
+            if (positive.Events < 4 || (_valuesAreBytes && positive.Bytes < 1_048_577))
                 throw new NotSupportedException("Allocation provider failed precompiled array/object/string positive controls; zero cannot be evidence.");
             Begin();
             Observation empty = End();
@@ -118,7 +118,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         private static void AllocateControls()
         {
             _smallControl = new byte[1];
-            _largeControl = new byte[4096];
+            _largeControl = new byte[1_048_576];
             _objectControl = new object();
             _stringControl = new string('x', 37);
         }

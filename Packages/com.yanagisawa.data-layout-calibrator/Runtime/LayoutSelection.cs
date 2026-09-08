@@ -71,6 +71,10 @@ namespace Yanagisawa.DataLayoutCalibrator
 
             LayoutSelectionDecision decision = new LayoutSelectionDecision
             {
+                CalibrationPartitionId = baseline.EvidencePartitionId,
+                CalibrationDatasetHash = baseline.DatasetHash,
+                CalibrationDatasetSeed = baseline.DatasetSeed,
+                SourceFingerprint = baseline.SourceFingerprint,
                 DecisionStage = DecisionStage.Calibration,
                 Status = LayoutSelectionStatus.Inconclusive,
                 BaselineCandidate = baseline.Candidate,
@@ -85,7 +89,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 RejectedParityCandidateCount = rejectedParityCount,
                 MultiplicityControl =
                     "Calibration winner selection followed by confirmation on an untouched holdout dataset.",
-                Reason = "The best valid result did not clear the required P95 improvement over the best AoS result.",
+                Reason = "The best valid result did not clear the required selection score improvement over the best AoS result.",
             };
 
             if (!best.Candidate.IsBaseline)
@@ -139,7 +143,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 decision.SelectedCandidate = best.Candidate;
                 decision.SelectionRegretPercent = 0d;
                 decision.Reason =
-                    "A non-AoS candidate cleared both the required amortized P95 improvement and the paired block-bootstrap significance gate.";
+                    "A non-AoS candidate cleared both the required component-P95 selection score improvement and the paired block-bootstrap significance gate.";
             }
 
             return decision;
@@ -197,11 +201,25 @@ namespace Yanagisawa.DataLayoutCalibrator
                     "The holdout candidates used different element counts; the comparison is inconclusive.");
             }
 
+            if (string.IsNullOrWhiteSpace(calibrationDecision.CalibrationPartitionId) ||
+                string.IsNullOrWhiteSpace(calibrationDecision.CalibrationDatasetHash) ||
+                string.IsNullOrWhiteSpace(baselineHoldout.EvidencePartitionId) ||
+                string.IsNullOrWhiteSpace(baselineHoldout.DatasetHash) ||
+                baselineHoldout.EvidencePartitionId == calibrationDecision.CalibrationPartitionId ||
+                baselineHoldout.DatasetHash == calibrationDecision.CalibrationDatasetHash ||
+                baselineHoldout.DatasetSeed == 0 || baselineHoldout.DatasetSeed == calibrationDecision.CalibrationDatasetSeed ||
+                baselineHoldout.SourceFingerprint != calibrationDecision.SourceFingerprint)
+                return HoldoutFallback(calibrationDecision, "Holdout partition, source or fresh dataset independence is unknown or invalid.");
+
             double holdoutImprovement = ImprovementPercent(
                 PrimaryP95(baselineHoldout),
                 PrimaryP95(selectedHoldout));
             LayoutSelectionDecision decision = new LayoutSelectionDecision
             {
+                CalibrationPartitionId = calibrationDecision.CalibrationPartitionId,
+                CalibrationDatasetHash = calibrationDecision.CalibrationDatasetHash,
+                CalibrationDatasetSeed = calibrationDecision.CalibrationDatasetSeed,
+                SourceFingerprint = calibrationDecision.SourceFingerprint,
                 DecisionStage = DecisionStage.HoldoutConfirmation,
                 Status = LayoutSelectionStatus.Optimized,
                 BaselineCandidate = baselineHoldout.Candidate,
@@ -215,7 +233,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 EligibleCandidateCount = 2,
                 RejectedParityCandidateCount = 0,
                 MultiplicityControl = calibrationDecision.MultiplicityControl,
-                Reason = "The frozen candidate repeated the required amortized P95 improvement and paired significance gate on untouched holdout data.",
+                Reason = "The frozen candidate repeated the required component-P95 selection score improvement and paired significance gate on untouched holdout data.",
             };
 
             if (!HasBootstrapSamples(baselineHoldout) || !HasBootstrapSamples(selectedHoldout))
@@ -279,11 +297,14 @@ namespace Yanagisawa.DataLayoutCalibrator
             return decision;
         }
 
-        private static bool IsEligible(LayoutBenchmarkResult result)
+        public static bool IsEligible(LayoutBenchmarkResult result)
         {
-            if (result == null || !result.Completed || !result.ParityPassed ||
+            if (result == null || !AllocationMeasurementGate.IsZeroAllocationEstablished(result) || !result.Completed || !result.ParityPassed ||
                 result.HotPathManagedAllocationBytes != 0 ||
                 result.BoundaryManagedAllocationBytes != 0 ||
+                !CandidateDefinitionProtocol.IsCanonicalSha256(result.SourceFingerprint) ||
+                string.IsNullOrWhiteSpace(result.EvidencePartitionId) || string.IsNullOrWhiteSpace(result.DatasetHash) ||
+                result.DatasetSeed == 0 ||
                 result.Candidate.LogicalBatchSize <= 0 ||
                 result.Latency.SampleCount <= 0)
             {

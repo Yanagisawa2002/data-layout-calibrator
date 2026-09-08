@@ -243,6 +243,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             var processIds = new HashSet<string>(StringComparer.Ordinal);
             var pairedProcesses = new PairedBenchmarkData[count];
             string deviceId = null;
+            string sourceFingerprint = null;
             string baselineCandidateId = null;
             string candidateId = null;
             string scenarioId = null;
@@ -304,6 +305,9 @@ namespace Yanagisawa.DataLayoutCalibrator
                         nameof(processes));
                 }
 
+                if (index == 0) sourceFingerprint = process.Baseline.SourceFingerprint;
+                else if (sourceFingerprint != process.Baseline.SourceFingerprint)
+                    throw new ArgumentException("Process hierarchy cannot pool different source/compiler/workload fingerprints.");
                 pairedProcesses[index] = paired;
                 pointLogRatioTotal += PointCompositeLogRatio(paired);
             }
@@ -462,6 +466,19 @@ namespace Yanagisawa.DataLayoutCalibrator
             {
                 throw new ArgumentException(
                     "Paired candidates require the same phase, element count, and steps per sample.");
+            }
+
+            // Additive source-aware records may never be paired with another run, dataset or build.
+            if (baseline.TimingContract != null || candidate.TimingContract != null ||
+                baseline.EvidencePartitionId != null || candidate.EvidencePartitionId != null)
+            {
+                if (string.IsNullOrWhiteSpace(baseline.EvidencePartitionId) ||
+                    baseline.EvidencePartitionId != candidate.EvidencePartitionId ||
+                    string.IsNullOrWhiteSpace(baseline.DatasetHash) || baseline.DatasetHash != candidate.DatasetHash ||
+                    baseline.DatasetSeed == 0 || baseline.DatasetSeed != candidate.DatasetSeed ||
+                    string.IsNullOrWhiteSpace(baseline.SourceFingerprint) || baseline.SourceFingerprint != candidate.SourceFingerprint)
+                    throw new ArgumentException("Paired samples require identical source and dataset partition identities.");
+                baseline.TimingContract?.Validate(); candidate.TimingContract?.Validate();
             }
 
             CandidateDescriptor normalizedBaseline = NormalizeAndValidate(baseline.Candidate);

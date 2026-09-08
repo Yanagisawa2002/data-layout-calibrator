@@ -257,6 +257,9 @@ namespace Yanagisawa.DataLayoutCalibrator
     [Serializable]
     public sealed class DecisionCandidateEvidence
     {
+        public AllocationCounterCapability AllocationCapability;
+        public AllocationScope RequiredAllocationScope;
+        public bool AllocationWindowsComplete;
         public EnvelopeCandidateDescriptor Candidate;
         public bool Completed;
         public bool ContractFeasible;

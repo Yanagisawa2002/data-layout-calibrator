@@ -785,6 +785,9 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             }
             return new DecisionCandidateEvidence
             {
+                AllocationCapability = FunctionalEvidenceFixtures.ThreadCapability(),
+                RequiredAllocationScope = AllocationScope.CurrentThreadManaged,
+                AllocationWindowsComplete = true,
                 Candidate = Descriptor(candidateId, baseline, sortOrder),
                 Completed = true,
                 ContractFeasible = true,

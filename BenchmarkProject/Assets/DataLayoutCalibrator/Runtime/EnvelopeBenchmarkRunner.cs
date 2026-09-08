@@ -113,6 +113,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         private static void Bootstrap()
         {
             if (Argument("-dla-envelope-run") == null) return;
+            MeasurementExecutionPolicy.Require(null); // Disabled until a newly authorized host supplies a permit.
             var host = new GameObject("Measured envelope runner");
             DontDestroyOnLoad(host);
             host.AddComponent<EnvelopeBenchmarkRunner>();

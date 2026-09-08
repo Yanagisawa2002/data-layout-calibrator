@@ -7,6 +7,10 @@ namespace Yanagisawa.DataLayoutCalibrator
     [Serializable]
     public sealed class CalibrationRunSettings
     {
+        [NonSerialized] public MeasurementExecutionPermit ExecutionPermit;
+        // Scope is explicit: default thread-only providers cannot certify worker or native allocation freedom.
+        public AllocationScope RequiredAllocationScope = AllocationScope.CurrentThreadManaged | AllocationScope.WorkerThreadsManaged;
+        public string SourceFingerprint;
         [NonSerialized] public IManagedAllocationCounter AllocationCounter = new ThreadManagedAllocationCounter();
         public int ElementCount = 1_048_576;
         public int HoldoutElementCount = 1_000_003;
@@ -29,6 +33,15 @@ namespace Yanagisawa.DataLayoutCalibrator
         public uint BootstrapSeed = 0xB5297A4Du;
         public float ParityTolerance = 1e-5f;
         public MeasurementOrderKind MeasurementOrder = MeasurementOrderKind.BalancedLatinSquare;
+
+        public void BindAuthorizedContext(MeasurementExecutionPermit permit,
+            CalibrationProfileFingerprint fingerprint, AllocationScope requiredScope)
+        {
+            if (permit == null || !CalibrationProfileFingerprintBuilder.HasValidIntegrity(fingerprint))
+                throw new ArgumentException("New authorization and an intact source/device/compiler/workload fingerprint are required.");
+            ExecutionPermit = permit; SourceFingerprint = fingerprint.FingerprintSha256;
+            RequiredAllocationScope = requiredScope;
+        }
     }
 
     /// <summary>
@@ -44,6 +57,8 @@ namespace Yanagisawa.DataLayoutCalibrator
             if (factory == null)
                 throw new ArgumentNullException(nameof(factory));
             ValidateSettings(settings);
+            MeasurementExecutionPolicy.Require(settings.ExecutionPermit);
+            settings = CloneSearchSettings(settings);
             RunPreflight(factory, settings);
 
             PhaseMeasurement calibration = MeasurePhase(
@@ -96,6 +111,7 @@ namespace Yanagisawa.DataLayoutCalibrator
 
             return new ScenarioCalibrationProfile
             {
+                TimingContract = new TimingMeasurementContract(),
                 Scenario = factory.Descriptor,
                 ElementCount = settings.ElementCount,
                 HoldoutElementCount = settings.HoldoutElementCount,
@@ -112,7 +128,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 BootstrapConfidenceLevel = settings.BootstrapConfidenceLevel,
                 MinimumImprovementPercent = settings.MinimumImprovementPercent,
                 PrimaryTimingMetric =
-                    "amortized_p95_ms_per_tick = resident_p95 + (ingress_p95 + export_p95) / lifetime_ticks",
+                    "sum-of-component-p95-amortized-score-ms-per-tick = block_mean_p95 + (ingress_p95 + export_p95) / lifetime_ticks; not a tick or lifecycle quantile",
                 ManagedAllocationMeasurement = settings.AllocationCounter.Identity,
                 TimingIncludes =
                     "candidate dispatch; job Schedule; worker execution; Complete; separately timed full ingress and export",
@@ -187,7 +203,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             int fixedWarmupBlocks,
             uint orderSeed)
         {
-            settings.AllocationCounter.Validate();
+            AllocationMeasurementGate.ValidateAndSnapshot(settings.AllocationCounter, settings.RequiredAllocationScope);
             using (ICalibrationScenario scenario = factory.Create(
                        elementCount,
                        datasetSeed,
@@ -234,7 +250,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                     settings.MeasurementOrder,
                     settings.AllocationCounter);
                 ValidateParity(scenario, candidates, settings.ParityTolerance);
-                settings.AllocationCounter.Validate();
+                AllocationMeasurementGate.ValidateAndSnapshot(settings.AllocationCounter, settings.RequiredAllocationScope);
 
                 return new PhaseMeasurement
                 {
@@ -245,15 +261,34 @@ namespace Yanagisawa.DataLayoutCalibrator
                         .Descriptor,
                     TicksPerBlock = ticksPerBlock,
                     WarmupBlocks = warmupBlocks,
-                    Results = BuildResults(
+                    Results = BindMeasurementContract(BuildResults(
                         factory.Descriptor,
                         phase,
                         candidates,
                         elementCount,
                         ticksPerBlock,
-                        settings.LifetimeTicks),
+                        settings.LifetimeTicks), settings, scenario.DatasetHash, datasetSeed),
                 };
             }
+        }
+
+        private static LayoutBenchmarkResult[] BindMeasurementContract(LayoutBenchmarkResult[] results,
+            CalibrationRunSettings settings, string datasetHash, uint datasetSeed)
+        {
+            var capability = ((IAllocationCounterCapabilities)settings.AllocationCounter).Capability;
+            string partition = Guid.NewGuid().ToString("N");
+            foreach (LayoutBenchmarkResult result in results)
+            {
+                result.TimingContract = new TimingMeasurementContract();
+                result.AllocationCapability = capability.Snapshot();
+                result.RequiredAllocationScope = settings.RequiredAllocationScope;
+                result.AllocationWindowsComplete = true;
+                result.EvidencePartitionId = partition;
+                result.DatasetHash = datasetHash;
+                result.DatasetSeed = datasetSeed;
+                result.SourceFingerprint = settings.SourceFingerprint;
+            }
+            return results;
         }
 
         private static CandidateMeasurement[] CreateMeasurements(
@@ -514,7 +549,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             ICalibrationCandidate baseline,
             CalibrationRunSettings settings)
         {
-            settings.AllocationCounter.Validate();
+            AllocationMeasurementGate.ValidateAndSnapshot(settings.AllocationCounter, settings.RequiredAllocationScope);
             baseline.BoundaryCost.Ingress();
             baseline.Execute(4, settings.FixedDeltaTime);
             int ticks = 1;
@@ -545,7 +580,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             if (settings.MinimumWarmupSeconds <= 0d)
                 return settings.WarmupBlocks;
 
-            settings.AllocationCounter.Validate();
+            AllocationMeasurementGate.ValidateAndSnapshot(settings.AllocationCounter, settings.RequiredAllocationScope);
             baseline.BoundaryCost.Ingress();
             baseline.Execute(4, settings.FixedDeltaTime);
             double blockMilliseconds = MeasureResident(
@@ -622,12 +657,14 @@ namespace Yanagisawa.DataLayoutCalibrator
             if (settings == null)
                 throw new ArgumentNullException(nameof(settings));
             if (settings.AllocationCounter == null) throw new ArgumentNullException(nameof(settings.AllocationCounter));
+            if (!CandidateDefinitionProtocol.IsCanonicalSha256(settings.SourceFingerprint))
+                throw new ArgumentException("Bind the exact device/compiler/workload/kernel fingerprint before measurement.");
             if (settings.ElementCount <= 0 || settings.HoldoutElementCount <= 0 ||
                 settings.PreflightElementCount <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(settings), "Element counts must be positive.");
             }
-            if (settings.CalibrationSeed == 0u || settings.HoldoutSeed == 0u)
+            if (settings.CalibrationSeed == 0u || settings.HoldoutSeed == 0u || settings.CalibrationSeed == settings.HoldoutSeed)
                 throw new ArgumentOutOfRangeException(nameof(settings), "Dataset seeds must be non-zero.");
             if (settings.PreflightTicks <= 0 || settings.WarmupBlocks <= 0 ||
                 settings.SamplesPerCandidate < 3 || settings.BoundarySamplesPerCandidate < 3 ||

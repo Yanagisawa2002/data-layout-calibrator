@@ -18,7 +18,7 @@ from typing import Any, Iterable
 from PIL import Image, ImageDraw, ImageFont
 
 
-RENDERER_VERSION = "1.2.0"
+RENDERER_VERSION = "1.3.0"
 
 MEASUREMENT_SCHEMA_CANONICAL_DESCRIPTOR = (
     "dlc.scientific-envelope-measurement.v1\n"
@@ -368,6 +368,45 @@ def load_suite(path: Path) -> tuple[dict[str, Any], str]:
     return suite, hashlib.sha256(payload).hexdigest().upper()
 
 
+def timing_semantics(raw: dict) -> dict:
+    """Describe old keys without recomputing values or silently manufacturing tick samples."""
+    contract = raw.get("TimingContract")
+    expected = {
+        "ResidentMetric": "p95-of-block-mean-ms-per-tick",
+        "SelectionMetric": "sum-of-component-p95-amortized-score-ms-per-tick",
+        "QuantileConvention": "linear-interpolation-at-(n-1)*p",
+    }
+    if contract is not None:
+        if not isinstance(contract, dict) or contract.get("SchemaVersion") != 1:
+            raise RenderContractError("Unknown TimingContract schema.")
+        if any(contract.get(key) != value for key, value in expected.items()):
+            raise RenderContractError("Timing semantics disagree with preserved historical score fields.")
+    return dict(expected, HistoricalSemantics=contract is None or bool(contract.get("HistoricalSemantics")),
+                DisplayLabel="component-P95 selection score (not tick/lifecycle P95)")
+
+
+def allocation_observation_status(result: dict) -> str:
+    capability = result.get("AllocationCapability")
+    if not capability:
+        return "Unknown (historical numeric zero does not establish coverage)"
+    required = result.get("RequiredAllocationScope", 0)
+    scope = capability.get("Scope", 0)
+    if (capability.get("SchemaVersion") != 1 or capability.get("Availability") != 1 or
+            not capability.get("PositiveControlPassed") or not capability.get("EmptyControlPassed") or
+            not capability.get("Provider") or capability.get("Unit") not in ("bytes", "allocation-events-zero-only") or
+            (capability.get("Unit") == "bytes" and
+             (type(capability.get("PositiveControlMinimumBytes")) is not int or
+              type(capability.get("ObservedPositiveBytes")) is not int or
+              capability["PositiveControlMinimumBytes"] <= 0 or
+              capability["ObservedPositiveBytes"] < capability["PositiveControlMinimumBytes"])) or
+            type(required) is not int or type(scope) is not int or not 0 < required <= 7 or not 0 < scope <= 7 or
+            required & scope != required or not result.get("AllocationWindowsComplete")):
+        return "Unknown (unavailable or incomplete allocation scope/windows)"
+    if result.get("HotPathManagedAllocationBytes") != 0 or result.get("BoundaryManagedAllocationBytes") != 0:
+        return "Rejected (allocation observed or byte observation missing)"
+    return "Validated zero within declared scope=" + str(scope) + "; other scopes unknown"
+
+
 def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
     """Validate display inputs and copy immutable decisions into a render-only model.
 
@@ -400,6 +439,7 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
             raise RenderContractError(
                 f"{context}.Scenario requires a positive ContractVersion."
             )
+        semantics = timing_semantics(raw)
         decision = _required(raw, "FinalDecision", context)
         results = _required(raw, "CalibrationResults", context)
         if not isinstance(results, list) or not results:
@@ -429,6 +469,8 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
             candidate_ids.add(identifier)
             raw_candidates.append(candidate)
 
+            timing_semantics(result)
+            allocation_status = allocation_observation_status(result)
             latency = _required(result, "AmortizedLatency", result_context)
             p95_ms = _required(latency, "P95Milliseconds", f"{result_context}.AmortizedLatency")
             is_valid = bool(result.get("Completed")) and bool(result.get("ParityPassed"))
@@ -515,6 +557,7 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
                     "SortOrder": int(candidate.get("SortOrder", 0)),
                     "P95Microseconds": float(p95_ms) * 1000.0 if is_valid else None,
                     "Valid": is_valid,
+                    "AllocationObservationStatus": allocation_status,
                 }
             )
 
@@ -719,6 +762,9 @@ def build_render_model(suite: dict[str, Any]) -> dict[str, Any]:
                 "ScenarioId": str(scenario_id),
                 "ScenarioContractVersion": scenario_contract_version,
                 "DisplayName": str(display_name),
+                "TimingSemantics": semantics,
+                "AllocationEvidenceStatus": sorted({cell["AllocationObservationStatus"] for cell in cells}),
+                "SourceFingerprints": sorted({r.get("SourceFingerprint") for r in results if r.get("SourceFingerprint")}),
                 "ElementCount": int(_required(raw, "ElementCount", context)),
                 "LifetimeTicks": int(_required(raw, "LifetimeTicks", context)),
                 "Cells": cells,
@@ -784,6 +830,8 @@ def decision_snapshot(model: dict[str, Any]) -> list[dict[str, Any]]:
             "ScenarioContractVersion": scenario["ScenarioContractVersion"],
             "Status": scenario["Status"],
             "StatusName": scenario["StatusName"],
+            "TimingSemantics": scenario["TimingSemantics"],
+            "AllocationEvidenceStatus": scenario["AllocationEvidenceStatus"],
             "BaselineCandidateId": scenario["BaselineId"],
             "SelectedCandidateId": scenario["SelectedId"],
             "BestMeasuredCandidateId": scenario["BestId"],
@@ -925,7 +973,7 @@ def render_heatmap(model: dict[str, Any], input_hash: str, output_path: Path) ->
     draw.text((60, 42), "Calibration candidates and frozen decisions", font=title_font, fill=INK)
     first = model["Scenarios"][0]
     subtitle = (
-        f"Calibration-phase amortized P95 · µs/tick · {first['ElementCount']:,} records · "
+        f"Calibration component-P95 score · µs/tick · {first['ElementCount']:,} records · "
         f"{model['Backend']} {model['BuildType']} · lower is faster · per-workload color scale"
     )
     draw.text((60, 96), subtitle, font=subtitle_font, fill=MUTED)
@@ -939,7 +987,7 @@ def render_heatmap(model: dict[str, Any], input_hash: str, output_path: Path) ->
         if scenario["Status"] == 2:
             badge = (
                 f"OPTIMIZED · {scenario['SelectedId']} · "
-                f"{scenario['ImprovementPercent']:.2f}% lower P95"
+                f"{scenario['ImprovementPercent']:.2f}% lower score"
             )
             badge_fill, badge_ink, badge_outline = BLUE, WHITE, None
         else:
@@ -1168,7 +1216,7 @@ def _gif_frame(model: dict[str, Any], input_hash: str, progress: float) -> Image
             badge_fill, badge_ink, badge_outline = WHITE, INK, MUTED
         elif scenario["Status"] == 2:
             decision_text = scenario["SelectedId"]
-            badge_text = f"{scenario['ImprovementPercent']:.2f}% LOWER P95"
+            badge_text = f"{scenario['ImprovementPercent']:.2f}% LOWER SCORE"
             badge_fill, badge_ink, badge_outline = BLUE_DARK, WHITE, None
         else:
             decision_text = scenario["SelectedId"]

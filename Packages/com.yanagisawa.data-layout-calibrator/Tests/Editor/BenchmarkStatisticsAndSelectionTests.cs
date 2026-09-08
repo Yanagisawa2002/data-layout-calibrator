@@ -238,6 +238,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 BestMeasuredP95Milliseconds = 8d,
                 ImprovementPercent = improvementPercent,
                 MinimumRequiredImprovementPercent = 10d,
+                CalibrationPartitionId = "earlier-calibration", CalibrationDatasetHash = "earlier-data",
+                CalibrationDatasetSeed = 1, SourceFingerprint = new string('F', 64),
             };
         }
 
@@ -267,6 +269,13 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
 
             var result = new LayoutBenchmarkResult
             {
+                AllocationCapability = FunctionalEvidenceFixtures.ThreadCapability(),
+                RequiredAllocationScope = AllocationScope.CurrentThreadManaged,
+                AllocationWindowsComplete = true,
+                EvidencePartitionId = "synthetic-result-partition",
+                DatasetHash = "synthetic-result-data",
+                DatasetSeed = 2,
+                SourceFingerprint = new string('F', 64),
                 ScenarioId = "synthetic-selection-fixture",
                 ScenarioContractVersion = 1,
                 Candidate = new CandidateDescriptor(layout, batchSize),

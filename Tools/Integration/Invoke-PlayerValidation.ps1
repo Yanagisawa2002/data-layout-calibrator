@@ -4,6 +4,7 @@ param(
     [Parameter(Mandatory=$true)][string]$EvidenceDirectory,
     [string]$SerializationRunner='C:/Users/EdwinLiu/Documents/Codex/2026-09-07/w-m/work/optimization-vnext/Invoke-SerializedValidation.ps1'
 )
+throw 'Legacy performance/Player orchestration is disabled. Use Tools/CI/validate_functional.py; re-enabling measurement requires NEW explicit user authorization and a reviewed launcher.'
 $ErrorActionPreference='Stop'
 $Player=(Resolve-Path -LiteralPath $Player).Path
 $evidence=[IO.Path]::GetFullPath($EvidenceDirectory)

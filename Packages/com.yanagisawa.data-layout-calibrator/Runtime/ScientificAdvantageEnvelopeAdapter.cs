@@ -367,6 +367,9 @@ namespace Yanagisawa.DataLayoutCalibrator
             return new DecisionCandidateEvidence
             {
                 Candidate = descriptor,
+                AllocationCapability = result.AllocationCapability?.Snapshot(),
+                RequiredAllocationScope = result.RequiredAllocationScope,
+                AllocationWindowsComplete = result.AllocationWindowsComplete,
                 Completed = result.Completed,
                 ContractFeasible = prepared.Binding.ContractFeasible,
                 MemoryFeasible = prepared.Binding.MemoryFeasible,

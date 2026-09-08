@@ -344,6 +344,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
                 SelectedCandidate = new CandidateDescriptor("SoA", 64, false, candidateId: "candidate"),
                 BestMeasuredCandidate = new CandidateDescriptor("SoA", 64, false, candidateId: "candidate"),
                 MultiplicityControl = "untouched holdout confirmation",
+                CalibrationPartitionId = "Calibration", CalibrationDatasetHash = "Calibration-synthetic-data",
+                CalibrationDatasetSeed = 1, SourceFingerprint = new string('F', 64),
             };
             LayoutBenchmarkResult baseline = CreateResult(
                 "baseline", true, new[] { 10d, 10d, 10d, 10d }, new[] { 0, 1, 2, 3 }, BenchmarkPhase.Holdout);
@@ -843,6 +845,13 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
             var export = new double[resident.Length];
             var result = new LayoutBenchmarkResult
             {
+                AllocationCapability = FunctionalEvidenceFixtures.ThreadCapability(),
+                RequiredAllocationScope = AllocationScope.CurrentThreadManaged,
+                AllocationWindowsComplete = true,
+                EvidencePartitionId = phase.ToString(),
+                DatasetHash = phase.ToString() + "-synthetic-data",
+                DatasetSeed = (uint)phase + 1,
+                SourceFingerprint = new string('F', 64),
                 ScenarioId = "synthetic-statistics-fixture",
                 ScenarioContractVersion = 1,
                 Phase = phase,

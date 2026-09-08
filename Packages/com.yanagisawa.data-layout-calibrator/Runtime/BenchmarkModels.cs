@@ -306,6 +306,14 @@ namespace Yanagisawa.DataLayoutCalibrator
         public const int CurrentSampleSchemaVersion = 1;
 
         public int SampleSchemaVersion = CurrentSampleSchemaVersion;
+        public TimingMeasurementContract TimingContract;
+        public AllocationCounterCapability AllocationCapability;
+        public AllocationScope RequiredAllocationScope;
+        public bool AllocationWindowsComplete;
+        public string EvidencePartitionId;
+        public string DatasetHash;
+        public uint DatasetSeed;
+        public string SourceFingerprint;
         public string ScenarioId;
         public int ScenarioContractVersion;
         public BenchmarkPhase Phase;
@@ -338,6 +346,10 @@ namespace Yanagisawa.DataLayoutCalibrator
     [Serializable]
     public struct LayoutSelectionDecision
     {
+        public string CalibrationPartitionId;
+        public string CalibrationDatasetHash;
+        public uint CalibrationDatasetSeed;
+        public string SourceFingerprint;
         public DecisionStage DecisionStage;
         public LayoutSelectionStatus Status;
         public CandidateDescriptor BaselineCandidate;
@@ -403,6 +415,7 @@ namespace Yanagisawa.DataLayoutCalibrator
     public sealed class ScenarioCalibrationProfile
     {
         public int SchemaVersion = 3;
+        public TimingMeasurementContract TimingContract;
         public ScenarioDescriptor Scenario;
         public int ElementCount;
         public int HoldoutElementCount;

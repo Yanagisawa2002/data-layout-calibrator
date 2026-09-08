@@ -38,6 +38,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             {
                 for (int index = 0; index < suite.Scenarios.Length; index++)
                     ValidateScenario3(suite.Scenarios[index]);
+                foreach (var scenario in suite.Scenarios) DescribeTimingInMemory(scenario);
                 return suite;
             }
 
@@ -49,6 +50,7 @@ namespace Yanagisawa.DataLayoutCalibrator
                 MigrateScenario2(suite.Scenarios[index]);
 
             suite.SchemaVersion = ProposedSchemaVersion;
+            foreach (var scenario in suite.Scenarios) DescribeTimingInMemory(scenario);
             return suite;
         }
 
@@ -60,12 +62,29 @@ namespace Yanagisawa.DataLayoutCalibrator
             if (profile.SchemaVersion == ProposedSchemaVersion)
             {
                 ValidateScenario3(profile);
+                DescribeTimingInMemory(profile);
                 return profile;
             }
 
             ValidateScenario2ForMigration(profile);
             MigrateScenario2(profile);
+            DescribeTimingInMemory(profile);
             return profile;
+        }
+
+        public static void DescribeTimingInMemory(ScenarioCalibrationProfile profile)
+        {
+            if (profile == null) throw new ArgumentNullException(nameof(profile));
+            // Validate all additive descriptors first. This does not recompute any number or decision.
+            profile.TimingContract?.Validate();
+            var results = new List<LayoutBenchmarkResult>(profile.CalibrationResults ?? Array.Empty<LayoutBenchmarkResult>());
+            if (profile.HoldoutBaselineResult != null) results.Add(profile.HoldoutBaselineResult);
+            if (profile.HoldoutSelectedResult != null) results.Add(profile.HoldoutSelectedResult);
+            foreach (var result in results) result?.TimingContract?.Validate();
+            if (profile.TimingContract == null) profile.TimingContract = TimingMeasurementContract.Historical();
+            foreach (var result in results)
+                if (result != null && result.TimingContract == null) result.TimingContract = TimingMeasurementContract.Historical();
+            // AllocationCapability remains null for history: a missing observation is never retroactively certified.
         }
 
         private static void ValidateTopLevelVersion(int schemaVersion, string description)

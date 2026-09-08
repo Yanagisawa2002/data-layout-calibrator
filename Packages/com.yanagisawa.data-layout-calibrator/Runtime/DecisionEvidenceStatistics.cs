@@ -79,6 +79,13 @@ namespace Yanagisawa.DataLayoutCalibrator
                 return CandidateEvidenceGateStatus.ParityFailed;
             }
 
+            if (evidence.AllocationCapability == null || !evidence.AllocationWindowsComplete ||
+                !evidence.AllocationCapability.Covers(evidence.RequiredAllocationScope))
+            {
+                reason = "Allocation availability/scope or complete observation windows are unknown.";
+                return CandidateEvidenceGateStatus.Incomplete;
+            }
+
             if (evidence.HotPathManagedAllocationBytes != 0L ||
                 evidence.BoundaryManagedAllocationBytes != 0L)
             {

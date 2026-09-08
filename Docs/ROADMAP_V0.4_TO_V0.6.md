@@ -5,6 +5,23 @@
 基线版本：`v0.3.0-preview.1`  
 目标仓库：`Yanagisawa2002/data-layout-calibrator`
 
+## 2026-09-08 implementation repair checkpoint (performance Unmeasured)
+
+The isolated integration retains the complete local `61f8afb` vNext stack and
+`origin/main` documentation/license updates. Implemented allocation availability,
+scope and window gates, independent holdout/source checks, conservative process-level
+lifetime bounds, individual-tick/full-lifecycle collector interfaces and additive
+TimingContract/renderer semantics. Historical numeric evidence is unchanged.
+Validation is restricted to allowlisted deterministic CPU tests, simulated clocks
+and counters, static checks and compilation. Legacy Player/performance scripts refuse
+execution; PR CI runs only build and pure functional checks.
+
+Current-source performance, actual worker/native allocation coverage, Unity/Burst
+execution and external benchmark results remain Unmeasured. Existing generated
+storage, crossed matrix, envelope and profile work is retained rather than rebuilt.
+See the [repair delivery record](MEASUREMENT_REPAIR_2026-09-08.md) for integrated
+kernel/source locks, actual checks and remaining validation limits.
+
 ## 2026-09-07 measured integration checkpoint
 
 The five assigned optimization workstreams and bounded local measurements are complete;

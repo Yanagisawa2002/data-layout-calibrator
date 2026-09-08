@@ -35,6 +35,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             if (!BenchmarkConfiguration.ShouldRun())
                 return;
 
+            MeasurementExecutionPolicy.Require(null); // Disabled until a newly authorized host supplies a permit.
             var host = new GameObject("Data Layout Calibrator Runner");
             DontDestroyOnLoad(host);
             host.AddComponent<LayoutBenchmarkRunner>();

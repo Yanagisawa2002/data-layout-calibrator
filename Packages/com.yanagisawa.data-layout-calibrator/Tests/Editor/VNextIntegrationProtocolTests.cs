@@ -351,6 +351,13 @@ namespace Yanagisawa.DataLayoutCalibrator.Tests
 
             var result = new LayoutBenchmarkResult
             {
+                AllocationCapability = FunctionalEvidenceFixtures.ThreadCapability(),
+                RequiredAllocationScope = AllocationScope.CurrentThreadManaged,
+                AllocationWindowsComplete = true,
+                EvidencePartitionId = phase.ToString(),
+                DatasetHash = phase.ToString() + "-synthetic-data",
+                DatasetSeed = (uint)phase + 1,
+                SourceFingerprint = new string('F', 64),
                 ScenarioId = "synthetic-integrated-scenario",
                 ScenarioContractVersion = 1,
                 Phase = phase,

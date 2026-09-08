@@ -49,6 +49,7 @@ namespace Yanagisawa.DataLayoutCalibrator
             if (codec == null) throw new ArgumentNullException(nameof(codec));
             if (writeImmutableArtifact == null) throw new ArgumentNullException(nameof(writeImmutableArtifact));
             ValidateSettings(settings);
+            MeasurementExecutionPolicy.Require(settings.ExecutionPermit);
             ProtocolIdentifier.RequireCanonical(artifactId, nameof(artifactId), "Artifact ID");
             if (!CandidateDefinitionProtocol.IsCanonicalSha256(environmentFingerprint))
                 throw new ArgumentException("An exact environment fingerprint is required.");
@@ -61,9 +62,11 @@ namespace Yanagisawa.DataLayoutCalibrator
 
             // Snapshot caller-owned mutable settings before any callback or work.
             IManagedAllocationCounter allocationCounter = settings.AllocationCounter;
+            MeasurementExecutionPermit permit = settings.ExecutionPermit;
             settings = codec.Deserialize<CalibrationRunSettings>(codec.Serialize(settings));
             settings.AllocationCounter = allocationCounter;
-            allocationCounter.Validate();
+            settings.ExecutionPermit = permit;
+            AllocationMeasurementGate.ValidateAndSnapshot(allocationCounter, settings.RequiredAllocationScope);
             string settingsHash = EnvelopeHash(codec.Serialize(settings));
             RunPreflight(factory, settings);
             PhaseMeasurement measured = MeasurePhase(factory, settings, BenchmarkPhase.Calibration,

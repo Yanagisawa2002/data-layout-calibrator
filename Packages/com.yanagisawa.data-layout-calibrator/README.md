@@ -1,3 +1,11 @@
+> 2026-09-08 integration: current performance is **Unmeasured**. Measurement entrypoints
+> require new explicit authorization and an exact source fingerprint. Allocation
+> eligibility requires available, scoped, positively controlled observations; default
+> current-thread counters cannot certify worker/native allocations. Historical P95
+> fields retain their original numbers and describe a component-P95 selection score,
+> not a per-tick or whole-lifecycle percentile. See the
+> [repair contract](../../Docs/MEASUREMENT_REPAIR_2026-09-08.md).
+
 # Data Layout Calibrator package
 
 The package separates a workload-agnostic calibration core from concrete Samples. The core assembly contains protocol, measurement, statistics, selection, and serializable evidence types; it contains no Particle or Transform workload types.

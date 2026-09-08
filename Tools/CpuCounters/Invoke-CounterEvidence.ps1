@@ -9,6 +9,7 @@ param(
     [string]$CandidateFile,
     [switch]$NoProvider
 )
+throw 'Legacy performance/Player orchestration is disabled. Use Tools/CI/validate_functional.py; re-enabling measurement requires NEW explicit user authorization and a reviewed launcher.'
 $ErrorActionPreference = 'Stop'
 $counterPlayer = (Resolve-Path -LiteralPath $PlayerPath).Path
 $counterOutput = [IO.Path]::GetFullPath($OutputDirectory)

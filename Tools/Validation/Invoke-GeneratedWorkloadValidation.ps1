@@ -5,6 +5,7 @@ param(
     [string]$OutputDirectory,
     [switch]$SkipBuild
 )
+throw 'Legacy performance/Player orchestration is disabled. Use Tools/CI/validate_functional.py; re-enabling measurement requires NEW explicit user authorization and a reviewed launcher.'
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 if (!$OutputDirectory) { $OutputDirectory = Join-Path $repository 'Artifacts/generated-workloads' }
