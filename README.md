@@ -3,6 +3,12 @@
 A Unity/Burst library for choosing data layouts with explicit conversion, resident
 work, export, allocation coverage and independent holdout contracts.
 
+**Choose a layout only when its complete cost repays within the application's
+actual lifetime and export cadence.** Start with the [adoption guide](Docs/LAYOUT_ADOPTION.md)
+and [CPU-only lifetime API example](Tools/Examples/LifetimeDecision/README.md).
+The example uses explicitly synthetic costs to show finite conditional bounds
+and Unknown outcomes; it produces no benchmark result or deployment profile.
+
 This unreleased integration includes the local vNext implementation and the
 2026-09-08 measurement-contract repairs. **Performance of the repaired source is
 Unmeasured / 待验证.** Historical measurements are retained under their original

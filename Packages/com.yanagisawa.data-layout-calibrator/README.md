@@ -12,53 +12,42 @@ The package separates a workload-agnostic calibration core from concrete Samples
 
 ## Plugin surface
 
-Implement these four contracts in a separate assembly:
+Implement the [public contracts](Runtime/CalibrationProtocols.cs) in the assembly
+that owns the workload:
 
-```csharp
-public sealed class MyFactory : ICalibrationScenarioFactory
-{
-    public ScenarioDescriptor Descriptor => /* stable workload identity */;
-
-    public ICalibrationScenario Create(
-        int elementCount,
-        uint seed,
-        CandidateDescriptor[] candidates = null) => /* owned scenario */;
-}
-
-public sealed class MyCandidate : ICalibrationCandidate
-{
-    public CandidateDescriptor Descriptor { get; }
-    public int ElementCount { get; }
-    public long ResidentBytes { get; }
-    public IBoundaryCost BoundaryCost { get; }
-    public string ExportedStateHash { get; }
-
-    public void Execute(int ticks, float fixedDeltaTime) { /* literal concrete Burst schedules */ }
-    public void Dispose() { }
-}
-```
+| Contract | Implementation responsibility |
+| --- | --- |
+| `ICalibrationScenarioFactory` | Stable workload descriptor; create the requested input and frozen candidates. |
+| `ICalibrationScenario` | Own canonical input, candidate instances, dataset hash and reference index. |
+| `ICalibrationCandidate` | Concrete execution sites, full canonical export hash, storage lifetime and disposal. |
+| `IBoundaryCost` | Reusable full ingress/export into preallocated buffers. |
+| `IParityValidator` | Compare all canonical output fields, including tails and payloads. |
 
 The scenario supplies its `IParityValidator`; each candidate supplies an `IBoundaryCost` that copies the full canonical input into candidate-owned storage and exports the full canonical result. Those operations must reuse preallocated storage.
 
-Run a plugin with:
-
-```csharp
-ScenarioCalibrationProfile profile = ScenarioCalibrationEngine.Run(
-    new MyFactory(),
-    new CalibrationRunSettings
-    {
-        ElementCount = 1_048_576,
-        HoldoutElementCount = 1_000_003,
-        LifetimeTicks = 600,
-    });
-```
+The [compiled host example](../../Tools/Examples/LifetimeDecision/CalibrationHostExample.cs)
+accepts a real factory, `CalibrationRunSettings`, a full
+`CalibrationProfileFingerprint`, a capability-aware allocation counter, and the
+application's required `AllocationScope`. It calls `BindSourceContext`, assigns
+the counter and invokes `ScenarioCalibrationEngine.Run`. The host owns the counter.
+Missing/corrupt source identity and unavailable or insufficient allocation
+coverage cannot produce an eligible profile. Choose the required scope from the
+application's contract, not from whichever counter happens to be available.
 
 The engine measures ingress, resident execution, and export independently;
-computes lifetime-amortized P95; applies deterministic confidence intervals;
+computes a lifetime-amortized component-quantile selection score; applies deterministic confidence intervals;
 falls back to the best AoS candidate on a statistical tie; and confirms an
 optimization on holdout data. Published schema-2 artifacts use the historical
 independent bootstrap. Native schema 3 uses explicit paired blocks and a
 log-ratio estimator.
+
+That score combines the P95 of resident block means with amortized boundary
+P95 values. It is not measured per-tick or whole-lifecycle P95. Running the
+host method performs real workload measurements; the separate
+[lifetime API example](../../Tools/Examples/LifetimeDecision/README.md) performs
+only cost inference on explicitly synthetic inputs. See the
+[adoption guide](../../Docs/LAYOUT_ADOPTION.md) for export cadence, complete
+boundary costs, allocation coverage and independent deployment confirmation.
 
 ## AOT-safe registration
 
@@ -66,9 +55,15 @@ Register factories in the assembly that owns the benchmark host:
 
 ```csharp
 using Yanagisawa.DataLayoutCalibrator;
+using Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate;
 
-[assembly: RegisterCalibrationScenarioFactory(typeof(MyFactory))]
+[assembly: RegisterCalibrationScenarioFactory(typeof(ParticleIntegrateScenarioFactory))]
 ```
+
+This registers an existing sample factory; reference its sample assembly in the
+host's asmdef. The repository's [registration file](../../BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/RegisteredScenarioFactories.cs)
+shows the actual host declarations. The portable cost-only console example does
+not load Unity samples or register a workload.
 
 The packaged Roslyn Source Generator validates each registration and emits a strongly typed `GeneratedCalibrationScenarioRegistry.CreateFactories()` method containing direct constructor calls. It uses no reflection, `Activator`, open generic Job discovery, or player-linker preservation rules. Generated entries are sorted by fully qualified type name, so registration order is deterministic.
 

@@ -1,5 +1,11 @@
 # Portfolio figure
 
+This figure retains the historical implementation's recorded selection scores
+and decisions. It is not current-source performance evidence, measured tick or
+lifecycle P95, or certification of worker/native allocation freedom. See the
+[current adoption contract](../LAYOUT_ADOPTION.md) and
+[historical allocation limitation](../evidence/HISTORICAL_ALLOCATION_MEASUREMENT_LIMIT.md).
+
 Memory-layout schematics explain the design choices; the chart reads each formal run’s recorded final decision and interval.
 
 ## Reproduce

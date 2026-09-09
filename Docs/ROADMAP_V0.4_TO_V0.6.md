@@ -7,6 +7,13 @@
 
 ## 2026-09-08 implementation repair checkpoint (performance Unmeasured)
 
+September 10 adoption priority: [complete lifecycle decisions](LAYOUT_ADOPTION.md)
+and a compilable CPU-only cost-inference example are now the first-use path.
+The package API and figure entry distinguish selection scores from measured
+tick/lifecycle percentiles. No new layout, default promotion or performance
+result is introduced by this positioning update. Actual Unity/Burst validation
+and external comparisons remain outstanding after the disk-space import failure.
+
 The isolated integration retains the complete local `61f8afb` vNext stack and
 `origin/main` documentation/license updates. Implemented allocation availability,
 scope and window gates, independent holdout/source checks, conservative process-level

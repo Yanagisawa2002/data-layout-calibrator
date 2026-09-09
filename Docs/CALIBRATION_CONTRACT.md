@@ -59,21 +59,27 @@ This output-heavy workload is the negative control: the framework must be able t
 3. Ingress, resident, and export have separate warmup and repeated measurements.
 4. Candidate order is deterministically shuffled each round.
 5. All candidates use the same element count, tick count, sample count, and declared lifetime.
-6. Any measured managed allocation in resident or boundary samples makes a candidate ineligible.
+6. Any measured managed allocation in resident or boundary samples makes a candidate ineligible. The current integration additionally requires a positive-control-validated capability covering the declared allocation scope and complete observation windows; unavailable counters and unobserved worker/native scopes cannot pass as zero.
 7. Hashing, parity scans, dataset creation, serialization, and visualization remain outside timing.
 
-The primary metric is:
+The primary metric is a component-quantile selection score:
 
 ```text
-amortized_p95_ms_per_tick = resident_p95_ms_per_tick
-                           + (ingress_p95_ms + export_p95_ms) / lifetime_ticks
+component_p95_score_ms_per_tick = p95(block_elapsed_ms / ticks)
+                                 + (ingress_p95_ms + export_p95_ms) / lifetime_ticks
 ```
 
-Ingress and export P95 are intentionally conservative boundary terms. Resident samples plus that fixed P95 boundary term are also stored for inspection.
+Existing artifacts retain their historical `amortized_p95_ms_per_tick` field and
+values. This sum is neither an observed per-tick/whole-lifecycle P95 nor a guaranteed
+bound on those percentiles. Resident samples plus the fixed boundary score are
+also retained for inspection. Construction/disposal costs are excluded from this
+engine metric. The [lifetime adoption guide](LAYOUT_ADOPTION.md) explains how to
+retain complete ownership costs and the application's actual export cadence in
+a separate cost model or complete-lifecycle observation.
 
 ## Selection protocol
 
-- Baseline: lowest amortized-P95 valid AoS batch.
+- Baseline: lowest component-quantile selection score among valid AoS batches.
 - Point gate: non-AoS improvement must be at least 10%.
 - Published schema-2 significance gate: independent non-parametric bootstrap of
   the composite P95 metric; 4,000 iterations and 95% confidence by default.

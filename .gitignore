@@ -25,6 +25,7 @@ BenchmarkProject/Assets/Resources/PerformanceTestRun*.json*
 !Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Tests/*.csproj
 !Tools/ScientificTests/ScientificTests.csproj
 !Tools/FunctionalTests/FunctionalTests.csproj
+!Tools/Examples/LifetimeDecision/LifetimeDecision.csproj
 *.sln
 *.suo
 *.user
