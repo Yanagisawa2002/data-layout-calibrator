@@ -39,6 +39,8 @@ jobs:
           python -m compileall -q Tools
       - name: Allowlisted CPU correctness and build checks
         run: python Tools/CI/validate_functional.py
+      - name: Synthetic lifetime API example
+        run: dotnet run --project Tools/Examples/LifetimeDecision -c Release
       - name: Compile source generator
         run: dotnet build Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Yanagisawa.DataLayoutCalibrator.SourceGenerator.csproj -c Release --nologo
       - name: Pure source generator correctness

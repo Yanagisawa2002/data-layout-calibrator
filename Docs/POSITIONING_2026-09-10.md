@@ -86,6 +86,12 @@ These are deterministic API correctness checks, not workload measurements.
 The unchanged 82-test protocol suite was not rerun; its earlier receipt is retained
 in [the integration report](MEASUREMENT_REPAIR_2026-09-08.md).
 
+The existing .NET 10 CPU workflow now explicitly builds and runs the console
+example. Its entry point calls only the synthetic cost estimator; it never calls
+the compiled measurement host method. The three existing CI-policy tests and
+workflow/target checks passed locally after this hook was added. No remote CI
+execution was triggered.
+
 ## Remaining validation and preserved work
 
 No Unity/Player/GPU/native warmup, benchmark, calibration, real counter acquisition,
