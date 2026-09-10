@@ -28,4 +28,3 @@ if __name__ == '__main__':
         command += ['/openmp', '/I'+str(upstream), '/I'+str(upstream/'omp')]
     (OUT/'build-command.json').write_text(json.dumps(dict(command=command, INCLUDE=env['INCLUDE'], LIB=env['LIB']), indent=2))
     subprocess.run(command,cwd=OUT,env=env,check=True)
-
