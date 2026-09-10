@@ -126,6 +126,14 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark.Editor
                 "windows-x64",
                 outputLabel);
             string executablePath = Path.Combine(outputDirectory, ExecutableName);
+            string explicitOutput = ReadCommandLineValue("-dla-build-output");
+            if (!string.IsNullOrWhiteSpace(explicitOutput))
+            {
+                outputDirectory = Path.GetFullPath(explicitOutput);
+                if (Directory.Exists(outputDirectory))
+                    throw new InvalidOperationException("Explicit build output already exists; use a new attempt directory.");
+                executablePath = Path.Combine(outputDirectory, ExecutableName);
+            }
             Directory.CreateDirectory(outputDirectory);
 
             var buildOptions = new BuildPlayerOptions
@@ -263,6 +271,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark.Editor
                 "EnvelopeBurstIsaProbe",
                 "SpatialAoSQueryJob", "SpatialSoAQueryJob",
                 "AnimationAoSStepJob", "AnimationSoAStepJob", "CounterIsaIdentityJob",
+                "BabelInitialiseJob", "BabelCopyJob", "BabelMulJob", "BabelAddJob", "BabelTriadJob", "BabelDotContractJob",
+                "LlamaNBodyUpdate4Job", "LlamaNBodyMove4Job",
             };
             for (int i = 0; i < requiredEntrypoints.Length; i++)
             {

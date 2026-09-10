@@ -36,7 +36,10 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                 .Append(SystemInfo.processorType).Append('\n').Append(SystemInfo.processorCount).Append('\n')
                 .Append(JobsUtility.JobWorkerCount).Append('\n').Append(scenario.ScenarioId).Append('\n')
                 .Append(scenario.ContractVersion).Append('\n').Append(JsonUtility.ToJson(identitySettings));
-            settings.SourceFingerprint = CandidateDefinitionProtocol.ComputeSha256Utf8(canonical.ToString());
+            // The runtime canonical-text helper is internal to its assembly.
+            using var sha = System.Security.Cryptography.SHA256.Create();
+            settings.SourceFingerprint = BitConverter.ToString(
+                sha.ComputeHash(new UTF8Encoding(false, true).GetBytes(canonical.ToString()))).Replace("-", "");
         }
     }
 }
