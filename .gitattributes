@@ -18,3 +18,6 @@ Tools/Integration/analyze_layout_evidence.py text eol=lf
 
 # Original compiler logs are retained verbatim, including their whitespace.
 Docs/evidence/layout-envelope-implementation-2026-09-07/*.log -whitespace
+
+# Preserve the exact copied bytes of the actual-run freeze and evidence index.
+Docs/evidence/actual-20260910/** -text whitespace=cr-at-eol,-blank-at-eof

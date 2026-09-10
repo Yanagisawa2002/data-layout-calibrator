@@ -1,4 +1,9 @@
-> 2026-09-08 integration: current performance is **Unmeasured**. Measurement entrypoints
+> September 10 follow-up: [actual frozen external comparisons](../../Docs/ACTUAL_COMPARISON_REPORT_2026-09-10.md)
+> cover BabelStream variants and LLAMA code_comp, including complete IL2CPP/Burst
+> outputs. They do not establish allocation-qualified deployment or other workloads'
+> performance. The historical September 8 repair scope below is retained.
+>
+> 2026-09-08 integration: performance at that checkpoint was **Unmeasured**. Measurement entrypoints
 > remain explicitly callable with an exact source fingerprint. Allocation
 > eligibility requires available, scoped, positively controlled observations; default
 > current-thread counters cannot certify worker/native allocations. Historical P95

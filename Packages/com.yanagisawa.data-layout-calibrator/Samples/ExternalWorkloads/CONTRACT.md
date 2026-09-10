@@ -1,4 +1,12 @@
-# External workload ports — Unmeasured
+# External workload ports — original preparation contract
+
+September 10 follow-up: the [actual comparison report](../../../../Docs/ACTUAL_COMPARISON_REPORT_2026-09-10.md)
+records a separately frozen headless IL2CPP/Burst host and Windows native adapters
+for BabelStream and LLAMA code_comp. The preparation-only delivery described below,
+including its Unmeasured labels, is historical; no prior number is relabelled as
+new-source evidence. STREAM and HeCBench remain unexecuted. Raw upstream files and
+the semantic contracts below remain unchanged; Windows adaptation and measured
+scope are explicitly described in the dated report.
 
 This delivery performed no benchmark, calibration, stress run, real clock/counter
 collection, GPU dispatch or Player execution. The new assembly has no scenario

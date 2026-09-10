@@ -1,0 +1,38 @@
+{
+  "capturedUtc": "2026-09-10T05:38:46.2405696Z",
+  "sourceCommit": "36f84d7ef398520d0901737f80f4f6abfcefe4d6",
+  "cpu": [
+    {
+      "Name": "AMD Ryzen 9 9950X 16-Core Processor            ",
+      "NumberOfCores": 8,
+      "NumberOfLogicalProcessors": 8,
+      "MaxClockSpeed": 4300,
+      "L2CacheSize": 8192,
+      "L3CacheSize": 32768
+    }
+  ],
+  "os": [
+    {
+      "Caption": "Microsoft Windows 11 Pro",
+      "Version": "10.0.26200",
+      "BuildNumber": "26200"
+    }
+  ],
+  "memory": [
+    {
+      "TotalPhysicalMemory": 66158055424
+    }
+  ],
+  "freeGiB": 50.426536560058594,
+  "logicalThreadsEnvironment": "8",
+  "toolchainHashes": [
+    {
+      "Path": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\cl.exe",
+      "Hash": "DC8426B8760D92CF757DF3D10B9F0244A95B454FF43194A58161568A0EC70D53"
+    },
+    {
+      "Path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.5.3f1\\Editor\\Unity.exe",
+      "Hash": "5E54F3A9953179419DDF8AF860C3CCDCBB6ADA45276FA9DF06FDAAAA1124A118"
+    }
+  ]
+}

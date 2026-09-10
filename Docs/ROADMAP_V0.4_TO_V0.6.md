@@ -5,7 +5,17 @@
 基线版本：`v0.3.0-preview.1`  
 目标仓库：`Yanagisawa2002/data-layout-calibrator`
 
-## 2026-09-08 implementation repair checkpoint (performance Unmeasured)
+## 2026-09-10 actual external comparison checkpoint
+
+The disk-space blocker was resolved. [The fixed actual comparison](ACTUAL_COMPARISON_REPORT_2026-09-10.md)
+completed BabelStream variants (five process pairs) and LLAMA code_comp auxiliary
+variants (three rounds), with full default-output parity and real IL2CPP/Burst AOT.
+Babel Copy/Dot/storage lifetime regress; LLAMA results retain compiler/threading
+scope. The 1 MiB allocation counter control still fails in IL2CPP, so deployment
+eligibility remains Unknown. STREAM, HeCBench, recurring exports and worker/native
+allocation coverage remain outstanding. No default algorithm was promoted.
+
+## 2026-09-08 implementation repair checkpoint (historically Unmeasured)
 
 September 10 adoption priority: [complete lifecycle decisions](LAYOUT_ADOPTION.md)
 and a compilable CPU-only cost-inference example are now the first-use path.

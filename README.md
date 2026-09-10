@@ -10,10 +10,13 @@ The example uses explicitly synthetic costs to show finite conditional bounds
 and Unknown outcomes; it produces no benchmark result or deployment profile.
 
 This unreleased integration includes the local vNext implementation and the
-2026-09-08 measurement-contract repairs. **Performance of the repaired source is
-Unmeasured / 待验证.** Historical measurements are retained under their original
-source identities. They do not establish performance or zero-allocation eligibility
-for the current source. No new default algorithm is promoted on theoretical cost.
+2026-09-08 measurement-contract repairs. [September 10 actual external comparisons](Docs/ACTUAL_COMPARISON_REPORT_2026-09-10.md)
+now cover frozen BabelStream variants and the auxiliary LLAMA code_comp example,
+including full-output IL2CPP/Burst checks. They do not establish general layout
+benefit or deployment eligibility: the actual 1 MiB allocation control failed,
+and worker/native coverage remains Unknown. Other current-source performance is
+Unmeasured / 待验证. Historical measurements retain their original source identities;
+no new default algorithm is promoted.
 
 ## Delivered scope
 
