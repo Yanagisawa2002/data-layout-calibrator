@@ -1,0 +1,14 @@
+{
+  "kind": "reconstructed logical input identity, not a runtime readback",
+  "source": "BabelStream 17ab377b0e919e14fd3df2b67268761fdac8abb3 defaults",
+  "count": 33554432,
+  "type": "IEEE754 binary64 little endian",
+  "order": "complete a then b then c",
+  "values": [
+    0.1,
+    0.2,
+    0.0
+  ],
+  "bytes": 805306368,
+  "sha256": "f677b824e509ce0301b9ed28207490b0d72e5ad724da35700893b940af2245b9"
+}

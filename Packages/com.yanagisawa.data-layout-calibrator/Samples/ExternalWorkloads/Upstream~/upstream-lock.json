@@ -1,0 +1,145 @@
+{
+  "status": "Unmeasured",
+  "performanceExecution": "Not measured in this delivery. Preparation tool verifies sources or compiles objects; use native benchmark drivers explicitly for measurement.",
+  "sources": [
+    {
+      "name": "BabelStream",
+      "repository": "https://github.com/UoB-HPC/BabelStream",
+      "commit": "17ab377b0e919e14fd3df2b67268761fdac8abb3",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "7d2e4e8166d0656f6648ad495dc44c1176667ed1aa0473c177397a54d35a9112",
+          "url": "https://raw.githubusercontent.com/UoB-HPC/BabelStream/17ab377b0e919e14fd3df2b67268761fdac8abb3/LICENSE"
+        },
+        {
+          "path": "src/Stream.h",
+          "sha256": "1f0f86e0b0a09c5035b3011a65182bdc8fea9593b754bd901069e9e7208abd03",
+          "url": "https://raw.githubusercontent.com/UoB-HPC/BabelStream/17ab377b0e919e14fd3df2b67268761fdac8abb3/src/Stream.h"
+        },
+        {
+          "path": "src/main.cpp",
+          "sha256": "dba25f515934be96a52e7bb8f80bc4fc06d6311b76c6b6da112298d3e2c5eda7",
+          "url": "https://raw.githubusercontent.com/UoB-HPC/BabelStream/17ab377b0e919e14fd3df2b67268761fdac8abb3/src/main.cpp"
+        },
+        {
+          "path": "src/omp/OMPStream.cpp",
+          "sha256": "179b84f70fa803d804fa29db51eb32f83af854f4e516a7a241be74678123fe05",
+          "url": "https://raw.githubusercontent.com/UoB-HPC/BabelStream/17ab377b0e919e14fd3df2b67268761fdac8abb3/src/omp/OMPStream.cpp"
+        },
+        {
+          "path": "src/omp/OMPStream.h",
+          "sha256": "a6136aee380ec4388c4bf09efb248ddc8a3f142ff30865b81e3e230c817dbd8b",
+          "url": "https://raw.githubusercontent.com/UoB-HPC/BabelStream/17ab377b0e919e14fd3df2b67268761fdac8abb3/src/omp/OMPStream.h"
+        },
+        {
+          "path": "src/benchmark.h",
+          "sha256": "8535dfaf2a723eea10cbffb7780fe6c9856d556651f8d343ae42053868da2ffa",
+          "url": "https://raw.githubusercontent.com/UoB-HPC/BabelStream/17ab377b0e919e14fd3df2b67268761fdac8abb3/src/benchmark.h"
+        },
+        {
+          "path": "src/StreamModels.h",
+          "sha256": "974f1ee92705c848770344bf14a5723cbd1a132d8075c947e5bc98f555204f0d",
+          "url": "https://raw.githubusercontent.com/UoB-HPC/BabelStream/17ab377b0e919e14fd3df2b67268761fdac8abb3/src/StreamModels.h"
+        },
+        {
+          "path": "src/Unit.h",
+          "sha256": "abea46d1851e4afd6dd9112a24ee36468581b244af463676494fe4ec383b7c3e",
+          "url": "https://raw.githubusercontent.com/UoB-HPC/BabelStream/17ab377b0e919e14fd3df2b67268761fdac8abb3/src/Unit.h"
+        }
+      ]
+    },
+    {
+      "name": "llama",
+      "repository": "https://github.com/alpaka-group/llama",
+      "commit": "086e66e7565f677d6b3aff88542e28c7dd6d8228",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "c76f740d1521b9bed9ca7a04ad526c310493c62621b1341d623b431736533b30",
+          "url": "https://raw.githubusercontent.com/alpaka-group/llama/086e66e7565f677d6b3aff88542e28c7dd6d8228/LICENSE"
+        },
+        {
+          "path": "examples/nbody_code_comp/nbody-AoS-baseline.cpp",
+          "sha256": "0dd06aa93fb73717567db877106a63428e4068a5a0781eb4342cad4a8294ad47",
+          "url": "https://raw.githubusercontent.com/alpaka-group/llama/086e66e7565f677d6b3aff88542e28c7dd6d8228/examples/nbody_code_comp/nbody-AoS-baseline.cpp"
+        },
+        {
+          "path": "examples/nbody_code_comp/nbody-AoSoA.cpp",
+          "sha256": "3e9e42fb867d530cca4947d46616b9d805008202a2cd39f34974ee5cb7582a18",
+          "url": "https://raw.githubusercontent.com/alpaka-group/llama/086e66e7565f677d6b3aff88542e28c7dd6d8228/examples/nbody_code_comp/nbody-AoSoA.cpp"
+        },
+        {
+          "path": "examples/nbody_code_comp/nbody-SoA.cpp",
+          "sha256": "6cac113fd92a358cd83f6fb0f75f43b0630806d66e54d16750bb8d59621e8f80",
+          "url": "https://raw.githubusercontent.com/alpaka-group/llama/086e66e7565f677d6b3aff88542e28c7dd6d8228/examples/nbody_code_comp/nbody-SoA.cpp"
+        },
+        {
+          "path": "examples/nbody_code_comp/CMakeLists.txt",
+          "sha256": "06fead2ffc2fb668f28c1b4c3b6bf6bad1a7be29139f7ed06cc7494cf3cf568f",
+          "url": "https://raw.githubusercontent.com/alpaka-group/llama/086e66e7565f677d6b3aff88542e28c7dd6d8228/examples/nbody_code_comp/CMakeLists.txt"
+        },
+        {
+          "path": "examples/nbody/nbody.cpp",
+          "sha256": "44772baca678baef383a672b4a0883d6291375cb01121e4c85b9a01b0aba107c",
+          "url": "https://raw.githubusercontent.com/alpaka-group/llama/086e66e7565f677d6b3aff88542e28c7dd6d8228/examples/nbody/nbody.cpp"
+        }
+      ]
+    },
+    {
+      "name": "HeCBench",
+      "repository": "https://github.com/zjin-lcf/HeCBench",
+      "commit": "7d2d3c567be522a2104065165de0a4a233a6ea1a",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "eae7fae6934a2452b211684b270683d5e87d865604e388d9ca123f5438a4165a",
+          "url": "https://raw.githubusercontent.com/zjin-lcf/HeCBench/7d2d3c567be522a2104065165de0a4a233a6ea1a/LICENSE"
+        },
+        {
+          "path": "src/stencil3d-omp/CMakeLists.txt",
+          "sha256": "65d0efc21874bbc858115fa1ffee7868e3dd257c73d295d569bb0bee4ab6495d",
+          "url": "https://raw.githubusercontent.com/zjin-lcf/HeCBench/7d2d3c567be522a2104065165de0a4a233a6ea1a/src/stencil3d-omp/CMakeLists.txt"
+        },
+        {
+          "path": "src/stencil3d-omp/LICENSE",
+          "sha256": "2269e79605efdec427607dd66fb555927ef52a81d208955860016653bf678d7d",
+          "url": "https://raw.githubusercontent.com/zjin-lcf/HeCBench/7d2d3c567be522a2104065165de0a4a233a6ea1a/src/stencil3d-omp/LICENSE"
+        },
+        {
+          "path": "src/stencil3d-omp/Makefile",
+          "sha256": "13699a027606d50e2c4897bcc886a41e95dd7be23472d0a0afa685864082f0fe",
+          "url": "https://raw.githubusercontent.com/zjin-lcf/HeCBench/7d2d3c567be522a2104065165de0a4a233a6ea1a/src/stencil3d-omp/Makefile"
+        },
+        {
+          "path": "src/stencil3d-omp/Makefile.aomp",
+          "sha256": "1f9c00be49008f9111d4ee76928bcbbf6fafc048cd9c98c519bcbd71b40e77cf",
+          "url": "https://raw.githubusercontent.com/zjin-lcf/HeCBench/7d2d3c567be522a2104065165de0a4a233a6ea1a/src/stencil3d-omp/Makefile.aomp"
+        },
+        {
+          "path": "src/stencil3d-omp/Makefile.nvc",
+          "sha256": "55064e1e99cf7ca4b74ccd70bc494274925bccb78f0aea6474736fc5e13ee51d",
+          "url": "https://raw.githubusercontent.com/zjin-lcf/HeCBench/7d2d3c567be522a2104065165de0a4a233a6ea1a/src/stencil3d-omp/Makefile.nvc"
+        },
+        {
+          "path": "src/stencil3d-omp/main.cpp",
+          "sha256": "369cabc578839a453c63842e79df7a034b0e74fb3756f89697825ce834813553",
+          "url": "https://raw.githubusercontent.com/zjin-lcf/HeCBench/7d2d3c567be522a2104065165de0a4a233a6ea1a/src/stencil3d-omp/main.cpp"
+        }
+      ]
+    },
+    {
+      "name": "STREAM",
+      "repository": "https://www.cs.virginia.edu/stream/",
+      "commit": null,
+      "identity": "Content SHA-256; official website has no Git commit identity",
+      "files": [
+        {
+          "path": "stream.c",
+          "sha256": "a52bae5e175bea3f7832112af9c085adab47117f7d2ce219165379849231692b",
+          "url": "https://www.cs.virginia.edu/stream/FTP/Code/stream.c"
+        }
+      ]
+    }
+  ]
+}

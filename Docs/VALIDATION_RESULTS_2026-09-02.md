@@ -1,5 +1,8 @@
 # Validation results — 2026-09-02
 
+Historical checkpoint. The current integration and allocation qualification are in
+[the 2026-09-07 report](OPTIMIZATION_VNEXT_REPORT_2026-09-07.md).
+
 ## Decision
 
 **The planned reusable pipeline is implemented and the full gate passes.**

@@ -1,0 +1,14 @@
+{
+    "Scope": "Actual registered workload correctness, lifecycle and main-thread steady-state allocation; not timing evidence",
+    "UnityVersion": "6000.5.3f1",
+    "Backend": "Mono",
+    "Processor": "AMD Ryzen 9 9950X 16-Core Processor ",
+    "OperatingSystem": "Windows 11  (10.0.26200)",
+    "Error": "System.InvalidOperationException: Allocation counter failed its positive control; zero cannot be evidence.\r\n  at Yanagisawa.DataLayoutCalibrator.Benchmark.GeneratedWorkloadValidation.Run () [0x000eb] in <709208ee4b2a465dabe46b36dfb2133d>:0 ",
+    "Passed": false,
+    "Release": true,
+    "BurstEnabled": true,
+    "WorkerCount": 7,
+    "AllocationCounterPositiveControlBytes": 0,
+    "Candidates": []
+}

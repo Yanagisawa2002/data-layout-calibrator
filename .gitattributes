@@ -1,0 +1,23 @@
+# Retained JSON evidence uses canonical LF so hashes survive Windows checkouts.
+Docs/evidence/**/*.json text eol=lf
+Docs/assets/**/data-layout-calibrator-render-manifest.json text eol=lf
+
+# Replay script identity is byte-stable across Windows and Unix checkouts.
+Tools/EvidenceLab/process_hierarchy.py text eol=lf
+Tools/EvidenceLab/search_replay.py text eol=lf
+# Preserve the original test-runner bytes referenced by validation SHA256 receipts.
+Docs/evidence/generated-production-storage-2026-09-07/*.xml -text
+Docs/evidence/generated-production-storage-2026-09-07/*.trx -text
+Tools/AllocationRecorder/allocation_profiler.cpp text eol=lf
+# Keep original runtime receipts and compiler logs byte-for-byte with their hashes.
+Docs/evidence/allocation-counter-correction-2026-09-07/** -text whitespace=cr-at-eol,-blank-at-eof
+
+# Retained integration evidence preserves the exact bytes verified by its manifest.
+Docs/evidence/optimization-vnext-2026-09-07/** -text whitespace=cr-at-eol,-blank-at-eof
+Tools/Integration/analyze_layout_evidence.py text eol=lf
+
+# Original compiler logs are retained verbatim, including their whitespace.
+Docs/evidence/layout-envelope-implementation-2026-09-07/*.log -whitespace
+
+# Preserve the exact copied bytes of the actual-run freeze and evidence index.
+Docs/evidence/actual-20260910/** -text whitespace=cr-at-eol,-blank-at-eof

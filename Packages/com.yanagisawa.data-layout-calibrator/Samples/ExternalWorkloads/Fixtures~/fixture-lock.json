@@ -1,0 +1,11 @@
+{
+  "kind": "input-preparation-only",
+  "upstreamCommit": "086e66e7565f677d6b3aff88542e28c7dd6d8228",
+  "upstreamPath": "examples/nbody_code_comp/nbody-AoS-baseline.cpp",
+  "fixtureSha256": "6fc087a796471ea7a7ec004fb19cec76972f3b5d155c3599c2034e65005ecb08",
+  "preparerSource": "Tools/KernelContracts/llama_input_fixture.cpp",
+  "preparerSourceSha256": "ffa9e90f2bfa3c0a4bb90b363dcbaf4626ecf58cfd85b60d00e6f08c7000804c",
+  "invocation": "llama_input_fixture.exe --prepare-17-records <output.json>",
+  "workloadKernelsExecuted": false,
+  "timingCollected": false
+}

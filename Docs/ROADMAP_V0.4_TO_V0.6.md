@@ -5,6 +5,54 @@
 基线版本：`v0.3.0-preview.1`  
 目标仓库：`Yanagisawa2002/data-layout-calibrator`
 
+## 2026-09-10 actual external comparison checkpoint
+
+The disk-space blocker was resolved. [The fixed actual comparison](ACTUAL_COMPARISON_REPORT_2026-09-10.md)
+completed BabelStream variants (five process pairs) and LLAMA code_comp auxiliary
+variants (three rounds), with full default-output parity and real IL2CPP/Burst AOT.
+Babel Copy/Dot/storage lifetime regress; LLAMA results retain compiler/threading
+scope. The 1 MiB allocation counter control still fails in IL2CPP, so deployment
+eligibility remains Unknown. STREAM, HeCBench, recurring exports and worker/native
+allocation coverage remain outstanding. No default algorithm was promoted.
+
+## 2026-09-08 implementation repair checkpoint (historically Unmeasured)
+
+September 10 adoption priority: [complete lifecycle decisions](LAYOUT_ADOPTION.md)
+and a compilable CPU-only cost-inference example are now the first-use path.
+The package API and figure entry distinguish selection scores from measured
+tick/lifecycle percentiles. No new layout, default promotion or performance
+result is introduced by this positioning update. Actual Unity/Burst validation
+and external comparisons remain outstanding after the disk-space import failure.
+
+The isolated integration retains the complete local `61f8afb` vNext stack and
+`origin/main` documentation/license updates. Implemented allocation availability,
+scope and window gates, independent holdout/source checks, conservative process-level
+lifetime bounds, individual-tick/full-lifecycle collector interfaces and additive
+TimingContract/renderer semantics. Historical numeric evidence is unchanged.
+Validation is restricted to allowlisted deterministic CPU tests, simulated clocks
+and counters, static checks and compilation. Explicit Player/performance scripts remain available outside PR CI; this delivery
+executes only build and pure functional checks. No chat authorization is part of the API.
+
+Current-source performance, actual worker/native allocation coverage, Unity/Burst
+execution and external benchmark results remain Unmeasured. Existing generated
+storage, crossed matrix, envelope and profile work is retained rather than rebuilt.
+See the [repair delivery record](MEASUREMENT_REPAIR_2026-09-08.md) for integrated
+kernel/source locks, actual checks and remaining validation limits.
+
+## 2026-09-07 measured integration checkpoint
+
+The five assigned optimization workstreams and bounded local measurements are complete;
+see [the measured report](OPTIMIZATION_VNEXT_REPORT_2026-09-07.md). Generated production
+storage, all expanded controls, five-process envelope/search evidence, real process
+cycles, two additional workloads and the historical timing-policy replay are retained.
+
+The envelope confirmed 65/120 cells, while adaptive failed the 1% regret gate in all
+10 comparisons. Diagnostic counters have substantial measured overhead and remain
+opt-in. Historical Unity allocation zeros are unverified; current evidence uses a
+positive-control-validated native recorder. This checkpoint does not declare all
+v0.4-v0.6 release, multi-device or PMU mechanism goals complete. The older table below
+records the state of the 2026-09-02 checkpoint rather than current execution status.
+
 ## 总览
 
 | 版本 | 重点 | 难度 | 项目价值 |
@@ -19,6 +67,29 @@
 | v0.6 | 多设备、多 ISA、多 workload 验证 | 高 | 极高 |
 
 路线图按版本与条目顺序执行。允许在接口边界稳定后并行开发，但后续条目不得绕过前置的正确性、AOT 与统计门禁。
+
+## 2026-09-02 vNext 集成检查点
+
+状态：四个实现分支已按条目顺序合入 `codex/vnext-integration`；这是未发布的
+foundation，不代表 v0.4、v0.5 或 v0.6 完成。package version 仍为
+`0.3.0-preview.1`，既有 schema-2 evidence 不改写。
+
+| 条目 | 已集成 | 尚未满足的完成门禁 |
+| --- | --- | --- |
+| 1. 因子拆分 | 显式 layout/kernel/batch/execution policy、branchless AoS control、AoSoA8 与执行拓扑协议；merged-tree Mono/IL2CPP Burst AOT 已通过 | AoSoA4/AoSoA16、aligned/padded controls、完整 crossed main-effect/interaction 分析 |
+| 2. 配对/层级统计 | blocked order metadata、paired log-ratio bootstrap、同一 device 的 process hierarchy、冻结 holdout、稳定 fallback 状态；5 次真实同机 Player evidence 已保留 | 对五次真实 evidence 形成 process-level hierarchical aggregate、device-level hierarchy |
+| 3. Advantage envelope | break-even regimes、immutable calibration/holdout cells、summary/renderer、scientific replicate adapter | 真实 axis scan 与正式 Player envelope evidence |
+| 4. 自适应/Pareto | conservative quick elimination、strict point-P95 frontier、audit-only exhaustive regret | 在正式候选矩阵上证明 exhaustive-equivalence/regret 与 calibration cost reduction |
+| 5. Generator scaffold | 两个不同 Sample record 的 AoS/SoA/AoSoA storage/codec scaffold、diagnostics、deterministic tests；Mono/IL2CPP AOT probe 已通过 | 将 scaffold 接入正式 workload storage |
+| 6. Fingerprint/cache | exact fingerprint、integrity codec/store/resolver、非 Optimized 强制 AoS；Mono/IL2CPP Player resolution probe 已通过 | 权威 Player-side CPU/ISA/build provenance source、compatibility governance |
+| 7. Counters | fail-closed optional provider contract、raw/derived/overhead/evidence-level models | 至少一个真实 provider、counter-enabled Release suite、overhead control 与 independently retained mechanism artifact |
+| 8. Device/ISA/workload | versioned planning manifest、process/physical-device identity separation、local artifact re-verification；两个现有 workload 已有 5 次同机 IL2CPP Player evidence | 当前规划矩阵仍为 0 executable / 18 blocked；无注册 device、无额外 workload、ISA coverage 或 cross-device CI |
+
+共享协议已由 [`ADR 0006`](adr/0006-vnext-integration-protocol.md) 冻结：
+candidate canonical bytes、schema 版本、log-ratio uncertainty method、minimum-effect
+decision rule、multiplicity v1、point-P95 Pareto、regret 公式，以及 external
+envelope reference。任何未完成项必须继续显示为 pending，不得用 Editor 或
+synthetic fixture 代替正式证据。
 
 ## v0.4：可信优势区间
 

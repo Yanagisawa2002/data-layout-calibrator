@@ -114,7 +114,10 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark.Editor
 
             ConfigureReleasePlayer(target, namedTarget, backend);
             ConfigureBurstForWindows();
-            GenerateBenchmarkScene();
+            // Reuse the committed bootstrap scene: regenerating it changes local file IDs
+            // and dirties source provenance on every otherwise identical build.
+            if (!File.Exists(SceneAssetPath)) GenerateBenchmarkScene();
+            else EditorSceneManager.OpenScene(SceneAssetPath, OpenSceneMode.Single);
 
             string repositoryRoot = Path.GetFullPath(Path.Combine(Application.dataPath, "..", ".."));
             string outputDirectory = Path.Combine(
@@ -123,6 +126,14 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark.Editor
                 "windows-x64",
                 outputLabel);
             string executablePath = Path.Combine(outputDirectory, ExecutableName);
+            string explicitOutput = ReadCommandLineValue("-dla-build-output");
+            if (!string.IsNullOrWhiteSpace(explicitOutput))
+            {
+                outputDirectory = Path.GetFullPath(explicitOutput);
+                if (Directory.Exists(outputDirectory))
+                    throw new InvalidOperationException("Explicit build output already exists; use a new attempt directory.");
+                executablePath = Path.Combine(outputDirectory, ExecutableName);
+            }
             Directory.CreateDirectory(outputDirectory);
 
             var buildOptions = new BuildPlayerOptions
@@ -146,6 +157,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark.Editor
             }
 
             VerifyBurstAotArtifacts(outputDirectory);
+            CounterBuildIdentity.Write(repositoryRoot, outputDirectory);
 
             Debug.Log(
                 $"Windows x64 {outputLabel} build succeeded: '{summary.outputPath}', " +
@@ -237,6 +249,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark.Editor
             string[] requiredEntrypoints =
             {
                 "ParticleAoSStepJob",
+                "ParticleAoSBranchlessStepJob",
                 "ParticleSoAStepJob",
                 "ParticleAoSoA8StepJob",
                 "ParticleSoAIngressJob",
@@ -246,6 +259,20 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark.Editor
                 "TransformSoAIngressJob",
                 "TransformAoSExportJob",
                 "TransformSoAExportJob",
+                "ParticleSoABranchlessStepJob",
+                "ParticleAoSoA4ScalarBranchedStepJob", "ParticleAoSoA4ScalarBranchlessStepJob", "ParticleAoSoA4StepJob",
+                "ParticleAoSoA8ScalarBranchedStepJob", "ParticleAoSoA8ScalarBranchlessStepJob",
+                "ParticleAoSoA16ScalarBranchedStepJob", "ParticleAoSoA16ScalarBranchlessStepJob", "ParticleAoSoA16StepJob",
+                "ParticlePadded64BranchedStepJob", "ParticlePadded64BranchlessStepJob",
+                "ParticleAoSoA4IngressJob", "ParticleAoSoA4ExportJob",
+                "ParticleAoSoA16IngressJob", "ParticleAoSoA16ExportJob",
+                "ParticlePadded64IngressJob", "ParticlePadded64ExportJob",
+                "ParticleColdAoSJob", "ParticleColdSplitJob", "ParticleColdPaddedJob",
+                "EnvelopeBurstIsaProbe",
+                "SpatialAoSQueryJob", "SpatialSoAQueryJob",
+                "AnimationAoSStepJob", "AnimationSoAStepJob", "CounterIsaIdentityJob",
+                "BabelInitialiseJob", "BabelCopyJob", "BabelMulJob", "BabelAddJob", "BabelTriadJob", "BabelDotContractJob",
+                "LlamaNBodyUpdate4Job", "LlamaNBodyMove4Job",
             };
             for (int i = 0; i < requiredEntrypoints.Length; i++)
             {

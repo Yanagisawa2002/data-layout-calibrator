@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-07 05:19:26Z" end-time="2026-09-07 05:19:30Z" duration="3.9319824">
+  <test-suite type="TestSuite" id="1000" name="BenchmarkProject" fullname="BenchmarkProject" runstate="Runnable" testcasecount="142" result="Passed" start-time="2026-09-07 05:19:26Z" end-time="2026-09-07 05:19:30Z" duration="3.931982" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1034" name="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.Editor.dll" fullname="C:/Users/EdwinLiu/Downloads/opt-next-layout-matrix/BenchmarkProject/Library/ScriptAssemblies/Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.Editor.dll" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-09-07 05:19:26Z" end-time="2026-09-07 05:19:30Z" duration="3.926140" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6976" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1035" name="Yanagisawa" fullname="Yanagisawa" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-09-07 05:19:26Z" end-time="2026-09-07 05:19:30Z" duration="3.925897" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1036" name="DataLayoutCalibrator" fullname="Yanagisawa.DataLayoutCalibrator" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-09-07 05:19:26Z" end-time="2026-09-07 05:19:30Z" duration="3.925769" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1037" name="Samples" fullname="Yanagisawa.DataLayoutCalibrator.Samples" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-09-07 05:19:26Z" end-time="2026-09-07 05:19:30Z" duration="3.925661" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1038" name="ParticleIntegrate" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-09-07 05:19:26Z" end-time="2026-09-07 05:19:30Z" duration="3.925567" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="1039" name="Tests" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-09-07 05:19:26Z" end-time="2026-09-07 05:19:30Z" duration="3.925439" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1006" name="ParticleCandidateMatrixTests" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-07 05:19:26Z" end-time="2026-09-07 05:19:30Z" duration="3.924542" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1009" name="ActualJobsMatchOracleAcrossTailsAndRepeatedIngress" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests.ActualJobsMatchOracleAcrossTailsAndRepeatedIngress" methodname="ActualJobsMatchOracleAcrossTailsAndRepeatedIngress" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests" runstate="Runnable" seed="700578043" result="Passed" start-time="2026-09-07 05:19:26Z" end-time="2026-09-07 05:19:30Z" duration="3.908902" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1007" name="CrossedMatrixPreservesLegacyDefinitionsAndDeclaresExcludedCells" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests.CrossedMatrixPreservesLegacyDefinitionsAndDeclaresExcludedCells" methodname="CrossedMatrixPreservesLegacyDefinitionsAndDeclaresExcludedCells" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests" runstate="Runnable" seed="1031752017" result="Passed" start-time="2026-09-07 05:19:30Z" end-time="2026-09-07 05:19:30Z" duration="0.006915" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1008" name="FalseAlignmentAndUnsupportedKernelMetadataAreRejected" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests.FalseAlignmentAndUnsupportedKernelMetadataAreRejected" methodname="FalseAlignmentAndUnsupportedKernelMetadataAreRejected" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests" runstate="Runnable" seed="1941179352" result="Passed" start-time="2026-09-07 05:19:30Z" end-time="2026-09-07 05:19:30Z" duration="0.001381" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[Saving results to: C:/Users/EdwinLiu/AppData/LocalLow/DefaultCompany/BenchmarkProject\TestResults.xml
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

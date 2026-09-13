@@ -1,0 +1,358 @@
+{
+  "unit": "ms",
+  "independentUnit": "fresh process pair",
+  "innerBabelIterationZeroExcluded": true,
+  "estimator": "mean paired difference; two-sided Student-t 95% CI; 2% equivalence margin",
+  "comparisons": {
+    "BabelStream/Copy": {
+      "processPairs": 5,
+      "referenceMeanMs": 9.205369090909091,
+      "candidateMeanMs": 11.32120303030303,
+      "candidateMinusReferenceMs": 2.11583393939394,
+      "difference95CI": [
+        1.9917993985273672,
+        2.239868480260512
+      ],
+      "referenceOverCandidateRatio": 0.8131087364363515,
+      "status": "regression",
+      "referenceProcessesMs": [
+        9.188366666666667,
+        9.219573737373738,
+        9.196277777777778,
+        9.191759595959596,
+        9.230867676767676
+      ],
+      "candidateProcessesMs": [
+        11.457684848484849,
+        11.225541414141414,
+        11.300169696969698,
+        11.334433333333333,
+        11.288185858585859
+      ]
+    },
+    "BabelStream/Mul": {
+      "processPairs": 5,
+      "referenceMeanMs": 11.488862626262627,
+      "candidateMeanMs": 11.59908686868687,
+      "candidateMinusReferenceMs": 0.11022424242424264,
+      "difference95CI": [
+        -0.031444690029229255,
+        0.25189317487771457
+      ],
+      "referenceOverCandidateRatio": 0.9904971620893877,
+      "status": "inconclusive",
+      "referenceProcessesMs": [
+        11.445228282828284,
+        11.498345454545454,
+        11.447652525252526,
+        11.530995959595959,
+        11.52209090909091
+      ],
+      "candidateProcessesMs": [
+        11.634078787878789,
+        11.656757575757576,
+        11.498281818181818,
+        11.745009090909091,
+        11.461307070707072
+      ]
+    },
+    "BabelStream/Add": {
+      "processPairs": 5,
+      "referenceMeanMs": 15.657807878787878,
+      "candidateMeanMs": 15.709437171717171,
+      "candidateMinusReferenceMs": 0.05162929292929341,
+      "difference95CI": [
+        -0.024449107606789117,
+        0.12770769346537594
+      ],
+      "referenceOverCandidateRatio": 0.9967134855077912,
+      "status": "tie",
+      "referenceProcessesMs": [
+        15.586730303030302,
+        15.607417171717172,
+        15.755289898989899,
+        15.659352525252526,
+        15.680249494949495
+      ],
+      "candidateProcessesMs": [
+        15.68370303030303,
+        15.71310404040404,
+        15.710320202020203,
+        15.690830303030303,
+        15.749228282828284
+      ]
+    },
+    "BabelStream/Triad": {
+      "processPairs": 5,
+      "referenceMeanMs": 15.65115393939394,
+      "candidateMeanMs": 15.619381818181818,
+      "candidateMinusReferenceMs": -0.031772121212120294,
+      "difference95CI": [
+        -0.09742179312620741,
+        0.033877550701966824
+      ],
+      "referenceOverCandidateRatio": 1.0020341471629266,
+      "status": "tie",
+      "referenceProcessesMs": [
+        15.627720202020202,
+        15.655655555555555,
+        15.684242424242424,
+        15.653468686868687,
+        15.634682828282829
+      ],
+      "candidateProcessesMs": [
+        15.683060606060607,
+        15.58580202020202,
+        15.637283838383839,
+        15.57889191919192,
+        15.611870707070707
+      ]
+    },
+    "BabelStream/Dot": {
+      "processPairs": 5,
+      "referenceMeanMs": 8.848961616161617,
+      "candidateMeanMs": 12.45908787878788,
+      "candidateMinusReferenceMs": 3.6101262626262636,
+      "difference95CI": [
+        3.5009220740020277,
+        3.7193304512504994
+      ],
+      "referenceOverCandidateRatio": 0.7102415282925603,
+      "status": "regression",
+      "referenceProcessesMs": [
+        8.877616161616162,
+        8.766677777777778,
+        8.892348484848485,
+        8.845460606060605,
+        8.86270505050505
+      ],
+      "candidateProcessesMs": [
+        12.454974747474749,
+        12.489452525252526,
+        12.482607070707072,
+        12.339030303030304,
+        12.529374747474748
+      ]
+    },
+    "BabelStream/storageLifecycle": {
+      "processPairs": 5,
+      "referenceMeanMs": 6240.14558,
+      "candidateMeanMs": 6840.99464,
+      "candidateMinusReferenceMs": 600.8490600000002,
+      "difference95CI": [
+        534.7481307598721,
+        666.9499892401284
+      ],
+      "referenceOverCandidateRatio": 0.9121693420885358,
+      "status": "regression",
+      "referenceProcessesMs": [
+        6164.7329,
+        6237.2456,
+        6270.5166,
+        6260.7297,
+        6267.5031
+      ],
+      "candidateProcessesMs": [
+        6857.2891,
+        6838.3693,
+        6832.4983,
+        6836.549300000001,
+        6840.2672
+      ]
+    },
+    "BabelStream/constructMs": {
+      "processPairs": 5,
+      "referenceMeanMs": 71.82786,
+      "candidateMeanMs": 81.46814,
+      "candidateMinusReferenceMs": 9.640279999999999,
+      "difference95CI": [
+        -20.933806381186308,
+        40.2143663811863
+      ],
+      "referenceOverCandidateRatio": 0.8816680974918538,
+      "status": "inconclusive",
+      "referenceProcessesMs": [
+        24.632,
+        79.4979,
+        85.5485,
+        82.8092,
+        86.6517
+      ],
+      "candidateProcessesMs": [
+        78.0908,
+        82.0064,
+        81.1996,
+        81.82560000000001,
+        84.2183
+      ]
+    },
+    "BabelStream/initMs": {
+      "processPairs": 5,
+      "referenceMeanMs": 19.65606,
+      "candidateMeanMs": 23.108800000000002,
+      "candidateMinusReferenceMs": 3.452740000000003,
+      "difference95CI": [
+        2.1824481639667845,
+        4.723031836033222
+      ],
+      "referenceOverCandidateRatio": 0.850587654919338,
+      "status": "regression",
+      "referenceProcessesMs": [
+        19.695899999999998,
+        18.9159,
+        18.879199999999997,
+        21.0495,
+        19.7398
+      ],
+      "candidateProcessesMs": [
+        23.2251,
+        22.9194,
+        23.255000000000003,
+        22.7722,
+        23.372300000000003
+      ]
+    },
+    "BabelStream/exportMs": {
+      "processPairs": 5,
+      "referenceMeanMs": 27.69766,
+      "candidateMeanMs": 27.24576,
+      "candidateMinusReferenceMs": -0.4518999999999984,
+      "difference95CI": [
+        -0.8057251467876891,
+        -0.09807485321230769
+      ],
+      "referenceOverCandidateRatio": 1.0165860669696862,
+      "status": "improvement",
+      "referenceProcessesMs": [
+        27.2024,
+        27.467200000000002,
+        28.536099999999998,
+        27.4088,
+        27.8738
+      ],
+      "candidateProcessesMs": [
+        26.980900000000002,
+        26.8333,
+        28.0351,
+        27.300900000000002,
+        27.0786
+      ]
+    },
+    "BabelStream/disposeMs": {
+      "processPairs": 5,
+      "referenceMeanMs": 34.63104,
+      "candidateMeanMs": 36.60776,
+      "candidateMinusReferenceMs": 1.9767200000000031,
+      "difference95CI": [
+        -8.593609682853499,
+        12.547049682853507
+      ],
+      "referenceOverCandidateRatio": 0.9460027054373171,
+      "status": "inconclusive",
+      "referenceProcessesMs": [
+        19.810299999999998,
+        35.8383,
+        39.0205,
+        39.353,
+        39.1331
+      ],
+      "candidateProcessesMs": [
+        36.2652,
+        37.5831,
+        35.5981,
+        34.4639,
+        39.1285
+      ]
+    },
+    "LLAMA/AoSoA16/fiveSteps": {
+      "processPairs": 3,
+      "referenceMeanMs": 42401.00783333333,
+      "candidateMeanMs": 41387.392933333336,
+      "candidateMinusReferenceMs": -1013.6148999999981,
+      "difference95CI": [
+        -1294.8817962930889,
+        -732.3480037069073
+      ],
+      "referenceOverCandidateRatio": 1.0244909096263377,
+      "status": "improvement",
+      "referenceProcessesMs": [
+        42332.5127,
+        42518.0756,
+        42352.4352
+      ],
+      "candidateProcessesMs": [
+        41360.8674,
+        41376.2432,
+        41425.0682
+      ]
+    },
+    "LLAMA/AoSoA16/storageLifecycle": {
+      "processPairs": 3,
+      "referenceMeanMs": 42401.355266666666,
+      "candidateMeanMs": 41387.7434,
+      "candidateMinusReferenceMs": -1013.6118666666686,
+      "difference95CI": [
+        -1294.8838453824615,
+        -732.3398879508758
+      ],
+      "referenceOverCandidateRatio": 1.0244906289495035,
+      "status": "improvement",
+      "referenceProcessesMs": [
+        42332.8487,
+        42518.4205,
+        42352.7966
+      ],
+      "candidateProcessesMs": [
+        41361.2126,
+        41376.5877,
+        41425.4299
+      ]
+    },
+    "LLAMA/burst/fiveSteps": {
+      "processPairs": 3,
+      "referenceMeanMs": 42401.00783333333,
+      "candidateMeanMs": 1380.7535333333335,
+      "candidateMinusReferenceMs": -41020.2543,
+      "difference95CI": [
+        -41174.98623117214,
+        -40865.522368827864
+      ],
+      "referenceOverCandidateRatio": 30.708599912810886,
+      "status": "improvement",
+      "referenceProcessesMs": [
+        42332.5127,
+        42518.0756,
+        42352.4352
+      ],
+      "candidateProcessesMs": [
+        1353.8067,
+        1426.2033000000001,
+        1362.2506
+      ]
+    },
+    "LLAMA/burst/storageLifecycle": {
+      "processPairs": 3,
+      "referenceMeanMs": 42401.355266666666,
+      "candidateMeanMs": 1381.8413666666668,
+      "candidateMinusReferenceMs": -41019.513900000005,
+      "difference95CI": [
+        -41174.25375327365,
+        -40864.77404672636
+      ],
+      "referenceOverCandidateRatio": 30.684676468290217,
+      "status": "improvement",
+      "referenceProcessesMs": [
+        42332.8487,
+        42518.4205,
+        42352.7966
+      ],
+      "candidateProcessesMs": [
+        1354.8929,
+        1427.2858,
+        1363.3454000000002
+      ]
+    }
+  },
+  "allocationEligibility": "Unknown",
+  "profilePublished": false
+}

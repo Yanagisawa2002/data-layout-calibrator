@@ -1,5 +1,6 @@
 using System;
 using Unity.Collections;
+using Unity.Jobs;
 
 namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
 {
@@ -11,46 +12,62 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             2,
             "Integrate position, velocity and lifetime while preserving cold rotation/category fields.");
 
-        public ScenarioDescriptor Descriptor => Scenario;
+        public int ColdAccessEveryTicks { get; }
+
+        public ParticleIntegrateScenarioFactory() : this(0) { }
+
+        public ParticleIntegrateScenarioFactory(int coldAccessEveryTicks)
+        {
+            if (coldAccessEveryTicks != 0 && coldAccessEveryTicks != 1 && coldAccessEveryTicks != 8)
+                throw new ArgumentOutOfRangeException(nameof(coldAccessEveryTicks));
+            ColdAccessEveryTicks = coldAccessEveryTicks;
+        }
+
+        public ScenarioDescriptor Descriptor => ColdAccessEveryTicks == 0 ? Scenario :
+            new ScenarioDescriptor("particle-cold-pass-every-" + ColdAccessEveryTicks + "-v1",
+                "Particle Integrate with separate cold pass every " + ColdAccessEveryTicks + " ticks", 1,
+                "Full integration plus observable Rotation/Category updates in a separately scheduled pass.");
 
         public ICalibrationScenario Create(
             int elementCount,
             uint seed,
             CandidateDescriptor[] candidates = null)
         {
-            return new ParticleIntegrateScenario(elementCount, seed, candidates);
+            return new ParticleIntegrateScenario(elementCount, seed, candidates, ColdAccessEveryTicks);
         }
     }
 
     public sealed class ParticleIntegrateScenario : ICalibrationScenario
     {
         private static readonly int[] BatchSizes = { 32, 64, 128, 256 };
-        private static readonly LayoutKind[] Layouts =
+        private static readonly ExecutionPolicy[] Executions =
         {
-            LayoutKind.AoS,
-            LayoutKind.SoA,
-            LayoutKind.AoSoA8,
+            ExecutionPolicy.FrameFaithful,
+            ExecutionPolicy.DependencyChain,
         };
 
         private readonly NativeArray<ParticleRecord> _canonicalInput;
         private readonly ParticleIntegrateCandidate[] _candidates;
         private readonly ParticleParityValidator _parityValidator = new ParticleParityValidator();
         private bool _disposed;
+        private readonly int _coldAccessEveryTicks;
 
         internal ParticleIntegrateScenario(
             int elementCount,
             uint seed,
-            CandidateDescriptor[] requestedCandidates)
+            CandidateDescriptor[] requestedCandidates,
+            int coldAccessEveryTicks = 0)
         {
             if (elementCount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(elementCount));
 
-            _canonicalInput = ParticleDataSet.Create(elementCount, seed, Allocator.Persistent);
-            DatasetHash = FormatHash(ParticleStateValidation.ComputeHash(_canonicalInput));
+            _coldAccessEveryTicks = coldAccessEveryTicks;
             CandidateDescriptor[] definitions = requestedCandidates ?? CreateDefaultCandidates();
             if (definitions.Length == 0)
                 throw new ArgumentException("At least one candidate is required.", nameof(requestedCandidates));
 
+            _canonicalInput = ParticleDataSet.Create(elementCount, seed, Allocator.Persistent);
+            DatasetHash = FormatHash(ParticleStateValidation.ComputeHash(_canonicalInput));
             _candidates = new ParticleIntegrateCandidate[definitions.Length];
             try
             {
@@ -58,7 +75,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
                 for (int index = 0; index < definitions.Length; index++)
                 {
                     CandidateDescriptor definition = definitions[index];
-                    _candidates[index] = new ParticleIntegrateCandidate(definition, _canonicalInput);
+                    _candidates[index] = new ParticleIntegrateCandidate(definition, _canonicalInput, coldAccessEveryTicks);
                     if (referenceIndex < 0 && definition.IsBaseline)
                         referenceIndex = index;
                 }
@@ -74,7 +91,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             }
         }
 
-        public ScenarioDescriptor Descriptor => new ParticleIntegrateScenarioFactory().Descriptor;
+        public ScenarioDescriptor Descriptor => new ParticleIntegrateScenarioFactory(_coldAccessEveryTicks).Descriptor;
 
         public string DatasetHash { get; }
 
@@ -110,12 +127,60 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
 
         private static CandidateDescriptor[] CreateDefaultCandidates()
         {
-            var candidates = new CandidateDescriptor[Layouts.Length * BatchSizes.Length];
+            const int familyCount = 4;
+            var candidates = new CandidateDescriptor[
+                familyCount * Executions.Length * BatchSizes.Length];
             int cursor = 0;
-            for (int layout = 0; layout < Layouts.Length; layout++)
-            for (int batch = 0; batch < BatchSizes.Length; batch++)
-                candidates[cursor++] = new CandidateDescriptor(Layouts[layout], BatchSizes[batch]);
+            AddFamily(
+                candidates,
+                ref cursor,
+                new LayoutPolicy("AoS"),
+                new KernelPolicy("ScalarBranched", KernelControlFlow.Branched),
+                true,
+                0);
+            AddFamily(
+                candidates,
+                ref cursor,
+                new LayoutPolicy("AoS"),
+                new KernelPolicy("ScalarBranchless", KernelControlFlow.Branchless),
+                true,
+                1);
+            AddFamily(
+                candidates,
+                ref cursor,
+                new LayoutPolicy("SoA"),
+                new KernelPolicy("ScalarBranched", KernelControlFlow.Branched),
+                false,
+                2);
+            AddFamily(
+                candidates,
+                ref cursor,
+                new LayoutPolicy("AoSoA8", blockWidth: 8),
+                new KernelPolicy("PackedBranchless8", KernelControlFlow.Branchless, vectorWidth: 8),
+                false,
+                3);
             return candidates;
+        }
+
+        private static void AddFamily(
+            CandidateDescriptor[] candidates,
+            ref int cursor,
+            LayoutPolicy layout,
+            KernelPolicy kernel,
+            bool isBaseline,
+            int familySortOrder)
+        {
+            for (int execution = 0; execution < Executions.Length; execution++)
+            for (int batch = 0; batch < BatchSizes.Length; batch++)
+            {
+                candidates[cursor++] = new CandidateDescriptor(
+                    layout,
+                    kernel,
+                    BatchPolicy.JobBatch(BatchSizes[batch]),
+                    Executions[execution],
+                    isBaseline,
+                    sortOrder: (familySortOrder * 100) + (execution * 10) + batch);
+            }
         }
 
         private static string FormatHash(ulong hash) => $"0x{hash:X16}";
@@ -136,15 +201,33 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
         private readonly NativeArray<ParticleRecord> _canonicalInput;
         private readonly NativeArray<ParticleRecord> _canonicalExport;
         private readonly LayoutKind _layout;
+        private readonly ParticleKernelKind _kernel;
+        private readonly ExecutionPolicy _execution;
         private ParticleLayoutDomain _domain;
         private bool _disposed;
+        private readonly int _coldAccessEveryTicks;
+        private int _coldTick;
 
         public ParticleIntegrateCandidate(
             CandidateDescriptor descriptor,
-            NativeArray<ParticleRecord> canonicalInput)
+            NativeArray<ParticleRecord> canonicalInput,
+            int coldAccessEveryTicks = 0)
         {
-            Descriptor = descriptor;
-            _layout = ParseLayout(descriptor);
+            _coldAccessEveryTicks = coldAccessEveryTicks;
+            Descriptor = descriptor.NormalizePolicies();
+            Descriptor.ValidateFactorConsistency();
+            var implementedDefinition = Descriptor;
+            if (implementedDefinition.Kernel.Equals(KernelPolicy.LegacyUnspecified))
+            {
+                implementedDefinition.Kernel = implementedDefinition.LayoutId == "AoSoA8"
+                    ? new KernelPolicy("PackedBranchless8", KernelControlFlow.Branchless, 8)
+                    : new KernelPolicy("ScalarBranched", KernelControlFlow.Branched);
+            }
+            string unsupported = ParticleCandidateMatrix.UnsupportedReason(implementedDefinition);
+            if (unsupported.Length != 0) throw new ArgumentException(unsupported, nameof(descriptor));
+            _layout = ParseLayout(Descriptor);
+            _kernel = ParseKernel(Descriptor, _layout);
+            _execution = ParseExecution(Descriptor);
             _canonicalInput = canonicalInput;
             _canonicalExport = new NativeArray<ParticleRecord>(
                 canonicalInput.Length,
@@ -154,7 +237,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             {
                 _domain = ParticleLayoutDomain.Create(
                     _layout,
-                    descriptor.LogicalBatchSize,
+                    _kernel,
+                    Descriptor.LogicalBatchSize,
                     canonicalInput);
             }
             catch
@@ -192,14 +276,40 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             if (ticks <= 0)
                 throw new ArgumentOutOfRangeException(nameof(ticks));
 
-            for (int tick = 0; tick < ticks; tick++)
-                _domain.Schedule(fixedDeltaTime).Complete();
+            switch (_execution.Topology)
+            {
+                case ExecutionTopology.FrameFaithful:
+                    for (int tick = 0; tick < ticks; tick++)
+                        ScheduleTick(fixedDeltaTime, default).Complete();
+                    return;
+
+                case ExecutionTopology.DependencyChain:
+                    JobHandle dependency = default;
+                    for (int tick = 0; tick < ticks; tick++)
+                        dependency = ScheduleTick(fixedDeltaTime, dependency);
+                    dependency.Complete();
+                    return;
+
+                default:
+                    throw new NotSupportedException(
+                        $"ParticleIntegrate does not declare reorderable TemporalBlock semantics: {_execution.PolicyId}.");
+            }
         }
 
         public void Ingress()
         {
             ThrowIfDisposed();
             _domain.Ingress(_canonicalInput);
+            _coldTick = 0;
+        }
+
+        private JobHandle ScheduleTick(float deltaTime, JobHandle dependency)
+        {
+            JobHandle hot = _domain.Schedule(deltaTime, dependency);
+            if (_coldAccessEveryTicks == 0) return hot;
+            if (++_coldTick < _coldAccessEveryTicks) return hot;
+            _coldTick = 0;
+            return _domain.ScheduleColdFields(hot);
         }
 
         public void Export()
@@ -227,7 +337,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
 
         private static LayoutKind ParseLayout(CandidateDescriptor descriptor)
         {
-            if (Enum.TryParse(descriptor.LayoutId, true, out LayoutKind layout) &&
+            if (Enum.TryParse(descriptor.EffectiveLayout.PolicyId, true, out LayoutKind layout) &&
                 Enum.IsDefined(typeof(LayoutKind), layout))
             {
                 return layout;
@@ -236,7 +346,55 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
             throw new ArgumentOutOfRangeException(
                 nameof(descriptor),
                 descriptor.LayoutId,
-                "ParticleIntegrate supports AoS, SoA, and AoSoA8.");
+                "ParticleIntegrate requires an implemented ParticleCandidateMatrix layout.");
+        }
+
+        private static ParticleKernelKind ParseKernel(
+            CandidateDescriptor descriptor,
+            LayoutKind layout)
+        {
+            KernelPolicy policy = descriptor.EffectiveKernel;
+            if (string.Equals(policy.PolicyId, "LegacyUnspecified", StringComparison.Ordinal))
+            {
+                switch (layout)
+                {
+                    case LayoutKind.AoS:
+                    case LayoutKind.SoA:
+                        return ParticleKernelKind.ScalarBranched;
+                    case LayoutKind.AoSoA8:
+                        return ParticleKernelKind.PackedBranchless8;
+                }
+            }
+
+            if (Enum.TryParse(policy.PolicyId, false, out ParticleKernelKind kernel) &&
+                Enum.IsDefined(typeof(ParticleKernelKind), kernel) &&
+                ParticleCandidateMatrix.UnsupportedReason(descriptor).Length == 0)
+                return kernel;
+
+            throw new ArgumentOutOfRangeException(
+                nameof(descriptor),
+                policy.PolicyId,
+                $"ParticleIntegrate does not implement kernel {policy.PolicyId} for {layout}.");
+        }
+
+        private static ExecutionPolicy ParseExecution(CandidateDescriptor descriptor)
+        {
+            ExecutionPolicy policy = descriptor.EffectiveExecution;
+            if (policy.Topology == ExecutionTopology.FrameFaithful &&
+                string.Equals(policy.PolicyId, "FrameFaithful", StringComparison.Ordinal))
+            {
+                return policy;
+            }
+            if (policy.Topology == ExecutionTopology.DependencyChain &&
+                string.Equals(policy.PolicyId, "DependencyChain", StringComparison.Ordinal))
+            {
+                return policy;
+            }
+
+            throw new ArgumentOutOfRangeException(
+                nameof(descriptor),
+                policy.PolicyId,
+                "ParticleIntegrate implements only FrameFaithful and DependencyChain execution.");
         }
     }
 

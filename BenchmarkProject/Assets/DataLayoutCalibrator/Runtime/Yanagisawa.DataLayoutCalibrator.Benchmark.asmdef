@@ -5,8 +5,11 @@
     "Yanagisawa.DataLayoutCalibrator",
     "Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate",
     "Yanagisawa.DataLayoutCalibrator.Samples.TransformExport",
+    "Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads",
+    "Yanagisawa.DataLayoutCalibrator.Samples.ExternalWorkloads",
     "Unity.Burst",
-    "Unity.Collections"
+    "Unity.Collections",
+    "Unity.Mathematics"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],

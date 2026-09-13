@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "verifiedUtc": "2026-09-07T07:25:06.138233+00:00",
+  "formalRuntimeSource": "4ffa47271306e985d9cade5d77489bd172c0360f",
+  "archiveSha256": "352E1DE751FA7AD3686E0FCEA466F8E0C0519FFAB078314711E9FB598273FD5F",
+  "verifiedArchivedFiles": 2139,
+  "relocatedEnvelopeCells": 120,
+  "relocatedSearchComparisons": 10,
+  "actualCycleCaptures": 768,
+  "explicitNoProviderUnavailableCaptures": 128,
+  "analysisByteExact": true,
+  "analysisSha256": "7EE3DC55CE6B423946FFA9B5BBA6893A65B903F010387CC447B941796020C014",
+  "historicalByteExact": true,
+  "historicalSha256": "636198560637AC3D0C5A90925F9F48FFBD4E8E1661B4599412C17A14FC9B4777",
+  "scope": "Replayed from a separate extraction directory. No raw artifact or frozen decision rewritten."
+}

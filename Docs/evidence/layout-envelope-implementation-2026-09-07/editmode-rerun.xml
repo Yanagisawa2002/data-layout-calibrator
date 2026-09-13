@@ -1,0 +1,1081 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="155" result="Passed" total="155" passed="155" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-07 05:19:49Z" end-time="2026-09-07 05:19:50Z" duration="0.963959">
+  <test-suite type="TestSuite" id="1000" name="BenchmarkProject" fullname="BenchmarkProject" runstate="Runnable" testcasecount="155" result="Passed" start-time="2026-09-07 05:19:49Z" end-time="2026-09-07 05:19:50Z" duration="0.963959" total="155" passed="155" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1046" name="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.Editor.dll" fullname="C:/Users/EdwinLiu/Downloads/opt-next-layout-envelope/BenchmarkProject/Library/ScriptAssemblies/Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.Editor.dll" runstate="Runnable" testcasecount="33" result="Passed" start-time="2026-09-07 05:19:49Z" end-time="2026-09-07 05:19:50Z" duration="0.835092" total="33" passed="33" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37740" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1047" name="Yanagisawa" fullname="Yanagisawa" runstate="Runnable" testcasecount="33" result="Passed" start-time="2026-09-07 05:19:49Z" end-time="2026-09-07 05:19:50Z" duration="0.834654" total="33" passed="33" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1048" name="DataLayoutCalibrator" fullname="Yanagisawa.DataLayoutCalibrator" runstate="Runnable" testcasecount="33" result="Passed" start-time="2026-09-07 05:19:49Z" end-time="2026-09-07 05:19:50Z" duration="0.834309" total="33" passed="33" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1049" name="Samples" fullname="Yanagisawa.DataLayoutCalibrator.Samples" runstate="Runnable" testcasecount="33" result="Passed" start-time="2026-09-07 05:19:49Z" end-time="2026-09-07 05:19:50Z" duration="0.834110" total="33" passed="33" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1050" name="ParticleIntegrate" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate" runstate="Runnable" testcasecount="33" result="Passed" start-time="2026-09-07 05:19:49Z" end-time="2026-09-07 05:19:50Z" duration="0.833960" total="33" passed="33" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="1051" name="Tests" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests" runstate="Runnable" testcasecount="33" result="Passed" start-time="2026-09-07 05:19:49Z" end-time="2026-09-07 05:19:50Z" duration="0.833543" total="33" passed="33" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1003" name="GeneratedParticleStorageScaffoldTests" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.GeneratedParticleStorageScaffoldTests" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.GeneratedParticleStorageScaffoldTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-07 05:19:49Z" end-time="2026-09-07 05:19:49Z" duration="0.035306" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1004" name="GeneratedAoSSoAAndAoSoA8CodecsRoundTripCanonicalRecords" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.GeneratedParticleStorageScaffoldTests.GeneratedAoSSoAAndAoSoA8CodecsRoundTripCanonicalRecords" methodname="GeneratedAoSSoAAndAoSoA8CodecsRoundTripCanonicalRecords" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.GeneratedParticleStorageScaffoldTests" runstate="Runnable" seed="1700997694" result="Passed" start-time="2026-09-07 05:19:49Z" end-time="2026-09-07 05:19:49Z" duration="0.019489" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1005" name="GeneratedSchemaAndParityMapExposeExplicitStableMetadata" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.GeneratedParticleStorageScaffoldTests.GeneratedSchemaAndParityMapExposeExplicitStableMetadata" methodname="GeneratedSchemaAndParityMapExposeExplicitStableMetadata" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.GeneratedParticleStorageScaffoldTests" runstate="Runnable" seed="1441635352" result="Passed" start-time="2026-09-07 05:19:49Z" end-time="2026-09-07 05:19:49Z" duration="0.002248" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="TestFixture" id="1006" name="ParticleCandidateMatrixTests" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-07 05:19:49Z" end-time="2026-09-07 05:19:50Z" duration="0.674572" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1009" name="ActualJobsMatchOracleAcrossTailsAndRepeatedIngress" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests.ActualJobsMatchOracleAcrossTailsAndRepeatedIngress" methodname="ActualJobsMatchOracleAcrossTailsAndRepeatedIngress" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests" runstate="Runnable" seed="543736772" result="Passed" start-time="2026-09-07 05:19:49Z" end-time="2026-09-07 05:19:50Z" duration="0.664822" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1007" name="CrossedMatrixPreservesLegacyDefinitionsAndDeclaresExcludedCells" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests.CrossedMatrixPreservesLegacyDefinitionsAndDeclaresExcludedCells" methodname="CrossedMatrixPreservesLegacyDefinitionsAndDeclaresExcludedCells" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests" runstate="Runnable" seed="1867368780" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.007305" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1008" name="FalseAlignmentAndUnsupportedKernelMetadataAreRejected" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests.FalseAlignmentAndUnsupportedKernelMetadataAreRejected" methodname="FalseAlignmentAndUnsupportedKernelMetadataAreRejected" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleCandidateMatrixTests" runstate="Runnable" seed="758654150" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001125" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="TestFixture" id="1010" name="ParticleColdAccessTests" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.021016" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1021" name="AccessModes_HaveDifferentObservableOutputsAndScenarioIdentity" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests.AccessModes_HaveDifferentObservableOutputsAndScenarioIdentity" methodname="AccessModes_HaveDifferentObservableOutputsAndScenarioIdentity" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests" runstate="Runnable" seed="334157390" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.002900" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-suite type="ParameterizedMethod" id="1020" name="ColdCadence_PreservesPartialCallsAndFullLayoutParity" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests.ColdCadence_PreservesPartialCallsAndFullLayoutParity" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.013340" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                    <properties />
+                    <test-case id="1018" name="ColdCadence_PreservesPartialCallsAndFullLayoutParity(1)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests.ColdCadence_PreservesPartialCallsAndFullLayoutParity(1)" methodname="ColdCadence_PreservesPartialCallsAndFullLayoutParity" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests" runstate="Runnable" seed="882031241" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.007390" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1019" name="ColdCadence_PreservesPartialCallsAndFullLayoutParity(8)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests.ColdCadence_PreservesPartialCallsAndFullLayoutParity(8)" methodname="ColdCadence_PreservesPartialCallsAndFullLayoutParity" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests" runstate="Runnable" seed="1391718872" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.005578" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                  </test-suite>
+                  <test-suite type="ParameterizedMethod" id="1017" name="ColdPass_ChangesAllColdComponentsAndPreservesHotFields" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests.ColdPass_ChangesAllColdComponentsAndPreservesHotFields" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.003567" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                    <properties />
+                    <test-case id="1011" name="ColdPass_ChangesAllColdComponentsAndPreservesHotFields(AoS)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests.ColdPass_ChangesAllColdComponentsAndPreservesHotFields(AoS)" methodname="ColdPass_ChangesAllColdComponentsAndPreservesHotFields" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests" runstate="Runnable" seed="846276162" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001575" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1012" name="ColdPass_ChangesAllColdComponentsAndPreservesHotFields(SoA)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests.ColdPass_ChangesAllColdComponentsAndPreservesHotFields(SoA)" methodname="ColdPass_ChangesAllColdComponentsAndPreservesHotFields" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests" runstate="Runnable" seed="983871989" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000346" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1013" name="ColdPass_ChangesAllColdComponentsAndPreservesHotFields(AoSoA8)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests.ColdPass_ChangesAllColdComponentsAndPreservesHotFields(AoSoA8)" methodname="ColdPass_ChangesAllColdComponentsAndPreservesHotFields" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests" runstate="Runnable" seed="12491752" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000334" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1014" name="ColdPass_ChangesAllColdComponentsAndPreservesHotFields(AoSoA4)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests.ColdPass_ChangesAllColdComponentsAndPreservesHotFields(AoSoA4)" methodname="ColdPass_ChangesAllColdComponentsAndPreservesHotFields" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests" runstate="Runnable" seed="1645026193" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000224" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1015" name="ColdPass_ChangesAllColdComponentsAndPreservesHotFields(AoSoA16)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests.ColdPass_ChangesAllColdComponentsAndPreservesHotFields(AoSoA16)" methodname="ColdPass_ChangesAllColdComponentsAndPreservesHotFields" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests" runstate="Runnable" seed="1307077014" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000242" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1016" name="ColdPass_ChangesAllColdComponentsAndPreservesHotFields(AoSPadded64)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests.ColdPass_ChangesAllColdComponentsAndPreservesHotFields(AoSPadded64)" methodname="ColdPass_ChangesAllColdComponentsAndPreservesHotFields" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleColdAccessTests" runstate="Runnable" seed="2068200919" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000226" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                  </test-suite>
+                </test-suite>
+                <test-suite type="TestFixture" id="1022" name="ParticleDataSetTests" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.015604" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1029" name="Create_WithDifferentSeed_ChangesGeneratedData" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests.Create_WithDifferentSeed_ChangesGeneratedData" methodname="Create_WithDifferentSeed_ChangesGeneratedData" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests" runstate="Runnable" seed="418089995" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000341" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-suite type="ParameterizedMethod" id="1028" name="Create_WithSameSeed_ProducesIdenticalRecords" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests.Create_WithSameSeed_ProducesIdenticalRecords" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.014815" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                    <properties />
+                    <test-case id="1023" name="Create_WithSameSeed_ProducesIdenticalRecords(1)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests.Create_WithSameSeed_ProducesIdenticalRecords(1)" methodname="Create_WithSameSeed_ProducesIdenticalRecords" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests" runstate="Runnable" seed="443741322" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000461" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1024" name="Create_WithSameSeed_ProducesIdenticalRecords(7)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests.Create_WithSameSeed_ProducesIdenticalRecords(7)" methodname="Create_WithSameSeed_ProducesIdenticalRecords" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests" runstate="Runnable" seed="1152662725" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000064" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1025" name="Create_WithSameSeed_ProducesIdenticalRecords(8)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests.Create_WithSameSeed_ProducesIdenticalRecords(8)" methodname="Create_WithSameSeed_ProducesIdenticalRecords" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests" runstate="Runnable" seed="1312944561" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000049" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1026" name="Create_WithSameSeed_ProducesIdenticalRecords(9)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests.Create_WithSameSeed_ProducesIdenticalRecords(9)" methodname="Create_WithSameSeed_ProducesIdenticalRecords" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests" runstate="Runnable" seed="657749954" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000051" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1027" name="Create_WithSameSeed_ProducesIdenticalRecords(4099)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests.Create_WithSameSeed_ProducesIdenticalRecords(4099)" methodname="Create_WithSameSeed_ProducesIdenticalRecords" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleDataSetTests" runstate="Runnable" seed="1297494840" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.013789" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                  </test-suite>
+                </test-suite>
+                <test-suite type="TestFixture" id="1030" name="ParticleIntegrateScenarioTests" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleIntegrateScenarioTests" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleIntegrateScenarioTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.006345" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1032" name="BranchlessAoSDependencyChain_MatchesBranchedFrameFaithfulControl" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleIntegrateScenarioTests.BranchlessAoSDependencyChain_MatchesBranchedFrameFaithfulControl" methodname="BranchlessAoSDependencyChain_MatchesBranchedFrameFaithfulControl" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleIntegrateScenarioTests" runstate="Runnable" seed="1059375978" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.002468" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1031" name="DefaultMatrix_ExposesExplicitFactorPoliciesAndUniqueCanonicalIds" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleIntegrateScenarioTests.DefaultMatrix_ExposesExplicitFactorPoliciesAndUniqueCanonicalIds" methodname="DefaultMatrix_ExposesExplicitFactorPoliciesAndUniqueCanonicalIds" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleIntegrateScenarioTests" runstate="Runnable" seed="1119777026" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001291" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1033" name="ProtocolCandidates_PreserveParityAcrossAwkwardTailCount" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleIntegrateScenarioTests.ProtocolCandidates_PreserveParityAcrossAwkwardTailCount" methodname="ProtocolCandidates_PreserveParityAcrossAwkwardTailCount" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleIntegrateScenarioTests" runstate="Runnable" seed="1548049249" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001982" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="TestFixture" id="1034" name="ParticleLayoutParityTests" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.078943" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-suite type="ParameterizedMethod" id="1045" name="StepJobs_KeepAllLayoutsEquivalent" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests.StepJobs_KeepAllLayoutsEquivalent" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.078606" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+                    <properties />
+                    <test-case id="1035" name="StepJobs_KeepAllLayoutsEquivalent(1,1)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests.StepJobs_KeepAllLayoutsEquivalent(1,1)" methodname="StepJobs_KeepAllLayoutsEquivalent" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests" runstate="Runnable" seed="1068034504" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001815" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1036" name="StepJobs_KeepAllLayoutsEquivalent(1,97)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests.StepJobs_KeepAllLayoutsEquivalent(1,97)" methodname="StepJobs_KeepAllLayoutsEquivalent" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests" runstate="Runnable" seed="50335420" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000591" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1037" name="StepJobs_KeepAllLayoutsEquivalent(7,1)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests.StepJobs_KeepAllLayoutsEquivalent(7,1)" methodname="StepJobs_KeepAllLayoutsEquivalent" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests" runstate="Runnable" seed="253010163" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000100" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1038" name="StepJobs_KeepAllLayoutsEquivalent(7,97)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests.StepJobs_KeepAllLayoutsEquivalent(7,97)" methodname="StepJobs_KeepAllLayoutsEquivalent" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests" runstate="Runnable" seed="933029979" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000492" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1039" name="StepJobs_KeepAllLayoutsEquivalent(8,1)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests.StepJobs_KeepAllLayoutsEquivalent(8,1)" methodname="StepJobs_KeepAllLayoutsEquivalent" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests" runstate="Runnable" seed="984261279" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000098" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1040" name="StepJobs_KeepAllLayoutsEquivalent(8,97)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests.StepJobs_KeepAllLayoutsEquivalent(8,97)" methodname="StepJobs_KeepAllLayoutsEquivalent" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests" runstate="Runnable" seed="225525376" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000439" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1041" name="StepJobs_KeepAllLayoutsEquivalent(9,1)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests.StepJobs_KeepAllLayoutsEquivalent(9,1)" methodname="StepJobs_KeepAllLayoutsEquivalent" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests" runstate="Runnable" seed="597678142" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000092" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1042" name="StepJobs_KeepAllLayoutsEquivalent(9,97)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests.StepJobs_KeepAllLayoutsEquivalent(9,97)" methodname="StepJobs_KeepAllLayoutsEquivalent" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests" runstate="Runnable" seed="572674663" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000831" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1043" name="StepJobs_KeepAllLayoutsEquivalent(4099,1)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests.StepJobs_KeepAllLayoutsEquivalent(4099,1)" methodname="StepJobs_KeepAllLayoutsEquivalent" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests" runstate="Runnable" seed="745616327" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.026860" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1044" name="StepJobs_KeepAllLayoutsEquivalent(4099,97)" fullname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests.StepJobs_KeepAllLayoutsEquivalent(4099,97)" methodname="StepJobs_KeepAllLayoutsEquivalent" classname="Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.ParticleLayoutParityTests" runstate="Runnable" seed="1451145399" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.046532" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                  </test-suite>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1060" name="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.Editor.dll" fullname="C:/Users/EdwinLiu/Downloads/opt-next-layout-envelope/BenchmarkProject/Library/ScriptAssemblies/Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.Editor.dll" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.025193" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37740" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1061" name="Yanagisawa" fullname="Yanagisawa" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.024789" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1062" name="DataLayoutCalibrator" fullname="Yanagisawa.DataLayoutCalibrator" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.024709" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1063" name="Samples" fullname="Yanagisawa.DataLayoutCalibrator.Samples" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.024672" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1064" name="TransformExport" fullname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.024636" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="1065" name="Tests" fullname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.024555" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1052" name="GeneratedTransformStorageScaffoldTests" fullname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.GeneratedTransformStorageScaffoldTests" classname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.GeneratedTransformStorageScaffoldTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.006470" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1053" name="GeneratedAoSSoAAndAoSoA4CodecsRoundTripCanonicalRecords" fullname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.GeneratedTransformStorageScaffoldTests.GeneratedAoSSoAAndAoSoA4CodecsRoundTripCanonicalRecords" methodname="GeneratedAoSSoAAndAoSoA4CodecsRoundTripCanonicalRecords" classname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.GeneratedTransformStorageScaffoldTests" runstate="Runnable" seed="949374727" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.005706" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1054" name="GeneratedSchemaHasIndependentWorkloadIdentityAndFieldMap" fullname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.GeneratedTransformStorageScaffoldTests.GeneratedSchemaHasIndependentWorkloadIdentityAndFieldMap" methodname="GeneratedSchemaHasIndependentWorkloadIdentityAndFieldMap" classname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.GeneratedTransformStorageScaffoldTests" runstate="Runnable" seed="1445582364" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000259" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="TestFixture" id="1055" name="TransformExportScenarioTests" fullname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.TransformExportScenarioTests" classname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.TransformExportScenarioTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.017925" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1058" name="AoSAndSoA_ProduceEquivalentCanonicalExports" fullname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.TransformExportScenarioTests.AoSAndSoA_ProduceEquivalentCanonicalExports" methodname="AoSAndSoA_ProduceEquivalentCanonicalExports" classname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.TransformExportScenarioTests" runstate="Runnable" seed="453300136" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.011399" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1056" name="DefaultMatrix_CrossesLayoutBatchAndExecutionPolicies" fullname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.TransformExportScenarioTests.DefaultMatrix_CrossesLayoutBatchAndExecutionPolicies" methodname="DefaultMatrix_CrossesLayoutBatchAndExecutionPolicies" classname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.TransformExportScenarioTests" runstate="Runnable" seed="268028159" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000986" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1057" name="DependencyChain_MatchesFrameFaithfulExport" fullname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.TransformExportScenarioTests.DependencyChain_MatchesFrameFaithfulExport" methodname="DependencyChain_MatchesFrameFaithfulExport" classname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.TransformExportScenarioTests" runstate="Runnable" seed="611485103" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.004829" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1059" name="Factory_ExposesNegativeControlContract" fullname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.TransformExportScenarioTests.Factory_ExposesNegativeControlContract" methodname="Factory_ExposesNegativeControlContract" classname="Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.TransformExportScenarioTests" runstate="Runnable" seed="1793867484" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000165" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1196" name="Yanagisawa.DataLayoutCalibrator.Tests.Editor.dll" fullname="C:/Users/EdwinLiu/Downloads/opt-next-layout-envelope/BenchmarkProject/Library/ScriptAssemblies/Yanagisawa.DataLayoutCalibrator.Tests.Editor.dll" runstate="Runnable" testcasecount="116" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.093549" total="116" passed="116" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37740" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1197" name="Yanagisawa" fullname="Yanagisawa" runstate="Runnable" testcasecount="116" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.093291" total="116" passed="116" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1198" name="DataLayoutCalibrator" fullname="Yanagisawa.DataLayoutCalibrator" runstate="Runnable" testcasecount="116" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.093234" total="116" passed="116" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1199" name="Tests" fullname="Yanagisawa.DataLayoutCalibrator.Tests" runstate="Runnable" testcasecount="116" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.093158" total="116" passed="116" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1066" name="AdvantageEnvelopeDecisionTests" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.022997" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1085" name="AdaptiveAudit_MatchesExhaustiveSearchOrReportsBoundedRegret" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.AdaptiveAudit_MatchesExhaustiveSearchOrReportsBoundedRegret" methodname="AdaptiveAudit_MatchesExhaustiveSearchOrReportsBoundedRegret" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="541421692" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.006576" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1083" name="AdaptiveElimination_InsufficientQuickUncertaintyIsRetainedConservatively" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.AdaptiveElimination_InsufficientQuickUncertaintyIsRetainedConservatively" methodname="AdaptiveElimination_InsufficientQuickUncertaintyIsRetainedConservatively" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="1407433521" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000353" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1082" name="AdaptiveElimination_RecordsEveryStageAndPreservesFinalEvidence" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.AdaptiveElimination_RecordsEveryStageAndPreservesFinalEvidence" methodname="AdaptiveElimination_RecordsEveryStageAndPreservesFinalEvidence" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="807899300" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.002454" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1084" name="AdaptiveElimination_RejectsMalformedCompatibilityAndEvidenceHashes" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.AdaptiveElimination_RejectsMalformedCompatibilityAndEvidenceHashes" methodname="AdaptiveElimination_RejectsMalformedCompatibilityAndEvidenceHashes" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="806075874" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.002202" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1068" name="BreakEven_AlignedSyntheticReplicatesProduceBoundedDeterministicInterval" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.BreakEven_AlignedSyntheticReplicatesProduceBoundedDeterministicInterval" methodname="BreakEven_AlignedSyntheticReplicatesProduceBoundedDeterministicInterval" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="1752160165" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000864" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1067" name="BreakEven_HandlesCrossingsZeroSlopesEqualCostsAndDominance" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.BreakEven_HandlesCrossingsZeroSlopesEqualCostsAndDominance" methodname="BreakEven_HandlesCrossingsZeroSlopesEqualCostsAndDominance" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="674721040" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000245" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1069" name="BreakEven_MixedBootstrapRegimesRemainExplicitlyUncertain" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.BreakEven_MixedBootstrapRegimesRemainExplicitlyUncertain" methodname="BreakEven_MixedBootstrapRegimesRemainExplicitlyUncertain" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="1228227173" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000165" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1079" name="Envelope_CalibrationRejectsMalformedCompatibilityAndEvidenceHashes" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.Envelope_CalibrationRejectsMalformedCompatibilityAndEvidenceHashes" methodname="Envelope_CalibrationRejectsMalformedCompatibilityAndEvidenceHashes" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="693496741" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001286" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1078" name="Envelope_FinalProfileDoesNotAliasMutableCalibrationObjects" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.Envelope_FinalProfileDoesNotAliasMutableCalibrationObjects" methodname="Envelope_FinalProfileDoesNotAliasMutableCalibrationObjects" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="1616705731" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.002365" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1071" name="Envelope_FixedSyntheticInputSerializesIdenticallyRegardlessOfInputOrder" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.Envelope_FixedSyntheticInputSerializesIdenticallyRegardlessOfInputOrder" methodname="Envelope_FixedSyntheticInputSerializesIdenticallyRegardlessOfInputOrder" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="781506659" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001633" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1073" name="Envelope_HoldoutCannotSubstituteAnotherCandidate" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.Envelope_HoldoutCannotSubstituteAnotherCandidate" methodname="Envelope_HoldoutCannotSubstituteAnotherCandidate" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="823349887" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000260" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1074" name="Envelope_HoldoutRejectsChangedCandidateDefinitionHash" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.Envelope_HoldoutRejectsChangedCandidateDefinitionHash" methodname="Envelope_HoldoutRejectsChangedCandidateDefinitionHash" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="1928571355" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000238" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1080" name="Envelope_HoldoutRejectsMalformedArtifactHashesAndEngineVersions" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.Envelope_HoldoutRejectsMalformedArtifactHashesAndEngineVersions" methodname="Envelope_HoldoutRejectsMalformedArtifactHashesAndEngineVersions" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="2017681744" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000467" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1076" name="Envelope_ManagedAllocationIsRecordedAndCannotWin" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.Envelope_ManagedAllocationIsRecordedAndCannotWin" methodname="Envelope_ManagedAllocationIsRecordedAndCannotWin" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="1911081711" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000207" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1077" name="Envelope_MissingHoldoutRejectsProvisionalWinnerWithoutReranking" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.Envelope_MissingHoldoutRejectsProvisionalWinnerWithoutReranking" methodname="Envelope_MissingHoldoutRejectsProvisionalWinnerWithoutReranking" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="1895487530" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000160" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1075" name="Envelope_ParityFailureIsRecordedAndCannotWin" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.Envelope_ParityFailureIsRecordedAndCannotWin" methodname="Envelope_ParityFailureIsRecordedAndCannotWin" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="852466731" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000103" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1070" name="Envelope_ScansEveryAxisAndReportsFrozenCoverageSummary" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.Envelope_ScansEveryAxisAndReportsFrozenCoverageSummary" methodname="Envelope_ScansEveryAxisAndReportsFrozenCoverageSummary" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="2041010859" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001088" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1072" name="Envelope_UncertainMinimumEffectBecomesGreyZoneAndSelectsTunedAoS" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.Envelope_UncertainMinimumEffectBecomesGreyZoneAndSelectsTunedAoS" methodname="Envelope_UncertainMinimumEffectBecomesGreyZoneAndSelectsTunedAoS" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="301429875" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000368" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1081" name="ParetoFrontier_UsesStrictDominanceAndKeepsEqualPoints" fullname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests.ParetoFrontier_UsesStrictDominanceAndKeepsEqualPoints" methodname="ParetoFrontier_UsesStrictDominanceAndKeepsEqualPoints" classname="Yanagisawa.DataLayoutCalibrator.Tests.AdvantageEnvelopeDecisionTests" runstate="Runnable" seed="175326630" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000581" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1086" name="BenchmarkStatisticsAndSelectionTests" fullname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests" classname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.012323" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1090" name="AmortizedP95_IncludesFullBoundaryCostOverDeclaredLifetime" fullname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests.AmortizedP95_IncludesFullBoundaryCostOverDeclaredLifetime" methodname="AmortizedP95_IncludesFullBoundaryCostOverDeclaredLifetime" classname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests" runstate="Runnable" seed="1298022199" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000362" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1089" name="Calculate_ProducesExpectedPercentilesAndMad" fullname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests.Calculate_ProducesExpectedPercentilesAndMad" methodname="Calculate_ProducesExpectedPercentilesAndMad" classname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests" runstate="Runnable" seed="1996843263" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1088" name="CandidateDescriptor_AllowsPluginDefinedLayoutWithoutChangingCoreEnum" fullname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests.CandidateDescriptor_AllowsPluginDefinedLayoutWithoutChangingCoreEnum" methodname="CandidateDescriptor_AllowsPluginDefinedLayoutWithoutChangingCoreEnum" classname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests" runstate="Runnable" seed="1061630163" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000173" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1094" name="ConfirmHoldout_WhenIndependentThresholdAndBootstrapClear_RemainsOptimized" fullname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests.ConfirmHoldout_WhenIndependentThresholdAndBootstrapClear_RemainsOptimized" methodname="ConfirmHoldout_WhenIndependentThresholdAndBootstrapClear_RemainsOptimized" classname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests" runstate="Runnable" seed="97511344" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.002695" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1095" name="ConfirmHoldout_WhenIndependentThresholdFails_FallsBackToAoS" fullname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests.ConfirmHoldout_WhenIndependentThresholdFails_FallsBackToAoS" methodname="ConfirmHoldout_WhenIndependentThresholdFails_FallsBackToAoS" classname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests" runstate="Runnable" seed="1522829148" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1087" name="CoreAssembly_ContainsNoParticleWorkloadTypes" fullname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests.CoreAssembly_ContainsNoParticleWorkloadTypes" methodname="CoreAssembly_ContainsNoParticleWorkloadTypes" classname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests" runstate="Runnable" seed="815952360" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000511" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1097" name="Schema2Json_UpgradesWithoutChangingCandidateIdentity" fullname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests.Schema2Json_UpgradesWithoutChangingCandidateIdentity" methodname="Schema2Json_UpgradesWithoutChangingCandidateIdentity" classname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests" runstate="Runnable" seed="1100116025" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.004200" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1091" name="SelectCalibration_UsesBestAoSAndRejectsParityFailure" fullname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests.SelectCalibration_UsesBestAoSAndRejectsParityFailure" methodname="SelectCalibration_UsesBestAoSAndRejectsParityFailure" classname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests" runstate="Runnable" seed="627908894" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000869" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1093" name="SelectCalibration_WhenBootstrapIncludesZero_ReportsTieAndFallsBackToAoS" fullname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests.SelectCalibration_WhenBootstrapIncludesZero_ReportsTieAndFallsBackToAoS" methodname="SelectCalibration_WhenBootstrapIncludesZero_ReportsTieAndFallsBackToAoS" classname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests" runstate="Runnable" seed="1902197967" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000984" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1092" name="SelectCalibration_WhenGainIsBelowThreshold_FallsBackToBestAoS" fullname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests.SelectCalibration_WhenGainIsBelowThreshold_FallsBackToBestAoS" methodname="SelectCalibration_WhenGainIsBelowThreshold_FallsBackToBestAoS" classname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests" runstate="Runnable" seed="1399667098" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000360" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1096" name="SuiteDtos_RoundTripThroughJsonUtility" fullname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests.SuiteDtos_RoundTripThroughJsonUtility" methodname="SuiteDtos_RoundTripThroughJsonUtility" classname="Yanagisawa.DataLayoutCalibrator.Tests.BenchmarkStatisticsAndSelectionTests" runstate="Runnable" seed="115270809" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000556" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1098" name="CounterEvidenceTests" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.009683" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1100" name="Capture_WhenDisabled_DoesNotProbeProvider" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WhenDisabled_DoesNotProbeProvider" methodname="Capture_WhenDisabled_DoesNotProbeProvider" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="202751981" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001324" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1112" name="Capture_WhenProviderBeginFails_DoesNotBreakWorkload" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WhenProviderBeginFails_DoesNotBreakWorkload" methodname="Capture_WhenProviderBeginFails_DoesNotBreakWorkload" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="258627588" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000607" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1114" name="Capture_WhenProviderCompleteFails_DoesNotBreakCompletedWorkload" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WhenProviderCompleteFails_DoesNotBreakCompletedWorkload" methodname="Capture_WhenProviderCompleteFails_DoesNotBreakCompletedWorkload" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="703457900" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000469" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1113" name="Capture_WhenProviderProbeReportsFailure_RecordsFailureWithoutBeginning" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WhenProviderProbeReportsFailure_RecordsFailureWithoutBeginning" methodname="Capture_WhenProviderProbeReportsFailure_RecordsFailureWithoutBeginning" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="2016815445" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000475" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1115" name="Capture_WhenProviderReturnsNoRawCounters_RecordsFailure" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WhenProviderReturnsNoRawCounters_RecordsFailure" methodname="Capture_WhenProviderReturnsNoRawCounters_RecordsFailure" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="1564224365" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000537" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1121" name="Capture_WhenWorkloadFails_RethrowsWorkloadFailureAndSuppressesDisposeFailure" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WhenWorkloadFails_RethrowsWorkloadFailureAndSuppressesDisposeFailure" methodname="Capture_WhenWorkloadFails_RethrowsWorkloadFailureAndSuppressesDisposeFailure" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="2031337578" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000207" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1101" name="Capture_WithDefaultAvailability_FailsClosedWithoutBeginning" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithDefaultAvailability_FailsClosedWithoutBeginning" methodname="Capture_WithDefaultAvailability_FailsClosedWithoutBeginning" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="350294253" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000220" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1111" name="Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000663" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1107" name="Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning(&quot;provider-id&quot;)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning(&quot;provider-id&quot;)" methodname="Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="119136135" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000269" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1108" name="Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning(&quot;provider-version&quot;)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning(&quot;provider-version&quot;)" methodname="Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="259365280" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000037" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1109" name="Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning(&quot;mechanism&quot;)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning(&quot;mechanism&quot;)" methodname="Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="918310461" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000027" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1110" name="Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning(&quot;artifact-hash&quot;)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning(&quot;artifact-hash&quot;)" methodname="Capture_WithInvalidAvailableDescriptor_FailsBeforeBeginning" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="725696097" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000031" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1105" name="Capture_WithInvalidContext_FailsBeforeProviderAccess" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidContext_FailsBeforeProviderAccess" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000531" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1102" name="Capture_WithInvalidContext_FailsBeforeProviderAccess(&quot;identity&quot;)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidContext_FailsBeforeProviderAccess(&quot;identity&quot;)" methodname="Capture_WithInvalidContext_FailsBeforeProviderAccess" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="1106853768" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000266" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1103" name="Capture_WithInvalidContext_FailsBeforeProviderAccess(&quot;version&quot;)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidContext_FailsBeforeProviderAccess(&quot;version&quot;)" methodname="Capture_WithInvalidContext_FailsBeforeProviderAccess" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="3903100" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000036" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1104" name="Capture_WithInvalidContext_FailsBeforeProviderAccess(&quot;hash&quot;)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidContext_FailsBeforeProviderAccess(&quot;hash&quot;)" methodname="Capture_WithInvalidContext_FailsBeforeProviderAccess" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="2022909799" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000031" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="ParameterizedMethod" id="1120" name="Capture_WithInvalidMeasurementMetadata_FailsClosed" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidMeasurementMetadata_FailsClosed" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001609" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1116" name="Capture_WithInvalidMeasurementMetadata_FailsClosed(&quot;derived-source&quot;)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidMeasurementMetadata_FailsClosed(&quot;derived-source&quot;)" methodname="Capture_WithInvalidMeasurementMetadata_FailsClosed" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="1351615347" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000992" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1117" name="Capture_WithInvalidMeasurementMetadata_FailsClosed(&quot;artifact-hash&quot;)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidMeasurementMetadata_FailsClosed(&quot;artifact-hash&quot;)" methodname="Capture_WithInvalidMeasurementMetadata_FailsClosed" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="73869937" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000119" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1118" name="Capture_WithInvalidMeasurementMetadata_FailsClosed(&quot;overhead-repetitions&quot;)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidMeasurementMetadata_FailsClosed(&quot;overhead-repetitions&quot;)" methodname="Capture_WithInvalidMeasurementMetadata_FailsClosed" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="555154265" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000160" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1119" name="Capture_WithInvalidMeasurementMetadata_FailsClosed(&quot;overhead-percent&quot;)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithInvalidMeasurementMetadata_FailsClosed(&quot;overhead-percent&quot;)" methodname="Capture_WithInvalidMeasurementMetadata_FailsClosed" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="1201525410" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000099" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1122" name="Capture_WithMeasurement_PreservesOriginProvenanceAndContext" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithMeasurement_PreservesOriginProvenanceAndContext" methodname="Capture_WithMeasurement_PreservesOriginProvenanceAndContext" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="644083669" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000536" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1099" name="Capture_WithNoProvider_RunsWorkloadAndReportsUnavailable" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithNoProvider_RunsWorkloadAndReportsUnavailable" methodname="Capture_WithNoProvider_RunsWorkloadAndReportsUnavailable" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="2106688923" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000160" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1106" name="Capture_WithUnavailableProvider_RunsWorkloadAndPreservesReason" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.Capture_WithUnavailableProvider_RunsWorkloadAndPreservesReason" methodname="Capture_WithUnavailableProvider_RunsWorkloadAndPreservesReason" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="2085334623" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000176" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1123" name="CaptureResult_RoundTripsThroughJsonUtilityWithoutPromotingFixtureOrigin" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.CaptureResult_RoundTripsThroughJsonUtilityWithoutPromotingFixtureOrigin" methodname="CaptureResult_RoundTripsThroughJsonUtilityWithoutPromotingFixtureOrigin" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="758181564" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000332" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1124" name="EstimateOverhead_UsesDeterministicPairedMedians" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.EstimateOverhead_UsesDeterministicPairedMedians" methodname="EstimateOverhead_UsesDeterministicPairedMedians" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="274326860" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000367" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1125" name="EstimateOverhead_WithInvalidInput_ReportsFailureInsteadOfInventingValues" fullname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests.EstimateOverhead_WithInvalidInput_ReportsFailureInsteadOfInventingValues" methodname="EstimateOverhead_WithInvalidInput_ReportsFailureInsteadOfInventingValues" classname="Yanagisawa.DataLayoutCalibrator.Tests.CounterEvidenceTests" runstate="Runnable" seed="1163908556" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000182" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1126" name="DeploymentProfileTests" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.026884" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1139" name="CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.006076" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1135" name="CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile(Inconclusive)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile(Inconclusive)" methodname="CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="1259683867" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.005016" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1136" name="CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile(StatisticalTie)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile(StatisticalTie)" methodname="CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="784843675" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000291" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1137" name="CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile(Regression)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile(Regression)" methodname="CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="1501213629" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000251" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1138" name="CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile(Invalid)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile(Invalid)" methodname="CodecRejectsChecksummedAndDecisionHashedNonOptimizedNonBaselineProfile" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="389716787" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000248" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1148" name="CompatibleMatchRequiresAnExplicitFingerprintPairAndEvidenceReference" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.CompatibleMatchRequiresAnExplicitFingerprintPairAndEvidenceReference" methodname="CompatibleMatchRequiresAnExplicitFingerprintPairAndEvidenceReference" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="1889869006" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000713" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1145" name="CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001436" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1140" name="CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS(&quot;candidate&quot;,CandidateSet)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS(&quot;candidate&quot;,CandidateSet)" methodname="CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="1504871882" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000443" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1141" name="CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS(&quot;compiler&quot;,BurstVersion)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS(&quot;compiler&quot;,BurstVersion)" methodname="CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="522968855" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000177" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1142" name="CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS(&quot;backend&quot;,ScriptingBackend)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS(&quot;backend&quot;,ScriptingBackend)" methodname="CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="1526855777" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000166" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1143" name="CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS(&quot;settings&quot;,CalibrationSettings)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS(&quot;settings&quot;,CalibrationSettings)" methodname="CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="1343205049" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000164" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1144" name="CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS(&quot;worker&quot;,JobWorkerCount)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS(&quot;worker&quot;,JobWorkerCount)" methodname="CriticalFingerprintChangesInvalidateAndFallBackToTunedAoS" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="702009404" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000174" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1150" name="FileStoreHandlesMissingSaveReplacementAndCorruption" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.FileStoreHandlesMissingSaveReplacementAndCorruption" methodname="FileStoreHandlesMissingSaveReplacementAndCorruption" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="1073940199" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.012462" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1127" name="FingerprintIsDeterministicAndCandidateOrderIndependent" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.FingerprintIsDeterministicAndCandidateOrderIndependent" methodname="FingerprintIsDeterministicAndCandidateOrderIndependent" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="1379743876" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000390" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1128" name="FingerprintRejectsMissingBuildFlagsOrInstructionSet" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.FingerprintRejectsMissingBuildFlagsOrInstructionSet" methodname="FingerprintRejectsMissingBuildFlagsOrInstructionSet" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="841307914" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000230" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1146" name="MissingCorruptUnsupportedAndUnavailableProfilesFallBackToTunedAoS" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.MissingCorruptUnsupportedAndUnavailableProfilesFallBackToTunedAoS" methodname="MissingCorruptUnsupportedAndUnavailableProfilesFallBackToTunedAoS" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="1152881188" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000777" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1134" name="NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.002048" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1130" name="NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline(Inconclusive)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline(Inconclusive)" methodname="NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="1083766233" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000623" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1131" name="NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline(StatisticalTie)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline(StatisticalTie)" methodname="NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="795448060" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000344" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1132" name="NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline(Regression)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline(Regression)" methodname="NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="1934369203" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000298" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1133" name="NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline(Invalid)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline(Invalid)" methodname="NonOptimizedFactoryRequiresBaselineAndResolverKeepsBaseline" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="591298299" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000283" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1129" name="OptimizedExactFingerprintUsesFrozenNonBaselineDecisionWithoutReselection" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.OptimizedExactFingerprintUsesFrozenNonBaselineDecisionWithoutReselection" methodname="OptimizedExactFingerprintUsesFrozenNonBaselineDecisionWithoutReselection" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="578961659" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000366" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1151" name="RechecksRawSuiteIntegrityAfterDocumentChecksumPasses" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.RechecksRawSuiteIntegrityAfterDocumentChecksumPasses" methodname="RechecksRawSuiteIntegrityAfterDocumentChecksumPasses" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="1128946282" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000260" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1149" name="RecordSchemaMigrationCannotAuthorizeReuseImplicitly" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.RecordSchemaMigrationCannotAuthorizeReuseImplicitly" methodname="RecordSchemaMigrationCannotAuthorizeReuseImplicitly" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="2116898691" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000291" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1147" name="Schema1ProfileMigratesInMemoryWithoutChangingRawSuiteOrDecision" fullname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests.Schema1ProfileMigratesInMemoryWithoutChangingRawSuiteOrDecision" methodname="Schema1ProfileMigratesInMemoryWithoutChangingRawSuiteOrDecision" classname="Yanagisawa.DataLayoutCalibrator.Tests.DeploymentProfileTests" runstate="Runnable" seed="1234456733" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000780" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1152" name="EnvelopeMeasurementGuardTests" fullname="Yanagisawa.DataLayoutCalibrator.Tests.EnvelopeMeasurementGuardTests" classname="Yanagisawa.DataLayoutCalibrator.Tests.EnvelopeMeasurementGuardTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.002610" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="ParameterizedMethod" id="1156" name="InadequateEvidence_IsRejectedBeforeFactoryExecution" fullname="Yanagisawa.DataLayoutCalibrator.Tests.EnvelopeMeasurementGuardTests.InadequateEvidence_IsRejectedBeforeFactoryExecution" classname="Yanagisawa.DataLayoutCalibrator.Tests.EnvelopeMeasurementGuardTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.002046" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1153" name="InadequateEvidence_IsRejectedBeforeFactoryExecution(39,20,4000)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.EnvelopeMeasurementGuardTests.InadequateEvidence_IsRejectedBeforeFactoryExecution(39,20,4000)" methodname="InadequateEvidence_IsRejectedBeforeFactoryExecution" classname="Yanagisawa.DataLayoutCalibrator.Tests.EnvelopeMeasurementGuardTests" runstate="Runnable" seed="667826225" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001774" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1154" name="InadequateEvidence_IsRejectedBeforeFactoryExecution(40,19,4000)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.EnvelopeMeasurementGuardTests.InadequateEvidence_IsRejectedBeforeFactoryExecution(40,19,4000)" methodname="InadequateEvidence_IsRejectedBeforeFactoryExecution" classname="Yanagisawa.DataLayoutCalibrator.Tests.EnvelopeMeasurementGuardTests" runstate="Runnable" seed="938674995" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000041" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1155" name="InadequateEvidence_IsRejectedBeforeFactoryExecution(40,20,3999)" fullname="Yanagisawa.DataLayoutCalibrator.Tests.EnvelopeMeasurementGuardTests.InadequateEvidence_IsRejectedBeforeFactoryExecution(40,20,3999)" methodname="InadequateEvidence_IsRejectedBeforeFactoryExecution" classname="Yanagisawa.DataLayoutCalibrator.Tests.EnvelopeMeasurementGuardTests" runstate="Runnable" seed="1157597295" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000024" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1157" name="ReusedSeedAndDifferentHoldoutDimensions_AreRejected" fullname="Yanagisawa.DataLayoutCalibrator.Tests.EnvelopeMeasurementGuardTests.ReusedSeedAndDifferentHoldoutDimensions_AreRejected" methodname="ReusedSeedAndDifferentHoldoutDimensions_AreRejected" classname="Yanagisawa.DataLayoutCalibrator.Tests.EnvelopeMeasurementGuardTests" runstate="Runnable" seed="2017715078" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000151" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1158" name="ScientificCoreV04Tests" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.013018" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1165" name="BalancedLatinOrder_IsSeededDeterministicAndPositionBalanced" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.BalancedLatinOrder_IsSeededDeterministicAndPositionBalanced" methodname="BalancedLatinOrder_IsSeededDeterministicAndPositionBalanced" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="232002858" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000639" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1177" name="CalibrationNegativeInterval_CannotOptimizeFromContradictorySummary" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.CalibrationNegativeInterval_CannotOptimizeFromContradictorySummary" methodname="CalibrationNegativeInterval_CannotOptimizeFromContradictorySummary" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="1370039066" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000531" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1176" name="CalibrationTie_IsDistinctFromSubThresholdInconclusive" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.CalibrationTie_IsDistinctFromSubThresholdInconclusive" methodname="CalibrationTie_IsDistinctFromSubThresholdInconclusive" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="741817051" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001276" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1162" name="CandidateDescriptor_RejectsSurroundingWhitespaceInProtocolIds" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.CandidateDescriptor_RejectsSurroundingWhitespaceInProtocolIds" methodname="CandidateDescriptor_RejectsSurroundingWhitespaceInProtocolIds" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="402613882" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000284" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1161" name="CandidateDescriptor_RejectsUnsupportedPolicySchema" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.CandidateDescriptor_RejectsUnsupportedPolicySchema" methodname="CandidateDescriptor_RejectsUnsupportedPolicySchema" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="1605955207" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000140" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1164" name="DeserializedPolicyMetadata_FailsClosedWhenInternallyInconsistent" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.DeserializedPolicyMetadata_FailsClosedWhenInternallyInconsistent" methodname="DeserializedPolicyMetadata_FailsClosedWhenInternallyInconsistent" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="371708172" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000124" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1159" name="FactorizedDescriptor_PreservesCanonicalIdAndExplicitPolicies" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.FactorizedDescriptor_PreservesCanonicalIdAndExplicitPolicies" methodname="FactorizedDescriptor_PreservesCanonicalIdAndExplicitPolicies" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="790808299" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000278" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1178" name="HoldoutFreeze_ContainsOnlyFrozenBaselineAndWinner" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.HoldoutFreeze_ContainsOnlyFrozenBaselineAndWinner" methodname="HoldoutFreeze_ContainsOnlyFrozenBaselineAndWinner" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="1790611465" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000301" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1175" name="HoldoutRegression_IsDistinctFromTieAndFallsBackToAoS" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.HoldoutRegression_IsDistinctFromTieAndFallsBackToAoS" methodname="HoldoutRegression_IsDistinctFromTieAndFallsBackToAoS" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="108312760" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000288" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1160" name="LegacyDescriptor_NormalizesPoliciesWithoutChangingCanonicalId" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.LegacyDescriptor_NormalizesPoliciesWithoutChangingCanonicalId" methodname="LegacyDescriptor_NormalizesPoliciesWithoutChangingCanonicalId" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="139409543" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000143" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1167" name="PairedBootstrap_PreservesCommonBlockDriftAndUsesLogRatio" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.PairedBootstrap_PreservesCommonBlockDriftAndUsesLogRatio" methodname="PairedBootstrap_PreservesCommonBlockDriftAndUsesLogRatio" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="425639708" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000675" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1169" name="PairedBootstrap_RejectsMismatchedBlockIdentity" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.PairedBootstrap_RejectsMismatchedBlockIdentity" methodname="PairedBootstrap_RejectsMismatchedBlockIdentity" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="2090199802" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000137" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1171" name="PairedBootstrap_RejectsMissingCurrentSampleMetadata" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.PairedBootstrap_RejectsMissingCurrentSampleMetadata" methodname="PairedBootstrap_RejectsMissingCurrentSampleMetadata" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="1554360057" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000115" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1170" name="PairedBootstrap_RejectsUnsupportedSampleSchema" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.PairedBootstrap_RejectsUnsupportedSampleSchema" methodname="PairedBootstrap_RejectsUnsupportedSampleSchema" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="1579759700" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000102" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1168" name="PairedBootstrap_WithSameSeed_IsBitwiseDeterministic" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.PairedBootstrap_WithSameSeed_IsBitwiseDeterministic" methodname="PairedBootstrap_WithSameSeed_IsBitwiseDeterministic" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="1449486050" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000740" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1173" name="ProcessHierarchy_RejectsCrossDeviceInput" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.ProcessHierarchy_RejectsCrossDeviceInput" methodname="ProcessHierarchy_RejectsCrossDeviceInput" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="201106427" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000649" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1174" name="ProcessHierarchy_RejectsMixedScenarioContractVersions" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.ProcessHierarchy_RejectsMixedScenarioContractVersions" methodname="ProcessHierarchy_RejectsMixedScenarioContractVersions" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="491730402" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000154" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1172" name="ProcessHierarchy_ResamplesProcessesAndBlocksOnOneDevice" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.ProcessHierarchy_ResamplesProcessesAndBlocksOnOneDevice" methodname="ProcessHierarchy_ResamplesProcessesAndBlocksOnOneDevice" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="780804183" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.001569" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1179" name="Schema2Migration_IsAdditiveAndMarksUnknownHistoricalOrder" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.Schema2Migration_IsAdditiveAndMarksUnknownHistoricalOrder" methodname="Schema2Migration_IsAdditiveAndMarksUnknownHistoricalOrder" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="781871295" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000729" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1188" name="Schema2Migration_RejectsWrongMetadataInsteadOfOverwritingIt" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.Schema2Migration_RejectsWrongMetadataInsteadOfOverwritingIt" methodname="Schema2Migration_RejectsWrongMetadataInsteadOfOverwritingIt" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="1651091590" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000240" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1187" name="Schema3Upgrade_BindsHoldoutToFrozenCalibrationWinner" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.Schema3Upgrade_BindsHoldoutToFrozenCalibrationWinner" methodname="Schema3Upgrade_BindsHoldoutToFrozenCalibrationWinner" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="857121417" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000609" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1181" name="Schema3Upgrade_IsValidationOnly" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.Schema3Upgrade_IsValidationOnly" methodname="Schema3Upgrade_IsValidationOnly" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="85088780" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000121" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1184" name="Schema3Upgrade_RejectsDecisionCandidateIdentityMismatch" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.Schema3Upgrade_RejectsDecisionCandidateIdentityMismatch" methodname="Schema3Upgrade_RejectsDecisionCandidateIdentityMismatch" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="1135300943" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000169" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1183" name="Schema3Upgrade_RejectsMissingMetadataAndIdentityMismatchWithoutRepair" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.Schema3Upgrade_RejectsMissingMetadataAndIdentityMismatchWithoutRepair" methodname="Schema3Upgrade_RejectsMissingMetadataAndIdentityMismatchWithoutRepair" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="1083718981" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000173" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1182" name="Schema3Upgrade_RejectsUnsupportedSampleAndPolicySchemas" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.Schema3Upgrade_RejectsUnsupportedSampleAndPolicySchemas" methodname="Schema3Upgrade_RejectsUnsupportedSampleAndPolicySchemas" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="1722158528" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000264" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1186" name="Schema3Upgrade_RequiresCompleteSamplingDesignDeclarations" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.Schema3Upgrade_RequiresCompleteSamplingDesignDeclarations" methodname="Schema3Upgrade_RequiresCompleteSamplingDesignDeclarations" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="1392732553" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000146" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1185" name="Schema3Upgrade_RequiresNonEmptyCalibrationResultsWithMatchingPhaseAndCount" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.Schema3Upgrade_RequiresNonEmptyCalibrationResultsWithMatchingPhaseAndCount" methodname="Schema3Upgrade_RequiresNonEmptyCalibrationResultsWithMatchingPhaseAndCount" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="913551245" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000316" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1180" name="SuiteUpgrade_RejectsNullAndUnsupportedNestedScenarios" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.SuiteUpgrade_RejectsNullAndUnsupportedNestedScenarios" methodname="SuiteUpgrade_RejectsNullAndUnsupportedNestedScenarios" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="899092351" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000188" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1163" name="TemporalBlock_RequiresExplicitReorderableSemantics" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.TemporalBlock_RequiresExplicitReorderableSemantics" methodname="TemporalBlock_RequiresExplicitReorderableSemantics" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="506426502" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000148" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1166" name="TwoCandidateLatinOrder_FormsAbbaAcrossFirstTwoBlocks" fullname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests.TwoCandidateLatinOrder_FormsAbbaAcrossFirstTwoBlocks" methodname="TwoCandidateLatinOrder_FormsAbbaAcrossFirstTwoBlocks" classname="Yanagisawa.DataLayoutCalibrator.Tests.ScientificCoreV04Tests" runstate="Runnable" seed="1027917024" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000072" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1189" name="VNextIntegrationProtocolTests" fullname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests" classname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.004912" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1193" name="Adapter_PreservesExplicitContractInfeasibility" fullname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests.Adapter_PreservesExplicitContractInfeasibility" methodname="Adapter_PreservesExplicitContractInfeasibility" classname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests" runstate="Runnable" seed="903579880" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.002329" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1192" name="AdapterEnvelopeInterval_EqualsScientificLogRatioInterval" fullname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests.AdapterEnvelopeInterval_EqualsScientificLogRatioInterval" methodname="AdapterEnvelopeInterval_EqualsScientificLogRatioInterval" classname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests" runstate="Runnable" seed="921469272" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000450" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1190" name="CandidateDefinitionHash_IgnoresDisplayNameAndBindsSemanticFields" fullname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests.CandidateDefinitionHash_IgnoresDisplayNameAndBindsSemanticFields" methodname="CandidateDefinitionHash_IgnoresDisplayNameAndBindsSemanticFields" classname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests" runstate="Runnable" seed="457128436" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000285" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1191" name="CandidateSetHash_IsOrderIndependentAndRejectsDuplicateIdentity" fullname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests.CandidateSetHash_IsOrderIndependentAndRejectsDuplicateIdentity" methodname="CandidateSetHash_IsOrderIndependentAndRejectsDuplicateIdentity" classname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests" runstate="Runnable" seed="838514990" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1194" name="HoldoutAdapter_RequiresUnusedHoldoutPhaseAndPreservesPairing" fullname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests.HoldoutAdapter_RequiresUnusedHoldoutPhaseAndPreservesPairing" methodname="HoldoutAdapter_RequiresUnusedHoldoutPhaseAndPreservesPairing" classname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests" runstate="Runnable" seed="626693831" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000325" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1195" name="Schema3EnvelopeReference_BindsArtifactCandidateSetAndMeasurementSchema" fullname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests.Schema3EnvelopeReference_BindsArtifactCandidateSetAndMeasurementSchema" methodname="Schema3EnvelopeReference_BindsArtifactCandidateSetAndMeasurementSchema" classname="Yanagisawa.DataLayoutCalibrator.Tests.VNextIntegrationProtocolTests" runstate="Runnable" seed="1239932493" result="Passed" start-time="2026-09-07 05:19:50Z" end-time="2026-09-07 05:19:50Z" duration="0.000603" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/EdwinLiu/AppData/LocalLow/DefaultCompany/BenchmarkProject\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

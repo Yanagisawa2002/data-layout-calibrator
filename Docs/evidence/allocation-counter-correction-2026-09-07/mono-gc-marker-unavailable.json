@@ -1,0 +1,18 @@
+{
+    "Scope": "Actual registered workload correctness, lifecycle and main-thread steady-state allocation; not timing evidence",
+    "UnityVersion": "6000.5.3f1",
+    "Backend": "Mono",
+    "Processor": "AMD Ryzen 9 9950X 16-Core Processor ",
+    "OperatingSystem": "Windows 11  (10.0.26200)",
+    "Error": "System.NotSupportedException: GC.Alloc recorder is unavailable in this Player; zero allocation cannot be established.\r\n  at Yanagisawa.DataLayoutCalibrator.Benchmark.UnityAllocationRecorder..ctor () [0x00039] in <5e5047eb75134fe68201a2c1a767d5a9>:0 \r\n  at Yanagisawa.DataLayoutCalibrator.Benchmark.GeneratedWorkloadValidation.Run () [0x000c4] in <5e5047eb75134fe68201a2c1a767d5a9>:0 ",
+    "Passed": false,
+    "Release": true,
+    "BurstEnabled": true,
+    "WorkerCount": 7,
+    "AllocationProvider": "Unity.ProfilerRecorder/GC.Alloc/current-thread/unaggregated",
+    "AllocationValueUnit": "",
+    "AllocationCounterValidated": false,
+    "AllocationCounterPositiveControlBytes": -1,
+    "AllocationCounterPositiveControlEvents": 0,
+    "Candidates": []
+}

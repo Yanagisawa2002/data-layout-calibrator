@@ -4,3 +4,5 @@ using Yanagisawa.DataLayoutCalibrator.Samples.TransformExport;
 
 [assembly: RegisterCalibrationScenarioFactory(typeof(ParticleIntegrateScenarioFactory))]
 [assembly: RegisterCalibrationScenarioFactory(typeof(TransformExportScenarioFactory))]
+[assembly: RegisterCalibrationScenarioFactory(typeof(Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.SpatialNeighborhoodScenarioFactory))]
+[assembly: RegisterCalibrationScenarioFactory(typeof(Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.AnimationStateScenarioFactory))]

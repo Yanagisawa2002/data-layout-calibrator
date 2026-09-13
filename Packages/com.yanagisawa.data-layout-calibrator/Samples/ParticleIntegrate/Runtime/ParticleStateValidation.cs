@@ -10,6 +10,9 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate
         private const ulong FnvOffset = 14695981039346656037ul;
         private const ulong FnvPrime = 1099511628211ul;
 
+        internal static ulong BeginHash() => FnvOffset;
+        internal static ulong AppendRecordHash(ulong hash, ParticleRecord record) => AddRecord(hash, record);
+
         public static ulong ComputeHash(ref ParticleAoSStorage storage) =>
             ComputeHash(storage.Count, storage.ReadRecord);
 
