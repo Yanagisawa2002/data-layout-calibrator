@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "pairedComparisons": 30,
+  "decimalPrecision": 50,
+  "maximumAllowedArithmeticDifferenceMs": 1e-09,
+  "studentTCdfAtCriticalValue": 0.9749999999999996,
+  "lifetimeIncludesAll100TimedIterations": true,
+  "lifetimeMinusTimedComponentsMsRange": [
+    0.12910000000010768,
+    0.5094000000008236
+  ]
+}

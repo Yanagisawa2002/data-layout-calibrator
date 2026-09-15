@@ -1,0 +1,49 @@
+{
+  "loads": [
+    {
+      "utc": "2026-09-15T05:07:50.220941+00:00",
+      "samplesPercent": [
+        2.1,
+        1.8,
+        1.6,
+        2.2,
+        1.9
+      ],
+      "meanPercent": 1.9200000000000002,
+      "availableMemory": 12537004032,
+      "topProcesses": [
+        {
+          "pid": 50800,
+          "name": "python.exe",
+          "machineCpuPercent": 1.312
+        },
+        {
+          "pid": 4,
+          "name": "System",
+          "machineCpuPercent": 0.578
+        },
+        {
+          "pid": 9448,
+          "name": "WmiPrvSE.exe",
+          "machineCpuPercent": 0.515
+        },
+        {
+          "pid": 5944,
+          "name": "svchost.exe",
+          "machineCpuPercent": 0.484
+        },
+        {
+          "pid": 11464,
+          "name": "CC_Engine_x64.exe",
+          "machineCpuPercent": 0.297
+        },
+        {
+          "pid": 16520,
+          "name": "esrv.exe",
+          "machineCpuPercent": 0.156
+        }
+      ]
+    }
+  ],
+  "freezeSha256": "30698e2706b4203b9a9aa9654f538b248bc15916449ece02a0f5aad57438c426"
+}

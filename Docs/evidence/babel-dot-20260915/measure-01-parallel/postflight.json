@@ -1,0 +1,55 @@
+{
+  "utc": "2026-09-15T05:05:05.809029+00:00",
+  "samplesPercent": [
+    2.5
+  ],
+  "meanPercent": 2.5,
+  "availableMemory": 11944591360,
+  "topProcesses": [
+    {
+      "pid": 50800,
+      "name": "python.exe",
+      "machineCpuPercent": 6.482
+    },
+    {
+      "pid": 4,
+      "name": "System",
+      "machineCpuPercent": 0.703
+    },
+    {
+      "pid": 11464,
+      "name": "CC_Engine_x64.exe",
+      "machineCpuPercent": 0.547
+    },
+    {
+      "pid": 16520,
+      "name": "esrv.exe",
+      "machineCpuPercent": 0.312
+    },
+    {
+      "pid": 23044,
+      "name": "Creative Cloud.exe",
+      "machineCpuPercent": 0.312
+    },
+    {
+      "pid": 26124,
+      "name": "Weixin.exe",
+      "machineCpuPercent": 0.312
+    },
+    {
+      "pid": 5944,
+      "name": "svchost.exe",
+      "machineCpuPercent": 0.234
+    },
+    {
+      "pid": 27924,
+      "name": "nvcontainer.exe",
+      "machineCpuPercent": 0.234
+    },
+    {
+      "pid": 34580,
+      "name": "vmmemWSL",
+      "machineCpuPercent": 0.156
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "phase": "build",
+  "command": [
+    "python",
+    "Tools/ActualComparison/prepare_local_unity.py",
+    "--installed-root",
+    "C:\\Program Files\\Unity\\Hub\\Editor\\6000.5.9f1",
+    "--destination",
+    "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\unity",
+    "--module",
+    "Artifacts/dot-20260915/toolchain/windows-il2cpp.exe",
+    "--module-manifest",
+    "Artifacts/dot-20260915/toolchain/module.json"
+  ],
+  "cwd": "D:\\CodexWork\\babel-dot-20260915",
+  "environment": {
+    "OMP_NUM_THREADS": null,
+    "OMP_DYNAMIC": null,
+    "OMP_PROC_BIND": null,
+    "OMP_PLACES": null
+  },
+  "startedUtc": "2026-09-15T04:53:37.382545+00:00",
+  "status": "passed",
+  "processWallTimeIsLifecycleMeasurement": false,
+  "freeGiBBefore": 273.97766494750977,
+  "estimatedGrowthGiB": 10.0,
+  "minimumFreeGiB": 20,
+  "backgroundConflicts": [],
+  "pid": 55820,
+  "exitCode": 0,
+  "completedUtc": "2026-09-15T04:54:41.652133+00:00",
+  "freeGiBAfter": 264.5862808227539,
+  "mutexReleased": true
+}

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "workload": "BabelStream variant",
+  "checkedArrayValues": 100663296,
+  "checkedDot": true,
+  "maxArrayRelativeError": 0.0,
+  "dotRelativeError": 3.868330265853786e-11,
+  "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+  "timingSha256": "be1d036904f198fca386d91157d6d5ed66b46bb358973cfbaf37ae34e09f9d15"
+}

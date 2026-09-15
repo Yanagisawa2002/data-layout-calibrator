@@ -1,0 +1,36 @@
+{
+  "phase": "build",
+  "command": [
+    "C:\\Program Files\\Unity\\Hub\\Editor\\6000.5.9f1\\Editor\\Unity.exe",
+    "-batchmode",
+    "-nographics",
+    "-quit",
+    "-projectPath",
+    "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject",
+    "-executeMethod",
+    "Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.DataLayoutCalibratorBuild.BuildWindowsIl2CppFormal",
+    "-dla-build-output",
+    "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-01",
+    "-logFile",
+    "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-build-01\\unity.log"
+  ],
+  "cwd": "D:\\CodexWork\\babel-dot-20260915",
+  "environment": {
+    "OMP_NUM_THREADS": null,
+    "OMP_DYNAMIC": null,
+    "OMP_PROC_BIND": null,
+    "OMP_PLACES": null
+  },
+  "startedUtc": "2026-09-15T04:50:41.265378+00:00",
+  "status": "failed",
+  "processWallTimeIsLifecycleMeasurement": false,
+  "freeGiBBefore": 275.93669509887695,
+  "estimatedGrowthGiB": 12.0,
+  "minimumFreeGiB": 20,
+  "backgroundConflicts": [],
+  "pid": 50720,
+  "exitCode": 1,
+  "completedUtc": "2026-09-15T04:51:11.601561+00:00",
+  "freeGiBAfter": 274.2194519042969,
+  "mutexReleased": true
+}

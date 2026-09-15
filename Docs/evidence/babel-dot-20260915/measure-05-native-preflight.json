@@ -1,0 +1,69 @@
+{
+  "loads": [
+    {
+      "utc": "2026-09-15T05:09:25.555476+00:00",
+      "samplesPercent": [
+        4.5,
+        1.7,
+        3.4,
+        1.7,
+        7.7
+      ],
+      "meanPercent": 3.8,
+      "availableMemory": 12273995776,
+      "topProcesses": [
+        {
+          "pid": 50800,
+          "name": "python.exe",
+          "machineCpuPercent": 1.437
+        },
+        {
+          "pid": 4,
+          "name": "System",
+          "machineCpuPercent": 0.625
+        },
+        {
+          "pid": 9448,
+          "name": "WmiPrvSE.exe",
+          "machineCpuPercent": 0.469
+        },
+        {
+          "pid": 5944,
+          "name": "svchost.exe",
+          "machineCpuPercent": 0.422
+        },
+        {
+          "pid": 11464,
+          "name": "CC_Engine_x64.exe",
+          "machineCpuPercent": 0.328
+        },
+        {
+          "pid": 6152,
+          "name": "XtuService.exe",
+          "machineCpuPercent": 0.172
+        },
+        {
+          "pid": 16520,
+          "name": "esrv.exe",
+          "machineCpuPercent": 0.172
+        },
+        {
+          "pid": 39032,
+          "name": "Killer.exe",
+          "machineCpuPercent": 0.141
+        },
+        {
+          "pid": 35164,
+          "name": "codex.exe",
+          "machineCpuPercent": 0.109
+        },
+        {
+          "pid": 52148,
+          "name": "ChatGPT.exe",
+          "machineCpuPercent": 0.109
+        }
+      ]
+    }
+  ],
+  "freezeSha256": "30698e2706b4203b9a9aa9654f538b248bc15916449ece02a0f5aad57438c426"
+}

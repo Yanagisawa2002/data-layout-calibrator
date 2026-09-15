@@ -1,0 +1,3242 @@
+{
+  "createdUtc": "2026-09-15T05:03:28.660785+00:00",
+  "sourceCommit": "8e83a17338452c9d202f45ed553e0c807a7b8558",
+  "gitStatus": "M  BenchmarkProject/Assets/DataLayoutCalibrator/Editor/DataLayoutCalibratorBuild.cs\nA  BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/BabelDotCorrectness.cs\nA  BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/BabelDotCorrectness.cs.meta\nM  BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/ExternalComparisonRunner.cs\nM  BenchmarkProject/Packages/manifest.json\nM  BenchmarkProject/Packages/packages-lock.json\nA  BenchmarkProject/ProjectSettings/ProjectAuditorSettings.asset\nM  BenchmarkProject/ProjectSettings/ProjectVersion.txt\nA  Docs/BABEL_DOT_PROTOCOL_2026-09-15.md\nM  Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Runtime/BabelStreamPort.cs\nM  Tools/ActualComparison/README.md\nM  Tools/ActualComparison/build_msvc.py\nA  Tools/ActualComparison/dot_experiment.py\nA  Tools/ActualComparison/prepare_local_unity.py\n",
+  "files": [
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\environment.json",
+      "sha256": "22eb55b92bbc47d0940465f5e7ccbe860d57bf373e70940e1c5c865cdac98528",
+      "bytes": 18153
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\logical-input.json",
+      "sha256": "61316e281c429a09b240082d69623e9f60095c4dd67775d4f39ff9482e794d7e",
+      "bytes": 417
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\native\\babel_native.exe",
+      "sha256": "7d64a0dfb12af418d0c67ee7f437f53f2ca72b4c4ea030bbf58364bae2d7b9ac",
+      "bytes": 63488
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\baselib.dll",
+      "sha256": "6876adf334ebb48c51b76cf686e2b92c8fcd3d08ff6d3a704ca92829fe9ee6e4",
+      "bytes": 239536
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\BenchmarkProject_BurstDebugInformation_DoNotShip\\Data\\Plugins\\x86_64\\lib_burst_generated.txt",
+      "sha256": "0833a020d31ca4f6634086afe95f65b10efc6a6369e25dbcfff32eda8b797374",
+      "bytes": 147598
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\D3D12\\D3D12Core.dll",
+      "sha256": "625bd40005b1c3708695d5256ecf230d278e6b8edba5a88af70f3d91324f3052",
+      "bytes": 4725304
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator.exe",
+      "sha256": "f95ae8934e9bf68761aaf83b82e9faf641666b6b1fc923eef4f54336d07ea28c",
+      "bytes": 667648
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\GameAssembly.pdb",
+      "sha256": "658cdf28ebdc71ac9da96c5706c729a1c52b2cec01d956b6d33a2f2da951a372",
+      "bytes": 145592320
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\__Generated.cpp",
+      "sha256": "ade619e7b11b999d57b388360cfb360c22a553ee302f585a99be190602002b34",
+      "bytes": 4907
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\__Generated_CodeGen.c",
+      "sha256": "b38c8b0d2e2d25fdd225cd6bfb8002a67c6fe66b0b1e002def6ba014a5160a73",
+      "bytes": 798
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\analytics.json",
+      "sha256": "861b9e654fef9ed34a2fa88308496f6af7705bed29744dba19f6f8f9b540feee",
+      "bytes": 1270
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\GenericMethods.cpp",
+      "sha256": "5feae34df91c1866265e598aafacbcf694bc5d7c96529dfa0da46ebe7017ae8c",
+      "bytes": 1608021
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\GenericMethods__1.cpp",
+      "sha256": "7109e2644feedf51f88b5c74fa272a3e4e9288bf56f38e5bc3d885c2586a8075",
+      "bytes": 1305563
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\GenericMethods__2.cpp",
+      "sha256": "f90139ef10c8318e7cc04dfcd3688fd98990da4d7fdc267882ae0a7ca1f855d0",
+      "bytes": 2115509
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\GenericMethods__3.cpp",
+      "sha256": "fe9e238a260d87cafff5ac4400e7ea60f6e51cf4f549bf6103664135e9ab55f3",
+      "bytes": 744017
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\GenericMethods__4.cpp",
+      "sha256": "e1a911f9f0769aaceddfaf90c3458c8aff491793202eaba47bdd3f287548eac0",
+      "bytes": 1490535
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\GenericMethods__5.cpp",
+      "sha256": "9c3f8b9e8ed079d6eb9f321a2af882790c96f90cf20ca43610433a452317cc8c",
+      "bytes": 1757720
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\GenericMethods__6.cpp",
+      "sha256": "abaaa2645ea90f2fa3d4aad23fc8a1fdd3090b05cc9fc2907cd3c0bb131aaa8e",
+      "bytes": 1234024
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\GenericMethods__7.cpp",
+      "sha256": "c222c4fd6cbcf7ad5333a0c0b46443ee3d8d84b15e83db14e511f7e1d98be77c",
+      "bytes": 1863542
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\GenericMethods__8.cpp",
+      "sha256": "000be6f7d4192a1208bf092da271bb9be703805ae7dcf3d05a9879f90cb2d270",
+      "bytes": 1580983
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\GenericMethods__9.cpp",
+      "sha256": "97fb6f6aafb75103440694bcfc5a4e5ac7944a0a1e65691ad242eea1b1af104d",
+      "bytes": 1785516
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics.cpp",
+      "sha256": "92409f4225eed979bbcf80c56c355dc4eaa5c7fcaf848f55897bf4b8e88ed4ee",
+      "bytes": 1976604
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__1.cpp",
+      "sha256": "47360f34329bbeb7f21cf2f6602eae2f68ff2b1421b9005c9f5c1bf1bf0fb4b4",
+      "bytes": 1762623
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__10.cpp",
+      "sha256": "8c0b686be7880948afb64422aa12c75a656093c996190d2c23f1c760c18fa796",
+      "bytes": 1221535
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__11.cpp",
+      "sha256": "a820726362ea4404ce7d979c9118465580bcc85b54263e1cbffb485a2efc26f7",
+      "bytes": 2238838
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__12.cpp",
+      "sha256": "125ebb599701499b9f396aec955a6d8d849c5f5a7954dc4d6d83e06de8b0dd5a",
+      "bytes": 2314848
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__13.cpp",
+      "sha256": "bc89f4208b9af51b57b4157540e971f3701078ce7220616a342d82705091e5b8",
+      "bytes": 1041322
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__14.cpp",
+      "sha256": "5f9ab42c9aa16ad1d9326bce3723c9644b0bc3767c65f9ff4c4abb3a5bba11d0",
+      "bytes": 2406566
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__15.cpp",
+      "sha256": "f3e289d9b89b68c7472d8f1670ed317de769f7fb9a6dc8d544d5c644abde9748",
+      "bytes": 2180086
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__16.cpp",
+      "sha256": "b551be9def5274fe1912bdcc41e92ace87c4c8ef871c6b244e36710e5ea1644b",
+      "bytes": 1603653
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__17.cpp",
+      "sha256": "2954f0be0b75507c4cff49e72593fc6bfb72e337ba3b70659abb8433aad6f42d",
+      "bytes": 991175
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__18.cpp",
+      "sha256": "ee2ecd5a26798457d31838a32a5c8810d9fba072d96c77a4bd6f036f3a1ee141",
+      "bytes": 1015711
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__19.cpp",
+      "sha256": "045ca134700cda7ad46ab69d3dcf5680fb0696dd3328c2a8705c8b1bb70c13b8",
+      "bytes": 1002234
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__2.cpp",
+      "sha256": "86e358fd1fb050f123f00de87ec9249bc797eb004a9517cba10982e240a7258f",
+      "bytes": 1499147
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__20.cpp",
+      "sha256": "27b997ada34a082afa429d9d1274722d205d77a734cff342d85e9964a1690a2f",
+      "bytes": 1766037
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__21.cpp",
+      "sha256": "e57c1cc34e7ac32074edb3086c4b8853b008bf3f886cff36ce3a7a52105a0c64",
+      "bytes": 2317462
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__22.cpp",
+      "sha256": "befeb09d742861d678969a247c83af695eb9f2304e26bedee3d15d7c5d4ff23f",
+      "bytes": 2524688
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__23.cpp",
+      "sha256": "1ad820315dea1e84b6ca94780012beece5bfcc16edaf3ea571482adb1c4ebb0b",
+      "bytes": 1249706
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__24.cpp",
+      "sha256": "5752bded6688d4ae1b36e91454c17c15e9d5bfdaa9452de22b23f184fa131a30",
+      "bytes": 1969321
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__25.cpp",
+      "sha256": "6cf7728299454256cabdc2643ec70ea884f15aa84ba8aaee5b52125ec4350b88",
+      "bytes": 2195085
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__26.cpp",
+      "sha256": "abec92c36022e08c4727a0df4a7dcb2aa9d3632181d581ff22b3e223bdb6023d",
+      "bytes": 1185667
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__27.cpp",
+      "sha256": "99e878e52b513a1a320e91e95e874feed60e136396a21654eef132c598da69d1",
+      "bytes": 1375357
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__28.cpp",
+      "sha256": "c9b85f32311e65de6e91bfc23f9742fa7d707f7f300b6c8a8909f102b71faddf",
+      "bytes": 995382
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__29.cpp",
+      "sha256": "a2eaae3794c712e2f22466226cd5a5124fe5879e6091bc72e22a1a2cf2827f12",
+      "bytes": 1044393
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__3.cpp",
+      "sha256": "ab0807cbe0f4eabd00f3a1f7cb8f6fe53e6ab80ad1500aad7ba0f742c6d783ca",
+      "bytes": 1150988
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__30.cpp",
+      "sha256": "b2ec5c112d1fd800d9774326357c7930c8dae6edf932c8721e3239a351e5fa16",
+      "bytes": 1011364
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__31.cpp",
+      "sha256": "26904eddb1c973911f9bda8df3e2ef4a83368261ef39cd31a781b77f84d2a857",
+      "bytes": 1509945
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__32.cpp",
+      "sha256": "9d7b3539c04f15a9319dd5cef29c1dd1b00cbee07ed9b2f7c338e141afd8d809",
+      "bytes": 1948462
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__33.cpp",
+      "sha256": "195b84fe08d18f18d05167703e6d422eb2e570de26406fbf9bd5d83e87a2ed44",
+      "bytes": 1493354
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__34.cpp",
+      "sha256": "dd9f79e13570bc4339ec2e184f0962eed535e35181284371bbdf4b8fc33d1a57",
+      "bytes": 634896
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__35.cpp",
+      "sha256": "5d4a567c3810ea4067ef57fced8dc4b47b665348b13947e96c896e1f3cc9758d",
+      "bytes": 456988
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__36.cpp",
+      "sha256": "800a83aed85bcf66f24609adcd1f95cd117d8585c4028677cd169686e41a673a",
+      "bytes": 150144
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__4.cpp",
+      "sha256": "8c4683a85fb6a26e4460aff611e02c6e8864088bbe7de601aa0a2f960dcbb69e",
+      "bytes": 879753
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__5.cpp",
+      "sha256": "a9b31e3460b3e7dbf843cedf4588034989719bf32046c8a3500eb5d02ab6deb0",
+      "bytes": 895229
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__6.cpp",
+      "sha256": "e5656878deb8d54f86e8ccfb4b9405ec217ab164081d538872bc9ab25481e492",
+      "bytes": 1669797
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__7.cpp",
+      "sha256": "d8e6e7d22823685393644ce3af7f78617d57ac0965f9a0e13e6243adf4b36adb",
+      "bytes": 2801003
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__8.cpp",
+      "sha256": "88bf025903a00ae1f60f0d3e8421acf57ae51038737613dd21110bade793831a",
+      "bytes": 2172903
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Generics__9.cpp",
+      "sha256": "795e3c4d2fa7b9179e42469ed38a0bf4afdbfe7b37fdccb02115da5dac491918",
+      "bytes": 1477811
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppCCalculateFieldValues.cpp",
+      "sha256": "e3f661aa1494059119c9eee96b1990e79baa16c5441e5796fa07b13165e7b0a2",
+      "bytes": 2188883
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppCCalculateFieldValues1.cpp",
+      "sha256": "af54709547c024e747e1f41f38d3f51447ce84eae1d4f3ca83b6ae6189923f36",
+      "bytes": 900826
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppCCalculateTypeValues.cpp",
+      "sha256": "93fe0d30b4b23ae915b4588a5838218c440b3dc705889b5f22c25584c8bd45d0",
+      "bytes": 2649411
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppCCFieldValuesTable.c",
+      "sha256": "39e9ed4a3f3ea14eb2596d2ce74b5715e0fc903a001ade3686b8fad61ec2e03c",
+      "bytes": 236812
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppCCTypeValuesTable.c",
+      "sha256": "99a7d64b7a79f2214a2e428bd64468141d8a417a26d859aa96d8dfa1e1892ce0",
+      "bytes": 409722
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppCodeRegistration.cpp",
+      "sha256": "efba4c950391a896d94b899d4c6d592c95e130f90666882d84e40dced6d9e3a4",
+      "bytes": 9967
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppGenericAdjustorThunkTable.c",
+      "sha256": "50a07c6e7f921120c01a3d9572857b8e326088f0843b5f664e182c24d4a88657",
+      "bytes": 1683585
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppGenericClassTable.c",
+      "sha256": "725343ec1a6e531a46f602f6684628f4a7004eac8319620c43f8ca52c1428689",
+      "bytes": 733691
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppGenericInstDefinitions.c",
+      "sha256": "9893ae9af690e802581541fe13aeab9aadfadaf497d0beff615a9968494ca2a9",
+      "bytes": 2430814
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppGenericMethodDefinitions.c",
+      "sha256": "a82217b6b572acaf6218b55ae710c1e1c6c850fb2011607769e4b6b5c8be5f60",
+      "bytes": 676830
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppGenericMethodPointerTable.c",
+      "sha256": "73b15533dfa4afd13e28e657ae3db2f2bf2d68beccb7c4efa5dcaaffdcf5d3e5",
+      "bytes": 6652701
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppGenericMethodTable.c",
+      "sha256": "a22c91568ae6989ecbac9fa600a46cdfae1fb3ad5e913c3791e8262340688789",
+      "bytes": 762714
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppInteropDataTable.cpp",
+      "sha256": "8651b7957e3905d3bc5c08c7fe71c6aeed5411bf8bccecbbf257462488180f82",
+      "bytes": 305209
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppInvokerTable.cpp",
+      "sha256": "8cfa2bee93f876b47620d28a7393710d02267b0cf1486404b843d0c946746414",
+      "bytes": 5806446
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppMetadataRegistration.c",
+      "sha256": "93a94b7a91f540def80fb2f369053a43f210851819934ec2ece38ded838e22f2",
+      "bytes": 899
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppMetadataUsage.c",
+      "sha256": "1b4f5256dc78a618344026d99bec17f825a4560092d72b8863839d19c4854c57",
+      "bytes": 2011223
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppReversePInvokeWrapperTable.cpp",
+      "sha256": "811d4aeecab74f1ffee3bf6fc8ed5269810f5f1a0722ed2fa631bec8cbb60775",
+      "bytes": 6197
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppRgctxTable.c",
+      "sha256": "f73802002193ff36b417f00485e830311e0e1b62b0a71b3c50905291ad175ee3",
+      "bytes": 1093335
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppTypeDefinitions.c",
+      "sha256": "54a64e07499a9c846bc16a50904cd565de1877be369f0d8bfd21bef94fd349fd",
+      "bytes": 6409489
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Il2CppUnresolvedIndirectCallStubs.cpp",
+      "sha256": "2fa6442f61bafdba572e4937c0e1b313e24b6d9f08163ee5ccb92c52280d54e8",
+      "bytes": 451433
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Mono.Security.cpp",
+      "sha256": "540f39df14207d318db0e85d7cfe0434a0fd5132783f04ece96272c5e4625906",
+      "bytes": 90130
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Mono.Security_CodeGen.c",
+      "sha256": "d890f8e0874e90fe026ae0709b7f43b7b4a7916c8776a2348df59f8834be51a3",
+      "bytes": 3207
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib.cpp",
+      "sha256": "7da3712770ae6d536f780246d6a4fd00c25e70ffafad6707f7501bbb2473ee5a",
+      "bytes": 1526894
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__1.cpp",
+      "sha256": "6cd28ccf6b230aec0c5f782c8d0786901ede7f8e7ec1f4d3c076c4e43eab033e",
+      "bytes": 1641901
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__10.cpp",
+      "sha256": "68a71b97be1bd4e713aded505ddf2c0cb0c160aca7c57f93ca03aa33c7db62a2",
+      "bytes": 1469402
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__11.cpp",
+      "sha256": "275d9442edf2af56439c83341a45056394ad387ac74a32abbd0b9ecc1c8c023d",
+      "bytes": 1406861
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__12.cpp",
+      "sha256": "964aea58f0ee7de7d0a75044f8f96cb823488ceb05884d0cf175a207b45c3edd",
+      "bytes": 1116728
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__13.cpp",
+      "sha256": "5db8568deb923bd09b7c2a449ec2205fe3bc872daf6e33a90aeb3c4e8248ac2d",
+      "bytes": 1563290
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__14.cpp",
+      "sha256": "3075cd3eb8ca58d6d726fa6f20a51e46c99e22062a639ca6be28377d2486946e",
+      "bytes": 1443642
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__15.cpp",
+      "sha256": "3d0ed890722636ac95adb0b4c5199f1a4ba20411d0e3e5c9ab4924ba292513a2",
+      "bytes": 1238083
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__16.cpp",
+      "sha256": "df9f3a74e7afd4b080c6ec6f300a894e018a1a032e16e90e5d1b610721b133f1",
+      "bytes": 1183564
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__17.cpp",
+      "sha256": "d22dde556d69db90689f268bad6373b7ebc2cba43538a652f6abf00a2e4c76fa",
+      "bytes": 1367818
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__2.cpp",
+      "sha256": "d5ef278dd6a89b8d51d8aea654a867f8fde1213d9fbdc8fe67e2e386202ab549",
+      "bytes": 1057934
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__3.cpp",
+      "sha256": "22c77354f227e3704fd255759e99c5a5bf2ed00127659fccda483f87add3600e",
+      "bytes": 1268787
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__4.cpp",
+      "sha256": "f79998f8c9d650acf869e23e34bcf0a3dad2a6c7133adc248d3df08371054123",
+      "bytes": 1679115
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__5.cpp",
+      "sha256": "2e014d409ff550c8da657218abed8f6cc7fff48d8f4babb405ba92910b033ae8",
+      "bytes": 1621082
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__6.cpp",
+      "sha256": "015f158aa0fa192f9dc2adbc0108c8bf49e7f02669a0f4c488d4eff472327901",
+      "bytes": 1112316
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__7.cpp",
+      "sha256": "c7a6c971fddc2ce534953b577e25530c8fd140492dd92368cc7236ce51bdebd3",
+      "bytes": 1569320
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__8.cpp",
+      "sha256": "1fb114306ba8678113a24fbd8c47dbbfa601a69b1746d1daab5cd51398ae082d",
+      "bytes": 1424715
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib__9.cpp",
+      "sha256": "1ccc69fa46562a7b88c7dcd5844317d0278042ba009c1fd0943f95a94373f69d",
+      "bytes": 1230623
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\mscorlib_CodeGen.c",
+      "sha256": "a9a45a820219c667b29a3c07d2b3f41856efc6d5ca2c2f2e37785d754186add3",
+      "bytes": 1989864
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\System.Configuration.cpp",
+      "sha256": "64ca604172dbbb936d2b20d338d0f42b8ecd2fedc67f0efeb1c447cba01856b3",
+      "bytes": 23877
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\System.Configuration_CodeGen.c",
+      "sha256": "100411671e5962d3a4dbcce96c5fd7526711b45ecb37bf58c38520c8c61926a5",
+      "bytes": 3475
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\System.Core.cpp",
+      "sha256": "bf92572d5968cf40df016c2f8e46d231c203c36eca64552835061d4cbb4cf3a2",
+      "bytes": 96919
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\System.Core_CodeGen.c",
+      "sha256": "66e6c4ced7b6cdec6348d7e300981f531174a07c873c8698424ddc19d22e389f",
+      "bytes": 91804
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\System.cpp",
+      "sha256": "a468cd29eb7395f297c8b02d73b62e1d29dbd7883787e6ef47c0a73367aed967",
+      "bytes": 748211
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\System.Runtime.CompilerServices.Unsafe.cpp",
+      "sha256": "b6c1e0f6371617095297bc61f7046b333cd6895d9b3627726a8db2053c067995",
+      "bytes": 2366
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\System.Runtime.CompilerServices.Unsafe_CodeGen.c",
+      "sha256": "d5425fed9a7927925b07bbc569d6cb3ef09aebbc7bb9ab70120d100fa20369d3",
+      "bytes": 1656
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\System.Xml.cpp",
+      "sha256": "a28cee3a4060ff9e467bf9176d0a15aed6233e87367c09c7af5e56e302783b8c",
+      "bytes": 3013
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\System.Xml_CodeGen.c",
+      "sha256": "26ed154f23942b4a484b5da35eac1a8b5aac5742d6c16f1bdd2a489227ca84ac",
+      "bytes": 596
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\System__1.cpp",
+      "sha256": "e7283f5ca43f6a49519e3a16cad3901cb1ac05d4ac042ad1788a2dc191b766c7",
+      "bytes": 1184889
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\System__2.cpp",
+      "sha256": "3af5f348a5e4bd6ead10659a36f57a883fb71e8d00bba39ed045be9ef5920358",
+      "bytes": 1079825
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\System__3.cpp",
+      "sha256": "2a50faec07bd20347184525b505bedbc980233f7263e0065af5fb85802b64113",
+      "bytes": 43632
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\System_CodeGen.c",
+      "sha256": "2c3f90553be64dd6a809f64f1c1a630a2758ce0c8a093c690c075a714fd07fc0",
+      "bytes": 146573
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Burst.cpp",
+      "sha256": "f20d36de49c0670336808a0b581c41ac503461935f740f05e7b7f5256970f008",
+      "bytes": 2917012
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Burst.Unsafe.cpp",
+      "sha256": "219b2b3a266f8e19382d1d4cbf5cde615b909f8ed7140f7f601cb480a53271f5",
+      "bytes": 6144
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Burst.Unsafe_CodeGen.c",
+      "sha256": "35d46899dae1d581aae2fdefab827afaa50f4a3c85d4cbaee0b29710d9425c49",
+      "bytes": 9417
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Burst__1.cpp",
+      "sha256": "1a2c8999fd5575b07a64d53b4d7dfeb98c1c1f36d639374be1842f59b1553d49",
+      "bytes": 1047914
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Burst__2.cpp",
+      "sha256": "b43fe8d1ab055aca1961e67086e07fabeb2c2fbf7dba91856fbb7be0765813fe",
+      "bytes": 621043
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Burst_CodeGen.c",
+      "sha256": "d49fbe140f208496eefa21db873e06711a5d132386573f7d8457243b92ac4c64",
+      "bytes": 579973
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Collections.cpp",
+      "sha256": "a4bbd0770cb6168f6a6e666150141c122d8e87429f944cbdf7d51f0833ddcfbe",
+      "bytes": 2466652
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Collections.LowLevel.ILSupport.cpp",
+      "sha256": "9061959bf09e62ed0792daecfd36683b0393ad28c029eeb58d1e679070d20a53",
+      "bytes": 15336
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Collections.LowLevel.ILSupport_CodeGen.c",
+      "sha256": "dc3ad179291316aefc73437a6933f5ac8d8ae8adc1b2b63f8cc51ee27712d40e",
+      "bytes": 1534
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Collections__1.cpp",
+      "sha256": "8d80ba5abbdc20845b000cd33d36c7ed10671d346e2aa0776fd42c5ac5183723",
+      "bytes": 1681691
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Collections__2.cpp",
+      "sha256": "48b832d773db2ca6d71ce69d31f0a2bbc70bffc92b5c075cfd25d5ffb8eefbda",
+      "bytes": 3442
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Collections_CodeGen.c",
+      "sha256": "23c6dc9d52ad975b3578d85744545875e5727b7a5b6fb0a9e0e6632c3136dbd8",
+      "bytes": 2321060
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Scripting.cpp",
+      "sha256": "064f30b722d9045ba5a8f07adfc2a0a01bff89e5f0702ea6e9cc20d079f91758",
+      "bytes": 749990
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Unity.Scripting_CodeGen.c",
+      "sha256": "3fc0da86f2936101f8dafb3c43678ce7a005108631622274a4f4c4b13f833161",
+      "bytes": 105295
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AccessibilityModule.cpp",
+      "sha256": "0cccfa306a7a99c0d0ca15cac395b5f227c3e9fe7b6035a623f7e8afd06919ca",
+      "bytes": 342984
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AccessibilityModule_CodeGen.c",
+      "sha256": "4cbc6f6a57b0b7466ad9e258bce4901b05057a7639f7a3ff5413e734a9e9d657",
+      "bytes": 34646
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AdaptivePerformanceModule.cpp",
+      "sha256": "79b12db1bf98fbc21b9f713a6943680001b89cc07fe1442320b68c137f9e4a99",
+      "bytes": 1391396
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AdaptivePerformanceModule_CodeGen.c",
+      "sha256": "41f4baae111921651bfddd0732bbe1610e69ca4b614c004eb90eab0689f90c04",
+      "bytes": 147405
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AIModule.cpp",
+      "sha256": "f93436b450e449f131f8fbcc8f1909abf16327faf98e86e2721196a08e79de31",
+      "bytes": 13593
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AIModule_CodeGen.c",
+      "sha256": "9df8cff253de7ac3def9a7c89b046bf86298647fc2f38263b719c74132e960c4",
+      "bytes": 1510
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AndroidJNIModule.cpp",
+      "sha256": "456ddf66cd07cba534bba22f076f8cadb1de306229272e04296ab9861711d39f",
+      "bytes": 782660
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AndroidJNIModule_CodeGen.c",
+      "sha256": "be2fb075f177f29f7f81b18f4f96332176f705e6679c3f49cad5f327246b9728",
+      "bytes": 59565
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AnimationModule.cpp",
+      "sha256": "fd1ccf809ff11bd4e2512b0209c1080ad1d12e05523a2b767a7f639632c35241",
+      "bytes": 174945
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AnimationModule_CodeGen.c",
+      "sha256": "a1339cd806b4c33011586532a932075498e52a620747e8f20a3edbdd35f299cb",
+      "bytes": 17944
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AssetBundleModule.cpp",
+      "sha256": "31c41b122fd76521ccc162e74326a8ffd1be9f8f43991966927510278e7b223d",
+      "bytes": 27534
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AssetBundleModule_CodeGen.c",
+      "sha256": "6212333d0010b76924d3e3925776b68d89a328245cf69f7ef5b3dae3e0c1c863",
+      "bytes": 840
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AudioModule.cpp",
+      "sha256": "869f475ff217441fe8d49e2e6cbc6c8dd9596a75e574217749d1b7866e28c475",
+      "bytes": 182888
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.AudioModule_CodeGen.c",
+      "sha256": "d4cdb40264d7723cd6916af9975a4d6923a02ac9f6725937f887f581efd1ee8c",
+      "bytes": 17085
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.ContentLoadModule.cpp",
+      "sha256": "6df59ca63582deea81fe5ea8f3b5b783ad12360c5fff29e3c0d0f8d88191ce2e",
+      "bytes": 15315
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.ContentLoadModule_CodeGen.c",
+      "sha256": "d121b16812be9dec9d532b3ffb3ecd3bf9f45cc14dee69bc4a105501e40c75b6",
+      "bytes": 840
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.CoreModule.cpp",
+      "sha256": "0a1ca7194923d426ef38104e12f61696e373528eca89586d67d5296ca49a0f66",
+      "bytes": 1916737
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.CoreModule__1.cpp",
+      "sha256": "558d70b23289c16764f0a899f6038a58f8cf9d4cf80c4b20744dcf5626fce903",
+      "bytes": 2097479
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.CoreModule__2.cpp",
+      "sha256": "0123ea0c37c4b013cda2eadf259e802857c090236f602ce9ee5a6f79cca04f6b",
+      "bytes": 778633
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.CoreModule_CodeGen.c",
+      "sha256": "802a70dc8669e8b6e10031f40042567bb1451eeba38d7d260feb74c32e5709e1",
+      "bytes": 522063
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.cpp",
+      "sha256": "e07535ce9bc01b8051dc2cf96ccac7be052966250d042a5a196841e5b4191527",
+      "bytes": 2955
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.DirectorModule.cpp",
+      "sha256": "618d43a47561525f30f9f07da4e58839f856a6a876000dc9fe8df264f155d2b3",
+      "bytes": 65417
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.DirectorModule_CodeGen.c",
+      "sha256": "442e0b06b1db7c0ce2981439bb8e7a74477f65c680d833542eeb65e8fe5f785b",
+      "bytes": 5155
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.GridModule.cpp",
+      "sha256": "37477efdb665114e95a6786dc63a628ed429dbdf5f19c569faa602ea2f83bb11",
+      "bytes": 4235
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.GridModule_CodeGen.c",
+      "sha256": "79050c5d22238de3e6a7299bba229ed23138668ab96995236037e6d7edaeae66",
+      "bytes": 974
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.HierarchyCoreModule.cpp",
+      "sha256": "638c279131cb1989c76e3abc147f8ae3fe820738ae39a92c79c85e4c64072baa",
+      "bytes": 386876
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.HierarchyCoreModule_CodeGen.c",
+      "sha256": "a24a5a0b246261bbf63df91c84802258f17a7272a033e3264e723839603445b5",
+      "bytes": 36463
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.IMGUIModule.cpp",
+      "sha256": "4915b2f50c204760becf60e24a925763bb98d05c33079b786afb8f30a4c4f30d",
+      "bytes": 1209149
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.IMGUIModule_CodeGen.c",
+      "sha256": "f97380820b8ea7abb3ada9af07565fa3b0dfad6f659b8900b9a2f0b734ea758f",
+      "bytes": 71170
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.InputForUIModule.cpp",
+      "sha256": "94a650362d54142a934faeecdce41b81f85f2daf19f96a50c16c1f5856e203ae",
+      "bytes": 565473
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.InputForUIModule_CodeGen.c",
+      "sha256": "d356e0fcf746b32da391a55b4c30b6614d8192a2e4a7d2d61dcfb2c3aee25fb8",
+      "bytes": 56468
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.InputLegacyModule.cpp",
+      "sha256": "0ae8e55e2012eb01b7d210976d7f82e7ba8399fd6c3d88eb0121277300e1a6a1",
+      "bytes": 59328
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.InputLegacyModule_CodeGen.c",
+      "sha256": "c428dfe186cd08f8e5211ad4d13bde0897de401e77450f9f6563e7d2456ce328",
+      "bytes": 10157
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.InputModule.cpp",
+      "sha256": "9578e4f3bb169c3ee6a9e1a57f19f659636c216feb4b5fef8f3bdbadfc62ae68",
+      "bytes": 28012
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.InputModule_CodeGen.c",
+      "sha256": "d1b2d4fe9af3004d76414df0f18b8744b2ecde3341f032e3cba3afec28c3a2db",
+      "bytes": 2273
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.JSONSerializeModule.cpp",
+      "sha256": "8712e9dcdf581c37f30ee68b8ae7167a247b92bbe42f00761a9fc229021ac971",
+      "bytes": 35569
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.JSONSerializeModule_CodeGen.c",
+      "sha256": "6a99fb91bd77602d689c67f97bc2feebb89dfa26b2bc69dace3f2e82428c09fd",
+      "bytes": 2540
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.MarshallingModule.cpp",
+      "sha256": "e24d120e4d614a9b56a0afc1f6f6c747e1551d1f9737ac47ddf344fc8e0ef125",
+      "bytes": 56240
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.MarshallingModule_CodeGen.c",
+      "sha256": "e4984a1ca01e74089c6427347a69bd0ef8a206ce33bb467fc12039fe49ab957e",
+      "bytes": 7871
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.MathematicsModule.cpp",
+      "sha256": "ebe11ac19a74190c05ca0b5850e7a060b5b2d7afcaf4fc88e96a8bbf9a61a34a",
+      "bytes": 540856
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.MathematicsModule_CodeGen.c",
+      "sha256": "03122bf1538cf89a60f952caa99d51c82f0d22bade8747e1c5784f8c3baf7f5f",
+      "bytes": 50558
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.ParticleSystemModule.cpp",
+      "sha256": "f6265b1eac2835fb9499ab6824e06438cb2b01c14109703a380250e2de99bda6",
+      "bytes": 55122
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.ParticleSystemModule_CodeGen.c",
+      "sha256": "ab3befda3cb6d7d093674a4ddbf55527a32316011128702db2526b439fddeeda",
+      "bytes": 6450
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.Physics2DModule.cpp",
+      "sha256": "ad92fce1cdd3cc9d3ded6f240474b4acd8dc42b2792b403ec3c439c7a34e806a",
+      "bytes": 218520
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.Physics2DModule_CodeGen.c",
+      "sha256": "e43078b96cc1782b8219c16ccb628e6f022d5eb258484d46d0163ec23a32e158",
+      "bytes": 13638
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.PhysicsCore2DModule.cpp",
+      "sha256": "09971c85f085d491a34d8eee0ff40e8af6e34d3d301296ba195b1b9be09f09c1",
+      "bytes": 1220806
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.PhysicsCore2DModule_CodeGen.c",
+      "sha256": "e1c53a15e7f678747fa70d30550acea77f17b67e414d744c7acf7f74a69e2f31",
+      "bytes": 120863
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.PhysicsModule.cpp",
+      "sha256": "a3c90f440deb764216cf063cb9e492adb6bf25a2c2485205a3d4e1df6573b0d8",
+      "bytes": 280451
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.PhysicsModule_CodeGen.c",
+      "sha256": "a1cda99dc5e4b247db0f10af360df2411f2dff63d14acf417a45808432270b2f",
+      "bytes": 22148
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.PropertiesModule.cpp",
+      "sha256": "502a6e404e58d9acff241fa9e00ace7a429ba94b21a2d0de5ba9185cdc287ca0",
+      "bytes": 427164
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.PropertiesModule_CodeGen.c",
+      "sha256": "6dd0a64750f42ddffefdb795095d7b881c0a3862d659c726f9a5c4f13acd73f6",
+      "bytes": 87540
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.ScriptingModule.cpp",
+      "sha256": "a5de4530fd51edb280573dd5dfbbfc321f34dc8748661b22b44c633bb212faaa",
+      "bytes": 3776
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.ScriptingModule_CodeGen.c",
+      "sha256": "c454d048f342390ed079de1ca0445e7b96e9752d940833552e890da3be3e433c",
+      "bytes": 1047
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.SharedInternalsModule.cpp",
+      "sha256": "9c91a0340079dc16dec78107f69b2b37c34b76287df4e4f971d7ba8a2652a36d",
+      "bytes": 64462
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.SharedInternalsModule_CodeGen.c",
+      "sha256": "4a1be9139c4ca54c4b8d3a17dfbac900535902b0c29c934277ff6be6b811df12",
+      "bytes": 10790
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.SubsystemsModule.cpp",
+      "sha256": "fe44620343f3e74a34248f97983014c0d0c8c7ce1e2eebdcd2854bd373614f11",
+      "bytes": 110219
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.SubsystemsModule_CodeGen.c",
+      "sha256": "f1fcc92f17b6863dc81fdca7084b9a3042df7f91f515923893304e95bdd6a85f",
+      "bytes": 18084
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.TerrainModule.cpp",
+      "sha256": "d22177c25b6f48ec5a9d9ee06e35af8970e33fa7cd94dccf2135cad7a03283c4",
+      "bytes": 181829
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.TerrainModule_CodeGen.c",
+      "sha256": "648ed4427796dcd36ce3fdce4223b985a9e5214671faa04089eae9ecf077f6b4",
+      "bytes": 8578
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.TextCoreFontEngineModule.cpp",
+      "sha256": "09242e70cec4b196c53cd7b8e9a3b4911478ef5b3ae68562d6a3107904c396ac",
+      "bytes": 518421
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.TextCoreFontEngineModule_CodeGen.c",
+      "sha256": "8b4c3a5afe6dbcd9c8dd0f9f8e05cadbd589dd01e08057b7116868c5ab4fe366",
+      "bytes": 56566
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.TextCoreTextEngineModule.cpp",
+      "sha256": "8e23092a785a1454f27dd46fbcce14cdca7bf69da40de2bf7241559f52a9026e",
+      "bytes": 1942221
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.TextCoreTextEngineModule__1.cpp",
+      "sha256": "50f2283f9468f937790d94e99ba79b905d0fd94fb49900bc20319438fa6f9d60",
+      "bytes": 1443200
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.TextCoreTextEngineModule__2.cpp",
+      "sha256": "2ebe7f0648e3299b1a6217f48febfa76cd4d7640b55b7d59cb61d279019adf07",
+      "bytes": 1423473
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.TextCoreTextEngineModule__3.cpp",
+      "sha256": "22be69baf044e638c6f7aabe7bc61411afaf822ac1919017ec9ebad9040741d1",
+      "bytes": 26279
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.TextCoreTextEngineModule_CodeGen.c",
+      "sha256": "7ee31e91975c2f2d01cde086f2cc87982a5c3c62bab5042478429b06593d2139",
+      "bytes": 156416
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.TextRenderingModule.cpp",
+      "sha256": "4bb3667617c58cd60465c42d9ffded35df3be51b4fdb2a030cc78434c93b48a4",
+      "bytes": 53758
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.TextRenderingModule_CodeGen.c",
+      "sha256": "46393ff82e206c425fe676eee04b92550e384998193c0caf3425b90c8ef81e64",
+      "bytes": 2991
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.TilemapModule.cpp",
+      "sha256": "4a890f2948f6ef9354221b6161092770941ce6aefe24ef583db810e2e1c2c110",
+      "bytes": 247868
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.TilemapModule_CodeGen.c",
+      "sha256": "0446e11a47b5a06ecbb0c09ca6326c3eb2c1bf23c0311db07c0404cf1cae0a9b",
+      "bytes": 19524
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.UIElementsModule.cpp",
+      "sha256": "1614a0d5e6e7b306251b737096f782fe482f1187a840c2816982a566334faa3d",
+      "bytes": 21334
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.UIElementsModule_CodeGen.c",
+      "sha256": "61b362292f1a8545d129bb52d9d9e790887f7fab25762c1753d9f5d38212bfca",
+      "bytes": 2312
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.UIModule.cpp",
+      "sha256": "f4f10e1b26f9c003d5686baa2694654d51d932f69a91e2dd27ad209b711eb990",
+      "bytes": 25000
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.UIModule_CodeGen.c",
+      "sha256": "4d63cc483d0ada78cb36f2d9c5cd454ae067161f9dfc7bbb222a53c0a33925f7",
+      "bytes": 2583
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.UnityAnalyticsCommonModule.cpp",
+      "sha256": "8191327a94fbc3e6784e76e0f570afb554859c8597efb2a9dcdbf762f1c19749",
+      "bytes": 326751
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.UnityAnalyticsCommonModule_CodeGen.c",
+      "sha256": "7d3690bbc171e759051c00be1c4d9011e0555e1260e6a03cadccf84945f9d6b7",
+      "bytes": 14159
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.UnityAnalyticsModule.cpp",
+      "sha256": "973a43d3eef2ec87076a70ec880442c002a0729eeb58ae805ce74506806040ba",
+      "bytes": 41142
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.UnityAnalyticsModule_CodeGen.c",
+      "sha256": "dc47c52168f7769659b09e98e2909af12846c2634d75879f7853d571152d798c",
+      "bytes": 3072
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.UnityConsentModule.cpp",
+      "sha256": "630fc2a509bc2a66578a089ca85678d0eecfefdcbceab8f6244063e2d94b338a",
+      "bytes": 17400
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.UnityConsentModule_CodeGen.c",
+      "sha256": "aae2d1917ef5872ada25b3bdfda1b3f75b8f40d6cfe10910460db30128450c94",
+      "bytes": 2164
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.UnityWebRequestModule.cpp",
+      "sha256": "e47e6d735160e386df1b02bde9b249e9c33c66f898905dff385108ecc8f3878f",
+      "bytes": 24141
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.UnityWebRequestModule_CodeGen.c",
+      "sha256": "7959468895a2d9a49a43d1370ccc950e331ccb212d23416125a07eb4da846b3b",
+      "bytes": 2841
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.VFXModule.cpp",
+      "sha256": "2d8c4a2a0a2473e6737ad4f1170fbf22565f822b6946d113658f015f87c56705",
+      "bytes": 97468
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.VFXModule_CodeGen.c",
+      "sha256": "6318185fd38724d2c1841fcb82d15d3338c80fdb5c7f08343e726fb89ea8b580",
+      "bytes": 6903
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.VideoModule.cpp",
+      "sha256": "ed47cea556a4e7fbbcf95724d9bd9db2c855950559af1077cdcf3bf7f4a0d4aa",
+      "bytes": 44672
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.VideoModule_CodeGen.c",
+      "sha256": "e4d831eb779e368a9097a1b764b7b87a7238470fc1b27487b031f0aa32dcf4f1",
+      "bytes": 4616
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.XRModule.cpp",
+      "sha256": "f78fc04a8fb6019fbc66500107bc737c0d2b391a76b4200fa1037d8eac3b4d9b",
+      "bytes": 191739
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine.XRModule_CodeGen.c",
+      "sha256": "c3086c89339ac09c1202f8107bf988b92495d2a594c8001c1411ae44fe115d05",
+      "bytes": 20909
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\UnityEngine_CodeGen.c",
+      "sha256": "841a3fd2c36b059b08ded74865dfb8ca67e038b2b29aae3aa8f22b0e3d338123",
+      "bytes": 786
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator.Benchmark.cpp",
+      "sha256": "2a8639f9f9b1994944a7076257655ac780e42b26fca3454121a2808f8a3fdb77",
+      "bytes": 1197933
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator.Benchmark_CodeGen.c",
+      "sha256": "25df9e280332bc3f77197830f6c54dca492ae06a5aedaab3030eb00e1785a04c",
+      "bytes": 32373
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator.cpp",
+      "sha256": "b0ea0d6a5d6af20b4ed9b9cb8eccec5e110b79ae1c3145bf3b2d4b02a7ab87e8",
+      "bytes": 1479764
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.cpp",
+      "sha256": "75d4cd83de5c557ad7a651873ece4ab5a81d16ee08f418de47bf4911bd9d299c",
+      "bytes": 574286
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads_CodeGen.c",
+      "sha256": "51add81dc44e4e788c737291d42153f130e24d11952bb87de2b6a4e201d295ee",
+      "bytes": 43059
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator.Samples.ExternalWorkloads.cpp",
+      "sha256": "5e1500f2a0f89a7b086528f97d04d31570f798f39ce0c8a136df0c6610c810ad",
+      "bytes": 153223
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator.Samples.ExternalWorkloads_CodeGen.c",
+      "sha256": "de71ea8d296567a677cad9aa3b9cd80202fb8cdd4e8365dedd375f5d3c25cbe2",
+      "bytes": 7192
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.cpp",
+      "sha256": "2d024f4793be75bcd1ef24ae6232aaaa38868b216594d4acbe5411765f686381",
+      "bytes": 1124920
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate__1.cpp",
+      "sha256": "34e97483167a491d7e415243356088dcf4db50982a6df424e301ff367aa8a4d7",
+      "bytes": 320649
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate_CodeGen.c",
+      "sha256": "a4e323fc37653b43ed87b62f277b722c37bd2d5864b19e9f60997fdbcc4efb54",
+      "bytes": 85015
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.cpp",
+      "sha256": "a79b085b53cfd50c82272d66f1ba7ba9ef859abfd9856f0ff5ce3f1334b353f8",
+      "bytes": 471682
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator.Samples.TransformExport_CodeGen.c",
+      "sha256": "e76702988e6a1f4576c357afe5424ed076171df79e7e731e7db4e220d98841be",
+      "bytes": 34047
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator__1.cpp",
+      "sha256": "90466848520119695133eb2eed388cbebc533232c81d75956e2eceffd5f449e9",
+      "bytes": 1419654
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator__2.cpp",
+      "sha256": "0dcaccf28f08711d26be11515498ca58152d0c75f27d9c98ce4f9df74f549fe1",
+      "bytes": 353312
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\il2cppOutput\\Yanagisawa.DataLayoutCalibrator_CodeGen.c",
+      "sha256": "80c4f8c69affea7c1599e94167830a48429abd087385b75416f289bc1227df21",
+      "bytes": 104973
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\analytics.json",
+      "sha256": "73e820ec8a4a8aa9df87ca0f3d34390f57b51c1e1252419377ff4d9678ff00a7",
+      "bytes": 2925
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\Mono.Security.dll",
+      "sha256": "c2b0426ea11f03582448048ffc9b93f0863bd3ad07988efe1ef3edc209578119",
+      "bytes": 8704
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\mscorlib.dll",
+      "sha256": "c1fb79b053ee514614e650da40951a7a584361667438a8abd9a4240a47201d78",
+      "bytes": 1831424
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\System.Configuration.dll",
+      "sha256": "1b2fbc0cee6d60b9a6c154d71a71ec94f01488bdd4bd2f9cdf5b0c0a7394a9fe",
+      "bytes": 4608
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\System.Core.dll",
+      "sha256": "89579c7acf58a69a99b4d350f258b6eb46908358206338f742e736742c65eeea",
+      "bytes": 31232
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\System.dll",
+      "sha256": "1225e73e74bae4090cd1a9b54cfc5050eaf399ac322c1fe135a1f2780547585a",
+      "bytes": 190976
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\System.Runtime.CompilerServices.Unsafe.dll",
+      "sha256": "47db6e48d6a7cb97a3156e14800196636aa9123c9c94fb99d6919a2fe709f538",
+      "bytes": 5120
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\System.Xml.dll",
+      "sha256": "238ddec2fa97a99fd14179ede508dbccaf2c9391f87b7ff7cef471bd90713f4d",
+      "bytes": 6656
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\Unity.Burst.dll",
+      "sha256": "b46514ef408eda45db6e638c2679c43b1658bf0b8bfc5cef655448f55c291fc8",
+      "bytes": 296960
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\Unity.Burst.Unsafe.dll",
+      "sha256": "f676d0a2487518ba3044d7f626f9d0f0e4b79e978474a15692042ccc3113de28",
+      "bytes": 5632
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\Unity.Collections.dll",
+      "sha256": "7bb7eb2011aba835bba20babe8feaf080b8fc936ec286d858ddb074332fb7840",
+      "bytes": 439808
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\Unity.Collections.LowLevel.ILSupport.dll",
+      "sha256": "5571fbc636bc33cb7afc660b29acb0dce331ff13a0574ca947fe990d20e2e22b",
+      "bytes": 4608
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\Unity.Scripting.dll",
+      "sha256": "92387407f2b9dcd48a497be836c3de025cada17ea8ec1758ab58a7a1aaa41c02",
+      "bytes": 56832
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.AccessibilityModule.dll",
+      "sha256": "3e30b330696a98c79da35f1a89e8cf09473e00273a97d3cb4c7f31dbef9207cc",
+      "bytes": 22528
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.AdaptivePerformanceModule.dll",
+      "sha256": "3fdd41e215b6780f3e48e55d35d726a6b02cb183946fad3fb277f1015a0526bf",
+      "bytes": 99840
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.AIModule.dll",
+      "sha256": "078df029482a30b6bbf62ef042307f67b90a2a3e62e3964ab5845f68380cbce1",
+      "bytes": 15872
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.AndroidJNIModule.dll",
+      "sha256": "7dcf29d14b1d9e269e323d3678d938fe074665da70c6ce31f69550695a70869a",
+      "bytes": 60416
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.AnimationModule.dll",
+      "sha256": "0584c38b69b6534dfcc6d38babd53d0b66fe78580878de5e23be6b0630498b88",
+      "bytes": 27648
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.AssetBundleModule.dll",
+      "sha256": "0ad91f568ae54310e2e7015b70828338fbd29e39f52434d29e18126a7b33afe0",
+      "bytes": 15360
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.AudioModule.dll",
+      "sha256": "075febb8d8f5e864ca741288dd1ddc6203a3670c9fed9e63bb56fa4ebbf140e4",
+      "bytes": 28160
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.ContentLoadModule.dll",
+      "sha256": "87298393d0f1bd97f8f283ff84b06943bfdbdf6f4fe80d5d0b57d022b97d8c3a",
+      "bytes": 15360
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.CoreModule.dll",
+      "sha256": "3416fcef341f2139f6e343b915d254ee710ac6b526c906efadcb496c248b0872",
+      "bytes": 361984
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.DirectorModule.dll",
+      "sha256": "e9d1341699716891e79e81fe882fff21d7c1232ac9feed325845a30ecaceec8a",
+      "bytes": 19456
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.dll",
+      "sha256": "adff509b57661196c93329e809c9dd7b71cd5b9028515af649f6a3a8098d3547",
+      "bytes": 59392
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.GridModule.dll",
+      "sha256": "f5937999835c0284b9038e7c5bfd3dc003bcc49579afe167335bda39f0077b5b",
+      "bytes": 15360
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.HierarchyCoreModule.dll",
+      "sha256": "fabf41f23c90ca63281db475b35e33a3f179fadf89a74c3d17de7411754f28bb",
+      "bytes": 23040
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.IMGUIModule.dll",
+      "sha256": "33519745a8196c99ab6e6ec69a8fb175fe0f3eb3e7f6a607263f18c9f82d3b47",
+      "bytes": 82944
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.InputForUIModule.dll",
+      "sha256": "208b612ba7c78cac7a6cfa6b3e524e29ea396e7e5a1421f2bb7cb950b039d8cc",
+      "bytes": 33792
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.InputLegacyModule.dll",
+      "sha256": "2e6bb940fa37f0280b8cf7e3afb28f4a1539004f3ec807fe79b674cddbc9be52",
+      "bytes": 19456
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.InputModule.dll",
+      "sha256": "a046ae4047aa3567bd2a92ad7145db395fece386abf4583b3782cd050ff999c0",
+      "bytes": 16896
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.JSONSerializeModule.dll",
+      "sha256": "2148249bb41578f3a77f093e2a2b4f7cee66283f9cb7e9ddfc1482570f362eec",
+      "bytes": 16896
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.MarshallingModule.dll",
+      "sha256": "4557c366a02f698c6a0c30351c9232a1f5e4c2c9d0a1aae5021fc8459806ea76",
+      "bytes": 17920
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.MathematicsModule.dll",
+      "sha256": "29b75c07c6d6c55e7f4ab5a9d670719cb6fcdfeb5a86f8a219a834d98512f958",
+      "bytes": 24064
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.ParticleSystemModule.dll",
+      "sha256": "716e459ceb14cf464f25ec139b77d247fae3188a6aedab36236111efad88d96b",
+      "bytes": 20480
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.Physics2DModule.dll",
+      "sha256": "a43d2258322c4060cdf38a5c77068218fc22ef95666fd5c23b1d995c3ea00b27",
+      "bytes": 25088
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.PhysicsCore2DModule.dll",
+      "sha256": "733a60e7e4f2f651a60e45e0dd835b238f9b972fbf851a75d991470675b12916",
+      "bytes": 79872
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.PhysicsModule.dll",
+      "sha256": "68fdb1e25579165e7550a1409336fdbbe862c8722cda850e8e5076bfd72bfe62",
+      "bytes": 30208
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.PropertiesModule.dll",
+      "sha256": "83e86192d14a2a46cc57779ae5739ca4b964a64cb6393bdd841f022e4c132bb4",
+      "bytes": 38400
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.ScriptingModule.dll",
+      "sha256": "789fd909c578bb8a77fef57a4e335a1f6753b5a775dce5dd47f725e8d958cf4e",
+      "bytes": 14848
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.SharedInternalsModule.dll",
+      "sha256": "63a037859fb9f986f70f6c391a8f71c3b9a638ad44a6b6ab3198f37472beb60c",
+      "bytes": 20992
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.SubsystemsModule.dll",
+      "sha256": "68652fc97dd6c84d075d647b66eab52198467c8015cb7778cc606be888929c61",
+      "bytes": 23040
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.TerrainModule.dll",
+      "sha256": "2d7d3d9ef7ced4d3333eefc724fee6af9554c14a3a701f9c7d0b6eedc4827650",
+      "bytes": 23552
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.TextCoreFontEngineModule.dll",
+      "sha256": "bbf6c855a94ce6fe1270337d0693c783d5dc2b012425da3431c002da5b87e80c",
+      "bytes": 29184
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.TextCoreTextEngineModule.dll",
+      "sha256": "c9c8fe0fc3710688a347ba984c6f1949bf645d8be1660a7244c00dc976e30ea2",
+      "bytes": 247296
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.TextRenderingModule.dll",
+      "sha256": "b087dd756b3a4d650c75d31168c149e2bbfa3611591848f16390e3d909ce3ce1",
+      "bytes": 6656
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.TilemapModule.dll",
+      "sha256": "06437c9148c7d3f5ffc9bd2b654b3bf6e5a88600496703d4dc2eaaa9694ba4cb",
+      "bytes": 29184
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.UIElementsModule.dll",
+      "sha256": "abe9d897281f1cc71fcc0e07f78f0b71c509e82dd23f7f412c7a57830a6d8acd",
+      "bytes": 8192
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.UIModule.dll",
+      "sha256": "a9e2473d2d79908f6db971835fb2aa0a1df6f95fbf0f7f214f52f72547878dae",
+      "bytes": 16384
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.UnityAnalyticsCommonModule.dll",
+      "sha256": "f46179d40a496708230294321f8394229ab96d33e638ebfa89cea29a2f11d8d7",
+      "bytes": 22528
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.UnityAnalyticsModule.dll",
+      "sha256": "d3b2746e42188770ff3555b7a9abbed950631c024d385ccbe1bef412dfd832e1",
+      "bytes": 17408
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.UnityConsentModule.dll",
+      "sha256": "fed641094b5a1b53c45a9341172061250bdc93ae129c67220a5eafd3b07bafd4",
+      "bytes": 4608
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.UnityWebRequestModule.dll",
+      "sha256": "b6e163f4587f9f7da28cbca92b9b3e9132bd5ad28e56b45715ff746e00416e69",
+      "bytes": 16384
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.VFXModule.dll",
+      "sha256": "eb93b20c0207ced1af6bcd478a31fd63b7f9e4ee56fe102b37d0e36301e3edcd",
+      "bytes": 21504
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.VideoModule.dll",
+      "sha256": "313f3aaeb7bd037d4616e30d6ee7ad4d5078047c590af5087f91468f62cc2f9a",
+      "bytes": 8192
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityEngine.XRModule.dll",
+      "sha256": "bc2219cd53a79e2b14e163d579cb2081ffafdc9af7967af0b52875b26b735b1d",
+      "bytes": 26112
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\UnityLinkerToEditorData.json",
+      "sha256": "0af7d847797741cfcc598451d38565c072e5dd9117f9791c39530f2aa887c6c0",
+      "bytes": 6263
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\Yanagisawa.DataLayoutCalibrator.Benchmark.dll",
+      "sha256": "034790525d9d4a31b96b5c844b2488da2d058570837b5244c06349bd569e8416",
+      "bytes": 79872
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\Yanagisawa.DataLayoutCalibrator.dll",
+      "sha256": "a84132e86f89fd1d603b726f4506ce8535a9808f40f0107b196e195bba372d31",
+      "bytes": 193536
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.dll",
+      "sha256": "50b7786bba427a3f8c5ab92dff80aa75f4403084c43998549231dbc21ab8c9a4",
+      "bytes": 32256
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\Yanagisawa.DataLayoutCalibrator.Samples.ExternalWorkloads.dll",
+      "sha256": "4025728432d4bac68d73b9848634821023c4e56304438ff1493ab6b351d568c4",
+      "bytes": 11776
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.dll",
+      "sha256": "af9df7e9c465a082f86a062e8691ad3ac255be88a944493fc0aa3b891c4ac544",
+      "bytes": 74240
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_BackUpThisFolder_ButDontShipItWithYourGame\\Managed\\Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.dll",
+      "sha256": "086fb28fe878d13270561c77befe47dc95459b05352c15658eb1517f376cb98c",
+      "bytes": 27136
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\app.info",
+      "sha256": "c4f016310c1973fb98c1d4ac6e14d38107fb26ee90df5adad892812711c2d910",
+      "bytes": 31
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\boot.config",
+      "sha256": "0d6dd890e43b1d7c6c638d1e25b88b04a11f59a6edb879c12bf7eb06f5deac8d",
+      "bytes": 134
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\globalgamemanagers",
+      "sha256": "4e29a174a28ec03a0272d3a3ea406cf3a92e42dfa18920162374ad5a9be9f346",
+      "bytes": 35076
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\globalgamemanagers.assets",
+      "sha256": "af6ffe5c19a74174846f843dad2dad288763736cfa1e6adacab139b90efeadcb",
+      "bytes": 29936
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\globalgamemanagers.assets.resS",
+      "sha256": "39dd38fcd8dd95d41d6d55fe16a448d29fe2c31d9a162c825c24c6d99a893d7a",
+      "bytes": 2796240
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\il2cpp_data\\Metadata\\global-metadata.dat",
+      "sha256": "1c75e5c67fbfc09366b22da9d4bd91282f188ebb2d1d283d058e1103a089f1be",
+      "bytes": 3414804
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\il2cpp_data\\Resources\\mscorlib.dll-resources.dat",
+      "sha256": "c5baa176a5b72cd545266340e42102d393a5e43d38c95796bc828918bb95277f",
+      "bytes": 337563
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\level0",
+      "sha256": "af4cb8632ce074493c944d033040f087bc0058ce3af66571d30cc0372e8a2f18",
+      "bytes": 1004
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\Plugins\\x86_64\\DlcAllocationProfiler.dll",
+      "sha256": "1c4d75d854ab8b298194232f3def86c6e8c031579ad67fcebe176051acbf4234",
+      "bytes": 117248
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\Plugins\\x86_64\\lib_burst_generated.dll",
+      "sha256": "602434821b072c940b71a1a576c0f25b503f6a1e7abaebe80ad2f03b038d7a01",
+      "bytes": 179712
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\Resources\\unity default resources",
+      "sha256": "1fbaff511bdec6cf276529de02215fee9fdcf7298ea9d7c49dc6b984ee73a7f5",
+      "bytes": 5881648
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\Resources\\unity_builtin_extra",
+      "sha256": "926a85a4ab70a9acb74d0b0aeaaa520d767ed664e2624c0840a1a1df82e6209f",
+      "bytes": 407608
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\resources.assets",
+      "sha256": "2b5a546391a8ec669ce5c7420e54a854f3e31028a93865dce258df6156b5595f",
+      "bytes": 2764
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\RuntimeInitializeOnLoads.json",
+      "sha256": "a66ac545fbb3e4a98a91d5d3283d628bdaf06978e6268852bb6bd6adc4b2d24b",
+      "bytes": 3315
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\ScriptingAssemblies.json",
+      "sha256": "b9962227907894838a2e4dbc642853b714981eadff0285126ac1ee63e552d39a",
+      "bytes": 3794
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\sharedassets0.assets",
+      "sha256": "d2f51818baddfdd201b4365768920f9f66aa1a39e17568b5c965ca79a6de1f61",
+      "bytes": 7856
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator_Data\\sharedassets0.assets.resS",
+      "sha256": "393efe6399536384aa91bdfc4e64f244b4d3e1fbb6a4ff145c483ffee64ccb36",
+      "bytes": 524288
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\dstorage.dll",
+      "sha256": "cae65787f61514bec6f012f44546e68b19e39d8854a9ab52af813370d44b272a",
+      "bytes": 206904
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\dstoragecore.dll",
+      "sha256": "cf85b19a92a8276f8baca0db9bbcd60735bad50768deb303d310e84d5f4fdd11",
+      "bytes": 1482784
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\GameAssembly.dll",
+      "sha256": "0de33a393daeedec0602310ee3f6c9bd6dff9042e14ce1a41da119295ddc02d7",
+      "bytes": 14848512
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\source-identity.json",
+      "sha256": "a14128558ad9c917877d920ea0fb127705cfe1857034daf4cc80b9ee46c546a0",
+      "bytes": 63923
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\UnityCrashHandler64.exe",
+      "sha256": "7a98f56e2b73ff16af3633a7eb0e1d0105d2ca63f9fa84170132e6f940149e9a",
+      "bytes": 1736624
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\UnityPlayer.dll",
+      "sha256": "97c6adfb75bf1debffa11e90e27b2847fc084440b4a735b352a232d74ce7c11e",
+      "bytes": 37376424
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutBenchmark.meta",
+      "sha256": "de48879e3596177ab20be3461ce5dc5a56d8a669fe973fe5f5615e11b379145c",
+      "bytes": 180
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Editor\\CounterBuildIdentity.cs",
+      "sha256": "d69f65a2c2fd813070b502010d06adee5042b1ee8f70bd75a49b534d0559e7bb",
+      "bytes": 2678
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Editor\\CounterBuildIdentity.cs.meta",
+      "sha256": "6da31341771a23a1b50a4b6170069fc7ff301a56c83b3a3148b040b89e486655",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Editor\\DataLayoutCalibratorBuild.cs",
+      "sha256": "6062fda20cbcec4b934a4fe2bcdc55d0e4e59cf7eb265caf253e4ecd3ff9d64a",
+      "bytes": 13370
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Editor\\DataLayoutCalibratorBuild.cs.meta",
+      "sha256": "2471e7b978298e43d71b56f4ae48e185da3544874429232222eac6233f2d6755",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Editor\\EnvelopeGridBuild.cs",
+      "sha256": "0d34d36d1270f501655458c81529b2db7b82d883be190cfb355c5c0aa1e5bff1",
+      "bytes": 1849
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Editor\\EnvelopeGridBuild.cs.meta",
+      "sha256": "0fa4a1601ddeef3e7da39659037b5cbea79c62662815b3d4ac197825621fe8ab",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Editor\\Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.asmdef",
+      "sha256": "99763cd92b9b40aad30ea97e91c8e8c3623335f8a44bac31762b05b0193a90d4",
+      "bytes": 617
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Editor\\Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.asmdef.meta",
+      "sha256": "76409cd4cdd0813f818c717e4275fa4ecb702f3b599d8f9ffcae0ac588797843",
+      "bytes": 173
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Editor.meta",
+      "sha256": "ce9a35e5fdf442de5167929a69548bc1ee6abb665b451f546aa3a18014e22742",
+      "bytes": 180
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Generated\\DataLayoutCalibrator.unity",
+      "sha256": "46e1808e8be4bce7ff28dc934987413ac9cac3553287fe7fa16434d5de614dce",
+      "bytes": 4575
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Generated\\DataLayoutCalibrator.unity.meta",
+      "sha256": "07a44d63d7707b797e9f1440658892f44bb9ed8ea3160f5923b49ed0ea585d7c",
+      "bytes": 162
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Generated.meta",
+      "sha256": "96aa1c2c56c2163a5b3811eeee27fec08608e09434f974886cae216dd5a7f486",
+      "bytes": 180
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\BabelDotCorrectness.cs",
+      "sha256": "075046259eedd20dadaeb53cf8d4b668f9385fc68a3d2f640cc634b3e45577fd",
+      "bytes": 6284
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\BabelDotCorrectness.cs.meta",
+      "sha256": "a3f7c5a49f98b239b8e72740b99b632aeb76e1f1f829a1aa0a9aed54b43d2223",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\BenchmarkConfiguration.cs",
+      "sha256": "60c079c50fa1f9c186fb13301a11dcbeda661cfb51c237777dae21680075376f",
+      "bytes": 7228
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\BenchmarkConfiguration.cs.meta",
+      "sha256": "3be47ca3953b00f5ba57491934d75fa5473937f1ef18df7873bd3deca69bde6a",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\BenchmarkSourceIdentity.cs",
+      "sha256": "729e82759856d24de86541bf8ac5be1a0d27cfc317439ff632ca4d5fbe0683ce",
+      "bytes": 2814
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\BenchmarkSourceIdentity.cs.meta",
+      "sha256": "e4e04a8388acef41e2ad53d923a67a8225bf669f72ff8e3e81aec736e74bd350",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\CpuCounterEvidenceRunner.cs",
+      "sha256": "1564f5daed770d0f8a154b55292315558e2cc21274ea599bddce6b7df20c2e0a",
+      "bytes": 21544
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\CpuCounterEvidenceRunner.cs.meta",
+      "sha256": "4d89920b47569eaff2b2e6e25bc7c383f42b8211663dca76d0cb08e351ec0843",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\EnvelopeBenchmarkRunner.cs",
+      "sha256": "acea7f9054ea1ca8a4e5862fd6bc1a9d9e7362f452e81fd5e5e78955cf0079ec",
+      "bytes": 15432
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\EnvelopeBenchmarkRunner.cs.meta",
+      "sha256": "58d5a708fc8d4ef47cc2fda0e11cb85008a4eaf58f78138c51540866ad5c62ec",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\EnvelopeBurstIsaProbe.cs",
+      "sha256": "95a646772a9f18a58056a14d32a3b89a6d709b9c21634d3641e4dd4f0ddfc4bd",
+      "bytes": 807
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\EnvelopeBurstIsaProbe.cs.meta",
+      "sha256": "1e3b0d323372fcd99da9f6017e818a81fb51f14245234d183b140b9b50a1e6d9",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\ExternalComparisonRunner.cs",
+      "sha256": "3e8b8b3e8b7833b0d67cc3e1a4da012833259804c09ded5b0c029ef855b00e11",
+      "bytes": 12242
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\ExternalComparisonRunner.cs.meta",
+      "sha256": "897fef1598de45a7657a4329d5c719ebccc8a10a3649878c466e3856eb8a301e",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\GeneratedWorkloadValidation.cs",
+      "sha256": "e8df7525a4d55d164d09dc65aedf9cafaf131c40632aeffe84fd8957a3585db4",
+      "bytes": 9569
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\GeneratedWorkloadValidation.cs.meta",
+      "sha256": "f5ac4389fe9adfb4c747acdc10da40edc638e47336e27fcbef0e0a31c166153e",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\LayoutBenchmarkRunner.cs",
+      "sha256": "9db19929a0782df4b8d0f022e25b2dfcdb13e0eb2261f34b35556e849025b606",
+      "bytes": 20927
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\LayoutBenchmarkRunner.cs.meta",
+      "sha256": "f69b0445d666f81e966600994e1a7a117c5c9df8e5304e64b158c318d78265cf",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\ParticleMatrixPlayerProbe.cs",
+      "sha256": "cebc2ff7e8e523de3093d22ae40bafc83666728a66d1558038a93df18c0b312b",
+      "bytes": 2980
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\ParticleMatrixPlayerProbe.cs.meta",
+      "sha256": "ca3ee1038f4b03424fa8b2a53a5b235550769e36355fbb93300fe75a3cc0ca3b",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\RegisteredScenarioFactories.cs",
+      "sha256": "b12193ebb7d1e41da3b30d74b021dbd494c3a9874623813bed639446d3e497ec",
+      "bytes": 649
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\RegisteredScenarioFactories.cs.meta",
+      "sha256": "a8ef33cae3feb5f2c6f8d69c38e32ea0f709ecdfcf460bddcaae22fbbb59e4b7",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\SearchBenchmarkRunner.cs",
+      "sha256": "05e089ccc4f3788109401d2586cef488dcdc13ca6f614f319891746026144aeb",
+      "bytes": 7913
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\SearchBenchmarkRunner.cs.meta",
+      "sha256": "028b29db38148a5cc00f437d742fa6a2419decce17627ec0702d29ca6c217b5d",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\UnityAllocationRecorder.cs",
+      "sha256": "d7f6beb8f68698156a0a492685700430e63daff3a498ddb3a44395bf3ad654be",
+      "bytes": 6377
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\UnityAllocationRecorder.cs.meta",
+      "sha256": "62702f0924560e3642da65cefda1cfe67c9d3d4c98765708ff3a9c5b5b06e177",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\UnityManagedAllocationCounter.cs",
+      "sha256": "8fbe22126d074b1a2024e6e60f338055ff3dc886d253ea3a8569acf5b65761b7",
+      "bytes": 2095
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\UnityManagedAllocationCounter.cs.meta",
+      "sha256": "e9dadd2125e79ab74aa77172be83dc3804fd000dba70851d9c8f0cb1cafc06d2",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\V05GeneratedScaffoldAotProbe.cs",
+      "sha256": "59058df26ab791f67f8a6c88a0e1415e3bec53a7028e0108da56c8e7a7be80a3",
+      "bytes": 8186
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\V05GeneratedScaffoldAotProbe.cs.meta",
+      "sha256": "44699145f093b8da51d680a03563ac554ead3b4b58a1f96ef999f9e62084916e",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\Yanagisawa.DataLayoutCalibrator.Benchmark.asmdef",
+      "sha256": "500bb0e1ce63bea9f32e8d72633e4da289ee3d864c2049b809afe72cf2e537a8",
+      "bytes": 785
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime\\Yanagisawa.DataLayoutCalibrator.Benchmark.asmdef.meta",
+      "sha256": "45a00d123befa85c554070ec7c49b7da361fac85a64c9fe4c692567284b6fd92",
+      "bytes": 173
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator\\Runtime.meta",
+      "sha256": "cfbcceade272b84a349160cd61a9664fe36c21c9c55429cad76fc4bc8b031a8c",
+      "bytes": 180
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\DataLayoutCalibrator.meta",
+      "sha256": "d2435995fe527775835617e386c3556705ad1643e5a0df418693ea576871669c",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\Plugins\\x86_64\\DlcAllocationProfiler.dll",
+      "sha256": "1c4d75d854ab8b298194232f3def86c6e8c031579ad67fcebe176051acbf4234",
+      "bytes": 117248
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\Plugins\\x86_64\\DlcAllocationProfiler.dll.meta",
+      "sha256": "3803f415746b5325772674a107002538d60c64893aef01089e2536b3fcfdb40a",
+      "bytes": 695
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\Plugins\\x86_64.meta",
+      "sha256": "10a0704fbf724b89fde71f3f4c9ac7e242a5501210bb957e1836f954d8b49436",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\Plugins.meta",
+      "sha256": "c828212c9471753030048784f61514c4ee5b830b21f6776dd0f5099f4cdc619e",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Assets\\Resources.meta",
+      "sha256": "353400f83cdabb7d2ca92a3838bed2bcb6be13e484b47ec0f9f43316fc34d93d",
+      "bytes": 172
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Packages\\manifest.json",
+      "sha256": "ba7fde70fe39acaa37b5433009c758fd079c975bce5e83d6b1827cf176c42bae",
+      "bytes": 1948
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\Packages\\packages-lock.json",
+      "sha256": "533e3ffec814db9d83b072d1591fd0850cb4c91cfec375ca37ec0c982496a5ef",
+      "bytes": 9434
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\AudioManager.asset",
+      "sha256": "2e46c3310c149875bed869aa2d8cc26f01e9b052a6220ddd75a71c4c373444e4",
+      "bytes": 546
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\BurstAotSettings_StandaloneWindows.json",
+      "sha256": "16fe1e838437d11eb0799c9ed129148d40bf84a2b4ec174224007083504fb297",
+      "bytes": 465
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\ClusterInputManager.asset",
+      "sha256": "06a192320121e445dcff1ae8ddad2a948ff671ca134603c043d9f4e920427ea9",
+      "bytes": 120
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\DynamicsManager.asset",
+      "sha256": "14449a4af3f7cc685d73268538844d1d8794c4a48592e41061c37c11ff435546",
+      "bytes": 1598
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\EditorBuildSettings.asset",
+      "sha256": "65f012cb8f5697059abd088f540367a11927a57f0d4acffde2b9e1ed68eb4966",
+      "bytes": 168
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\EditorSettings.asset",
+      "sha256": "c84b8372b7866347b98666a94e45414f23c35c5e5716ae7c1e62e80af20df444",
+      "bytes": 1758
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\GraphicsSettings.asset",
+      "sha256": "e095afb4234e89368044d564b29d2d6887db2bd65b3f6faff1a52677400f3aa6",
+      "bytes": 2854
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\InputManager.asset",
+      "sha256": "14afacff3668da089908b16c02642e0b388e3ca7831bad469ac6aeba18f7263e",
+      "bytes": 6112
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\MemorySettings.asset",
+      "sha256": "3d4aa5bb13d3a82647e224989cbec1031ec59488d549c71f7a2b8c556a8f08ab",
+      "bytes": 1267
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\MultiplayerManager.asset",
+      "sha256": "83ded116ca3ed35a6acac9b0fed830f04dfe5c008c185be50b1c132c88aea505",
+      "bytes": 164
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\NavMeshAreas.asset",
+      "sha256": "75da067e99628dc5c30d90492887cdaff68171e7b33d1217a1311b182aa47b50",
+      "bytes": 1454
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\Physics2DSettings.asset",
+      "sha256": "65b22f8cc5fd6fcc4636100739c9a1a7f7ce60202e3a1b17c919e40d740d7a79",
+      "bytes": 1919
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\PhysicsCoreProjectSettings2D.asset",
+      "sha256": "6356ff823cf80282a698fe03796ea05f52ea16d948027399a638082e07469558",
+      "bytes": 157
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\PresetManager.asset",
+      "sha256": "6ba879310e2be2e5ba18702578cda93b26b030ecd88e883fef22ab456a9f9697",
+      "bytes": 153
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\ProjectAuditorSettings.asset",
+      "sha256": "5e40807b54a51f2fafb156c8deeba785328010ec5d296c089cfa74f146b751f4",
+      "bytes": 1036
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\ProjectSettings.asset",
+      "sha256": "33987dcb4aaf72a3474f420e5d9137b7286a85d94ac9145b0f9d5e7fe298616c",
+      "bytes": 20720
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\ProjectVersion.txt",
+      "sha256": "e06e05029943a1f6537d7cf3ca00ae2fb38dfe68d41075504802051e78c1d707",
+      "bytes": 83
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\QualitySettings.asset",
+      "sha256": "3ffeffae0c0d6984a8db7774c8f2c7cdc46f0e8b3dc6160190291276bcc3f02e",
+      "bytes": 10149
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\SceneTemplateSettings.json",
+      "sha256": "e0cbb98bd0aa9449840ce663a4b81751ab0828f5d8d2bd37923644fee7095e62",
+      "bytes": 3655
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\TagManager.asset",
+      "sha256": "bd51bb00d350e430a891b9adfc3ca95867334cf0642409e9de53e18378449535",
+      "bytes": 489
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\TimeManager.asset",
+      "sha256": "04c070e2f9716503b8014933b8603d21edbf3784afb00e32a2633a0ecee075f2",
+      "bytes": 319
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\UnityConnectSettings.asset",
+      "sha256": "84b91bd844e9632367405d0445062325e7fb80a18067a39930a1b874060707ed",
+      "bytes": 1103
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\VersionControlSettings.asset",
+      "sha256": "3fe15395f872b9cfe908a111a1e87be2055c6ee367e2876e7e83a408c2b89d57",
+      "bytes": 179
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\BenchmarkProject\\ProjectSettings\\VFXManager.asset",
+      "sha256": "b61a694c821740d94f56270892b0c36c16dce80aaa0fec83fe1e17c41a385b20",
+      "bytes": 545
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Docs\\BABEL_DOT_PROTOCOL_2026-09-15.md",
+      "sha256": "8f60a2db8f209fa57a982bc366e67116a22d13969874e63e947e60c4b5ea0240",
+      "bytes": 8328
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\CHANGELOG.md",
+      "sha256": "2ce46b6cce7ff9cf16f44135b496a9f3f52f5a70950b08ea1ccaad0a86383b5a",
+      "bytes": 3367
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\CHANGELOG.md.meta",
+      "sha256": "39e5c09f3c15b6951695d0032969e076dc04eca04a6d4f70320d6bfa3dd6d54e",
+      "bytes": 165
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\LICENSE.md",
+      "sha256": "2ae2f06938f018182114cbe5f530096451cb2fe59e36d88bfd619aa2357fe548",
+      "bytes": 1993
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\LICENSE.md.meta",
+      "sha256": "25151048a63cab15bc16436b47864ce8c68dcd26a3b8112a6fe98f833bbe3659",
+      "bytes": 162
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\package.json",
+      "sha256": "de8191c989df428258b5ee67ec7278346fedf87c25f5d30ed2c59f1ddad5e8a9",
+      "bytes": 566
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\package.json.meta",
+      "sha256": "52543034f5c37b1fa9a291e4b6e628954819c787a7ce10a5fdef16dd1a081112",
+      "bytes": 170
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\README.md",
+      "sha256": "c4399adcd98aee6ac46f4ca5d436addf3c71edf4d48de366a9c71b19db2758fe",
+      "bytes": 7152
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\README.md.meta",
+      "sha256": "498b4e11453e0bde8a304f813070287f61c2df45d7ac7f73fb8b3219556b44e0",
+      "bytes": 165
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\AdaptiveElimination.cs",
+      "sha256": "242cb48a68490fbfc51933e60674c257db37be75e83b63c4bb0a3977a081ddaa",
+      "bytes": 47073
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\AdaptiveElimination.cs.meta",
+      "sha256": "f26fa7bc44bde851fbecd0552bfc3492a0ba7c4873c012e3e0c6bba5d019f114",
+      "bytes": 87
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\AdvantageEnvelopeEngine.cs",
+      "sha256": "708d09b1cf76fd9c7187eb8af3163a166e19bf700b00f5bb7d87058a0c3619d4",
+      "bytes": 58205
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\AdvantageEnvelopeEngine.cs.meta",
+      "sha256": "b3c3725d6f8627e8d4653ab64e914841626ce5ac4bf078667e1e0c404385977a",
+      "bytes": 87
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\AdvantageEnvelopeModels.cs",
+      "sha256": "92e7ed9b4cded6ca3b49d93c8ca96ec8dfcb0d49034814d59bcdbe40e5c1bd95",
+      "bytes": 21251
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\AdvantageEnvelopeModels.cs.meta",
+      "sha256": "5b3794e60ae008aeedd479e8f783355cbd663716c1b19ecd122d0f4638d01536",
+      "bytes": 87
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\AllocationMeasurementContract.cs",
+      "sha256": "c81f541ec4326501fde09b13f54bbb81c4750221723ea5124e984d5d12cc3f3a",
+      "bytes": 3415
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\AllocationMeasurementContract.cs.meta",
+      "sha256": "f6d2af9739e78bf2352201fba5f85e60fbb1703d8204da6cb392b00d4da83d86",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\BenchmarkModels.cs",
+      "sha256": "63ab1e9ce8788fa77af4bd45a35677a7d0fff39679ba7eec5b2d3522f78ec865",
+      "bytes": 19610
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\BenchmarkModels.cs.meta",
+      "sha256": "4bbba6cc0b98c95efcedd735214ed513e7834e81e46557ea7d9c0e8fe4f827d6",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\BenchmarkStatistics.cs",
+      "sha256": "313e8822a3ee22b65593f74f8d066ceb3e17fe34bb59bde2c72e173874872efc",
+      "bytes": 40526
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\BenchmarkStatistics.cs.meta",
+      "sha256": "58790477ff5e1b7d486d95fb65c513e424371f6b73e2730c7605cfbf7c86d709",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\CalibrationProfileFingerprintBuilder.cs",
+      "sha256": "c46d6bd1ac8781acc5d6a6224e327671c216432085e7960910a9a31ce9857ad3",
+      "bytes": 21836
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\CalibrationProfileFingerprintBuilder.cs.meta",
+      "sha256": "9a85880016ac940ff45aef6c88e45d9fefe01f29f0e4fa006ac6b58b4baaf327",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\CalibrationProfileMigration.cs",
+      "sha256": "550f5644336c59a2e4180f95f6365212bbd80f8ca0a367f8811e42d869790631",
+      "bytes": 52278
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\CalibrationProfileMigration.cs.meta",
+      "sha256": "0fd7832c21902d356f90f26fa28a723b0d15dacc4162900e2b58231a48b70e81",
+      "bytes": 251
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\CalibrationProtocols.cs",
+      "sha256": "2b56b45dd220134855505ae0187f2a035a32dfdfd5b9ca4a597b75fd92cfb5c8",
+      "bytes": 4927
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\CalibrationProtocols.cs.meta",
+      "sha256": "6cd04267a57cc670e2a1adf692767f650fd0bdd8c03aa22d42305df93e94be87",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\CandidateDefinitionProtocol.cs",
+      "sha256": "8979fd75babab4d1098091a903c80857a431bb918f7b45c023d392211bab5a5f",
+      "bytes": 7790
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\CandidateDefinitionProtocol.cs.meta",
+      "sha256": "20665451aee3177b0bb155aeb86df07790622f2b9d00e6aeb9ce4136821b4fbe",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\CandidatePolicies.cs",
+      "sha256": "653e695e0b10d80bfce687f7edc536c61f447e854062ff21dbedb3471606659e",
+      "bytes": 10041
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\CandidatePolicies.cs.meta",
+      "sha256": "d35596eb1d02ec74c05dd308def4433f65d6f5b11cc30719a41fa35aaf8608a7",
+      "bytes": 251
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\ConservativeLifetimeEnvelope.cs",
+      "sha256": "ef671abdf3ac27bb4af37efc725b612fcf8dbe45403edc178b535b51ac8f0129",
+      "bytes": 7446
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\ConservativeLifetimeEnvelope.cs.meta",
+      "sha256": "fdea63cd45111f92cf18b28ea8816cdf8f0000a2c4d2c447640e71dfffb51012",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\CounterEvidence.cs",
+      "sha256": "3d9db8e75470f308e8f25566e554351381238ea94f4d8418e99173d87e16c84c",
+      "bytes": 36736
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\CounterEvidence.cs.meta",
+      "sha256": "223cf05447e5946a26480d9212579e51f79adcc3ef76c9e926ad93e3a46b1d33",
+      "bytes": 251
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\DecisionEvidenceStatistics.cs",
+      "sha256": "a494cf86e5f7afe813a14edbe063d6092cef9be2d697e951f10936d04271eafe",
+      "bytes": 29469
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\DecisionEvidenceStatistics.cs.meta",
+      "sha256": "2fb004392a3a37ea5e66030ea4512f2b6f9ed378ecc4af76b6dc80a0773edf6a",
+      "bytes": 87
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\DeploymentProfileModels.cs",
+      "sha256": "93efb2d88eae9c95ac47bf8ceae8c1fc771be2e8b912cdb9034cd824b876f758",
+      "bytes": 6953
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\DeploymentProfileModels.cs.meta",
+      "sha256": "453f40a0fe239ce8554807341b0d2a94ff0c6b9218da586c963904604fa85b39",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\DeploymentProfileResolver.cs",
+      "sha256": "01747f0b77ad201cf843428d45b073da377010054c24ad9bf5b3eff01c5f1475",
+      "bytes": 16910
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\DeploymentProfileResolver.cs.meta",
+      "sha256": "19ced166d21a8c18f53bd786bebfdf651a9232218d361fc716f7f9716caf590b",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\FrozenDeploymentProfileCodec.cs",
+      "sha256": "bae652ef87e791314b47beb4b96c82c5231d16514b3f147a3109fba573da787b",
+      "bytes": 13962
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\FrozenDeploymentProfileCodec.cs.meta",
+      "sha256": "0a330437608bd52e775b396d06673133f7d0dbf7ce6ac7b8ebfc85933e0f2c1e",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\FrozenDeploymentProfileStore.cs",
+      "sha256": "47ef0cc0973af485cf7358e14b9a4eb0a335ade0e4b27e753e3fe6a31ab9617f",
+      "bytes": 4882
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\FrozenDeploymentProfileStore.cs.meta",
+      "sha256": "096e3d76c410d32c88ef675d53a2c1c776744e4a98c7ae0852e3ac0f1a14e909",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\GeneratedDataLayoutAttributes.cs",
+      "sha256": "2700dfb30ffd5a5e8aed4114366f112420760db2066d73747ced74564550259b",
+      "bytes": 3194
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\GeneratedDataLayoutAttributes.cs.meta",
+      "sha256": "a088fdddb7bd30b0db4458717ddf86796342a082db8554d58820cf8024e2d7ee",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\LayoutKind.cs",
+      "sha256": "6914b1ab5948b089478127295e4ce67399da2b8f6ab9eae35940170318bebefe",
+      "bytes": 219
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\LayoutKind.cs.meta",
+      "sha256": "885b41f41eba582a6f8ba88b577bd9db75a04442e1a8e9bbc5f95b3351c17835",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\LayoutSelection.cs",
+      "sha256": "19c06e68b5e7e65f5975d820a98b42c091193fb0b5b0e96e18a7cda436db3ec5",
+      "bytes": 21231
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\LayoutSelection.cs.meta",
+      "sha256": "83f42d77e5ac17afab285793800185d765a77009b35e0e9ccee3fe6510db4640",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\ManagedAllocationCounter.cs",
+      "sha256": "e9b691ea8a0bd3e58138997f9a060f3e6fa3309d25aea698237b72816915fe98",
+      "bytes": 4615
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\ManagedAllocationCounter.cs.meta",
+      "sha256": "ff3c927f00ff29832dbbb57c76185998636b6576d8b5282e1f09b2c3f40ab142",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\MeasurementDesign.cs",
+      "sha256": "dfa5e9a3b13bb3d807fe7812b631b2fdb60a47f74e8000a152bb549add3a882c",
+      "bytes": 6366
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\MeasurementDesign.cs.meta",
+      "sha256": "25ccc676acb1091c7a14e69cf53988669a9ffe13c62cb445e190e2c48ae92e29",
+      "bytes": 251
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\RegisterCalibrationScenarioFactoryAttribute.cs",
+      "sha256": "efe4aab84b22a130fe7e6e8a444fc3fa9c3be2e626adc7d3132769e40a4e27a5",
+      "bytes": 734
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\RegisterCalibrationScenarioFactoryAttribute.cs.meta",
+      "sha256": "f3c2f7dcaac851374a991e876b730197d7e5cd00f2d4fc35af11862fa257cac9",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\ScenarioCalibrationEngine.cs",
+      "sha256": "04bbe1c2f5af7edcfddaf6748e35dd166706c34b57284161bb16bd658ee59ba9",
+      "bytes": 34798
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\ScenarioCalibrationEngine.cs.meta",
+      "sha256": "9c78da71927f3cc0ef134bbc35054ee3ff13348ab7bbda26e649b4a0b0c4122d",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\ScenarioEnvelopeMeasurement.cs",
+      "sha256": "1830485433d415f810c9ea2e39fbc60172ab695751a3c1d64bb97b4078c972de",
+      "bytes": 10712
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\ScenarioEnvelopeMeasurement.cs.meta",
+      "sha256": "0df70fe6aa2b3084e18f3384a535989c849ef053bafc425cca2da3251e37a570",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\ScenarioSearchComparison.cs",
+      "sha256": "e603eea7c0009ce3edf15f68c2b610235efe54ea03462d5c12a4c2c620fab720",
+      "bytes": 27420
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\ScenarioSearchComparison.cs.meta",
+      "sha256": "be6a3b39673f2cb5b4f99b6fd5adc3daddcb7a3f5d6bf5cc92e9ad1820d6b312",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\ScientificAdvantageEnvelopeAdapter.cs",
+      "sha256": "45166ceba02064be91919691fe4a0e28b9e45e01b5ee6c419241f498b71b8c7a",
+      "bytes": 23660
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\ScientificAdvantageEnvelopeAdapter.cs.meta",
+      "sha256": "1fd3acb640fb0c51706d7f8cf8d7abc50437718ca3d7af0fd9be7ea1d63d0792",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\TimingMeasurementContract.cs",
+      "sha256": "d2df56af019ebbfe79b3eb5410ca2c238209427ccbb3ee9548a24381765f96f6",
+      "bytes": 10400
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\TimingMeasurementContract.cs.meta",
+      "sha256": "e235a54ac906de9a427a003925b625f0f9dc1febd485c635f89feec2c1ade9f2",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\WindowsProcessCycleCounterProvider.cs",
+      "sha256": "90844976e77991c535fc4db88af3050c6845802e1ab64b61cc81df730cf06da3",
+      "bytes": 7018
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\WindowsProcessCycleCounterProvider.cs.meta",
+      "sha256": "3f1bd030f135c568cda67fb3bcb529873bc71ca79eb50978cc65fdab7a7e5cf9",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\Yanagisawa.DataLayoutCalibrator.asmdef",
+      "sha256": "c00149f36ee90d72460f86d3f8948c84b426cc75172bbe2aca938faedda2eea6",
+      "bytes": 385
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime\\Yanagisawa.DataLayoutCalibrator.asmdef.meta",
+      "sha256": "9bb801020bafb961984c94b4b09959aee8f2645ed2bbdbd217b67bc40a204f5e",
+      "bytes": 173
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Runtime.meta",
+      "sha256": "499c82b01afa35590b58ea36245ef37408db29cc92f079366d90ab61ae4b1575",
+      "bytes": 180
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads\\Runtime\\AdditionalWorkloads.cs",
+      "sha256": "a86bdc94db9b206a012cd4b35c8d7c57e539c98540126f532fe5ac54e8dca7fa",
+      "bytes": 24858
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads\\Runtime\\AdditionalWorkloads.cs.meta",
+      "sha256": "35c949de18932e475bac6d1054b8a9b5db1abf2e754590651c3734935306c1fd",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads\\Runtime\\AssemblyInfo.cs",
+      "sha256": "4ddf8ede7622dff1b167499e392320c048f4db501cc346f3915b35770eb03252",
+      "bytes": 140
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads\\Runtime\\AssemblyInfo.cs.meta",
+      "sha256": "976a44d3afb591a0560f745f3acd4b0db6ebfa9eb14b51e12ba8b96ed1ad574c",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads\\Runtime\\Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.asmdef",
+      "sha256": "833713c294a00de72b61f1b1c566879f3a482e5af9896ccf2735616589b6bf5b",
+      "bytes": 558
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads\\Runtime\\Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.asmdef.meta",
+      "sha256": "ee039827b1f3c1998821857485d09bbe83e0864cdba1aaa177470936ccb3112c",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads\\Runtime.meta",
+      "sha256": "40a7217dd29d67d4fd98d9fbcb4d168b9e2a536f27c599b60cf443a19ba5f59d",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads\\Tests\\Editor\\AdditionalWorkloadTests.cs",
+      "sha256": "e6da5ca83511ad330a4831e78d8667e53808febc693d3dddf7b2bcc6acdc4327",
+      "bytes": 3236
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads\\Tests\\Editor\\AdditionalWorkloadTests.cs.meta",
+      "sha256": "93f73396648b834f35077365c4e2c16915217371ad22c2fac9b860d4a19d720f",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads\\Tests\\Editor\\Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.Tests.Editor.asmdef",
+      "sha256": "116b149474a4c70bc19707a8f7a1f13f5e61c4466521c51f2dfd2fd4983a092b",
+      "bytes": 703
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads\\Tests\\Editor\\Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.Tests.Editor.asmdef.meta",
+      "sha256": "a864d234771118fe5581c9f89c61b46185ab52a655417dda8cbec93c016fc93e",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads\\Tests\\Editor.meta",
+      "sha256": "db5f18ece25fed06e2ac776da7db6321ed908758e72438705a4137815cef196a",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads\\Tests.meta",
+      "sha256": "7a6fb9232da555bd1f9296ee3362ef47200c4f0deaac148d5f444dbc5159e4a8",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\AdditionalWorkloads.meta",
+      "sha256": "f7298756c32c080a6c659f817b1ee0c54c2dbae9427f5c1195d501938ed8bdf7",
+      "bytes": 80
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\.gitattributes",
+      "sha256": "08eeac59228decf20c109a03ecff4f91a0bc14cf8d879c16ddf4fc8faee31ac1",
+      "bytes": 142
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\CONTRACT.md",
+      "sha256": "f2ddedbb4feff06dc21ea44e84d91ca77d8e9191b957e642cb8b5e3c9f827e64",
+      "bytes": 9723
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\CONTRACT.md.meta",
+      "sha256": "ae512af51e6209960851ac2e4b9edcda5e0999e568ad755d043082386660f272",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Fixtures~\\fixture-lock.json",
+      "sha256": "3670bad792c519218729a9f237188ac9da165d68ab1f3376067e2b187ede8ec2",
+      "bytes": 575
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Fixtures~\\llama-msvc-prefix17.json",
+      "sha256": "6fc087a796471ea7a7ec004fb19cec76972f3b5d155c3599c2034e65005ecb08",
+      "bytes": 1824
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Runtime\\BabelStreamPort.cs",
+      "sha256": "74d07783beebecabf0abdfa1f4adf8e1863310dc70eb0b6fa2eb857489a9f091",
+      "bytes": 7369
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Runtime\\BabelStreamPort.cs.meta",
+      "sha256": "fd745eca860dd5f861a3be3bd54bbfe5bceaa5db7ba537435c677ace4d014222",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Runtime\\LlamaNBodyPort.cs",
+      "sha256": "04622ecc2c8f58452b75febda825e0d132afce735a64bc07a93d7681daa4c6ce",
+      "bytes": 7212
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Runtime\\LlamaNBodyPort.cs.meta",
+      "sha256": "9a6f6e4d65c29a90812d282a3b83c30f907e7373a6e4c2be9026598ce818dc48",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Runtime\\Yanagisawa.DataLayoutCalibrator.Samples.ExternalWorkloads.asmdef",
+      "sha256": "0e3859340dcee5c3e4d85b82f5ff9bebd52c19df7d3e7dee46c32a0d6d5aaee5",
+      "bytes": 514
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Runtime\\Yanagisawa.DataLayoutCalibrator.Samples.ExternalWorkloads.asmdef.meta",
+      "sha256": "baeed89bdad8ef2789cc00534474f42f24c6af2b5182c36cef4d5571bee47ea2",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Runtime.meta",
+      "sha256": "8211a7b0203c598010e48cdc69789aae48f7dd6bfe54b25aa1ee33c9f61ff967",
+      "bytes": 80
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\BabelStream\\LICENSE",
+      "sha256": "7d2e4e8166d0656f6648ad495dc44c1176667ed1aa0473c177397a54d35a9112",
+      "bytes": 2908
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\BabelStream\\src\\benchmark.h",
+      "sha256": "8535dfaf2a723eea10cbffb7780fe6c9856d556651f8d343ae42053868da2ffa",
+      "bytes": 2519
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\BabelStream\\src\\main.cpp",
+      "sha256": "dba25f515934be96a52e7bb8f80bc4fc06d6311b76c6b6da112298d3e2c5eda7",
+      "bytes": 19120
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\BabelStream\\src\\omp\\OMPStream.cpp",
+      "sha256": "179b84f70fa803d804fa29db51eb32f83af854f4e516a7a241be74678123fe05",
+      "bytes": 6851
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\BabelStream\\src\\omp\\OMPStream.h",
+      "sha256": "a6136aee380ec4388c4bf09efb248ddc8a3f142ff30865b81e3e230c817dbd8b",
+      "bytes": 910
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\BabelStream\\src\\Stream.h",
+      "sha256": "1f0f86e0b0a09c5035b3011a65182bdc8fea9593b754bd901069e9e7208abd03",
+      "bytes": 1191
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\BabelStream\\src\\StreamModels.h",
+      "sha256": "974f1ee92705c848770344bf14a5723cbd1a132d8075c947e5bc98f555204f0d",
+      "bytes": 2382
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\BabelStream\\src\\Unit.h",
+      "sha256": "abea46d1851e4afd6dd9112a24ee36468581b244af463676494fe4ec383b7c3e",
+      "bytes": 1045
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\HeCBench\\LICENSE",
+      "sha256": "eae7fae6934a2452b211684b270683d5e87d865604e388d9ca123f5438a4165a",
+      "bytes": 1629
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\HeCBench\\src\\stencil3d-omp\\CMakeLists.txt",
+      "sha256": "65d0efc21874bbc858115fa1ffee7868e3dd257c73d295d569bb0bee4ab6495d",
+      "bytes": 138
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\HeCBench\\src\\stencil3d-omp\\LICENSE",
+      "sha256": "2269e79605efdec427607dd66fb555927ef52a81d208955860016653bf678d7d",
+      "bytes": 1099
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\HeCBench\\src\\stencil3d-omp\\main.cpp",
+      "sha256": "369cabc578839a453c63842e79df7a034b0e74fb3756f89697825ce834813553",
+      "bytes": 7375
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\HeCBench\\src\\stencil3d-omp\\Makefile",
+      "sha256": "13699a027606d50e2c4897bcc886a41e95dd7be23472d0a0afa685864082f0fe",
+      "bytes": 1518
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\HeCBench\\src\\stencil3d-omp\\Makefile.aomp",
+      "sha256": "1f9c00be49008f9111d4ee76928bcbbf6fafc048cd9c98c519bcbd71b40e77cf",
+      "bytes": 1661
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\HeCBench\\src\\stencil3d-omp\\Makefile.nvc",
+      "sha256": "55064e1e99cf7ca4b74ccd70bc494274925bccb78f0aea6474736fc5e13ee51d",
+      "bytes": 1494
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\llama\\examples\\nbody\\nbody.cpp",
+      "sha256": "44772baca678baef383a672b4a0883d6291375cb01121e4c85b9a01b0aba107c",
+      "bytes": 59327
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\llama\\examples\\nbody_code_comp\\CMakeLists.txt",
+      "sha256": "06fead2ffc2fb668f28c1b4c3b6bf6bad1a7be29139f7ed06cc7494cf3cf568f",
+      "bytes": 823
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\llama\\examples\\nbody_code_comp\\nbody-AoS-baseline.cpp",
+      "sha256": "0dd06aa93fb73717567db877106a63428e4068a5a0781eb4342cad4a8294ad47",
+      "bytes": 2046
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\llama\\examples\\nbody_code_comp\\nbody-AoSoA.cpp",
+      "sha256": "3e9e42fb867d530cca4947d46616b9d805008202a2cd39f34974ee5cb7582a18",
+      "bytes": 3197
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\llama\\examples\\nbody_code_comp\\nbody-SoA.cpp",
+      "sha256": "6cac113fd92a358cd83f6fb0f75f43b0630806d66e54d16750bb8d59621e8f80",
+      "bytes": 3112
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\llama\\LICENSE",
+      "sha256": "c76f740d1521b9bed9ca7a04ad526c310493c62621b1341d623b431736533b30",
+      "bytes": 16725
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\STREAM\\stream.c",
+      "sha256": "a52bae5e175bea3f7832112af9c085adab47117f7d2ce219165379849231692b",
+      "bytes": 19967
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\upstream-lock.json",
+      "sha256": "a31cba562be46c0dffe645b3a6d1b57519d7193ea9aedb218fdc7f0da03391ee",
+      "bytes": 7470
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads.meta",
+      "sha256": "ecfb4886769b9b8392eeda2afed46bfd9bffa3802bede241f0ef4291cdd400a4",
+      "bytes": 80
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleBlockExportJobs.cs",
+      "sha256": "4f837167a1d1c0e9539a1c1e65fa555b8656a91ebe3f8feede9de6b6b2e24c0b",
+      "bytes": 5709
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleBlockExportJobs.cs.meta",
+      "sha256": "4dbe14532904c899323380a26baf7dddc67892704368593c61693aca5452c81c",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleBoundaryJobs.cs",
+      "sha256": "bdad3863e3b1e4c3c689d35a0003ee9eb40a79d1917f89f65db58026fe3fc848",
+      "bytes": 6251
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleBoundaryJobs.cs.meta",
+      "sha256": "b2aab250089fdcfce3ed204185587bb69da25e6ceb495e7a58473c4db2e357c1",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleCandidateMatrix.cs",
+      "sha256": "f44b7e63df49cf41d6ac49666b2999d9f077784122d1520d78407ebe7b19ee52",
+      "bytes": 6299
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleCandidateMatrix.cs.meta",
+      "sha256": "acff1cd46e9c166085990a43774a3570e58c327dd0a83a48728b04786e95d0f1",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleColdAccess.cs",
+      "sha256": "c7de915d0a41ddef7a64c7b3a91d9a87c99abd1d201617dd5b47be1ee07ff0a0",
+      "bytes": 3606
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleColdAccess.cs.meta",
+      "sha256": "4b891705e78296d11fb6dcf3585f01c59118467a321d4f41a0dab06e03d5507c",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleDataSet.cs",
+      "sha256": "3562b668ad0ca61c148ace33f4bbed66a9d971e1f9d7fe564d422c2541b23acd",
+      "bytes": 2202
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleDataSet.cs.meta",
+      "sha256": "c35ffe4c1b760a6520d3ffa35c553fcd7d0abcc2a8ba635357d19e045df9a897",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleHotColdStorage.cs",
+      "sha256": "d32688924018be24ceb168ff52cb798402180ce5f5f228a080978800d081ef55",
+      "bytes": 5787
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleHotColdStorage.cs.meta",
+      "sha256": "f73b61eb5701c8967fdb4d1889b40ea0514403b8549265268aac2b7e34272248",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleIntegrateScenario.cs",
+      "sha256": "e177fec69f7164676fec32a31dc6d0d75d819b1a89ea8edc744acb48701ddd18",
+      "bytes": 18194
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleIntegrateScenario.cs.meta",
+      "sha256": "9d282fd5996273d5c839787f411e75c9867e5f76fe5525eebe6fad790175cf44",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleJobs.cs",
+      "sha256": "2a3ae989f6f87e68bed4f8ccba734371c7262e52b1423e750422569c0be81a53",
+      "bytes": 9324
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleJobs.cs.meta",
+      "sha256": "1ae9df8c893e4e75068b3c64cf0141597fe5d80e88161053e99419355037060f",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleLayoutDomain.cs",
+      "sha256": "b2ef4ff183ea7f86076f398ffb735c216efd6c7239121ef9da7fb96b6720370d",
+      "bytes": 17458
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleLayoutDomain.cs.meta",
+      "sha256": "fb960c3d00fe558c55ec3c97293e637b804b59215b99fe6e3c88e87cc25453cb",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleMatrixBoundaryJobs.cs",
+      "sha256": "5f5f93cc89e50ea051c9b42c7ffd54e7e09b73ff164a2cb068dbc10f599327d4",
+      "bytes": 4505
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleMatrixBoundaryJobs.cs.meta",
+      "sha256": "9c30e5d7190c4bf947659e7f5969d48e9c1a9735c136cdb5fe76895012503797",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleMatrixJobs.cs",
+      "sha256": "9bada36923d2747b53aade81f91ecf620679c01ab3f71e8f1c559e43c75431ce",
+      "bytes": 35077
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleMatrixJobs.cs.meta",
+      "sha256": "647cfedc5a0b3edfb26358857e2d8b569de2f6cc520219d651a334356c72c09c",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleMatrixValidation.cs",
+      "sha256": "5254562bccc5d990e92a30f9c0a397b071e7111ae86186cadf9d1301f34ede9d",
+      "bytes": 4425
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleMatrixValidation.cs.meta",
+      "sha256": "e2c8794ac8192dbc1bc99bf65c6b1104d1b1487b3500fbb8afc79f4a45ac6805",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleRecord.cs",
+      "sha256": "3fbbaf511e44ad43d00885aed467e6ecb642dbe7f464e3fb049e7a7d0fbf0903",
+      "bytes": 1322
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleRecord.cs.meta",
+      "sha256": "14eff579e404b42cfe864aa96f1db8654098929fa62d6f2247e8a9bc9aa26ae8",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleStateValidation.cs",
+      "sha256": "72a55fcf2b47aff7845733da7d9e9cc23073ebf6a5144b209ecdb72a7f3ed080",
+      "bytes": 4198
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleStateValidation.cs.meta",
+      "sha256": "ee30383c93fffd3cb0a52df63e436e1027ecc4a29aac1170d9c12dad779ee954",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleStorages.cs",
+      "sha256": "3b719193da46011b70f934980ab5e3549fb99fa3c8886346b8b552fd1ad26527",
+      "bytes": 3278
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\ParticleStorages.cs.meta",
+      "sha256": "f81ad3fdd422673b30f36675f9cc16ac25f8036f277ab44b4e068da1893809f4",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.asmdef",
+      "sha256": "a889a75a36e2c909c755ea9ee6cd7743c5d87a56b76e2b489e14895b56d3d040",
+      "bytes": 554
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime\\Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.asmdef.meta",
+      "sha256": "0ab180dcd34606bdc9c0a9707d97942fe430ceeb78589cf508f9cb54b1ea900a",
+      "bytes": 170
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Runtime.meta",
+      "sha256": "e4096e801d9bef223df0ab7889e2493809871a23deffda7047925f232f58135a",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\GeneratedParticleStorageScaffoldTests.cs",
+      "sha256": "63ccf37e2b9186fae5248e19873970c97a42da80e9a042674e4fda8f59a8b486",
+      "bytes": 4655
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\GeneratedParticleStorageScaffoldTests.cs.meta",
+      "sha256": "cae6970ab9d5b2aef488edfe2e73c62a61156b8dbafbffa71337dddce86706ad",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\GeneratedProductionStorageTests.cs",
+      "sha256": "c91b76e9386665e229b691860539948500221b29f23a4efa46c39b395e73213e",
+      "bytes": 8602
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\GeneratedProductionStorageTests.cs.meta",
+      "sha256": "f8a5017aea17412b77c6575a7a5ee043fa9a8308e984c810a11613e8202fd068",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\ParticleCandidateMatrixTests.cs",
+      "sha256": "5c85018156113cc5e261a71f0776522761b7a7f9032366d3db3a3693c4db2ea0",
+      "bytes": 2482
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\ParticleCandidateMatrixTests.cs.meta",
+      "sha256": "125c5e54c257a0c95dd8ff3f186ce026c6de1eb2e6505544e0dbd13b3714312f",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\ParticleColdAccessTests.cs",
+      "sha256": "9d02d3386ce38458048686420be2193cacccb7918c671039aefa83acc3c7f76d",
+      "bytes": 4494
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\ParticleColdAccessTests.cs.meta",
+      "sha256": "5a62e1d0eb8d1b97d4e36565203093e56030159fa50137f4a053fb3c4ad51731",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\ParticleDataSetTests.cs",
+      "sha256": "e766a5c53d0a3ae13d25c9863559998106830ec153c9a48c8fa702e9f556d2d8",
+      "bytes": 3855
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\ParticleDataSetTests.cs.meta",
+      "sha256": "318b53ada93357401d6045b596cf1fe5fe7037165723a333c7c9f43532daea0c",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\ParticleIntegrateScenarioTests.cs",
+      "sha256": "e952ddeeb3390299ed1f2d1e9bee15e7a1bbd4d54ef41e9c6a888ad0c1fede41",
+      "bytes": 5560
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\ParticleIntegrateScenarioTests.cs.meta",
+      "sha256": "49e0a745575791c16a14e72c771d611bb80475512ee31faf4a8e97a2ec80b312",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\ParticleLayoutParityTests.cs",
+      "sha256": "978497a154f3719785640a9c405f97c508741f2228337f897f46e3a0224c3f00",
+      "bytes": 5641
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\ParticleLayoutParityTests.cs.meta",
+      "sha256": "4a931ccb44a62666a494c26a7acb903d5673e8dfb2ce33964fc9f9358318e8d7",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.Editor.asmdef",
+      "sha256": "f12752e68ece8e19938427b40f7f5478e359de5c6665b62e21674a568936e673",
+      "bytes": 697
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor\\Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.Editor.asmdef.meta",
+      "sha256": "924be73a5743ef4389284c0f3e13ff98e07b904b57538af55bd27db986288235",
+      "bytes": 170
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests\\Editor.meta",
+      "sha256": "e9a56a8db959526fc1c501e986766cc8724d13325c0a614728c6e929bfecf6a4",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate\\Tests.meta",
+      "sha256": "8e7ff2bfdbb11ec46b770f94c29e14780cf4e2304c9d8e604255c83289deaddd",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ParticleIntegrate.meta",
+      "sha256": "a115bed9918cb509c03008ba7c8087594c2955c7f22cc14db5b20ef588ad38f7",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\TransformExportDataSet.cs",
+      "sha256": "2e52037713dbbdf859624de6308fb0b91d0a5207ca12c63716675ca411cd750b",
+      "bytes": 1599
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\TransformExportDataSet.cs.meta",
+      "sha256": "3c856f61a77a51cd40ca455d2b4845429e9eb5d4c643b5b434e00d8af568e312",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\TransformExportJobs.cs",
+      "sha256": "8392ca5b1cc748fabf7e79b4011ff113dae065a912042c5e26dc34d13c5cf0c8",
+      "bytes": 3546
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\TransformExportJobs.cs.meta",
+      "sha256": "595c30c3d1e915aa0fb70b83cbf5f12d3a6e96e8f1647f27dd146b1a619133d0",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\TransformExportRecords.cs",
+      "sha256": "063d795807afe68729663fc7f6cab7f7ab22619e581ab58dcdbbd251ab0befb6",
+      "bytes": 1030
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\TransformExportRecords.cs.meta",
+      "sha256": "c6af376f112652ac1969da6daf28e15fdbb7dcb87cead73763a2105d1b7cb45b",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\TransformExportScenario.cs",
+      "sha256": "632d1058c8568f9f3f00e0d51d79d350ecdc2ef9b947372a99b4942ca7582be6",
+      "bytes": 15808
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\TransformExportScenario.cs.meta",
+      "sha256": "86d81b9f08dd365829dbb341528db6ddbad9f515cff5374d3b4c55af843e1e12",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\TransformExportValidation.cs",
+      "sha256": "c2c306fb701d80e5152e09e9c51dca00054123eb01bfe3a85ec61e1e89cab6e1",
+      "bytes": 3941
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\TransformExportValidation.cs.meta",
+      "sha256": "a51f2fcb8dfcda31b39a52db4494dd4e12ea0112c6ef9276c7c825af53cc6fad",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\TransformPackedExport.cs",
+      "sha256": "525fa7817f534061bbe27e78b5fa53bf37928f7376470e283abcb8f0e92b49b3",
+      "bytes": 5273
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\TransformPackedExport.cs.meta",
+      "sha256": "adbaef6afa11ce19c481ba285114e3917cdaafa292dccdd4a8ea49b8e89709ab",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.asmdef",
+      "sha256": "6628fa4d33145ed3981880129326b56cb38fcb3b38600cee7ba3ef6ffd096247",
+      "bytes": 550
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime\\Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.asmdef.meta",
+      "sha256": "719e6b03224703a0a520e73ac261cc1f1295622ed26acec32076a3b3cfb97719",
+      "bytes": 170
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Runtime.meta",
+      "sha256": "8c2a6a00c2e19508460ad5b1a147376dcf43379388724db61138f07174fdca87",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Tests\\Editor\\GeneratedTransformStorageScaffoldTests.cs",
+      "sha256": "722c0d3b7f6572853bfff9d8ad7989c58f25c9e1a5222d0ca3c09b587b402f2f",
+      "bytes": 3576
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Tests\\Editor\\GeneratedTransformStorageScaffoldTests.cs.meta",
+      "sha256": "396c02dd355d687197e14808e7cdd2037d69ca929ea5a34815ccd0cfda111395",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Tests\\Editor\\TransformExportScenarioTests.cs",
+      "sha256": "ad5fc14263f9e300109c6ab4058fec0e5c7e12a51921572aa7efe0dccf22144c",
+      "bytes": 5315
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Tests\\Editor\\TransformExportScenarioTests.cs.meta",
+      "sha256": "bf0736c4046917f0f22315d87c18d2caa2abbc32c5627eb103101f19d54893ce",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Tests\\Editor\\Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.Editor.asmdef",
+      "sha256": "aa6f2af5d11b05e3c4c50a29812fe7ab53d70cf13d45527dcee20ac235093115",
+      "bytes": 691
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Tests\\Editor\\Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.Editor.asmdef.meta",
+      "sha256": "2c63e121d29e97c5a900c5218999cad4106469b9f635b42d5a10d9c544dea148",
+      "bytes": 170
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Tests\\Editor.meta",
+      "sha256": "61764ccf305e88564c4ece6c48b80d5336ca4759ddfcdc5252871511522925e2",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport\\Tests.meta",
+      "sha256": "5e564f583bac32f472a3026c1a91664b0f96bacef793483d213f27c73627cfdd",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\TransformExport.meta",
+      "sha256": "bdab0efda82a51bcb584036758cf8553d99a3d01c188bb66f3edce4ac1db7748",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples.meta",
+      "sha256": "9a51a09649a1417886372857ba113283ec5dc284d66550fd10960b9863cffece",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\SourceGenerators\\Yanagisawa.DataLayoutCalibrator.SourceGenerator.dll",
+      "sha256": "317d710e689622ffae7d48877107958161f7bff1388311bbd378d0ed4968126f",
+      "bytes": 62976
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\SourceGenerators\\Yanagisawa.DataLayoutCalibrator.SourceGenerator.dll.meta",
+      "sha256": "25eb4701eafe7bfd7626e12112b8a6adc79d055ca191395ca696629aa4cef814",
+      "bytes": 1375
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\SourceGenerators.meta",
+      "sha256": "5bed193cb17fad2fa923ca34cded5dc6db3c38318c5c8e472df6b7c6ba78f753",
+      "bytes": 177
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\SourceGenerators~\\DataLayoutScaffoldGenerator.cs",
+      "sha256": "6c15b5593b4dfe332b4df17352a3e92d18f75ffa669394ca84eab2241822fa3c",
+      "bytes": 58285
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\SourceGenerators~\\ProductionStorageEmitter.cs",
+      "sha256": "0ad8d0f32a6f888ff3ce8d0600401985ae2644ca96dec963025429a2fcb9d6e6",
+      "bytes": 7951
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\SourceGenerators~\\ScenarioRegistryGenerator.cs",
+      "sha256": "bacc463a8ed4bcb4fb6407250cb901168507e2e007cb4d3bd4aec52ec2c7b890",
+      "bytes": 9246
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\SourceGenerators~\\Tests\\DataLayoutScaffoldGeneratorTests.cs",
+      "sha256": "606ec472b455071d236ceedc9aa5926325180546bff1641bbf776dc14bd26ce7",
+      "bytes": 14032
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\SourceGenerators~\\Tests\\ScenarioRegistryGeneratorTests.cs",
+      "sha256": "a57bfd8d9a71c92119878063a07f23896ad9b5ba56a61b973508f7f1771ebb06",
+      "bytes": 5285
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\SourceGenerators~\\Tests\\Yanagisawa.DataLayoutCalibrator.SourceGenerator.Tests.csproj",
+      "sha256": "60517d05b7b5aa5109ad1bfca7a94ea192b78434fc9cabec372657beba427724",
+      "bytes": 784
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\SourceGenerators~\\Yanagisawa.DataLayoutCalibrator.SourceGenerator.csproj",
+      "sha256": "e33dcd28d6120da7d8e867f01dc7b1c78f0577bc8731483b05ad5f2980f17050",
+      "bytes": 930
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\AdvantageEnvelopeDecisionTests.cs",
+      "sha256": "dca1b4ab5f4cdb15824b85452bc5b21aab7bad5fc3c3b58d4da3e425ae36a39e",
+      "bytes": 40522
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\AdvantageEnvelopeDecisionTests.cs.meta",
+      "sha256": "cf25639d4d5e3a1093145a14d3d4d1a541e7c95550689803655adb3cfe201a2c",
+      "bytes": 87
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\BenchmarkStatisticsAndSelectionTests.cs",
+      "sha256": "1fa1d93b4523ec69b62d226a4e95c557abe61dc23e63af160606b830cc6f5a46",
+      "bytes": 15401
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\BenchmarkStatisticsAndSelectionTests.cs.meta",
+      "sha256": "522de5ea36b89062fc6732fee2ece289e40b10eb22ff95772ebfc735939ea520",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\CounterEvidenceTests.cs",
+      "sha256": "01bd676407bfe7c255e2f5e30aeda15b83ff4879a898a538d58d4db9e9722967",
+      "bytes": 20998
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\CounterEvidenceTests.cs.meta",
+      "sha256": "5530a3efe484f302ad6f2ca2a6becfa06c157b653f04a59a07ebb33b1c3e10a9",
+      "bytes": 251
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\DeploymentProfileTests.cs",
+      "sha256": "5af94c28b73e9b472592a604303b96bc7e9479560427295829ab711679a59043",
+      "bytes": 25057
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\DeploymentProfileTests.cs.meta",
+      "sha256": "0578d196809e9deaf3d2c3914521e4cac1f59e7411db5e8825c0267f5c28a9ab",
+      "bytes": 60
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\EnvelopeMeasurementGuardTests.cs",
+      "sha256": "95d5ae155532c3c5f7b2fbc51cb68cbb2270f0909c8d9e8ca6a86aa89db064cb",
+      "bytes": 3215
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\EnvelopeMeasurementGuardTests.cs.meta",
+      "sha256": "cab64e73881eb5fc1b6e66857f20b00c9eb36f4b2f7c426549e144de15b651e3",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\MeasurementContractFunctionalTests.cs",
+      "sha256": "621801e3565bc134711d5ec7a137a4a5e9161c9b27eade7f6365743b5593d837",
+      "bytes": 16416
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\MeasurementContractFunctionalTests.cs.meta",
+      "sha256": "7f4ea0db86c6735ce6eef75502ac1c04dbc95bea5bcbb363cbbfd5d9df342b81",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\ScientificCoreV04Tests.cs",
+      "sha256": "baeee3cbe9b9493bbdcf726361d58407d4b17d120ef75efa3fbcf6ed165165a1",
+      "bytes": 43191
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\ScientificCoreV04Tests.cs.meta",
+      "sha256": "52ad8adbe6a82c3474f2f1a2239a77a7c50042674cd2a2deb9f1517bc7e73b77",
+      "bytes": 251
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\SearchComparisonTests.cs",
+      "sha256": "9b8348f0c5dd63c6b4e5217126be6a13ad62ac02a829312e23f810ccd8e1e6b8",
+      "bytes": 11067
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\SearchComparisonTests.cs.meta",
+      "sha256": "f796de38f17fe8c2a3e0095b45856b9130ad6b93124ac27e5d38ec6e74f35db7",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\VNextIntegrationProtocolTests.cs",
+      "sha256": "f2a1be340a00b4ad91f4734caf1b60ebdb315e8f2d44394329cd8150c7de5229",
+      "bytes": 19845
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\VNextIntegrationProtocolTests.cs.meta",
+      "sha256": "fb3c9d49390155503f8a438bdad07f9be97bf1130cc6fa5f2a877348cdae893f",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\WindowsProcessCycleCounterTests.cs",
+      "sha256": "9a90f0ab2d3733806dd885184a6f20ebcd80a7272e0398af45d7bf404126d96c",
+      "bytes": 3503
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\WindowsProcessCycleCounterTests.cs.meta",
+      "sha256": "1fd876026ea7d15d2b90a257708c90dc1b26ba940802eb8d75d49bc6b3e8f73d",
+      "bytes": 62
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\Yanagisawa.DataLayoutCalibrator.Tests.Editor.asmdef",
+      "sha256": "7a5d4e1eadbaadd80a68cc079398fb74d7a0d46e470d4f63b79ff71bf3738904",
+      "bytes": 579
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor\\Yanagisawa.DataLayoutCalibrator.Tests.Editor.asmdef.meta",
+      "sha256": "cc5334ec1622dbee94b591064d70794807ff1f4694eadb43cc43679c50de0d31",
+      "bytes": 173
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests\\Editor.meta",
+      "sha256": "9095de8960ed2ee5b6265507ac9a555aae5a266351a780c9eec3fb8bcad276b0",
+      "bytes": 180
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Tests.meta",
+      "sha256": "a74087cd90fb5bb43a11697ac91928cc402c273b25b61d3782120fcb234ccc61",
+      "bytes": 180
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\audit_evidence.py",
+      "sha256": "aa525d2c65ebd16c610213d3bff4b268c6a019d57daabf693ce9624542ce68f7",
+      "bytes": 3357
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\babel_native.cpp",
+      "sha256": "768716acd2e6ee6bd6202b129bf5eb37be19272a526118c2b24a45653b6eaafc",
+      "bytes": 4031
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\build_msvc.py",
+      "sha256": "d4cc58b54344ebe7ead07307769891c3084024d37c8310deb2029d5ebc2a727d",
+      "bytes": 2099
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\check_delivery.py",
+      "sha256": "edb7478b59e12315c8c07fb2d82e0e816916bd3a75ae6445665c988435b01490",
+      "bytes": 1396
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\dot_experiment.py",
+      "sha256": "9c97f4f68b2f3e34181d2fc7cd2999e93acc1235042dfe5872397e5e4ef69022",
+      "bytes": 13306
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\finalize_receipt.py",
+      "sha256": "8c8be4c096d447e098a9a37b7aac8d6f0db9ab332f5f5a40c3b3b2483599a857",
+      "bytes": 5362
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\llama_native.cpp",
+      "sha256": "eaaf7b32ad55be2c4243fa6164e1a3deaa477adf0ef2b05ad42f4cb4000ee4ad",
+      "bytes": 7689
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\logical_babel_input.py",
+      "sha256": "f1880224c7544d1bb03d334c24a6e89f4f58fab24367489bb33dc781e7be578c",
+      "bytes": 1103
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\prepare_local_unity.py",
+      "sha256": "61dbfda12c10ff7ccefb819dbfe729e9e81249565e8e50c136b998a731626978",
+      "bytes": 1741
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\README.md",
+      "sha256": "edf4aaf06506594f1e5a7e7fdcd674134c3e9596f32ed5947e38e5adc7d98ca6",
+      "bytes": 6267
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\run_exclusive.py",
+      "sha256": "5a649c66fd8dae0f57383f8c9a4b29df942f24c7ae810ac82154c6443d1d3ef7",
+      "bytes": 5742
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\run_phase.py",
+      "sha256": "8d4106ad33d2dae3e65cec0cf18151d623b62559afdf453fe4d521d1b7dba07e",
+      "bytes": 6130
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\summarize.py",
+      "sha256": "9621e38284db010f7d10d2c952a982c1e7b0de4a785c01c6ea850f5982715640",
+      "bytes": 3687
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\verify_output.py",
+      "sha256": "65813cb575c3ddb9cddadb8558910849cb45de6019210f79082953383898f25a",
+      "bytes": 4404
+    }
+  ],
+  "workers": 19,
+  "nativeThreads": 20,
+  "chunk": 65536,
+  "orders": [
+    [
+      "native",
+      "serial",
+      "parallel"
+    ],
+    [
+      "serial",
+      "parallel",
+      "native"
+    ],
+    [
+      "parallel",
+      "native",
+      "serial"
+    ],
+    [
+      "native",
+      "parallel",
+      "serial"
+    ],
+    [
+      "parallel",
+      "serial",
+      "native"
+    ],
+    [
+      "serial",
+      "native",
+      "parallel"
+    ]
+  ]
+}

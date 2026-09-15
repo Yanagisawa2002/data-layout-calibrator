@@ -1,0 +1,1 @@
+PASS: frozen source/binaries, 25 complete outputs, original serial identity, AOT, balanced order, gates and exits.

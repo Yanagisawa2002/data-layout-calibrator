@@ -1,0 +1,39 @@
+{
+  "phase": "correctness",
+  "command": [
+    "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\player-02\\DataLayoutCalibrator.exe",
+    "-batchmode",
+    "-nographics",
+    "-job-worker-count",
+    "19",
+    "-dla-external",
+    "babel",
+    "-dla-external-output",
+    "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\discovery-262144\\result",
+    "-dla-dot-mode",
+    "parallel",
+    "-dla-dot-chunk",
+    "262144",
+    "-logFile",
+    "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\discovery-262144\\player.log"
+  ],
+  "cwd": "D:\\CodexWork\\babel-dot-20260915",
+  "environment": {
+    "OMP_NUM_THREADS": "20",
+    "OMP_DYNAMIC": "FALSE",
+    "OMP_PROC_BIND": null,
+    "OMP_PLACES": null
+  },
+  "startedUtc": "2026-09-15T05:00:40.488651+00:00",
+  "status": "passed",
+  "processWallTimeIsLifecycleMeasurement": false,
+  "freeGiBBefore": 261.11599349975586,
+  "estimatedGrowthGiB": 1.0,
+  "minimumFreeGiB": 20,
+  "backgroundConflicts": [],
+  "pid": 49712,
+  "exitCode": 0,
+  "completedUtc": "2026-09-15T05:00:50.807005+00:00",
+  "freeGiBAfter": 260.36597061157227,
+  "mutexReleased": true
+}

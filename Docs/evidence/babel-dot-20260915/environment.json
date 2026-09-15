@@ -1,0 +1,694 @@
+{
+  "hardware": {
+    "cpu": {
+      "Name": "Intel(R) Core(TM) Ultra 7 265K",
+      "NumberOfCores": 20,
+      "NumberOfLogicalProcessors": 20,
+      "MaxClockSpeed": 3900
+    },
+    "memory": [
+      {
+        "Capacity": 17179869184,
+        "Speed": 4800,
+        "ConfiguredClockSpeed": 4800
+      },
+      {
+        "Capacity": 17179869184,
+        "Speed": 4800,
+        "ConfiguredClockSpeed": 4800
+      }
+    ],
+    "os": {
+      "Caption": "Microsoft Windows 11 \u5bb6\u5ead\u7248",
+      "Version": "10.0.26200",
+      "BuildNumber": "26200"
+    }
+  },
+  "cpuSets": [
+    {
+      "id": 256,
+      "group": 0,
+      "logical": 0,
+      "core": 0,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 1,
+      "flags": 0
+    },
+    {
+      "id": 257,
+      "group": 0,
+      "logical": 1,
+      "core": 1,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 1,
+      "flags": 0
+    },
+    {
+      "id": 258,
+      "group": 0,
+      "logical": 2,
+      "core": 2,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 0,
+      "flags": 0
+    },
+    {
+      "id": 259,
+      "group": 0,
+      "logical": 3,
+      "core": 3,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 0,
+      "flags": 0
+    },
+    {
+      "id": 260,
+      "group": 0,
+      "logical": 4,
+      "core": 4,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 0,
+      "flags": 0
+    },
+    {
+      "id": 261,
+      "group": 0,
+      "logical": 5,
+      "core": 5,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 0,
+      "flags": 0
+    },
+    {
+      "id": 262,
+      "group": 0,
+      "logical": 6,
+      "core": 6,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 1,
+      "flags": 0
+    },
+    {
+      "id": 263,
+      "group": 0,
+      "logical": 7,
+      "core": 7,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 1,
+      "flags": 0
+    },
+    {
+      "id": 264,
+      "group": 0,
+      "logical": 8,
+      "core": 8,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 1,
+      "flags": 0
+    },
+    {
+      "id": 265,
+      "group": 0,
+      "logical": 9,
+      "core": 9,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 1,
+      "flags": 0
+    },
+    {
+      "id": 266,
+      "group": 0,
+      "logical": 10,
+      "core": 10,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 0,
+      "flags": 0
+    },
+    {
+      "id": 267,
+      "group": 0,
+      "logical": 11,
+      "core": 11,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 0,
+      "flags": 0
+    },
+    {
+      "id": 268,
+      "group": 0,
+      "logical": 12,
+      "core": 12,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 0,
+      "flags": 0
+    },
+    {
+      "id": 269,
+      "group": 0,
+      "logical": 13,
+      "core": 13,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 0,
+      "flags": 0
+    },
+    {
+      "id": 270,
+      "group": 0,
+      "logical": 14,
+      "core": 14,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 0,
+      "flags": 0
+    },
+    {
+      "id": 271,
+      "group": 0,
+      "logical": 15,
+      "core": 15,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 0,
+      "flags": 0
+    },
+    {
+      "id": 272,
+      "group": 0,
+      "logical": 16,
+      "core": 16,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 0,
+      "flags": 0
+    },
+    {
+      "id": 273,
+      "group": 0,
+      "logical": 17,
+      "core": 17,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 0,
+      "flags": 0
+    },
+    {
+      "id": 274,
+      "group": 0,
+      "logical": 18,
+      "core": 18,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 1,
+      "flags": 0
+    },
+    {
+      "id": 275,
+      "group": 0,
+      "logical": 19,
+      "core": 19,
+      "lastLevelCache": 0,
+      "numa": 0,
+      "efficiencyClass": 1,
+      "flags": 0
+    }
+  ],
+  "affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "memoryBytes": 33682857984,
+  "cpuLoad": {
+    "utc": "2026-09-15T04:59:03.459695+00:00",
+    "samplesPercent": [
+      5.4,
+      3.7,
+      3.9,
+      1.4,
+      4.2
+    ],
+    "meanPercent": 3.72,
+    "availableMemory": 11254480896,
+    "topProcesses": [
+      {
+        "pid": 56576,
+        "name": "python.exe",
+        "machineCpuPercent": 1.359
+      },
+      {
+        "pid": 4,
+        "name": "System",
+        "machineCpuPercent": 0.484
+      },
+      {
+        "pid": 52148,
+        "name": "ChatGPT.exe",
+        "machineCpuPercent": 0.297
+      },
+      {
+        "pid": 9448,
+        "name": "WmiPrvSE.exe",
+        "machineCpuPercent": 0.266
+      },
+      {
+        "pid": 16520,
+        "name": "esrv.exe",
+        "machineCpuPercent": 0.219
+      },
+      {
+        "pid": 5944,
+        "name": "svchost.exe",
+        "machineCpuPercent": 0.172
+      },
+      {
+        "pid": 11464,
+        "name": "CC_Engine_x64.exe",
+        "machineCpuPercent": 0.156
+      },
+      {
+        "pid": 6172,
+        "name": "ChatGPT.exe",
+        "machineCpuPercent": 0.109
+      },
+      {
+        "pid": 8268,
+        "name": "ChatGPT Classic.exe",
+        "machineCpuPercent": 0.109
+      }
+    ]
+  },
+  "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+  "psutil": "7.1.3",
+  "workers": 19,
+  "nativeThreads": 20,
+  "packages": {
+    "dependencies": {
+      "com.unity.burst": {
+        "version": "1.8.30",
+        "depth": 0,
+        "source": "registry",
+        "dependencies": {
+          "com.unity.mathematics": "1.2.1",
+          "com.unity.modules.jsonserialize": "1.0.0"
+        },
+        "url": "https://packages.unity.com"
+      },
+      "com.unity.collections": {
+        "version": "6.5.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.burst": "1.8.25",
+          "com.unity.nuget.mono-cecil": "1.11.6",
+          "com.unity.test-framework": "1.4.6",
+          "com.unity.test-framework.performance": "3.2.0"
+        }
+      },
+      "com.unity.ext.nunit": {
+        "version": "2.1.0",
+        "depth": 1,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.mathematics": {
+        "version": "1.4.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.multiplayer.center": {
+        "version": "1.0.1",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.uielements": "1.0.0"
+        }
+      },
+      "com.unity.nuget.mono-cecil": {
+        "version": "1.11.6",
+        "depth": 1,
+        "source": "registry",
+        "dependencies": {},
+        "url": "https://packages.unity.com"
+      },
+      "com.unity.test-framework": {
+        "version": "1.7.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.ext.nunit": "2.1.0",
+          "com.unity.modules.imgui": "1.0.0",
+          "com.unity.modules.jsonserialize": "1.0.0"
+        }
+      },
+      "com.unity.test-framework.performance": {
+        "version": "3.5.0",
+        "depth": 1,
+        "source": "registry",
+        "dependencies": {
+          "com.unity.test-framework": "1.1.33",
+          "com.unity.modules.jsonserialize": "1.0.0"
+        },
+        "url": "https://packages.unity.com"
+      },
+      "com.yanagisawa.data-layout-calibrator": {
+        "version": "file:../../Packages/com.yanagisawa.data-layout-calibrator",
+        "depth": 0,
+        "source": "local",
+        "dependencies": {
+          "com.unity.burst": "1.8.29",
+          "com.unity.collections": "2.6.3",
+          "com.unity.mathematics": "1.3.2"
+        }
+      },
+      "com.unity.modules.accessibility": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.adaptiveperformance": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.subsystems": "1.0.0"
+        }
+      },
+      "com.unity.modules.ai": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.androidjni": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.jsonserialize": "1.0.0"
+        }
+      },
+      "com.unity.modules.animation": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.assetbundle": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.audio": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.cloth": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.physics": "1.0.0"
+        }
+      },
+      "com.unity.modules.director": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.audio": "1.0.0",
+          "com.unity.modules.animation": "1.0.0"
+        }
+      },
+      "com.unity.modules.hierarchycore": {
+        "version": "1.0.0",
+        "depth": 1,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.imageconversion": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.imgui": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.jsonserialize": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.particlesystem": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.physics": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.physics2d": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.physicscore2d": "1.0.0"
+        }
+      },
+      "com.unity.modules.physicscore2d": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.screencapture": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.imageconversion": "1.0.0"
+        }
+      },
+      "com.unity.modules.subsystems": {
+        "version": "1.0.0",
+        "depth": 1,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.jsonserialize": "1.0.0"
+        }
+      },
+      "com.unity.modules.terrain": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.terrainphysics": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.physics": "1.0.0",
+          "com.unity.modules.terrain": "1.0.0"
+        }
+      },
+      "com.unity.modules.tilemap": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.physics2d": "1.0.0"
+        }
+      },
+      "com.unity.modules.ui": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.uielements": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.ui": "1.0.0",
+          "com.unity.modules.imgui": "1.0.0",
+          "com.unity.modules.jsonserialize": "1.0.0",
+          "com.unity.modules.hierarchycore": "1.0.0",
+          "com.unity.modules.physics": "1.0.0",
+          "com.unity.modules.animation": "1.0.0"
+        }
+      },
+      "com.unity.modules.umbra": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.unityanalytics": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.unitywebrequest": "1.0.0",
+          "com.unity.modules.jsonserialize": "1.0.0"
+        }
+      },
+      "com.unity.modules.unitywebrequest": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.unitywebrequestassetbundle": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.assetbundle": "1.0.0",
+          "com.unity.modules.unitywebrequest": "1.0.0"
+        }
+      },
+      "com.unity.modules.unitywebrequestaudio": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.unitywebrequest": "1.0.0",
+          "com.unity.modules.audio": "1.0.0"
+        }
+      },
+      "com.unity.modules.unitywebrequesttexture": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.unitywebrequest": "1.0.0",
+          "com.unity.modules.imageconversion": "1.0.0"
+        }
+      },
+      "com.unity.modules.unitywebrequestwww": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.unitywebrequest": "1.0.0",
+          "com.unity.modules.unitywebrequestassetbundle": "1.0.0",
+          "com.unity.modules.unitywebrequestaudio": "1.0.0",
+          "com.unity.modules.audio": "1.0.0",
+          "com.unity.modules.assetbundle": "1.0.0",
+          "com.unity.modules.imageconversion": "1.0.0"
+        }
+      },
+      "com.unity.modules.vectorgraphics": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.uielements": "1.0.0",
+          "com.unity.modules.imageconversion": "1.0.0",
+          "com.unity.modules.imgui": "1.0.0"
+        }
+      },
+      "com.unity.modules.vehicles": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.physics": "1.0.0"
+        }
+      },
+      "com.unity.modules.video": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.audio": "1.0.0",
+          "com.unity.modules.ui": "1.0.0",
+          "com.unity.modules.unitywebrequest": "1.0.0"
+        }
+      },
+      "com.unity.modules.wind": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {}
+      },
+      "com.unity.modules.xr": {
+        "version": "1.0.0",
+        "depth": 0,
+        "source": "builtin",
+        "dependencies": {
+          "com.unity.modules.physics": "1.0.0",
+          "com.unity.modules.jsonserialize": "1.0.0",
+          "com.unity.modules.subsystems": "1.0.0"
+        }
+      }
+    }
+  },
+  "unity": "m_EditorVersion: 6000.5.9f1\nm_EditorVersionWithRevision: 6000.5.9f1 (b57deb96f08d)\n",
+  "nativeBuild": {
+    "command": [
+      "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+      "/nologo",
+      "/O2",
+      "/fp:strict",
+      "/arch:AVX2",
+      "/std:c++20",
+      "/EHsc",
+      "/MD",
+      "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\babel_native.cpp",
+      "/FoD:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\native\\babel_native.obj",
+      "/FeD:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\native\\babel_native.exe",
+      "/openmp",
+      "/ID:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\BabelStream\\src",
+      "/ID:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\BabelStream\\src\\omp"
+    ],
+    "INCLUDE": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include;C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt;C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\shared;C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\um;C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\winrt",
+    "LIB": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\lib\\x64;C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\ucrt\\x64;C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\um\\x64"
+  }
+}

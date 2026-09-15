@@ -1,0 +1,19 @@
+test_ci_excludes_performance_paths (test_functional_policy.FunctionalPolicyTests.test_ci_excludes_performance_paths) ... ok
+test_default_validation_dispatches_only_build_and_functional_tests (test_functional_policy.FunctionalPolicyTests.test_default_validation_dispatches_only_build_and_functional_tests) ... ok
+test_functional_project_is_an_explicit_safe_test_allowlist (test_functional_policy.FunctionalPolicyTests.test_functional_project_is_an_explicit_safe_test_allowlist) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.005s
+
+OK
+test_additive_contract_is_accepted_without_reestimating (test_measurement_contract.MeasurementContractTests.test_additive_contract_is_accepted_without_reestimating) ... ok
+test_legacy_numbers_and_decision_are_preserved (test_measurement_contract.MeasurementContractTests.test_legacy_numbers_and_decision_are_preserved) ... ok
+test_missing_counter_zero_is_unknown (test_measurement_contract.MeasurementContractTests.test_missing_counter_zero_is_unknown) ... ok
+test_real_history_is_read_only_and_not_recategorized_as_current_evidence (test_measurement_contract.MeasurementContractTests.test_real_history_is_read_only_and_not_recategorized_as_current_evidence) ... ok
+test_scope_and_windows_are_required (test_measurement_contract.MeasurementContractTests.test_scope_and_windows_are_required) ... ok
+test_unknown_or_misnamed_metric_is_rejected (test_measurement_contract.MeasurementContractTests.test_unknown_or_misnamed_metric_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK

@@ -1,0 +1,79 @@
+{
+  "loads": [
+    {
+      "utc": "2026-09-15T04:59:55.564521+00:00",
+      "samplesPercent": [
+        3.5,
+        2.5,
+        4.6,
+        1.7,
+        5.9
+      ],
+      "meanPercent": 3.64,
+      "availableMemory": 11267432448,
+      "topProcesses": [
+        {
+          "pid": 51240,
+          "name": "python.exe",
+          "machineCpuPercent": 1.343
+        },
+        {
+          "pid": 4,
+          "name": "System",
+          "machineCpuPercent": 0.921
+        },
+        {
+          "pid": 11464,
+          "name": "CC_Engine_x64.exe",
+          "machineCpuPercent": 0.312
+        },
+        {
+          "pid": 5944,
+          "name": "svchost.exe",
+          "machineCpuPercent": 0.266
+        },
+        {
+          "pid": 9448,
+          "name": "WmiPrvSE.exe",
+          "machineCpuPercent": 0.25
+        },
+        {
+          "pid": 52148,
+          "name": "ChatGPT.exe",
+          "machineCpuPercent": 0.234
+        },
+        {
+          "pid": 6172,
+          "name": "ChatGPT.exe",
+          "machineCpuPercent": 0.219
+        },
+        {
+          "pid": 39032,
+          "name": "Killer.exe",
+          "machineCpuPercent": 0.219
+        },
+        {
+          "pid": 22504,
+          "name": "rustdesk.exe",
+          "machineCpuPercent": 0.203
+        },
+        {
+          "pid": 16520,
+          "name": "esrv.exe",
+          "machineCpuPercent": 0.172
+        },
+        {
+          "pid": 48252,
+          "name": "msedge.exe",
+          "machineCpuPercent": 0.172
+        },
+        {
+          "pid": 48484,
+          "name": "msedge.exe",
+          "machineCpuPercent": 0.172
+        }
+      ]
+    }
+  ],
+  "freezeSha256": null
+}

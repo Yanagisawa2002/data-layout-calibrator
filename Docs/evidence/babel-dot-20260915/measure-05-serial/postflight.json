@@ -1,0 +1,60 @@
+{
+  "utc": "2026-09-15T05:09:17.620712+00:00",
+  "samplesPercent": [
+    4.0
+  ],
+  "meanPercent": 4.0,
+  "availableMemory": 12136349696,
+  "topProcesses": [
+    {
+      "pid": 50800,
+      "name": "python.exe",
+      "machineCpuPercent": 6.639
+    },
+    {
+      "pid": 4,
+      "name": "System",
+      "machineCpuPercent": 2.577
+    },
+    {
+      "pid": 26152,
+      "name": "svchost.exe",
+      "machineCpuPercent": 2.343
+    },
+    {
+      "pid": 52148,
+      "name": "ChatGPT.exe",
+      "machineCpuPercent": 0.625
+    },
+    {
+      "pid": 6172,
+      "name": "ChatGPT.exe",
+      "machineCpuPercent": 0.469
+    },
+    {
+      "pid": 11464,
+      "name": "CC_Engine_x64.exe",
+      "machineCpuPercent": 0.469
+    },
+    {
+      "pid": 8268,
+      "name": "ChatGPT Classic.exe",
+      "machineCpuPercent": 0.312
+    },
+    {
+      "pid": 16520,
+      "name": "esrv.exe",
+      "machineCpuPercent": 0.312
+    },
+    {
+      "pid": 5944,
+      "name": "svchost.exe",
+      "machineCpuPercent": 0.234
+    },
+    {
+      "pid": 1660,
+      "name": "WUDFHost.exe",
+      "machineCpuPercent": 0.156
+    }
+  ]
+}

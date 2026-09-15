@@ -1,0 +1,74 @@
+{
+  "loads": [
+    {
+      "utc": "2026-09-15T05:00:17.832914+00:00",
+      "samplesPercent": [
+        1.1,
+        6.7,
+        2.6,
+        8.6,
+        5.4
+      ],
+      "meanPercent": 4.88,
+      "availableMemory": 10877579264,
+      "topProcesses": [
+        {
+          "pid": 51240,
+          "name": "python.exe",
+          "machineCpuPercent": 1.312
+        },
+        {
+          "pid": 9448,
+          "name": "WmiPrvSE.exe",
+          "machineCpuPercent": 0.547
+        },
+        {
+          "pid": 4,
+          "name": "System",
+          "machineCpuPercent": 0.484
+        },
+        {
+          "pid": 5944,
+          "name": "svchost.exe",
+          "machineCpuPercent": 0.375
+        },
+        {
+          "pid": 23044,
+          "name": "Creative Cloud.exe",
+          "machineCpuPercent": 0.359
+        },
+        {
+          "pid": 11464,
+          "name": "CC_Engine_x64.exe",
+          "machineCpuPercent": 0.281
+        },
+        {
+          "pid": 52148,
+          "name": "ChatGPT.exe",
+          "machineCpuPercent": 0.281
+        },
+        {
+          "pid": 6172,
+          "name": "ChatGPT.exe",
+          "machineCpuPercent": 0.203
+        },
+        {
+          "pid": 16520,
+          "name": "esrv.exe",
+          "machineCpuPercent": 0.141
+        },
+        {
+          "pid": 35164,
+          "name": "codex.exe",
+          "machineCpuPercent": 0.125
+        },
+        {
+          "pid": 8268,
+          "name": "ChatGPT Classic.exe",
+          "machineCpuPercent": 0.109
+        }
+      ]
+    }
+  ],
+  "freezeSha256": null
+}

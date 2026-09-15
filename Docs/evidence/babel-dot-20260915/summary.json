@@ -1,0 +1,972 @@
+{
+  "processCount": 18,
+  "independentBlocks": 6,
+  "processRows": [
+    {
+      "block": 1,
+      "position": 1,
+      "arm": "native",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-01-native",
+      "Copy": 9.209667676767676,
+      "Mul": 13.677370707070708,
+      "Add": 18.547076767676767,
+      "Triad": 18.38748888888889,
+      "Dot": 8.420962626262627,
+      "constructMs": 187.3338,
+      "initMs": 19.8161,
+      "exportMs": 41.6677,
+      "disposeMs": 64.5373,
+      "storageLifecycleMs": 7137.8318,
+      "sum": 39.791037028669386,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 3.868330265853786e-11
+    },
+    {
+      "block": 1,
+      "position": 2,
+      "arm": "serial",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-01-serial",
+      "Copy": 12.72108888888889,
+      "Mul": 13.412326262626264,
+      "Add": 17.61438181818182,
+      "Triad": 17.358547474747475,
+      "Dot": 29.753557575757576,
+      "constructMs": 191.136,
+      "initMs": 28.183,
+      "exportMs": 37.1739,
+      "disposeMs": 42.5741,
+      "storageLifecycleMs": 9389.689400000001,
+      "sum": 39.79103705898711,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 8.006066880779682e-10
+    },
+    {
+      "block": 1,
+      "position": 3,
+      "arm": "parallel",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-01-parallel",
+      "Copy": 12.801971717171718,
+      "Mul": 13.491666666666667,
+      "Add": 17.577932323232325,
+      "Triad": 17.500129292929294,
+      "Dot": 8.174340404040404,
+      "constructMs": 184.0608,
+      "initMs": 27.7789,
+      "exportMs": 40.1492,
+      "disposeMs": 53.0386,
+      "storageLifecycleMs": 7261.1445,
+      "sum": 39.79103702713014,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 0.0
+    },
+    {
+      "block": 2,
+      "position": 1,
+      "arm": "serial",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-02-serial",
+      "Copy": 12.68740505050505,
+      "Mul": 13.400509090909091,
+      "Add": 17.66939090909091,
+      "Triad": 17.348110101010104,
+      "Dot": 29.849920202020204,
+      "constructMs": 163.876,
+      "initMs": 27.4324,
+      "exportMs": 37.499500000000005,
+      "disposeMs": 39.4897,
+      "storageLifecycleMs": 9368.042000000001,
+      "sum": 39.79103705898711,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 8.006066880779682e-10
+    },
+    {
+      "block": 2,
+      "position": 2,
+      "arm": "parallel",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-02-parallel",
+      "Copy": 12.862230303030303,
+      "Mul": 13.631481818181818,
+      "Add": 17.56248484848485,
+      "Triad": 17.73839494949495,
+      "Dot": 8.184976767676767,
+      "constructMs": 182.351,
+      "initMs": 28.106900000000003,
+      "exportMs": 39.3241,
+      "disposeMs": 52.3395,
+      "storageLifecycleMs": 7300.9926000000005,
+      "sum": 39.79103702713014,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 0.0
+    },
+    {
+      "block": 2,
+      "position": 3,
+      "arm": "native",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-02-native",
+      "Copy": 9.190042424242424,
+      "Mul": 13.705115151515152,
+      "Add": 18.54220101010101,
+      "Triad": 18.365549494949494,
+      "Dot": 8.405719191919191,
+      "constructMs": 183.4743,
+      "initMs": 19.7237,
+      "exportMs": 42.9512,
+      "disposeMs": 51.678399999999996,
+      "storageLifecycleMs": 7118.6956,
+      "sum": 39.791037028669386,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 3.868330265853786e-11
+    },
+    {
+      "block": 3,
+      "position": 1,
+      "arm": "parallel",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-03-parallel",
+      "Copy": 12.99338484848485,
+      "Mul": 13.680063636363638,
+      "Add": 17.659938383838384,
+      "Triad": 17.762329292929294,
+      "Dot": 8.427725252525253,
+      "constructMs": 201.6259,
+      "initMs": 27.628400000000003,
+      "exportMs": 40.714400000000005,
+      "disposeMs": 53.557700000000004,
+      "storageLifecycleMs": 7376.4317,
+      "sum": 39.79103702713014,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 0.0
+    },
+    {
+      "block": 3,
+      "position": 2,
+      "arm": "native",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-03-native",
+      "Copy": 9.171030303030303,
+      "Mul": 13.678152525252525,
+      "Add": 18.427973737373737,
+      "Triad": 18.35798181818182,
+      "Dot": 8.378048484848485,
+      "constructMs": 224.27720000000002,
+      "initMs": 19.798199999999998,
+      "exportMs": 40.7918,
+      "disposeMs": 60.7409,
+      "storageLifecycleMs": 7146.7532,
+      "sum": 39.791037028669386,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 3.868330265853786e-11
+    },
+    {
+      "block": 3,
+      "position": 3,
+      "arm": "serial",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-03-serial",
+      "Copy": 12.70769393939394,
+      "Mul": 13.399659595959596,
+      "Add": 17.525173737373738,
+      "Triad": 17.403341414141416,
+      "Dot": 26.490115151515152,
+      "constructMs": 244.4113,
+      "initMs": 27.5604,
+      "exportMs": 36.700500000000005,
+      "disposeMs": 50.3001,
+      "storageLifecycleMs": 9115.038400000001,
+      "sum": 39.79103705898711,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 8.006066880779682e-10
+    },
+    {
+      "block": 4,
+      "position": 1,
+      "arm": "native",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-04-native",
+      "Copy": 9.183126262626262,
+      "Mul": 13.672326262626262,
+      "Add": 18.52478181818182,
+      "Triad": 18.36401616161616,
+      "Dot": 8.396813131313131,
+      "constructMs": 180.9005,
+      "initMs": 20.3894,
+      "exportMs": 40.8664,
+      "disposeMs": 60.24,
+      "storageLifecycleMs": 7116.7995,
+      "sum": 39.791037028669386,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 3.868330265853786e-11
+    },
+    {
+      "block": 4,
+      "position": 2,
+      "arm": "parallel",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-04-parallel",
+      "Copy": 12.858674747474748,
+      "Mul": 13.61549393939394,
+      "Add": 17.57579696969697,
+      "Triad": 17.667632323232326,
+      "Dot": 8.223350505050506,
+      "constructMs": 229.50830000000002,
+      "initMs": 27.4949,
+      "exportMs": 39.4565,
+      "disposeMs": 55.5968,
+      "storageLifecycleMs": 7346.8486,
+      "sum": 39.79103702713014,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 0.0
+    },
+    {
+      "block": 4,
+      "position": 3,
+      "arm": "serial",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-04-serial",
+      "Copy": 12.703230303030304,
+      "Mul": 13.366574747474749,
+      "Add": 17.566030303030303,
+      "Triad": 17.327568686868688,
+      "Dot": 29.818268686868688,
+      "constructMs": 224.10750000000002,
+      "initMs": 28.309800000000003,
+      "exportMs": 36.731,
+      "disposeMs": 56.259,
+      "storageLifecycleMs": 9427.947,
+      "sum": 39.79103705898711,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 8.006066880779682e-10
+    },
+    {
+      "block": 5,
+      "position": 1,
+      "arm": "parallel",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-05-parallel",
+      "Copy": 12.863687878787879,
+      "Mul": 13.651839393939394,
+      "Add": 17.641827272727273,
+      "Triad": 17.64967676767677,
+      "Dot": 8.24948787878788,
+      "constructMs": 204.33540000000002,
+      "initMs": 27.7332,
+      "exportMs": 40.5574,
+      "disposeMs": 51.885600000000004,
+      "storageLifecycleMs": 7331.343800000001,
+      "sum": 39.79103702713014,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 0.0
+    },
+    {
+      "block": 5,
+      "position": 2,
+      "arm": "serial",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-05-serial",
+      "Copy": 12.659832323232324,
+      "Mul": 13.392270707070708,
+      "Add": 17.551166666666667,
+      "Triad": 17.316262626262628,
+      "Dot": 29.793540404040407,
+      "constructMs": 203.3676,
+      "initMs": 27.4831,
+      "exportMs": 37.8278,
+      "disposeMs": 48.2239,
+      "storageLifecycleMs": 9390.4397,
+      "sum": 39.79103705898711,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 8.006066880779682e-10
+    },
+    {
+      "block": 5,
+      "position": 3,
+      "arm": "native",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-05-native",
+      "Copy": 9.231061616161616,
+      "Mul": 13.751379797979798,
+      "Add": 18.55179898989899,
+      "Triad": 18.4445303030303,
+      "Dot": 8.450366666666667,
+      "constructMs": 186.7673,
+      "initMs": 20.8301,
+      "exportMs": 41.219100000000005,
+      "disposeMs": 50.6263,
+      "storageLifecycleMs": 7144.9306,
+      "sum": 39.791037028669386,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 3.868330265853786e-11
+    },
+    {
+      "block": 6,
+      "position": 1,
+      "arm": "serial",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-06-serial",
+      "Copy": 12.687797979797981,
+      "Mul": 13.394235353535354,
+      "Add": 17.592835353535353,
+      "Triad": 17.339630303030305,
+      "Dot": 29.721711111111112,
+      "constructMs": 195.15210000000002,
+      "initMs": 27.781200000000002,
+      "exportMs": 38.1149,
+      "disposeMs": 39.6441,
+      "storageLifecycleMs": 9378.376400000001,
+      "sum": 39.79103705898711,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 8.006066880779682e-10
+    },
+    {
+      "block": 6,
+      "position": 2,
+      "arm": "native",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-06-native",
+      "Copy": 9.285051515151515,
+      "Mul": 13.84859696969697,
+      "Add": 18.695278787878788,
+      "Triad": 18.50571515151515,
+      "Dot": 8.491311111111111,
+      "constructMs": 172.9288,
+      "initMs": 20.4653,
+      "exportMs": 40.6631,
+      "disposeMs": 50.7983,
+      "storageLifecycleMs": 7169.3208,
+      "sum": 39.791037028669386,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 3.868330265853786e-11
+    },
+    {
+      "block": 6,
+      "position": 3,
+      "arm": "parallel",
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-06-parallel",
+      "Copy": 12.843211111111112,
+      "Mul": 13.617249494949496,
+      "Add": 17.567959595959596,
+      "Triad": 17.724163636363638,
+      "Dot": 8.203543434343434,
+      "constructMs": 183.3622,
+      "initMs": 28.119400000000002,
+      "exportMs": 40.1443,
+      "disposeMs": 51.616,
+      "storageLifecycleMs": 7300.6404,
+      "sum": 39.79103702713014,
+      "outputSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+      "dotRelativeError": 0.0
+    }
+  ],
+  "armMeans95CI": {
+    "native": {
+      "Copy": {
+        "meanMs": 9.2116632996633,
+        "ci95": [
+          9.167890453443617,
+          9.255436145882983
+        ]
+      },
+      "Mul": {
+        "meanMs": 13.722156902356902,
+        "ci95": [
+          13.650124369815098,
+          13.794189434898707
+        ]
+      },
+      "Add": {
+        "meanMs": 18.548185185185186,
+        "ci95": [
+          18.45829425484917,
+          18.6380761155212
+        ]
+      },
+      "Triad": {
+        "meanMs": 18.404213636363636,
+        "ci95": [
+          18.342206566329644,
+          18.46622070639763
+        ]
+      },
+      "Dot": {
+        "meanMs": 8.423870202020202,
+        "ci95": [
+          8.380805048656702,
+          8.466935355383702
+        ]
+      },
+      "storageLifecycleMs": {
+        "meanMs": 7139.05525,
+        "ci95": [
+          7118.4846395248915,
+          7159.625860475109
+        ]
+      }
+    },
+    "serial": {
+      "Copy": {
+        "meanMs": 12.694508080808081,
+        "ci95": [
+          12.672224580586096,
+          12.716791581030066
+        ]
+      },
+      "Mul": {
+        "meanMs": 13.394262626262627,
+        "ci95": [
+          13.37824349615421,
+          13.410281756371043
+        ]
+      },
+      "Add": {
+        "meanMs": 17.586496464646466,
+        "ci95": [
+          17.5327456893319,
+          17.64024723996103
+        ]
+      },
+      "Triad": {
+        "meanMs": 17.3489101010101,
+        "ci95": [
+          17.316859453331514,
+          17.38096074868869
+        ]
+      },
+      "Dot": {
+        "meanMs": 29.23785218855219,
+        "ci95": [
+          27.824388188171653,
+          30.651316188932725
+        ]
+      },
+      "storageLifecycleMs": {
+        "meanMs": 9344.92215,
+        "ci95": [
+          9224.836873114693,
+          9465.007426885308
+        ]
+      }
+    },
+    "parallel": {
+      "Copy": {
+        "meanMs": 12.870526767676768,
+        "ci95": [
+          12.802846515810897,
+          12.93820701954264
+        ]
+      },
+      "Mul": {
+        "meanMs": 13.614632491582492,
+        "ci95": [
+          13.546495628060173,
+          13.682769355104812
+        ]
+      },
+      "Add": {
+        "meanMs": 17.597656565656568,
+        "ci95": [
+          17.553590455450887,
+          17.641722675862248
+        ]
+      },
+      "Triad": {
+        "meanMs": 17.673721043771046,
+        "ci95": [
+          17.57380078662578,
+          17.77364130091631
+        ]
+      },
+      "Dot": {
+        "meanMs": 8.24390404040404,
+        "ci95": [
+          8.145252215422936,
+          8.342555865385144
+        ]
+      },
+      "storageLifecycleMs": {
+        "meanMs": 7319.5669333333335,
+        "ci95": [
+          7276.98263540625,
+          7362.151231260417
+        ]
+      }
+    }
+  },
+  "comparisons": {
+    "serial-to-parallel": {
+      "Copy": {
+        "referenceMeanMs": 12.694508080808081,
+        "candidateMeanMs": 12.870526767676768,
+        "differenceMs": 0.17601868686868638,
+        "pairedDifference95CI": [
+          0.1053034930483717,
+          0.24673388068900107
+        ],
+        "reductionPercent": -1.3865735146901623,
+        "ciAsPercentOfReference": [
+          -1.9436269536274537,
+          -0.8295200757528566
+        ],
+        "withinTwoPercent": true,
+        "status": "regression"
+      },
+      "Mul": {
+        "referenceMeanMs": 13.394262626262627,
+        "candidateMeanMs": 13.614632491582492,
+        "differenceMs": 0.22036986531986505,
+        "pairedDifference95CI": [
+          0.14474575980115817,
+          0.29599397083857193
+        ],
+        "reductionPercent": -1.6452556700491896,
+        "ciAsPercentOfReference": [
+          -2.2098564071620155,
+          -1.0806549329363588
+        ],
+        "withinTwoPercent": false,
+        "status": "regression"
+      },
+      "Add": {
+        "referenceMeanMs": 17.586496464646466,
+        "candidateMeanMs": 17.597656565656568,
+        "differenceMs": 0.011160101010101306,
+        "pairedDifference95CI": [
+          -0.08164850169625615,
+          0.10396870371645875
+        ],
+        "reductionPercent": -0.06345835301838924,
+        "ciAsPercentOfReference": [
+          -0.5911848555251666,
+          0.46426814948839495
+        ],
+        "withinTwoPercent": true,
+        "status": "inconclusive"
+      },
+      "Triad": {
+        "referenceMeanMs": 17.3489101010101,
+        "candidateMeanMs": 17.673721043771046,
+        "differenceMs": 0.3248109427609431,
+        "pairedDifference95CI": [
+          0.22760211992331675,
+          0.4220197655985694
+        ],
+        "reductionPercent": -1.8722267904427774,
+        "ciAsPercentOfReference": [
+          -2.43254338826736,
+          -1.3119101926181815
+        ],
+        "withinTwoPercent": false,
+        "status": "regression"
+      },
+      "Dot": {
+        "referenceMeanMs": 29.23785218855219,
+        "candidateMeanMs": 8.24390404040404,
+        "differenceMs": -20.99394814814815,
+        "pairedDifference95CI": [
+          -22.502027269539315,
+          -19.485869026756983
+        ],
+        "reductionPercent": 71.80400260853679,
+        "ciAsPercentOfReference": [
+          66.64603439778827,
+          76.96197081928534
+        ],
+        "withinTwoPercent": false,
+        "status": "improvement"
+      },
+      "storageLifecycleMs": {
+        "referenceMeanMs": 9344.92215,
+        "candidateMeanMs": 7319.5669333333335,
+        "differenceMs": -2025.3552166666673,
+        "pairedDifference95CI": [
+          -2174.9509402550634,
+          -1875.759493078271
+        ],
+        "reductionPercent": 21.673323588540185,
+        "ciAsPercentOfReference": [
+          20.0724999413534,
+          23.274147235726982
+        ],
+        "withinTwoPercent": false,
+        "status": "improvement"
+      },
+      "constructMs": {
+        "referenceMeanMs": 203.67508333333333,
+        "candidateMeanMs": 197.5406,
+        "differenceMs": -6.1344833333333355,
+        "pairedDifference95CI": [
+          -27.973288108100512,
+          15.70432144143384
+        ],
+        "reductionPercent": 3.0118968078651354,
+        "ciAsPercentOfReference": [
+          -7.710477484244967,
+          13.73427109997525
+        ],
+        "withinTwoPercent": false,
+        "status": "inconclusive"
+      },
+      "initMs": {
+        "referenceMeanMs": 27.79165,
+        "candidateMeanMs": 27.810283333333334,
+        "differenceMs": 0.018633333333333724,
+        "pairedDifference95CI": [
+          -0.5487958695499687,
+          0.5860625362166362
+        ],
+        "reductionPercent": -0.06704651696942687,
+        "ciAsPercentOfReference": [
+          -2.108772009638277,
+          1.9746789756994232
+        ],
+        "withinTwoPercent": false,
+        "status": "inconclusive"
+      },
+      "exportMs": {
+        "referenceMeanMs": 37.34126666666667,
+        "candidateMeanMs": 40.05765,
+        "differenceMs": 2.7163833333333316,
+        "pairedDifference95CI": [
+          1.9010496748407304,
+          3.531716991825933
+        ],
+        "reductionPercent": -7.274480958510601,
+        "ciAsPercentOfReference": [
+          -9.457946414492097,
+          -5.091015502529097
+        ],
+        "withinTwoPercent": false,
+        "status": "regression"
+      },
+      "disposeMs": {
+        "referenceMeanMs": 46.08181666666667,
+        "candidateMeanMs": 53.005700000000004,
+        "differenceMs": 6.923883333333335,
+        "pairedDifference95CI": [
+          1.0852651611891568,
+          12.762501505477513
+        ],
+        "reductionPercent": -15.02519612761216,
+        "ciAsPercentOfReference": [
+          -27.69530897142187,
+          -2.3550832838024474
+        ],
+        "withinTwoPercent": false,
+        "status": "regression"
+      }
+    },
+    "native-to-serial": {
+      "Copy": {
+        "referenceMeanMs": 9.2116632996633,
+        "candidateMeanMs": 12.694508080808081,
+        "differenceMs": 3.4828447811447822,
+        "pairedDifference95CI": [
+          3.4260357995969817,
+          3.539653762692583
+        ],
+        "reductionPercent": -37.8090760359433,
+        "ciAsPercentOfReference": [
+          -38.42578313540794,
+          -37.192368936478694
+        ],
+        "withinTwoPercent": false,
+        "status": "regression"
+      },
+      "Mul": {
+        "referenceMeanMs": 13.722156902356902,
+        "candidateMeanMs": 13.394262626262627,
+        "differenceMs": -0.3278942760942754,
+        "pairedDifference95CI": [
+          -0.4011920631213315,
+          -0.2545964890672193
+        ],
+        "reductionPercent": 2.389524317696414,
+        "ciAsPercentOfReference": [
+          1.85536786147293,
+          2.923680773919902
+        ],
+        "withinTwoPercent": false,
+        "status": "improvement"
+      },
+      "Add": {
+        "referenceMeanMs": 18.548185185185186,
+        "candidateMeanMs": 17.586496464646466,
+        "differenceMs": -0.9616887205387202,
+        "pairedDifference95CI": [
+          -1.0476464685133904,
+          -0.87573097256405
+        ],
+        "reductionPercent": 5.18481302045033,
+        "ciAsPercentOfReference": [
+          4.721383595326157,
+          5.648242445574497
+        ],
+        "withinTwoPercent": false,
+        "status": "improvement"
+      },
+      "Triad": {
+        "referenceMeanMs": 18.404213636363636,
+        "candidateMeanMs": 17.3489101010101,
+        "differenceMs": -1.0553035353535336,
+        "pairedDifference95CI": [
+          -1.136881260667101,
+          -0.9737258100399662
+        ],
+        "reductionPercent": 5.734032196129433,
+        "ciAsPercentOfReference": [
+          5.290776499768767,
+          6.1772878924900905
+        ],
+        "withinTwoPercent": false,
+        "status": "improvement"
+      },
+      "Dot": {
+        "referenceMeanMs": 8.423870202020202,
+        "candidateMeanMs": 29.23785218855219,
+        "differenceMs": 20.81398198653199,
+        "pairedDifference95CI": [
+          19.42262235579773,
+          22.205341617266246
+        ],
+        "reductionPercent": -247.08336533414774,
+        "ciAsPercentOfReference": [
+          -263.600234627796,
+          -230.56649604049957
+        ],
+        "withinTwoPercent": false,
+        "status": "regression"
+      },
+      "storageLifecycleMs": {
+        "referenceMeanMs": 7139.05525,
+        "candidateMeanMs": 9344.92215,
+        "differenceMs": 2205.866900000001,
+        "pairedDifference95CI": [
+          2078.9620953393023,
+          2332.7717046606995
+        ],
+        "reductionPercent": -30.89858283419224,
+        "ciAsPercentOfReference": [
+          -32.67619626085257,
+          -29.12096940753193
+        ],
+        "withinTwoPercent": false,
+        "status": "regression"
+      },
+      "constructMs": {
+        "referenceMeanMs": 189.28031666666666,
+        "candidateMeanMs": 203.67508333333333,
+        "differenceMs": 14.394766666666674,
+        "pairedDifference95CI": [
+          -7.60319721622025,
+          36.3927305495536
+        ],
+        "reductionPercent": -7.60499925199125,
+        "ciAsPercentOfReference": [
+          -19.226896483717983,
+          4.016897979735479
+        ],
+        "withinTwoPercent": false,
+        "status": "inconclusive"
+      },
+      "initMs": {
+        "referenceMeanMs": 20.170466666666666,
+        "candidateMeanMs": 27.79165,
+        "differenceMs": 7.621183333333335,
+        "pairedDifference95CI": [
+          7.008588690643146,
+          8.233777976023525
+        ],
+        "reductionPercent": -37.78387212987967,
+        "ciAsPercentOfReference": [
+          -40.82095923754958,
+          -34.746785022209764
+        ],
+        "withinTwoPercent": false,
+        "status": "regression"
+      },
+      "exportMs": {
+        "referenceMeanMs": 41.359883333333336,
+        "candidateMeanMs": 37.34126666666667,
+        "differenceMs": -4.018616666666666,
+        "pairedDifference95CI": [
+          -5.052627645324054,
+          -2.9846056880092773
+        ],
+        "reductionPercent": 9.716218574117512,
+        "ciAsPercentOfReference": [
+          7.216184977978122,
+          12.216252170256897
+        ],
+        "withinTwoPercent": false,
+        "status": "improvement"
+      },
+      "disposeMs": {
+        "referenceMeanMs": 56.43686666666667,
+        "candidateMeanMs": 46.08181666666667,
+        "differenceMs": -10.35505,
+        "pairedDifference95CI": [
+          -17.66549079823361,
+          -3.0446092017663915
+        ],
+        "reductionPercent": 18.34802428200006,
+        "ciAsPercentOfReference": [
+          5.394716931662385,
+          31.301331632337742
+        ],
+        "withinTwoPercent": false,
+        "status": "improvement"
+      }
+    },
+    "native-to-parallel": {
+      "Copy": {
+        "referenceMeanMs": 9.2116632996633,
+        "candidateMeanMs": 12.870526767676768,
+        "differenceMs": 3.6588634680134686,
+        "pairedDifference95CI": [
+          3.562172816439866,
+          3.7555541195870714
+        ],
+        "reductionPercent": -39.71990018509692,
+        "ciAsPercentOfReference": [
+          -40.76955482865231,
+          -38.67024554154155
+        ],
+        "withinTwoPercent": false,
+        "status": "regression"
+      },
+      "Mul": {
+        "referenceMeanMs": 13.722156902356902,
+        "candidateMeanMs": 13.614632491582492,
+        "differenceMs": -0.10752441077441037,
+        "pairedDifference95CI": [
+          -0.19804682914768157,
+          -0.017001992401139185
+        ],
+        "reductionPercent": 0.7835824319713288,
+        "ciAsPercentOfReference": [
+          0.12390174898975935,
+          1.4432631149529072
+        ],
+        "withinTwoPercent": true,
+        "status": "improvement"
+      },
+      "Add": {
+        "referenceMeanMs": 18.548185185185186,
+        "candidateMeanMs": 17.597656565656568,
+        "differenceMs": -0.9505286195286189,
+        "pairedDifference95CI": [
+          -1.072375649884075,
+          -0.8286815891731626
+        ],
+        "reductionPercent": 5.124644864381802,
+        "ciAsPercentOfReference": [
+          4.467723288826378,
+          5.781566439937226
+        ],
+        "withinTwoPercent": false,
+        "status": "improvement"
+      },
+      "Triad": {
+        "referenceMeanMs": 18.404213636363636,
+        "candidateMeanMs": 17.673721043771046,
+        "differenceMs": -0.7304925925925906,
+        "pairedDifference95CI": [
+          -0.8467676028056381,
+          -0.614217582379543
+        ],
+        "reductionPercent": 3.9691594926352045,
+        "ciAsPercentOfReference": [
+          3.3373747692536684,
+          4.600944216016747
+        ],
+        "withinTwoPercent": false,
+        "status": "improvement"
+      },
+      "Dot": {
+        "referenceMeanMs": 8.423870202020202,
+        "candidateMeanMs": 8.24390404040404,
+        "differenceMs": -0.17996616161616133,
+        "pairedDifference95CI": [
+          -0.30497012259287715,
+          -0.05496220063944551
+        ],
+        "reductionPercent": 2.13638336418103,
+        "ciAsPercentOfReference": [
+          0.652457829018597,
+          3.6203088993434345
+        ],
+        "withinTwoPercent": false,
+        "status": "improvement"
+      },
+      "storageLifecycleMs": {
+        "referenceMeanMs": 7139.05525,
+        "candidateMeanMs": 7319.5669333333335,
+        "differenceMs": 180.51168333333362,
+        "pairedDifference95CI": [
+          132.1899146977881,
+          228.83345196887913
+        ],
+        "reductionPercent": -2.5285094037244376,
+        "ciAsPercentOfReference": [
+          -3.2053744361885856,
+          -1.8516443712603023
+        ],
+        "withinTwoPercent": false,
+        "status": "regression"
+      },
+      "constructMs": {
+        "referenceMeanMs": 189.28031666666666,
+        "candidateMeanMs": 197.5406,
+        "differenceMs": 8.260283333333339,
+        "pairedDifference95CI": [
+          -16.995489080075174,
+          33.51605574674185
+        ],
+        "reductionPercent": -4.3640477144172225,
+        "ciAsPercentOfReference": [
+          -17.70710041962024,
+          8.979004990785803
+        ],
+        "withinTwoPercent": false,
+        "status": "inconclusive"
+      },
+      "initMs": {
+        "referenceMeanMs": 20.170466666666666,
+        "candidateMeanMs": 27.810283333333334,
+        "differenceMs": 7.639816666666669,
+        "pairedDifference95CI": [
+          7.060887130201863,
+          8.218746203131476
+        ],
+        "reductionPercent": -37.876251417088355,
+        "ciAsPercentOfReference": [
+          -40.74643556320698,
+          -35.00606727096975
+        ],
+        "withinTwoPercent": false,
+        "status": "regression"
+      },
+      "exportMs": {
+        "referenceMeanMs": 41.359883333333336,
+        "candidateMeanMs": 40.05765,
+        "differenceMs": -1.3022333333333336,
+        "pairedDifference95CI": [
+          -2.628649893396731,
+          0.024183226730064122
+        ],
+        "reductionPercent": 3.1485420856683595,
+        "ciAsPercentOfReference": [
+          -0.058470248900760406,
+          6.355554420237479
+        ],
+        "withinTwoPercent": false,
+        "status": "inconclusive"
+      },
+      "disposeMs": {
+        "referenceMeanMs": 56.43686666666667,
+        "candidateMeanMs": 53.005700000000004,
+        "differenceMs": -3.4311666666666647,
+        "pairedDifference95CI": [
+          -8.933089906736633,
+          2.0707565734033033
+        ],
+        "reductionPercent": 6.079654788300311,
+        "ciAsPercentOfReference": [
+          -3.6691558119869105,
+          15.828465388587542
+        ],
+        "withinTwoPercent": false,
+        "status": "inconclusive"
+      }
+    }
+  },
+  "allocationEligibility": "Unknown",
+  "caveat": "Small-sample paired-t estimates; six fixed balanced orders; no multiplicity adjustment. Percent CI rescales difference CI by observed reference mean, not an independent ratio CI."
+}

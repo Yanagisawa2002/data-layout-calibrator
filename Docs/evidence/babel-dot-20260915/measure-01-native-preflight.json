@@ -1,0 +1,64 @@
+{
+  "loads": [
+    {
+      "utc": "2026-09-15T05:04:05.283861+00:00",
+      "samplesPercent": [
+        3.3,
+        1.8,
+        5.0,
+        2.6,
+        1.4
+      ],
+      "meanPercent": 2.82,
+      "availableMemory": 12422402048,
+      "topProcesses": [
+        {
+          "pid": 50800,
+          "name": "python.exe",
+          "machineCpuPercent": 1.281
+        },
+        {
+          "pid": 4,
+          "name": "System",
+          "machineCpuPercent": 0.39
+        },
+        {
+          "pid": 52148,
+          "name": "ChatGPT.exe",
+          "machineCpuPercent": 0.297
+        },
+        {
+          "pid": 11464,
+          "name": "CC_Engine_x64.exe",
+          "machineCpuPercent": 0.281
+        },
+        {
+          "pid": 26124,
+          "name": "Weixin.exe",
+          "machineCpuPercent": 0.234
+        },
+        {
+          "pid": 41816,
+          "name": "node.exe",
+          "machineCpuPercent": 0.141
+        },
+        {
+          "pid": 16520,
+          "name": "esrv.exe",
+          "machineCpuPercent": 0.125
+        },
+        {
+          "pid": 5944,
+          "name": "svchost.exe",
+          "machineCpuPercent": 0.109
+        },
+        {
+          "pid": 6172,
+          "name": "ChatGPT.exe",
+          "machineCpuPercent": 0.109
+        }
+      ]
+    }
+  ],
+  "freezeSha256": "30698e2706b4203b9a9aa9654f538b248bc15916449ece02a0f5aad57438c426"
+}

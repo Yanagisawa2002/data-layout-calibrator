@@ -1,0 +1,172 @@
+{
+  "passed": true,
+  "frozenFilesChecked": 640,
+  "buildInputsChecked": 279,
+  "buildSourceCommit": "8e83a17338452c9d202f45ed553e0c807a7b8558",
+  "retainedBuildDirtyStatus": "M BenchmarkProject/Assets/DataLayoutCalibrator/Editor/DataLayoutCalibratorBuild.cs\n M BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/ExternalComparisonRunner.cs\n M BenchmarkProject/Packages/manifest.json\n M BenchmarkProject/Packages/packages-lock.json\n M BenchmarkProject/ProjectSettings/ProjectSettings.asset\n M BenchmarkProject/ProjectSettings/ProjectVersion.txt\n M Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Runtime/BabelStreamPort.cs\n M Tools/ActualComparison/build_msvc.py\n?? BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/BabelDotCorrectness.cs\n?? BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/BabelDotCorrectness.cs.meta\n?? BenchmarkProject/ProjectSettings/ProjectAuditorSettings.asset\n?? Tools/ActualComparison/dot_experiment.py\n?? Tools/ActualComparison/prepare_local_unity.py",
+  "sourceIdentitySha256": "a14128558ad9c917877d920ea0fb127705cfe1857034daf4cc80b9ee46c546a0",
+  "serialJobIdenticalToMain": true,
+  "serialJobNormalizedUtf8Sha256": "647ae0ebbbe11cec5ede0a9f28c2da3545a7b0d0e78aeada1de46ba2e370dd88",
+  "aotManifestSha256": "0833a020d31ca4f6634086afe95f65b10efc6a6369e25dbcfff32eda8b797374",
+  "freezeSha256": "30698e2706b4203b9a9aa9654f538b248bc15916449ece02a0f5aad57438c426",
+  "completedStages": 32,
+  "noStageOverlap": true,
+  "allFormalExitCodesZero": true,
+  "formalCpuPreflightMeanPercentRange": [
+    1.9200000000000002,
+    5.08
+  ],
+  "formalProcesses": 18,
+  "fullDefaultCheckedProcesses": 25,
+  "checkedArrayValuesAcrossFullProcesses": 2516582400,
+  "distinctFullOutputHashes": [
+    "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+  ],
+  "fullOutputFiles": [
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\correctness-native\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\correctness-parallel\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\correctness-serial\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\discovery-16384\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\discovery-262144\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\discovery-65536\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\discovery-serial\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-01-native\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-01-parallel\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-01-serial\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-02-native\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-02-parallel\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-02-serial\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-03-native\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-03-parallel\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-03-serial\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-04-native\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-04-parallel\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-04-serial\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-05-native\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-05-parallel\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-05-serial\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-06-native\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-06-parallel\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    },
+    {
+      "path": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-06-serial\\result.bin",
+      "bytes": 805306368,
+      "sha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3"
+    }
+  ],
+  "compressedOutput": {
+    "path": "Artifacts\\dot-20260915\\full-output.bin.gz",
+    "sha256": "e342ec6892f0b423b9cacf99e27e56dc0ec9f37b968b774aa112e08a731e66cc",
+    "bytes": 1173147,
+    "originalPath": "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-01-native\\result.bin",
+    "decompressedBytes": 805306368,
+    "decompressedSha256": "614d49280be7b0bd0efdd4685cc80e67728434687f30b3a7ad0f231c646f33d3",
+    "appliesToAll25FullOutputsByVerifiedContentHash": true
+  },
+  "summarySha256": "fe5daceaeefa0cd4c608e6348adf02932de7a676c2c41e880253fdf6a733d10d",
+  "functionalCasesPerWorkerCount": 28,
+  "workersChecked": [
+    1,
+    19
+  ],
+  "negativeControlsPerWorkerCount": 9,
+  "allocationEligibility": "Unknown",
+  "failuresRetained": [
+    "player-build-01: missing installed IL2CPP module"
+  ]
+}

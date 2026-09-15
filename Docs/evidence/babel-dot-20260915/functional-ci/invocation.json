@@ -1,0 +1,26 @@
+{
+  "phase": "build",
+  "command": [
+    "python",
+    "Tools/CI/validate_functional.py"
+  ],
+  "cwd": "D:\\CodexWork\\babel-dot-20260915",
+  "environment": {
+    "OMP_NUM_THREADS": null,
+    "OMP_DYNAMIC": null,
+    "OMP_PROC_BIND": null,
+    "OMP_PLACES": null
+  },
+  "startedUtc": "2026-09-15T05:02:52.322659+00:00",
+  "status": "passed",
+  "processWallTimeIsLifecycleMeasurement": false,
+  "freeGiBBefore": 257.3658142089844,
+  "estimatedGrowthGiB": 2.0,
+  "minimumFreeGiB": 20,
+  "backgroundConflicts": [],
+  "pid": 50132,
+  "exitCode": 0,
+  "completedUtc": "2026-09-15T05:02:58.050675+00:00",
+  "freeGiBAfter": 257.3603820800781,
+  "mutexReleased": true
+}
