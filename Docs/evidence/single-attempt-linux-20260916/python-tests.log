@@ -1,0 +1,16 @@
+test_adaptation_rejects_source_drift (test_contract.ProtocolContracts.test_adaptation_rejects_source_drift) ... ok
+test_cgroup_quota_is_not_host_core_count (test_contract.ProtocolContracts.test_cgroup_quota_is_not_host_core_count) ... ok
+test_during_task_interference_cannot_complete_performance_discovery (test_contract.ProtocolContracts.test_during_task_interference_cannot_complete_performance_discovery) ... ok
+test_entire_cohort_rejects_a_slow_or_ineligible_process (test_contract.ProtocolContracts.test_entire_cohort_rejects_a_slow_or_ineligible_process) ... ok
+test_full_output_and_input_both_required (test_contract.ProtocolContracts.test_full_output_and_input_both_required) ... ok
+test_selected_cost_charges_calibration_and_real_uses (test_contract.ProtocolContracts.test_selected_cost_charges_calibration_and_real_uses) ... ok
+test_upstream_bytes_are_complete_and_locked (test_contract.ProtocolContracts.test_upstream_bytes_are_complete_and_locked) ... ok
+test_bad_costs_rejected (test_single_attempt.CallerContracts.test_bad_costs_rejected) ... ok
+test_frozen_config_rejects_tamper_and_wrong_source (test_single_attempt.CallerContracts.test_frozen_config_rejects_tamper_and_wrong_source) ... ok
+test_unconfirmed_or_same_aos_noise_never_claims_payback (test_single_attempt.CallerContracts.test_unconfirmed_or_same_aos_noise_never_claims_payback) ... ok
+test_upfront_charge_cannot_disappear (test_single_attempt.CallerContracts.test_upfront_charge_cannot_disappear) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.010s
+
+OK

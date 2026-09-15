@@ -1,0 +1,48 @@
+{
+  "fingerprint": "b5ff60a90866668fca0d7d216272f2fb0c77d1f20c565b96d444f83c42370b50",
+  "identity": {
+    "executables": {
+      "tuned-aos": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+      "field-aosoa8": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045"
+    },
+    "selector": "86ddcfbd83a2e496f44b131b8ceacbfbf30817dee1a1f071db4560a7e05e0a39",
+    "protocol": "bb791d45c67fd727120dde9b40dd89dc261488f7fb02449cffb99c21fd9fcb44",
+    "runner": "a413e501aa84e7ea3b8f02c0317dea7a7efb5566eaa468e92247dcf4d7a28ee4",
+    "source": "6a005041e2a088d14374e5d90a0179357af9a9549f5d40f44102f94db2364a75"
+  },
+  "protocol": {
+    "id": "single-attempt-linux-caller-20260916",
+    "arms": [
+      "tuned-aos",
+      "field-aosoa8"
+    ],
+    "baseline": "tuned-aos",
+    "calibration": {
+      "id": "calibration",
+      "resolution": 24,
+      "steps": 4000,
+      "exportEvery": 1000,
+      "re": 0.1,
+      "phase": 0.0
+    },
+    "confirmation": {
+      "id": "confirmation",
+      "resolution": 26,
+      "steps": 4000,
+      "exportEvery": 1000,
+      "re": 0.12,
+      "phase": 0.25
+    },
+    "rounds": 6,
+    "minimumGainPercent": 2,
+    "maximumBaselineDriftPercent": 5,
+    "environment": "Existing quiet CPU/cgroup/SMT gates, no sample removal or retry",
+    "scope": "One monitored Linux SPH caller, existing tuned AoS versus existing AoSoA8; no new layout, discovery matrix or Unity qualification",
+    "costBoundary": "Caller includes per-task resource monitoring, process launch, input generation, layout ingress, solver, all VTU outputs, disposal, XML/CSV consumption, output verification and configured lookup. All calibration correctness, physics checks, probes and selector startup charged upfront. Compilation/environment provision reported separately.",
+    "stop": "Any build, correctness, allocation control, environment, drift or calibration timing-gate failure ends this route. No confirmation on calibration fallback. Six balanced independent confirmation pairs only if calibration passes. One frozen execution, at most 60 minutes."
+  },
+  "startedUtc": "2026-09-15T18:06:07.217379+00:00",
+  "affinity": [
+    4
+  ]
+}

@@ -26,6 +26,12 @@ Copy/Mul/Triad showed small regressions, and the optimized lifetime remained
 2.53% slower than OpenMP. The original serial default and Unknown allocation
 eligibility remain; these results do not qualify a deployment profile.
 
+[September 16 bounded Linux caller attempt](Docs/SINGLE_ATTEMPT_LINUX_CALLER_2026-09-16.md)
+adds a caller cost ledger and scoped selector-allocation instrumentation. Its
+single run stopped at a CPU/SMT gate after 4/12 calibration processes; selection,
+confirmation and payback remain unavailable. The Linux .NET positive control
+passed, without establishing Unity IL2CPP or native allocation coverage.
+
 ## Delivered scope
 
 - Factorized layout/kernel/batch/execution policies, paired block inference,

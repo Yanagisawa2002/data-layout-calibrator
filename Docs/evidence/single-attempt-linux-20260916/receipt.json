@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "runId": "single-attempt-linux-caller-20260916",
+  "status": "FAILED",
+  "attempts": 1,
+  "baseSha": "c37cfca47ac240c90e5382310f339044e9c0f5b6",
+  "candidateSha": "59756d909902fbbc3920959dde874dedef49a3d7",
+  "validationStartedUtc": "2026-09-15T18:05:43Z",
+  "validationEndedUtc": "2026-09-15T18:06:38Z",
+  "commands": [
+    {
+      "command": "dotnet test Tools/FunctionalTests/FunctionalTests.csproj -c Release --nologo --disable-build-servers --results-directory <local-evidence>/local-tests --logger trx",
+      "exit": 0,
+      "passed": 95
+    },
+    {
+      "command": "python Tools/CI/check_repository.py",
+      "exit": 0
+    },
+    {
+      "command": "timeout --signal=TERM --kill-after=10s 3590s bash source/Tools/WholeTask/run_single_attempt.sh",
+      "exit": 1,
+      "boundary": "actual ancestor flock; child workload hard timeout 2700 seconds"
+    }
+  ],
+  "pythonTestsPassed": 11,
+  "storageCasesPassed": 20,
+  "cellGridContractsPassed": 2,
+  "physicalCasesPassed": 2,
+  "completeOutputRecordsVerified": 6,
+  "persistedFileHashesVerified": 70,
+  "completedCalibrationProcesses": 4,
+  "requiredCalibrationProcesses": 12,
+  "fifthNativeProcessStarted": false,
+  "failedGate": "SMT sibling mean 12.987012987012987 percent exceeds preregistered 10 percent",
+  "selectorExecuted": false,
+  "confirmationExecuted": false,
+  "calibrationPayback": null,
+  "actualSelectorAllocatedBytes": null,
+  "positiveControlBytes": 1048600,
+  "emptyControlPassed": true,
+  "nativeAllocationEligibility": "Unknown",
+  "unityIl2cpp": "SKIPPED",
+  "runtime": "Ubuntu 22.04; GCC 11.4.0; .NET SDK 10.0.401 / runtime 10.0.12; Python 3.12.3",
+  "hardware": "Intel Xeon Platinum 8470Q, 25-core CPU quota, 90 GiB memory quota; RTX 5090 not used",
+  "cleanup": "No owned processes; hardware lock released; server left running for coordinator",
+  "hashes": {
+    "allocation-control.json": "71712eb1f4b06d5eed807cdf426bae040edd71aabc170ad2a2b42db9fcae2b58",
+    "failed-preflight.json": "437ee9abd728261ebe05dfd2eac519ea8abddbbcda05a4188da44086fcf303a8",
+    "freeze.json": "3b1f86640ec729b68f3e153f4e4be9cc025689cbdd12a8384d23b33a7e7a9640",
+    "functional.trx": "dc4de949521ea97f6167b8da1d24340c51f20515bfb327440dd6cea316fb8b7e",
+    "local-functional.log": "e401c911d82da1f875a500085f3c2ca1b729aab127186fd65ce5d798a336e352",
+    "python-tests.log": "865b2008e7b1ad04da67852a0b3fcdbac9cf8b964b4134b7ef2ca905e298ce34",
+    "raw-evidence.tar.gz": "66fd4a13456159b573c0a8820905e4a1a8d9bce7cdcccbcfb7becdd3dac7bfcc",
+    "source-manifest.json": "6a005041e2a088d14374e5d90a0179357af9a9549f5d40f44102f94db2364a75",
+    "summary.json": "5daec4037f7d1f06c80da1eab6a023073601d5c96c16558137f704f94d1d5eae",
+    "cleanup.json": "70e956e9338f6d144d6a96827c982290091c65ff5850857b9ec37bce85da146a"
+  }
+}
