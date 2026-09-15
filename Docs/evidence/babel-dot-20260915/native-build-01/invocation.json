@@ -1,0 +1,32 @@
+{
+  "phase": "build",
+  "command": [
+    "python",
+    "Tools/ActualComparison/build_msvc.py",
+    "--target",
+    "babel",
+    "--output",
+    "Artifacts/dot-20260915/native",
+    "--vc-tools",
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207"
+  ],
+  "cwd": "D:\\CodexWork\\babel-dot-20260915",
+  "environment": {
+    "OMP_NUM_THREADS": null,
+    "OMP_DYNAMIC": null,
+    "OMP_PROC_BIND": null,
+    "OMP_PLACES": null
+  },
+  "startedUtc": "2026-09-15T04:50:23.893130+00:00",
+  "status": "passed",
+  "processWallTimeIsLifecycleMeasurement": false,
+  "freeGiBBefore": 276.06650161743164,
+  "estimatedGrowthGiB": 1.0,
+  "minimumFreeGiB": 20,
+  "backgroundConflicts": [],
+  "pid": 50400,
+  "exitCode": 0,
+  "completedUtc": "2026-09-15T04:50:27.320175+00:00",
+  "freeGiBAfter": 276.0658493041992,
+  "mutexReleased": true
+}

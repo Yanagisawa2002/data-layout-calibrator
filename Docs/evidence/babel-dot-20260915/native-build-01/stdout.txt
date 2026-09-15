@@ -1,0 +1,22 @@
+babel_native.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(3630): warning C4267: “参数”: 从“size_t”转换到“const int”，可能丢失数据
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(3630): note: 模板实例化上下文(最早的实例化上下文)为
+D:\CodexWork\babel-dot-20260915\Tools\ActualComparison\babel_native.cpp(46): note: 查看对正在编译的函数 模板 实例化“std::unique_ptr<Stream<T>,std::default_delete<Stream<T>>> make_stream<double,BenchId,intptr_t,size_t,double,double,double>(BenchId,intptr_t,size_t,double,double,double)”的引用
+        with
+        [
+            T=double
+        ]
+D:\CodexWork\babel-dot-20260915\Packages\com.yanagisawa.data-layout-calibrator\Samples\ExternalWorkloads\Upstream~\BabelStream\src\StreamModels.h(84): note: 查看对正在编译的函数 模板 实例化“std::unique_ptr<OMPStream<double>,std::default_delete<OMPStream<double>>> std::make_unique<OMPStream<double>,BenchId&,intptr_t&,size_t&,double&,double&,double&,0>(BenchId &,intptr_t &,size_t &,double &,double &,double &)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(3630): warning C4244: “参数”: 从“double”转换到“T”，可能丢失数据
+        with
+        [
+            T=float
+        ]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(3630): note: 模板实例化上下文(最早的实例化上下文)为
+D:\CodexWork\babel-dot-20260915\Packages\com.yanagisawa.data-layout-calibrator\Samples\ExternalWorkloads\Upstream~\BabelStream\src\main.cpp(97): note: 查看对正在编译的函数 模板 实例化“void run<float>(void)”的引用
+D:\CodexWork\babel-dot-20260915\Packages\com.yanagisawa.data-layout-calibrator\Samples\ExternalWorkloads\Upstream~\BabelStream\src\main.cpp(274): note: 查看对正在编译的函数 模板 实例化“std::unique_ptr<Stream<T>,std::default_delete<Stream<T>>> make_stream<float,BenchId,intptr_t,size_t,double,double,double>(BenchId,intptr_t,size_t,double,double,double)”的引用
+        with
+        [
+            T=float
+        ]
+D:\CodexWork\babel-dot-20260915\Packages\com.yanagisawa.data-layout-calibrator\Samples\ExternalWorkloads\Upstream~\BabelStream\src\StreamModels.h(84): note: 查看对正在编译的函数 模板 实例化“std::unique_ptr<OMPStream<float>,std::default_delete<OMPStream<float>>> std::make_unique<OMPStream<float>,BenchId&,intptr_t&,size_t&,double&,double&,double&,0>(BenchId &,intptr_t &,size_t &,double &,double &,double &)”的引用

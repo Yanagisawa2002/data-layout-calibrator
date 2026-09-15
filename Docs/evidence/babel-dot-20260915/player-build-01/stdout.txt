@@ -1,0 +1,4 @@
+
+Aborting batchmode due to failure:
+executeMethod method Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.DataLayoutCalibratorBuild.BuildWindowsIl2CppFormal threw exception.
+

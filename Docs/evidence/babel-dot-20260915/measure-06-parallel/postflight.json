@@ -1,0 +1,70 @@
+{
+  "utc": "2026-09-15T05:10:46.613967+00:00",
+  "samplesPercent": [
+    1.4
+  ],
+  "meanPercent": 1.4,
+  "availableMemory": 12551675904,
+  "topProcesses": [
+    {
+      "pid": 50800,
+      "name": "python.exe",
+      "machineCpuPercent": 6.717
+    },
+    {
+      "pid": 9448,
+      "name": "WmiPrvSE.exe",
+      "machineCpuPercent": 2.109
+    },
+    {
+      "pid": 4,
+      "name": "System",
+      "machineCpuPercent": 1.718
+    },
+    {
+      "pid": 5944,
+      "name": "svchost.exe",
+      "machineCpuPercent": 0.781
+    },
+    {
+      "pid": 52148,
+      "name": "ChatGPT.exe",
+      "machineCpuPercent": 0.781
+    },
+    {
+      "pid": 13468,
+      "name": "logioptionsplus_agent.exe",
+      "machineCpuPercent": 0.547
+    },
+    {
+      "pid": 11464,
+      "name": "CC_Engine_x64.exe",
+      "machineCpuPercent": 0.469
+    },
+    {
+      "pid": 23044,
+      "name": "Creative Cloud.exe",
+      "machineCpuPercent": 0.469
+    },
+    {
+      "pid": 16520,
+      "name": "esrv.exe",
+      "machineCpuPercent": 0.234
+    },
+    {
+      "pid": 1660,
+      "name": "WUDFHost.exe",
+      "machineCpuPercent": 0.156
+    },
+    {
+      "pid": 3604,
+      "name": "LEDKeeper2.exe",
+      "machineCpuPercent": 0.156
+    },
+    {
+      "pid": 9088,
+      "name": "ChatGPT Classic.exe",
+      "machineCpuPercent": 0.156
+    }
+  ]
+}

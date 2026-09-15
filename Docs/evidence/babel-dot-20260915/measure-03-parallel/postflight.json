@@ -1,0 +1,70 @@
+{
+  "utc": "2026-09-15T05:06:36.495175+00:00",
+  "samplesPercent": [
+    2.3
+  ],
+  "meanPercent": 2.3,
+  "availableMemory": 12108488704,
+  "topProcesses": [
+    {
+      "pid": 50800,
+      "name": "python.exe",
+      "machineCpuPercent": 6.482
+    },
+    {
+      "pid": 52148,
+      "name": "ChatGPT.exe",
+      "machineCpuPercent": 0.937
+    },
+    {
+      "pid": 4,
+      "name": "System",
+      "machineCpuPercent": 0.781
+    },
+    {
+      "pid": 33120,
+      "name": "com.docker.backend.exe",
+      "machineCpuPercent": 0.625
+    },
+    {
+      "pid": 6152,
+      "name": "XtuService.exe",
+      "machineCpuPercent": 0.39
+    },
+    {
+      "pid": 11464,
+      "name": "CC_Engine_x64.exe",
+      "machineCpuPercent": 0.39
+    },
+    {
+      "pid": 16520,
+      "name": "esrv.exe",
+      "machineCpuPercent": 0.39
+    },
+    {
+      "pid": 3604,
+      "name": "LEDKeeper2.exe",
+      "machineCpuPercent": 0.234
+    },
+    {
+      "pid": 5916,
+      "name": "collector_service.exe",
+      "machineCpuPercent": 0.156
+    },
+    {
+      "pid": 5944,
+      "name": "svchost.exe",
+      "machineCpuPercent": 0.156
+    },
+    {
+      "pid": 9448,
+      "name": "WmiPrvSE.exe",
+      "machineCpuPercent": 0.156
+    },
+    {
+      "pid": 37348,
+      "name": "KillerNetworkService.exe",
+      "machineCpuPercent": 0.156
+    }
+  ]
+}

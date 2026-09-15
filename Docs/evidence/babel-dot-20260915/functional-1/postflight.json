@@ -1,0 +1,70 @@
+{
+  "utc": "2026-09-15T04:59:38.888067+00:00",
+  "samplesPercent": [
+    4.0
+  ],
+  "meanPercent": 4.0,
+  "availableMemory": 11253403648,
+  "topProcesses": [
+    {
+      "pid": 28516,
+      "name": "python.exe",
+      "machineCpuPercent": 6.482
+    },
+    {
+      "pid": 57640,
+      "name": "dotnet.exe",
+      "machineCpuPercent": 1.562
+    },
+    {
+      "pid": 22504,
+      "name": "rustdesk.exe",
+      "machineCpuPercent": 0.703
+    },
+    {
+      "pid": 26124,
+      "name": "Weixin.exe",
+      "machineCpuPercent": 0.703
+    },
+    {
+      "pid": 4,
+      "name": "System",
+      "machineCpuPercent": 0.625
+    },
+    {
+      "pid": 11464,
+      "name": "CC_Engine_x64.exe",
+      "machineCpuPercent": 0.547
+    },
+    {
+      "pid": 6152,
+      "name": "XtuService.exe",
+      "machineCpuPercent": 0.469
+    },
+    {
+      "pid": 39032,
+      "name": "Killer.exe",
+      "machineCpuPercent": 0.469
+    },
+    {
+      "pid": 52148,
+      "name": "ChatGPT.exe",
+      "machineCpuPercent": 0.469
+    },
+    {
+      "pid": 48484,
+      "name": "msedge.exe",
+      "machineCpuPercent": 0.39
+    },
+    {
+      "pid": 5944,
+      "name": "svchost.exe",
+      "machineCpuPercent": 0.234
+    },
+    {
+      "pid": 11160,
+      "name": "svchost.exe",
+      "machineCpuPercent": 0.234
+    }
+  ]
+}

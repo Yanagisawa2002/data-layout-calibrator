@@ -1,5 +1,48 @@
 # Explicit external comparison entries
 
+## September 15 parallel Dot experiment
+
+The new [protocol](../../Docs/BABEL_DOT_PROTOCOL_2026-09-15.md) uses one common
+IL2CPP Player with explicit `-dla-dot-mode serial|parallel` and optional
+`-dla-dot-chunk 65536`. The omitted mode keeps the historical serial path.
+`-dla-external babel-dot-check` runs the additional exact-oracle correctness
+fixtures through actual Burst jobs. It is never a timing sample.
+
+On a fresh Windows checkout with Python 3.11+ and psutil, build native under
+`run_exclusive.py`, supplying the exact installed toolset through the new
+`build_msvc.py --vc-tools <VC/Tools/MSVC/version>` argument. The historical
+default path is retained for prior reproduction. Build the Player with the
+IL2CPP entry below and the new source; a missing module is a failed prerequisite.
+`prepare_local_unity.py --help` describes the optional task-owned Editor copy.
+
+Use the same explicit argument set for each phase (PowerShell example):
+
+```powershell
+$run = 'Artifacts/dot-new-run'
+$player = 'Artifacts/player/DataLayoutCalibrator.exe'
+$native = 'Artifacts/native/babel_native.exe'
+$common = @('--artifacts', $run, '--player', $player, '--native', $native)
+python Tools/ActualComparison/dot_experiment.py --phase environment @common
+python Tools/ActualComparison/dot_experiment.py --phase functional @common --workers 1
+python Tools/ActualComparison/dot_experiment.py --phase functional @common --workers 19
+python Tools/ActualComparison/dot_experiment.py --phase discovery @common
+python Tools/ActualComparison/dot_experiment.py --phase correctness @common
+# Freeze the protocol/candidate before the following steps.
+python Tools/ActualComparison/dot_experiment.py --phase freeze @common
+python Tools/ActualComparison/dot_experiment.py --phase measurement @common
+python Tools/ActualComparison/dot_experiment.py --phase summarize @common
+```
+
+Defaults are native 20 threads, Burst 19 workers and chunk 65,536. Every measured
+arm uses the same settings on the same current machine. The fixed six-block
+order covers every permutation. The runner checks the full source/binary freeze,
+CPU idle gate, shared mutex, fresh outputs, complete byte checker and process
+exit. Keep all attempted output directories, including failed builds. Discovery
+is not pooled with formal timings. Every full run writes a 768 MiB output;
+reserve sufficient disk space. The new runner never starts work by import.
+
+## Historical September 10 entries
+
 These are the finite, local Windows entries used by the
 [September 10 protocol](../../Docs/ACTUAL_COMPARISON_PROTOCOL_2026-09-10.md).
 No argument starts a workload implicitly. PR CI remains build/CPU-function only.

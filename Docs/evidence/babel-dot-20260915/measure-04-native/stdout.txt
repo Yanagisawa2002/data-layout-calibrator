@@ -1,0 +1,1 @@
+Full upstream check passed: 100663296 array elements and Dot. Output: D:\CodexWork\babel-dot-20260915\Artifacts\dot-20260915\measure-04-native\result

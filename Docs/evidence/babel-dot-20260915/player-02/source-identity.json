@@ -1,0 +1,1125 @@
+{
+    "SchemaVersion": 1,
+    "SourceCommit": "8e83a17338452c9d202f45ed553e0c807a7b8558",
+    "GitStatus": "M BenchmarkProject/Assets/DataLayoutCalibrator/Editor/DataLayoutCalibratorBuild.cs\n M BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/ExternalComparisonRunner.cs\n M BenchmarkProject/Packages/manifest.json\n M BenchmarkProject/Packages/packages-lock.json\n M BenchmarkProject/ProjectSettings/ProjectSettings.asset\n M BenchmarkProject/ProjectSettings/ProjectVersion.txt\n M Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Runtime/BabelStreamPort.cs\n M Tools/ActualComparison/build_msvc.py\n?? BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/BabelDotCorrectness.cs\n?? BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/BabelDotCorrectness.cs.meta\n?? BenchmarkProject/ProjectSettings/ProjectAuditorSettings.asset\n?? Tools/ActualComparison/dot_experiment.py\n?? Tools/ActualComparison/prepare_local_unity.py",
+    "UnityVersion": "6000.5.9f1",
+    "CreatedUtc": "2026-09-15T04:57:52.4444225Z",
+    "Inputs": [
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutBenchmark.meta",
+            "Sha256": "DE48879E3596177AB20BE3461CE5DC5A56D8A669FE973FE5F5615E11B379145C"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator.meta",
+            "Sha256": "D2435995FE527775835617E386C3556705AD1643E5A0DF418693EA576871669C"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Editor.meta",
+            "Sha256": "CE9A35E5FDF442DE5167929A69548BC1EE6ABB665B451F546AA3A18014E22742"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Editor/CounterBuildIdentity.cs",
+            "Sha256": "D69F65A2C2FD813070B502010D06ADEE5042B1EE8F70BD75A49B534D0559E7BB"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Editor/CounterBuildIdentity.cs.meta",
+            "Sha256": "6DA31341771A23A1B50A4B6170069FC7FF301A56C83B3A3148B040B89E486655"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Editor/DataLayoutCalibratorBuild.cs",
+            "Sha256": "6062FDA20CBCEC4B934A4FE2BCDC55D0E4E59CF7EB265CAF253E4ECD3FF9D64A"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Editor/DataLayoutCalibratorBuild.cs.meta",
+            "Sha256": "2471E7B978298E43D71B56F4AE48E185DA3544874429232222EAC6233F2D6755"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Editor/EnvelopeGridBuild.cs",
+            "Sha256": "0D34D36D1270F501655458C81529B2DB7B82D883BE190CFB355C5C0AA1E5BFF1"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Editor/EnvelopeGridBuild.cs.meta",
+            "Sha256": "0FA4A1601DDEEF3E7DA39659037B5CBEA79C62662815B3D4AC197825621FE8AB"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Editor/Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.asmdef",
+            "Sha256": "99763CD92B9B40AAD30EA97E91C8E8C3623335F8A44BAC31762B05B0193A90D4"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Editor/Yanagisawa.DataLayoutCalibrator.Benchmark.Editor.asmdef.meta",
+            "Sha256": "76409CD4CDD0813F818C717E4275FA4ECB702F3B599D8F9FFCAE0AC588797843"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Generated.meta",
+            "Sha256": "96AA1C2C56C2163A5B3811EEEE27FEC08608E09434F974886CAE216DD5A7F486"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Generated/DataLayoutCalibrator.unity.meta",
+            "Sha256": "07A44D63D7707B797E9F1440658892F44BB9ED8EA3160F5923B49ED0EA585D7C"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime.meta",
+            "Sha256": "CFBCCEADE272B84A349160CD61A9664FE36C21C9C55429CAD76FC4BC8B031A8C"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/BabelDotCorrectness.cs",
+            "Sha256": "075046259EEDD20DADAEB53CF8D4B668F9385FC68A3D2F640CC634B3E45577FD"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/BabelDotCorrectness.cs.meta",
+            "Sha256": "A3F7C5A49F98B239B8E72740B99B632AEB76E1F1F829A1AA0A9AED54B43D2223"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/BenchmarkConfiguration.cs",
+            "Sha256": "60C079C50FA1F9C186FB13301A11DCBEDA661CFB51C237777DAE21680075376F"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/BenchmarkConfiguration.cs.meta",
+            "Sha256": "3BE47CA3953B00F5BA57491934D75FA5473937F1EF18DF7873BD3DECA69BDE6A"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/BenchmarkSourceIdentity.cs",
+            "Sha256": "729E82759856D24DE86541BF8AC5BE1A0D27CFC317439FF632CA4D5FBE0683CE"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/BenchmarkSourceIdentity.cs.meta",
+            "Sha256": "E4E04A8388ACEF41E2AD53D923A67A8225BF669F72FF8E3E81AEC736E74BD350"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/CpuCounterEvidenceRunner.cs",
+            "Sha256": "1564F5DAED770D0F8A154B55292315558E2CC21274EA599BDDCE6B7DF20C2E0A"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/CpuCounterEvidenceRunner.cs.meta",
+            "Sha256": "4D89920B47569EAFF2B2E6E25BC7C383F42B8211663DCA76D0CB08E351EC0843"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/EnvelopeBenchmarkRunner.cs",
+            "Sha256": "ACEA7F9054EA1CA8A4E5862FD6BC1A9D9E7362F452E81FD5E5E78955CF0079EC"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/EnvelopeBenchmarkRunner.cs.meta",
+            "Sha256": "58D5A708FC8D4EF47CC2FDA0E11CB85008A4EAF58F78138C51540866AD5C62EC"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/EnvelopeBurstIsaProbe.cs",
+            "Sha256": "95A646772A9F18A58056A14D32A3B89A6D709B9C21634D3641E4DD4F0DDFC4BD"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/EnvelopeBurstIsaProbe.cs.meta",
+            "Sha256": "1E3B0D323372FCD99DA9F6017E818A81FB51F14245234D183B140B9B50A1E6D9"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/ExternalComparisonRunner.cs",
+            "Sha256": "3E8B8B3E8B7833B0D67CC3E1A4DA012833259804C09DED5B0C029EF855B00E11"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/ExternalComparisonRunner.cs.meta",
+            "Sha256": "897FEF1598DE45A7657A4329D5C719EBCCC8A10A3649878C466E3856EB8A301E"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/GeneratedWorkloadValidation.cs",
+            "Sha256": "E8DF7525A4D55D164D09DC65AEDF9CAFAF131C40632AEFFE84FD8957A3585DB4"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/GeneratedWorkloadValidation.cs.meta",
+            "Sha256": "F5AC4389FE9ADFB4C747ACDC10DA40EDC638E47336E27FCBEF0E0A31C166153E"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/LayoutBenchmarkRunner.cs",
+            "Sha256": "9DB19929A0782DF4B8D0F022E25B2DFCDB13E0EB2261F34B35556E849025B606"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/LayoutBenchmarkRunner.cs.meta",
+            "Sha256": "F69B0445D666F81E966600994E1A7A117C5C9DF8E5304E64B158C318D78265CF"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/ParticleMatrixPlayerProbe.cs",
+            "Sha256": "CEBC2FF7E8E523DE3093D22AE40BAFC83666728A66D1558038A93DF18C0B312B"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/ParticleMatrixPlayerProbe.cs.meta",
+            "Sha256": "CA3EE1038F4B03424FA8B2A53A5B235550769E36355FBB93300FE75A3CC0CA3B"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/RegisteredScenarioFactories.cs",
+            "Sha256": "B12193EBB7D1E41DA3B30D74B021DBD494C3A9874623813BED639446D3E497EC"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/RegisteredScenarioFactories.cs.meta",
+            "Sha256": "A8EF33CAE3FEB5F2C6F8D69C38E32EA0F709ECDFCF460BDDCAAE22FBBB59E4B7"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/SearchBenchmarkRunner.cs",
+            "Sha256": "05E089CCC4F3788109401D2586CEF488DCDC13CA6F614F319891746026144AEB"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/SearchBenchmarkRunner.cs.meta",
+            "Sha256": "028B29DB38148A5CC00F437D742FA6A2419DECCE17627EC0702D29CA6C217B5D"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/UnityAllocationRecorder.cs",
+            "Sha256": "D7F6BEB8F68698156A0A492685700430E63DAFF3A498DDB3A44395BF3AD654BE"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/UnityAllocationRecorder.cs.meta",
+            "Sha256": "62702F0924560E3642DA65CEFDA1CFE67C9D3D4C98765708FF3A9C5B5B06E177"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/UnityManagedAllocationCounter.cs",
+            "Sha256": "8FBE22126D074B1A2024E6E60F338055FF3DC886D253EA3A8569ACF5B65761B7"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/UnityManagedAllocationCounter.cs.meta",
+            "Sha256": "E9DADD2125E79AB74AA77172BE83DC3804FD000DBA70851D9C8F0CB1CAFC06D2"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/V05GeneratedScaffoldAotProbe.cs",
+            "Sha256": "59058DF26AB791F67F8A6C88A0E1415E3BEC53A7028E0108DA56C8E7A7BE80A3"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/V05GeneratedScaffoldAotProbe.cs.meta",
+            "Sha256": "44699145F093B8DA51D680A03563AC554EAD3B4B58A1F96EF999F9E62084916E"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/Yanagisawa.DataLayoutCalibrator.Benchmark.asmdef",
+            "Sha256": "500BB0E1CE63BEA9F32E8D72633E4DA289EE3D864C2049B809AFE72CF2E537A8"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/DataLayoutCalibrator/Runtime/Yanagisawa.DataLayoutCalibrator.Benchmark.asmdef.meta",
+            "Sha256": "45A00D123BEFA85C554070EC7C49B7DA361FAC85A64C9FE4C692567284B6FD92"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/Plugins.meta",
+            "Sha256": "C828212C9471753030048784F61514C4EE5B830B21F6776DD0F5099F4CDC619E"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/Plugins/x86_64.meta",
+            "Sha256": "10A0704FBF724B89FDE71F3F4C9AC7E242A5501210BB957E1836F954D8B49436"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/Plugins/x86_64/DlcAllocationProfiler.dll",
+            "Sha256": "1C4D75D854AB8B298194232F3DEF86C6E8C031579AD67FCEBE176051ACBF4234"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/Plugins/x86_64/DlcAllocationProfiler.dll.meta",
+            "Sha256": "3803F415746B5325772674A107002538D60C64893AEF01089E2536B3FCFDB40A"
+        },
+        {
+            "Path": "BenchmarkProject/Assets/Resources.meta",
+            "Sha256": "353400F83CDABB7D2CA92A3838BED2BCB6BE13E484B47EC0F9F43316FC34D93D"
+        },
+        {
+            "Path": "BenchmarkProject/Packages/manifest.json",
+            "Sha256": "BA7FDE70FE39ACAA37B5433009C758FD079C975BCE5E83D6B1827CF176C42BAE"
+        },
+        {
+            "Path": "BenchmarkProject/Packages/packages-lock.json",
+            "Sha256": "533E3FFEC814DB9D83B072D1591FD0850CB4C91CFEC375CA37EC0C982496A5EF"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/AudioManager.asset",
+            "Sha256": "2E46C3310C149875BED869AA2D8CC26F01E9B052A6220DDD75A71C4C373444E4"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/BurstAotSettings_StandaloneWindows.json",
+            "Sha256": "16FE1E838437D11EB0799C9ED129148D40BF84A2B4EC174224007083504FB297"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/ClusterInputManager.asset",
+            "Sha256": "06A192320121E445DCFF1AE8DDAD2A948FF671CA134603C043D9F4E920427EA9"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/DynamicsManager.asset",
+            "Sha256": "14449A4AF3F7CC685D73268538844D1D8794C4A48592E41061C37C11FF435546"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/EditorBuildSettings.asset",
+            "Sha256": "65F012CB8F5697059ABD088F540367A11927A57F0D4ACFFDE2B9E1ED68EB4966"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/EditorSettings.asset",
+            "Sha256": "C84B8372B7866347B98666A94E45414F23C35C5E5716AE7C1E62E80AF20DF444"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/GraphicsSettings.asset",
+            "Sha256": "E095AFB4234E89368044D564B29D2D6887DB2BD65B3F6FAFF1A52677400F3AA6"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/InputManager.asset",
+            "Sha256": "14AFACFF3668DA089908B16C02642E0B388E3CA7831BAD469AC6AEBA18F7263E"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/MemorySettings.asset",
+            "Sha256": "3D4AA5BB13D3A82647E224989CBEC1031EC59488D549C71F7A2B8C556A8F08AB"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/MultiplayerManager.asset",
+            "Sha256": "83DED116CA3ED35A6ACAC9B0FED830F04DFE5C008C185BE50B1C132C88AEA505"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/NavMeshAreas.asset",
+            "Sha256": "75DA067E99628DC5C30D90492887CDAFF68171E7B33D1217A1311B182AA47B50"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/Physics2DSettings.asset",
+            "Sha256": "65B22F8CC5FD6FCC4636100739C9A1A7F7CE60202E3A1B17C919E40D740D7A79"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/PhysicsCoreProjectSettings2D.asset",
+            "Sha256": "6356FF823CF80282A698FE03796EA05F52EA16D948027399A638082E07469558"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/PresetManager.asset",
+            "Sha256": "6BA879310E2BE2E5BA18702578CDA93B26B030ECD88E883FEF22AB456A9F9697"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/ProjectAuditorSettings.asset",
+            "Sha256": "5E40807B54A51F2FAFB156C8DEEBA785328010EC5D296C089CFA74F146B751F4"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/ProjectSettings.asset",
+            "Sha256": "33987DCB4AAF72A3474F420E5D9137B7286A85D94AC9145B0F9D5E7FE298616C"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/QualitySettings.asset",
+            "Sha256": "3FFEFFAE0C0D6984A8DB7774C8F2C7CDC46F0E8B3DC6160190291276BCC3F02E"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/SceneTemplateSettings.json",
+            "Sha256": "E0CBB98BD0AA9449840CE663A4B81751AB0828F5D8D2BD37923644FEE7095E62"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/TagManager.asset",
+            "Sha256": "BD51BB00D350E430A891B9ADFC3CA95867334CF0642409E9DE53E18378449535"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/TimeManager.asset",
+            "Sha256": "04C070E2F9716503B8014933B8603D21EDBF3784AFB00E32A2633A0ECEE075F2"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/UnityConnectSettings.asset",
+            "Sha256": "84B91BD844E9632367405D0445062325E7FB80A18067A39930A1B874060707ED"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/VFXManager.asset",
+            "Sha256": "B61A694C821740D94F56270892B0C36C16DCE80AAA0FEC83FE1E17C41A385B20"
+        },
+        {
+            "Path": "BenchmarkProject/ProjectSettings/VersionControlSettings.asset",
+            "Sha256": "3FE15395F872B9CFE908A111A1E87BE2055C6EE367E2876E7E83A408C2B89D57"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/CHANGELOG.md.meta",
+            "Sha256": "39E5C09F3C15B6951695D0032969E076DC04ECA04A6D4F70320D6BFA3DD6D54E"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/LICENSE.md.meta",
+            "Sha256": "25151048A63CAB15BC16436B47864CE8C68DCD26A3B8112A6FE98F833BBE3659"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/README.md.meta",
+            "Sha256": "498B4E11453E0BDE8A304F813070287F61C2DF45D7AC7F73FB8B3219556B44E0"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime.meta",
+            "Sha256": "499C82B01AFA35590B58EA36245EF37408DB29CC92F079366D90AB61AE4B1575"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/AdaptiveElimination.cs",
+            "Sha256": "242CB48A68490FBFC51933E60674C257DB37BE75E83B63C4BB0A3977A081DDAA"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/AdaptiveElimination.cs.meta",
+            "Sha256": "F26FA7BC44BDE851FBECD0552BFC3492A0BA7C4873C012E3E0C6BBA5D019F114"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/AdvantageEnvelopeEngine.cs",
+            "Sha256": "708D09B1CF76FD9C7187EB8AF3163A166E19BF700B00F5BB7D87058A0C3619D4"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/AdvantageEnvelopeEngine.cs.meta",
+            "Sha256": "B3C3725D6F8627E8D4653AB64E914841626CE5AC4BF078667E1E0C404385977A"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/AdvantageEnvelopeModels.cs",
+            "Sha256": "92E7ED9B4CDED6CA3B49D93C8CA96EC8DFCB0D49034814D59BCDBE40E5C1BD95"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/AdvantageEnvelopeModels.cs.meta",
+            "Sha256": "5B3794E60AE008AEEDD479E8F783355CBD663716C1B19ECD122D0F4638D01536"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/AllocationMeasurementContract.cs",
+            "Sha256": "C81F541EC4326501FDE09B13F54BBB81C4750221723EA5124E984D5D12CC3F3A"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/AllocationMeasurementContract.cs.meta",
+            "Sha256": "F6D2AF9739E78BF2352201FBA5F85E60FBB1703D8204DA6CB392B00D4DA83D86"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/BenchmarkModels.cs",
+            "Sha256": "63AB1E9CE8788FA77AF4BD45A35677A7D0FFF39679BA7EEC5B2D3522F78EC865"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/BenchmarkModels.cs.meta",
+            "Sha256": "4BBBA6CC0B98C95EFCEDD735214ED513E7834E81E46557EA7D9C0E8FE4F827D6"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/BenchmarkStatistics.cs",
+            "Sha256": "313E8822A3EE22B65593F74F8D066CEB3E17FE34BB59BDE2C72E173874872EFC"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/BenchmarkStatistics.cs.meta",
+            "Sha256": "58790477FF5E1B7D486D95FB65C513E424371F6B73E2730C7605CFBF7C86D709"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CalibrationProfileFingerprintBuilder.cs",
+            "Sha256": "C46D6BD1AC8781ACC5D6A6224E327671C216432085E7960910A9A31CE9857AD3"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CalibrationProfileFingerprintBuilder.cs.meta",
+            "Sha256": "9A85880016AC940FF45AEF6C88E45D9FEFE01F29F0E4FA006AC6B58B4BAAF327"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CalibrationProfileMigration.cs",
+            "Sha256": "550F5644336C59A2E4180F95F6365212BBD80F8CA0A367F8811E42D869790631"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CalibrationProfileMigration.cs.meta",
+            "Sha256": "0FD7832C21902D356F90F26FA28A723B0D15DACC4162900E2B58231A48B70E81"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CalibrationProtocols.cs",
+            "Sha256": "2B56B45DD220134855505AE0187F2A035A32DFDFD5B9CA4A597B75FD92CFB5C8"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CalibrationProtocols.cs.meta",
+            "Sha256": "6CD04267A57CC670E2A1ADF692767F650FD0BDD8C03AA22D42305DF93E94BE87"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CandidateDefinitionProtocol.cs",
+            "Sha256": "8979FD75BABAB4D1098091A903C80857A431BB918F7B45C023D392211BAB5A5F"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CandidateDefinitionProtocol.cs.meta",
+            "Sha256": "20665451AEE3177B0BB155AEB86DF07790622F2B9D00E6AEB9CE4136821B4FBE"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CandidatePolicies.cs",
+            "Sha256": "653E695E0B10D80BFCE687F7EDC536C61F447E854062FF21DBEDB3471606659E"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CandidatePolicies.cs.meta",
+            "Sha256": "D35596EB1D02EC74C05DD308DEF4433F65D6F5B11CC30719A41FA35AAF8608A7"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ConservativeLifetimeEnvelope.cs",
+            "Sha256": "EF671ABDF3AC27BB4AF37EFC725B612FCF8DBE45403EDC178B535B51AC8F0129"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ConservativeLifetimeEnvelope.cs.meta",
+            "Sha256": "FDEA63CD45111F92CF18B28EA8816CDF8F0000A2C4D2C447640E71DFFFB51012"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CounterEvidence.cs",
+            "Sha256": "3D9DB8E75470F308E8F25566E554351381238EA94F4D8418E99173D87E16C84C"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/CounterEvidence.cs.meta",
+            "Sha256": "223CF05447E5946A26480D9212579E51F79ADCC3EF76C9E926AD93E3A46B1D33"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/DecisionEvidenceStatistics.cs",
+            "Sha256": "A494CF86E5F7AFE813A14EDBE063D6092CEF9BE2D697E951F10936D04271EAFE"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/DecisionEvidenceStatistics.cs.meta",
+            "Sha256": "2FB004392A3A37EA5E66030EA4512F2B6F9ED378ECC4AF76B6DC80A0773EDF6A"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/DeploymentProfileModels.cs",
+            "Sha256": "93EFB2D88EAE9C95AC47BF8CEAE8C1FC771BE2E8B912CDB9034CD824B876F758"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/DeploymentProfileModels.cs.meta",
+            "Sha256": "453F40A0FE239CE8554807341B0D2A94FF0C6B9218DA586C963904604FA85B39"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/DeploymentProfileResolver.cs",
+            "Sha256": "01747F0B77AD201CF843428D45B073DA377010054C24AD9BF5B3EFF01C5F1475"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/DeploymentProfileResolver.cs.meta",
+            "Sha256": "19CED166D21A8C18F53BD786BEBFDF651A9232218D361FC716F7F9716CAF590B"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/FrozenDeploymentProfileCodec.cs",
+            "Sha256": "BAE652EF87E791314B47BEB4B96C82C5231D16514B3F147A3109FBA573DA787B"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/FrozenDeploymentProfileCodec.cs.meta",
+            "Sha256": "0A330437608BD52E775B396D06673133F7D0DBF7CE6AC7B8EBFC85933E0F2C1E"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/FrozenDeploymentProfileStore.cs",
+            "Sha256": "47EF0CC0973AF485CF7358E14B9A4EB0A335ADE0E4B27E753E3FE6A31AB9617F"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/FrozenDeploymentProfileStore.cs.meta",
+            "Sha256": "096E3D76C410D32C88EF675D53A2C1C776744E4A98C7AE0852E3AC0F1A14E909"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/GeneratedDataLayoutAttributes.cs",
+            "Sha256": "2700DFB30FFD5A5E8AED4114366F112420760DB2066D73747CED74564550259B"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/GeneratedDataLayoutAttributes.cs.meta",
+            "Sha256": "A088FDDDB7BD30B0DB4458717DDF86796342A082DB8554D58820CF8024E2D7EE"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/LayoutKind.cs",
+            "Sha256": "6914B1AB5948B089478127295E4CE67399DA2B8F6AB9EAE35940170318BEBEFE"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/LayoutKind.cs.meta",
+            "Sha256": "885B41F41EBA582A6F8BA88B577BD9DB75A04442E1A8E9BBC5F95B3351C17835"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/LayoutSelection.cs",
+            "Sha256": "19C06E68B5E7E65F5975D820A98B42C091193FB0B5B0E96E18A7CDA436DB3EC5"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/LayoutSelection.cs.meta",
+            "Sha256": "83F42D77E5AC17AFAB285793800185D765A77009B35E0E9CCEE3FE6510DB4640"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ManagedAllocationCounter.cs",
+            "Sha256": "E9B691EA8A0BD3E58138997F9A060F3E6FA3309D25AEA698237B72816915FE98"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ManagedAllocationCounter.cs.meta",
+            "Sha256": "FF3C927F00FF29832DBBB57C76185998636B6576D8B5282E1F09B2C3F40AB142"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/MeasurementDesign.cs",
+            "Sha256": "DFA5E9A3B13BB3D807FE7812B631B2FDB60A47F74E8000A152BB549ADD3A882C"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/MeasurementDesign.cs.meta",
+            "Sha256": "25CCC676ACB1091C7A14E69CF53988669A9FFE13C62CB445E190E2C48AE92E29"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/RegisterCalibrationScenarioFactoryAttribute.cs",
+            "Sha256": "EFE4AAB84B22A130FE7E6E8A444FC3FA9C3BE2E626ADC7D3132769E40A4E27A5"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/RegisterCalibrationScenarioFactoryAttribute.cs.meta",
+            "Sha256": "F3C2F7DCAAC851374A991E876B730197D7E5CD00F2D4FC35AF11862FA257CAC9"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ScenarioCalibrationEngine.cs",
+            "Sha256": "04BBE1C2F5AF7EDCFDDAF6748E35DD166706C34B57284161BB16BD658EE59BA9"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ScenarioCalibrationEngine.cs.meta",
+            "Sha256": "9C78DA71927F3CC0EF134BBC35054EE3FF13348AB7BBDA26E649B4A0B0C4122D"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ScenarioEnvelopeMeasurement.cs",
+            "Sha256": "1830485433D415F810C9EA2E39FBC60172AB695751A3C1D64BB97B4078C972DE"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ScenarioEnvelopeMeasurement.cs.meta",
+            "Sha256": "0DF70FE6AA2B3084E18F3384A535989C849EF053BAFC425CCA2DA3251E37A570"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ScenarioSearchComparison.cs",
+            "Sha256": "E603EEA7C0009CE3EDF15F68C2B610235EFE54EA03462D5C12A4C2C620FAB720"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ScenarioSearchComparison.cs.meta",
+            "Sha256": "BE6A3B39673F2CB5B4F99B6FD5ADC3DADDCB7A3F5D6BF5CC92E9AD1820D6B312"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ScientificAdvantageEnvelopeAdapter.cs",
+            "Sha256": "45166CEBA02064BE91919691FE4A0E28B9E45E01B5EE6C419241F498B71B8C7A"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/ScientificAdvantageEnvelopeAdapter.cs.meta",
+            "Sha256": "1FD3ACB640FB0C51706D7F8CF8D7ABC50437718CA3D7AF0FD9BE7EA1D63D0792"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/TimingMeasurementContract.cs",
+            "Sha256": "D2DF56AF019EBBFE79B3EB5410CA2C238209427CCBB3EE9548A24381765F96F6"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/TimingMeasurementContract.cs.meta",
+            "Sha256": "E235A54AC906DE9A427A003925B625F0F9DC1FEBD485C635F89FEEC2C1ADE9F2"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/WindowsProcessCycleCounterProvider.cs",
+            "Sha256": "90844976E77991C535FC4DB88AF3050C6845802E1AB64B61CC81DF730CF06DA3"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/WindowsProcessCycleCounterProvider.cs.meta",
+            "Sha256": "3F1BD030F135C568CDA67FB3BCB529873BC71CA79EB50978CC65FDAB7A7E5CF9"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/Yanagisawa.DataLayoutCalibrator.asmdef",
+            "Sha256": "C00149F36EE90D72460F86D3F8948C84B426CC75172BBE2ACA938FAEDDA2EEA6"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Runtime/Yanagisawa.DataLayoutCalibrator.asmdef.meta",
+            "Sha256": "9BB801020BAFB961984C94B4B09959AEE8F2645ED2BBDBD217B67BC40A204F5E"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples.meta",
+            "Sha256": "9A51A09649A1417886372857BA113283EC5DC284D66550FD10960B9863CFFECE"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads.meta",
+            "Sha256": "F7298756C32C080A6C659F817B1EE0C54C2DBAE9427F5C1195D501938ED8BDF7"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads/Runtime.meta",
+            "Sha256": "40A7217DD29D67D4FD98D9FBCB4D168B9E2A536F27C599B60CF443A19BA5F59D"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads/Runtime/AdditionalWorkloads.cs",
+            "Sha256": "A86BDC94DB9B206A012CD4B35C8D7C57E539C98540126F532FE5AC54E8DCA7FA"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads/Runtime/AdditionalWorkloads.cs.meta",
+            "Sha256": "35C949DE18932E475BAC6D1054B8A9B5DB1ABF2E754590651C3734935306C1FD"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads/Runtime/AssemblyInfo.cs",
+            "Sha256": "4DDF8EDE7622DFF1B167499E392320C048F4DB501CC346F3915B35770EB03252"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads/Runtime/AssemblyInfo.cs.meta",
+            "Sha256": "976A44D3AFB591A0560F745F3ACD4B0DB6EBFA9EB14B51E12BA8B96ED1AD574C"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads/Runtime/Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.asmdef",
+            "Sha256": "833713C294A00DE72B61F1B1C566879F3A482E5AF9896CCF2735616589B6BF5B"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads/Runtime/Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.asmdef.meta",
+            "Sha256": "EE039827B1F3C1998821857485D09BBE83E0864CDBA1AAA177470936CCB3112C"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads/Tests.meta",
+            "Sha256": "7A6FB9232DA555BD1F9296EE3362EF47200C4F0DEAAC148D5F444DBC5159E4A8"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads/Tests/Editor.meta",
+            "Sha256": "DB5F18ECE25FED06E2AC776DA7DB6321ED908758E72438705A4137815CEF196A"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads/Tests/Editor/AdditionalWorkloadTests.cs",
+            "Sha256": "E6DA5CA83511AD330A4831E78D8667E53808FEBC693D3DDDF7B2BCC6ACDC4327"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads/Tests/Editor/AdditionalWorkloadTests.cs.meta",
+            "Sha256": "93F73396648B834F35077365C4E2C16915217371AD22C2FAC9B860D4A19D720F"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads/Tests/Editor/Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.Tests.Editor.asmdef",
+            "Sha256": "116B149474A4C70BC19707A8F7A1F13F5E61C4466521C51F2DFD2FD4983A092B"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/AdditionalWorkloads/Tests/Editor/Yanagisawa.DataLayoutCalibrator.Samples.AdditionalWorkloads.Tests.Editor.asmdef.meta",
+            "Sha256": "A864D234771118FE5581C9F89C61B46185AB52A655417DDA8CBEC93C016FC93E"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads.meta",
+            "Sha256": "ECFB4886769B9B8392EEDA2AFED46BFD9BFFA3802BEDE241F0EF4291CDD400A4"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/CONTRACT.md.meta",
+            "Sha256": "AE512AF51E6209960851AC2E4B9EDCDA5E0999E568AD755D043082386660F272"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Fixtures~/fixture-lock.json",
+            "Sha256": "3670BAD792C519218729A9F237188AC9DA165D68AB1F3376067E2B187EDE8EC2"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Fixtures~/llama-msvc-prefix17.json",
+            "Sha256": "6FC087A796471EA7A7EC004FB19CEC76972F3B5D155C3599C2034E65005ECB08"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Runtime.meta",
+            "Sha256": "8211A7B0203C598010E48CDC69789AAE48F7DD6BFE54B25AA1EE33C9F61FF967"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Runtime/BabelStreamPort.cs",
+            "Sha256": "74D07783BEEBECABF0ABDFA1F4ADF8E1863310DC70EB0B6FA2EB857489A9F091"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Runtime/BabelStreamPort.cs.meta",
+            "Sha256": "FD745ECA860DD5F861A3BE3BD54BBFE5BCEAA5DB7BA537435C677ACE4D014222"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Runtime/LlamaNBodyPort.cs",
+            "Sha256": "04622ECC2C8F58452B75FEBDA825E0D132AFCE735A64BC07A93D7681DAA4C6CE"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Runtime/LlamaNBodyPort.cs.meta",
+            "Sha256": "9A6F6E4D65C29A90812D282A3B83C30F907E7373A6E4C2BE9026598CE818DC48"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Runtime/Yanagisawa.DataLayoutCalibrator.Samples.ExternalWorkloads.asmdef",
+            "Sha256": "0E3859340DCEE5C3E4D85B82F5FF9BEBD52C19DF7D3E7DEE46C32A0D6D5AAEE5"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Runtime/Yanagisawa.DataLayoutCalibrator.Samples.ExternalWorkloads.asmdef.meta",
+            "Sha256": "BAEED89BDAD8EF2789CC00534474F42F24C6AF2B5182C36CEF4D5571BEE47EA2"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Upstream~/upstream-lock.json",
+            "Sha256": "A31CBA562BE46C0DFFE645B3A6D1B57519D7193EA9AEDB218FDC7F0DA03391EE"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate.meta",
+            "Sha256": "A115BED9918CB509C03008BA7C8087594C2955C7F22CC14DB5B20EF588AD38F7"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime.meta",
+            "Sha256": "E4096E801D9BEF223DF0AB7889E2493809871A23DEFFDA7047925F232F58135A"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleBlockExportJobs.cs",
+            "Sha256": "4F837167A1D1C0E9539A1C1E65FA555B8656A91EBE3F8FEEDE9DE6B6B2E24C0B"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleBlockExportJobs.cs.meta",
+            "Sha256": "4DBE14532904C899323380A26BAF7DDDC67892704368593C61693ACA5452C81C"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleBoundaryJobs.cs",
+            "Sha256": "BDAD3863E3B1E4C3C689D35A0003EE9EB40A79D1917F89F65DB58026FE3FC848"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleBoundaryJobs.cs.meta",
+            "Sha256": "B2AAB250089FDCFCE3ED204185587BB69DA25E6CEB495E7A58473C4DB2E357C1"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleCandidateMatrix.cs",
+            "Sha256": "F44B7E63DF49CF41D6AC49666B2999D9F077784122D1520D78407EBE7B19EE52"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleCandidateMatrix.cs.meta",
+            "Sha256": "ACFF1CD46E9C166085990A43774A3570E58C327DD0A83A48728B04786E95D0F1"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleColdAccess.cs",
+            "Sha256": "C7DE915D0A41DDEF7A64C7B3A91D9A87C99ABD1D201617DD5B47BE1EE07FF0A0"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleColdAccess.cs.meta",
+            "Sha256": "4B891705E78296D11FB6DCF3585F01C59118467A321D4F41A0DAB06E03D5507C"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleDataSet.cs",
+            "Sha256": "3562B668AD0CA61C148ACE33F4BBED66A9D971E1F9D7FE564D422C2541B23ACD"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleDataSet.cs.meta",
+            "Sha256": "C35FFE4C1B760A6520D3FFA35C553FCD7D0ABCC2A8BA635357D19E045DF9A897"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleHotColdStorage.cs",
+            "Sha256": "D32688924018BE24CEB168FF52CB798402180CE5F5F228A080978800D081EF55"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleHotColdStorage.cs.meta",
+            "Sha256": "F73B61EB5701C8967FDB4D1889B40EA0514403B8549265268AAC2B7E34272248"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleIntegrateScenario.cs",
+            "Sha256": "E177FEC69F7164676FEC32A31DC6D0D75D819B1A89EA8EDC744ACB48701DDD18"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleIntegrateScenario.cs.meta",
+            "Sha256": "9D282FD5996273D5C839787F411E75C9867E5F76FE5525EEBE6FAD790175CF44"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleJobs.cs",
+            "Sha256": "2A3AE989F6F87E68BED4F8CCBA734371C7262E52B1423E750422569C0BE81A53"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleJobs.cs.meta",
+            "Sha256": "1AE9DF8C893E4E75068B3C64CF0141597FE5D80E88161053E99419355037060F"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleLayoutDomain.cs",
+            "Sha256": "B2EF4FF183EA7F86076F398FFB735C216EFD6C7239121EF9DA7FB96B6720370D"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleLayoutDomain.cs.meta",
+            "Sha256": "FB960C3D00FE558C55EC3C97293E637B804B59215B99FE6E3C88E87CC25453CB"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleMatrixBoundaryJobs.cs",
+            "Sha256": "5F5F93CC89E50EA051C9B42C7FFD54E7E09B73FF164A2CB068DBC10F599327D4"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleMatrixBoundaryJobs.cs.meta",
+            "Sha256": "9C30E5D7190C4BF947659E7F5969D48E9C1A9735C136CDB5FE76895012503797"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleMatrixJobs.cs",
+            "Sha256": "9BADA36923D2747B53AADE81F91ECF620679C01AB3F71E8F1C559E43C75431CE"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleMatrixJobs.cs.meta",
+            "Sha256": "647CFEDC5A0B3EDFB26358857E2D8B569DE2F6CC520219D651A334356C72C09C"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleMatrixValidation.cs",
+            "Sha256": "5254562BCCC5D990E92A30F9C0A397B071E7111AE86186CADF9D1301F34EDE9D"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleMatrixValidation.cs.meta",
+            "Sha256": "E2C8794AC8192DBC1BC99BF65C6B1104D1B1487B3500FBB8AFC79F4A45AC6805"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleRecord.cs",
+            "Sha256": "3FBBAF511E44AD43D00885AED467E6ECB642DBE7F464E3FB049E7A7D0FBF0903"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleRecord.cs.meta",
+            "Sha256": "14EFF579E404B42CFE864AA96F1DB8654098929FA62D6F2247E8A9BC9AA26AE8"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleStateValidation.cs",
+            "Sha256": "72A55FCF2B47AFF7845733DA7D9E9CC23073EBF6A5144B209ECDB72A7F3ED080"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleStateValidation.cs.meta",
+            "Sha256": "EE30383C93FFFD3CB0A52DF63E436E1027ECC4A29AAC1170D9C12DAD779EE954"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleStorages.cs",
+            "Sha256": "3B719193DA46011B70F934980AB5E3549FB99FA3C8886346B8B552FD1AD26527"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/ParticleStorages.cs.meta",
+            "Sha256": "F81AD3FDD422673B30F36675F9CC16AC25F8036F277AB44B4E068DA1893809F4"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.asmdef",
+            "Sha256": "A889A75A36E2C909C755EA9EE6CD7743C5D87A56B76E2B489E14895B56D3D040"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Runtime/Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.asmdef.meta",
+            "Sha256": "0AB180DCD34606BDC9C0A9707D97942FE430CEEB78589CF508F9CB54B1EA900A"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests.meta",
+            "Sha256": "8E7FF2BFDBB11EC46B770F94C29E14780CF4E2304C9D8E604255C83289DEADDD"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor.meta",
+            "Sha256": "E9A56A8DB959526FC1C501E986766CC8724D13325C0A614728C6E929BFECF6A4"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/GeneratedParticleStorageScaffoldTests.cs",
+            "Sha256": "63CCF37E2B9186FAE5248E19873970C97A42DA80E9A042674E4FDA8F59A8B486"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/GeneratedParticleStorageScaffoldTests.cs.meta",
+            "Sha256": "CAE6970AB9D5B2AEF488EDFE2E73C62A61156B8DBAFBFFA71337DDDCE86706AD"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/GeneratedProductionStorageTests.cs",
+            "Sha256": "C91B76E9386665E229B691860539948500221B29F23A4EFA46C39B395E73213E"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/GeneratedProductionStorageTests.cs.meta",
+            "Sha256": "F8A5017AEA17412B77C6575A7A5EE043FA9A8308E984C810A11613E8202FD068"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/ParticleCandidateMatrixTests.cs",
+            "Sha256": "5C85018156113CC5E261A71F0776522761B7A7F9032366D3DB3A3693C4DB2EA0"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/ParticleCandidateMatrixTests.cs.meta",
+            "Sha256": "125C5E54C257A0C95DD8FF3F186CE026C6DE1EB2E6505544E0DBD13B3714312F"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/ParticleColdAccessTests.cs",
+            "Sha256": "9D02D3386CE38458048686420BE2193CACCCB7918C671039AEFA83ACC3C7F76D"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/ParticleColdAccessTests.cs.meta",
+            "Sha256": "5A62E1D0EB8D1B97D4E36565203093E56030159FA50137F4A053FB3C4AD51731"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/ParticleDataSetTests.cs",
+            "Sha256": "E766A5C53D0A3AE13D25C9863559998106830EC153C9A48C8FA702E9F556D2D8"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/ParticleDataSetTests.cs.meta",
+            "Sha256": "318B53ADA93357401D6045B596CF1FE5FE7037165723A333C7C9F43532DAEA0C"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/ParticleIntegrateScenarioTests.cs",
+            "Sha256": "E952DDEEB3390299ED1F2D1E9BEE15E7A1BBD4D54EF41E9C6A888AD0C1FEDE41"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/ParticleIntegrateScenarioTests.cs.meta",
+            "Sha256": "49E0A745575791C16A14E72C771D611BB80475512EE31FAF4A8E97A2EC80B312"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/ParticleLayoutParityTests.cs",
+            "Sha256": "978497A154F3719785640A9C405F97C508741F2228337F897F46E3A0224C3F00"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/ParticleLayoutParityTests.cs.meta",
+            "Sha256": "4A931CCB44A62666A494C26A7ACB903D5673E8DFB2CE33964FC9F9358318E8D7"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.Editor.asmdef",
+            "Sha256": "F12752E68ECE8E19938427B40F7F5478E359DE5C6665B62E21674A568936E673"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/ParticleIntegrate/Tests/Editor/Yanagisawa.DataLayoutCalibrator.Samples.ParticleIntegrate.Tests.Editor.asmdef.meta",
+            "Sha256": "924BE73A5743EF4389284C0F3E13FF98E07B904B57538AF55BD27DB986288235"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport.meta",
+            "Sha256": "BDAB0EFDA82A51BCB584036758CF8553D99A3D01C188BB66F3EDCE4AC1DB7748"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime.meta",
+            "Sha256": "8C2A6A00C2E19508460AD5B1A147376DCF43379388724DB61138F07174FDCA87"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportDataSet.cs",
+            "Sha256": "2E52037713DBBDF859624DE6308FB0B91D0A5207CA12C63716675CA411CD750B"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportDataSet.cs.meta",
+            "Sha256": "3C856F61A77A51CD40CA455D2B4845429E9EB5D4C643B5B434E00D8AF568E312"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportJobs.cs",
+            "Sha256": "8392CA5B1CC748FABF7E79B4011FF113DAE065A912042C5E26DC34D13C5CF0C8"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportJobs.cs.meta",
+            "Sha256": "595C30C3D1E915AA0FB70B83CBF5F12D3A6E96E8F1647F27DD146B1A619133D0"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportRecords.cs",
+            "Sha256": "063D795807AFE68729663FC7F6CAB7F7AB22619E581AB58DCDBBD251AB0BEFB6"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportRecords.cs.meta",
+            "Sha256": "C6AF376F112652AC1969DA6DAF28E15FDBB7DCB87CEAD73763A2105D1B7CB45B"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportScenario.cs",
+            "Sha256": "632D1058C8568F9F3F00E0D51D79D350ECDC2EF9B947372A99B4942CA7582BE6"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportScenario.cs.meta",
+            "Sha256": "86D81B9F08DD365829DBB341528DB6DDBAD9F515CFF5374D3B4C55AF843E1E12"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportValidation.cs",
+            "Sha256": "C2C306FB701D80E5152E09E9C51DCA00054123EB01BFE3A85EC61E1E89CAB6E1"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformExportValidation.cs.meta",
+            "Sha256": "A51F2FCB8DFCDA31B39A52DB4494DD4E12EA0112C6EF9276C7C825AF53CC6FAD"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformPackedExport.cs",
+            "Sha256": "525FA7817F534061BBE27E78B5FA53BF37928F7376470E283ABCB8F0E92B49B3"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/TransformPackedExport.cs.meta",
+            "Sha256": "ADBAEF6AFA11CE19C481BA285114E3917CDAAFA292DCCDD4A8EA49B8E89709AB"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.asmdef",
+            "Sha256": "6628FA4D33145ED3981880129326B56CB38FCB3B38600CEE7BA3EF6FFD096247"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Runtime/Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.asmdef.meta",
+            "Sha256": "719E6B03224703A0A520E73AC261CC1F1295622ED26ACEC32076A3B3CFB97719"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Tests.meta",
+            "Sha256": "5E564F583BAC32F472A3026C1A91664B0F96BACEF793483D213F27C73627CFDD"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Tests/Editor.meta",
+            "Sha256": "61764CCF305E88564C4ECE6C48B80D5336CA4759DDFCDC5252871511522925E2"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Tests/Editor/GeneratedTransformStorageScaffoldTests.cs",
+            "Sha256": "722C0D3B7F6572853BFFF9D8AD7989C58F25C9E1A5222D0CA3C09B587B402F2F"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Tests/Editor/GeneratedTransformStorageScaffoldTests.cs.meta",
+            "Sha256": "396C02DD355D687197E14808E7CDD2037D69CA929EA5A34815CCD0CFDA111395"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Tests/Editor/TransformExportScenarioTests.cs",
+            "Sha256": "AD5FC14263F9E300109C6AB4058FEC0E5C7E12A51921572AA7EFE0DCCF22144C"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Tests/Editor/TransformExportScenarioTests.cs.meta",
+            "Sha256": "BF0736C4046917F0F22315D87C18D2CAA2ABBC32C5627EB103101F19D54893CE"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Tests/Editor/Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.Editor.asmdef",
+            "Sha256": "AA6F2AF5D11B05E3C4C50A29812FE7AB53D70CF13D45527DCEE20AC235093115"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Samples/TransformExport/Tests/Editor/Yanagisawa.DataLayoutCalibrator.Samples.TransformExport.Tests.Editor.asmdef.meta",
+            "Sha256": "2C63E121D29E97C5A900C5218999CAD4106469B9F635B42D5A10D9C544DEA148"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators.meta",
+            "Sha256": "5BED193CB17FAD2FA923CA34CDED5DC6DB3C38318C5C8E472DF6B7C6BA78F753"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators/Yanagisawa.DataLayoutCalibrator.SourceGenerator.dll",
+            "Sha256": "317D710E689622FFAE7D48877107958161F7BFF1388311BBD378D0ED4968126F"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators/Yanagisawa.DataLayoutCalibrator.SourceGenerator.dll.meta",
+            "Sha256": "25EB4701EAFE7BFD7626E12112B8A6ADC79D055CA191395CA696629AA4CEF814"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/DataLayoutScaffoldGenerator.cs",
+            "Sha256": "6C15B5593B4DFE332B4DF17352A3E92D18F75FFA669394CA84EAB2241822FA3C"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/ProductionStorageEmitter.cs",
+            "Sha256": "0AD8D0F32A6F888FF3CE8D0600401985AE2644CA96DEC963025429A2FCB9D6E6"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/ScenarioRegistryGenerator.cs",
+            "Sha256": "BACC463A8ED4BCB4FB6407250CB901168507E2E007CB4D3BD4AEC52EC2C7B890"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Tests/DataLayoutScaffoldGeneratorTests.cs",
+            "Sha256": "606EC472B455071D236CEEDC9AA5926325180546BFF1641BBF776DC14BD26CE7"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Tests/ScenarioRegistryGeneratorTests.cs",
+            "Sha256": "A57BFD8D9A71C92119878063A07F23896AD9B5BA56A61B973508F7F1771EBB06"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests.meta",
+            "Sha256": "A74087CD90FB5BB43A11697AC91928CC402C273B25B61D3782120FCB234CCC61"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor.meta",
+            "Sha256": "9095DE8960ED2EE5B6265507AC9A555AAE5A266351A780C9EEC3FB8BCAD276B0"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/AdvantageEnvelopeDecisionTests.cs",
+            "Sha256": "DCA1B4AB5F4CDB15824B85452BC5B21AAB7BAD5FC3C3B58D4DA3E425AE36A39E"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/AdvantageEnvelopeDecisionTests.cs.meta",
+            "Sha256": "CF25639D4D5E3A1093145A14D3D4D1A541E7C95550689803655ADB3CFE201A2C"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/BenchmarkStatisticsAndSelectionTests.cs",
+            "Sha256": "1FA1D93B4523EC69B62D226A4E95C557ABE61DC23E63AF160606B830CC6F5A46"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/BenchmarkStatisticsAndSelectionTests.cs.meta",
+            "Sha256": "522DE5EA36B89062FC6732FEE2ECE289E40B10EB22FF95772EBFC735939EA520"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/CounterEvidenceTests.cs",
+            "Sha256": "01BD676407BFE7C255E2F5E30AEDA15B83FF4879A898A538D58D4DB9E9722967"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/CounterEvidenceTests.cs.meta",
+            "Sha256": "5530A3EFE484F302AD6F2CA2A6BECFA06C157B653F04A59A07EBB33B1C3E10A9"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/DeploymentProfileTests.cs",
+            "Sha256": "5AF94C28B73E9B472592A604303B96BC7E9479560427295829AB711679A59043"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/DeploymentProfileTests.cs.meta",
+            "Sha256": "0578D196809E9DEAF3D2C3914521E4CAC1F59E7411DB5E8825C0267F5C28A9AB"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/EnvelopeMeasurementGuardTests.cs",
+            "Sha256": "95D5AE155532C3C5F7B2FBC51CB68CBB2270F0909C8D9E8CA6A86AA89DB064CB"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/EnvelopeMeasurementGuardTests.cs.meta",
+            "Sha256": "CAB64E73881EB5FC1B6E66857F20B00C9EB36F4B2F7C426549E144DE15B651E3"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/MeasurementContractFunctionalTests.cs",
+            "Sha256": "621801E3565BC134711D5EC7A137A4A5E9161C9B27EADE7F6365743B5593D837"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/MeasurementContractFunctionalTests.cs.meta",
+            "Sha256": "7F4EA0DB86C6735CE6EEF75502AC1C04DBC95BEA5BCBB363CBBFD5D9DF342B81"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/ScientificCoreV04Tests.cs",
+            "Sha256": "BAEEE3CBE9B9493BBDCF726361D58407D4B17D120EF75EFA3FBCF6ED165165A1"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/ScientificCoreV04Tests.cs.meta",
+            "Sha256": "52AD8ADBE6A82C3474F2F1A2239A77A7C50042674CD2A2DEB9F1517BC7E73B77"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/SearchComparisonTests.cs",
+            "Sha256": "9B8348F0C5DD63C6B4E5217126BE6A13AD62AC02A829312E23F810CCD8E1E6B8"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/SearchComparisonTests.cs.meta",
+            "Sha256": "F796DE38F17FE8C2A3E0095B45856B9130AD6B93124AC27E5D38EC6E74F35DB7"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/VNextIntegrationProtocolTests.cs",
+            "Sha256": "F2A1BE340A00B4AD91F4734CAF1B60EBDB315E8F2D44394329CD8150C7DE5229"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/VNextIntegrationProtocolTests.cs.meta",
+            "Sha256": "FB3C9D49390155503F8A438BDAD07F9BE97BF1130CC6FA5F2A877348CDAE893F"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/WindowsProcessCycleCounterTests.cs",
+            "Sha256": "9A90F0AB2D3733806DD885184A6F20EBCD80A7272E0398AF45D7BF404126D96C"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/WindowsProcessCycleCounterTests.cs.meta",
+            "Sha256": "1FD876026EA7D15D2B90A257708C90DC1B26BA940802EB8D75D49BC6B3E8F73D"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/Yanagisawa.DataLayoutCalibrator.Tests.Editor.asmdef",
+            "Sha256": "7A5D4E1EADBAADD80A68CC079398FB74D7A0D46E470D4F63B79FF71BF3738904"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/Yanagisawa.DataLayoutCalibrator.Tests.Editor.asmdef.meta",
+            "Sha256": "CC5334EC1622DBEE94B591064D70794807FF1F4694EADB43CC43679C50DE0D31"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/package.json",
+            "Sha256": "DE8191C989DF428258B5EE67EC7278346FEDF87C25F5D30ED2C59F1DDAD5E8A9"
+        },
+        {
+            "Path": "Packages/com.yanagisawa.data-layout-calibrator/package.json.meta",
+            "Sha256": "52543034F5C37B1FA9A291E4B6E628954819C787A7CE10A5FDEF16DD1A081112"
+        }
+    ]
+}

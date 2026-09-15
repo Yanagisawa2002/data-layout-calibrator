@@ -18,6 +18,14 @@ and worker/native coverage remains Unknown. Other current-source performance is
 Unmeasured / 待验证. Historical measurements retain their original source identities;
 no new default algorithm is promoted.
 
+[September 15 parallel Dot results](Docs/BABEL_DOT_REPORT_2026-09-15.md) add an
+explicit deterministic compensated Burst reduction. On a Core Ultra 7 265K,
+six balanced process blocks reduced Dot time by 71.8% and complete storage
+lifetime by 21.7% versus the original Burst path, with complete output checks.
+Copy/Mul/Triad showed small regressions, and the optimized lifetime remained
+2.53% slower than OpenMP. The original serial default and Unknown allocation
+eligibility remain; these results do not qualify a deployment profile.
+
 ## Delivered scope
 
 - Factorized layout/kernel/batch/execution policies, paired block inference,

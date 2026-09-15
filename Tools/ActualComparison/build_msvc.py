@@ -14,12 +14,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--target', choices=['llama', 'babel'], required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--vc-tools', type=Path, default=VC, help='Exact installed MSVC toolset directory')
+    parser.add_argument('--sdk-version', default='10.0.26100.0')
     args = parser.parse_args()
+    VC = args.vc_tools.resolve()
+    if not (VC/'bin/Hostx64/x64/cl.exe').is_file():
+        parser.error('MSVC compiler not found; specify --vc-tools')
     OUT = args.output.resolve()
     OUT.mkdir(parents=True, exist_ok=False)
     env = dict(os.environ)
-    env['INCLUDE'] = ';'.join(map(str,[VC/'include']+[KIT/'Include/10.0.26100.0'/x for x in ('ucrt','shared','um','winrt')]))
-    env['LIB'] = ';'.join(map(str,[VC/'lib/x64',KIT/'Lib/10.0.26100.0/ucrt/x64',KIT/'Lib/10.0.26100.0/um/x64']))
+    env['INCLUDE'] = ';'.join(map(str,[VC/'include']+[KIT/'Include'/args.sdk_version/x for x in ('ucrt','shared','um','winrt')]))
+    env['LIB'] = ';'.join(map(str,[VC/'lib/x64',KIT/'Lib'/args.sdk_version/'ucrt/x64',KIT/'Lib'/args.sdk_version/'um/x64']))
     env['PATH'] = str(VC/'bin/Hostx64/x64')+';'+env['PATH']
     command=[str(VC/'bin/Hostx64/x64/cl.exe'),'/nologo','/O2','/fp:strict','/arch:AVX2','/std:c++20','/EHsc','/MD',
              str(ROOT/('Tools/ActualComparison/'+args.target+'_native.cpp')),'/Fo'+str(OUT/(args.target+'_native.obj')),'/Fe'+str(OUT/(args.target+'_native.exe'))]

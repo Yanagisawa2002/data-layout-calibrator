@@ -1,0 +1,27 @@
+{
+  "phase": "measurement",
+  "command": [
+    "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\native\\babel_native.exe",
+    "--run",
+    "D:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\measure-05-native\\result"
+  ],
+  "cwd": "D:\\CodexWork\\babel-dot-20260915",
+  "environment": {
+    "OMP_NUM_THREADS": "20",
+    "OMP_DYNAMIC": "FALSE",
+    "OMP_PROC_BIND": null,
+    "OMP_PLACES": null
+  },
+  "startedUtc": "2026-09-15T05:09:25.617332+00:00",
+  "status": "passed",
+  "processWallTimeIsLifecycleMeasurement": false,
+  "freeGiBBefore": 246.85961532592773,
+  "estimatedGrowthGiB": 1.0,
+  "minimumFreeGiB": 20,
+  "backgroundConflicts": [],
+  "pid": 20808,
+  "exitCode": 0,
+  "completedUtc": "2026-09-15T05:09:34.481283+00:00",
+  "freeGiBAfter": 246.10960388183594,
+  "mutexReleased": true
+}

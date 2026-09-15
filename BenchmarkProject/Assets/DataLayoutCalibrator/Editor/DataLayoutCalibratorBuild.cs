@@ -272,6 +272,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark.Editor
                 "SpatialAoSQueryJob", "SpatialSoAQueryJob",
                 "AnimationAoSStepJob", "AnimationSoAStepJob", "CounterIsaIdentityJob",
                 "BabelInitialiseJob", "BabelCopyJob", "BabelMulJob", "BabelAddJob", "BabelTriadJob", "BabelDotContractJob",
+                "BabelDotPartialJob", "BabelDotMergeJob",
                 "LlamaNBodyUpdate4Job", "LlamaNBodyMove4Job",
             };
             for (int i = 0; i < requiredEntrypoints.Length; i++)

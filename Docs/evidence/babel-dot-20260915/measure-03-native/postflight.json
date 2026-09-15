@@ -1,0 +1,50 @@
+{
+  "utc": "2026-09-15T05:06:57.195667+00:00",
+  "samplesPercent": [
+    1.4
+  ],
+  "meanPercent": 1.4,
+  "availableMemory": 12389773312,
+  "topProcesses": [
+    {
+      "pid": 50800,
+      "name": "python.exe",
+      "machineCpuPercent": 6.56
+    },
+    {
+      "pid": 4,
+      "name": "System",
+      "machineCpuPercent": 1.015
+    },
+    {
+      "pid": 11464,
+      "name": "CC_Engine_x64.exe",
+      "machineCpuPercent": 0.547
+    },
+    {
+      "pid": 5944,
+      "name": "svchost.exe",
+      "machineCpuPercent": 0.391
+    },
+    {
+      "pid": 52148,
+      "name": "ChatGPT.exe",
+      "machineCpuPercent": 0.391
+    },
+    {
+      "pid": 16520,
+      "name": "esrv.exe",
+      "machineCpuPercent": 0.312
+    },
+    {
+      "pid": 3188,
+      "name": "NVDisplay.Container.exe",
+      "machineCpuPercent": 0.156
+    },
+    {
+      "pid": 6172,
+      "name": "ChatGPT.exe",
+      "machineCpuPercent": 0.156
+    }
+  ]
+}

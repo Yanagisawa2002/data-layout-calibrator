@@ -1,0 +1,79 @@
+{
+  "loads": [
+    {
+      "utc": "2026-09-15T05:05:38.272013+00:00",
+      "samplesPercent": [
+        5.1,
+        4.0,
+        5.2,
+        1.8,
+        3.1
+      ],
+      "meanPercent": 3.84,
+      "availableMemory": 12199854080,
+      "topProcesses": [
+        {
+          "pid": 50800,
+          "name": "python.exe",
+          "machineCpuPercent": 1.39
+        },
+        {
+          "pid": 4,
+          "name": "System",
+          "machineCpuPercent": 0.703
+        },
+        {
+          "pid": 9448,
+          "name": "WmiPrvSE.exe",
+          "machineCpuPercent": 0.484
+        },
+        {
+          "pid": 5944,
+          "name": "svchost.exe",
+          "machineCpuPercent": 0.406
+        },
+        {
+          "pid": 39032,
+          "name": "Killer.exe",
+          "machineCpuPercent": 0.375
+        },
+        {
+          "pid": 11464,
+          "name": "CC_Engine_x64.exe",
+          "machineCpuPercent": 0.344
+        },
+        {
+          "pid": 52148,
+          "name": "ChatGPT.exe",
+          "machineCpuPercent": 0.266
+        },
+        {
+          "pid": 6172,
+          "name": "ChatGPT.exe",
+          "machineCpuPercent": 0.156
+        },
+        {
+          "pid": 16520,
+          "name": "esrv.exe",
+          "machineCpuPercent": 0.156
+        },
+        {
+          "pid": 6152,
+          "name": "XtuService.exe",
+          "machineCpuPercent": 0.141
+        },
+        {
+          "pid": 33120,
+          "name": "com.docker.backend.exe",
+          "machineCpuPercent": 0.141
+        },
+        {
+          "pid": 22504,
+          "name": "rustdesk.exe",
+          "machineCpuPercent": 0.125
+        }
+      ]
+    }
+  ],
+  "freezeSha256": "30698e2706b4203b9a9aa9654f538b248bc15916449ece02a0f5aad57438c426"
+}

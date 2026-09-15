@@ -1,0 +1,79 @@
+{
+  "loads": [
+    {
+      "utc": "2026-09-15T05:01:33.384711+00:00",
+      "samplesPercent": [
+        1.4,
+        1.9,
+        9.7,
+        4.4,
+        2.7
+      ],
+      "meanPercent": 4.02,
+      "availableMemory": 11866296320,
+      "topProcesses": [
+        {
+          "pid": 25248,
+          "name": "python.exe",
+          "machineCpuPercent": 1.296
+        },
+        {
+          "pid": 4,
+          "name": "System",
+          "machineCpuPercent": 0.734
+        },
+        {
+          "pid": 52148,
+          "name": "ChatGPT.exe",
+          "machineCpuPercent": 0.625
+        },
+        {
+          "pid": 9448,
+          "name": "WmiPrvSE.exe",
+          "machineCpuPercent": 0.531
+        },
+        {
+          "pid": 5944,
+          "name": "svchost.exe",
+          "machineCpuPercent": 0.437
+        },
+        {
+          "pid": 23032,
+          "name": "steamwebhelper.exe",
+          "machineCpuPercent": 0.344
+        },
+        {
+          "pid": 11464,
+          "name": "CC_Engine_x64.exe",
+          "machineCpuPercent": 0.297
+        },
+        {
+          "pid": 26124,
+          "name": "Weixin.exe",
+          "machineCpuPercent": 0.219
+        },
+        {
+          "pid": 39032,
+          "name": "Killer.exe",
+          "machineCpuPercent": 0.172
+        },
+        {
+          "pid": 16520,
+          "name": "esrv.exe",
+          "machineCpuPercent": 0.156
+        },
+        {
+          "pid": 48484,
+          "name": "msedge.exe",
+          "machineCpuPercent": 0.156
+        },
+        {
+          "pid": 6152,
+          "name": "XtuService.exe",
+          "machineCpuPercent": 0.109
+        }
+      ]
+    }
+  ],
+  "freezeSha256": null
+}

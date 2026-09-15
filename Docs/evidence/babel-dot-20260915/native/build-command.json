@@ -1,0 +1,20 @@
+{
+  "command": [
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+    "/nologo",
+    "/O2",
+    "/fp:strict",
+    "/arch:AVX2",
+    "/std:c++20",
+    "/EHsc",
+    "/MD",
+    "D:\\CodexWork\\babel-dot-20260915\\Tools\\ActualComparison\\babel_native.cpp",
+    "/FoD:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\native\\babel_native.obj",
+    "/FeD:\\CodexWork\\babel-dot-20260915\\Artifacts\\dot-20260915\\native\\babel_native.exe",
+    "/openmp",
+    "/ID:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\BabelStream\\src",
+    "/ID:\\CodexWork\\babel-dot-20260915\\Packages\\com.yanagisawa.data-layout-calibrator\\Samples\\ExternalWorkloads\\Upstream~\\BabelStream\\src\\omp"
+  ],
+  "INCLUDE": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include;C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt;C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\shared;C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\um;C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\winrt",
+  "LIB": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\lib\\x64;C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\ucrt\\x64;C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\um\\x64"
+}

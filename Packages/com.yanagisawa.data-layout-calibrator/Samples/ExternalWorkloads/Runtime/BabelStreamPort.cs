@@ -22,7 +22,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ExternalWorkloads
         public static bool Matches(double actual, double expected, bool dot = false)
         {
             double limit = MachineEpsilon * (dot ? 10000000.0 : 100.0);
-            return !double.IsNaN(actual) && Math.Abs(actual - expected) <= Math.Max(Math.Abs(actual), Math.Abs(expected)) * limit;
+            return !double.IsNaN(actual) && !double.IsInfinity(actual) && !double.IsNaN(expected) && !double.IsInfinity(expected)
+                && Math.Abs(actual - expected) <= Math.Max(Math.Abs(actual), Math.Abs(expected)) * limit;
         }
 
         // Exactly the five classic operations; nstream is an upstream optional selection.
@@ -74,6 +75,85 @@ namespace Yanagisawa.DataLayoutCalibrator.Samples.ExternalWorkloads
             double sum = 0;
             for (int i = 0; i < A.Length; i++) sum += A[i] * B[i];
             Sum[0] = sum;
+        }
+    }
+
+    // Keep the original serial job above as the reproducible baseline. This API
+    // owns no storage: callers keep all arrays alive until the returned handle
+    // completes, and complete the previous reduction before reusing scratch.
+    public static class BabelDotReduction
+    {
+        public const int DefaultChunkLength = 65536;
+
+        public static int PartialCount(int length, int chunkLength = DefaultChunkLength)
+        {
+            if (length < 0) throw new ArgumentOutOfRangeException(nameof(length));
+            if (chunkLength <= 0) throw new ArgumentOutOfRangeException(nameof(chunkLength));
+            return length / chunkLength + (length % chunkLength == 0 ? 0 : 1);
+        }
+
+        public static JobHandle Schedule(NativeArray<double> a, NativeArray<double> b,
+            NativeArray<BabelDotPartial> partials, NativeArray<double> sum,
+            int chunkLength = DefaultChunkLength, JobHandle dependency = default)
+        {
+            int count = PartialCount(a.Length, chunkLength);
+            if (!a.IsCreated || !b.IsCreated || a.Length != b.Length)
+                throw new ArgumentException("Dot inputs must be created and have equal lengths.");
+            if (!partials.IsCreated || partials.Length != count || !sum.IsCreated || sum.Length != 1)
+                throw new ArgumentException("Dot requires exact-size caller-owned partials and one output.");
+            // Every slot is assigned on every invocation; no read of stale or
+            // uninitialized scratch, and no separate per-call clear is needed.
+            var chunks = new BabelDotPartialJob { A = a, B = b, Partials = partials, ChunkLength = chunkLength }
+                .Schedule(count, 1, dependency);
+            return new BabelDotMergeJob { Partials = partials, Sum = sum }.Schedule(chunks);
+        }
+
+        internal static void Add(ref double sum, ref double correction, double value)
+        {
+            double next = sum + value;
+            correction += Math.Abs(sum) >= Math.Abs(value) ? (sum - next) + value : (value - next) + sum;
+            sum = next;
+        }
+    }
+
+    public struct BabelDotPartial { public double Sum, Correction; }
+
+    [BurstCompile(FloatMode = FloatMode.Strict, FloatPrecision = FloatPrecision.Standard)]
+    public struct BabelDotPartialJob : IJobParallelFor
+    {
+        [ReadOnly] public NativeArray<double> A, B;
+        [WriteOnly] public NativeArray<BabelDotPartial> Partials;
+        public int ChunkLength;
+
+        public void Execute(int chunk)
+        {
+            int start = chunk * ChunkLength;
+            // Subtract before adding, avoiding overflow at the final int-sized tail.
+            int end = start + Math.Min(ChunkLength, A.Length - start);
+            double sum = 0, correction = 0;
+            for (int i = start; i < end; i++) BabelDotReduction.Add(ref sum, ref correction, A[i] * B[i]);
+            Partials[chunk] = new BabelDotPartial { Sum = sum, Correction = correction };
+        }
+    }
+
+    [BurstCompile(FloatMode = FloatMode.Strict, FloatPrecision = FloatPrecision.Standard)]
+    public struct BabelDotMergeJob : IJob
+    {
+        [ReadOnly] public NativeArray<BabelDotPartial> Partials;
+        [WriteOnly] public NativeArray<double> Sum;
+
+        public void Execute()
+        {
+            double sum = 0, correction = 0;
+            // Merge BOTH components in ascending chunk order, independent of
+            // worker scheduling. Collapsing a partial first loses cancellation residuals.
+            for (int i = 0; i < Partials.Length; i++)
+            {
+                var partial = Partials[i];
+                BabelDotReduction.Add(ref sum, ref correction, partial.Sum);
+                BabelDotReduction.Add(ref sum, ref correction, partial.Correction);
+            }
+            Sum[0] = sum + correction;
         }
     }
 }

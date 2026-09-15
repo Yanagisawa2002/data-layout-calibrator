@@ -19,7 +19,9 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         [Serializable] internal sealed class Result
         {
             public string workload, unity, unit = "ms", allocationEligibility = "Unknown", allocationDiagnostic;
-            public int count, iterations, workers;
+            public int count, iterations, workers, dotChunkLength, dotPartialCount;
+            public string dotMode;
+            public BabelDotCorrectness.Receipt dotCorrectness;
             public AllocationCounterCapability allocationCapability;
             public double constructMs, initMs, exportMs, disposeMs, storageLifecycleMs, sum;
             public Samples[] operationMs;
@@ -58,6 +60,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                 catch (Exception e) { result.allocationDiagnostic = e.Message; }
                 result.allocationCapability = counter.Capability;
                 if (Argument("-dla-external") == "babel") RunBabel(prefix, result);
+                else if (Argument("-dla-external") == "babel-dot-check") result.dotCorrectness = BabelDotCorrectness.Run();
                 else if (Argument("-dla-external") == "llama") RunLlama(prefix, result);
                 else throw new ArgumentException("Unknown external workload");
                 File.WriteAllText(prefix + ".json", JsonUtility.ToJson(result, true));
@@ -72,12 +75,19 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
         private static void RunBabel(string prefix, Result r)
         {
             int n = BabelStreamContract.DefaultArraySize, repeats = BabelStreamContract.DefaultIterations;
-            r.workload = "C#/Burst variant of BabelStream; serial contract Dot"; r.count = n; r.iterations = repeats;
+            string mode = Argument("-dla-dot-mode") ?? "serial";
+            if (mode != "serial" && mode != "parallel") throw new ArgumentException("Dot mode must be serial or parallel");
+            int chunk = int.Parse(Argument("-dla-dot-chunk") ?? BabelDotReduction.DefaultChunkLength.ToString());
+            int partialCount = BabelDotReduction.PartialCount(n, chunk);
+            r.dotMode = mode; r.dotChunkLength = mode == "parallel" ? chunk : 0;
+            r.dotPartialCount = mode == "parallel" ? partialCount : 0;
+            r.workload = "C#/Burst variant of BabelStream; " + mode + " Dot"; r.count = n; r.iterations = repeats;
             r.operationMs = new Samples[5];
             for (int i = 0; i < 5; i++) r.operationMs[i] = new Samples { values = new double[repeats] };
             // Same caller-owned canonical output contract as the native adapter.
             var outA = new double[n]; var outB = new double[n]; var outC = new double[n];
             var a = default(NativeArray<double>); var b = a; var c = a; var sum = a;
+            var partials = default(NativeArray<BabelDotPartial>);
             long life = Stopwatch.GetTimestamp(), phase = life;
             try
             {
@@ -85,6 +95,8 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                 b = new NativeArray<double>(n, Allocator.Persistent, NativeArrayOptions.UninitializedMemory);
                 c = new NativeArray<double>(n, Allocator.Persistent, NativeArrayOptions.UninitializedMemory);
                 sum = new NativeArray<double>(1, Allocator.Persistent);
+                // Allocation and zero initialization belong to storage lifetime.
+                if (mode == "parallel") partials = new NativeArray<BabelDotPartial>(partialCount, Allocator.Persistent);
                 new BabelInitialiseJob { A = a, B = b, C = c }.Schedule(n, 4096).Complete();
                 r.constructMs = Since(phase); phase = Stopwatch.GetTimestamp();
                 // Upstream OpenMP constructor initializes once, then driver initializes again.
@@ -96,7 +108,10 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
                     phase = Stopwatch.GetTimestamp(); new BabelMulJob { B = b, C = c }.Schedule(n, 4096).Complete(); r.operationMs[1].values[k] = Since(phase);
                     phase = Stopwatch.GetTimestamp(); new BabelAddJob { A = a, B = b, C = c }.Schedule(n, 4096).Complete(); r.operationMs[2].values[k] = Since(phase);
                     phase = Stopwatch.GetTimestamp(); new BabelTriadJob { A = a, B = b, C = c }.Schedule(n, 4096).Complete(); r.operationMs[3].values[k] = Since(phase);
-                    phase = Stopwatch.GetTimestamp(); new BabelDotContractJob { A = a, B = b, Sum = sum }.Schedule().Complete(); r.operationMs[4].values[k] = Since(phase);
+                    phase = Stopwatch.GetTimestamp();
+                    if (mode == "parallel") BabelDotReduction.Schedule(a, b, partials, sum, chunk).Complete();
+                    else new BabelDotContractJob { A = a, B = b, Sum = sum }.Schedule().Complete();
+                    r.operationMs[4].values[k] = Since(phase);
                 }
                 r.sum = sum[0]; phase = Stopwatch.GetTimestamp();
                 a.CopyTo(outA); b.CopyTo(outB); c.CopyTo(outC); r.exportMs = Since(phase);
@@ -105,6 +120,7 @@ namespace Yanagisawa.DataLayoutCalibrator.Benchmark
             {
                 phase = Stopwatch.GetTimestamp();
                 if (a.IsCreated) a.Dispose(); if (b.IsCreated) b.Dispose(); if (c.IsCreated) c.Dispose(); if (sum.IsCreated) sum.Dispose();
+                if (partials.IsCreated) partials.Dispose();
                 r.disposeMs = Since(phase);
             }
             r.storageLifecycleMs = Since(life);
