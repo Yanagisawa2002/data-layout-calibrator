@@ -32,3 +32,5 @@ Tools/WholeTask/Upstream~/** -text -whitespace
 
 # Preserve source/run manifests, complete outputs and transferred log bytes.
 Docs/evidence/whole-task-linux-20260915/** -text -whitespace
+Docs/evidence/single-attempt-linux-20260916/** -text -whitespace
+Tools/WholeTask/run_single_attempt.sh text eol=lf

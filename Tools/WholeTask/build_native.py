@@ -13,7 +13,9 @@ VC = Path("C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Too
 KIT = Path("C:/Program Files (x86)/Windows Kits/10")
 
 
-def build(out):
+def build(out, arms=None):
+    if arms is not None and (not arms or len(set(arms)) != len(arms) or not set(arms) <= set(NAMES)):
+        raise ValueError("Invalid explicit native build arms")
     windows = os.name == "nt"
     compiler = VC/"bin/Hostx64/x64/cl.exe" if windows else Path(shutil.which(os.environ.get("CXX", "g++")) or "/missing-compiler")
     if not compiler.is_file():
@@ -33,7 +35,10 @@ def build(out):
     includes += sorted(p for p in adapted.rglob("*") if p.is_dir())
     sources = [HERE/"simpleph_task.cpp"] + sorted(adapted.rglob("*.cpp"))
     results = []
-    for name, kind, diag in [(n, k, 0) for k, n in enumerate(NAMES)] + [("diagnostic-aos", 1, 1), ("diagnostic-original", 0, 1)]:
+    variants = [(n, k, 0) for k, n in enumerate(NAMES) if arms is None or n in arms]
+    if arms is None:
+        variants += [("diagnostic-aos", 1, 1), ("diagnostic-original", 0, 1)]
+    for name, kind, diag in variants:
         target = out / name
         target.mkdir()
         common = [str(compiler), "/nologo", "/O2", "/fp:strict", "/arch:AVX2", "/std:c++20",
@@ -73,5 +78,6 @@ def build(out):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--arms", nargs="+", choices=NAMES, help="Build only this frozen subset; omit for all arms and diagnostics")
     args = parser.parse_args()
-    build(args.output.resolve())
+    build(args.output.resolve(), args.arms)
