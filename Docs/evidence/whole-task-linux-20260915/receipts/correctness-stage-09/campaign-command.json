@@ -1,0 +1,12 @@
+[
+  "/root/autodl-tmp/codex-whole-task-20260915/data-layout/env/python/bin/python3",
+  "Tools/WholeTask/campaign.py",
+  "--phase",
+  "correctness",
+  "--build",
+  "/root/autodl-tmp/codex-whole-task-20260915/data-layout/native-build-04",
+  "--cases",
+  "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-stage-09/cases.json",
+  "--output",
+  "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01"
+]

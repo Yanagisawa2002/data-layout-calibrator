@@ -1,0 +1,7 @@
+{
+  "completed": false,
+  "error": "Per-task CPU preflight failed; no native child started. Retained at /root/autodl-tmp/codex-whole-task-20260915/data-layout/discovery-03/diagnostics/diagnostic-aos",
+  "phase": "discovery",
+  "time": "2026-09-15T09:10:23.071634+00:00",
+  "retained": true
+}

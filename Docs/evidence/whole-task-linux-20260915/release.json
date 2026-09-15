@@ -1,0 +1,1621 @@
+{
+  "verifiedUtc": "2026-09-15T09:15:47.158476+00:00",
+  "observerPid": 6873,
+  "observerAncestorsExcluded": [
+    6873,
+    6872,
+    6857,
+    1126,
+    1105
+  ],
+  "bootId": "ca152b68-aec1-4d99-b01f-b87f0b58142a",
+  "ownedRunningProcesses": [],
+  "recordedProcessReferences": [
+    {
+      "pid": 2627,
+      "kind": "recorded-owned-pid",
+      "evidence": "build-stage-01/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 2664,
+      "kind": "recorded-owned-pid",
+      "evidence": "build-stage-02/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4118,
+      "kind": "recorded-owned-pid",
+      "evidence": "build-stage-04/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4309,
+      "kind": "recorded-owned-pid",
+      "evidence": "build-stage-05/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5284,
+      "kind": "recorded-owned-pid",
+      "evidence": "build-stage-07/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5448,
+      "kind": "recorded-owned-pid",
+      "evidence": "build-stage-08/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5007,
+      "kind": "native-application",
+      "processIdentity": "5007:1789461489086332539",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-export/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5005,
+      "kind": "native-application",
+      "processIdentity": "5005:1789461488012752457",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-export/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4997,
+      "kind": "native-application",
+      "processIdentity": "4997:1789461484803894510",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-export/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4995,
+      "kind": "native-application",
+      "processIdentity": "4995:1789461483562415376",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-export/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5003,
+      "kind": "native-application",
+      "processIdentity": "5003:1789461486937002259",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-export/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5001,
+      "kind": "native-application",
+      "processIdentity": "5001:1789461485870445057",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-export/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4990,
+      "kind": "native-application",
+      "processIdentity": "4990:1789461481399070523",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-export/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4993,
+      "kind": "native-application",
+      "processIdentity": "4993:1789461482487225173",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-export/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4988,
+      "kind": "native-application",
+      "processIdentity": "4988:1789461480363264478",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-large/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4984,
+      "kind": "native-application",
+      "processIdentity": "4984:1789461479308275240",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-large/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4978,
+      "kind": "native-application",
+      "processIdentity": "4978:1789461476211228487",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-large/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4976,
+      "kind": "native-application",
+      "processIdentity": "4976:1789461475191076878",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-large/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4982,
+      "kind": "native-application",
+      "processIdentity": "4982:1789461478264891823",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-large/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4980,
+      "kind": "native-application",
+      "processIdentity": "4980:1789461477238725431",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-large/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4970,
+      "kind": "native-application",
+      "processIdentity": "4970:1789461473128909705",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-large/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4972,
+      "kind": "native-application",
+      "processIdentity": "4972:1789461474172146572",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-large/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4968,
+      "kind": "native-application",
+      "processIdentity": "4968:1789461472114110703",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-medium/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4966,
+      "kind": "native-application",
+      "processIdentity": "4966:1789461471101020183",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-medium/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4958,
+      "kind": "native-application",
+      "processIdentity": "4958:1789461468037916037",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-medium/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4956,
+      "kind": "native-application",
+      "processIdentity": "4956:1789461467014582893",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-medium/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4964,
+      "kind": "native-application",
+      "processIdentity": "4964:1789461470080844013",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-medium/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4960,
+      "kind": "native-application",
+      "processIdentity": "4960:1789461469062485269",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-medium/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4950,
+      "kind": "native-application",
+      "processIdentity": "4950:1789461464988883384",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-medium/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4954,
+      "kind": "native-application",
+      "processIdentity": "4954:1789461465999056766",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-medium/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4948,
+      "kind": "native-application",
+      "processIdentity": "4948:1789461463962697976",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-small/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4946,
+      "kind": "native-application",
+      "processIdentity": "4946:1789461462955086613",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-small/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4927,
+      "kind": "native-application",
+      "processIdentity": "4927:1789461459910193477",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-small/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4925,
+      "kind": "native-application",
+      "processIdentity": "4925:1789461458895818144",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-small/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4944,
+      "kind": "native-application",
+      "processIdentity": "4944:1789461461946423744",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-small/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4940,
+      "kind": "native-application",
+      "processIdentity": "4940:1789461460928098349",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-small/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4919,
+      "kind": "native-application",
+      "processIdentity": "4919:1789461456868931947",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-small/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4921,
+      "kind": "native-application",
+      "processIdentity": "4921:1789461457887646620",
+      "completed": true,
+      "evidence": "correctness-discovery-01/discovery-small/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6260,
+      "kind": "native-application",
+      "processIdentity": "6260:1789462659958149862",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-export/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6258,
+      "kind": "native-application",
+      "processIdentity": "6258:1789462658875478312",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-export/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6252,
+      "kind": "native-application",
+      "processIdentity": "6252:1789462655650688136",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-export/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6248,
+      "kind": "native-application",
+      "processIdentity": "6248:1789462654573697018",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-export/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6256,
+      "kind": "native-application",
+      "processIdentity": "6256:1789462657793811597",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-export/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6254,
+      "kind": "native-application",
+      "processIdentity": "6254:1789462656722305467",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-export/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6244,
+      "kind": "native-application",
+      "processIdentity": "6244:1789462652421726025",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-export/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6246,
+      "kind": "native-application",
+      "processIdentity": "6246:1789462653504927427",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-export/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6242,
+      "kind": "native-application",
+      "processIdentity": "6242:1789462651391164022",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-large/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6240,
+      "kind": "native-application",
+      "processIdentity": "6240:1789462650343106895",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-large/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6232,
+      "kind": "native-application",
+      "processIdentity": "6232:1789462647257304445",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-large/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6230,
+      "kind": "native-application",
+      "processIdentity": "6230:1789462646230506107",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-large/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6236,
+      "kind": "native-application",
+      "processIdentity": "6236:1789462649309044643",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-large/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6234,
+      "kind": "native-application",
+      "processIdentity": "6234:1789462648282548956",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-large/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6224,
+      "kind": "native-application",
+      "processIdentity": "6224:1789462644156817232",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-large/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6228,
+      "kind": "native-application",
+      "processIdentity": "6228:1789462645208034033",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-large/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6222,
+      "kind": "native-application",
+      "processIdentity": "6222:1789462643121232859",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-medium/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6220,
+      "kind": "native-application",
+      "processIdentity": "6220:1789462642097550918",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-medium/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6212,
+      "kind": "native-application",
+      "processIdentity": "6212:1789462639026577636",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-medium/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6210,
+      "kind": "native-application",
+      "processIdentity": "6210:1789462638003265112",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-medium/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6218,
+      "kind": "native-application",
+      "processIdentity": "6218:1789462641073945174",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-medium/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6215,
+      "kind": "native-application",
+      "processIdentity": "6215:1789462640050554784",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-medium/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6206,
+      "kind": "native-application",
+      "processIdentity": "6206:1789462635956090741",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-medium/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6208,
+      "kind": "native-application",
+      "processIdentity": "6208:1789462636980121394",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-medium/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6202,
+      "kind": "native-application",
+      "processIdentity": "6202:1789462634929839621",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-small/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6200,
+      "kind": "native-application",
+      "processIdentity": "6200:1789462633911873669",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-small/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6194,
+      "kind": "native-application",
+      "processIdentity": "6194:1789462630855784641",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-small/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6190,
+      "kind": "native-application",
+      "processIdentity": "6190:1789462629837754397",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-small/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6198,
+      "kind": "native-application",
+      "processIdentity": "6198:1789462632894075355",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-small/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6196,
+      "kind": "native-application",
+      "processIdentity": "6196:1789462631876311625",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-small/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6186,
+      "kind": "native-application",
+      "processIdentity": "6186:1789462627802005021",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-small/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6188,
+      "kind": "native-application",
+      "processIdentity": "6188:1789462628819556009",
+      "completed": true,
+      "evidence": "correctness-final-01/discovery-small/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6292,
+      "kind": "native-application",
+      "processIdentity": "6292:1789462699137557962",
+      "completed": true,
+      "evidence": "correctness-final-01/physics-long/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6288,
+      "kind": "native-application",
+      "processIdentity": "6288:1789462693101219374",
+      "completed": true,
+      "evidence": "correctness-final-01/physics-long/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6276,
+      "kind": "native-application",
+      "processIdentity": "6276:1789462677330743209",
+      "completed": true,
+      "evidence": "correctness-final-01/physics-long/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6272,
+      "kind": "native-application",
+      "processIdentity": "6272:1789462672133709010",
+      "completed": true,
+      "evidence": "correctness-final-01/physics-long/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6284,
+      "kind": "native-application",
+      "processIdentity": "6284:1789462687693377110",
+      "completed": true,
+      "evidence": "correctness-final-01/physics-long/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6280,
+      "kind": "native-application",
+      "processIdentity": "6280:1789462682494128652",
+      "completed": true,
+      "evidence": "correctness-final-01/physics-long/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6264,
+      "kind": "native-application",
+      "processIdentity": "6264:1789462661058509256",
+      "completed": true,
+      "evidence": "correctness-final-01/physics-long/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6268,
+      "kind": "native-application",
+      "processIdentity": "6268:1789462667090161720",
+      "completed": true,
+      "evidence": "correctness-final-01/physics-long/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6164,
+      "kind": "native-application",
+      "processIdentity": "6164:1789462618631326890",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-small/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6162,
+      "kind": "native-application",
+      "processIdentity": "6162:1789462617613611049",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-small/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6154,
+      "kind": "native-application",
+      "processIdentity": "6154:1789462614559013292",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-small/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6152,
+      "kind": "native-application",
+      "processIdentity": "6152:1789462613537989398",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-small/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6160,
+      "kind": "native-application",
+      "processIdentity": "6160:1789462616595840723",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-small/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6158,
+      "kind": "native-application",
+      "processIdentity": "6158:1789462615578357150",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-small/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6148,
+      "kind": "native-application",
+      "processIdentity": "6148:1789462611414282058",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-small/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6150,
+      "kind": "native-application",
+      "processIdentity": "6150:1789462612517699378",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-small/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6184,
+      "kind": "native-application",
+      "processIdentity": "6184:1789462626777936280",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-tail/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6182,
+      "kind": "native-application",
+      "processIdentity": "6182:1789462625760292771",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-tail/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6174,
+      "kind": "native-application",
+      "processIdentity": "6174:1789462622707046162",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-tail/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6172,
+      "kind": "native-application",
+      "processIdentity": "6172:1789462621689140677",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-tail/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6178,
+      "kind": "native-application",
+      "processIdentity": "6178:1789462624742916216",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-tail/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6176,
+      "kind": "native-application",
+      "processIdentity": "6176:1789462623724736353",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-tail/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6166,
+      "kind": "native-application",
+      "processIdentity": "6166:1789462619654115345",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-tail/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6170,
+      "kind": "native-application",
+      "processIdentity": "6170:1789462620671775102",
+      "completed": true,
+      "evidence": "correctness-final-01/smoke-tail/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5043,
+      "kind": "native-application",
+      "processIdentity": "5043:1789461529396057153",
+      "completed": true,
+      "evidence": "correctness-physics-01/physics-long/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5039,
+      "kind": "native-application",
+      "processIdentity": "5039:1789461523343282846",
+      "completed": true,
+      "evidence": "correctness-physics-01/physics-long/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5027,
+      "kind": "native-application",
+      "processIdentity": "5027:1789461507407147429",
+      "completed": true,
+      "evidence": "correctness-physics-01/physics-long/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5023,
+      "kind": "native-application",
+      "processIdentity": "5023:1789461502229387422",
+      "completed": true,
+      "evidence": "correctness-physics-01/physics-long/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5035,
+      "kind": "native-application",
+      "processIdentity": "5035:1789461517952700266",
+      "completed": true,
+      "evidence": "correctness-physics-01/physics-long/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5031,
+      "kind": "native-application",
+      "processIdentity": "5031:1789461512631144735",
+      "completed": true,
+      "evidence": "correctness-physics-01/physics-long/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5014,
+      "kind": "native-application",
+      "processIdentity": "5014:1789461491086935620",
+      "completed": true,
+      "evidence": "correctness-physics-01/physics-long/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5018,
+      "kind": "native-application",
+      "processIdentity": "5018:1789461497121234963",
+      "completed": true,
+      "evidence": "correctness-physics-01/physics-long/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3693,
+      "kind": "native-application",
+      "processIdentity": "3693:1789460300817901096",
+      "completed": true,
+      "evidence": "correctness-smoke-01/smoke-small/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3690,
+      "kind": "native-application",
+      "processIdentity": "3690:1789460300031850511",
+      "completed": true,
+      "evidence": "correctness-smoke-01/smoke-small/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3683,
+      "kind": "native-application",
+      "processIdentity": "3683:1789460297683962366",
+      "completed": true,
+      "evidence": "correctness-smoke-01/smoke-small/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3681,
+      "kind": "native-application",
+      "processIdentity": "3681:1789460296898850652",
+      "completed": true,
+      "evidence": "correctness-smoke-01/smoke-small/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3687,
+      "kind": "native-application",
+      "processIdentity": "3687:1789460299254548409",
+      "completed": true,
+      "evidence": "correctness-smoke-01/smoke-small/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3685,
+      "kind": "native-application",
+      "processIdentity": "3685:1789460298469285149",
+      "completed": true,
+      "evidence": "correctness-smoke-01/smoke-small/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3677,
+      "kind": "native-application",
+      "processIdentity": "3677:1789460295329792221",
+      "completed": true,
+      "evidence": "correctness-smoke-01/smoke-small/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3679,
+      "kind": "native-application",
+      "processIdentity": "3679:1789460296112732147",
+      "completed": true,
+      "evidence": "correctness-smoke-01/smoke-small/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4895,
+      "kind": "native-application",
+      "processIdentity": "4895:1789461446794499649",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-small/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4893,
+      "kind": "native-application",
+      "processIdentity": "4893:1789461445785371735",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-small/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4885,
+      "kind": "native-application",
+      "processIdentity": "4885:1789461442756671162",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-small/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4883,
+      "kind": "native-application",
+      "processIdentity": "4883:1789461441738493440",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-small/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4889,
+      "kind": "native-application",
+      "processIdentity": "4889:1789461444776601050",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-small/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4887,
+      "kind": "native-application",
+      "processIdentity": "4887:1789461443767230042",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-small/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4877,
+      "kind": "native-application",
+      "processIdentity": "4877:1789461439705569813",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-small/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4881,
+      "kind": "native-application",
+      "processIdentity": "4881:1789461440720141693",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-small/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4913,
+      "kind": "native-application",
+      "processIdentity": "4913:1789461454882614105",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-tail/diagnostic-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4911,
+      "kind": "native-application",
+      "processIdentity": "4911:1789461453865376216",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-tail/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4905,
+      "kind": "native-application",
+      "processIdentity": "4905:1789461450836893344",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-tail/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4901,
+      "kind": "native-application",
+      "processIdentity": "4901:1789461449828153596",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-tail/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4909,
+      "kind": "native-application",
+      "processIdentity": "4909:1789461452847588071",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-tail/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4907,
+      "kind": "native-application",
+      "processIdentity": "4907:1789461451842339308",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-tail/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4897,
+      "kind": "native-application",
+      "processIdentity": "4897:1789461447805230003",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-tail/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4899,
+      "kind": "native-application",
+      "processIdentity": "4899:1789461448818617194",
+      "completed": true,
+      "evidence": "correctness-smoke-02/smoke-tail/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6146,
+      "kind": "recorded-owned-pid",
+      "evidence": "correctness-stage-09/campaign.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6111,
+      "kind": "recorded-owned-pid",
+      "evidence": "correctness-stage-09/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5073,
+      "kind": "native-application",
+      "processIdentity": "5073:1789461542169137487",
+      "completed": true,
+      "evidence": "discovery-01/discovery-medium/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5065,
+      "kind": "native-application",
+      "processIdentity": "5065:1789461539117870685",
+      "completed": true,
+      "evidence": "discovery-01/discovery-small/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5063,
+      "kind": "native-application",
+      "processIdentity": "5063:1789461538102129775",
+      "completed": true,
+      "evidence": "discovery-01/discovery-small/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5071,
+      "kind": "native-application",
+      "processIdentity": "5071:1789461541148901934",
+      "completed": true,
+      "evidence": "discovery-01/discovery-small/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5069,
+      "kind": "native-application",
+      "processIdentity": "5069:1789461540133556167",
+      "completed": true,
+      "evidence": "discovery-01/discovery-small/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5059,
+      "kind": "native-application",
+      "processIdentity": "5059:1789461536072014820",
+      "completed": true,
+      "evidence": "discovery-01/discovery-small/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5061,
+      "kind": "native-application",
+      "processIdentity": "5061:1789461537087214912",
+      "completed": true,
+      "evidence": "discovery-01/discovery-small/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6684,
+      "kind": "native-application",
+      "processIdentity": "6684:1789463422033607785",
+      "completed": true,
+      "evidence": "discovery-03/diagnostics/diagnostic-original/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6676,
+      "kind": "native-application",
+      "processIdentity": "6676:1789463418813896675",
+      "completed": true,
+      "evidence": "discovery-03/discovery-export/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6674,
+      "kind": "native-application",
+      "processIdentity": "6674:1789463417748150129",
+      "completed": true,
+      "evidence": "discovery-03/discovery-export/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6682,
+      "kind": "native-application",
+      "processIdentity": "6682:1789463420946574426",
+      "completed": true,
+      "evidence": "discovery-03/discovery-export/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6678,
+      "kind": "native-application",
+      "processIdentity": "6678:1789463419878402890",
+      "completed": true,
+      "evidence": "discovery-03/discovery-export/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6670,
+      "kind": "native-application",
+      "processIdentity": "6670:1789463415599406846",
+      "completed": true,
+      "evidence": "discovery-03/discovery-export/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6672,
+      "kind": "native-application",
+      "processIdentity": "6672:1789463416681207656",
+      "completed": true,
+      "evidence": "discovery-03/discovery-export/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6662,
+      "kind": "native-application",
+      "processIdentity": "6662:1789463412518137470",
+      "completed": true,
+      "evidence": "discovery-03/discovery-large/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6660,
+      "kind": "native-application",
+      "processIdentity": "6660:1789463411496539040",
+      "completed": true,
+      "evidence": "discovery-03/discovery-large/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6666,
+      "kind": "native-application",
+      "processIdentity": "6666:1789463414565395984",
+      "completed": true,
+      "evidence": "discovery-03/discovery-large/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6664,
+      "kind": "native-application",
+      "processIdentity": "6664:1789463413544182332",
+      "completed": true,
+      "evidence": "discovery-03/discovery-large/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6654,
+      "kind": "native-application",
+      "processIdentity": "6654:1789463409440785243",
+      "completed": true,
+      "evidence": "discovery-03/discovery-large/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6658,
+      "kind": "native-application",
+      "processIdentity": "6658:1789463410480398420",
+      "completed": true,
+      "evidence": "discovery-03/discovery-large/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6648,
+      "kind": "native-application",
+      "processIdentity": "6648:1789463406379326276",
+      "completed": true,
+      "evidence": "discovery-03/discovery-medium/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6646,
+      "kind": "native-application",
+      "processIdentity": "6646:1789463405362300329",
+      "completed": true,
+      "evidence": "discovery-03/discovery-medium/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6652,
+      "kind": "native-application",
+      "processIdentity": "6652:1789463408418095069",
+      "completed": true,
+      "evidence": "discovery-03/discovery-medium/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6650,
+      "kind": "native-application",
+      "processIdentity": "6650:1789463407397286727",
+      "completed": true,
+      "evidence": "discovery-03/discovery-medium/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6640,
+      "kind": "native-application",
+      "processIdentity": "6640:1789463403328008548",
+      "completed": true,
+      "evidence": "discovery-03/discovery-medium/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6642,
+      "kind": "native-application",
+      "processIdentity": "6642:1789463404344812749",
+      "completed": true,
+      "evidence": "discovery-03/discovery-medium/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6634,
+      "kind": "native-application",
+      "processIdentity": "6634:1789463400276831902",
+      "completed": true,
+      "evidence": "discovery-03/discovery-small/field-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6630,
+      "kind": "native-application",
+      "processIdentity": "6630:1789463399259603655",
+      "completed": true,
+      "evidence": "discovery-03/discovery-small/field-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6638,
+      "kind": "native-application",
+      "processIdentity": "6638:1789463402309029843",
+      "completed": true,
+      "evidence": "discovery-03/discovery-small/llama-aosoa8/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6636,
+      "kind": "native-application",
+      "processIdentity": "6636:1789463401293095807",
+      "completed": true,
+      "evidence": "discovery-03/discovery-small/llama-soa/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6626,
+      "kind": "native-application",
+      "processIdentity": "6626:1789463397227175929",
+      "completed": true,
+      "evidence": "discovery-03/discovery-small/original-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6628,
+      "kind": "native-application",
+      "processIdentity": "6628:1789463398242885028",
+      "completed": true,
+      "evidence": "discovery-03/discovery-small/tuned-aos/result.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4916,
+      "kind": "pid",
+      "evidence": "discovery-correctness-resource-01/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4917,
+      "kind": "childPid",
+      "evidence": "discovery-correctness-resource-01/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4308,
+      "kind": "flock",
+      "evidence": "discovery-correctness-resource-01/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5054,
+      "kind": "pid",
+      "evidence": "discovery-resource-01/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5057,
+      "kind": "childPid",
+      "evidence": "discovery-resource-01/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4308,
+      "kind": "flock",
+      "evidence": "discovery-resource-01/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6623,
+      "kind": "pid",
+      "evidence": "discovery-resource-03/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6624,
+      "kind": "childPid",
+      "evidence": "discovery-resource-03/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6595,
+      "kind": "flock",
+      "evidence": "discovery-resource-03/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6596,
+      "kind": "recorded-owned-pid",
+      "evidence": "discovery-stage-10/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 2410,
+      "kind": "recorded-owned-pid",
+      "evidence": "environment-01/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5009,
+      "kind": "pid",
+      "evidence": "physics-resource-01/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5012,
+      "kind": "childPid",
+      "evidence": "physics-resource-01/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4308,
+      "kind": "flock",
+      "evidence": "physics-resource-01/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3825,
+      "kind": "recorded-owned-pid",
+      "evidence": "sanitizer-01/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3672,
+      "kind": "pid",
+      "evidence": "smoke-resource-01/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3673,
+      "kind": "childPid",
+      "evidence": "smoke-resource-01/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3443,
+      "kind": "flock",
+      "evidence": "smoke-resource-01/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4874,
+      "kind": "pid",
+      "evidence": "smoke-resource-02/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4875,
+      "kind": "childPid",
+      "evidence": "smoke-resource-02/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4308,
+      "kind": "flock",
+      "evidence": "smoke-resource-02/stage.json",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3444,
+      "kind": "recorded-owned-pid",
+      "evidence": "smoke-stage-01/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 2627,
+      "kind": "stage-shell",
+      "evidence": "build-stage-01/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 2664,
+      "kind": "stage-shell",
+      "evidence": "build-stage-02/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4118,
+      "kind": "stage-shell",
+      "evidence": "build-stage-04/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 4309,
+      "kind": "stage-shell",
+      "evidence": "build-stage-05/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5284,
+      "kind": "stage-shell",
+      "evidence": "build-stage-07/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 5448,
+      "kind": "stage-shell",
+      "evidence": "build-stage-08/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6111,
+      "kind": "stage-shell",
+      "evidence": "correctness-stage-09/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6596,
+      "kind": "stage-shell",
+      "evidence": "discovery-stage-10/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 2410,
+      "kind": "stage-shell",
+      "evidence": "environment-01/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 6766,
+      "kind": "stage-shell",
+      "evidence": "evidence-closeout-01/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3825,
+      "kind": "stage-shell",
+      "evidence": "sanitizer-01/shell.pid",
+      "pidCurrentlyExists": false
+    },
+    {
+      "pid": 3444,
+      "kind": "stage-shell",
+      "evidence": "smoke-stage-01/shell.pid",
+      "pidCurrentlyExists": false
+    }
+  ],
+  "stageCompletions": [
+    {
+      "evidence": "discovery-correctness-resource-01/stage.json",
+      "status": "passed",
+      "exitCode": 0,
+      "startedUtc": "2026-09-15T08:37:35.277123+00:00",
+      "endedUtc": "2026-09-15T08:38:09.460767+00:00"
+    },
+    {
+      "evidence": "discovery-resource-01/stage.json",
+      "status": "failed",
+      "exitCode": 1,
+      "startedUtc": "2026-09-15T08:38:54.476645+00:00",
+      "endedUtc": "2026-09-15T08:39:03.219978+00:00"
+    },
+    {
+      "evidence": "discovery-resource-03/stage.json",
+      "status": "failed",
+      "exitCode": 1,
+      "startedUtc": "2026-09-15T09:09:55.624873+00:00",
+      "endedUtc": "2026-09-15T09:10:23.152589+00:00"
+    },
+    {
+      "evidence": "physics-resource-01/stage.json",
+      "status": "passed",
+      "exitCode": 0,
+      "startedUtc": "2026-09-15T08:38:09.494323+00:00",
+      "endedUtc": "2026-09-15T08:38:53.875082+00:00"
+    },
+    {
+      "evidence": "smoke-resource-01/stage.json",
+      "status": "failed",
+      "exitCode": 1,
+      "startedUtc": "2026-09-15T08:18:12.729042+00:00",
+      "endedUtc": "2026-09-15T08:18:21.821030+00:00"
+    },
+    {
+      "evidence": "smoke-resource-02/stage.json",
+      "status": "passed",
+      "exitCode": 0,
+      "startedUtc": "2026-09-15T08:37:18.109528+00:00",
+      "endedUtc": "2026-09-15T08:37:35.209998+00:00"
+    },
+    {
+      "stage": "build-stage-01",
+      "exitCode": 1,
+      "started.txt": "2026-09-15T08:08:23Z",
+      "ended.txt": "2026-09-15T08:08:23Z"
+    },
+    {
+      "stage": "build-stage-02",
+      "exitCode": 1,
+      "started.txt": "2026-09-15T08:08:57Z",
+      "ended.txt": "2026-09-15T08:10:13Z"
+    },
+    {
+      "stage": "build-stage-04",
+      "exitCode": 1,
+      "started.txt": "2026-09-15T08:31:01Z",
+      "ended.txt": "2026-09-15T08:31:09Z"
+    },
+    {
+      "stage": "build-stage-05",
+      "exitCode": 1,
+      "started.txt": "2026-09-15T08:35:44Z",
+      "ended.txt": "2026-09-15T08:39:03Z"
+    },
+    {
+      "stage": "build-stage-07",
+      "exitCode": 1,
+      "started.txt": "2026-09-15T08:45:33Z",
+      "ended.txt": "2026-09-15T08:46:03Z"
+    },
+    {
+      "stage": "build-stage-08",
+      "exitCode": 0,
+      "started.txt": "2026-09-15T08:50:33Z",
+      "ended.txt": "2026-09-15T08:51:55Z"
+    },
+    {
+      "stage": "correctness-stage-09",
+      "exitCode": 0,
+      "started.txt": "2026-09-15T08:56:37Z",
+      "ended.txt": "2026-09-15T08:58:23Z"
+    },
+    {
+      "stage": "discovery-stage-10",
+      "exitCode": 1,
+      "started.txt": "2026-09-15T09:09:25Z",
+      "ended.txt": "2026-09-15T09:10:23Z"
+    },
+    {
+      "stage": "environment-01",
+      "exitCode": 0,
+      "started.txt": "2026-09-15T08:03:37Z",
+      "ended.txt": "2026-09-15T08:06:37Z"
+    },
+    {
+      "stage": "evidence-closeout-01",
+      "exitCode": 0,
+      "started.txt": "2026-09-15T09:12:35Z",
+      "ended.txt": "2026-09-15T09:12:45Z"
+    },
+    {
+      "stage": "sanitizer-01",
+      "exitCode": 0,
+      "started.txt": "2026-09-15T08:21:48Z",
+      "ended.txt": "2026-09-15T08:22:00Z"
+    },
+    {
+      "stage": "smoke-stage-01",
+      "exitCode": 1,
+      "started.txt": "2026-09-15T08:18:03Z",
+      "ended.txt": "2026-09-15T08:18:21Z"
+    }
+  ],
+  "hardwareLock": {
+    "path": "/root/autodl-tmp/codex-whole-task-20260915/.hardware.lock",
+    "inode": 31152802564,
+    "nonblockingAcquireSucceeded": true,
+    "releasedAfterProbe": true
+  },
+  "diskFreeBytes": 52166291456,
+  "retainedReadOnlyDependencies": {
+    "python": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/env/python/bin/python3",
+    "pythonVersion": "3.12.11",
+    "dotnet": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/env/dotnet-10.0.401/dotnet",
+    "dotnetSdk": "10.0.401",
+    "dotnetRuntime": "10.0.12",
+    "gcc": "/usr/bin/g++",
+    "gccVersion": "11.4",
+    "source": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/source-linux-08",
+    "nativeBuild": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/native-build-04"
+  },
+  "nativeBuildChildPidCoverage": "Individual historical compiler and contract subprocess PIDs were not separately persisted. Their synchronous command/exit records and enclosing completed stages are retained; the current task-root/executable/command ownership scan checks for survivors.",
+  "hardwareReleased": true,
+  "serverShutdown": false,
+  "artifactsDeleted": false
+}

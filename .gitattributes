@@ -26,3 +26,9 @@ Docs/evidence/actual-20260910/** -text whitespace=cr-at-eol,-blank-at-eof
 Docs/evidence/babel-dot-20260915/** -text -whitespace
 # Unity emits empty YAML properties with a trailing space in this generated setting.
 BenchmarkProject/ProjectSettings/ProjectAuditorSettings.asset -whitespace
+
+# Public source locks hash exact downloaded bytes on every checkout.
+Tools/WholeTask/Upstream~/** -text -whitespace
+
+# Preserve source/run manifests, complete outputs and transferred log bytes.
+Docs/evidence/whole-task-linux-20260915/** -text -whitespace

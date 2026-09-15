@@ -1,0 +1,412 @@
+{
+  "completed": true,
+  "cases": {
+    "c376ce5eb60bf58ea7d6acb32e5caf055cdb98927bf0cbca9e4dabba4ad917e0": {
+      "original-aos": {
+        "caseKey": "c376ce5eb60bf58ea7d6acb32e5caf055cdb98927bf0cbca9e4dabba4ad917e0",
+        "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+        "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+        "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-small/original-aos"
+      },
+      "tuned-aos": {
+        "caseKey": "c376ce5eb60bf58ea7d6acb32e5caf055cdb98927bf0cbca9e4dabba4ad917e0",
+        "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+        "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+        "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-small/tuned-aos"
+      },
+      "field-soa": {
+        "caseKey": "c376ce5eb60bf58ea7d6acb32e5caf055cdb98927bf0cbca9e4dabba4ad917e0",
+        "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+        "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+        "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-small/field-soa"
+      },
+      "field-aosoa8": {
+        "caseKey": "c376ce5eb60bf58ea7d6acb32e5caf055cdb98927bf0cbca9e4dabba4ad917e0",
+        "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+        "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+        "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-small/field-aosoa8"
+      },
+      "llama-soa": {
+        "caseKey": "c376ce5eb60bf58ea7d6acb32e5caf055cdb98927bf0cbca9e4dabba4ad917e0",
+        "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+        "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+        "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-small/llama-soa"
+      },
+      "llama-aosoa8": {
+        "caseKey": "c376ce5eb60bf58ea7d6acb32e5caf055cdb98927bf0cbca9e4dabba4ad917e0",
+        "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+        "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+        "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-small/llama-aosoa8"
+      },
+      "diagnostic-original": {
+        "caseKey": "c376ce5eb60bf58ea7d6acb32e5caf055cdb98927bf0cbca9e4dabba4ad917e0",
+        "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+        "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+        "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-small/diagnostic-original"
+      },
+      "diagnostic-aos": {
+        "caseKey": "c376ce5eb60bf58ea7d6acb32e5caf055cdb98927bf0cbca9e4dabba4ad917e0",
+        "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+        "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+        "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-small/diagnostic-aos"
+      }
+    },
+    "003e5be98e31753fd3037dce502c2dd5b341b5b1e2f077ec9669b5746f9921a4": {
+      "original-aos": {
+        "caseKey": "003e5be98e31753fd3037dce502c2dd5b341b5b1e2f077ec9669b5746f9921a4",
+        "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+        "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+        "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-tail/original-aos"
+      },
+      "tuned-aos": {
+        "caseKey": "003e5be98e31753fd3037dce502c2dd5b341b5b1e2f077ec9669b5746f9921a4",
+        "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+        "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+        "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-tail/tuned-aos"
+      },
+      "field-soa": {
+        "caseKey": "003e5be98e31753fd3037dce502c2dd5b341b5b1e2f077ec9669b5746f9921a4",
+        "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+        "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+        "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-tail/field-soa"
+      },
+      "field-aosoa8": {
+        "caseKey": "003e5be98e31753fd3037dce502c2dd5b341b5b1e2f077ec9669b5746f9921a4",
+        "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+        "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+        "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-tail/field-aosoa8"
+      },
+      "llama-soa": {
+        "caseKey": "003e5be98e31753fd3037dce502c2dd5b341b5b1e2f077ec9669b5746f9921a4",
+        "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+        "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+        "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-tail/llama-soa"
+      },
+      "llama-aosoa8": {
+        "caseKey": "003e5be98e31753fd3037dce502c2dd5b341b5b1e2f077ec9669b5746f9921a4",
+        "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+        "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+        "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-tail/llama-aosoa8"
+      },
+      "diagnostic-original": {
+        "caseKey": "003e5be98e31753fd3037dce502c2dd5b341b5b1e2f077ec9669b5746f9921a4",
+        "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+        "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+        "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-tail/diagnostic-original"
+      },
+      "diagnostic-aos": {
+        "caseKey": "003e5be98e31753fd3037dce502c2dd5b341b5b1e2f077ec9669b5746f9921a4",
+        "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+        "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+        "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/smoke-tail/diagnostic-aos"
+      }
+    },
+    "408a9fdddc4b4978f8fe267e4d6d0535f0e7180d72abf83056ca3f18696503bf": {
+      "original-aos": {
+        "caseKey": "408a9fdddc4b4978f8fe267e4d6d0535f0e7180d72abf83056ca3f18696503bf",
+        "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+        "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+        "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-small/original-aos"
+      },
+      "tuned-aos": {
+        "caseKey": "408a9fdddc4b4978f8fe267e4d6d0535f0e7180d72abf83056ca3f18696503bf",
+        "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+        "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+        "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-small/tuned-aos"
+      },
+      "field-soa": {
+        "caseKey": "408a9fdddc4b4978f8fe267e4d6d0535f0e7180d72abf83056ca3f18696503bf",
+        "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+        "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+        "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-small/field-soa"
+      },
+      "field-aosoa8": {
+        "caseKey": "408a9fdddc4b4978f8fe267e4d6d0535f0e7180d72abf83056ca3f18696503bf",
+        "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+        "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+        "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-small/field-aosoa8"
+      },
+      "llama-soa": {
+        "caseKey": "408a9fdddc4b4978f8fe267e4d6d0535f0e7180d72abf83056ca3f18696503bf",
+        "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+        "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+        "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-small/llama-soa"
+      },
+      "llama-aosoa8": {
+        "caseKey": "408a9fdddc4b4978f8fe267e4d6d0535f0e7180d72abf83056ca3f18696503bf",
+        "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+        "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+        "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-small/llama-aosoa8"
+      },
+      "diagnostic-original": {
+        "caseKey": "408a9fdddc4b4978f8fe267e4d6d0535f0e7180d72abf83056ca3f18696503bf",
+        "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+        "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+        "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-small/diagnostic-original"
+      },
+      "diagnostic-aos": {
+        "caseKey": "408a9fdddc4b4978f8fe267e4d6d0535f0e7180d72abf83056ca3f18696503bf",
+        "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+        "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+        "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-small/diagnostic-aos"
+      }
+    },
+    "b268a67cb8815d970a054513e4b2ef9f09c5d9dc0a5739c6ccf5bdaa461b3f95": {
+      "original-aos": {
+        "caseKey": "b268a67cb8815d970a054513e4b2ef9f09c5d9dc0a5739c6ccf5bdaa461b3f95",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+        "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-medium/original-aos"
+      },
+      "tuned-aos": {
+        "caseKey": "b268a67cb8815d970a054513e4b2ef9f09c5d9dc0a5739c6ccf5bdaa461b3f95",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+        "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-medium/tuned-aos"
+      },
+      "field-soa": {
+        "caseKey": "b268a67cb8815d970a054513e4b2ef9f09c5d9dc0a5739c6ccf5bdaa461b3f95",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+        "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-medium/field-soa"
+      },
+      "field-aosoa8": {
+        "caseKey": "b268a67cb8815d970a054513e4b2ef9f09c5d9dc0a5739c6ccf5bdaa461b3f95",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+        "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-medium/field-aosoa8"
+      },
+      "llama-soa": {
+        "caseKey": "b268a67cb8815d970a054513e4b2ef9f09c5d9dc0a5739c6ccf5bdaa461b3f95",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+        "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-medium/llama-soa"
+      },
+      "llama-aosoa8": {
+        "caseKey": "b268a67cb8815d970a054513e4b2ef9f09c5d9dc0a5739c6ccf5bdaa461b3f95",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+        "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-medium/llama-aosoa8"
+      },
+      "diagnostic-original": {
+        "caseKey": "b268a67cb8815d970a054513e4b2ef9f09c5d9dc0a5739c6ccf5bdaa461b3f95",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+        "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-medium/diagnostic-original"
+      },
+      "diagnostic-aos": {
+        "caseKey": "b268a67cb8815d970a054513e4b2ef9f09c5d9dc0a5739c6ccf5bdaa461b3f95",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+        "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-medium/diagnostic-aos"
+      }
+    },
+    "d3cd1438958f93b9b1cbf3538453da2b7a7acbb22abe0491669067fad0c38073": {
+      "original-aos": {
+        "caseKey": "d3cd1438958f93b9b1cbf3538453da2b7a7acbb22abe0491669067fad0c38073",
+        "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+        "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+        "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-large/original-aos"
+      },
+      "tuned-aos": {
+        "caseKey": "d3cd1438958f93b9b1cbf3538453da2b7a7acbb22abe0491669067fad0c38073",
+        "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+        "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+        "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-large/tuned-aos"
+      },
+      "field-soa": {
+        "caseKey": "d3cd1438958f93b9b1cbf3538453da2b7a7acbb22abe0491669067fad0c38073",
+        "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+        "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+        "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-large/field-soa"
+      },
+      "field-aosoa8": {
+        "caseKey": "d3cd1438958f93b9b1cbf3538453da2b7a7acbb22abe0491669067fad0c38073",
+        "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+        "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+        "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-large/field-aosoa8"
+      },
+      "llama-soa": {
+        "caseKey": "d3cd1438958f93b9b1cbf3538453da2b7a7acbb22abe0491669067fad0c38073",
+        "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+        "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+        "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-large/llama-soa"
+      },
+      "llama-aosoa8": {
+        "caseKey": "d3cd1438958f93b9b1cbf3538453da2b7a7acbb22abe0491669067fad0c38073",
+        "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+        "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+        "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-large/llama-aosoa8"
+      },
+      "diagnostic-original": {
+        "caseKey": "d3cd1438958f93b9b1cbf3538453da2b7a7acbb22abe0491669067fad0c38073",
+        "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+        "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+        "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-large/diagnostic-original"
+      },
+      "diagnostic-aos": {
+        "caseKey": "d3cd1438958f93b9b1cbf3538453da2b7a7acbb22abe0491669067fad0c38073",
+        "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+        "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+        "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-large/diagnostic-aos"
+      }
+    },
+    "0a2174201b0eb74ddb61e18f05eab818c05800c59cc3aff5f4fc7e97dab149a5": {
+      "original-aos": {
+        "caseKey": "0a2174201b0eb74ddb61e18f05eab818c05800c59cc3aff5f4fc7e97dab149a5",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+        "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-export/original-aos"
+      },
+      "tuned-aos": {
+        "caseKey": "0a2174201b0eb74ddb61e18f05eab818c05800c59cc3aff5f4fc7e97dab149a5",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+        "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-export/tuned-aos"
+      },
+      "field-soa": {
+        "caseKey": "0a2174201b0eb74ddb61e18f05eab818c05800c59cc3aff5f4fc7e97dab149a5",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+        "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-export/field-soa"
+      },
+      "field-aosoa8": {
+        "caseKey": "0a2174201b0eb74ddb61e18f05eab818c05800c59cc3aff5f4fc7e97dab149a5",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+        "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-export/field-aosoa8"
+      },
+      "llama-soa": {
+        "caseKey": "0a2174201b0eb74ddb61e18f05eab818c05800c59cc3aff5f4fc7e97dab149a5",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+        "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-export/llama-soa"
+      },
+      "llama-aosoa8": {
+        "caseKey": "0a2174201b0eb74ddb61e18f05eab818c05800c59cc3aff5f4fc7e97dab149a5",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+        "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-export/llama-aosoa8"
+      },
+      "diagnostic-original": {
+        "caseKey": "0a2174201b0eb74ddb61e18f05eab818c05800c59cc3aff5f4fc7e97dab149a5",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+        "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-export/diagnostic-original"
+      },
+      "diagnostic-aos": {
+        "caseKey": "0a2174201b0eb74ddb61e18f05eab818c05800c59cc3aff5f4fc7e97dab149a5",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+        "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/discovery-export/diagnostic-aos"
+      }
+    },
+    "2e528ad475df33306ef7346ea78fad1bdae5eccafa63567213a8022d38dd8c3d": {
+      "original-aos": {
+        "caseKey": "2e528ad475df33306ef7346ea78fad1bdae5eccafa63567213a8022d38dd8c3d",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+        "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/physics-long/original-aos"
+      },
+      "tuned-aos": {
+        "caseKey": "2e528ad475df33306ef7346ea78fad1bdae5eccafa63567213a8022d38dd8c3d",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+        "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/physics-long/tuned-aos"
+      },
+      "field-soa": {
+        "caseKey": "2e528ad475df33306ef7346ea78fad1bdae5eccafa63567213a8022d38dd8c3d",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+        "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/physics-long/field-soa"
+      },
+      "field-aosoa8": {
+        "caseKey": "2e528ad475df33306ef7346ea78fad1bdae5eccafa63567213a8022d38dd8c3d",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+        "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/physics-long/field-aosoa8"
+      },
+      "llama-soa": {
+        "caseKey": "2e528ad475df33306ef7346ea78fad1bdae5eccafa63567213a8022d38dd8c3d",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+        "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/physics-long/llama-soa"
+      },
+      "llama-aosoa8": {
+        "caseKey": "2e528ad475df33306ef7346ea78fad1bdae5eccafa63567213a8022d38dd8c3d",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+        "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/physics-long/llama-aosoa8"
+      },
+      "diagnostic-original": {
+        "caseKey": "2e528ad475df33306ef7346ea78fad1bdae5eccafa63567213a8022d38dd8c3d",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+        "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/physics-long/diagnostic-original"
+      },
+      "diagnostic-aos": {
+        "caseKey": "2e528ad475df33306ef7346ea78fad1bdae5eccafa63567213a8022d38dd8c3d",
+        "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+        "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+        "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+        "outputDirectory": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01/physics-long/diagnostic-aos"
+      }
+    }
+  },
+  "mode": "correctness-only; never selector timing"
+}

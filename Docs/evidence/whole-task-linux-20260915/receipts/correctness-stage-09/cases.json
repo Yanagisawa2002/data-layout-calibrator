@@ -1,0 +1,58 @@
+[
+  {
+    "id": "smoke-small",
+    "resolution": 12,
+    "steps": 2,
+    "exportEvery": 1,
+    "re": 0.1,
+    "phase": 0.0
+  },
+  {
+    "id": "smoke-tail",
+    "resolution": 13,
+    "steps": 8,
+    "exportEvery": 4,
+    "re": 0.13,
+    "phase": 0.25
+  },
+  {
+    "id": "discovery-small",
+    "resolution": 13,
+    "steps": 8,
+    "exportEvery": 4,
+    "re": 0.1,
+    "phase": 0.0
+  },
+  {
+    "id": "discovery-medium",
+    "resolution": 24,
+    "steps": 64,
+    "exportEvery": 16,
+    "re": 0.1,
+    "phase": 0.0
+  },
+  {
+    "id": "discovery-large",
+    "resolution": 48,
+    "steps": 64,
+    "exportEvery": 16,
+    "re": 0.1,
+    "phase": 0.0
+  },
+  {
+    "id": "discovery-export",
+    "resolution": 24,
+    "steps": 64,
+    "exportEvery": 1,
+    "re": 0.1,
+    "phase": 0.0
+  },
+  {
+    "id": "physics-long",
+    "resolution": 24,
+    "steps": 4000,
+    "exportEvery": 1000,
+    "re": 0.1,
+    "phase": 0.0
+  }
+]

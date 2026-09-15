@@ -1,0 +1,22 @@
+{
+  "id": "focused-shared-poiseuille-20260915-01",
+  "scope": "One fixed complete native CPU task on the observed shared host; no isolated-hardware, selector or general workload claim",
+  "case": {"id": "physics-long", "resolution": 24, "steps": 4000, "exportEvery": 1000, "re": 0.1, "phase": 0.0},
+  "arms": ["original-aos", "tuned-aos", "field-soa", "field-aosoa8", "llama-soa", "llama-aosoa8"],
+  "candidates": ["field-soa", "field-aosoa8"],
+  "primaryComparators": ["tuned-aos", "llama-soa", "llama-aosoa8"],
+  "rounds": 12,
+  "orderSeed": 20260916,
+  "bootstrapSeed": 509016,
+  "bootstrapReplicates": 20000,
+  "familyAlpha": 0.05,
+  "minimumGainPercent": 2,
+  "maximumBaselineDriftPercent": 5,
+  "requireQuietCpu": false,
+  "environmentPolicy": "Observe unchanged CPU/cgroup/SMT telemetry and quiet qualification labels. Include all 72 processes regardless of background activity; never trim, replace, or subtract interference. Numerical/output failures still stop the experiment. Uncertainty is conditional on this shared-host session and is not hardware isolation evidence.",
+  "cpuSelection": "Reuse CPU 96, previously fixed from a 30-second idle observation before task timings; same affinity and one OpenMP thread for all arms.",
+  "cachePolicy": "Normal warmed executable/filesystem pages; no cache purge; independent native process and fresh output directory per task; cyclic positions are balanced twice.",
+  "inference": "Paired bootstrap of ratio of arithmetic mean complete-task latencies; six primary comparisons use Bonferroni-adjusted two-sided intervals. Five-percent baseline half-to-half drift gate limits claims from this session. Report every comparator, even when a candidate fails the stricter all-comparators flag. Matching or trailing LLAMA does not erase a demonstrated benefit over conventional AoS.",
+  "historicalBoundary": "Separate complete cohort after the quiet-only attempt stopped at a preflight following four processes. Those four results are excluded wholesale; no case, binary, candidate or layout was selected using their timings. This amendment changes the environmental question to observed shared-host performance. Earlier failed discovery remains failed.",
+  "stop": "One complete cohort, 15-minute child deadline and 1 GiB output budget plus 10 GiB disk reserve; no rerun or further project automatically follows."
+}

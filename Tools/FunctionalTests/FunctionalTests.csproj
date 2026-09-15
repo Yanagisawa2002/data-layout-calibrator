@@ -16,5 +16,6 @@
     <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/ScientificCoreV04Tests.cs" />
     <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/VNextIntegrationProtocolTests.cs" />
     <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/DeploymentProfileTests.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/WholeTaskLayoutSelectorTests.cs" />
   </ItemGroup>
 </Project>

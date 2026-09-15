@@ -1,0 +1,4 @@
+[
+  {"id":"smoke-small","resolution":12,"steps":2,"exportEvery":1,"re":0.1,"phase":0.0},
+  {"id":"smoke-tail","resolution":13,"steps":8,"exportEvery":4,"re":0.13,"phase":0.25}
+]

@@ -1,0 +1,20 @@
+{
+  "lock": {
+    "pid": 6595,
+    "inode": 31152802564,
+    "path": "/root/autodl-tmp/codex-whole-task-20260915/.hardware.lock",
+    "held": true
+  },
+  "sourceFilesVerified": 536,
+  "changedFromValidatedSource": [
+    "Tools/WholeTask/README.md",
+    "Tools/WholeTask/campaign.py",
+    "Tools/WholeTask/test_contract.py"
+  ],
+  "nativeBuild": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/native-build-04",
+  "nativeCodeIdentical": true,
+  "selectorCodeIdentical": true,
+  "workflowAndPhysicsIdentical": true,
+  "correctness": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/correctness-final-01",
+  "rationale": "Only performance qualification guard, its negative test, and README changed. Reuse exact validated native binaries and exact correctness receipts; this controller now rejects any during-task resource failure in discovery."
+}

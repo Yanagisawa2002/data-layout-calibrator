@@ -1,0 +1,8 @@
+test_ci_excludes_performance_paths (test_functional_policy.FunctionalPolicyTests.test_ci_excludes_performance_paths) ... ok
+test_default_validation_dispatches_only_build_and_functional_tests (test_functional_policy.FunctionalPolicyTests.test_default_validation_dispatches_only_build_and_functional_tests) ... ok
+test_functional_project_is_an_explicit_safe_test_allowlist (test_functional_policy.FunctionalPolicyTests.test_functional_project_is_an_explicit_safe_test_allowlist) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.004s
+
+OK

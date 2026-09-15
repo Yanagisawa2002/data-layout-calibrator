@@ -1,5 +1,13 @@
 # Choose a layout for the data's actual lifetime
 
+An experimental [whole-task native adoption path](WHOLE_TASK_AUDIT_2026-09-15.md)
+connects a pinned channel-flow application, periodic VTU consumers and complete
+process observations to the additive `WholeTaskLayoutSelector` API. Its timing
+recommendations are separate from allocation-qualified deployment profiles.
+Its [Linux execution](WHOLE_TASK_LINUX_EXECUTION_2026-09-15.md) passed complete-output
+and physical checks, then stopped during discovery on SMT interference. No
+whole-task layout recommendation or speedup is established by that run.
+
 The library answers a bounded question: does a particular layout and kernel repay
 its conversion and ownership costs under the application's actual workload,
 export cadence and data lifetime? The tuned AoS path remains a meaningful

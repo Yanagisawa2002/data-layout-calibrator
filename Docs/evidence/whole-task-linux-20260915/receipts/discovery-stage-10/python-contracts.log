@@ -1,0 +1,12 @@
+test_adaptation_rejects_source_drift (test_contract.ProtocolContracts.test_adaptation_rejects_source_drift) ... ok
+test_cgroup_quota_is_not_host_core_count (test_contract.ProtocolContracts.test_cgroup_quota_is_not_host_core_count) ... ok
+test_during_task_interference_cannot_complete_performance_discovery (test_contract.ProtocolContracts.test_during_task_interference_cannot_complete_performance_discovery) ... ok
+test_entire_cohort_rejects_a_slow_or_ineligible_process (test_contract.ProtocolContracts.test_entire_cohort_rejects_a_slow_or_ineligible_process) ... ok
+test_full_output_and_input_both_required (test_contract.ProtocolContracts.test_full_output_and_input_both_required) ... ok
+test_selected_cost_charges_calibration_and_real_uses (test_contract.ProtocolContracts.test_selected_cost_charges_calibration_and_real_uses) ... ok
+test_upstream_bytes_are_complete_and_locked (test_contract.ProtocolContracts.test_upstream_bytes_are_complete_and_locked) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.009s
+
+OK

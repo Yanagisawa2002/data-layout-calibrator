@@ -1,0 +1,129 @@
+{
+  "completed": true,
+  "qualifiedEnvironment": false,
+  "baselineDriftPercent": 1.0337646414495305,
+  "measurementEnvironment": "shared-host-observed",
+  "quietGatePassedProcesses": 56,
+  "cohortPasses": true,
+  "arms": {
+    "original-aos": {
+      "meanMs": 5125.969434777896,
+      "medianMs": 5124.716809019446,
+      "minMs": 5092.64649450779,
+      "maxMs": 5158.121421933174,
+      "nativeProcessMeanMs": 5113.9904437586665,
+      "consumerMeanMs": 11.978991019229094
+    },
+    "tuned-aos": {
+      "meanMs": 4319.301680040856,
+      "medianMs": 4310.177007690072,
+      "minMs": 4262.661639600992,
+      "maxMs": 4431.749150156975,
+      "nativeProcessMeanMs": 4306.795112788677,
+      "consumerMeanMs": 12.506567252178987
+    },
+    "field-soa": {
+      "meanMs": 4438.294837872188,
+      "medianMs": 4431.458722800016,
+      "minMs": 4418.234169483185,
+      "maxMs": 4516.2497237324715,
+      "nativeProcessMeanMs": 4426.265113055706,
+      "consumerMeanMs": 12.029724816481272
+    },
+    "field-aosoa8": {
+      "meanMs": 4404.578587350746,
+      "medianMs": 4395.71426063776,
+      "minMs": 4371.543534100056,
+      "maxMs": 4490.496799349785,
+      "nativeProcessMeanMs": 4392.395668352644,
+      "consumerMeanMs": 12.182918998102346
+    },
+    "llama-soa": {
+      "meanMs": 4492.722929144899,
+      "medianMs": 4439.892690628767,
+      "minMs": 4425.417196005583,
+      "maxMs": 4760.988146066666,
+      "nativeProcessMeanMs": 4480.560122368236,
+      "consumerMeanMs": 12.162806776662668
+    },
+    "llama-aosoa8": {
+      "meanMs": 4645.9364127367735,
+      "medianMs": 4634.491289034486,
+      "minMs": 4617.780301719904,
+      "maxMs": 4769.806183874607,
+      "nativeProcessMeanMs": 4631.662696910401,
+      "consumerMeanMs": 14.273715826372305
+    }
+  },
+  "comparisons": [
+    {
+      "candidate": "field-soa",
+      "comparator": "tuned-aos",
+      "speedup": 0.9731894427526632,
+      "latencyReductionPercent": -2.754916573231947,
+      "adjustedInterval": [
+        0.9668094372175894,
+        0.981328497474021
+      ],
+      "passes": false
+    },
+    {
+      "candidate": "field-soa",
+      "comparator": "llama-soa",
+      "speedup": 1.0122632887766432,
+      "latencyReductionPercent": 1.2114722436949998,
+      "adjustedInterval": [
+        1.0015557692172823,
+        1.031798718512494
+      ],
+      "passes": false
+    },
+    {
+      "candidate": "field-soa",
+      "comparator": "llama-aosoa8",
+      "speedup": 1.0467840876844796,
+      "latencyReductionPercent": 4.4693159014260075,
+      "adjustedInterval": [
+        1.0400277802891293,
+        1.0547288187088897
+      ],
+      "passes": true
+    },
+    {
+      "candidate": "field-aosoa8",
+      "comparator": "tuned-aos",
+      "speedup": 0.9806390314944563,
+      "latencyReductionPercent": -1.9743216294417998,
+      "adjustedInterval": [
+        0.9744016610940011,
+        0.988001045084887
+      ],
+      "passes": false
+    },
+    {
+      "candidate": "field-aosoa8",
+      "comparator": "llama-soa",
+      "speedup": 1.020011980725532,
+      "latencyReductionPercent": 1.9619358501355433,
+      "adjustedInterval": [
+        1.0080477966900967,
+        1.0390325729973806
+      ],
+      "passes": false
+    },
+    {
+      "candidate": "field-aosoa8",
+      "comparator": "llama-aosoa8",
+      "speedup": 1.0547970300902723,
+      "latencyReductionPercent": 5.1950307525593376,
+      "adjustedInterval": [
+        1.0474410647312662,
+        1.0628801083400947
+      ],
+      "passes": true
+    }
+  ],
+  "candidatesBeatingAllPrimaryComparators": [],
+  "discardedProcesses": 0,
+  "note": "Measured complete caller latency; native and consumer partitions are descriptive, not summed percentiles. No selector calibration or reuse claim."
+}

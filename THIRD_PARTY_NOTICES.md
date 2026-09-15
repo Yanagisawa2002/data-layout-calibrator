@@ -37,3 +37,17 @@ The exact URL/commit/content hashes are recorded in the
 The [external contract](Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/CONTRACT.md)
 lists upstream defaults, output checks, port differences and unexecuted build entries.
 No upstream benchmark driver ran in this delivery.
+
+## Whole-task application and layout-library source snapshots
+
+`Tools/WholeTask/Upstream~/SimplePH` contains unchanged files from Daniel Rostan's
+SimplePH, commit `b4d7512ed06873ac188b20ebf1639f1c4cf83afc`, under the included
+MIT license. `prepare_sources.py` produces clearly identified derivative solver
+files in ignored artifact directories; the application host and adaptations are
+described in `Docs/WHOLE_TASK_AUDIT_2026-09-15.md`.
+
+`Tools/WholeTask/Upstream~/llama` contains actual LLAMA headers at commit
+`086e66e7565f677d6b3aff88542e28c7dd6d8228`, under the included MPL-2.0 license.
+The Boost mp11, ContainerHash, Describe, Config and Assert snapshots retain their
+Boost Software License 1.0 notices. Complete repository, revision and per-file
+source identities are recorded in `Tools/WholeTask/upstream-lock.json`.
