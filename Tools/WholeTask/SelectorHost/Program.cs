@@ -34,18 +34,24 @@ class Program
             return 0;
         }
         var input = JsonSerializer.Deserialize<Request>(File.ReadAllText(args[0]), json);
+        // Qualify the same counter before measuring the actual selection call.
+        // Startup, JSON parsing, controls and serialization stay outside this
+        // allocation window, but inside the Python caller's wall-clock charge.
+        var counter = new ThreadManagedAllocationCounter();
+        string controlFailure = null;
+        try { counter.Validate(); } catch (Exception e) { controlFailure = e.Message; }
+        bool allocationAvailable = controlFailure == null;
+        if (allocationAvailable) counter.Begin();
         var start = Stopwatch.GetTimestamp();
         object decision = input.FrozenDecision == null
             ? (object)WholeTaskLayoutSelector.Select(input.Samples, input.CandidateIds, input.BaselineId, input.PartitionId)
             : WholeTaskLayoutSelector.Confirm(input.FrozenDecision, input.ConfirmationBaseline, input.ConfirmationExecuted);
         double decisionMs = Stopwatch.GetElapsedTime(start).TotalMilliseconds;
-        // Exercise the real 1 MiB control on THIS .NET runtime. It says nothing
-        // about C++ allocation, another runtime, Unity, or worker/native scope.
-        var counter = new ThreadManagedAllocationCounter();
-        string controlFailure = null;
-        try { counter.Validate(); } catch (Exception e) { controlFailure = e.Message; }
+        long? decisionCurrentThreadManagedBytes = allocationAvailable ? counter.End() : (long?)null;
         File.WriteAllText(args[1], JsonSerializer.Serialize(new {
             decision, decisionMs,
+            decisionCurrentThreadManagedBytes,
+            allocationWindow = "Select or Confirm API including first-call JIT effects; excludes JSON and controls",
             actualDotNetCurrentThreadControl = counter.Capability,
             controlFailure,
             wholeTaskAllocationEligibility = "Unknown",

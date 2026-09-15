@@ -1,0 +1,12 @@
+{
+  "completed": false,
+  "outcome": "FAILED",
+  "performanceClaim": false,
+  "allocationEligibility": "Unknown",
+  "unityIl2cpp": "SKIPPED: Linux .NET is not Unity IL2CPP",
+  "reason": "Per-task CPU preflight failed; no native child started. Retained at /root/autodl-tmp/codex-whole-task-20260915/single-attempt-20260916/data-layout-calibrator/result/calibration/pair-02/tuned-aos",
+  "recordedProcesses": 4,
+  "discardedProcesses": 0,
+  "routeWallMs": 31670.59813812375,
+  "endedUtc": "2026-09-15T18:06:38.888297+00:00"
+}

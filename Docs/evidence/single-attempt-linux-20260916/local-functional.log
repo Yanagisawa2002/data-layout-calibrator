@@ -1,0 +1,8 @@
+  正在确定要还原的项目…
+  已还原 D:\CodexWork\single-attempt-layout-20260916\Tools\FunctionalTests\FunctionalTests.csproj (用时 959 毫秒)。
+  FunctionalTests -> D:\CodexWork\single-attempt-layout-20260916\Tools\FunctionalTests\bin\FunctionalTests\Release\net8.0\FunctionalTests.dll
+D:\CodexWork\single-attempt-layout-20260916\Tools\FunctionalTests\bin\FunctionalTests\Release\net8.0\FunctionalTests.dll (.NETCoreApp,Version=v8.0)的测试运行
+总共 1 个测试文件与指定模式相匹配。
+结果文件: C:\Users\cgliu\Documents\Codex\2026-09-16\single-attempt-data-layout-calibrator\work\local-tests\cgliu_EDWINYNG_2026-09-16_02_05_01.trx
+
+已通过! - 失败:     0，通过:    95，已跳过:     0，总计:    95，持续时间: 98 ms - FunctionalTests.dll (net8.0)

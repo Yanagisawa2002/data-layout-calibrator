@@ -1,0 +1,14 @@
+{
+  "id": "single-attempt-linux-caller-20260916",
+  "arms": ["tuned-aos", "field-aosoa8"],
+  "baseline": "tuned-aos",
+  "calibration": {"id": "calibration", "resolution": 24, "steps": 4000, "exportEvery": 1000, "re": 0.1, "phase": 0.0},
+  "confirmation": {"id": "confirmation", "resolution": 26, "steps": 4000, "exportEvery": 1000, "re": 0.12, "phase": 0.25},
+  "rounds": 6,
+  "minimumGainPercent": 2,
+  "maximumBaselineDriftPercent": 5,
+  "environment": "Existing quiet CPU/cgroup/SMT gates, no sample removal or retry",
+  "scope": "One monitored Linux SPH caller, existing tuned AoS versus existing AoSoA8; no new layout, discovery matrix or Unity qualification",
+  "costBoundary": "Caller includes per-task resource monitoring, process launch, input generation, layout ingress, solver, all VTU outputs, disposal, XML/CSV consumption, output verification and configured lookup. All calibration correctness, physics checks, probes and selector startup charged upfront. Compilation/environment provision reported separately.",
+  "stop": "Any build, correctness, allocation control, environment, drift or calibration timing-gate failure ends this route. No confirmation on calibration fallback. Six balanced independent confirmation pairs only if calibration passes. One frozen execution, at most 60 minutes."
+}
