@@ -1,0 +1,58 @@
+[
+  {
+    "command": [
+      "/root/autodl-tmp/codex-whole-task-20260915/data-layout/env/dotnet-10.0.401/dotnet",
+      "build",
+      "Tools/WholeTask/SelectorHost/SelectorHost.csproj",
+      "-c",
+      "Release",
+      "--nologo",
+      "--disable-build-servers"
+    ],
+    "exitCode": 0
+  },
+  {
+    "command": [
+      "/root/autodl-tmp/codex-whole-task-20260915/data-layout/env/dotnet-10.0.401/dotnet",
+      "test",
+      "Tools/FunctionalTests/FunctionalTests.csproj",
+      "-c",
+      "Release",
+      "--nologo",
+      "--disable-build-servers",
+      "--results-directory",
+      "/root/autodl-tmp/codex-whole-task-20260915/data-layout/validation-04/dotnet-tests",
+      "--logger",
+      "trx"
+    ],
+    "exitCode": 0
+  },
+  {
+    "command": [
+      "/root/autodl-tmp/codex-whole-task-20260915/data-layout/env/python/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Tools/WholeTask",
+      "-p",
+      "test_contract.py",
+      "-v"
+    ],
+    "exitCode": 0
+  },
+  {
+    "command": [
+      "/root/autodl-tmp/codex-whole-task-20260915/data-layout/env/python/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Tools/CI",
+      "-p",
+      "test_functional_policy.py",
+      "-v"
+    ],
+    "exitCode": 0
+  }
+]

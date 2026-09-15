@@ -1,0 +1,9 @@
+{
+  "archive": "raw-evidence.tar.gz",
+  "sha256": "dbabf4cabbb9c73e8dccc3732e1bb99d6cc4e64d4d2ea87e620e3c56f36f6a1a",
+  "bytes": 28853815,
+  "files": 3787,
+  "sourceBytes": 199480501,
+  "verified": true,
+  "minimumFreeDiskBytes": 52166324224
+}

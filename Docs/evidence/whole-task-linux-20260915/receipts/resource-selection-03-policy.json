@@ -1,0 +1,25 @@
+{
+  "frozenUtc": "2026-09-15T09:09:25.474472+00:00",
+  "scriptSha256": "3664a7df8c711b2ba2506338236b800cd5ca23545dc74cf803328a2ceb63166d",
+  "durationSeconds": 30,
+  "intervalSeconds": 1,
+  "targetMeanMaximumPercent": 15,
+  "targetIntervalMaximumPercent": 25,
+  "siblingAggregateMaximumPercent": 10,
+  "cgroupBackgroundMaximumCores": 0.25,
+  "maximumNewThrottledPeriods": 0,
+  "maximumNewThrottledMicroseconds": 0,
+  "excludedPhysicalCpus": [
+    0,
+    1,
+    2
+  ],
+  "minimumQuotaCores": 1,
+  "stableQuotaAndCpusetRequired": true,
+  "minimumAvailableMemoryBytes": 2147483648,
+  "taskGrowthBudgetBytes": 2147483648,
+  "minimumFreeDiskReserveBytes": 10737418240,
+  "selection": "First qualified physical CPU in ascending minimum-SMT-ID order; resource data only. Freeze for the whole discovery batch.",
+  "backgroundDefinition": "Whole cgroup CPU usage divided by monotonic elapsed seconds, including this resource observer, as in the original preflight. No owned-work subtraction.",
+  "failureAction": "Stop performance attempts for this period. No core reselection or discovery retry."
+}

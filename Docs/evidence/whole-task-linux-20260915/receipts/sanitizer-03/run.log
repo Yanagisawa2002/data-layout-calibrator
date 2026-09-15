@@ -1,0 +1,10 @@
+[OpenMP] Threads available: 1
+soundspeed: c=0.177
+timestep: dt=0.018508375
+
+===== Start simulation =====
+
+=== Simulation completed ===
+Total time: 0.0187468s
+Total steps: 8
+Average time per iter: 0.00234335s

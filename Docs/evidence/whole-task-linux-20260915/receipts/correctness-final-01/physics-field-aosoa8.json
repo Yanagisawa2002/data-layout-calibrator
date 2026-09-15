@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "fullParticleVelocityL2": 0.00886419739592466,
+  "maximumAllowedL2": 0.3,
+  "simulatedSeconds": 25.086805555555554,
+  "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+  "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+  "validatorSha256": "ca7fad1654ff93f2aee3ba310d9361420675b09b012da1ef720063f78ffd9da7",
+  "requiredRelaxationMultiples": 5,
+  "actualRelaxationMultiples": 24.7596846520384,
+  "fluidParticles": 576,
+  "note": "Declared long Poiseuille acceptance: full fluid vx/vy against transient analytical solution at each actual y; L2<0.3 after five relaxation times. Upstream public tests use 0.3 for a different SPH configuration; this is a separately declared acceptance, not those tests being rerun."
+}

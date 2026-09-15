@@ -1,0 +1,576 @@
+{
+  "finalCorrectnessCases": {
+    "discovery-export": {
+      "case": {
+        "id": "discovery-export",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 1,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "arms": {
+        "diagnostic-aos": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "3c26ebfe162a4feb1c99204f4a304834d76e94425557f4e525059e973833a124",
+          "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+          "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+          "processIdentity": "6260:1789462659958149862"
+        },
+        "diagnostic-original": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "3c26ebfe162a4feb1c99204f4a304834d76e94425557f4e525059e973833a124",
+          "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+          "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+          "processIdentity": "6258:1789462658875478312"
+        },
+        "field-aosoa8": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "3c26ebfe162a4feb1c99204f4a304834d76e94425557f4e525059e973833a124",
+          "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+          "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+          "processIdentity": "6252:1789462655650688136"
+        },
+        "field-soa": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "3c26ebfe162a4feb1c99204f4a304834d76e94425557f4e525059e973833a124",
+          "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+          "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+          "processIdentity": "6248:1789462654573697018"
+        },
+        "llama-aosoa8": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "3c26ebfe162a4feb1c99204f4a304834d76e94425557f4e525059e973833a124",
+          "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+          "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+          "processIdentity": "6256:1789462657793811597"
+        },
+        "llama-soa": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "3c26ebfe162a4feb1c99204f4a304834d76e94425557f4e525059e973833a124",
+          "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+          "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+          "processIdentity": "6254:1789462656722305467"
+        },
+        "original-aos": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "3c26ebfe162a4feb1c99204f4a304834d76e94425557f4e525059e973833a124",
+          "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+          "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+          "processIdentity": "6244:1789462652421726025"
+        },
+        "tuned-aos": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "3c26ebfe162a4feb1c99204f4a304834d76e94425557f4e525059e973833a124",
+          "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+          "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+          "processIdentity": "6246:1789462653504927427"
+        }
+      }
+    },
+    "discovery-large": {
+      "case": {
+        "id": "discovery-large",
+        "resolution": 48,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "arms": {
+        "diagnostic-aos": {
+          "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+          "fullOutputHash": "240d979dc9903fe3fe7a7133f43241346450e101fdab1a8cba45200fd320fa4c",
+          "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+          "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+          "processIdentity": "6242:1789462651391164022"
+        },
+        "diagnostic-original": {
+          "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+          "fullOutputHash": "240d979dc9903fe3fe7a7133f43241346450e101fdab1a8cba45200fd320fa4c",
+          "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+          "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+          "processIdentity": "6240:1789462650343106895"
+        },
+        "field-aosoa8": {
+          "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+          "fullOutputHash": "240d979dc9903fe3fe7a7133f43241346450e101fdab1a8cba45200fd320fa4c",
+          "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+          "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+          "processIdentity": "6232:1789462647257304445"
+        },
+        "field-soa": {
+          "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+          "fullOutputHash": "240d979dc9903fe3fe7a7133f43241346450e101fdab1a8cba45200fd320fa4c",
+          "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+          "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+          "processIdentity": "6230:1789462646230506107"
+        },
+        "llama-aosoa8": {
+          "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+          "fullOutputHash": "240d979dc9903fe3fe7a7133f43241346450e101fdab1a8cba45200fd320fa4c",
+          "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+          "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+          "processIdentity": "6236:1789462649309044643"
+        },
+        "llama-soa": {
+          "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+          "fullOutputHash": "240d979dc9903fe3fe7a7133f43241346450e101fdab1a8cba45200fd320fa4c",
+          "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+          "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+          "processIdentity": "6234:1789462648282548956"
+        },
+        "original-aos": {
+          "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+          "fullOutputHash": "240d979dc9903fe3fe7a7133f43241346450e101fdab1a8cba45200fd320fa4c",
+          "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+          "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+          "processIdentity": "6224:1789462644156817232"
+        },
+        "tuned-aos": {
+          "datasetHash": "690cd67a7db28d8a528603e7c282208f29a675286a134a998d99c9c240a259b0",
+          "fullOutputHash": "240d979dc9903fe3fe7a7133f43241346450e101fdab1a8cba45200fd320fa4c",
+          "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+          "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+          "processIdentity": "6228:1789462645208034033"
+        }
+      }
+    },
+    "discovery-medium": {
+      "case": {
+        "id": "discovery-medium",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "arms": {
+        "diagnostic-aos": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "60c9a32930e6b2a9aa4d20ca4b17edcb1141e24e6b7931f0c5cae346a5427af0",
+          "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+          "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+          "processIdentity": "6222:1789462643121232859"
+        },
+        "diagnostic-original": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "60c9a32930e6b2a9aa4d20ca4b17edcb1141e24e6b7931f0c5cae346a5427af0",
+          "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+          "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+          "processIdentity": "6220:1789462642097550918"
+        },
+        "field-aosoa8": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "60c9a32930e6b2a9aa4d20ca4b17edcb1141e24e6b7931f0c5cae346a5427af0",
+          "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+          "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+          "processIdentity": "6212:1789462639026577636"
+        },
+        "field-soa": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "60c9a32930e6b2a9aa4d20ca4b17edcb1141e24e6b7931f0c5cae346a5427af0",
+          "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+          "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+          "processIdentity": "6210:1789462638003265112"
+        },
+        "llama-aosoa8": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "60c9a32930e6b2a9aa4d20ca4b17edcb1141e24e6b7931f0c5cae346a5427af0",
+          "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+          "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+          "processIdentity": "6218:1789462641073945174"
+        },
+        "llama-soa": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "60c9a32930e6b2a9aa4d20ca4b17edcb1141e24e6b7931f0c5cae346a5427af0",
+          "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+          "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+          "processIdentity": "6215:1789462640050554784"
+        },
+        "original-aos": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "60c9a32930e6b2a9aa4d20ca4b17edcb1141e24e6b7931f0c5cae346a5427af0",
+          "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+          "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+          "processIdentity": "6206:1789462635956090741"
+        },
+        "tuned-aos": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "60c9a32930e6b2a9aa4d20ca4b17edcb1141e24e6b7931f0c5cae346a5427af0",
+          "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+          "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+          "processIdentity": "6208:1789462636980121394"
+        }
+      }
+    },
+    "discovery-small": {
+      "case": {
+        "id": "discovery-small",
+        "resolution": 13,
+        "steps": 8,
+        "exportEvery": 4,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "arms": {
+        "diagnostic-aos": {
+          "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+          "fullOutputHash": "dc2d03328c3465ef00aafe6fcd3347deb8f9140d698ce566303c7e9f87e2afca",
+          "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+          "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+          "processIdentity": "6202:1789462634929839621"
+        },
+        "diagnostic-original": {
+          "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+          "fullOutputHash": "dc2d03328c3465ef00aafe6fcd3347deb8f9140d698ce566303c7e9f87e2afca",
+          "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+          "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+          "processIdentity": "6200:1789462633911873669"
+        },
+        "field-aosoa8": {
+          "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+          "fullOutputHash": "dc2d03328c3465ef00aafe6fcd3347deb8f9140d698ce566303c7e9f87e2afca",
+          "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+          "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+          "processIdentity": "6194:1789462630855784641"
+        },
+        "field-soa": {
+          "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+          "fullOutputHash": "dc2d03328c3465ef00aafe6fcd3347deb8f9140d698ce566303c7e9f87e2afca",
+          "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+          "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+          "processIdentity": "6190:1789462629837754397"
+        },
+        "llama-aosoa8": {
+          "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+          "fullOutputHash": "dc2d03328c3465ef00aafe6fcd3347deb8f9140d698ce566303c7e9f87e2afca",
+          "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+          "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+          "processIdentity": "6198:1789462632894075355"
+        },
+        "llama-soa": {
+          "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+          "fullOutputHash": "dc2d03328c3465ef00aafe6fcd3347deb8f9140d698ce566303c7e9f87e2afca",
+          "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+          "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+          "processIdentity": "6196:1789462631876311625"
+        },
+        "original-aos": {
+          "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+          "fullOutputHash": "dc2d03328c3465ef00aafe6fcd3347deb8f9140d698ce566303c7e9f87e2afca",
+          "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+          "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+          "processIdentity": "6186:1789462627802005021"
+        },
+        "tuned-aos": {
+          "datasetHash": "ad5c55d3896b38241192fb5f9f14dacdd84b998e8fd0af3290af4f2022b02590",
+          "fullOutputHash": "dc2d03328c3465ef00aafe6fcd3347deb8f9140d698ce566303c7e9f87e2afca",
+          "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+          "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+          "processIdentity": "6188:1789462628819556009"
+        }
+      }
+    },
+    "physics-long": {
+      "case": {
+        "id": "physics-long",
+        "resolution": 24,
+        "steps": 4000,
+        "exportEvery": 1000,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "arms": {
+        "diagnostic-aos": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "72733d0256991722fdb0f22b0e99694c0613f3482122335360726aa904033e6a",
+          "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+          "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+          "processIdentity": "6292:1789462699137557962"
+        },
+        "diagnostic-original": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "72733d0256991722fdb0f22b0e99694c0613f3482122335360726aa904033e6a",
+          "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+          "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+          "processIdentity": "6288:1789462693101219374"
+        },
+        "field-aosoa8": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "72733d0256991722fdb0f22b0e99694c0613f3482122335360726aa904033e6a",
+          "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+          "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+          "processIdentity": "6276:1789462677330743209"
+        },
+        "field-soa": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "72733d0256991722fdb0f22b0e99694c0613f3482122335360726aa904033e6a",
+          "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+          "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+          "processIdentity": "6272:1789462672133709010"
+        },
+        "llama-aosoa8": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "72733d0256991722fdb0f22b0e99694c0613f3482122335360726aa904033e6a",
+          "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+          "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+          "processIdentity": "6284:1789462687693377110"
+        },
+        "llama-soa": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "72733d0256991722fdb0f22b0e99694c0613f3482122335360726aa904033e6a",
+          "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+          "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+          "processIdentity": "6280:1789462682494128652"
+        },
+        "original-aos": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "72733d0256991722fdb0f22b0e99694c0613f3482122335360726aa904033e6a",
+          "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+          "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+          "processIdentity": "6264:1789462661058509256"
+        },
+        "tuned-aos": {
+          "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+          "fullOutputHash": "72733d0256991722fdb0f22b0e99694c0613f3482122335360726aa904033e6a",
+          "taskOutputHash": "81e2b7c52b9e6215dd63db1753cd4460d97fe02f18290eabba0942236189ece7",
+          "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+          "processIdentity": "6268:1789462667090161720"
+        }
+      }
+    },
+    "smoke-small": {
+      "case": {
+        "id": "smoke-small",
+        "resolution": 12,
+        "steps": 2,
+        "exportEvery": 1,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "arms": {
+        "diagnostic-aos": {
+          "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+          "fullOutputHash": "fbd8041b586bef37eae24311e57419a50b582fc8845e42bb983a1f4343f022ad",
+          "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+          "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+          "processIdentity": "6164:1789462618631326890"
+        },
+        "diagnostic-original": {
+          "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+          "fullOutputHash": "fbd8041b586bef37eae24311e57419a50b582fc8845e42bb983a1f4343f022ad",
+          "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+          "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+          "processIdentity": "6162:1789462617613611049"
+        },
+        "field-aosoa8": {
+          "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+          "fullOutputHash": "fbd8041b586bef37eae24311e57419a50b582fc8845e42bb983a1f4343f022ad",
+          "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+          "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+          "processIdentity": "6154:1789462614559013292"
+        },
+        "field-soa": {
+          "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+          "fullOutputHash": "fbd8041b586bef37eae24311e57419a50b582fc8845e42bb983a1f4343f022ad",
+          "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+          "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+          "processIdentity": "6152:1789462613537989398"
+        },
+        "llama-aosoa8": {
+          "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+          "fullOutputHash": "fbd8041b586bef37eae24311e57419a50b582fc8845e42bb983a1f4343f022ad",
+          "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+          "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+          "processIdentity": "6160:1789462616595840723"
+        },
+        "llama-soa": {
+          "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+          "fullOutputHash": "fbd8041b586bef37eae24311e57419a50b582fc8845e42bb983a1f4343f022ad",
+          "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+          "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+          "processIdentity": "6158:1789462615578357150"
+        },
+        "original-aos": {
+          "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+          "fullOutputHash": "fbd8041b586bef37eae24311e57419a50b582fc8845e42bb983a1f4343f022ad",
+          "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+          "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+          "processIdentity": "6148:1789462611414282058"
+        },
+        "tuned-aos": {
+          "datasetHash": "c98879e4332961d0df67127dad9ef845de20768b44d0e464d80fe1bc3b5f89b4",
+          "fullOutputHash": "fbd8041b586bef37eae24311e57419a50b582fc8845e42bb983a1f4343f022ad",
+          "taskOutputHash": "e9598e4286abb5fb5da9a0f2fa97db53cd842831fac6e6d4d7ad7dd4f8ad475a",
+          "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+          "processIdentity": "6150:1789462612517699378"
+        }
+      }
+    },
+    "smoke-tail": {
+      "case": {
+        "id": "smoke-tail",
+        "resolution": 13,
+        "steps": 8,
+        "exportEvery": 4,
+        "re": 0.13,
+        "phase": 0.25
+      },
+      "arms": {
+        "diagnostic-aos": {
+          "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+          "fullOutputHash": "e387d3ca6e537019fa97a511094d6541d5a111368c1ff28d57afdf31af0a16e9",
+          "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+          "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+          "processIdentity": "6184:1789462626777936280"
+        },
+        "diagnostic-original": {
+          "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+          "fullOutputHash": "e387d3ca6e537019fa97a511094d6541d5a111368c1ff28d57afdf31af0a16e9",
+          "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+          "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+          "processIdentity": "6182:1789462625760292771"
+        },
+        "field-aosoa8": {
+          "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+          "fullOutputHash": "e387d3ca6e537019fa97a511094d6541d5a111368c1ff28d57afdf31af0a16e9",
+          "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+          "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+          "processIdentity": "6174:1789462622707046162"
+        },
+        "field-soa": {
+          "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+          "fullOutputHash": "e387d3ca6e537019fa97a511094d6541d5a111368c1ff28d57afdf31af0a16e9",
+          "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+          "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+          "processIdentity": "6172:1789462621689140677"
+        },
+        "llama-aosoa8": {
+          "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+          "fullOutputHash": "e387d3ca6e537019fa97a511094d6541d5a111368c1ff28d57afdf31af0a16e9",
+          "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+          "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+          "processIdentity": "6178:1789462624742916216"
+        },
+        "llama-soa": {
+          "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+          "fullOutputHash": "e387d3ca6e537019fa97a511094d6541d5a111368c1ff28d57afdf31af0a16e9",
+          "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+          "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+          "processIdentity": "6176:1789462623724736353"
+        },
+        "original-aos": {
+          "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+          "fullOutputHash": "e387d3ca6e537019fa97a511094d6541d5a111368c1ff28d57afdf31af0a16e9",
+          "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+          "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+          "processIdentity": "6166:1789462619654115345"
+        },
+        "tuned-aos": {
+          "datasetHash": "1a91f28e0750f16708300724338329c183e66e6d46ce7f4a8d596635062d7a14",
+          "fullOutputHash": "e387d3ca6e537019fa97a511094d6541d5a111368c1ff28d57afdf31af0a16e9",
+          "taskOutputHash": "ba9572a2cf062ef979c275ad2bdfa94c6ecfbf2d623297fe3bfb875050745366",
+          "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+          "processIdentity": "6170:1789462620671775102"
+        }
+      }
+    }
+  },
+  "completeApplications": 56,
+  "completeHashParityPassed": true,
+  "allCorrectnessTimingsExcluded": true,
+  "storageAndBoundaryContracts": {
+    "native-build-04\\field-aosoa8\\cell-grid-contract.json": {
+      "passed": true,
+      "particles": 13,
+      "reuseCases": 2,
+      "invalidCasesRejected": 8,
+      "layoutKind": 3
+    },
+    "native-build-04\\field-aosoa8\\storage-contract.json": {
+      "passed": true,
+      "countCases": 10,
+      "layoutKind": 3
+    },
+    "native-build-04\\field-soa\\cell-grid-contract.json": {
+      "passed": true,
+      "particles": 13,
+      "reuseCases": 2,
+      "invalidCasesRejected": 8,
+      "layoutKind": 2
+    },
+    "native-build-04\\field-soa\\storage-contract.json": {
+      "passed": true,
+      "countCases": 10,
+      "layoutKind": 2
+    },
+    "native-build-04\\llama-aosoa8\\cell-grid-contract.json": {
+      "passed": true,
+      "particles": 13,
+      "reuseCases": 2,
+      "invalidCasesRejected": 8,
+      "layoutKind": 5
+    },
+    "native-build-04\\llama-aosoa8\\storage-contract.json": {
+      "passed": true,
+      "countCases": 10,
+      "layoutKind": 5
+    },
+    "native-build-04\\llama-soa\\cell-grid-contract.json": {
+      "passed": true,
+      "particles": 13,
+      "reuseCases": 2,
+      "invalidCasesRejected": 8,
+      "layoutKind": 4
+    },
+    "native-build-04\\llama-soa\\storage-contract.json": {
+      "passed": true,
+      "countCases": 10,
+      "layoutKind": 4
+    },
+    "native-build-04\\original-aos\\cell-grid-contract.json": {
+      "passed": true,
+      "particles": 13,
+      "reuseCases": 2,
+      "invalidCasesRejected": 8,
+      "layoutKind": 0
+    },
+    "native-build-04\\original-aos\\storage-contract.json": {
+      "passed": true,
+      "countCases": 10,
+      "layoutKind": 0
+    },
+    "native-build-04\\tuned-aos\\cell-grid-contract.json": {
+      "passed": true,
+      "particles": 13,
+      "reuseCases": 2,
+      "invalidCasesRejected": 8,
+      "layoutKind": 1
+    },
+    "native-build-04\\tuned-aos\\storage-contract.json": {
+      "passed": true,
+      "countCases": 10,
+      "layoutKind": 1
+    }
+  },
+  "dotnetTestCounters": {
+    "total": "95",
+    "executed": "95",
+    "passed": "95",
+    "failed": "0",
+    "error": "0",
+    "timeout": "0",
+    "aborted": "0",
+    "inconclusive": "0",
+    "passedButRunAborted": "0",
+    "notRunnable": "0",
+    "notExecuted": "0",
+    "disconnected": "0",
+    "warning": "0",
+    "completed": "0",
+    "inProgress": "0",
+    "pending": "0"
+  },
+  "source": "Only final-source raw files; earlier passes do not substitute for current acceptance"
+}

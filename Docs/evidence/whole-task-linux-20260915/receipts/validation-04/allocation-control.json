@@ -1,0 +1,16 @@
+{
+  "actualDotNetCurrentThreadControl": {
+    "SchemaVersion": 1,
+    "Availability": 1,
+    "Scope": 1,
+    "Provider": "GC.GetAllocatedBytesForCurrentThread",
+    "Unit": "bytes",
+    "PositiveControlPassed": true,
+    "EmptyControlPassed": true,
+    "PositiveControlMinimumBytes": 1048576,
+    "ObservedPositiveBytes": 1048600,
+    "Diagnostic": "Current-thread managed allocations only; workers/native not observed."
+  },
+  "controlFailure": null,
+  "wholeTaskAllocationEligibility": "Unknown"
+}

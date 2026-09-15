@@ -1,0 +1,42 @@
+[
+  {
+    "candidate": "original-aos",
+    "executable": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/native-build-04/original-aos/simpleph",
+    "sha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02"
+  },
+  {
+    "candidate": "tuned-aos",
+    "executable": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/native-build-04/tuned-aos/simpleph",
+    "sha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de"
+  },
+  {
+    "candidate": "field-soa",
+    "executable": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/native-build-04/field-soa/simpleph",
+    "sha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7"
+  },
+  {
+    "candidate": "field-aosoa8",
+    "executable": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/native-build-04/field-aosoa8/simpleph",
+    "sha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045"
+  },
+  {
+    "candidate": "llama-soa",
+    "executable": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/native-build-04/llama-soa/simpleph",
+    "sha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b"
+  },
+  {
+    "candidate": "llama-aosoa8",
+    "executable": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/native-build-04/llama-aosoa8/simpleph",
+    "sha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0"
+  },
+  {
+    "candidate": "diagnostic-aos",
+    "executable": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/native-build-04/diagnostic-aos/simpleph",
+    "sha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace"
+  },
+  {
+    "candidate": "diagnostic-original",
+    "executable": "/root/autodl-tmp/codex-whole-task-20260915/data-layout/native-build-04/diagnostic-original/simpleph",
+    "sha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e"
+  }
+]

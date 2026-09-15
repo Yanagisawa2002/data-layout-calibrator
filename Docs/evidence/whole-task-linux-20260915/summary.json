@@ -1,0 +1,345 @@
+{
+  "createdUtc": "2026-09-15T09:12:35.873826+00:00",
+  "performanceConclusion": "NO-GO: incomplete resource-qualified discovery in this period; no claim of no algorithm benefit",
+  "formalCalibrationExecuted": false,
+  "independentConfirmationExecuted": false,
+  "selectedLayout": null,
+  "managedAllocationControl": {
+    "actualDotNetCurrentThreadControl": {
+      "SchemaVersion": 1,
+      "Availability": 1,
+      "Scope": 1,
+      "Provider": "GC.GetAllocatedBytesForCurrentThread",
+      "Unit": "bytes",
+      "PositiveControlPassed": true,
+      "EmptyControlPassed": true,
+      "PositiveControlMinimumBytes": 1048576,
+      "ObservedPositiveBytes": 1048600,
+      "Diagnostic": "Current-thread managed allocations only; workers/native not observed."
+    },
+    "controlFailure": null,
+    "wholeTaskAllocationEligibility": "Unknown"
+  },
+  "allocationEligibility": "Unknown",
+  "finalCorrectnessCases": 7,
+  "finalCompleteApplications": 56,
+  "allFinalCorrectnessApplicationsPerformanceEligible": false,
+  "longPhysics": {
+    "physics-diagnostic-aos": {
+      "passed": true,
+      "fullParticleVelocityL2": 0.00886419739592466,
+      "maximumAllowedL2": 0.3,
+      "simulatedSeconds": 25.086805555555554,
+      "executableSha256": "ca8928cf178dd421bd7d14a6aca3beb52c02502ec3f545e581921f7fb21acace",
+      "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+      "validatorSha256": "ca7fad1654ff93f2aee3ba310d9361420675b09b012da1ef720063f78ffd9da7",
+      "requiredRelaxationMultiples": 5,
+      "actualRelaxationMultiples": 24.7596846520384,
+      "fluidParticles": 576,
+      "note": "Declared long Poiseuille acceptance: full fluid vx/vy against transient analytical solution at each actual y; L2<0.3 after five relaxation times. Upstream public tests use 0.3 for a different SPH configuration; this is a separately declared acceptance, not those tests being rerun."
+    },
+    "physics-diagnostic-original": {
+      "passed": true,
+      "fullParticleVelocityL2": 0.00886419739592466,
+      "maximumAllowedL2": 0.3,
+      "simulatedSeconds": 25.086805555555554,
+      "executableSha256": "ed41347c849c66315d1accc032e6107a6570795beb02eeb28d6aebbedf204a8e",
+      "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+      "validatorSha256": "ca7fad1654ff93f2aee3ba310d9361420675b09b012da1ef720063f78ffd9da7",
+      "requiredRelaxationMultiples": 5,
+      "actualRelaxationMultiples": 24.7596846520384,
+      "fluidParticles": 576,
+      "note": "Declared long Poiseuille acceptance: full fluid vx/vy against transient analytical solution at each actual y; L2<0.3 after five relaxation times. Upstream public tests use 0.3 for a different SPH configuration; this is a separately declared acceptance, not those tests being rerun."
+    },
+    "physics-field-aosoa8": {
+      "passed": true,
+      "fullParticleVelocityL2": 0.00886419739592466,
+      "maximumAllowedL2": 0.3,
+      "simulatedSeconds": 25.086805555555554,
+      "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045",
+      "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+      "validatorSha256": "ca7fad1654ff93f2aee3ba310d9361420675b09b012da1ef720063f78ffd9da7",
+      "requiredRelaxationMultiples": 5,
+      "actualRelaxationMultiples": 24.7596846520384,
+      "fluidParticles": 576,
+      "note": "Declared long Poiseuille acceptance: full fluid vx/vy against transient analytical solution at each actual y; L2<0.3 after five relaxation times. Upstream public tests use 0.3 for a different SPH configuration; this is a separately declared acceptance, not those tests being rerun."
+    },
+    "physics-field-soa": {
+      "passed": true,
+      "fullParticleVelocityL2": 0.00886419739592466,
+      "maximumAllowedL2": 0.3,
+      "simulatedSeconds": 25.086805555555554,
+      "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7",
+      "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+      "validatorSha256": "ca7fad1654ff93f2aee3ba310d9361420675b09b012da1ef720063f78ffd9da7",
+      "requiredRelaxationMultiples": 5,
+      "actualRelaxationMultiples": 24.7596846520384,
+      "fluidParticles": 576,
+      "note": "Declared long Poiseuille acceptance: full fluid vx/vy against transient analytical solution at each actual y; L2<0.3 after five relaxation times. Upstream public tests use 0.3 for a different SPH configuration; this is a separately declared acceptance, not those tests being rerun."
+    },
+    "physics-llama-aosoa8": {
+      "passed": true,
+      "fullParticleVelocityL2": 0.00886419739592466,
+      "maximumAllowedL2": 0.3,
+      "simulatedSeconds": 25.086805555555554,
+      "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0",
+      "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+      "validatorSha256": "ca7fad1654ff93f2aee3ba310d9361420675b09b012da1ef720063f78ffd9da7",
+      "requiredRelaxationMultiples": 5,
+      "actualRelaxationMultiples": 24.7596846520384,
+      "fluidParticles": 576,
+      "note": "Declared long Poiseuille acceptance: full fluid vx/vy against transient analytical solution at each actual y; L2<0.3 after five relaxation times. Upstream public tests use 0.3 for a different SPH configuration; this is a separately declared acceptance, not those tests being rerun."
+    },
+    "physics-llama-soa": {
+      "passed": true,
+      "fullParticleVelocityL2": 0.00886419739592466,
+      "maximumAllowedL2": 0.3,
+      "simulatedSeconds": 25.086805555555554,
+      "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b",
+      "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+      "validatorSha256": "ca7fad1654ff93f2aee3ba310d9361420675b09b012da1ef720063f78ffd9da7",
+      "requiredRelaxationMultiples": 5,
+      "actualRelaxationMultiples": 24.7596846520384,
+      "fluidParticles": 576,
+      "note": "Declared long Poiseuille acceptance: full fluid vx/vy against transient analytical solution at each actual y; L2<0.3 after five relaxation times. Upstream public tests use 0.3 for a different SPH configuration; this is a separately declared acceptance, not those tests being rerun."
+    },
+    "physics-original-aos": {
+      "passed": true,
+      "fullParticleVelocityL2": 0.00886419739592466,
+      "maximumAllowedL2": 0.3,
+      "simulatedSeconds": 25.086805555555554,
+      "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02",
+      "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+      "validatorSha256": "ca7fad1654ff93f2aee3ba310d9361420675b09b012da1ef720063f78ffd9da7",
+      "requiredRelaxationMultiples": 5,
+      "actualRelaxationMultiples": 24.7596846520384,
+      "fluidParticles": 576,
+      "note": "Declared long Poiseuille acceptance: full fluid vx/vy against transient analytical solution at each actual y; L2<0.3 after five relaxation times. Upstream public tests use 0.3 for a different SPH configuration; this is a separately declared acceptance, not those tests being rerun."
+    },
+    "physics-tuned-aos": {
+      "passed": true,
+      "fullParticleVelocityL2": 0.00886419739592466,
+      "maximumAllowedL2": 0.3,
+      "simulatedSeconds": 25.086805555555554,
+      "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de",
+      "datasetHash": "00efb01353efb381d34d287c337c802196dc6b6bc54b75ed101a5909d20ac2a4",
+      "validatorSha256": "ca7fad1654ff93f2aee3ba310d9361420675b09b012da1ef720063f78ffd9da7",
+      "requiredRelaxationMultiples": 5,
+      "actualRelaxationMultiples": 24.7596846520384,
+      "fluidParticles": 576,
+      "note": "Declared long Poiseuille acceptance: full fluid vx/vy against transient analytical solution at each actual y; L2<0.3 after five relaxation times. Upstream public tests use 0.3 for a different SPH configuration; this is a separately declared acceptance, not those tests being rerun."
+    }
+  },
+  "sanitizer": {
+    "exitCode": 0,
+    "performanceEligible": false
+  },
+  "finalWindow": {
+    "qualified": 96,
+    "candidates": 101,
+    "selected": {
+      "cpu": 3,
+      "siblings": [
+        3,
+        107
+      ]
+    },
+    "cgroupBackgroundCores": 0.032693656563323355,
+    "globalReasons": []
+  },
+  "failedDiagnosticPreflight": {
+    "samples": [
+      {
+        "time": 30249296.304066952,
+        "cpu": {
+          "cpu": {
+            "total": 627867179096,
+            "idle": 594900753887
+          },
+          "cpu3": {
+            "total": 3019705294,
+            "idle": 2810811983
+          },
+          "cpu107": {
+            "total": 3022501063,
+            "idle": 2884813968
+          }
+        },
+        "ownedSeconds": 4.812353,
+        "cgroupCpu": {
+          "usage_usec": 643871009,
+          "user_usec": 522668471,
+          "system_usec": 121202537,
+          "nr_periods": 55314,
+          "nr_throttled": 1,
+          "throttled_usec": 107349
+        },
+        "quotaCores": 25.0,
+        "affinity": [
+          3
+        ],
+        "memoryCurrentBytes": 2008686592,
+        "memoryMax": "96636764160",
+        "cpuPressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=2697240\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=2406529"
+      },
+      {
+        "time": 30249296.555037573,
+        "cpu": {
+          "cpu": {
+            "total": 627867184308,
+            "idle": 594900758972
+          },
+          "cpu3": {
+            "total": 3019705319,
+            "idle": 2810812008
+          },
+          "cpu107": {
+            "total": 3022501088,
+            "idle": 2884813993
+          }
+        },
+        "ownedSeconds": 4.8132719999999996,
+        "cgroupCpu": {
+          "usage_usec": 643875409,
+          "user_usec": 522671946,
+          "system_usec": 121203463,
+          "nr_periods": 55316,
+          "nr_throttled": 1,
+          "throttled_usec": 107349
+        },
+        "quotaCores": 25.0,
+        "affinity": [
+          3
+        ],
+        "memoryCurrentBytes": 2008567808,
+        "memoryMax": "96636764160",
+        "cpuPressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=2697240\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=2406529"
+      },
+      {
+        "time": 30249296.806898475,
+        "cpu": {
+          "cpu": {
+            "total": 627867189518,
+            "idle": 594900763982
+          },
+          "cpu3": {
+            "total": 3019705344,
+            "idle": 2810812033
+          },
+          "cpu107": {
+            "total": 3022501114,
+            "idle": 2884814013
+          }
+        },
+        "ownedSeconds": 4.815076,
+        "cgroupCpu": {
+          "usage_usec": 643880685,
+          "user_usec": 522676992,
+          "system_usec": 121203693,
+          "nr_periods": 55319,
+          "nr_throttled": 1,
+          "throttled_usec": 107349
+        },
+        "quotaCores": 25.0,
+        "affinity": [
+          3
+        ],
+        "memoryCurrentBytes": 2008440832,
+        "memoryMax": "96636764160",
+        "cpuPressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=2697240\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=2406529"
+      },
+      {
+        "time": 30249297.058612525,
+        "cpu": {
+          "cpu": {
+            "total": 627867194761,
+            "idle": 594900769103
+          },
+          "cpu3": {
+            "total": 3019705369,
+            "idle": 2810812058
+          },
+          "cpu107": {
+            "total": 3022501139,
+            "idle": 2884814026
+          }
+        },
+        "ownedSeconds": 4.816742,
+        "cgroupCpu": {
+          "usage_usec": 643887117,
+          "user_usec": 522682213,
+          "system_usec": 121204904,
+          "nr_periods": 55321,
+          "nr_throttled": 1,
+          "throttled_usec": 107349
+        },
+        "quotaCores": 25.0,
+        "affinity": [
+          3
+        ],
+        "memoryCurrentBytes": 2008305664,
+        "memoryMax": "96636764160",
+        "cpuPressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=2697240\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=2406529"
+      }
+    ],
+    "intervals": [
+      {
+        "affinityBackgroundCpuPercent": 0.0,
+        "ownedCpuSeconds": 0.0,
+        "siblingCpuPercent": [
+          0.0
+        ],
+        "cgroupBackgroundCores": 0.01753193257598964,
+        "cgroupUsagePercentOfQuota": 0.07012773030395857,
+        "throttledUsec": 0,
+        "throttledPeriods": 0
+      },
+      {
+        "affinityBackgroundCpuPercent": 0.0,
+        "ownedCpuSeconds": 0.0,
+        "siblingCpuPercent": [
+          23.076923076923077
+        ],
+        "cgroupBackgroundCores": 0.020948070796650762,
+        "cgroupUsagePercentOfQuota": 0.08379228318660305,
+        "throttledUsec": 0,
+        "throttledPeriods": 0
+      },
+      {
+        "affinityBackgroundCpuPercent": 0.0,
+        "ownedCpuSeconds": 0.0,
+        "siblingCpuPercent": [
+          48.0
+        ],
+        "cgroupBackgroundCores": 0.025552804781176497,
+        "cgroupUsagePercentOfQuota": 0.10221121912470599,
+        "throttledUsec": 0,
+        "throttledPeriods": 0
+      }
+    ],
+    "aggregate": {
+      "affinityBackgroundCpuPercent": 0.0,
+      "ownedCpuSeconds": 0.0,
+      "siblingCpuPercent": [
+        23.68421052631579
+      ],
+      "cgroupBackgroundCores": 0.02134794845175153,
+      "cgroupUsagePercentOfQuota": 0.08539179380700612,
+      "throttledUsec": 0,
+      "throttledPeriods": 0
+    },
+    "passed": false,
+    "affinity": [
+      3
+    ],
+    "note": "One pinned logical CPU; mean background <=15%, interval <=25%, container background <=0.25 core, no cgroup throttling. No overhead subtraction."
+  },
+  "qualifiedIndividualDiscoveryProcesses": 24,
+  "completedDiscovery": false,
+  "lock": {
+    "pid": 6765,
+    "inode": 31152802564,
+    "path": "/root/autodl-tmp/codex-whole-task-20260915/.hardware.lock",
+    "held": true
+  }
+}

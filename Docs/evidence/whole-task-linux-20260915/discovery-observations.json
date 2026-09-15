@@ -1,0 +1,439 @@
+{
+  "status": "incomplete-discovery-protocol; individually qualified raw observations only",
+  "formalComparison": false,
+  "uncertainty": null,
+  "records": [
+    {
+      "path": "discovery-03/discovery-export/field-aosoa8/result.json",
+      "case": {
+        "id": "discovery-export",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 1,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "field-aosoa8",
+      "completeTaskMs": 300.2626299858093,
+      "consumerMs": 145.86998522281647,
+      "processIdentity": "6676:1789463418813896675",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+      "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045"
+    },
+    {
+      "path": "discovery-03/discovery-export/field-soa/result.json",
+      "case": {
+        "id": "discovery-export",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 1,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "field-soa",
+      "completeTaskMs": 301.3012632727623,
+      "consumerMs": 145.59172838926315,
+      "processIdentity": "6674:1789463417748150129",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+      "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7"
+    },
+    {
+      "path": "discovery-03/discovery-export/llama-aosoa8/result.json",
+      "case": {
+        "id": "discovery-export",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 1,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "llama-aosoa8",
+      "completeTaskMs": 305.7790510356426,
+      "consumerMs": 147.95367047190666,
+      "processIdentity": "6682:1789463420946574426",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+      "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0"
+    },
+    {
+      "path": "discovery-03/discovery-export/llama-soa/result.json",
+      "case": {
+        "id": "discovery-export",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 1,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "llama-soa",
+      "completeTaskMs": 302.35617235302925,
+      "consumerMs": 146.25226706266403,
+      "processIdentity": "6678:1789463419878402890",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+      "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b"
+    },
+    {
+      "path": "discovery-03/discovery-export/original-aos/result.json",
+      "case": {
+        "id": "discovery-export",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 1,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "original-aos",
+      "completeTaskMs": 316.8131336569786,
+      "consumerMs": 148.6106477677822,
+      "processIdentity": "6670:1789463415599406846",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+      "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02"
+    },
+    {
+      "path": "discovery-03/discovery-export/tuned-aos/result.json",
+      "case": {
+        "id": "discovery-export",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 1,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "tuned-aos",
+      "completeTaskMs": 301.9196502864361,
+      "consumerMs": 145.89155092835426,
+      "processIdentity": "6672:1789463416681207656",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "bae108c6dd00abf384c2d699ea5e61d1f0a98cc8b0d6832059bf68dbc7abd646",
+      "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de"
+    },
+    {
+      "path": "discovery-03/discovery-large/field-aosoa8/result.json",
+      "case": {
+        "id": "discovery-large",
+        "resolution": 48,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "field-aosoa8",
+      "completeTaskMs": 265.4163986444473,
+      "consumerMs": 33.997632563114166,
+      "processIdentity": "6662:1789463412518137470",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+      "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045"
+    },
+    {
+      "path": "discovery-03/discovery-large/field-soa/result.json",
+      "case": {
+        "id": "discovery-large",
+        "resolution": 48,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "field-soa",
+      "completeTaskMs": 261.09888032078743,
+      "consumerMs": 35.23685783147812,
+      "processIdentity": "6660:1789463411496539040",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+      "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7"
+    },
+    {
+      "path": "discovery-03/discovery-large/llama-aosoa8/result.json",
+      "case": {
+        "id": "discovery-large",
+        "resolution": 48,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "llama-aosoa8",
+      "completeTaskMs": 269.8243036866188,
+      "consumerMs": 35.27609258890152,
+      "processIdentity": "6666:1789463414565395984",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+      "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0"
+    },
+    {
+      "path": "discovery-03/discovery-large/llama-soa/result.json",
+      "case": {
+        "id": "discovery-large",
+        "resolution": 48,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "llama-soa",
+      "completeTaskMs": 260.91795787215233,
+      "consumerMs": 35.0174605846405,
+      "processIdentity": "6664:1789463413544182332",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+      "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b"
+    },
+    {
+      "path": "discovery-03/discovery-large/original-aos/result.json",
+      "case": {
+        "id": "discovery-large",
+        "resolution": 48,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "original-aos",
+      "completeTaskMs": 279.78021278977394,
+      "consumerMs": 34.62856262922287,
+      "processIdentity": "6654:1789463409440785243",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+      "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02"
+    },
+    {
+      "path": "discovery-03/discovery-large/tuned-aos/result.json",
+      "case": {
+        "id": "discovery-large",
+        "resolution": 48,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "tuned-aos",
+      "completeTaskMs": 254.35132533311844,
+      "consumerMs": 35.60784459114075,
+      "processIdentity": "6658:1789463410480398420",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "86f03e7ae3dc157f37861e48e3fd4e0b6d2784ffcb2e2b8fd9c235281d3fb29b",
+      "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de"
+    },
+    {
+      "path": "discovery-03/discovery-medium/field-aosoa8/result.json",
+      "case": {
+        "id": "discovery-medium",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "field-aosoa8",
+      "completeTaskMs": 88.48972991108894,
+      "consumerMs": 11.349719017744064,
+      "processIdentity": "6648:1789463406379326276",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+      "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045"
+    },
+    {
+      "path": "discovery-03/discovery-medium/field-soa/result.json",
+      "case": {
+        "id": "discovery-medium",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "field-soa",
+      "completeTaskMs": 86.36816218495369,
+      "consumerMs": 11.503487825393677,
+      "processIdentity": "6646:1789463405362300329",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+      "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7"
+    },
+    {
+      "path": "discovery-03/discovery-medium/llama-aosoa8/result.json",
+      "case": {
+        "id": "discovery-medium",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "llama-aosoa8",
+      "completeTaskMs": 88.41671794652939,
+      "consumerMs": 11.285997927188873,
+      "processIdentity": "6652:1789463408418095069",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+      "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0"
+    },
+    {
+      "path": "discovery-03/discovery-medium/llama-soa/result.json",
+      "case": {
+        "id": "discovery-medium",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "llama-soa",
+      "completeTaskMs": 92.59185194969177,
+      "consumerMs": 11.313553899526596,
+      "processIdentity": "6650:1789463407397286727",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+      "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b"
+    },
+    {
+      "path": "discovery-03/discovery-medium/original-aos/result.json",
+      "case": {
+        "id": "discovery-medium",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "original-aos",
+      "completeTaskMs": 91.43722429871559,
+      "consumerMs": 11.396288871765137,
+      "processIdentity": "6640:1789463403328008548",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+      "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02"
+    },
+    {
+      "path": "discovery-03/discovery-medium/tuned-aos/result.json",
+      "case": {
+        "id": "discovery-medium",
+        "resolution": 24,
+        "steps": 64,
+        "exportEvery": 16,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "tuned-aos",
+      "completeTaskMs": 85.67281439900398,
+      "consumerMs": 11.248350143432617,
+      "processIdentity": "6642:1789463404344812749",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "34758cef562cb25e9bdc71ecc38a4509a72323f70b5eed70731c793df8cd5bde",
+      "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de"
+    },
+    {
+      "path": "discovery-03/discovery-small/field-aosoa8/result.json",
+      "case": {
+        "id": "discovery-small",
+        "resolution": 13,
+        "steps": 8,
+        "exportEvery": 4,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "field-aosoa8",
+      "completeTaskMs": 17.871715128421783,
+      "consumerMs": 4.946161061525345,
+      "processIdentity": "6634:1789463400276831902",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+      "executableSha256": "1561aca03ba04914a6581992ea5863d6067ca8454ef2f4ef09109717ec651045"
+    },
+    {
+      "path": "discovery-03/discovery-small/field-soa/result.json",
+      "case": {
+        "id": "discovery-small",
+        "resolution": 13,
+        "steps": 8,
+        "exportEvery": 4,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "field-soa",
+      "completeTaskMs": 18.41447502374649,
+      "consumerMs": 4.876807332038879,
+      "processIdentity": "6630:1789463399259603655",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+      "executableSha256": "31134996e03ddb2f3d6876ad442cea31761fd7da00543a164cb3020896904ed7"
+    },
+    {
+      "path": "discovery-03/discovery-small/llama-aosoa8/result.json",
+      "case": {
+        "id": "discovery-small",
+        "resolution": 13,
+        "steps": 8,
+        "exportEvery": 4,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "llama-aosoa8",
+      "completeTaskMs": 15.339206904172897,
+      "consumerMs": 3.308679908514023,
+      "processIdentity": "6638:1789463402309029843",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+      "executableSha256": "2f5a0b5e694f203431de02d38229cd58fd272d3838b7215276141536b85696e0"
+    },
+    {
+      "path": "discovery-03/discovery-small/llama-soa/result.json",
+      "case": {
+        "id": "discovery-small",
+        "resolution": 13,
+        "steps": 8,
+        "exportEvery": 4,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "llama-soa",
+      "completeTaskMs": 17.763651907444,
+      "consumerMs": 4.906021058559418,
+      "processIdentity": "6636:1789463401293095807",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+      "executableSha256": "f7791b73b023da241b06eb9341a4027b8ebb71952c0cdb67faa026b82c2f323b"
+    },
+    {
+      "path": "discovery-03/discovery-small/original-aos/result.json",
+      "case": {
+        "id": "discovery-small",
+        "resolution": 13,
+        "steps": 8,
+        "exportEvery": 4,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "original-aos",
+      "completeTaskMs": 17.534859478473663,
+      "consumerMs": 5.29903918504715,
+      "processIdentity": "6626:1789463397227175929",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+      "executableSha256": "9e14f5e6e816c61604e950f0c1c5ec0c3d872b42f33c53dbf241a5a386a4bf02"
+    },
+    {
+      "path": "discovery-03/discovery-small/tuned-aos/result.json",
+      "case": {
+        "id": "discovery-small",
+        "resolution": 13,
+        "steps": 8,
+        "exportEvery": 4,
+        "re": 0.1,
+        "phase": 0.0
+      },
+      "candidate": "tuned-aos",
+      "completeTaskMs": 17.83401519060135,
+      "consumerMs": 5.109705030918121,
+      "processIdentity": "6628:1789463398242885028",
+      "performanceEnvironmentEligible": true,
+      "taskOutputHash": "4c21a44a586f93a23b92b8cae85fe3134568e8776e38ac95892be57e28995550",
+      "executableSha256": "8fbff7c6a03b1e3540bea37e31e2ccbae849c449311cbf6857c799b5d8d5b6de"
+    }
+  ]
+}

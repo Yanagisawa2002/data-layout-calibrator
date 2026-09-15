@@ -1,0 +1,187 @@
+{
+  "samples": [
+    {
+      "time": 30248534.292125836,
+      "cpu": {
+        "cpu": {
+          "total": 627851343813,
+          "idle": 594885223584
+        },
+        "cpu2": {
+          "total": 3014531179,
+          "idle": 2808083910
+        },
+        "cpu106": {
+          "total": 3022108380,
+          "idle": 2866232700
+        }
+      },
+      "ownedSeconds": 6.734838,
+      "cgroupCpu": {
+        "usage_usec": 576924969,
+        "user_usec": 466685588,
+        "system_usec": 110239381,
+        "nr_periods": 47698,
+        "nr_throttled": 1,
+        "throttled_usec": 107349
+      },
+      "quotaCores": 25.0,
+      "affinity": [
+        2
+      ],
+      "memoryCurrentBytes": 1951473664,
+      "memoryMax": "96636764160",
+      "cpuPressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=2276348\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=2115393"
+    },
+    {
+      "time": 30248534.54283932,
+      "cpu": {
+        "cpu": {
+          "total": 627851349003,
+          "idle": 594885228622
+        },
+        "cpu2": {
+          "total": 3014531204,
+          "idle": 2808083935
+        },
+        "cpu106": {
+          "total": 3022108405,
+          "idle": 2866232724
+        }
+      },
+      "ownedSeconds": 6.7355,
+      "cgroupCpu": {
+        "usage_usec": 576929957,
+        "user_usec": 466686343,
+        "system_usec": 110243614,
+        "nr_periods": 47701,
+        "nr_throttled": 1,
+        "throttled_usec": 107349
+      },
+      "quotaCores": 25.0,
+      "affinity": [
+        2
+      ],
+      "memoryCurrentBytes": 1951125504,
+      "memoryMax": "96636764160",
+      "cpuPressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=2276348\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=2115393"
+    },
+    {
+      "time": 30248534.793764953,
+      "cpu": {
+        "cpu": {
+          "total": 627851354214,
+          "idle": 594885233731
+        },
+        "cpu2": {
+          "total": 3014531229,
+          "idle": 2808083960
+        },
+        "cpu106": {
+          "total": 3022108431,
+          "idle": 2866232749
+        }
+      },
+      "ownedSeconds": 6.7363729999999995,
+      "cgroupCpu": {
+        "usage_usec": 576935067,
+        "user_usec": 466690476,
+        "system_usec": 110244590,
+        "nr_periods": 47703,
+        "nr_throttled": 1,
+        "throttled_usec": 107349
+      },
+      "quotaCores": 25.0,
+      "affinity": [
+        2
+      ],
+      "memoryCurrentBytes": 1951121408,
+      "memoryMax": "96636764160",
+      "cpuPressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=2276348\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=2115393"
+    },
+    {
+      "time": 30248535.045200597,
+      "cpu": {
+        "cpu": {
+          "total": 627851359433,
+          "idle": 594885238852
+        },
+        "cpu2": {
+          "total": 3014531254,
+          "idle": 2808083985
+        },
+        "cpu106": {
+          "total": 3022108456,
+          "idle": 2866232773
+        }
+      },
+      "ownedSeconds": 6.7377579999999995,
+      "cgroupCpu": {
+        "usage_usec": 576940293,
+        "user_usec": 466695478,
+        "system_usec": 110244814,
+        "nr_periods": 47706,
+        "nr_throttled": 1,
+        "throttled_usec": 107349
+      },
+      "quotaCores": 25.0,
+      "affinity": [
+        2
+      ],
+      "memoryCurrentBytes": 1951121408,
+      "memoryMax": "96636764160",
+      "cpuPressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=2276348\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=2115393"
+    }
+  ],
+  "intervals": [
+    {
+      "affinityBackgroundCpuPercent": 0.0,
+      "ownedCpuSeconds": 0.0,
+      "siblingCpuPercent": [
+        4.0
+      ],
+      "cgroupBackgroundCores": 0.01989522043361771,
+      "cgroupUsagePercentOfQuota": 0.07958088173447084,
+      "throttledUsec": 0,
+      "throttledPeriods": 0
+    },
+    {
+      "affinityBackgroundCpuPercent": 0.0,
+      "ownedCpuSeconds": 0.0,
+      "siblingCpuPercent": [
+        3.8461538461538463
+      ],
+      "cgroupBackgroundCores": 0.02036459933325452,
+      "cgroupUsagePercentOfQuota": 0.08145839733301809,
+      "throttledUsec": 0,
+      "throttledPeriods": 0
+    },
+    {
+      "affinityBackgroundCpuPercent": 0.0,
+      "ownedCpuSeconds": 0.0,
+      "siblingCpuPercent": [
+        4.0
+      ],
+      "cgroupBackgroundCores": 0.02078464253374384,
+      "cgroupUsagePercentOfQuota": 0.08313857013497536,
+      "throttledUsec": 0,
+      "throttledPeriods": 0
+    }
+  ],
+  "aggregate": {
+    "affinityBackgroundCpuPercent": 0.0,
+    "ownedCpuSeconds": 0.0,
+    "siblingCpuPercent": [
+      3.9473684210526314
+    ],
+    "cgroupBackgroundCores": 0.020348577304439487,
+    "cgroupUsagePercentOfQuota": 0.08139430921775795,
+    "throttledUsec": 0,
+    "throttledPeriods": 0
+  },
+  "passed": true,
+  "affinity": [
+    2
+  ],
+  "note": "One pinned logical CPU; mean background <=15%, interval <=25%, container background <=0.25 core, no cgroup throttling. No overhead subtraction."
+}

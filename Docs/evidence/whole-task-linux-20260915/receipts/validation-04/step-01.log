@@ -1,0 +1,8 @@
+  Determining projects to restore...
+  Restored /root/autodl-tmp/codex-whole-task-20260915/data-layout/source-linux-07/Tools/FunctionalTests/FunctionalTests.csproj (in 2.14 sec).
+  FunctionalTests -> /root/autodl-tmp/codex-whole-task-20260915/data-layout/source-linux-07/Tools/FunctionalTests/bin/FunctionalTests/Release/net8.0/FunctionalTests.dll
+Test run for /root/autodl-tmp/codex-whole-task-20260915/data-layout/source-linux-07/Tools/FunctionalTests/bin/FunctionalTests/Release/net8.0/FunctionalTests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+Results File: /root/autodl-tmp/codex-whole-task-20260915/data-layout/validation-04/dotnet-tests/_autodl-container-b82240868e-6fff412e_2026-09-15_16_51_54_net8.0.trx
+
+Passed!  - Failed:     0, Passed:    95, Skipped:     0, Total:    95, Duration: 168 ms - FunctionalTests.dll (net8.0)
