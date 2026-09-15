@@ -1,5 +1,10 @@
 # Whole-task layout adoption
 
+The [focused complete-task comparison](../../Docs/FOCUSED_COMPLETE_TASK_2026-09-15.md)
+completed 72 shared-host processes: buffer reuse reduced mean complete-task
+latency by 15.7%, while custom SoA/AoSoA were 2.75%/1.97% slower than tuned AoS.
+This is one fixed native task, not selector payback or general layout evidence.
+
 This implements a connected path from a pinned public application through complete
 lifecycle observations to the package's C# selector and independent confirmation.
 The September 15 run passed numerical acceptance, but discovery stopped at a

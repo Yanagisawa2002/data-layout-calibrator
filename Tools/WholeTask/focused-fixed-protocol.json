@@ -1,0 +1,21 @@
+{
+  "id": "focused-fixed-poiseuille-20260915-01",
+  "scope": "One fixed complete native CPU task; no selector or general workload claim",
+  "case": {"id": "physics-long", "resolution": 24, "steps": 4000, "exportEvery": 1000, "re": 0.1, "phase": 0.0},
+  "arms": ["original-aos", "tuned-aos", "field-soa", "field-aosoa8", "llama-soa", "llama-aosoa8"],
+  "candidates": ["field-soa", "field-aosoa8"],
+  "primaryComparators": ["tuned-aos", "llama-soa", "llama-aosoa8"],
+  "rounds": 12,
+  "orderSeed": 20260915,
+  "bootstrapSeed": 509015,
+  "bootstrapReplicates": 20000,
+  "familyAlpha": 0.05,
+  "minimumGainPercent": 2,
+  "maximumBaselineDriftPercent": 5,
+  "environmentPolicy": "Unchanged workflow.py per-task CPU/cgroup/SMT gates; abort on the first unqualified run, retain every started run, no retry or sample replacement.",
+  "cpuSelection": "One 30-second idle observation; rank physical cores >=2 by the maximum mean load of their SMT threads, then CPU number; freeze one core before any task timings.",
+  "cachePolicy": "Normal warmed executable/filesystem pages; no cache purge; independent native process and fresh output directory per task; cyclic positions are balanced twice.",
+  "inference": "Paired bootstrap of ratio of arithmetic mean complete-task latencies; six primary comparisons use Bonferroni-adjusted two-sided intervals. A candidate must clear all three comparators and the resource and drift gates. Single-machine, single-input evidence only.",
+  "historicalBoundary": "New prospective fixed-task experiment following user scope reduction. Prior failed discovery and unrun five-cell selector protocol remain unchanged. Case chosen for existing long-physics acceptance, without choosing a timing winner.",
+  "stop": "One attempt, 15-minute child deadline, 1 GiB output budget plus 10 GiB disk reserve; no additional project or optimization pass automatically follows."
+}

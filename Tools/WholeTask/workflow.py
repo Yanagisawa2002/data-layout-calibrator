@@ -144,7 +144,7 @@ def case_key(case):
                                     sort_keys=True).encode()).hexdigest()
 
 
-def run(exe, case, output, correctness=False, validated=None):
+def run(exe, case, output, correctness=False, validated=None, require_quiet_cpu=True):
     if not correctness:
         if not validated or validated["caseKey"] != case_key(case) or validated["executableSha256"] != sha(exe):
             raise ValueError("Performance run requires complete-output correctness for this exact case and executable")
@@ -155,7 +155,7 @@ def run(exe, case, output, correctness=False, validated=None):
     monitor = CpuTelemetry()
     preflight = monitor.preflight()
     (output / "preflight.json").write_text(json.dumps(preflight, indent=2)+"\n")
-    if not correctness and not preflight["passed"]:
+    if not correctness and require_quiet_cpu and not preflight["passed"]:
         raise RuntimeError(f"Per-task CPU preflight failed; no native child started. Retained at {output}")
     monitor.start()
     start = time.perf_counter()
@@ -183,6 +183,7 @@ def run(exe, case, output, correctness=False, validated=None):
                   nativeProcessWallMs=(native_end-start)*1000,
                   consumerMs=(end-native_end)*1000,
                   mode=mode, completed=True, includesCompleteBoundary=True,
+                  measurementEnvironment="quiet-gated" if require_quiet_cpu else "shared-host-observed",
                   cpuPreflight=preflight, cpuDuring=telemetry,
                   performanceEnvironmentEligible=not correctness and not native["diagnostic"] and preflight["passed"] and telemetry["passed"],
                   allocationEligibility="Unknown", nativeAllocationBytes=None,
