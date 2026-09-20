@@ -1,4 +1,10 @@
-# Portfolio figure
+# Historical portfolio figure
+
+For the completed external engineering cases, start with the
+[case-study overview](../ENGINEERING_CASE_STUDIES.md): parallel Burst Dot and the
+complete SPH task. This page is an archive of earlier selection-score figures,
+not the current project landing page. The [evidence status](../EVIDENCE_STATUS.md)
+separates those records from synthetic examples and unfinished experiments.
 
 This figure retains the historical implementation's recorded selection scores
 and decisions. It is not current-source performance evidence, measured tick or

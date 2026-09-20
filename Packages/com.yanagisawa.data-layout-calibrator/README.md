@@ -1,17 +1,24 @@
-> September 10 follow-up: [actual frozen external comparisons](../../Docs/ACTUAL_COMPARISON_REPORT_2026-09-10.md)
-> cover BabelStream variants and LLAMA code_comp, including complete IL2CPP/Burst
-> outputs. They do not establish allocation-qualified deployment or other workloads'
-> performance. The historical September 8 repair scope below is retained.
->
-> 2026-09-08 integration: performance at that checkpoint was **Unmeasured**. Measurement entrypoints
-> remain explicitly callable with an exact source fingerprint. Allocation
-> eligibility requires available, scoped, positively controlled observations; default
-> current-thread counters cannot certify worker/native allocations. Historical P95
-> fields retain their original numbers and describe a component-P95 selection score,
-> not a per-tick or whole-lifecycle percentile. See the
-> [repair contract](../../Docs/MEASUREMENT_REPAIR_2026-09-08.md).
-
 # Data Layout Calibrator package
+
+[Project overview](../../README.md) ·
+[Engineering case studies](../../Docs/ENGINEERING_CASE_STUDIES.md) ·
+[Evidence status](../../Docs/EVIDENCE_STATUS.md) ·
+[Adoption guide](../../Docs/LAYOUT_ADOPTION.md)
+
+This package is an unreleased integration foundation. The repository includes
+named measured cases: [parallel Burst Dot](../../Docs/BABEL_DOT_REPORT_2026-09-15.md)
+and a [complete native SPH task](../../Docs/FOCUSED_COMPLETE_TASK_2026-09-15.md),
+in addition to the [September 10 comparisons](../../Docs/ACTUAL_COMPARISON_REPORT_2026-09-10.md).
+They do not certify every package path or establish profitable automatic selection.
+The native SPH study is not Unity/Burst or generated-storage validation.
+
+Allocation-qualified deployment remains Unknown: actual IL2CPP positive controls
+failed, and current-thread observations do not certify worker/native scope. The
+September 8 integration checkpoint was unmeasured; that historical statement must
+not be used to erase or generalize the later named results. Historical P95 fields
+retain their original component-quantile selection-score semantics, not per-tick
+or whole-lifecycle percentiles. See the
+[measurement repair contract](../../Docs/MEASUREMENT_REPAIR_2026-09-08.md).
 
 The package separates a workload-agnostic calibration core from concrete Samples. The core assembly contains protocol, measurement, statistics, selection, and serializable evidence types; it contains no Particle or Transform workload types.
 
@@ -54,6 +61,17 @@ only cost inference on explicitly synthetic inputs. See the
 [adoption guide](../../Docs/LAYOUT_ADOPTION.md) for export cadence, complete
 boundary costs, allocation coverage and independent deployment confirmation.
 
+## Complete-task timing API
+
+[WholeTaskLayoutSelector](Runtime/WholeTaskLayoutSelector.cs) is an additive,
+timing-only path over complete application-process observations. `Select` uses
+calibration data; `Confirm` checks the previously chosen candidate on separate
+input/process identities. It does not certify allocation coverage or payback.
+`WholeTaskTimingDecision` is a mutable DTO: the host must preserve its returned
+candidate, threshold and identity fields unchanged between selection and
+confirmation. The API's word "frozen" is a caller contract, not type-enforced
+immutability or a tamper-evident seal.
+
 ## AOT-safe registration
 
 Register factories in the assembly that owns the benchmark host:
@@ -77,10 +95,10 @@ non-default-constructible types. `DLCGEN002` rejects duplicate registrations.
 Factory registration remains deliberately narrow: it does not discover types at
 runtime, rewrite workload code, or claim to tune arbitrary structs.
 
-Generator source is retained under `SourceGenerators~`; the UPM package distributes the compiled analyzer under `SourceGenerators`. Rebuild and test it with:
+Generator source is retained under `SourceGenerators~`; the UPM package distributes the compiled analyzer under `SourceGenerators`. From the repository root, rebuild and test it with:
 
 ```powershell
-dotnet test SourceGenerators~/Tests/Yanagisawa.DataLayoutCalibrator.SourceGenerator.Tests.csproj -c Release
+dotnet test Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~/Tests/Yanagisawa.DataLayoutCalibrator.SourceGenerator.Tests.csproj -c Release
 ```
 
 ## Included Samples
@@ -94,7 +112,7 @@ that historical evidence does not automatically validate unreleased vNext code.
 
 ## Unreleased vNext foundation
 
-The current integration branch adds, without changing the package version:
+The current integration adds, without changing the package version:
 
 - explicit layout, kernel, batch, and execution candidate policies;
 - paired-block and same-device process-hierarchical statistics;

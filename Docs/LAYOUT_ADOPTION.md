@@ -1,12 +1,20 @@
 # Choose a layout for the data's actual lifetime
 
-An experimental [whole-task native adoption path](WHOLE_TASK_AUDIT_2026-09-15.md)
-connects a pinned channel-flow application, periodic VTU consumers and complete
-process observations to the additive `WholeTaskLayoutSelector` API. Its timing
-recommendations are separate from allocation-qualified deployment profiles.
-Its [Linux execution](WHOLE_TASK_LINUX_EXECUTION_2026-09-15.md) passed complete-output
-and physical checks, then stopped during discovery on SMT interference. No
-whole-task layout recommendation or speedup is established by that run.
+Start with the [engineering case studies](ENGINEERING_CASE_STUDIES.md) and
+[evidence status](EVIDENCE_STATUS.md), then use the API contract below.
+
+The completed [September 15 SPH fixed-choice comparison](FOCUSED_COMPLETE_TASK_2026-09-15.md)
+measured 72 shared-host native processes. Buffer reuse improved complete caller
+latency by 15.7%, while the tested custom layouts regressed against tuned AoS.
+The decision is to keep AoS plus reusable buffers for that task, **not** to claim
+a profitable automatic selector. The [earlier Linux discovery](WHOLE_TASK_LINUX_EXECUTION_2026-09-15.md)
+stopped on interference and remains a separate failed attempt.
+
+A later [PR #10 caller experiment](https://github.com/Yanagisawa2002/data-layout-calibrator/pull/10)
+was still draft and unmerged on 2026-09-20. Its calibration stopped before a
+selection or independent confirmation was available. Do not treat it as merged
+adoption evidence. The [whole-task source audit](WHOLE_TASK_AUDIT_2026-09-15.md)
+retains the original preparation contract and should be read with the later reports.
 
 The library answers a bounded question: does a particular layout and kernel repay
 its conversion and ownership costs under the application's actual workload,
@@ -80,8 +88,12 @@ for their declared questions and preserved semantics. Bandwidth alone does not
 prove a complete lifecycle win. Cross-language C++/Burst differences cannot be
 attributed entirely to layout.
 
-Current integration source performance and actual worker/native allocation
-coverage remain Unmeasured. The attempted September 9 Unity import failed with
-insufficient disk space before a formal comparison. Historical figures retain
-their original source and metric definitions; see the
+The named [Dot](BABEL_DOT_REPORT_2026-09-15.md) and
+[complete SPH task](FOCUSED_COMPLETE_TASK_2026-09-15.md) records support only their
+frozen implementations and environments; they are not a current-checkout benchmark
+or general deployment qualification. Other current-source performance remains
+unmeasured, and worker/native allocation freedom remains Unknown. The attempted
+September 9 Unity import failed with insufficient disk space before a formal
+comparison; that historical failure is not the status of all later experiments.
+Historical figures retain their original source and metric definitions; see the
 [historical allocation limitation](evidence/HISTORICAL_ALLOCATION_MEASUREMENT_LIMIT.md).

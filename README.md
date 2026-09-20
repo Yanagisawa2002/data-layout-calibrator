@@ -1,72 +1,71 @@
 # Data Layout Calibrator
 
-A Unity/Burst library for choosing data layouts with explicit conversion, resident
-work, export, allocation coverage and independent holdout contracts.
+**CPU performance engineering in Unity/Burst: deterministic parallel reduction,
+complete-lifecycle measurement, and evidence-based data-layout decisions.**
 
-**Choose a layout only when its complete cost repays within the application's
-actual lifetime and export cadence.** Start with the [adoption guide](Docs/LAYOUT_ADOPTION.md)
-and [CPU-only lifetime API example](Tools/Examples/LifetimeDecision/README.md).
-The example uses explicitly synthetic costs to show finite conditional bounds
-and Unknown outcomes; it produces no benchmark result or deployment profile.
+This repository combines a workload-agnostic layout-calibration library with
+measured engineering case studies. The question is not simply whether SoA beats
+AoS: **does a change repay its conversion, ownership and export costs for the
+actual application?** Sometimes the right answer is to keep AoS.
 
-This unreleased integration includes the local vNext implementation and the
-2026-09-08 measurement-contract repairs. [September 10 actual external comparisons](Docs/ACTUAL_COMPARISON_REPORT_2026-09-10.md)
-now cover frozen BabelStream variants and the auxiliary LLAMA code_comp example,
-including full-output IL2CPP/Burst checks. They do not establish general layout
-benefit or deployment eligibility: the actual 1 MiB allocation control failed,
-and worker/native coverage remains Unknown. Other current-source performance is
-Unmeasured / 待验证. Historical measurements retain their original source identities;
-no new default algorithm is promoted.
-
-[September 15 parallel Dot results](Docs/BABEL_DOT_REPORT_2026-09-15.md) add an
-explicit deterministic compensated Burst reduction. On a Core Ultra 7 265K,
-six balanced process blocks reduced Dot time by 71.8% and complete storage
-lifetime by 21.7% versus the original Burst path, with complete output checks.
-Copy/Mul/Triad showed small regressions, and the optimized lifetime remained
-2.53% slower than OpenMP. The original serial default and Unknown allocation
-eligibility remain; these results do not qualify a deployment profile.
-
-## Delivered scope
-
-- Factorized layout/kernel/batch/execution policies, paired block inference,
-  same-device process hierarchy, frozen AoS/candidate holdout, generated storage,
-  exact fingerprint profiles and advantage-envelope logic from local vNext.
-- Injectable allocation capability with explicit availability, units and scope,
-  1 MiB positive/empty controls, and complete observation-window gates. Unknown
-  counters cannot pass as numeric zero. Current-thread managed observations do not
-  certify workers or native allocations; the default required scope includes workers.
-- Separate block-mean P95, component-P95 selection score, individual tick and full
-  lifecycle interfaces. Historical numeric fields and decisions are preserved.
-- Conservative lifetime cost bounds with complete setup/teardown costs and paired
-  independent-process inputs. Missing costs, source identity or an uncertain savings
-  denominator yield Unknown. The model does not manufacture a measured speedup.
-- Explicit measurement commands separated from a PR workflow restricted to static,
-  build and allowlisted deterministic CPU correctness checks.
-
-[Repair contract and validation scope](Docs/MEASUREMENT_REPAIR_2026-09-08.md) ·
-[Roadmap status](Docs/ROADMAP_V0.4_TO_V0.6.md) ·
+[Engineering case studies](Docs/ENGINEERING_CASE_STUDIES.md) ·
+[Evidence and limitations](Docs/EVIDENCE_STATUS.md) ·
+[Adoption guide](Docs/LAYOUT_ADOPTION.md) ·
 [Package API](Packages/com.yanagisawa.data-layout-calibrator/README.md)
 
-## Metric and selection contract
+## Two measured results, two different decisions
 
-```text
-resident value = percentile95(block elapsed milliseconds / ticks in that block)
-selection score = resident value + (ingress P95 + export P95) / lifetime ticks
-```
+| Case | Recorded result | Engineering decision |
+| --- | --- | --- |
+| **Parallel Burst Dot** | Dot: **29.238 → 8.244 ms**, 71.8% lower time. The 100-iteration storage lifetime: **9,344.922 → 7,319.567 ms**, 21.7% lower time, versus the original serial Burst path. | Keep the compensated parallel reduction as an explicit candidate. The optimized lifetime is still **2.53% slower than native OpenMP**; do not claim an overall native win. |
+| **Complete SPH application task** | Reusing cell/neighbor buffers: **5.126 → 4.319 s**, 15.7% lower mean caller latency. Custom SoA and AoSoA8 are **2.75% and 1.97% slower** than that strengthened AoS baseline. | **Keep AoS plus reusable buffers** for this task. Do not attribute the buffer-reuse gain to layout switching. |
 
-The selection score is a sum of marginal quantiles. It is neither a measured tick
-P95 nor a measured lifecycle P95. Derived amortized samples add a fixed boundary
-P95 contribution to every resident block mean. New additive `TimingContract` metadata
-and renderer labels expose those semantics without changing historical numbers.
+**Scope matters.** Dot used six balanced three-arm process blocks on a Core Ultra
+7 265K; its storage lifetime excludes process/Unity startup and external output
+checking. SPH used 72 native processes on a shared Xeon host, including process
+launch, simulation, exports and result consumption. These are different machines,
+workloads and timing boundaries, not a combined benchmark or a GPU result.
 
-A non-AoS selection requires valid allocation coverage, parity, a practical score
-gain and paired uncertainty gates; confirmation requires the exact frozen candidate
-and independent dataset/partition on the same source fingerprint. Regression,
-StatisticalTie and Inconclusive retain AoS. Missing baseline eligibility is Invalid.
-The profile resolver invalidates changed workload, candidate/kernel binary, compiler,
-device or calibration settings; it never remeasures on cache lookup.
+The [Dot report](Docs/BABEL_DOT_REPORT_2026-09-15.md) and
+[SPH report](Docs/FOCUSED_COMPLETE_TASK_2026-09-15.md) retain complete-output checks,
+comparators, uncertainty, regressions and source/binary identities. Their numbers
+are frozen run records, **not a new measurement of the current checkout**.
 
-## Safe local and PR checks
+## What is implemented
+
+The portable core separates candidate layout/kernel/batch/execution policies,
+measurement contracts, statistics, selection and evidence from workload-specific
+code. Integration surfaces include explicit scenario registration, generated
+storage/codec scaffolds, source/device/compiler fingerprints, holdout confirmation
+and conservative lifetime-cost inference.
+
+For a new workload, the caller supplies concrete candidate implementations,
+canonical input/output conversion and parity validation. The library automates
+measurement and bounded decisions; it does **not** automatically rewrite arbitrary
+application structs or invent optimized kernels.
+
+Two implementation starting points:
+
+- [BabelStreamPort.cs](Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Runtime/BabelStreamPort.cs): caller-owned scratch, chunked Neumaier-compensated sums and a dependent ordered merge.
+- [WholeTaskLayoutSelector.cs](Packages/com.yanagisawa.data-layout-calibrator/Runtime/WholeTaskLayoutSelector.cs): separate complete-task calibration and confirmation, paired process evidence and timing-only recommendations.
+
+## Current status
+
+This is an **unreleased integration / engineering portfolio**, not a certified
+deployment optimizer. Included performance records support only their named
+implementations, inputs and environments. No new default algorithm is promoted.
+
+The IL2CPP allocation positive control failed; worker/native allocation coverage
+and allocation-qualified deployment remain **Unknown**. That does not erase the
+recorded timing results, but it prevents a zero-allocation or deployment claim.
+Profitable automatic selection, including calibration cost and independent reuse,
+has **not been demonstrated**. See the [status matrix](Docs/EVIDENCE_STATUS.md),
+including the separately identified unfinished PR #10 experiment.
+
+## Start without running a benchmark
+
+Prerequisites: Python 3.10+ and a .NET SDK capable of building the repository's
+`net8.0` functional projects. From the repository root:
 
 ```powershell
 python -m pip install -r Tools/ResultRenderer/requirements.txt
@@ -76,60 +75,44 @@ python Tools/CI/check_repository.py
 python Tools/KernelContracts/external_sources.py
 ```
 
-The allowlist excludes historical tests that read real counters or run timed
-calibration even when their workloads are fixtures. No Unity, Player, benchmark,
-autotuning or profiling is invoked by this entry or PR CI. Python tests operate on
-DTOs and synthetic fixtures; they do not render recordings or collect measurements.
+These are static, compilation and allowlisted deterministic CPU checks. They do
+not launch Unity, a Player, timed calibration, autotuning or hardware profiling.
+Passing PR CI is not new Burst/IL2CPP performance or deployment evidence.
 
-`Tools/CI/Build-UnityCompileOnly.ps1` is an optional headless Editor script-compilation
-entry with short-path/dependency prechecks. It was not executed in this repair run.
-Existing Player/performance scripts and `-dla-run`, `-dla-search-run`,
-`-dla-envelope-run` and `-dla-counter-run` remain explicit measurement entrypoints.
-They were not executed in this delivery. Source fingerprints and allocation
-capability/coverage checks still apply. Player hosts bind their build manifest and binary identity automatically;
-`-dla-allocation-scope current-thread-managed|all-managed|all` declares the required
-coverage. Suite/search hosts default to current-thread managed coverage; envelope
-runs retain their declared scope. Worker and native allocation freedom remain
-Unknown unless the provider covers them.
+The [CPU-only lifetime example](Tools/Examples/LifetimeDecision/README.md) uses
+**synthetic costs** to demonstrate finite conditional bounds and Unknown outcomes.
+It produces no benchmark result or deployment profile. For a real integration,
+start with the [adoption guide](Docs/LAYOUT_ADOPTION.md) and provide an actual host.
 
-## External workloads
+## Reproduce measurements explicitly
 
-BabelStream/STREAM are the external general bandwidth benchmark starting points.
-LLAMA is an external layout algorithm library: its explicitly named nbody examples
-are library-native workloads, not a general benchmark suite. HeCBench must be named
-by concrete workload. Ports retain that label and cannot claim original benchmark
-scores. Google Benchmark, BenchmarkDotNet and Unity Performance Testing are
-measurement frameworks, not standardized workloads; PRK is not a ranking suite.
-[Source/semantic contract](Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/CONTRACT.md),
-[source lock](Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Upstream~/upstream-lock.json)
-and [kernel delivery](Tools/KernelContracts/CONTRACT.md) accompany the code.
-Implemented kernel increments include hot/cold AoS, block codecs/exports, four-record
-TRS and LLAMA four-target n-body with source-block reuse and an update/move barrier.
-All new candidates remain unregistered and Unmeasured.
-This round prepares and compiles external code only; it executes no external benchmark.
+Use the [Windows Dot reproduction guide](Docs/BABEL_DOT_REPRODUCE_WINDOWS.md)
+or the protocol and runner linked from the
+[complete SPH task report](Docs/FOCUSED_COMPLETE_TASK_2026-09-15.md). These are
+opt-in measurement workflows with their own environment and correctness gates,
+not part of the safe checks above. Preserve each run's source and binary identity.
 
-## Historical evidence
+Older selection-score figures remain available through the
+[historical portfolio page](Docs/portfolio/README.md). They are not measured tick
+P95 or full-lifecycle P95; [metric definitions](Docs/EVIDENCE_STATUS.md) explain
+why those quantities must remain separate.
 
-| Retained record | Recorded implementation source | Interpretation |
-| --- | --- | --- |
-| [v0.3 formal runs](Docs/evidence/formal-il2cpp-2026-09-02/README.md) | `9df183942cd8dc8abfa05bd89f03d822c96c689e` | Original same-device selection-score observations; unchecked allocation zeros are unverified |
-| [vNext formal runs](Docs/evidence/vnext-formal-il2cpp-2026-09-02/README.md) | `c84cf47b62f28b26c34d72acaf16ace23f674ddb` | Original paired-block score observations; historical allocation limitation applies |
-| [2026-09-07 integrated archive](Docs/evidence/optimization-vnext-2026-09-07/README.md) | `4ffa47271306e985d9cade5d77489bd172c0360f` | Original bounded envelope/search/counter experiments; provider controls cover their stated thread scope |
+## Repository map
 
-[Historical allocation limitation](Docs/evidence/HISTORICAL_ALLOCATION_MEASUREMENT_LIMIT.md).
-No raw JSON, archive or historical visualization has been regenerated for the new code.
-The [engineering overview](Docs/portfolio/README.md) and its recorded figures describe
-the historical implementation and results.
+| Path | Responsibility |
+| --- | --- |
+| `Packages/com.yanagisawa.data-layout-calibrator/Runtime` | Workload-agnostic protocol, measurement, selection and evidence core |
+| `Packages/com.yanagisawa.data-layout-calibrator/Samples` | Concrete workloads and candidate kernels |
+| `Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~` | Generator source and tests |
+| `BenchmarkProject` | Unity benchmark host; explicit measurement entrypoints |
+| `Tools` | Build, functional validation, analysis and opt-in measurement tooling |
+| `Docs/evidence` | Historical raw records and run-specific evidence |
 
-## Repository and license
+## Authorship and permissions
 
-The portable core is in `Packages/com.yanagisawa.data-layout-calibrator/Runtime`;
-Samples contain workload kernels; `SourceGenerators~` holds the generator source;
-`BenchmarkProject` is the Unity host; `Tools` contains build/functional and dormant
-measurement tooling. The core knows no Particle workload types.
+[Citation](CITATION.cff) · [Authorship](AUTHORS.md) · [Provenance](PROVENANCE.md)
 
-Canonical repository: [Yanagisawa2002/data-layout-calibrator](https://github.com/Yanagisawa2002/data-layout-calibrator).
-[Citation](CITATION.cff), [authorship](AUTHORS.md), [provenance](PROVENANCE.md).
 Copyright (c) 2026 Edwin Liu. The [limited benchmark reproduction permission](LICENSE)
 permits benchmark reproduction and publication of results; it does not grant general
-redistribution, sublicensing or product integration rights.
+redistribution, sublicensing or product integration rights. Technical adoption
+examples do not expand those permissions.
