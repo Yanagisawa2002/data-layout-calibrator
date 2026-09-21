@@ -10,6 +10,7 @@ actual application?** Sometimes the right answer is to keep AoS.
 
 [Engineering case studies](Docs/ENGINEERING_CASE_STUDIES.md) ·
 [Evidence and limitations](Docs/EVIDENCE_STATUS.md) ·
+[Resident batch API](Docs/RESIDENT_BATCH.md) ·
 [Adoption guide](Docs/LAYOUT_ADOPTION.md) ·
 [Package API](Packages/com.yanagisawa.data-layout-calibrator/README.md)
 
@@ -48,6 +49,16 @@ Two implementation starting points:
 
 - [BabelStreamPort.cs](Packages/com.yanagisawa.data-layout-calibrator/Samples/ExternalWorkloads/Runtime/BabelStreamPort.cs): caller-owned scratch, chunked Neumaier-compensated sums and a dependent ordered merge.
 - [WholeTaskLayoutSelector.cs](Packages/com.yanagisawa.data-layout-calibrator/Runtime/WholeTaskLayoutSelector.cs): separate complete-task calibration and confirmation, paired process evidence and timing-only recommendations.
+
+### Direct resident-batch execution — functional, not benchmarked
+
+The opt-in [resident batch component](Docs/RESIDENT_BATCH.md) adds an independently
+buildable, serial managed CPU path: explicit AoS/SoA storage, reusable capacity,
+affine point transforms, resident point-bounds reduction and cadence-aware exports.
+[Scene-anchor and point-cloud coordinate callers](Tools/Examples/ResidentBatch/README.md)
+reuse the same pipeline with synthetic inputs. No calibration is needed to call it.
+It has deterministic functional tests, not a measured speedup, Unity/Burst/IL2CPP
+validation or zero-allocation certification. Existing core decisions are unchanged.
 
 ## Current status
 
@@ -102,6 +113,7 @@ why those quantities must remain separate.
 | Path | Responsibility |
 | --- | --- |
 | `Packages/com.yanagisawa.data-layout-calibrator/Runtime` | Workload-agnostic protocol, measurement, selection and evidence core |
+| `Packages/com.yanagisawa.data-layout-calibrator/Batch` | Opt-in managed point-storage and fixed resident pipeline; independent of the calibration core |
 | `Packages/com.yanagisawa.data-layout-calibrator/Samples` | Concrete workloads and candidate kernels |
 | `Packages/com.yanagisawa.data-layout-calibrator/SourceGenerators~` | Generator source and tests |
 | `BenchmarkProject` | Unity benchmark host; explicit measurement entrypoints |

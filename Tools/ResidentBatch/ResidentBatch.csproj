@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <AssemblyName>Yanagisawa.DataLayoutCalibrator.Batch</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <UseSharedCompilation>false</UseSharedCompilation>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Batch/BatchMath.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Batch/ResidentPointBatch.cs" />
+    <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Batch/ResidentTransformPipeline.cs" />
+  </ItemGroup>
+</Project>

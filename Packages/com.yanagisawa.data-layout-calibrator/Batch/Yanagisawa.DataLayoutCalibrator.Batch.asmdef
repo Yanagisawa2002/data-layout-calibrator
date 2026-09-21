@@ -1,0 +1,14 @@
+{
+  "name": "Yanagisawa.DataLayoutCalibrator.Batch",
+  "rootNamespace": "Yanagisawa.DataLayoutCalibrator.Batch",
+  "references": [],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": true
+}

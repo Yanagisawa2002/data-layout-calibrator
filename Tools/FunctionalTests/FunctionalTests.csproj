@@ -10,6 +10,8 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
     <PackageReference Include="NUnit" Version="3.14.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
+    <ProjectReference Include="../ResidentBatch/ResidentBatch.csproj" />
+    <ProjectReference Include="../Examples/ResidentBatch/ResidentBatch.Examples.csproj" />
     <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Runtime/*.cs" />
     <!-- Explicit allowlist. SearchComparison/WindowsProcessCycleCounter tests read real timers/counters. -->
     <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/MeasurementContractFunctionalTests.cs" />
@@ -17,5 +19,6 @@
     <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/VNextIntegrationProtocolTests.cs" />
     <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/DeploymentProfileTests.cs" />
     <Compile Include="../../Packages/com.yanagisawa.data-layout-calibrator/Tests/Editor/WholeTaskLayoutSelectorTests.cs" />
+    <Compile Include="../ResidentBatch/Tests/ResidentBatchTests.cs" />
   </ItemGroup>
 </Project>
